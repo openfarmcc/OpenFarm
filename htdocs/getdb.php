@@ -1,9 +1,11 @@
 <html>
    <head>
-      <h1>Plant Repo Database Contents:</h1>
+      <!-- Note: this file is not linked to the main webpage at all. 
+      Navigate to this page to view the full database in table format-->
    </head>
 
    <body>
+      <h1>Plant Repo Database Contents:</h1>
       <br>
       <h2>Table: "plants"</h2>
 

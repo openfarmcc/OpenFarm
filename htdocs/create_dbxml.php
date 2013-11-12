@@ -45,6 +45,6 @@
             $key -> appendChild($doc->createTextNode($value));
          }
       ?>
-      <a href="/plantrepository/thexmlfile.xml">sample file</a>
+      <a href="/plantrepository/get_dbxml.php">sample file</a>
    </body>
 </html>

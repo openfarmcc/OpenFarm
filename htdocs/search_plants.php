@@ -58,7 +58,7 @@
             echo "
                <TR>
                   <TD>$id</TD>
-                  <TD>$given_name</TD>
+                  <TD><a href='/plantrepository/get_plantxml.php?given_name=$given_name'>$given_name</a></TD>
                   <TD>$type</TD>
                   <TD>$variety</TD>
                </TR>";

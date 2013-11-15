@@ -1,9 +1,19 @@
 <html>
    <head>
-      <h1>Add a plant to Plant Repo:</h1><br>
    </head>
    <body>
-      <h2>Add in values and press submit</h2>
+      <h1>Open Farm</h1>
+      <h2>Plant Database</h2>
+
+      <nav>
+         <ul>
+            <li><a href="/plantrepository/index.html">Home</a></li>
+            <li><a href="/plantrepository/insertdb.php"><strong>Add Plants</strong></a></li>
+            <li><a href="/plantrepository/search_plants.php">Search Plants</a></li>
+         </ul>
+      </nav>
+      <h2>Add a plant to Plant Repo:</h2>
+      <!--<h2>Add in values and press submit</h2>-->
       <h3>General Information</h3>
       <form method="POST" action="plant_addrecord.php">
          <table cellspacing=5 cellpadding=5>

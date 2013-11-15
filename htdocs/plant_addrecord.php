@@ -1,6 +1,6 @@
 <?php
    if ((!$_POST["given_name"])||(!$_POST["plant_type"])||(!$_POST["plant_var"])) {
-      header("Location: http://127.0.0.1/plantrepository/index.html");
+      header("Location: http://127.0.0.1/plantrepository/insertdb.php");
       exit;
    }
 ?>
@@ -29,6 +29,10 @@
          $sql_insert = "INSERT INTO plants (id, given_name, plant_type, plant_var) VALUES ('$i','$_POST[given_name]','$_POST[plant_type]','$_POST[plant_var]')";
          // execute SQL insert command and get result
          $sql_result = mysql_query($sql_insert,$conn) or die(mysql_error());
+
+         // redirect back 
+         header("Location: http://127.0.0.1/plantrepository/insertdb.php");
+         exit;
       ?>
    </body>
 </html> 

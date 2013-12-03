@@ -6,7 +6,13 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
+#====== PHANTOMJS stuff
 require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: true)
+end
+#=====
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 

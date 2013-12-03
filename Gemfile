@@ -31,10 +31,12 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails'
   # A really really great alternative to the debugger
   gem 'pry'
   gem 'pry-nav'
+  # Need this to use `save_and_open_page` when debugging / testing.
+  gem 'launchy'
 end
 
 group :test do

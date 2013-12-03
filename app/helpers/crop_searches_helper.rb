@@ -1,0 +1,2 @@
+module CropSearchesHelper
+end

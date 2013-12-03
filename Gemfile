@@ -43,9 +43,11 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 gem 'high_voltage'
 # Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'
+gem 'mongoid_search'

@@ -1,5 +1,12 @@
 OpenFarm::Application.routes.draw do
+
   root :to => 'high_voltage/pages#show', id: 'home'
+
+  # Accept searches via POST and GET so that users can search with forms -or-
+  # shareable link.
+  post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
+  get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

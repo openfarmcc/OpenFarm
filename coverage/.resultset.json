@@ -4,8 +4,59 @@
       "/Users/ricardocarlino/coding/OpenFarm/app/helpers/application_helper.rb": [
         1,
         null
+      ],
+      "/Users/ricardocarlino/coding/OpenFarm/app/helpers/crop_searches_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/ricardocarlino/coding/OpenFarm/app/models/crop.rb": [
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/ricardocarlino/coding/OpenFarm/app/controllers/crop_searches_controller.rb": [
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/ricardocarlino/coding/OpenFarm/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
       ]
     },
-    "timestamp": 1385475315
+    "timestamp": 1386050007
   }
 }

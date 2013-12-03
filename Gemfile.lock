@@ -57,6 +57,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.0)
     erubis (2.7.0)
@@ -67,6 +68,7 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    fast-stemmer (1.0.2)
     faye-websocket (0.7.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.0)
@@ -89,6 +91,9 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    mongoid_search (0.3.2)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
     moped (2.0.0.beta3)
       bson (~> 2.0.0.rc3)
       optionable (~> 0.1.1)
@@ -198,11 +203,13 @@ DEPENDENCIES
   bson_ext
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   factory_girl_rails
   high_voltage
   jbuilder (~> 1.2)
   jquery-rails
   mongoid!
+  mongoid_search
   poltergeist
   pry
   pry-nav

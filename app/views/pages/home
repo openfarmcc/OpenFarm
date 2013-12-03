@@ -1,0 +1,7 @@
+<h1>OpenFarm</h1>
+<p>
+<form id="search_form" method="get" action="/crop_search">
+  <input type="text" name="q" size="42" maxlength="120" value="Search Open Crop Data">
+  <input type="submit" value="Go!">
+</form>
+</p>

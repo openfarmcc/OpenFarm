@@ -13,11 +13,11 @@ User Stories
 You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed. To get started with a local copy of the project, run:
 
 ```bash
-git clone https://github.com/FarmBot/OpenFarm.git
-cd OpenFarm
-bundle install
-rake db:setup
-rails s
+$ git clone https://github.com/FarmBot/OpenFarm.git
+$ cd OpenFarm
+$ bundle install
+$ rake db:setup
+$ rails s
 ```
 
 ### How to Contribute

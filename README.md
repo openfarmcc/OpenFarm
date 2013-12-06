@@ -28,8 +28,11 @@ $ rails s
 
 ### How to Contribute
 
-...
-...
+ 1. Fork this repo.
+ 2. Fix stuff, add features.
+ 3. Send pull request to master.
+
+Not sure where to help? Take a look [over here](http://waffle.io/FarmBot/OpenFarm).
 
 ### Contributors
 

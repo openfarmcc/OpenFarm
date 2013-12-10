@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: f8b439dd9a59b769389aff81a42502cd857cf7fa
+  revision: bbc0df51f9c1fec19dd15e4c5d478d6474adefdc
   specs:
     mongoid (4.0.0.alpha1)
       activemodel (~> 4.0.0)
@@ -41,13 +41,13 @@ GEM
     bson (2.0.0)
     bson_ext (1.5.1)
     builder (3.1.4)
-    capybara (2.1.0)
+    capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    cliver (0.2.2)
+    cliver (0.3.1)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -99,9 +99,9 @@ GEM
       mini_portile (~> 0.5.0)
     optionable (0.2.0)
     origin (1.1.0)
-    poltergeist (1.4.1)
-      capybara (~> 2.1.0)
-      cliver (~> 0.2.1)
+    poltergeist (1.5.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyglot (0.3.3)
@@ -141,11 +141,6 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    sass (3.2.12)
-    sass-rails (4.0.1)
-      railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
@@ -171,8 +166,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.0.0)
-      coffee-rails
     tzinfo (0.3.38)
     uglifier (2.3.2)
       execjs (>= 0.3.0)
@@ -187,11 +180,11 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   capybara
-  coffee-rails (~> 4.0.0)
+  coffee-rails
   database_cleaner
   factory_girl_rails
   high_voltage
-  jbuilder (~> 1.2)
+  jbuilder
   jquery-rails
   launchy
   mongoid!
@@ -201,8 +194,6 @@ DEPENDENCIES
   pry-nav
   rails (= 4.0.2)
   rspec-rails
-  sass-rails (~> 4.0.0)
   sdoc
   simplecov
-  turbolinks
   uglifier (>= 1.3.0)

@@ -1,3 +1,8 @@
-#!/bin/sh
-touch tmp/restart.txt
-echo "restarting Passenger app"
+#!/usr/bin/env ruby
+oldrev, newrev = ARGV
+
+def run(cmd)
+  exit($?.exitstatus) unless system "umask 002 && #{cmd}"
+end
+
+run "cd #{Dir.pwd} && rake utils:restart_server"

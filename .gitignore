@@ -16,3 +16,4 @@
 /tmp
 
 coverage/
+/vendor/bundler

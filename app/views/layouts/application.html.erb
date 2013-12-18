@@ -14,7 +14,7 @@
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) : "OpenFarm" %></title>
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -23,9 +23,20 @@
 
   <body>
 
-    <%= yield %>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><%= link_to "OpenFarm", root_path %></a></h1>
+        </li>
+      </ul>
+    </nav>
 
+
+    <div class="row">
+        <div class="small-12 large-12 columns"><%= yield %></div>
+    </div>
     
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>

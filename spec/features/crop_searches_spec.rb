@@ -6,7 +6,7 @@ describe 'Crop searches' do
   it 'finds documents' do
     visit root_path
     fill_in 'q', with: 'radish'
-    click_button 'Go!'
+    click_button 'Search!'
     expect(page).to have_content('Horseradish (Armoracia rusticana, syn. Cochlearia armoracia)')
   end
 

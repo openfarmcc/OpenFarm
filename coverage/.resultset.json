@@ -33,6 +33,27 @@
         1,
         null
       ],
+      "/Users/ricardocarlino/coding/OpenFarm/app/models/user.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
       "/Users/ricardocarlino/coding/OpenFarm/app/controllers/crop_searches_controller.rb": [
         1,
         null,
@@ -57,6 +78,6 @@
         null
       ]
     },
-    "timestamp": 1386683401
+    "timestamp": 1387372364
   }
 }

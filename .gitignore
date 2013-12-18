@@ -16,3 +16,6 @@
 /tmp
 
 coverage/
+
+# Ignore Mac Finder stuff
+.DS_Store

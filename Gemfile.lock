@@ -38,6 +38,7 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     bson (2.0.0)
     bson_ext (1.5.1)
     builder (3.1.4)
@@ -178,6 +179,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   bson_ext
   capybara
   coffee-rails

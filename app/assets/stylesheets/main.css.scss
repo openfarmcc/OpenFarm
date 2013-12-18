@@ -1,0 +1,40 @@
+body {
+      background: image-url('green_wheat_dark10.png') no-repeat center center fixed;
+      background-size: cover;
+}
+
+.hero {
+
+    h1 {
+        color: white;
+        text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
+        margin-bottom: 0;
+    }
+
+    h3 {
+        color: white;
+        text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
+        margin-bottom: 0.65em;
+    }
+
+    input {
+      height: 50px;
+      font-size: 1.2em;
+      
+          &.search {
+              padding: 1em;
+          }
+
+          &.button {
+              background-color: #85CB2B;
+              border-color: #4BA122;
+          }
+      }
+}
+
+
+// @media #{$small-only} {
+//     input {
+//         font-size: 1em;
+//     }
+// }

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 054825f3273d8ab983515865fda19a6412af30ec
+  revision: fc589421bf8bcc85769400563ac43afa3fa6af29
   specs:
     mongoid (4.0.0.alpha1)
       activemodel (~> 4.0.0)
@@ -69,6 +69,10 @@ GEM
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
     fast-stemmer (1.0.2)
+    git-deploy (0.5.4)
+      net-scp
+      net-ssh
+      thor
     high_voltage (2.0.0)
     hike (1.2.3)
     i18n (0.6.9)
@@ -96,6 +100,9 @@ GEM
       connection_pool (~> 1.2)
       optionable (~> 0.2.0)
     multi_json (1.8.2)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     optionable (0.2.0)
@@ -192,6 +199,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   factory_girl_rails
+  git-deploy
   high_voltage
   jbuilder
   jquery-rails

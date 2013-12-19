@@ -6,6 +6,8 @@ OpenFarm::Application.routes.draw do
   # shareable link.
   post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
   get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
+  
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

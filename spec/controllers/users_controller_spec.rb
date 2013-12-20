@@ -24,4 +24,10 @@ describe UsersController, :type => :controller do
     post 'create', :user => user
     expect(response).to render_template(:new)
   end
+  
+  it 'Should allow a user to be deleted' do
+    user = User.create(FactoryGirl.attributes_for(:user))
+    delete 'destroy', :id => user.id
+    expect(response).to redirect_to root_url
+  end
 end

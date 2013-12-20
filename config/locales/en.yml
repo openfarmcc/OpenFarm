@@ -20,4 +20,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    users:
+        email_address: "Email Address"
+        display_name: "Display Name"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+        location: "Location"
+        soil_type: "Soil Type"
+        preferred_growing_method: "Preferred Growing Method"
+        years_experience: "Years Experience"
+    crops:
+        name: "Name"
+        binomial_name: "Binomial Name"
+        description: "Description"
+        sun_requirements: "Sun Requirements"
+        sowing_method: "Sowing Method"
+        spread: "Spread"
+        days_to_maturity: "Days to Maturity"
+        row_spacing: "Row Spacing"
+        height: "Height"
+  

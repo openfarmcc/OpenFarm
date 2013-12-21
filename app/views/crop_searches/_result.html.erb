@@ -1,11 +1,39 @@
-<h2> <%= crop.name %> </h2>
-<ul>
-  <li> binomial_name <%= crop.binomial_name %> </li>
-  <li> description <%= crop.description %> </li>
-  <li> sun_requirements <%= crop.sun_requirements %> </li>
-  <li> sowing_method <%= crop.sowing_method %> </li>
-  <li> spread <%= crop.spread %> </li>
-  <li> days_to_maturity <%= crop.days_to_maturity %> </li>
-  <li> row_spacing <%= crop.row_spacing %> </li>
-  <li> height <%= crop.height %> </li>
-</ul>
+<li class="crop-card">
+  <h2><%= crop.name %></h2>
+  <table>
+    <tbody>
+    <tr>
+      <td>binomial name</td>
+      <td><%= crop.binomial_name %></td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td><%= crop.description %></td>
+    </tr>
+    <tr>
+      <td>sun requirements</td>
+      <td><%= crop.sun_requirements %></td>
+    </tr>
+    <tr>
+      <td>sowing method</td>
+      <td><%= crop.sowing_method %></td>
+    </tr>
+    <tr>
+      <td>spread</td>
+      <td><%= crop.spread %></td>
+    </tr>
+    <tr>
+      <td>days to maturity</td>
+      <td><%= crop.days_to_maturity %></td>
+    </tr>
+    <tr>
+      <td>row spacing</td>
+      <td><%= crop.row_spacing %></td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td><%= crop.height %></td>
+    </tr>
+    </tbody>
+  </table>
+</li>

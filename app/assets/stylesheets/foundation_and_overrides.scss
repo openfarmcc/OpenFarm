@@ -187,12 +187,12 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
 
 // We use this to control the maximum number of block grid elements per row
 
-// $block-grid-elements: 12;
-// $block-grid-default-spacing: em-calc(20);
+$block-grid-elements: 12;
+$block-grid-default-spacing: em-calc(20);
 
 // Enables media queries for block-grid classes. Set to false if writing semantic HTML.
 
-// $block-grid-media-queries: true;
+$block-grid-media-queries: true;
 
 //
 // Typography Variables

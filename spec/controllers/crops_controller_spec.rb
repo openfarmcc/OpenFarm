@@ -12,13 +12,13 @@ describe CropsController, :type => :controller do
     expect(response).to render_template(:show)
   end
   
-  it 'Should direct to show page after successful user creation' do
+  it 'Should direct to show page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     post 'create', :crop => crop
     response.should redirect_to "/crops/#{assigns(:crop).id}"
   end
   
-  it 'Should redirect back to form after unsuccessful user creation' do
+  it 'Should redirect back to form after unsuccessful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     crop[:name] = ""
     post 'create', :crop => crop

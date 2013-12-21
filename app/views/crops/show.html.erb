@@ -1,23 +1,48 @@
-<h1><%= @crop.name %></h1>
-<h2><%= @crop.binomial_name %></h2>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="large-8 medium-10 small-12 small-centered columns">
+        
+        <h1><%= @crop.name %></h1>
+        <table class="crop">
+            <tbody>
+            <tr>
+              <td>binomial name</td>
+              <td><%= @crop.binomial_name %></td>
+            </tr>
+            <tr>
+              <td>description</td>
+              <td><%= @crop.description %></td>
+            </tr>
+            <tr>
+              <td>sun requirements</td>
+              <td><%= @crop.sun_requirements %></td>
+            </tr>
+            <tr>
+              <td>sowing method</td>
+              <td><%= @crop.sowing_method %></td>
+            </tr>
+            <tr>
+              <td>spread</td>
+              <td><%= @crop.spread %></td>
+            </tr>
+            <tr>
+              <td>days to maturity</td>
+              <td><%= @crop.days_to_maturity %></td>
+            </tr>
+            <tr>
+              <td>row spacing</td>
+              <td><%= @crop.row_spacing %></td>
+            </tr>
+            <tr>
+              <td>height</td>
+              <td><%= @crop.height %></td>
+            </tr>
+            </tbody>
+          </table>
 
-<h3>Description</h3>
-<p><%= @crop.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h3>Sun Requirements</h3>
-<p><%= @crop.sun_requirements %></p>
-
-<h3>Sowing Method</h3>
-<p><%= @crop.sowing_method %></p>
-
-<h3>Spread</h3>
-<p><%= @crop.spread %></p>
-
-<h3>Days to Maturity</h3>
-<p><%= @crop.days_to_maturity %></p>
-
-<h3>Row Spacing</h3>
-<p><%= @crop.row_spacing %></p>
-
-<h3>Height</h3>
-<p><%= @crop.height %></p>

@@ -1,0 +1,12 @@
+table.crop {
+  width: 100%;
+
+  tr > td:first-child {
+    width: 25%;
+    font-weight: 200;
+  }
+
+  tr > td:second-child {
+    font-weight: 800;
+  }
+}

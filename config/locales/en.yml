@@ -27,7 +27,7 @@ en:
         password_confirmation: "Confirm Password"
         location: "Location"
         soil_type: "Soil Type"
-        preferred_growing_method: "Preferred Growing Method"
+        preferred_growing_style: "Preferred Growing Method"
         years_experience: "Years Experience"
     crops:
         name: "Name"

@@ -1,1 +1,12 @@
-<h1><%= @user.display_name %></h1>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="large-8 medium-10 small-12 small-centered columns">
+        <h1>Hello <span style="text-decoration: underline"><%= @user.display_name %></span>!</h1>
+        <h2>This is where your profile belongs.</h2>
+        <h3>(what did you expect, this isn't exactly MySpace)</h3>
+        <%= link_to "Edit User", edit_user_path, :id=>@user.id, :class=>"button radius" %>
+      </div>
+    </div>
+  </div>
+</div>

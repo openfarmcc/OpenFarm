@@ -16,25 +16,44 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "OpenFarm" %></title>
 
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-
-    <nav class="top-bar">
+    <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><%= link_to "OpenFarm", root_path %></a></h1>
+          <h1><%= link_to "OpenFarm", root_path %></h1>
         </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
       </ul>
+
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <!-- <li class="has-form"><a class="button disabled" href="#">Login</a></li> -->
+          <li class="has-dropdown">
+            <a href="#">Not-so-secret Admin Stuff</a>
+            <ul class="dropdown">
+              <li><%= link_to "Create Crop", new_crop_path %></li>
+              <li><%= link_to "Create User", new_user_path %></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Left Nav Section -->
+        <!--<ul class="left">
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li><a href="#">Item 3</a></li>
+        </ul>-->
+      </section>
     </nav>
 
-    <div class="row">
-        <div class="small-12 large-12 columns"><%= yield %></div>
-    </div>
-    
+    <%= yield %>
 
     <%= javascript_include_tag "application" %>
   </body>

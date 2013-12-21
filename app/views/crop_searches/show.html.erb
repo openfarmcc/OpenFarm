@@ -1,6 +1,17 @@
-<h1>Search Results:</h1>
-<p>
-  <% @results.each do |result| %>
-  <%= render partial: "result", locals: {crop: result} %>
-  <% end %>
-</p>
+<div class="row">
+  <div class="crop-search small-12 columns">
+
+    <h1>Search Results:</h1>
+
+      <% if @results.empty? %>
+        <h2>Nothing found :(</h2>
+      <% else %>
+        <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1">
+        <% @results.each do |result| %>
+          <%= render partial: "result", locals: {crop: result} %>
+        <% end %>
+        </ul>
+      <% end %>
+      
+  </div>
+</div>

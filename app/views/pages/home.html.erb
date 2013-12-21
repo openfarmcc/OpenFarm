@@ -1,7 +1,13 @@
-<div class="hero row" style="margin-top: 100px">
+<!-- <div class="row">
+<div class="small-12 large-12 columns"></div>
+</div>
+ -->
+<div class="hero-background"></div>
+<div class="hero row">
     <div class="small-10 small-centered columns">
+        <img src="<%= image_path 'logo.svg' %>" width="420px" onerror="this.onerror=null; this.src='<%= image_path 'OpenFarm_white_400.png' %>'">
         <h1>Learn to grow anything.</h1>
-        <h3>A free and open database for farming and gardening knowledge.</h3>
+        <h2>A free and open database for farming and gardening knowledge.</h2>
     </div>
     <div class="small-10 small-centered columns">
         <form class="home_search" method="get" action="/crop_search">
@@ -9,10 +15,10 @@
                 <div class="small-12 small-centered columns">
                     <div class="row collapse">
                         <div class="small-8 large-9 columns">
-                            <input class="search" type="text" name="q" size="42" maxlength="120" placeholder="Search Open Crop Data">
+                            <input class="search" type="text" name="q" maxlength="120" placeholder="What do you want to grow?">
                         </div>
                         <div class="small-4 large-3 columns">
-                            <input class="button button postfix" type="submit" value="Search!">
+                            <input class="button postfix" type="submit" value="Search!">
                         </div>
                     </div>
                 </div>

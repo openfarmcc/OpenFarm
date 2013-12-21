@@ -3,6 +3,19 @@ class CropsController < ApplicationController
     @crop = Crop.new
   end
   
+  def edit
+    @crop = Crop.find(params[:id])
+  end
+  
+  def update
+    @crop = Crop.find(params[:id])
+    if @crop.update(crops_params)
+      redirect_to @crop
+    else
+      render :edit
+    end
+  end
+  
   def show
     @crop = Crop.find(params[:id])
   end

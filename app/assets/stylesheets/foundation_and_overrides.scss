@@ -97,7 +97,7 @@ $shiny-edge-active-color: rgba(#000, .2);
 
 // Control whether or not CSS classes come through in the CSS files.
 
-// $include-html-classes: true;
+$include-html-classes: true;
 // $include-print-styles: true;
 // $include-html-global-classes: $include-html-classes;
 // $include-html-inline-list-classes: $include-html-classes;
@@ -105,8 +105,8 @@ $shiny-edge-active-color: rgba(#000, .2);
 // $include-html-grid-classes: $include-html-classes;
 // $include-html-visibility-classes: $include-html-classes;
 // $include-html-button-classes: $include-html-classes;
-// $include-html-form-classes: $include-html-classes;
-// $include-html-custom-form-classes: $include-html-classes;
+$include-html-form-classes: $include-html-classes;
+$include-html-custom-form-classes: $include-html-classes;
 // $include-html-media-classes: $include-html-classes;
 // $include-html-section-classes: $include-html-classes;
 // $include-html-orbit-classes: $include-html-classes;
@@ -342,36 +342,36 @@ $input-include-glowing-effect: true;
 
 // We use these to style the fieldset border and spacing.
 
-// $fieldset-border-style: solid;
-// $fieldset-border-width: 1px;
-// $fieldset-border-color: #ddd;
-// $fieldset-padding: em-calc(20);
-// $fieldset-margin: em-calc(18 0);
+$fieldset-border-style: solid;
+$fieldset-border-width: 1px;
+$fieldset-border-color: #ddd;
+$fieldset-padding: em-calc(20);
+$fieldset-margin: em-calc(18 0);
 
 // We use these to style the legends when you use them
 
-// $legend-bg: #fff;
-// $legend-font-weight: bold;
-// $legend-padding: em-calc(0 3);
+$legend-bg: #fff;
+$legend-font-weight: bold;
+$legend-padding: em-calc(0 3);
 
 // We use these to style the prefix and postfix input elements
 
-// $input-prefix-bg: darken(#fff, 5%);
-// $input-prefix-border-color: darken(#fff, 20%);
-// $input-prefix-border-size: 1px;
-// $input-prefix-border-type: solid;
-// $input-prefix-overflow: hidden;
-// $input-prefix-font-color: #333;
-// $input-prefix-font-color-alt: #fff;
+$input-prefix-bg: darken(#fff, 5%);
+$input-prefix-border-color: darken(#fff, 20%);
+$input-prefix-border-size: 1px;
+$input-prefix-border-type: solid;
+$input-prefix-overflow: hidden;
+$input-prefix-font-color: #333;
+$input-prefix-font-color-alt: #fff;
 
 // We use these to style the error states for inputs and labels
 
-// $input-error-message-padding: em-calc(6 4);
-// $input-error-message-top: 0;
-// $input-error-message-font-size: em-calc(12);
-// $input-error-message-font-weight: bold;
-// $input-error-message-font-color: #fff;
-// $input-error-message-font-color-alt: #333;
+$input-error-message-padding: em-calc(6 4);
+$input-error-message-top: 0;
+$input-error-message-font-size: em-calc(12);
+$input-error-message-font-weight: bold;
+$input-error-message-font-color: #fff;
+$input-error-message-font-color-alt: #333;
 
 // We use this to style the glowing effect of inputs when focused
 
@@ -384,45 +384,45 @@ $glowing-effect-color: $input-focus-border-color;
 
 // We use these to build padding for buttons.
 
-// $button-med: em-calc(12);
-// $button-tny: em-calc(7);
-// $button-sml: em-calc(9);
-// $button-lrg: em-calc(16);
+$button-med: em-calc(12);
+$button-tny: em-calc(7);
+$button-sml: em-calc(9);
+$button-lrg: em-calc(16);
 
 // We use this to control the display property.
 
-// $button-display: inline-block;
-// $button-margin-bottom: em-calc(20);
+$button-display: inline-block;
+$button-margin-bottom: em-calc(20);
 
 // We use these to control button text styles.
 
-// $button-font-family: inherit;
-// $button-font-color: #fff;
-// $button-font-color-alt: #333;
-// $button-font-med: em-calc(16);
-// $button-font-tny: em-calc(11);
-// $button-font-sml: em-calc(13);
-// $button-font-lrg: em-calc(20);
-// $button-font-weight: bold;
-// $button-font-align: center;
+$button-font-family: inherit;
+$button-font-color: #fff;
+$button-font-color-alt: #333;
+$button-font-med: em-calc(16);
+$button-font-tny: em-calc(11);
+$button-font-sml: em-calc(13);
+$button-font-lrg: em-calc(20);
+$button-font-weight: bold;
+$button-font-align: center;
 
 // We use these to control various hover effects.
 
-// $button-function-factor: 10%;
+$button-function-factor: 10%;
 
 // We use these to control button border styles.
 
-// $button-border-width: 1px;
-// $button-border-style: solid;
+$button-border-width: 1px;
+$button-border-style: solid;
 
 // We use this to set the default radius used throughout the core.
 
-// $button-radius: $global-radius;
-// $button-round: $global-rounded;
+$button-radius: $global-radius;
+$button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.
 
-// $button-disabled-opacity: 0.6;
+$button-disabled-opacity: 0.6;
 
 //
 // Button Groups
@@ -430,7 +430,7 @@ $glowing-effect-color: $input-focus-border-color;
 
 // Sets the margin for the right side by default, and the left margin if right-to-left direction is used
 
-// $button-bar-margin-opposite: em-calc(10);
+$button-bar-margin-opposite: em-calc(10);
 
 //
 // Dropdown Button Variables
@@ -438,36 +438,36 @@ $glowing-effect-color: $input-focus-border-color;
 
 // We use these to set the color of the pip in dropdown buttons
 
-// $dropdown-button-pip-color: #fff;
-// $dropdown-button-pip-color-alt: #333;
+$dropdown-button-pip-color: #fff;
+$dropdown-button-pip-color-alt: #333;
 
 // We use these to style tiny dropdown buttons
 
-// $dropdown-button-padding-tny: $button-tny * 5;
-// $dropdown-button-pip-size-tny: $button-tny;
-// $dropdown-button-pip-opposite-tny: $button-tny * 2;
-// $dropdown-button-pip-top-tny: -$button-tny / 2 + em-calc(1);
+$dropdown-button-padding-tny: $button-tny * 5;
+$dropdown-button-pip-size-tny: $button-tny;
+$dropdown-button-pip-opposite-tny: $button-tny * 2;
+$dropdown-button-pip-top-tny: -$button-tny / 2 + em-calc(1);
 
 // We use these to style small dropdown buttons
 
-// $dropdown-button-padding-sml: $button-sml * 5;
-// $dropdown-button-pip-size-sml: $button-sml;
-// $dropdown-button-pip-opposite-sml: $button-sml * 2;
-// $dropdown-button-pip-top-sml: -$button-sml / 2 + em-calc(1);
+$dropdown-button-padding-sml: $button-sml * 5;
+$dropdown-button-pip-size-sml: $button-sml;
+$dropdown-button-pip-opposite-sml: $button-sml * 2;
+$dropdown-button-pip-top-sml: -$button-sml / 2 + em-calc(1);
 
 // We use these to style medium dropdown buttons
 
-// $dropdown-button-padding-med: $button-med * 4 + em-calc(3);
-// $dropdown-button-pip-size-med: $button-med - em-calc(3);
-// $dropdown-button-pip-opposite-med: $button-med * 2;
-// $dropdown-button-pip-top-med: -$button-med / 2 + em-calc(2);
+$dropdown-button-padding-med: $button-med * 4 + em-calc(3);
+$dropdown-button-pip-size-med: $button-med - em-calc(3);
+$dropdown-button-pip-opposite-med: $button-med * 2;
+$dropdown-button-pip-top-med: -$button-med / 2 + em-calc(2);
 
 // We use these to style large dropdown buttons
 
-// $dropdown-button-padding-lrg: $button-lrg * 4;
-// $dropdown-button-pip-size-lrg: $button-lrg - em-calc(6);
-// $dropdown-button-pip-opposite-lrg: $button-lrg + em-calc(12);
-// $dropdown-button-pip-top-lrg: -$button-lrg / 2 + em-calc(3);
+$dropdown-button-padding-lrg: $button-lrg * 4;
+$dropdown-button-pip-size-lrg: $button-lrg - em-calc(6);
+$dropdown-button-pip-opposite-lrg: $button-lrg + em-calc(12);
+$dropdown-button-pip-top-lrg: -$button-lrg / 2 + em-calc(3);
 
 //
 // Split Button Variables
@@ -475,42 +475,42 @@ $glowing-effect-color: $input-focus-border-color;
 
 // We use these to control different shared styles for Split Buttons
 
-// $split-button-function-factor: 15%;
-// $split-button-pip-color: #fff;
-// $split-button-pip-color-alt: #333;
-// $split-button-active-bg-tint: rgba(0,0,0,0.1);
+$split-button-function-factor: 15%;
+$split-button-pip-color: #fff;
+$split-button-pip-color-alt: #333;
+$split-button-active-bg-tint: rgba(0,0,0,0.1);
 
 // We use these to control tiny split buttons
 
-// $split-button-padding-tny: $button-tny * 9;
-// $split-button-span-width-tny: $button-tny * 6.5;
-// $split-button-pip-size-tny: $button-tny;
-// $split-button-pip-top-tny: $button-tny * 2;
-// $split-button-pip-default-float-tny: em-calc(-5);
+$split-button-padding-tny: $button-tny * 9;
+$split-button-span-width-tny: $button-tny * 6.5;
+$split-button-pip-size-tny: $button-tny;
+$split-button-pip-top-tny: $button-tny * 2;
+$split-button-pip-default-float-tny: em-calc(-5);
 
 // We use these to control small split buttons
 
-// $split-button-padding-sml: $button-sml * 7;
-// $split-button-span-width-sml: $button-sml * 5;
-// $split-button-pip-size-sml: $button-sml;
-// $split-button-pip-top-sml: $button-sml * 1.5;
-// $split-button-pip-default-float-sml: em-calc(-9);
+$split-button-padding-sml: $button-sml * 7;
+$split-button-span-width-sml: $button-sml * 5;
+$split-button-pip-size-sml: $button-sml;
+$split-button-pip-top-sml: $button-sml * 1.5;
+$split-button-pip-default-float-sml: em-calc(-9);
 
 // We use these to control medium split buttons
 
-// $split-button-padding-med: $button-med * 6.4;
-// $split-button-span-width-med: $button-med * 4;
-// $split-button-pip-size-med: $button-med - em-calc(3);
-// $split-button-pip-top-med: $button-med * 1.5;
-// $split-button-pip-default-float-med: em-calc(-9);
+$split-button-padding-med: $button-med * 6.4;
+$split-button-span-width-med: $button-med * 4;
+$split-button-pip-size-med: $button-med - em-calc(3);
+$split-button-pip-top-med: $button-med * 1.5;
+$split-button-pip-default-float-med: em-calc(-9);
 
 // We use these to control large split buttons
 
-// $split-button-padding-lrg: $button-lrg * 6;
-// $split-button-span-width-lrg: $button-lrg * 3.75;
-// $split-button-pip-size-lrg: $button-lrg - em-calc(6);
-// $split-button-pip-top-lrg: $button-lrg + em-calc(5);
-// $split-button-pip-default-float-lrg: em-calc(-9);
+$split-button-padding-lrg: $button-lrg * 6;
+$split-button-span-width-lrg: $button-lrg * 3.75;
+$split-button-pip-size-lrg: $button-lrg - em-calc(6);
+$split-button-pip-top-lrg: $button-lrg + em-calc(5);
+$split-button-pip-default-float-lrg: em-calc(-9);
 
 //
 // Alert Box Variables

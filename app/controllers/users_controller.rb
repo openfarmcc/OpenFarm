@@ -4,6 +4,20 @@ class UsersController < ApplicationController
     render :new
   end
   
+  def edit
+    @user = User.find(params[:id])
+    render :edit
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+  
   def create
     @user = User.new(user_params)
     if @user.save
@@ -19,6 +33,6 @@ class UsersController < ApplicationController
   
   private
     def user_params
-      params.require(:user).permit(:display_name, :email_address, :password, :password_confirmation, :location, :soil_type, :preferred_growing_style, :years_experience)
+      params.require(:user).permit(:id, :display_name, :email_address, :password, :password_confirmation, :location, :soil_type, :preferred_growing_style, :years_experience)
     end
 end

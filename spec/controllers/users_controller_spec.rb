@@ -6,6 +6,33 @@ describe UsersController, :type => :controller do
     expect(response).to render_template(:new)
   end
   
+  it 'Should render a edit page' do
+    user = FactoryGirl.create(:user)
+    get 'edit', :id => user.id
+    expect(response).to render_template(:edit)
+  end
+  
+  it 'Should allow a page edit' do
+    NEW_NAME = "Changed name"
+    
+    user_attributes = FactoryGirl.attributes_for(:user)
+    user = User.create(user_attributes)
+    user_attributes[:display_name] = NEW_NAME
+    put 'update', :id => user.id, :user => user_attributes
+    
+    response.should redirect_to "/users/#{assigns(:user).id}"
+    assigns(:user).display_name.should == NEW_NAME
+  end
+  
+  it 'Should not allow a page edit if display_name is missing' do
+    user_attributes = FactoryGirl.attributes_for(:user)
+    user = User.create(user_attributes)
+    user_attributes[:display_name] = ""
+    put 'update', :id => user.id, :user => user_attributes
+    
+    expect(response).to render_template(:edit)
+  end
+  
   it 'Should render a show page' do
     user = FactoryGirl.create(:user)
     get 'show', :id => user.id

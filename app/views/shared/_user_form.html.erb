@@ -1,27 +1,27 @@
 <%= form_for @user do |f| %>
 	
-	<%= f.label :display_name, "Display Name" %>
+	<%= f.label :display_name, I18n.t('users.display_name') %>
 	<%= f.text_field :display_name %>
 
-	<%= f.label :password, "Password" %>
+	<%= f.label :password, I18n.t('users.password') %>
 	<%= f.password_field :password %>
 
-	<%= f.label :password_confirmation, "Confirm Password" %>
+	<%= f.label :password_confirmation, I18n.t('users.password_confirmation') %>
 	<%= f.password_field :password_confirmation %>
 
-	<%= f.label :email_address, "Email Address" %>
+	<%= f.label :email_address, I18n.t('users.email_address') %>
 	<%= f.email_field :email_address %>
 
-	<%= f.label :location, "Location" %>
+	<%= f.label :location, I18n.t('users.location') %>
 	<%= f.text_field :location %>
 
-	<%= f.label :soil_type, "Soil Type" %>
+	<%= f.label :soil_type, I18n.t('users.soil_type') %>
 	<%= f.text_field :soil_type %>
 
-	<%= f.label :years_experience, "Years experience" %>
+	<%= f.label :years_experience, I18n.t('users.years_experience') %>
 	<%= f.text_field :years_experience %>
 
-	<%= f.label :preferred_growing_style, "Preferred Growing Style" %>
+	<%= f.label :preferred_growing_style, I18n.t('users.preferred_growing_style') %>
 	<%= f.text_field :preferred_growing_style %>
 
 	<%= f.submit %>

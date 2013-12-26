@@ -53,7 +53,11 @@ group :test do
   gem 'database_cleaner'
 end
 
+#Used for static pages in /app/views/pages
 gem 'high_voltage'
+
+gem 'devise'
+
 # Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'

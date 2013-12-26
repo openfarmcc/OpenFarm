@@ -17,6 +17,9 @@
 /log/*.log
 /tmp
 
+#Wtf??
+/coverage/*
+coverage/*
 coverage/
 /vendor/bundler
 

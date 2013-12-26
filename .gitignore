@@ -17,7 +17,7 @@
 /log/*.log
 /tmp
 
-coverage/*
+/coverage/*
 /vendor/bundler
 
 # Ignore Mac Finder stuff

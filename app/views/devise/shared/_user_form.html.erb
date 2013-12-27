@@ -12,6 +12,9 @@
 
   <%= f.label :email, I18n.t('users.email_address') %>
   <%= f.email_field :email %>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
 
   <%= f.label :location, I18n.t('users.location') %>
   <%= f.text_field :location %>

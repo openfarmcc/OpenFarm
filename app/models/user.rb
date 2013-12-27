@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   ## Database authenticatable
   field :email,              :type => String, :default => ""
+  validates_presence_of :email
   field :encrypted_password, :type => String, :default => ""
 
   ## Recoverable
@@ -29,9 +30,8 @@ class User
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
 
-  field :email_address, type: String
   field :display_name, type: String
-
+  validates_presence_of :display_name
   field :location, type: String
   field :soil_type, type: String
   field :preferred_growing_style, type: String
@@ -40,8 +40,6 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  field :encrypted_password, :type => String, :default => ""
 
   ## Recoverable
   field :reset_password_token,   :type => String

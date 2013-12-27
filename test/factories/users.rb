@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    email_address 'test@openfarm.cc'
+    email         'test@openfarm.cc'
     display_name  'Test user'
     location      'Morgantown, WV'
     soil_type     'Dirty'

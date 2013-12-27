@@ -1,5 +1,6 @@
 OpenFarm::Application.routes.draw do
 
+  devise_for :users
   root :to => 'high_voltage/pages#show', id: 'home'
 
   # Accept searches via POST and GET so that users can search with forms -or-

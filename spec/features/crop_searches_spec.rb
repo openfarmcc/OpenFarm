@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe 'CropSearchesController', :type => :controller do
+describe 'Crop search', :type => :controller do
   let!(:crop){FactoryGirl.create(:crop)}
 
   it 'finds documents' do

@@ -58,6 +58,10 @@ gem 'high_voltage'
 
 gem 'devise'
 
+# Some extra gems for signing up through Twitter or Facebook
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 # Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'

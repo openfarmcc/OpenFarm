@@ -26,6 +26,20 @@ $ rake db:setup
 $ rails s
 ```
 
+#### OAuth
+
+OpenFarm supports OAuth through Facebook and Twitter, however you have to enable it yourself.
+
+For Twitter, you need to set the `TWITTER_CONSUMER_KEY` and `TWITTER_CONSUMER_SECRET` environment variables before starting the server:
+
+```bash
+export TWITTER_CONSUMER_KEY=my-consumer-key
+export TWITTER_CONSUMER_SECRET=my-consumer-secret
+rails s
+```
+
+For Facebook it is the same way, except the fields are `FACEBOOK_APP_ID` and `FACEBOOK_APP_SECRET`.
+
 ### How to Contribute
 
  1. Fork this repo.

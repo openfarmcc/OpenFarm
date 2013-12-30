@@ -19,7 +19,7 @@ private
                       "user_authentications.uid" => omni["uid"]).first
 
     if user
-      # They already associated this account
+      # They already associated this account, just log them in
       flash[:notice] = "Logged in successfully"
       sign_in_and_redirect user
     elsif current_user
@@ -37,6 +37,7 @@ private
       flash[:notice] = "Authentication successful."
       sign_in_and_redirect user
     else
+      # They have not signed up yet, create them a user
       user = User.new
       user.display_name = omni["info"]["name"]
       user.email = omni["extra"]["raw_info"].email if args[:with_email]
@@ -46,8 +47,10 @@ private
         flash[:notice] = "Logged in."
         sign_in_and_redirect user
       else
-        puts "wtf"
-        puts user.errors.inspect
+        # This will usually happen if the provider does not give out the email
+        # *cough* Twitter *cough*
+        # Since email is a required field in Devise, redirect them to the signup
+        # page and tell them to fill in their email.
         session[:omniauth] = omni.except "extra"
         redirect_to new_user_registration_path
       end

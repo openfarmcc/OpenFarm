@@ -19,6 +19,10 @@ if use_bundler
   run "bundle install #{bundler_args.join(' ')}"
 end
 
+# symlink server credentials and logs
+run "rm config/mongoid.yml"
+run "ln -s /home/deploy/shared/config/mongoid.yml /home/deploy/repository/config/mongoid.yml"
+
 # clear cached assets (unversioned/ignored files)
 run "git clean -x -f -- public/stylesheets public/javascripts"
 

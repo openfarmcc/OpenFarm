@@ -77,10 +77,6 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fast-stemmer (1.0.2)
-    git-deploy (0.5.4)
-      net-scp
-      net-ssh
-      thor
     hashie (2.0.5)
     high_voltage (2.0.0)
     hike (1.2.3)
@@ -114,9 +110,6 @@ GEM
       optionable (~> 0.2.0)
     multi_json (1.8.2)
     multipart-post (1.2.0)
-    net-scp (1.1.2)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.7.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -242,7 +235,6 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
-  git-deploy
   high_voltage
   jbuilder
   jquery-rails

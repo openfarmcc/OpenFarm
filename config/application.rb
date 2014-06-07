@@ -30,5 +30,6 @@ module OpenFarm
     #                                               '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     I18n.enforce_available_locales = false
+    config.assets.initialize_on_precompile = false
   end
 end

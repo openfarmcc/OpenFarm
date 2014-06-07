@@ -12,6 +12,8 @@ class UserAuthenticationsController < ApplicationController
   end
 
 private
+  # This method is extremely complex.
+  # FIXME: Refactor for lower complexity.
   def handle_omni_auth args = {}
     omni = request.env["omniauth.auth"]
 

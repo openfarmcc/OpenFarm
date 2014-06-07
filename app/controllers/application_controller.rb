@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   # Allow certain fields for devise - needed in Rails 4.0+
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  # This method allows devise to pass non standard attributes through and
+  # thereby comply with 'strong parameters'.
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) do |user|
       user.permit :display_name, :location, :soil_type, :years_experience,

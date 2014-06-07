@@ -32,10 +32,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
-  gem 'git-deploy'
-end
-
 group :development, :test do
   gem 'rspec-rails'
   # A really really great alternative to the debugger

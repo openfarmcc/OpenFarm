@@ -1,67 +1,11 @@
 development:
-  # Configure available database sessions. (required)
   sessions:
-    # Defines the default session. (required)
     default:
-      # Defines the name of the default database that Mongoid can connect to.
-      # (required).
       database: open_farm_development
-      # Provides the hosts the default session can connect to. Must be an array
-      # of host:port pairs. (required)
       hosts:
         - localhost:27017
       options:
-        # Change the default write concern. (default = { w: 1 })
-        # write:
-        # w: 1
-
-        # Change the default consistency model to primary, secondary.
-        # 'secondary' will send reads to secondaries, 'primary' sends everything
-        # to master. (default: primary)
-        # read: secondary_preferred
-
-        # How many times Moped should attempt to retry an operation after
-        # failure. (default: 30)
-        # max_retries: 30
-
-        # The time in seconds that Moped should wait before retrying an
-        # operation on failure. (default: 1)
-        # retry_interval: 1
-  # Configure Mongoid specific options. (optional)
   options:
-    # Enable the identity map, needed for eager loading. (default: false)
-    # identity_map_enabled: false
-
-    # Includes the root model name in json serialization. (default: false)
-    # include_root_in_json: false
-
-    # Include the _type field in serializaion. (default: false)
-    # include_type_for_serialization: false
-
-    # Preload all models in development, needed when models use
-    # inheritance. (default: false)
-    # preload_models: false
-
-    # Protect id and type from mass assignment. (default: true)
-    # protect_sensitive_fields: true
-
-    # Raise an error when performing a #find and the document is not found.
-    # (default: true)
-    # raise_not_found_error: true
-
-    # Raise an error when defining a scope with the same name as an
-    # existing method. (default: false)
-    # scope_overwrite_exception: false
-
-    # Skip the database version check, used when connecting to a db without
-    # admin access. (default: false)
-    # skip_version_check: false
-
-    # Use Active Support's time zone in conversions. (default: true)
-    # use_activesupport_time_zone: true
-
-    # Ensure all times are UTC in the app side. (default: false)
-    # use_utc: false
 test:
   sessions:
     default:
@@ -74,3 +18,8 @@ test:
         # low amounts for fast failures.
         max_retries: 1
         retry_interval: 0
+
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGO_URL'] %>

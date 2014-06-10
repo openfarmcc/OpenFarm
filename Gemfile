@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
+ruby '2.1.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+
+gem 'rails_12factor' # for dokku
 
 # Foundation
 gem 'zurb-foundation', '4.3.2'
@@ -29,10 +32,6 @@ gem 'bcrypt-ruby'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-end
-
-group :development do
-  gem 'git-deploy'
 end
 
 group :development, :test do

@@ -11,7 +11,8 @@ class CropSearchesController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white
+    # list through.
     def crop_search_params
       params.permit(:q)
     end

@@ -24,4 +24,10 @@ describe CropsController, :type => :controller do
     post 'create', :crop => crop
     expect(response).to render_template(:new)
   end
+  
+  it 'Should allow a crop to be deleted' do
+    crop = Crop.create(FactoryGirl.attributes_for(:crop))
+    delete 'destroy', :id => crop.id
+    expect(response).to redirect_to root_url
+  end
 end

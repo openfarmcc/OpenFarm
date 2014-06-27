@@ -16,6 +16,12 @@ class CropsController < ApplicationController
     end
   end
   
+  def destroy
+    @crop = Crop.find(params[:id])
+    @crop.destroy
+    redirect_to root_url
+  end
+  
   private
   def crops_params
     params.require(:crop).permit(:name, :binomial_name, :description, 

@@ -15,7 +15,10 @@
         <title>
             <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
         </title>
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'><%= stylesheet_link_tag    "application" %><%= javascript_include_tag "vendor/custom.modernizr" %><%= csrf_meta_tags %>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
+        <%= stylesheet_link_tag "application" %>
+        <%= javascript_include_tag "vendor/custom.modernizr" %>
+        <%= csrf_meta_tags %>
     </head>
     <body>
         <nav class="top-bar" data-topbar>
@@ -53,25 +56,18 @@
                         <%= link_to("Sign In", new_user_session_path, class: 'button') %>
                     </li>
                     <% end %>
-                </ul><!-- Left Nav Section -->
-                <!--                 <ul class="left">
-                    <li>
-                        <a href="#">Item 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Item 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Item 3</a>
-                    </li>
-                </ul> -->
+                </ul>
             </section>
-        </nav><% if notice || alert %>
+        </nav>
+        <% if notice || alert %>
         <p class="notice">
             <%= notice %>
         </p>
         <p class="alert">
             <%= alert %>
-        </p><% end %><%= yield %><%= javascript_include_tag "application" %>
+        </p>
+        <% end %>
+        <%= yield %>
+        <%= javascript_include_tag "application" %>
     </body>
 </html>

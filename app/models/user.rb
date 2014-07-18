@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
 
   embeds_many :user_authentications
+  has_many :guides
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""

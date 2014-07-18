@@ -5,6 +5,7 @@ class Crop
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
+  has_many :guides
 
   field :name
   validates_presence_of :name

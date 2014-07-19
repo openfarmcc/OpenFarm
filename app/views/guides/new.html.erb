@@ -1,0 +1,15 @@
+<div class="small-12 columns">
+  <div class="row">
+    <div class="large-8 medium-10 small-12 small-centered columns">
+      <h1>Add a new Guide!</h1>
+      <%= form_for @guide do |f| %>
+      <%= f.label :name, 'Guide Name' %>
+      <%= f.text_field :name %>
+      <%= f.label :user, 'Author ID' %>
+      <%= f.text_field :user %>
+      
+      <%= f.submit 'Save Guide!', :class => 'button', :disable_with => 'Saving...' %>
+    <% end %>
+    </div>
+  </div>
+</div>

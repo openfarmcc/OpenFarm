@@ -88,6 +88,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -243,6 +245,7 @@ DEPENDENCIES
   high_voltage
   jbuilder
   jquery-rails
+  jquery-ui-rails
   launchy
   mongoid!
   mongoid_search

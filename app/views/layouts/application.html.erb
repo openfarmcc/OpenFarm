@@ -21,10 +21,13 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
+        
+
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
                 <li class="name">
                     <h1>
+                        <img src="<%= image_path 'openfarm_logo.svg' %>" width="110px" onerror="this.onerror=null; this.src='<%= image_path 'openfarm_logo.png' %>'">
                         <%= link_to "OpenFarm", root_path %>
                     </h1>
                 </li>
@@ -36,38 +39,44 @@
                 <!-- Right Nav Section -->
                 <ul class="right">
                     <% if current_user %>
-                    <li class="has-form">
-                        <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: 'button') %>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#">Menu</a>
-                        <ul class="dropdown">
-                            <li>
-                                <%= link_to "Create Crop", new_crop_path %>
-                                <%= link_to "User Settings", edit_user_registration_path %>
-                            </li>
-                        </ul>
-                    </li>
+                        <li class="has-dropdown">
+                            <a href="#">Hi, <%= current_user.display_name %></a>
+                            <ul class="dropdown">
+                                <li>
+                                    <%= link_to "Create Crop", new_crop_path %>
+                                    <%= link_to "User Settings", edit_user_registration_path %>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-form">
+                            <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: '') %>
+                        </li>
                     <% else %>
-                    <li class="has-form">
-                        <%= link_to("Create an Account", new_user_registration_path, class: 'button') %>
-                    </li>
-                    <li class="has-form">
-                        <%= link_to("Sign In", new_user_session_path, class: 'button') %>
-                    </li>
+                        <li class="has-form">
+                            <%= link_to("Create an Account", new_user_registration_path, class: 'button') %>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-form">
+                            <%= link_to("Sign In", new_user_session_path, class: 'button') %>
+                        </li>
                     <% end %>
                 </ul>
             </section>
         </nav>
-        <% if notice || alert %>
-        <p class="notice">
-            <%= notice %>
-        </p>
-        <p class="alert">
-            <%= alert %>
-        </p>
+        <% if notice %>
+            <div data-alert class="alert-box success radius columns large-4 small-centered">
+              <%= notice %>
+              <a href="#" class="close">&times;</a>
+            </div>
+        <% end %>
+        <% if alert %>
+            <div data-alert class="alert-box alert radius columns large-4 small-centered">
+              <%= alert %>
+              <a href="#" class="close">&times;</a>
+            </div>
         <% end %>
         <%= yield %>
+        <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
         <%= javascript_include_tag "application" %>
     </body>
 </html>

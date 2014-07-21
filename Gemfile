@@ -9,6 +9,9 @@ gem 'rails_12factor' # for dokku
 # Foundation
 gem 'zurb-foundation', '4.3.2'
 
+#jQuery UI
+gem 'jquery-ui-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

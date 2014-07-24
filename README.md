@@ -9,10 +9,19 @@ OpenFarm will also have a web frontend of its own to allow Joe Gardener to acces
 
 Examples of other applications using OpenFarm: a mobile application for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", Wolfram Alpha displaying the data for "growng tomatoes" which is also showed to users asking Siri on iDevices, etc.
 
-User Stories
-------------
+### Issue Tracker
 
 [![Stories in Ready](https://badge.waffle.io/FarmBot/OpenFarm.png?label=ready)](http://waffle.io/FarmBot/OpenFarm)
+
+### User Flow
+
+![User Flow Diagram] (http://i.imgur.com/YowIq1N.jpg)
+
+![Information Architecture Diagram] (http://i.imgur.com/qZzF4OZ.jpg)
+
+### Mockups
+
+To view the most recent mockups, click [here] (https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0)
 
 ### Getting Started (Setup)
 

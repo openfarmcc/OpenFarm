@@ -10,7 +10,9 @@
  *
  *= require_self
  *= require foundation_and_overrides
- *= require foundation
- *= require jquery-ui
+ *- require jquery-ui
  *= require_tree .
  */
+
+@import "foundation_and_overrides";
+/* Add imports of custom sass/scss files here */

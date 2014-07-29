@@ -7,7 +7,8 @@ gem 'rails', '4.0.2'
 gem 'rails_12factor' # for dokku
 
 # Foundation
-gem 'zurb-foundation', '4.3.2'
+gem 'foundation-rails'
+# gem 'zurb-foundation', '4.3.2'
 
 #jQuery UI
 gem 'jquery-ui-rails'

@@ -31,7 +31,8 @@
         <ul class="title-area">
             <li class="name">
                 <h1>
-                    <img src="<%= image_path 'openfarm_logo.svg' %>" width="110px" onerror="this.onerror=null; this.src='<%= image_path 'openfarm_logo.png' %>'">
+                  <%= link_to(image_tag('openfarm_logo.svg', :width => '110px', :alt => 'Open Farm'), root_path) %>
+
                     <%= link_to "OpenFarm", root_path %>
                 </h1>
             </li>
@@ -48,6 +49,7 @@
                         <ul class="dropdown">
                             <li>
                                 <%= link_to "Create Crop", new_crop_path %>
+                                <%= link_to "Create Guide", new_guide_path %>
                                 <%= link_to "User Settings", edit_user_registration_path %>
                             </li>
                         </ul>

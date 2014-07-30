@@ -38,9 +38,21 @@ dd a.title h2 {
 
 /* Plant overview section */
 .overview-wrapper{
-    .title {
+  // Styles for when the wrapper is active
+  &.active{
+    a.title {
+      background-color: salmon;
+    }    
+  }
+
+    a.title {
         background-color: salmon;
+
+        &:hover{
+          background-color: rgb(253, 112, 96);
+        }
     }
+
     .content {
         background-color: #FCE5CD;
     }
@@ -89,8 +101,19 @@ dd a.title.prerequisites > a {
 
 /* Plant overview section */
 .prerequisites-wrapper {
-    .title {
+    // Styles for when the wrapper is active
+    &.active{
+      a.title{
         background-color: #3C78D8;
+      }
+    }
+
+    a.title {
+        background-color: #3C78D8;
+
+        &:hover{
+          background-color: #2F71DB;
+        }
     }
 
      .content {

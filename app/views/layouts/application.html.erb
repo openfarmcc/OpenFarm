@@ -22,7 +22,7 @@
      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
 
   	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+  	<%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -81,7 +81,7 @@
     <% end %>
     <%= yield %>
 
-    
     <%= javascript_include_tag "application" %>
+    
   </body>
 </html>

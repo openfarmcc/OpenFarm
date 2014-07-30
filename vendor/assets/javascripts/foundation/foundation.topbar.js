@@ -335,6 +335,7 @@
     },
 
     assemble : function (topbar) {
+      console.log('assemble');
       var self = this,
           settings = topbar.data(this.attr_name(true) + '-init'),
           section = self.S('section', topbar);

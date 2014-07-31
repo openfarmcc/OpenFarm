@@ -37,46 +37,61 @@ dd a.title h2 {
 }
 
 /* Plant overview section */
-#overview .title {
-    background-color: salmon;
+.overview-wrapper{
+  // Styles for when the wrapper is active
+  &.active{
+    a.title {
+      background-color: salmon;
+    }    
+  }
+
+    a.title {
+        background-color: salmon;
+
+        &:hover{
+          background-color: rgb(253, 112, 96);
+        }
+    }
+
+    .content {
+        background-color: #FCE5CD;
+    }
+
+    .content .overview-title {
+        font-weight: 600;
+    }
+
+    .content .nav-container {
+        padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
+        border-left: 1px solid grey;
+    }
+
+    .content .nav-container .nav-title {
+        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+        font-weight: 600;
+    }
+
+    .content .nav-container ul {
+        margin-left: 0;
+    }
+
+    .content .nav-container ul li {
+        list-style: none;
+        margin-bottom: 4px;
+    }
+
+    .content .nav-container ul li a {
+        display: block;
+        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+        color: #444;
+    }
+
+    .content .nav-container ul li:hover {
+        background-color: salmon;
+    }
 }
 
-#overview .content {
-    background-color: #FCE5CD;
-}
 
-#overview .content .overview-title {
-    font-weight: 600;
-}
-
-#overview .content .nav-container {
-    padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
-    border-left: 1px solid grey;
-}
-
-#overview .content .nav-container .nav-title {
-    padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-    font-weight: 600;
-}
-
-#overview .content .nav-container ul {
-    margin-left: 0;
-}
-
-#overview .content .nav-container ul li {
-    list-style: none;
-    margin-bottom: 4px;
-}
-
-#overview .content .nav-container ul li a {
-    display: block;
-    padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-    color: #444;
-}
-
-#overview .content .nav-container ul li:hover {
-    background-color: salmon;
-}
 
 
 /* Prerequisites section */
@@ -85,96 +100,111 @@ dd a.title.prerequisites > a {
 }
 
 /* Plant overview section */
-#prerequisites .title {
-    background-color: #3C78D8;
-}
+.prerequisites-wrapper {
+    // Styles for when the wrapper is active
+    &.active{
+      a.title{
+        background-color: #3C78D8;
+      }
+    }
 
-#prerequisites .content {
-    background-color: #C9DAF8;
-}
+    a.title {
+        background-color: #3C78D8;
 
-#prerequisites .content .prerequisites-title {
-    font-weight: 600;
-}
+        &:hover{
+          background-color: #2F71DB;
+        }
+    }
 
-#prerequisites .content .prerequisite-table-container table {
-    width: 100%;
-    border: 0;
-    border-spacing: 0;
-    border-collapse: separate;
-}
+     .content {
+        background-color: #C9DAF8;
+    }
 
-#prerequisites .content .prerequisite-table-container thead {
-    display: none;
-}
+     .content .prerequisites-title {
+        font-weight: 600;
+    }
 
-#prerequisites .content .prerequisite-table-container td.prerequisite-icon {
-}
+     .content .prerequisite-table-container table {
+        width: 100%;
+        border: 0;
+        border-spacing: 0;
+        border-collapse: separate;
+    }
 
-#prerequisites .content .prerequisite-table-container td.prerequisite-title {
-}
+     .content .prerequisite-table-container thead {
+        display: none;
+    }
 
-#prerequisites .content .prerequisite-table-container td.prerequisite-description {
-    font-weight: bold;
-}
+     .content .prerequisite-table-container td.prerequisite-icon {
+    }
 
-#prerequisites .content .compatability-score-container {
-    text-align: center;
-}
+     .content .prerequisite-table-container td.prerequisite-title {
+    }
 
-#prerequisites .content .compatability-score-container p {
-    margin: 0;
-}
+     .content .prerequisite-table-container td.prerequisite-description {
+        font-weight: bold;
+    }
 
-#prerequisites .content .compatability-score-container .score-circle {
-    width: 90px;
-    height: 90px;
-    margin: 12px 0;
-    display: inline-block;
-    border-radius: 50%;
-    background-color: grey;
-}
+     .content .compatability-score-container {
+        text-align: center;
+    }
 
-#prerequisites .content .compatability-score-container .score-circle.low-score {
-    background-color: #BD2B20;
-}
+     .content .compatability-score-container p {
+        margin: 0;
+    }
 
-#prerequisites .content .compatability-score-container .score-circle.med-score {
-    background-color: #FAB900;    
-}
+     .content .compatability-score-container .score-circle {
+        width: 90px;
+        height: 90px;
+        margin: 12px 0;
+        display: inline-block;
+        border-radius: 50%;
+        background-color: grey;
+    }
 
-#prerequisites .content .compatability-score-container .score-circle.high-score {
-    background-color: green;    
-}
+     .content .compatability-score-container .score-circle.low-score {
+        background-color: #BD2B20;
+    }
 
-#prerequisites .content .compatability-score-container .score-circle .score {
-    text-align: center;
-    line-height: 90px;
-    color: white;
-    font-size: 1.75em;
-    font-weight: bold;
-}
+     .content .compatability-score-container .score-circle.med-score {
+        background-color: #FAB900;    
+    }
 
-#prerequisites .content .nav-container .nav-title {
-    padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-    font-weight: 600;
-}
+     .content .compatability-score-container .score-circle.high-score {
+        background-color: green;    
+    }
 
-#prerequisites .content .nav-container ul {
-    margin-left: 0;
-}
+     .content .compatability-score-container .score-circle .score {
+        text-align: center;
+        line-height: 90px;
+        color: white;
+        font-size: 1.75em;
+        font-weight: bold;
+    }
 
-#prerequisites .content .nav-container ul li {
-    list-style: none;
-    margin-bottom: 4px;
-}
+     .content .nav-container .nav-title {
+        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+        font-weight: 600;
+    }
 
-#prerequisites .content .nav-container ul li a {
-    display: block;
-    padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-    color: #444;
-}
+     .content .nav-container ul {
+        margin-left: 0;
+    }
 
-#prerequisites .content .nav-container ul li:hover {
-    background-color: salmon;
+     .content .nav-container ul li {
+        list-style: none;
+        margin-bottom: 4px;
+    }
+
+     .content .nav-container ul li a {
+        display: block;
+        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+        color: #444;
+    }
+
+     .content .nav-container ul li:hover {
+        background-color: salmon;
+    }
+
+
 }

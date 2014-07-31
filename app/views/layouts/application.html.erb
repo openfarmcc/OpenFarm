@@ -4,70 +4,86 @@
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en">
-    <!--<![endif]-->
-    <head>
-        <meta charset="utf-8"><!-- Uncomment to make IE8 render like IE7 -->
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-        <!-- Set the viewport width to device width for mobile -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
-        </title>
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
-        <%= stylesheet_link_tag "application" %>
-        <%= javascript_include_tag "vendor/custom.modernizr" %>
-        <%= csrf_meta_tags %>
-    </head>
-    <body>
-        <nav class="top-bar" data-topbar>
-            <ul class="title-area">
-                <li class="name">
-                    <h1>
-                        <%= link_to "OpenFarm", root_path %>
-                    </h1>
-                </li>
-                <li class="toggle-topbar menu-icon">
-                    <a href="#"><span>Menu</span></a>
-                </li>
-            </ul>
-            <section class="top-bar-section">
-                <!-- Right Nav Section -->
-                <ul class="right">
-                    <% if current_user %>
-                    <li class="has-form">
-                        <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: 'button') %>
-                    </li>
+<!--[if (gt IE 9)|!(IE)]><!--> 
+<html lang="en"> 
+<!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title>
+        <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
+    </title>
+     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <h1>
+                  <%= link_to(image_tag('openfarm_logo.svg', :width => '110px', :alt => 'Open Farm'), root_path) %>
+
+                    <%= link_to "OpenFarm", root_path %>
+                </h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+                <a href="#"><span>Menu</span></a>
+            </li>
+        </ul>
+        <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
+                <% if current_user %>
                     <li class="has-dropdown">
-                        <a href="#">Menu</a>
+                        <a href="#">Hi, <%= current_user.display_name %></a>
                         <ul class="dropdown">
                             <li>
                                 <%= link_to "Create Crop", new_crop_path %>
+                                <%= link_to "Create Guide", new_guide_path %>
                                 <%= link_to "User Settings", edit_user_registration_path %>
                             </li>
                         </ul>
                     </li>
-                    <% else %>
+                    <li class="has-form">
+                        <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: '') %>
+                    </li>
+                <% else %>
                     <li class="has-form">
                         <%= link_to("Create an Account", new_user_registration_path, class: 'button') %>
                     </li>
+                    <li class="divider"></li>
                     <li class="has-form">
                         <%= link_to("Sign In", new_user_session_path, class: 'button') %>
                     </li>
-                    <% end %>
-                </ul>
-            </section>
-        </nav>
-        <% if notice || alert %>
-        <p class="notice">
-            <%= notice %>
-        </p>
-        <p class="alert">
-            <%= alert %>
-        </p>
-        <% end %>
-        <%= yield %>
-        <%= javascript_include_tag "application" %>
-    </body>
+                <% end %>
+            </ul>
+        </section>
+    </nav>
+    <% if notice %>
+        <div data-alert class="alert-box success radius columns large-4 small-centered">
+          <%= notice %>
+          <a href="#" class="close">&times;</a>
+        </div>
+    <% end %>
+    <% if alert %>
+        <div data-alert class="alert-box alert radius columns large-4 small-centered">
+          <%= alert %>
+          <a href="#" class="close">&times;</a>
+        </div>
+    <% end %>
+    <%= yield %>
+
+    <%= javascript_include_tag "application" %>
+    
+  </body>
 </html>

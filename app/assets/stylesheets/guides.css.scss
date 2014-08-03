@@ -10,20 +10,10 @@ $yellow: #f1c232;
 @mixin accordion-header-color($color){
   & > a.title-wrapper{
     background-color: $color;
+    transition: .5s;
     &:hover{
       background-color: $color + 20;
     }
-  }
-}
-
-/* Debug */
-.row {
-  &.header-row {
-    border: 1px solid red;
-  }
-
-  &.content-row {
-    border: 1px solid cyan;
   }
 }
 
@@ -50,16 +40,13 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
   }
 }
 
+.accordion dd > .content{
+  padding: 0 0.935rem;
+}
+
 /* Plant overview section */
 .accordion .overview-wrapper{
   @include accordion-header-color($orange);
-  /*& > a.title-wrapper {
-    background-color: $orange;
-
-    &:hover{
-      background-color: $orange + 20;
-    }
-  }*/
 
   .content {
       background-color: #FCE5CD;
@@ -235,26 +222,62 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
 .accordion .instructions-wrapper{
   @include accordion-header-color($green);
 
+  .stage-title{
+    margin-top: .6rem;
+    font-size: 1.4rem;
+  }
+
+  .stage-headers{
+    background-color: $green + 50;
+  }
+
   .tabs.stages{
 
+    li.active a{
+      background-color: $green;
+    }
+
     li a{
+      cursor: pointer;
+      text-align: center;
       font-size: .9em;
-      padding: 1rem 1rem;  
+      padding: .5rem 1rem;
+      background-color: $green + 50;
+      transition: .5s;
+
+      h3{
+        font-size: .9em;
+        margin-bottom: 0;
+        line-height: 1;
+      }  
+      .days{
+        font-size: .7em;
+      }
     }
   }
 }
 
 /* Instructions overview section */
 .accordion .usage-wrapper{
-
-  color: white;
   @include accordion-header-color($red); 
+  color: #111;
+  .content, .content.active{
+    padding: 1.935rem;
+    background-color: $red + 200;
+    font-size: 1rem;
+    text-align: center;
+  }
 }
 
 /* Instructions overview section */
 .accordion .forum-wrapper{
-
-  color: white;
-
   @include accordion-header-color($yellow);
+
+  color: #111;
+  .content, .content.active{
+    padding: 1.935rem;
+    background-color: $yellow + 200;
+    font-size: 1rem;
+    text-align: center;
+  }
 }

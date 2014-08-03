@@ -155,21 +155,28 @@
           <h2 class="title">Growing Instructions</h2>
         </a>
         <div id="instructions" class="content active">
-          <div class="row">
-            <div class="columns small-3">
-              <span>Stage</span>
+          <div class="row stage-headers">
+            <div class="columns small-2">
+              <div class="stage-title">Stage:</div>
             </div>
-            <ul class="columns small-9 tabs stages" data-tab>
+            <ul class="columns small-10 tabs stages" data-tab>
               <li class="tab-title active">
                 <a href="#instructions-overview">
-                  Overview
+                  <h3>Overview</h3>
+                  <span>&nbsp;</span>
                 </a>
               </li>
               <% @stages.each do |title, object| %>
                 <li class="tab-title">
                   <a href="#instructions-<%= title %>">
                     <h3><%= title %></h3>
-                    <span class="days"><%= object['days'] %></span>
+                    <% if object['days'] != '' %>
+                      <span class="days">
+                        <%= object['days'] %>
+                      </span>
+                    <% else %>
+                      <span>&nbsp;</span>
+                    <% end %>
                   </a>
                 </li>
               <% end %>
@@ -178,12 +185,16 @@
           <div class="row tabs-content">
             <div class="content active" 
                  id="instructions-overview">
-                Overview
+                 <div class="columns small-12">
+                  Overview
+                </div>
             </div>
-            <% @stages.each do |stage, days| %>
+            <% @stages.each do |title, object| %>
               <div class="content"
-                   id="instructions-<%= stage %>">
-                   Instructions for <%= stage %>
+                   id="instructions-<%= title %>">
+                   <div class="columns small-12">
+                   <%= object['instructions'] %>
+                   </div>
               </div>
             <% end %>
           </div>
@@ -191,21 +202,25 @@
       </dd>
       <dd class="accordion-navigation usage-wrapper">
         <a href="#usage" class="title-wrapper">
-          <h2 class="title">Growing Instructions</h2>
+          <h2 class="title">Recipes and Usage</h2>
         </a>
-        <div id="usage" class="content active">
+        <div id="usage" class="content">
           <div class="row">
-            
+            <div class="columns small-5 small-centered">
+              Recipes and Usage are still being designed. You can help us out by taking a look at <a href="#">the project page on Github</a>.
+            </div>
           </div>
         </div>
       </dd>
       <dd class="accordion-navigation forum-wrapper">
         <a href="#forum" class="title-wrapper">
-          <h2 class="title">Growing Instructions</h2>
+          <h2 class="title">Forums</h2>
         </a>
-        <div id="forum" class="content active">
+        <div id="forum" class="content">
           <div class="row">
-            
+            <div class="columns small-5 small-centered">
+              The Forums are still being built. You can help us out by taking a look at <a href="#">the project page on Github</a>.
+            </div>
           </div>
         </div>
       </dd>

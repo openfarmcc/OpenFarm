@@ -20,28 +20,36 @@ class GuidesController < ApplicationController
               'Nov', 'Dec']
     @stages = {
       'Prep'        => {
-          "days" => '',
+          'days' => '',
+          'instructions' => 'Preparation Instructions'
           },
       'Sow'         => {
-          "days" => 'Day 0',
+          'days' => 'Day 0',
+          'instructions' => 'Planting seeds.'
           },
       'Germination' => {
-          "days" => 'Days 1-6' 
+          'days' => 'Days 1-6',
+          'instructions' => 'Ew. Germs.'
           },
       'Seedling'    => {
-          "days" => 'Days 7-20'
+          'days' => 'Days 7-20',
+          'instructions' => 'Pretty much a baby.'
           },
       'Juvenile'    => {
-          "days" => 'Days 21-34',
+          'days' => 'Days 21-34',
+          'instructions' => 'Awkward teenage years.'
           },
       'Adult'       => {
-          "days"  => 'Days 35-57'
+          'days'  => 'Days 35-57',
+          'instructions' => 'Adults smell.'
           },
       'Flower'      => {
-          "days"  => 'Days 58-71'
+          'days'  => 'Days 58-71',
+          'instructions' => 'Flowers are a good sign!'
           },
       'Fruit'       => {
-          "days"  => 'Days 72-85'
+          'days'  => 'Days 72-85',
+          'instructions' => 'Food.'
         }
     }
     @guide = Guide.find(params[:id])

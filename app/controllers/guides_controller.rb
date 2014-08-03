@@ -18,6 +18,7 @@ class GuidesController < ApplicationController
     @months = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
               'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
               'Nov', 'Dec']
+
     @stages = {
       'Prep'        => {
           'days' => '',
@@ -53,6 +54,8 @@ class GuidesController < ApplicationController
         }
     }
     @guide = Guide.find(params[:id])
+
+    @is_guide_page = true
   end
   
   def create

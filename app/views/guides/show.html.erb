@@ -2,9 +2,9 @@
   <div class="small-12 columns">
     <dl class="accordion" data-accordion>
       <dd class="accordion-navigation overview-wrapper">
-        <a href="#overview" class="title">
+        <a href="#overview" class="title-wrapper">
           <h2 class="title"><%= @guide.name %></h2>
-          <h5 class="author"><%= @guide.user.display_name %></h5>
+          <h5 class="author">Guide by: <%= @guide.user.display_name %></h5>
         </a>
         <div id="overview" class="content active">
           <div class="row">
@@ -32,7 +32,7 @@
       </dd>
 
       <dd class="accordion-navigation prerequisites-wrapper">
-        <a href="#prerequisites" class="title">
+        <a href="#prerequisites" class="title-wrapper">
           <h2 class="title">Prerequisites</h2>
         </a>
         <div id="prerequisites" class="content active">
@@ -120,6 +120,92 @@
               </div>
               <p>compatable with you and your garden</p>
             </div>
+          </div>
+        </div>
+      </dd>
+
+      <dd class="accordion-navigation timeline-wrapper">
+        <a href="#timeline" class="title-wrapper">
+          <h2 class="title">Timeline</h2>
+        </a>
+        <div id="timeline" class="content active">
+          <div class="row seasons">
+            <% @seasons.each do |season, dates| %>
+              <div class="columns small-3">
+                <h3><%= season %></h3>
+                <span class="dates"><%= dates %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class="row plant-timeline">
+            <!-- TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS -->
+          </div>
+          <div class="row months">
+            <% @months.each do |m| %>
+              <div class="columns small-1">
+                <%= m %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </dd>
+
+      <dd class="accordion-navigation instructions-wrapper">
+        <a href="#instructions" class="title-wrapper">
+          <h2 class="title">Growing Instructions</h2>
+        </a>
+        <div id="instructions" class="content active">
+          <div class="row">
+            <div class="columns small-3">
+              <span>Stage</span>
+            </div>
+            <ul class="columns small-9 tabs stages" data-tab>
+              <li class="tab-title active">
+                <a href="#instructions-overview">
+                  Overview
+                </a>
+              </li>
+              <% @stages.each do |title, object| %>
+                <li class="tab-title">
+                  <a href="#instructions-<%= title %>">
+                    <h3><%= title %></h3>
+                    <span class="days"><%= object['days'] %></span>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="row tabs-content">
+            <div class="content active" 
+                 id="instructions-overview">
+                Overview
+            </div>
+            <% @stages.each do |stage, days| %>
+              <div class="content"
+                   id="instructions-<%= stage %>">
+                   Instructions for <%= stage %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </dd>
+      <dd class="accordion-navigation usage-wrapper">
+        <a href="#usage" class="title-wrapper">
+          <h2 class="title">Growing Instructions</h2>
+        </a>
+        <div id="usage" class="content active">
+          <div class="row">
+            
+          </div>
+        </div>
+      </dd>
+      <dd class="accordion-navigation forum-wrapper">
+        <a href="#forum" class="title-wrapper">
+          <h2 class="title">Growing Instructions</h2>
+        </a>
+        <div id="forum" class="content active">
+          <div class="row">
+            
           </div>
         </div>
       </dd>

@@ -1,3 +1,20 @@
+/* presets */
+
+$orange: #e69138;
+$blue: #3c78d8;
+$purple: #674ea7;
+$green: #6aa84f;
+$red: #cc0000;
+$yellow: #f1c232;
+
+@mixin accordion-header-color($color){
+  & > a.title-wrapper{
+    background-color: $color;
+    &:hover{
+      background-color: $color + 20;
+    }
+  }
+}
 
 /* Debug */
 .row {
@@ -11,13 +28,19 @@
 }
 
 /* Section accordion styling */
-dd a.title {
+dd > a.title-wrapper, dd.active > a.title-wrapper {
   display: block;
+  padding: .2rem 1rem;
+  color: white;
 
-  h2.title {
+  h2, h5 {
     display: inline-block;
-    color: white;
+    color: white;  
     font-weight: 800;
+  }
+
+  .title{
+    font-size: 2rem;
   }
 
   .author {
@@ -28,183 +51,210 @@ dd a.title {
 }
 
 /* Plant overview section */
-dd a.title.overview > a {
-    background-color: salmon;
-}
+.accordion .overview-wrapper{
+  @include accordion-header-color($orange);
+  /*& > a.title-wrapper {
+    background-color: $orange;
 
-dd a.title h2 {
-    display: inline;
-}
+    &:hover{
+      background-color: $orange + 20;
+    }
+  }*/
 
-/* Plant overview section */
-.overview-wrapper{
-  // Styles for when the wrapper is active
-  &.active{
-    a.title {
-      background-color: salmon;
-    }    
+  .content {
+      background-color: #FCE5CD;
   }
 
-    a.title {
-        background-color: salmon;
+  .content .overview-title {
+      font-weight: 600;
+  }
 
-        &:hover{
-          background-color: rgb(253, 112, 96);
-        }
-    }
+  .content .nav-container {
+      padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
+      border-left: 1px solid grey;
+  }
 
-    .content {
-        background-color: #FCE5CD;
-    }
+  .content .nav-container .nav-title {
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      font-weight: 600;
+  }
 
-    .content .overview-title {
-        font-weight: 600;
-    }
+  .content .nav-container ul {
+      margin-left: 0;
+  }
 
-    .content .nav-container {
-        padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
-        border-left: 1px solid grey;
-    }
+  .content .nav-container ul li {
+      list-style: none;
+      margin-bottom: 4px;
+  }
 
-    .content .nav-container .nav-title {
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        font-weight: 600;
-    }
+  .content .nav-container ul li a {
+      display: block;
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      color: #444;
+  }
 
-    .content .nav-container ul {
-        margin-left: 0;
-    }
-
-    .content .nav-container ul li {
-        list-style: none;
-        margin-bottom: 4px;
-    }
-
-    .content .nav-container ul li a {
-        display: block;
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        color: #444;
-    }
-
-    .content .nav-container ul li:hover {
-        background-color: salmon;
-    }
-}
-
-
-
-
-/* Prerequisites section */
-dd a.title.prerequisites > a {
-    background-color: cyan;
+  .content .nav-container ul li:hover {
+      background-color: $orange;
+  }
 }
 
 /* Plant overview section */
-.prerequisites-wrapper {
-    // Styles for when the wrapper is active
-    &.active{
-      a.title{
-        background-color: #3C78D8;
-      }
+.accordion .prerequisites-wrapper {
+  @include accordion-header-color($blue);
+
+   .content {
+      background-color: #C9DAF8;
+  }
+
+   .content .prerequisites-title {
+      font-weight: 600;
+  }
+
+   .content .prerequisite-table-container table {
+      width: 100%;
+      border: 0;
+      border-spacing: 0;
+      border-collapse: separate;
+  }
+
+   .content .prerequisite-table-container thead {
+      display: none;
+  }
+
+   .content .prerequisite-table-container td.prerequisite-icon {
+  }
+
+   .content .prerequisite-table-container td.prerequisite-title {
+  }
+
+   .content .prerequisite-table-container td.prerequisite-description {
+      font-weight: bold;
+  }
+
+   .content .compatability-score-container {
+      text-align: center;
+  }
+
+   .content .compatability-score-container p {
+      margin: 0;
+  }
+
+   .content .compatability-score-container .score-circle {
+      width: 90px;
+      height: 90px;
+      margin: 12px 0;
+      display: inline-block;
+      border-radius: 50%;
+      background-color: grey;
+  }
+
+   .content .compatability-score-container .score-circle.low-score {
+      background-color: #BD2B20;
+  }
+
+   .content .compatability-score-container .score-circle.med-score {
+      background-color: #FAB900;    
+  }
+
+   .content .compatability-score-container .score-circle.high-score {
+      background-color: green;    
+  }
+
+   .content .compatability-score-container .score-circle .score {
+      text-align: center;
+      line-height: 90px;
+      color: white;
+      font-size: 1.75em;
+      font-weight: bold;
+  }
+
+   .content .nav-container .nav-title {
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      font-weight: 600;
+  }
+
+   .content .nav-container ul {
+      margin-left: 0;
+  }
+
+   .content .nav-container ul li {
+      list-style: none;
+      margin-bottom: 4px;
+  }
+
+   .content .nav-container ul li a {
+      display: block;
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      color: #444;
+  }
+
+   .content .nav-container ul li:hover {
+      background-color: $orange;
+  }
+
+}
+
+/* Timeline overview section */
+.accordion .timeline-wrapper{
+
+  color: white;
+
+  @include accordion-header-color($purple);
+
+  &> .content, &> .content.active{
+    padding: 0 0.9375rem;
+  }
+
+  .seasons{
+    background-color: $purple + 50;
+    font-size: .8em;
+    text-align: center;
+    padding: .375rem 0;
+
+    h3{
+      color: white;
+      font-size: 1.3em;
+      margin-bottom: 0;
     }
+  }
 
-    a.title {
-        background-color: #3C78D8;
+  .plant-timeline{
+    height: 150px;
+  }
 
-        &:hover{
-          background-color: #2F71DB;
-        }
+  .months{
+    background-color: $purple + 50;
+    padding: .375rem 0;
+    font-size: .8em;
+  }
+}
+
+
+/* Instructions overview section */
+.accordion .instructions-wrapper{
+  @include accordion-header-color($green);
+
+  .tabs.stages{
+
+    li a{
+      font-size: .9em;
+      padding: 1rem 1rem;  
     }
+  }
+}
 
-     .content {
-        background-color: #C9DAF8;
-    }
+/* Instructions overview section */
+.accordion .usage-wrapper{
 
-     .content .prerequisites-title {
-        font-weight: 600;
-    }
+  color: white;
+  @include accordion-header-color($red); 
+}
 
-     .content .prerequisite-table-container table {
-        width: 100%;
-        border: 0;
-        border-spacing: 0;
-        border-collapse: separate;
-    }
+/* Instructions overview section */
+.accordion .forum-wrapper{
 
-     .content .prerequisite-table-container thead {
-        display: none;
-    }
+  color: white;
 
-     .content .prerequisite-table-container td.prerequisite-icon {
-    }
-
-     .content .prerequisite-table-container td.prerequisite-title {
-    }
-
-     .content .prerequisite-table-container td.prerequisite-description {
-        font-weight: bold;
-    }
-
-     .content .compatability-score-container {
-        text-align: center;
-    }
-
-     .content .compatability-score-container p {
-        margin: 0;
-    }
-
-     .content .compatability-score-container .score-circle {
-        width: 90px;
-        height: 90px;
-        margin: 12px 0;
-        display: inline-block;
-        border-radius: 50%;
-        background-color: grey;
-    }
-
-     .content .compatability-score-container .score-circle.low-score {
-        background-color: #BD2B20;
-    }
-
-     .content .compatability-score-container .score-circle.med-score {
-        background-color: #FAB900;    
-    }
-
-     .content .compatability-score-container .score-circle.high-score {
-        background-color: green;    
-    }
-
-     .content .compatability-score-container .score-circle .score {
-        text-align: center;
-        line-height: 90px;
-        color: white;
-        font-size: 1.75em;
-        font-weight: bold;
-    }
-
-     .content .nav-container .nav-title {
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        font-weight: 600;
-    }
-
-     .content .nav-container ul {
-        margin-left: 0;
-    }
-
-     .content .nav-container ul li {
-        list-style: none;
-        margin-bottom: 4px;
-    }
-
-     .content .nav-container ul li a {
-        display: block;
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        color: #444;
-    }
-
-     .content .nav-container ul li:hover {
-        background-color: salmon;
-    }
-
-
+  @include accordion-header-color($yellow);
 }

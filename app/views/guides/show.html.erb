@@ -166,13 +166,13 @@
                   <span>&nbsp;</span>
                 </a>
               </li>
-              <% @stages.each do |title, object| %>
+              <% @guide.stages.each do |stage| %>
                 <li class="tab-title">
-                  <a href="#instructions-<%= title %>">
-                    <h3><%= title %></h3>
-                    <% if object['days'] != '' %>
+                  <a href="#instructions-<%= stage['title'] %>">
+                    <h3><%= stage['title'] %></h3>
+                    <% if stage['days'] != '' %>
                       <span class="days">
-                        <%= object['days'] %>
+                        <%= stage['days'] %>
                       </span>
                     <% else %>
                       <span>&nbsp;</span>
@@ -189,14 +189,34 @@
                   Overview
                 </div>
             </div>
-            <% @stages.each do |title, object| %>
+            <% @guide.stages.each do |stage| %>
               <div class="content"
-                   id="instructions-<%= title %>">
+                   id="instructions-<%= stage['title'] %>">
                    <div class="columns small-12">
-                   <%= object['instructions'] %>
+                   <%= stage['instructions'] %>
                    </div>
               </div>
             <% end %>
+          </div>
+          <div class="row">
+            <div class="columns small-3">
+              Add a stage:
+            </div>
+            <div class="columns small-9">
+              <%= form_for(:stage, :url => {:controller => 'stages', :action => 'create'}) do |f| %>
+                  <%= f.hidden_field(:guide, value: @guide.id) %>
+                  <%= f.label(:name) %>
+                  <%= f.text_field(:name) %>
+                  <%= f.label(:days_start) %>
+                  <%= f.number_field(:days_start) %>
+                  <%= f.label(:days_end) %>
+                  <%= f.number_field(:days_end) %>
+                  <%= f.label(:instructions) %>
+                  <%= f.text_area(:instructions) %>
+                  <%= submit_tag('Add Stage', {:class => 'button tiny'}) %>
+
+                <% end %>
+            </div>
           </div>
         </div>
       </dd>

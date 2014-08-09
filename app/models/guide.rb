@@ -6,6 +6,8 @@ class Guide
   belongs_to :crop
   belongs_to :user
 
+  embeds_many :stages
+
   field :name
   # TODO: All the other fields
 end

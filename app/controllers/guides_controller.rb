@@ -19,43 +19,17 @@ class GuidesController < ApplicationController
               'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
               'Nov', 'Dec']
 
-    @stages = {
-      'Prep'        => {
-          'days' => '',
-          'instructions' => 'Preparation Instructions'
-          },
-      'Sow'         => {
-          'days' => 'Day 0',
-          'instructions' => 'Planting seeds.'
-          },
-      'Germination' => {
-          'days' => 'Days 1-6',
-          'instructions' => 'Ew. Germs.'
-          },
-      'Seedling'    => {
-          'days' => 'Days 7-20',
-          'instructions' => 'Pretty much a baby.'
-          },
-      'Juvenile'    => {
-          'days' => 'Days 21-34',
-          'instructions' => 'Awkward teenage years.'
-          },
-      'Adult'       => {
-          'days'  => 'Days 35-57',
-          'instructions' => 'Adults smell.'
-          },
-      'Flower'      => {
-          'days'  => 'Days 58-71',
-          'instructions' => 'Flowers are a good sign!'
-          },
-      'Fruit'       => {
-          'days'  => 'Days 72-85',
-          'instructions' => 'Food.'
-        }
-    }
     @guide = Guide.find(params[:id])
 
+    puts ("-------- starting guides things")
+    @guide.stages.all_of.to_a.each do |stage|
+      puts stage.name
+    end
+    puts ("-------- ending guides things")
+
     @is_guide_page = true
+
+    @stage = Stage.new
   end
   
   def create

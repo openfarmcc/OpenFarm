@@ -1,6 +1,7 @@
 class CropSearchesController < ApplicationController
 
   def search
+
     if (crop_search_params[:q].empty?)
       redirect_to root_path
     else

@@ -44,7 +44,7 @@
         <section class="top-bar-section">
 
             <!-- Search box Section -->
-            <% if @is_guide_page %>
+            <% if not @is_search_page %>
             <form class="home_search" method="get" action="/crop_search"><!-- TODO: change to a guide search -->
               <div class="left">
                 <div class="small-9 columns">

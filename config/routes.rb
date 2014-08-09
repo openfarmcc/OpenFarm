@@ -16,6 +16,9 @@ OpenFarm::Application.routes.draw do
   resources :crops
   resources :guides
 
+  # Catch-all. Is this okay?
+  match ':controller(/:action(/:id))', :via => [:get, :post ]
+
   # The priority is based upon order of creation: first created -> highest
   # priority.
   # See how all your routes lay out with "rake routes".

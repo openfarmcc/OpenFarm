@@ -21,12 +21,6 @@ class GuidesController < ApplicationController
 
     @guide = Guide.find(params[:id])
 
-    puts ("-------- starting guides things")
-    @guide.stages.all_of.to_a.each do |stage|
-      puts stage.name
-    end
-    puts ("-------- ending guides things")
-
     @is_guide_page = true
 
     @stage = Stage.new

@@ -166,13 +166,13 @@
                   <span>&nbsp;</span>
                 </a>
               </li>
-              <% @guide.stages.each do |stage| %>
+              <% @guide.stages.to_a.each do |stage| %>
                 <li class="tab-title">
-                  <a href="#instructions-<%= stage['title'] %>">
-                    <h3><%= stage['title'] %></h3>
+                  <a href="#instructions-<%= stage['name'] %>">
+                    <h3><%= stage['name'] %></h3>
                     <% if stage['days'] != '' %>
                       <span class="days">
-                        <%= stage['days'] %>
+                        <%= stage['days_start'] %> - <%= stage['days_end'] %>
                       </span>
                     <% else %>
                       <span>&nbsp;</span>
@@ -189,9 +189,9 @@
                   Overview
                 </div>
             </div>
-            <% @guide.stages.each do |stage| %>
+            <% @guide.stages.to_a.each do |stage| %>
               <div class="content"
-                   id="instructions-<%= stage['title'] %>">
+                   id="instructions-<%= stage['name'] %>">
                    <div class="columns small-12">
                    <%= stage['instructions'] %>
                    </div>
@@ -204,7 +204,7 @@
             </div>
             <div class="columns small-9">
               <%= form_for(:stage, :url => {:controller => 'stages', :action => 'create'}) do |f| %>
-                  <%= f.hidden_field(:guide, value: @guide.id) %>
+                  <%= f.hidden_field(:guide_id, value: @guide.id) %>
                   <%= f.label(:name) %>
                   <%= f.text_field(:name) %>
                   <%= f.label(:days_start) %>

@@ -4,11 +4,11 @@ class StagesController < ApplicationController
     
     if @stage.save
       redirect_to(:controller => 'guides', 
-        :action => 'show', 
+        :action => 'edit', 
         :id => @stage.guide.id)
     else
       redirect_to(:controller => 'guides', 
-        :action => 'show', 
+        :action => 'edit', 
         :id => @stage.guide.id)
     end
   end

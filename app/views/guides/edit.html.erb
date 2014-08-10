@@ -10,41 +10,6 @@
       <% end %>
     <% end %>
     <dl class="accordion" data-accordion>
-      <% if not @is_editing %>
-      <dd class="accordion-navigation overview-wrapper">
-        <a href="#overview" class="title-wrapper">
-          <h2 class="title"><%= @guide.name %></h2>
-          <h5 class="author">Guide by: <%= @guide.user.display_name %></h5>
-        </a>
-
-        <div id="overview" class="content active">
-          <div class="row">
-            <div class="small-3 columns img-container">
-              <img class="plant image" src="http://www.organicgardening.com/sites/default/files/images/tomato-tips-380-1.jpg" alt="tomatoes!">
-              <%= link_to('edit', {:action => 'edit'}, :class=>'edit-link') %>
-            </div>
-            <div class="small-7 columns overview-container">
-              <h5 class="overview-title">Overview</h5>
-              <%= @guide.overview %>
-            </div>
-            <div class="small-2 columns nav-container">
-              <% if not @is_editing %>
-              <h5 class="nav-title">Navigation</h5>
-              <ul>
-                  <li><a href="#prerequisites">Prerequisites</a></li>
-                  <li><a href="#timeline">Timeline</a></li>
-                  <li><a href="#growing-instructions">Growing Instructions</a></li>
-                  <!-- <li><a href="#tips-and-tricks">Tips and Tricks</a></li> -->
-                  <!-- <li><a href="#shopping-list">Shopping List</a></li> -->
-                  <li><a href="#recipes-and-usage">Recipes and Usage</a></li>
-                  <li><a href="#forum">Forum</a></li>
-              </ul>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </dd>
-      <% end %>
       <dd class="accordion-navigation prerequisites-wrapper">
         <a href="#prerequisites" class="title-wrapper">
           <h2 class="title">Prerequisites</h2>

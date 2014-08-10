@@ -15,9 +15,12 @@ OpenFarm::Application.routes.draw do
   resources :users
   resources :crops
   resources :guides
+  resources :stages
+  resources :requirements
 
   # Catch-all. Is this okay?
-  match ':controller(/:action(/:id))', :via => [:get, :post ]
+  
+  # match ':controller(/:action)', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest
   # priority.

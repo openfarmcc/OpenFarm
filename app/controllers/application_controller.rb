@@ -14,4 +14,5 @@ class ApplicationController < ActionController::Base
         :preferred_growing_style, :email, :password, :password_confirmation
     end
   end
+
 end

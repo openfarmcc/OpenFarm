@@ -1,34 +1,25 @@
 <div class="row">
   <div class="small-12 columns">
-    <% if @is_editing %>
-    <%= form_for @guide do |f| %>
-        <%= f.label(:name) %>
-        <%= f.text_field(:name) %>
-        <%= f.label(:overview) %>
-        <%= f.text_area(:overview) %>
-        <%= submit_tag('Update Guide', :class => "button tiny") %>
-      <% end %>
-    <% end %>
     <dl class="accordion" data-accordion>
-      <% if not @is_editing %>
       <dd class="accordion-navigation overview-wrapper">
         <a href="#overview" class="title-wrapper">
           <h2 class="title"><%= @guide.name %></h2>
-          <h5 class="author">Guide by: <%= @guide.user.display_name %></h5>
+          <h5 class="author">Guide by: <%= @guide.user.display_name %> for Crop <%= @guide.crop.name if @guide.crop %></h5>
         </a>
 
         <div id="overview" class="content active">
           <div class="row">
             <div class="small-3 columns img-container">
               <img class="plant image" src="http://www.organicgardening.com/sites/default/files/images/tomato-tips-380-1.jpg" alt="tomatoes!">
-              <%= link_to('edit', {:action => 'edit'}, :class=>'edit-link') %>
+              <% if @guide.user.id == current_user.id %>
+                <%= link_to(icon('edit') + " edit", {:action => 'edit'}, :class=>'edit-link') %>
+              <% end %>
             </div>
             <div class="small-7 columns overview-container">
               <h5 class="overview-title">Overview</h5>
               <%= @guide.overview %>
             </div>
             <div class="small-2 columns nav-container">
-              <% if not @is_editing %>
               <h5 class="nav-title">Navigation</h5>
               <ul>
                   <li><a href="#prerequisites">Prerequisites</a></li>
@@ -39,12 +30,10 @@
                   <li><a href="#recipes-and-usage">Recipes and Usage</a></li>
                   <li><a href="#forum">Forum</a></li>
               </ul>
-              <% end %>
             </div>
           </div>
         </div>
       </dd>
-      <% end %>
       <dd class="accordion-navigation prerequisites-wrapper">
         <a href="#prerequisites" class="title-wrapper">
           <h2 class="title">Prerequisites</h2>
@@ -63,7 +52,7 @@
                 <tbody>
                   <% @guide.requirements.to_a.first((@guide.requirements.length / 2.0).floor).each do |r| %>
                     <tr>
-                      <td class="icon icon-<%= r.slug %>">x</td>
+                      <td class="icon of-<%= r.slug %>"></td>
                       <td class="title show-for-medium-up"><%= r.name %></td>
                       <td class="description"><%= r.requirement %></td>
                     </tr>
@@ -83,7 +72,7 @@
                 <tbody>
                 <% @guide.requirements[(@guide.requirements.length / 2.0).floor..@guide.requirements.length].to_a.each do |r| %>
                     <tr>
-                      <td class="icon icon-<%= r.slug %>"></td>
+                      <td class="icon of-<%= r.slug %>"></td>
                       <td class="title show-for-medium-up"><%= r.name %></td>
                       <td class="description"><%= r.requirement %></td>
                     </tr>
@@ -92,7 +81,6 @@
               </table>
             </div>
             <div class="small-2 columns compatability-score-container">
-              <% if not @is_editing %>
               <!-- <p>This guide is</p>
               <div class="score-circle high-score">
                 <div class="score">42%</div>
@@ -102,28 +90,8 @@
                 We're working on a compatibility score, so that you'll be able to see
                 how compatible your garden and this guide are.
               </p>
-              <% end %>
             </div>
           </div>
-          <% if @is_editing %>
-          <div class="row">
-            <div class="columns small-3">
-              Add a requirement:
-            </div>
-            <div class="columns small-9">
-              <%= form_for(:requirement, :url => {:controller => 'requirements', :action => 'create'}) do |f| %>
-                  <%= f.hidden_field(:guide_id, value: @guide.id) %>
-                  <%= f.label(:name) %>
-                  <%= f.text_field(:name) %>
-                  <%= f.label(:requirement) %>
-                  <%= f.text_field(:requirement) %>
-                  <%= f.label(:slug) %>
-                  <%= f.text_area(:slug) %>
-                  <%= submit_tag('Add Requirement', {:class => 'button tiny'}) %>
-                <% end %>
-            </div>
-          </div>
-          <% end %>
         </div>
       </dd>
 
@@ -201,28 +169,6 @@
               </div>
             <% end %>
           </div>
-          <% if @is_editing %>
-            <div class="row">
-              <div class="columns small-3">
-                Add a stage:
-              </div>
-              <div class="columns small-9">
-                <%= form_for(:stage, :url => {:controller => 'stages', :action => 'create'}) do |f| %>
-                    <%= f.hidden_field(:guide_id, value: @guide.id) %>
-                    <%= f.label(:name) %>
-                    <%= f.text_field(:name) %>
-                    <%= f.label(:days_start) %>
-                    <%= f.number_field(:days_start) %>
-                    <%= f.label(:days_end) %>
-                    <%= f.number_field(:days_end) %>
-                    <%= f.label(:instructions) %>
-                    <%= f.text_area(:instructions) %>
-                    <%= submit_tag('Add Stage', {:class => 'button tiny'}) %>
-
-                  <% end %>
-              </div>
-            </div>
-          <% end %>
         </div>
       </dd>
       <dd class="accordion-navigation usage-wrapper">

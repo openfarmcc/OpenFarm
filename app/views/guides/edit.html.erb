@@ -1,5 +1,6 @@
 <div class="row">
   <div class="small-12 columns">
+    <h1>Edit Your Guide </h1>
     <% if @is_editing %>
     <%= form_for @guide do |f| %>
         <%= f.label(:name) %>
@@ -28,9 +29,10 @@
                 <tbody>
                   <% @guide.requirements.to_a.first((@guide.requirements.length / 2.0).floor).each do |r| %>
                     <tr>
-                      <td class="icon icon-<%= r.slug %>">x</td>
+                      <td class="icon icon-<%= r.slug %>"></td>
                       <td class="title show-for-medium-up"><%= r.name %></td>
                       <td class="description"><%= r.requirement %></td>
+                      <td class="icon delete"></td>
                     </tr>
                   <% end %>          
                 </tbody>

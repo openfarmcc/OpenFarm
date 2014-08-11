@@ -2,6 +2,12 @@ class GuidesController < ApplicationController
 
   def index
     @guides = Guide.all
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @guides }
+
+    end
   end
 
   def show
@@ -16,8 +22,26 @@ class GuidesController < ApplicationController
               'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
               'Nov', 'Dec']
 
+    @plants_lifetime = 180
+
+    @sow = {
+      'start_date' => Date.new(1970,3,1),
+      'end_date' => Date.new(1970,5,30)
+    }
+
+    @harvest = {
+      'start_date' => Date.new(1970, 6, 1),
+      'end_date' => Date.new(1970, 8, 30)
+    }
+
     @guide = Guide.find(params[:id])
     
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @guide }
+
+    end
+
   end
 
   def new
@@ -25,9 +49,10 @@ class GuidesController < ApplicationController
   end
   
   def create
+    puts params[:guide]
     @guide = Guide.new(guides_params)
     if @guide.save
-      redirect_to @guide
+      render json: @guide
     else
       render :new
     end
@@ -75,7 +100,7 @@ class GuidesController < ApplicationController
   
   private
   def guides_params
-    params.require(:guide).permit(:name, :user, :overview)
+    params.require(:guide).permit(:name, :user, :crop_id, :overview)
   end
 
 end

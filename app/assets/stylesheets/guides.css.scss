@@ -92,93 +92,97 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
 
    .content {
       background-color: #C9DAF8;
+
+      .prerequisites-title {
+          font-weight: 600;
+      }
+
+      .prerequisite-table-container table {
+          width: 100%;
+          border: 0;
+          border-spacing: 0;
+          border-collapse: separate;
+          thead {
+              display: none;
+          }
+
+          td.prerequisite-icon {
+          }
+
+          td.prerequisite-title {
+          }
+
+          td.description {
+              font-weight: bold;
+          }
+      }
+
+      
+
+      .compatability-score-container {
+          text-align: center;
+          p {
+              margin: 1rem 0;
+              line-height: 1;
+          }
+
+          .score-circle {
+              width: 90px;
+              height: 90px;
+              margin: 12px 0;
+              display: inline-block;
+              border-radius: 50%;
+              background-color: grey;
+          }
+
+          .score-circle.low-score {
+              background-color: #BD2B20;
+          }
+
+          .score-circle.med-score {
+              background-color: #FAB900;    
+          }
+
+          .score-circle.high-score {
+              background-color: green;    
+          }
+
+          .score-circle .score {
+              text-align: center;
+              line-height: 90px;
+              color: white;
+              font-size: 1.75em;
+              font-weight: bold;
+          }
+      }
+
+
+      .nav-container .nav-title {
+          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+          font-weight: 600;
+      }
+
+      .nav-container ul {
+          margin-left: 0;
+      }
+
+      .nav-container ul li {
+          list-style: none;
+          margin-bottom: 4px;
+      }
+
+      .nav-container ul li a {
+          display: block;
+          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+          color: #444;
+      }
+
+      .nav-container ul li:hover {
+          background-color: $orange;
+      }
   }
 
-   .content .prerequisites-title {
-      font-weight: 600;
-  }
-
-   .content .prerequisite-table-container table {
-      width: 100%;
-      border: 0;
-      border-spacing: 0;
-      border-collapse: separate;
-  }
-
-   .content .prerequisite-table-container thead {
-      display: none;
-  }
-
-   .content .prerequisite-table-container td.prerequisite-icon {
-  }
-
-   .content .prerequisite-table-container td.prerequisite-title {
-  }
-
-   .content .prerequisite-table-container td.description {
-      font-weight: bold;
-  }
-
-   .content .compatability-score-container {
-      text-align: center;
-  }
-
-   .content .compatability-score-container p {
-      margin: 0;
-  }
-
-   .content .compatability-score-container .score-circle {
-      width: 90px;
-      height: 90px;
-      margin: 12px 0;
-      display: inline-block;
-      border-radius: 50%;
-      background-color: grey;
-  }
-
-   .content .compatability-score-container .score-circle.low-score {
-      background-color: #BD2B20;
-  }
-
-   .content .compatability-score-container .score-circle.med-score {
-      background-color: #FAB900;    
-  }
-
-   .content .compatability-score-container .score-circle.high-score {
-      background-color: green;    
-  }
-
-   .content .compatability-score-container .score-circle .score {
-      text-align: center;
-      line-height: 90px;
-      color: white;
-      font-size: 1.75em;
-      font-weight: bold;
-  }
-
-   .content .nav-container .nav-title {
-      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-      font-weight: 600;
-  }
-
-   .content .nav-container ul {
-      margin-left: 0;
-  }
-
-   .content .nav-container ul li {
-      list-style: none;
-      margin-bottom: 4px;
-  }
-
-   .content .nav-container ul li a {
-      display: block;
-      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-      color: #444;
-  }
-
-   .content .nav-container ul li:hover {
-      background-color: $orange;
-  }
+  
 
 }
 
@@ -280,4 +284,43 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
     font-size: 1rem;
     text-align: center;
   }
+}
+
+.icon{
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.icon.of-water{
+  background: image-url('guide-icons/water.svg'); 
+}
+
+.icon.of-temperature{
+  background: image-url('guide-icons/temperature.svg'); 
+}
+
+.icon.of-ph{
+  background: image-url('guide-icons/ph.svg'); 
+}
+.icon.of-soil{
+  background: image-url('guide-icons/soil.svg'); 
+}
+.icon.of-sun-shade{
+  background: image-url('guide-icons/sun-shade.svg'); 
+}
+.icon.of-location{
+  background: image-url('guide-icons/location.svg'); 
+}
+.icon.of-practices{
+  background: image-url('guide-icons/practices.svg'); 
+}
+.icon.of-time-commitment{
+  background: image-url('guide-icons/time-commitment.svg'); 
+}
+.icon.of-physical-ability{
+  background: image-url('guide-icons/physical-ability.svg'); 
+}
+.icon.of-time-of-year{
+  background: image-url('guide-icons/temperature.svg'); 
 }

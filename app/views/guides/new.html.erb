@@ -1,15 +1,38 @@
-<div class="small-12 columns">
+<div ng-app="guidesApp" 
+     ng-controller="newGuideCtrl"
+     class="small-12 columns">
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns">
       <h1>Add a new Guide!</h1>
-      <%= form_for @guide do |f| %>
-      <%= f.label :name, 'Guide Name' %>
-      <%= f.text_field :name %>
-      <%= f.label :overview %>
-      <%= f.text_area :overview %>
-      <%= f.hidden_field :user, value: current_user.id.to_s %>
-      <%= f.submit 'Save Guide!', :class => 'button', :disable_with => 'Saving...' %>
-    <% end %>
+      <form 
+        accept-charset="UTF-8" 
+        class="new_guide"
+        id="new_guide" 
+        method="post"
+        >
+        <label for="guide_name">Guide Name</label>
+        <input id="guide_name" name="guide[name]" type="text" 
+          ng-model="new_guide.name">
+        <label 
+          for="guide_crop_id">For Crop:</label>
+        <input type="text" 
+          ng-model="new_guide.crop" 
+          typeahead="crop.name for crop in crops | filter:$viewValue | limitTo:8" 
+          class="form-control"
+          ng-selected="testSelection()">
+        <label for="guide_overview">Overview</label>
+        <textarea id="guide_overview" name="guide[overview]"
+          ng-model="new_guide.overview"></textarea>
+        <input id="guide_user" name="guide[user]" 
+          type="hidden" 
+          ng-model="new_guide.user">
+        <input class="button small"  
+          data-disable-with="Saving..." 
+          name="commit" 
+          type="submit" 
+          value="Save Guide!"
+          ng-click="submitForm()">
+      </form>
     </div>
   </div>
 </div>

@@ -1,10 +1,28 @@
 class CropsController < ApplicationController
+
+  def index
+    @crops = Crop.all
+    respond_to do |format|
+      # WOA 
+      format.html # show.html.erb
+      format.json { render json: @crops }
+
+    end
+  end
+
   def new
     @crop = Crop.new
   end
   
   def show
     @crop = Crop.find(params[:id])
+
+    respond_to do |format|
+      # WOA 
+      format.html # show.html.erb
+      format.json { render json: @crop }
+
+    end
   end
   
   def create

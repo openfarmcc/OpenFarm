@@ -11,5 +11,6 @@ class Guide
 
   field :name
   field :overview
+
   # TODO: All the other fields
 end

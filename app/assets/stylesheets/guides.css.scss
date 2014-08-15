@@ -1,23 +1,36 @@
+/* presets */
 
-/* Debug */
-.row {
-  &.header-row {
-    border: 1px solid red;
-  }
+$orange: #e69138;
+$blue: #3c78d8;
+$purple: #674ea7;
+$green: #6aa84f;
+$red: #cc0000;
+$yellow: #f1c232;
 
-  &.content-row {
-    border: 1px solid cyan;
+@mixin accordion-header-color($color){
+  & > a.title-wrapper{
+    background-color: $color;
+    transition: .5s;
+    &:hover{
+      background-color: $color + 20;
+    }
   }
 }
 
 /* Section accordion styling */
-dd a.title {
+dd > a.title-wrapper, dd.active > a.title-wrapper {
   display: block;
+  padding: .2rem 1rem;
+  color: white;
 
-  h2.title {
+  h2, h5 {
     display: inline-block;
-    color: white;
+    color: white;  
     font-weight: 800;
+  }
+
+  .title{
+    font-size: 2rem;
   }
 
   .author {
@@ -27,184 +40,287 @@ dd a.title {
   }
 }
 
-/* Plant overview section */
-dd a.title.overview > a {
-    background-color: salmon;
-}
-
-dd a.title h2 {
-    display: inline;
+.accordion dd > .content{
+  padding: 0 0.935rem;
 }
 
 /* Plant overview section */
-.overview-wrapper{
-  // Styles for when the wrapper is active
-  &.active{
-    a.title {
-      background-color: salmon;
-    }    
+.accordion .overview-wrapper{
+  @include accordion-header-color($orange);
+
+  .content {
+      background-color: #FCE5CD;
   }
 
-    a.title {
-        background-color: salmon;
+  .content .overview-title {
+      font-weight: 600;
+  }
 
-        &:hover{
-          background-color: rgb(253, 112, 96);
-        }
-    }
+  .content .nav-container {
+      padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
+      border-left: 1px solid grey;
+  }
 
-    .content {
-        background-color: #FCE5CD;
-    }
+  .content .nav-container .nav-title {
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      font-weight: 600;
+  }
 
-    .content .overview-title {
-        font-weight: 600;
-    }
+  .content .nav-container ul {
+      margin-left: 0;
+  }
 
-    .content .nav-container {
-        padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
-        border-left: 1px solid grey;
-    }
+  .content .nav-container ul li {
+      list-style: none;
+      margin-bottom: 4px;
+  }
 
-    .content .nav-container .nav-title {
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        font-weight: 600;
-    }
+  .content .nav-container ul li a {
+      display: block;
+      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+      color: #444;
+  }
 
-    .content .nav-container ul {
-        margin-left: 0;
-    }
-
-    .content .nav-container ul li {
-        list-style: none;
-        margin-bottom: 4px;
-    }
-
-    .content .nav-container ul li a {
-        display: block;
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        color: #444;
-    }
-
-    .content .nav-container ul li:hover {
-        background-color: salmon;
-    }
-}
-
-
-
-
-/* Prerequisites section */
-dd a.title.prerequisites > a {
-    background-color: cyan;
+  .content .nav-container ul li:hover {
+      background-color: $orange;
+  }
 }
 
 /* Plant overview section */
-.prerequisites-wrapper {
-    // Styles for when the wrapper is active
-    &.active{
-      a.title{
-        background-color: #3C78D8;
+.accordion .prerequisites-wrapper {
+  @include accordion-header-color($blue);
+
+   .content {
+      background-color: #C9DAF8;
+
+      .prerequisites-title {
+          font-weight: 600;
+      }
+
+      .prerequisite-table-container table {
+          width: 100%;
+          border: 0;
+          border-spacing: 0;
+          border-collapse: separate;
+          thead {
+              display: none;
+          }
+
+          td.prerequisite-icon {
+          }
+
+          td.prerequisite-title {
+          }
+
+          td.description {
+              font-weight: bold;
+          }
+      }
+
+      
+
+      .compatability-score-container {
+          text-align: center;
+          p {
+              margin: 1rem 0;
+              line-height: 1;
+          }
+
+          .score-circle {
+              width: 90px;
+              height: 90px;
+              margin: 12px 0;
+              display: inline-block;
+              border-radius: 50%;
+              background-color: grey;
+          }
+
+          .score-circle.low-score {
+              background-color: #BD2B20;
+          }
+
+          .score-circle.med-score {
+              background-color: #FAB900;    
+          }
+
+          .score-circle.high-score {
+              background-color: green;    
+          }
+
+          .score-circle .score {
+              text-align: center;
+              line-height: 90px;
+              color: white;
+              font-size: 1.75em;
+              font-weight: bold;
+          }
+      }
+
+
+      .nav-container .nav-title {
+          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+          font-weight: 600;
+      }
+
+      .nav-container ul {
+          margin-left: 0;
+      }
+
+      .nav-container ul li {
+          list-style: none;
+          margin-bottom: 4px;
+      }
+
+      .nav-container ul li a {
+          display: block;
+          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
+          color: #444;
+      }
+
+      .nav-container ul li:hover {
+          background-color: $orange;
+      }
+  }
+
+  
+
+}
+
+/* Timeline overview section */
+.accordion .timeline-wrapper{
+
+  color: white;
+
+  @include accordion-header-color($purple);
+
+  &> .content, &> .content.active{
+    padding: 0 0.9375rem;
+  }
+
+  .seasons{
+    background-color: $purple + 50;
+    font-size: .8em;
+    text-align: center;
+    padding: .375rem 0;
+
+    h3{
+      color: white;
+      font-size: 1.3em;
+      margin-bottom: 0;
+    }
+  }
+
+  .plant-timeline{
+    height: 150px;
+  }
+
+  .months{
+    background-color: $purple + 50;
+    padding: .375rem 0;
+    font-size: .8em;
+  }
+}
+
+
+/* Instructions overview section */
+.accordion .instructions-wrapper{
+  @include accordion-header-color($green);
+
+  .stage-title{
+    margin-top: .6rem;
+    font-size: 1.4rem;
+  }
+
+  .stage-headers{
+    background-color: $green + 50;
+  }
+
+  .tabs.stages{
+
+    li.active a{
+      background-color: $green;
+    }
+
+    li a{
+      cursor: pointer;
+      text-align: center;
+      font-size: .9em;
+      padding: .5rem 1rem;
+      background-color: $green + 50;
+      transition: .5s;
+
+      h3{
+        font-size: .9em;
+        margin-bottom: 0;
+        line-height: 1;
+      }  
+      .days{
+        font-size: .7em;
       }
     }
+  }
+}
 
-    a.title {
-        background-color: #3C78D8;
+/* Instructions overview section */
+.accordion .usage-wrapper{
+  @include accordion-header-color($red); 
+  color: #111;
+  .content, .content.active{
+    padding: 1.935rem;
+    background-color: $red + 200;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
 
-        &:hover{
-          background-color: #2F71DB;
-        }
-    }
+/* Instructions overview section */
+.accordion .forum-wrapper{
+  @include accordion-header-color($yellow);
 
-     .content {
-        background-color: #C9DAF8;
-    }
+  color: #111;
+  .content, .content.active{
+    padding: 1.935rem;
+    background-color: $yellow + 200;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
 
-     .content .prerequisites-title {
-        font-weight: 600;
-    }
+.icon{
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
 
-     .content .prerequisite-table-container table {
-        width: 100%;
-        border: 0;
-        border-spacing: 0;
-        border-collapse: separate;
-    }
+.icon.of-water{
+  background: image-url('guide-icons/water.svg'); 
+}
 
-     .content .prerequisite-table-container thead {
-        display: none;
-    }
+.icon.of-temperature{
+  background: image-url('guide-icons/temperature.svg'); 
+}
 
-     .content .prerequisite-table-container td.prerequisite-icon {
-    }
-
-     .content .prerequisite-table-container td.prerequisite-title {
-    }
-
-     .content .prerequisite-table-container td.prerequisite-description {
-        font-weight: bold;
-    }
-
-     .content .compatability-score-container {
-        text-align: center;
-    }
-
-     .content .compatability-score-container p {
-        margin: 0;
-    }
-
-     .content .compatability-score-container .score-circle {
-        width: 90px;
-        height: 90px;
-        margin: 12px 0;
-        display: inline-block;
-        border-radius: 50%;
-        background-color: grey;
-    }
-
-     .content .compatability-score-container .score-circle.low-score {
-        background-color: #BD2B20;
-    }
-
-     .content .compatability-score-container .score-circle.med-score {
-        background-color: #FAB900;    
-    }
-
-     .content .compatability-score-container .score-circle.high-score {
-        background-color: green;    
-    }
-
-     .content .compatability-score-container .score-circle .score {
-        text-align: center;
-        line-height: 90px;
-        color: white;
-        font-size: 1.75em;
-        font-weight: bold;
-    }
-
-     .content .nav-container .nav-title {
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        font-weight: 600;
-    }
-
-     .content .nav-container ul {
-        margin-left: 0;
-    }
-
-     .content .nav-container ul li {
-        list-style: none;
-        margin-bottom: 4px;
-    }
-
-     .content .nav-container ul li a {
-        display: block;
-        padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-        color: #444;
-    }
-
-     .content .nav-container ul li:hover {
-        background-color: salmon;
-    }
-
-
+.icon.of-ph{
+  background: image-url('guide-icons/ph.svg'); 
+}
+.icon.of-soil{
+  background: image-url('guide-icons/soil.svg'); 
+}
+.icon.of-sun-shade{
+  background: image-url('guide-icons/sun-shade.svg'); 
+}
+.icon.of-location{
+  background: image-url('guide-icons/location.svg'); 
+}
+.icon.of-practices{
+  background: image-url('guide-icons/practices.svg'); 
+}
+.icon.of-time-commitment{
+  background: image-url('guide-icons/time-commitment.svg'); 
+}
+.icon.of-physical-ability{
+  background: image-url('guide-icons/physical-ability.svg'); 
+}
+.icon.of-time-of-year{
+  background: image-url('guide-icons/temperature.svg'); 
 }

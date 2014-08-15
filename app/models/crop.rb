@@ -19,5 +19,8 @@ class Crop
   field :row_spacing     , type: Integer
   field :height          , type: Integer
 
+  field :sowing_time, :type => Hash
+  field :harvest_time, :type => Hash
+
   search_in :name, :binomial_name, :description
 end

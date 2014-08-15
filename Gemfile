@@ -45,6 +45,7 @@ group :development, :test do
   gem 'pry-nav'
   # Need this to use `save_and_open_page` when debugging / testing.
   gem 'launchy'
+  gem 'quiet_assets' # Turns off the Rails asset pipeline log
 end
 
 group :test do

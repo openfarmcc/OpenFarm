@@ -8,6 +8,15 @@ textarea {
 	}
 }
 
+.panel {
+  margin-bottom: 20px;
+background-color: #FFF;
+border: 1px solid transparent;
+border-radius: 4px;
+border-color: #DDD;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+}
+
 // @media #{$small-only} {
 //     input {
 //         font-size: 1em;

@@ -27,13 +27,12 @@
   </head>
 
   <body>
+    <div class="page-wrap">
     <nav class="top-bar" data-topbar>
         <ul class="title-area">
             <li class="name">
                 <h1>
                   <%= link_to(image_tag('openfarm_logo.svg', :width => '110px', :alt => 'Open Farm'), root_path) %>
-
-                    <%= link_to "OpenFarm", root_path %>
                 </h1>
             </li>
             <li class="toggle-topbar menu-icon">
@@ -81,8 +80,9 @@
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
-    <%= yield %>
-
+      <%= yield %>
+    </div>
+    <%= render partial: 'layouts/footer' %>
     <%= javascript_include_tag "application" %>
     
   </body>

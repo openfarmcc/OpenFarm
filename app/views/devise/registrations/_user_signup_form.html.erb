@@ -1,0 +1,29 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.label :display_name, I18n.t('users.display_name') %>
+  <%= f.text_field :display_name %>
+
+  <%= f.label :email, I18n.t('users.email_address') %>
+  <%= f.email_field :email %>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <% if @user.password_required? %>
+    <%= f.label :password, I18n.t('users.password') %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, I18n.t('users.password_confirmation') %>
+    <%= f.password_field :password_confirmation %>
+  <% end %>
+
+<div class="row">
+  <div class="large-8 columns signupdisclaimer">
+    <small>By clicking Next step, you agree to our <%= link_to "Terms and Conditions" %>.</small>
+  </div>
+  <div class="large-4 columns signupsubmit">
+    <%= f.submit "Next step", class: 'signupformsubmit button' %>
+  </div>
+</div>
+<% end %>

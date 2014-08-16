@@ -77,6 +77,8 @@ GEM
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     fast-stemmer (1.0.2)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     foundation-rails (5.2.3.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -245,6 +247,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  font-awesome-rails (~> 4.1)
   foundation-rails (~> 5.2.0)
   high_voltage
   jbuilder

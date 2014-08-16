@@ -79,6 +79,8 @@ GEM
     fast-stemmer (1.0.2)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
+    font-awesome-sass (4.1.0)
+      sass (~> 3.2)
     foundation-rails (5.2.3.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -248,6 +250,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   font-awesome-rails (~> 4.1)
+  font-awesome-sass
   foundation-rails (~> 5.2.0)
   high_voltage
   jbuilder

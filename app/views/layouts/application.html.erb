@@ -24,6 +24,9 @@
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+    <%= javascript_tag "var USER_ID = '#{current_user.id.to_s}';" if protect_against_forgery? %>
+
   </head>
 
   <body>
@@ -39,7 +42,26 @@
                 <a href="#"><span>Menu</span></a>
             </li>
         </ul>
+
         <section class="top-bar-section">
+
+            <!-- Search box Section -->
+            <% if not @is_search_page %>
+            <form class="home_search" method="get" action="/crop_search"><!-- TODO: change to a guide search -->
+              <div class="left">
+                <div class="small-9 columns">
+                  <input type="text"
+                    name="q"
+                    maxlength="120"
+                    placeholder="Search OpenFarm">
+                </div>
+                <div class="small-3 columns">
+                  <a class="button secondary right inline">Search</a>
+                </div>
+              </div>
+            </form>
+            <% end %>
+
             <!-- Right Nav Section -->
             <ul class="right">
                 <% if current_user %>

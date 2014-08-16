@@ -6,6 +6,11 @@ class Guide
   belongs_to :crop
   belongs_to :user
 
+  has_many :stages
+  has_many :requirements
+
   field :name
+  field :overview
+
   # TODO: All the other fields
 end

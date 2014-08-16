@@ -1,15 +1,28 @@
-<br/>
-<div class="row">
-  <div class="small-12 columns">
+<div class="signupheader">
+  <h1>Create your <%= image_tag 'openfarm_logo.png', size: '200' %> profile</h1>
+</div>
+<br/><br/><br/>
     <div class="row">
-      <div class="large-8 medium-10 small-12 small-centered columns">
-        <div class="panel">
-          <h1>Hey there stranger</h1>
-          <%= render 'devise/shared/user_form' %>
-          <hr/>
-          <%= render "devise/shared/links" %>
+      <div class="medium-8 columns">
+        <div style="display: flex"><span class="fa fa-circle signupscoringiconbackground"><span class="signupscoringicon">92%</span></span>
+          <h3>Find the best Guides for you and your garden based on Compatibility Scoring</h3>
+        </div>
+        <br/>
+        <div style="display: flex"><span class="fa fa-comments signupcommentsicon"></span>
+          <h3>Tap the knowledge of <%= User.all.count %> farmers and gardeners</h3>
+        </div>
+        <br/>
+        <div style="display: flex"><span class="fa fa-star signupstaricon"></span>
+          <h3 class="signuppushdown">Star your favorite Guides for later reference</h3>
+        </div>
+        <br/>
+        <div style="display: flex"><span class="fa fa-plus signupplusicon"></span>
+          <h3 class="signuppushdown">Share your story, contribute new Guides</h3>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="medium-4 columns">
+          <div class="signupform">
+            <%= render 'devise/registrations/user_signup_form' %>
+          </div>
+      </div>
+      </div>

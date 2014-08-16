@@ -34,6 +34,10 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
+#for nice icons
+gem 'font-awesome-rails', '~> 4.1'
+
+#for better security
 gem 'bcrypt-ruby'
 
 group :doc do

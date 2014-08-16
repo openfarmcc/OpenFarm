@@ -1,0 +1,83 @@
+.signupheader {
+  background-color: #69A84F;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.signupheader h1 {
+  color: #FFF;
+}
+
+.signupform {
+  background-color: #69A84F;
+  padding: 15px;
+}
+
+.signupform label {
+  color: #FFF;
+  font-weight: 700;
+}
+
+.signupformsubmit {
+  color: #FFF;
+  font-weight: 600;
+  padding: 5px;
+  text-align: center;
+  border: none;
+  margin: 0;
+}
+
+.signupscoringicon {
+  color: #fff;
+  font-weight: 600;
+  font-size: 22px;
+  margin-left: -50px;
+  margin-top: 25px;
+  position: absolute;
+}
+
+.signupscoringiconbackground {
+  color: #69A84F;
+  font-size: 75px;
+  vertical-align: middle;
+  padding-right: 20px;
+}
+
+.signupcommentsicon {
+  color: #3A78DD;
+  font-size: 75px;
+  padding-right: 20px;
+}
+
+.signupstaricon {
+  color: #E6BE38;
+  font-size: 75px;
+  padding-right: 20px;
+}
+
+.signupplusicon {
+  color: #955474;
+  font-size: 75px;
+  padding-right: 20px;
+}
+
+.signuppushdown {
+  margin-top: 18px;
+}
+
+.signupsubmit {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.signupdisclaimer {
+  color: #FFF;
+}
+
+.signupdisclaimer a {
+  text-decoration: underline;
+  color: #FFF;
+}

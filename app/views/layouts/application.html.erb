@@ -25,7 +25,7 @@
   	<%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-    <%= javascript_tag "var USER_ID = '#{current_user.id.to_s}';" if protect_against_forgery? %>
+    <%= javascript_tag "var USER_ID = '#{current_user.try(:id).to_s}';" if protect_against_forgery? %>
 
   </head>
 

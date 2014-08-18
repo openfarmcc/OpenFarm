@@ -9,8 +9,7 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-OpenFarm::Application.config.secret_key_base = '2d01c82982a19854b50b53abe97a81'\
-'fba421a180639bb5c590f327d238c443c780150cd568e08e615eedb153089386321bfadf3d217'\
-'35af7255faf41c35e9569'
-
-#FIXME: add ENV vars on production machine.
+  fake = '58f4e3cc1646c5eebbedc3dce699f76a527de45b5451a582e2b334e008a4c2cc8b70'\
+         '999230257f61c9522ad56dc3a66654d29b227aa6e6bf5b4f2df49dd617be'
+  real = ENV['SECRET_KEY_BASE']
+OpenFarm::Application.config.secret_key_base = real || fake

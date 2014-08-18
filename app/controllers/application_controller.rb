@@ -15,4 +15,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_admin
+    if current_user && current_user.admin?
+      return current_user
+    else
+      flash[:notice] = 'I told you kids to get out of here!'
+      redirect_to '/' and return
+    end
+  end
+
 end

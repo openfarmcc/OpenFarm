@@ -10,7 +10,7 @@ module IntegrationHelper
   end
   
   def self.included(receiver)
-    receiver.extend         ClassMethods
+    receiver.extend ClassMethods
     receiver.send :include, InstanceMethods
     receiver.include Warden::Test::Helpers
     Warden.test_mode!

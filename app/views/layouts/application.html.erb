@@ -47,7 +47,7 @@
         <section class="top-bar-section">
 
             <!-- Search box Section -->
-            <% if not @is_search_page %>
+            <% unless current_page?(root_path) %>
             <form class="home_search" method="get" action="/crop_search"><!-- TODO: change to a guide search -->
               <div class="left">
                 <div class="small-9 columns">
@@ -77,15 +77,15 @@
                         </ul>
                     </li>
                     <li class="has-form">
-                        <%= link_to("Logout", destroy_user_session_path, :method => :delete, class: '') %>
+                        <%= link_to("Logout", destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
                     </li>
                 <% else %>
                     <li class="has-form">
-                        <%= link_to("Create an Account", new_user_registration_path, class: 'button') %>
+                        <%= link_to("Create an Account", new_user_registration_path, class: 'button', id: 'register') %>
                     </li>
                     <li class="divider"></li>
                     <li class="has-form">
-                        <%= link_to("Sign In", new_user_session_path, class: 'button') %>
+                        <%= link_to("Sign In", new_user_session_path, class: 'button', id: 'login') %>
                     </li>
                 <% end %>
             </ul>

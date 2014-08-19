@@ -1,6 +1,7 @@
 <ul>
-<% @guides.each do |guide| %>
-  <li>
-  <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %></li>
-<% end %>
+  <% @guides.each do |guide| %>
+    <li>
+      <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %>
+    </li>
+  <% end %>
 </ul>

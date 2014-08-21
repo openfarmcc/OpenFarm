@@ -18,9 +18,10 @@ OpenFarm::Application.routes.draw do
   resources :guides
   resources :stages
   resources :requirements
-
-  # Catch-all. Is this okay?
   
+  namespace :api, defaults: {format: 'json'} do
+    resources :crops, only: :index
+  end
   # match ':controller(/:action)', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest

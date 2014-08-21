@@ -43,9 +43,8 @@ gem 'rails_admin'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-
-
 # Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'
 gem 'mongoid_search'
+gem 'active_model_serializers'

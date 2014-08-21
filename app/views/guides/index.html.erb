@@ -1,7 +1,14 @@
-<ul>
-  <% @guides.each do |guide| %>
-    <li>
-      <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %>
-    </li>
-  <% end %>
-</ul>
+<div class="row guides-list">
+  <div class="small-12 columns">
+    <h2>Guides</h2>
+    <table>
+      <% @guides.each do |guide| %>
+        <tr>
+          <td>
+            <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

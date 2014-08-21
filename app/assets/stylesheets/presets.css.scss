@@ -1,0 +1,16 @@
+$of-orange: #e69138;
+$of-blue: #3c78d8;
+$of-purple: #674ea7;
+$of-green: #6aa84f;
+$of-red: #cc0000;
+$of-yellow: #f1c232;
+
+@mixin accordion-header-color($color){
+  & > a.title-wrapper{
+    background-color: $color;
+    transition: .5s;
+    &:hover{
+      background-color: $color + 20;
+    }
+  }
+}

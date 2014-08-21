@@ -1,52 +1,11 @@
 /* presets */
 
-$orange: #e69138;
-$blue: #3c78d8;
-$purple: #674ea7;
-$green: #6aa84f;
-$red: #cc0000;
-$yellow: #f1c232;
+@import 'presets';
 
-@mixin accordion-header-color($color){
-  & > a.title-wrapper{
-    background-color: $color;
-    transition: .5s;
-    &:hover{
-      background-color: $color + 20;
-    }
-  }
-}
-
-/* Section accordion styling */
-dd > a.title-wrapper, dd.active > a.title-wrapper {
-  display: block;
-  padding: .2rem 1rem;
-  color: white;
-
-  h2, h5 {
-    display: inline-block;
-    color: white;  
-    font-weight: 800;
-  }
-
-  .title{
-    font-size: 2rem;
-  }
-
-  .author {
-    margin-left: 20px;
-    display: inline-block;
-    color: white;
-  }
-}
-
-.accordion dd > .content{
-  padding: 0 0.935rem;
-}
 
 /* Plant overview section */
 .accordion .overview-wrapper{
-  @include accordion-header-color($orange);
+  @include accordion-header-color($of-orange);
 
   .content {
       background-color: #FCE5CD;
@@ -82,13 +41,13 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
   }
 
   .content .nav-container ul li:hover {
-      background-color: $orange;
+      background-color: $of-orange;
   }
 }
 
 /* Plant overview section */
 .accordion .prerequisites-wrapper {
-  @include accordion-header-color($blue);
+  @include accordion-header-color($of-blue);
 
    .content {
       background-color: #C9DAF8;
@@ -178,11 +137,9 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
       }
 
       .nav-container ul li:hover {
-          background-color: $orange;
+          background-color: $of-orange;
       }
-  }
-
-  
+  } 
 
 }
 
@@ -191,14 +148,14 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
 
   color: white;
 
-  @include accordion-header-color($purple);
+  @include accordion-header-color($of-purple);
 
   &> .content, &> .content.active{
     padding: 0 0.9375rem;
   }
 
   .seasons{
-    background-color: $purple + 50;
+    background-color: $of-purple + 50;
     font-size: .8em;
     text-align: center;
     padding: .375rem 0;
@@ -215,7 +172,7 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
   }
 
   .months{
-    background-color: $purple + 50;
+    background-color: $of-purple + 50;
     padding: .375rem 0;
     font-size: .8em;
   }
@@ -224,7 +181,7 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
 
 /* Instructions overview section */
 .accordion .instructions-wrapper{
-  @include accordion-header-color($green);
+  @include accordion-header-color($of-green);
 
   .stage-title{
     margin-top: .6rem;
@@ -232,13 +189,13 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
   }
 
   .stage-headers{
-    background-color: $green + 50;
+    background-color: $of-green + 50;
   }
 
   .tabs.stages{
 
     li.active a{
-      background-color: $green;
+      background-color: $of-green;
     }
 
     li a{
@@ -246,7 +203,7 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
       text-align: center;
       font-size: .9em;
       padding: .5rem 1rem;
-      background-color: $green + 50;
+      background-color: $of-green + 50;
       transition: .5s;
 
       h3{
@@ -261,26 +218,26 @@ dd > a.title-wrapper, dd.active > a.title-wrapper {
   }
 }
 
-/* Instructions overview section */
+/* Usage overview section */
 .accordion .usage-wrapper{
-  @include accordion-header-color($red); 
+  @include accordion-header-color($of-red); 
   color: #111;
   .content, .content.active{
     padding: 1.935rem;
-    background-color: $red + 200;
+    background-color: $of-red + 200;
     font-size: 1rem;
     text-align: center;
   }
 }
 
-/* Instructions overview section */
+/* Forum section */
 .accordion .forum-wrapper{
-  @include accordion-header-color($yellow);
+  @include accordion-header-color($of-yellow);
 
   color: #111;
   .content, .content.active{
     padding: 1.935rem;
-    background-color: $yellow + 200;
+    background-color: $of-yellow + 200;
     font-size: 1rem;
     text-align: center;
   }

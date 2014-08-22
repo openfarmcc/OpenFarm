@@ -57,12 +57,12 @@ $total-columns: 12;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #8F8163; // #008CBA;
+$primary-color: #c7a979; // #008CBA;
 $secondary-color: #e7e7e7;
 $alert-color: #ff6666;
 $success-color: #74E29D;
 $warning-color: #f08a24;
-$info-color: #a0d3e8;
+$info-color: #eecb91;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -121,7 +121,7 @@ $info-color: #a0d3e8;
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
+$header-font-family: "source sans pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;//, $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: #222;

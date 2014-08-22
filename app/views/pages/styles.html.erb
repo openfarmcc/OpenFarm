@@ -90,12 +90,17 @@ Website Style Guide
 <div class="row">
 
   <h2>Action Colors</h2>
+  <p>
+    These are based on the standard colors within Foundation.
+  </p>
   <div class="swatch columns large-3">
-      <span class="swatch-preview" style="background-color: #8F8163;"></span>
+      <span class="swatch-preview" style="background-color: #c7a979;"></span>
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Primary</strong></li>
           <!-- <li>R255 G102 B102</li> -->
-          <li>#8F8163</li>
+          <li>#c7a979</li>
+          <li>$primary-color</li>
+          <li>&nbsp;</li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -103,6 +108,8 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Secondary</strong></li>
           <li>#e7e7e7</li>
+          <li>$secondary-color</li>
+          <li><kbd>secondary</kbd></li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -110,6 +117,8 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Alert</strong></li>
           <li>#ff6666</li>
+          <li>$alert-color</li>
+          <li><kbd>alert</kbd></li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -117,6 +126,8 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Success</strong></li>
           <li>#74E29D</li>
+          <li>$success-color</li>
+          <li><kbd>success</kbd></li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -127,14 +138,17 @@ Website Style Guide
           <li>C13 M94 Y69 K4</li> -->
           <!-- <li>R204 G39 B62</li> -->
           <li>#f08a24</li>
-          <!-- <li>$color-red</li> -->
+          <li>$warning-color</li>
+          <li><kbd>warning</kbd></li>
       </ul>
   </div>
   <div class="swatch columns large-3 end">
-      <span class="swatch-preview" style="background-color: #a0d3e8;"></span>
+      <span class="swatch-preview" style="background-color: #eecb91;"></span>
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Info</strong></li>
-          <li>#a0d3e8</li>
+          <li>#eecb91</li>
+          <li>$info-color</li>
+          <li><kbd>info</kbd></li>
       </ul>
   </div>
 </div>
@@ -147,6 +161,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Overview</strong></li>
           <li>#e69138</li>
+          <li>$of-orange</li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -154,6 +169,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Prerequisites</strong></li>
           <li>#3c78d8</li>
+          <li>$of-blue</li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -161,6 +177,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Timeline</strong></li>
           <li>#674ea7</li>
+          <li>$of-purple</li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -168,6 +185,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Instructions</strong></li>
           <li>#6aa84f</li>
+          <li>$of-green</li>
       </ul>
   </div>
   <div class="swatch columns large-3">
@@ -175,6 +193,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Usage</strong></li>
           <li>#cc0000</li>
+          <li>$of-red</li>
       </ul>
   </div>
   <div class="swatch columns large-3 end">
@@ -182,6 +201,7 @@ Website Style Guide
       <ul class="list-no-bullets swatch-details">
           <li><strong>OpenFarm Forum</strong></li>
           <li>#f1c232</li>
+          <li>$of-yellow</li>
       </ul>
   </div>
 </div>
@@ -223,7 +243,7 @@ Website Style Guide
   <input type="submit" value="Secondary" class="button small secondary"/>
   <input type="submit" value="Success" class="button small success"/>
 </div>
-  <p>
+  <p class="row">
     TODO: loading indicators
   </p>
 
@@ -232,7 +252,7 @@ Website Style Guide
 <div class="row">
   <h2>Alerts</h2>
   <p>
-    Don't use the foundation standard alert. Use a <kbd>radius</kbd>.
+    Don't use the foundation standard alert. Use specific alerts instead. Use a <kbd>radius</kbd>.
   </p>
   <div class="columns large-12">
     <div data-alert="" class="alert-box success radius">
@@ -254,3 +274,40 @@ Website Style Guide
   </div>
 </div>
 
+<hr/>
+
+<div class="row">
+  <h2>Icons</h2>
+
+  <p>The icon set is still expanding, will probably use a font in the future.</p>
+
+  <ul class="columns large-4 small-6">
+    <li class="icon of-water"><kbd>.of-water</kbd></li>
+    <li class="icon of-temperature"><kbd>.of-temperature</kbd></li>
+    <li class="icon of-ph"><kbd>.of-ph</kbd></li>
+    <li class="icon of-soil"><kbd>.of-soil</kbd></li>
+    <li class="icon of-sun-shade"><kbd>.of-sun-shade</kbd></li>
+    <li class="icon of-location"><kbd>.of-location</kbd></li>
+    <li class="icon of-practices"><kbd>.of-practices</kbd></li>
+    <li class="icon of-time-commitment"><kbd>.of-time-commitment</kbd></li>
+    <li class="icon of-physical-ability"><kbd>.of-physical-ability</kbd></li>
+    <li class="icon of-time-of-year"><kbd>.of-time-of-year</kbd></li>
+  </ul>
+
+</div>
+
+<hr/>
+
+<div class="row">
+  <h1>H1: The quick brown fox jumps over the lazy dog</h1>
+  <h2>H2: The quick brown fox jumps over the lazy dog</h2>
+  <h3>H3: The quick brown fox jumps over the lazy dog</h3>
+  <h4>H4: The quick brown fox jumps over the lazy dog</h4>
+  <h5>H5: The quick brown fox jumps over the lazy dog</h5>
+  <h6>H6: The quick brown fox jumps over the lazy dog</h6>
+
+  <p>P: The quick brown fox jumps over the lazy dog</p>
+
+  <p>Link: The <a href="#">quick brown</a> fox.
+  </p>
+</div>

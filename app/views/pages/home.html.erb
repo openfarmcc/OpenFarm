@@ -1,33 +1,34 @@
-<div class="hero-background"></div>
-<div class="hero row">
-    <div class="small-10 small-centered columns">
-        <img src="<%= image_path 'openfarm_logo.svg' %>" width="420px" onerror="this.onerror=null; this.src='<%= image_path 'openfarm_logo.png' %>'">
-        <h1>Learn to grow anything.</h1>
-        <h2>A free and open database for farming and gardening knowledge.</h2>
-    </div>
-    <div class="small-10 small-centered columns">
-      <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
-            <div class="row">
-                <div class="small-12 small-centered columns">
-                    <div class="row collapse">
-                        <div class="small-8 large-9 columns">
-                          <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: "What do you want to grow?" %>
-                        </div>
-                        <div class="small-4 large-3 columns">
-                          <%= f.submit "Search!", data: { disable_with: "Searching..." }, class: 'button postfix' %>
+<div class="hero-background">
+    <div class="hero row">
+        <div class="small-10 small-centered columns">
+            <img src="<%= image_path 'openfarm_logo.svg' %>" width="420px" onerror="this.onerror=null; this.src='<%= image_path 'openfarm_logo.png' %>'">
+            <h1>Learn to grow anything.</h1>
+            <h2>A free and open database for farming and gardening knowledge.</h2>
+        </div>
+        <div class="small-10 small-centered columns">
+          <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
+                <div class="row">
+                    <div class="small-12 small-centered columns">
+                        <div class="row collapse">
+                            <div class="small-8 large-9 columns">
+                              <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: "What do you want to grow?" %>
+                            </div>
+                            <div class="small-4 large-3 columns">
+                              <%= f.submit "Search!", data: { disable_with: "Searching..." }, class: 'button postfix' %>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-          <% end %>
+              <% end %>
+        </div>
     </div>
     <div class="small-4 small-centered columns"></div>
     <div class="small-4 small-centered columns"><iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/roryaronson/openfarm-learn-to-grow-anything/widget/card.html?v=2" width="220"></iframe></div>
     <div class="small-4 small-centered columns"></div>
 </div>
-
-<div class="github-fork-ribbon-wrapper right-bottom">
-    <div class="github-fork-ribbon">
-        <a href="https://github.com/farmbot/openfarm">Fork me on GitHub</a>
+    <div class="github-fork-ribbon-wrapper right-bottom">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/farmbot/openfarm">Fork me on GitHub</a>
+        </div>
     </div>
 </div>

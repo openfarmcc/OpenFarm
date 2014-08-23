@@ -1,0 +1,316 @@
+<h1 class="columns large-12">
+Website Style Guide
+</h1>
+
+<hr>
+<div class="columns large-12">
+  <h2> Using the Guide. </h2>
+
+  <p>
+    The styles in this guide are the styles available to the OpenFarm pages by default. They should be used as guidelines and defaults. This page has no additional styles defined (meaning: you can do all of this without building any of your own styles)
+  </p>
+  <p>
+    They're based on Foundation's styles, so anyone familiar with those styles should be familiar with these.
+  </p>
+  <p>
+    If something's not mentioned here, we haven't talked or thought about it yet. We're open to input.
+  </p>
+  <p>
+    <strong>These guides will be updated, and if you stick to the classes specified here, your work will be automatically updated as well.</strong>
+  </p>
+</div>
+<hr>
+
+<div class="columns large-12">
+  <h2>The Grid</h2>
+
+  <div class="row display">
+    This is a row. They're used to create a max-width on a page. Use them. 
+  </div>
+
+  <br/>
+  <div class="row">
+  <p>
+    There's a 12 column grid.
+  </p>
+  <div class="columns large-1 small-1 display">
+    1
+  </div>
+  <div class="columns large-1 small-1 display">
+    2
+  </div>
+  <div class="columns large-1 small-1 display">
+    3
+  </div>
+  <div class="columns large-1 small-1 display">
+    4
+  </div>
+  <div class="columns large-1 small-1 display">
+    5
+  </div>
+  <div class="columns large-1 small-1 display">
+    6
+  </div>
+  <div class="columns large-1 small-1 display">
+    7
+  </div>
+  <div class="columns large-1 small-1 display">
+    8
+  </div>
+  <div class="columns large-1 small-1 display">
+    9
+  </div>
+  <div class="columns large-1 small-1 display">
+    10
+  </div>
+  <div class="columns large-1 small-1 display">
+    11
+  </div>
+  <div class="columns large-1 small-1 display">
+    12
+  </div>
+  </div>
+
+  <br/>
+
+  <div class="row">
+    <div class="columns large-3 small-6 display">
+      You shouldn't use less than large-3 of those columns for a large page.
+    </div>
+    <div class="columns large-4 small-6 display">
+      We'd prefer if you stuck to large-4 on a large page.
+    </div>
+    <div class="columns large-5 small-12 display">
+      Large-5 is also pretty good.
+    </div>
+    <p class="columns large-12">
+      When a viewport is small, don't go smaller than small-6. We'd prefer if you stuck to full page.
+    </p>
+  </div>
+</div>
+
+<hr/>
+<div class="row">
+
+  <h2>Action Colors</h2>
+  <p>
+    These are based on the standard colors within Foundation.
+  </p>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #c7a979;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Primary</strong></li>
+          <!-- <li>R255 G102 B102</li> -->
+          <li>#c7a979</li>
+          <li>$primary-color</li>
+          <li>&nbsp;</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #e7e7e7;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Secondary</strong></li>
+          <li>#e7e7e7</li>
+          <li>$secondary-color</li>
+          <li><kbd>secondary</kbd></li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #ff6666;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Alert</strong></li>
+          <li>#ff6666</li>
+          <li>$alert-color</li>
+          <li><kbd>alert</kbd></li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #74E29D;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Success</strong></li>
+          <li>#74E29D</li>
+          <li>$success-color</li>
+          <li><kbd>success</kbd></li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #f08a24;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Warning</strong></li>
+          <!-- <li>PMS 193U</li>
+          <li>C13 M94 Y69 K4</li> -->
+          <!-- <li>R204 G39 B62</li> -->
+          <li>#f08a24</li>
+          <li>$warning-color</li>
+          <li><kbd>warning</kbd></li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3 end">
+      <span class="swatch-preview" style="background-color: #eecb91;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Info</strong></li>
+          <li>#eecb91</li>
+          <li>$info-color</li>
+          <li><kbd>info</kbd></li>
+      </ul>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Navigation Colors</h2>
+  <p>Use <kbd>import 'presets'</kbd> in your SCSS.</p>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #e69138;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Overview</strong></li>
+          <li>#e69138</li>
+          <li>$of-orange</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #3c78d8;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Prerequisites</strong></li>
+          <li>#3c78d8</li>
+          <li>$of-blue</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #674ea7;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Timeline</strong></li>
+          <li>#674ea7</li>
+          <li>$of-purple</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #6aa84f;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Instructions</strong></li>
+          <li>#6aa84f</li>
+          <li>$of-green</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3">
+      <span class="swatch-preview" style="background-color: #cc0000;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Usage</strong></li>
+          <li>#cc0000</li>
+          <li>$of-red</li>
+      </ul>
+  </div>
+  <div class="swatch columns large-3 end">
+      <span class="swatch-preview" style="background-color: #f1c232;"></span>
+      <ul class="list-no-bullets swatch-details">
+          <li><strong>OpenFarm Forum</strong></li>
+          <li>#f1c232</li>
+          <li>$of-yellow</li>
+      </ul>
+  </div>
+</div>
+<hr/>
+
+<div class="row">
+  <h2>Section Headers (Accordion)</h2>
+  <p>
+    These are the section headers used on guide pages, and are the headers that should be used through-out. They're based on Foundation's accordion.
+  </p>
+  <dl class="accordion" data-accordion>
+    <dd class="accordion-navigation">
+        <a href="#overview" class="title-wrapper">
+          <h2 class="title">Header</h2>
+          <h5>Sub-header</h5>
+        </a>
+
+        <div id="overview" class="content active">
+          <p>Content</p>
+        </div>
+      </dd>
+  </dl>
+</div>
+<hr/>
+
+<div class="row">
+  <h2>Forms</h2>
+  <p>
+    Use <kbd>small</kbd> or <kbd>tiny</kbd> buttons. Links can also look like buttons. The following are defaults.
+  </p>
+  <input type="submit" class="button small"/>
+  <input type="submit" class="button tiny" value="Tiny Submit Button"/>
+  <a href="#" class="button small">Submit Link</a>
+  <a href="#" class="button tiny">Tiny Submit Link</a>
+  <p>
+    Options: <kbd>alert</kbd>, <kbd>secondary</kbd>, <kbd>success</kbd>
+  </p>
+  <input type="submit" value="Alert" class="button small alert"/>
+  <input type="submit" value="Secondary" class="button small secondary"/>
+  <input type="submit" value="Success" class="button small success"/>
+</div>
+  <p class="row">
+    TODO: loading indicators
+  </p>
+
+<hr/>
+
+<div class="row">
+  <h2>Alerts</h2>
+  <p>
+    Don't use the foundation standard alert. Use specific alerts instead. Use a <kbd>radius</kbd>.
+  </p>
+  <div class="columns large-12">
+    <div data-alert="" class="alert-box success radius">
+      This is a <kbd>success</kbd> alert.
+      <a href="#" class="close">×</a>
+    </div>
+    <div data-alert="" class="alert-box alert radius">
+      This is an <kbd>alert</kbd> alert.
+      <a href="#" class="close">×</a>
+    </div>
+    <div data-alert="" class="alert-box warning radius">
+      This is an <kbd>warning</kbd> alert.
+      <a href="#" class="close">×</a>
+    </div>
+    <div data-alert="" class="alert-box info radius">
+      This is an <kbd>info</kbd> alert.
+      <a href="#" class="close">×</a>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <h2>Icons</h2>
+
+  <p>The icon set is still expanding, will probably use a font in the future.</p>
+
+  <ul class="columns large-4 small-6">
+    <li class="icon of-water"><kbd>.of-water</kbd></li>
+    <li class="icon of-temperature"><kbd>.of-temperature</kbd></li>
+    <li class="icon of-ph"><kbd>.of-ph</kbd></li>
+    <li class="icon of-soil"><kbd>.of-soil</kbd></li>
+    <li class="icon of-sun-shade"><kbd>.of-sun-shade</kbd></li>
+    <li class="icon of-location"><kbd>.of-location</kbd></li>
+    <li class="icon of-practices"><kbd>.of-practices</kbd></li>
+    <li class="icon of-time-commitment"><kbd>.of-time-commitment</kbd></li>
+    <li class="icon of-physical-ability"><kbd>.of-physical-ability</kbd></li>
+    <li class="icon of-time-of-year"><kbd>.of-time-of-year</kbd></li>
+  </ul>
+
+</div>
+
+<hr/>
+
+<div class="row">
+  <h1>H1: The quick brown fox jumps over the lazy dog</h1>
+  <h2>H2: The quick brown fox jumps over the lazy dog</h2>
+  <h3>H3: The quick brown fox jumps over the lazy dog</h3>
+  <h4>H4: The quick brown fox jumps over the lazy dog</h4>
+  <h5>H5: The quick brown fox jumps over the lazy dog</h5>
+  <h6>H6: The quick brown fox jumps over the lazy dog</h6>
+
+  <p>P: The quick brown fox jumps over the lazy dog</p>
+
+  <p>Link: The <a href="#">quick brown</a> fox.
+  </p>
+</div>

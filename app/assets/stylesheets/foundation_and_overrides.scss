@@ -11,6 +11,7 @@
 
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
+@import "presets";
 
 // $experimental: true;
 
@@ -36,7 +37,7 @@
 // $include-xl-html-grid-classes: false;
 
 // $row-width: rem-calc(1000);
-// $total-columns: 12;
+$total-columns: 12;
 
 // Global
 
@@ -56,12 +57,12 @@
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-// $secondary-color: #e7e7e7;
-// $alert-color: #f04124;
-// $success-color: #43AC6A;
-// $warning-color: #f08a24;
-// $info-color: #a0d3e8;
+$primary-color: #c7a979; // #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color: #ff6666;
+$success-color: #74E29D;
+$warning-color: #f08a24;
+$info-color: #eecb91;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -120,7 +121,7 @@
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-// $header-font-family: $body-font-family;
+$header-font-family: "source sans pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;//, $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -174,7 +175,7 @@
 // $hr-border-width: 1px;
 // $hr-border-style: solid;
 // $hr-border-color: #ddd;
-// $hr-margin: rem-calc(20);
+$hr-margin: rem-calc(20);
 
 // We use these to style lists
 // $list-font-family: $paragraph-font-family;
@@ -229,7 +230,7 @@
 // $include-html-accordion-classes: $include-html-classes;
 
 // $accordion-navigation-padding: rem-calc(0);
-// $accordion-navigation-bg-color: #efefef  ;
+// $accordion-navigation-bg-color: $of-orange;
 // $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
 // $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
 // $accordion-navigation-font-color: #222;
@@ -523,7 +524,7 @@
 // $input-focus-border-color: scale-color(#fff, $lightness: -40%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
-// $input-border-radius: $global-radius;
+// $input-border-radius: 10px; //$global-radius;
 // $input-disabled-bg: #ddd;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 // $input-include-glowing-effect: true;

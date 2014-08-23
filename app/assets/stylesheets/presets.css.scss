@@ -1,0 +1,63 @@
+$of-orange: #e69138;
+$of-blue: #3c78d8;
+$of-purple: #674ea7;
+$of-green: #6aa84f;
+$of-red: #cc0000;
+$of-yellow: #f1c232;
+
+$primary-color: #c7a979; // #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color: #ff6666;
+$success-color: #74E29D;
+$warning-color: #f08a24;
+$info-color: #eecb91;
+
+@mixin accordion-header-color($color){
+  & > a.title-wrapper{
+    background-color: $color;
+    transition: .5s;
+    &:hover{
+      background-color: $color + 20;
+    }
+  }
+}
+
+.icon::before{
+  content: ' ';
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.icon.of-water::before{
+  background: image-url('guide-icons/water.svg'); 
+}
+.icon.of-temperature::before{
+  background: image-url('guide-icons/temperature.svg'); 
+}
+.icon.of-ph::before{
+  background: image-url('guide-icons/ph.svg'); 
+}
+.icon.of-soil::before{
+  background: image-url('guide-icons/soil.svg'); 
+}
+.icon.of-sun-shade::before{
+  background: image-url('guide-icons/sun-shade.svg'); 
+}
+.icon.of-location::before{
+  background: image-url('guide-icons/location.svg'); 
+}
+.icon.of-practices::before{
+  background: image-url('guide-icons/practices.svg'); 
+}
+.icon.of-time-commitment::before{
+  background: image-url('guide-icons/time-commitment.svg'); 
+}
+.icon.of-physical-ability::before{
+  background: image-url('guide-icons/physical-ability.svg'); 
+}
+.icon.of-time-of-year::before{
+  background: image-url('guide-icons/temperature.svg'); 
+}

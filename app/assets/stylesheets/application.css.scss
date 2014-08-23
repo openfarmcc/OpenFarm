@@ -11,8 +11,8 @@
  *= require_self
  *= require font-awesome
  *= require foundation_and_overrides
- *- require jquery-ui
  *= require_tree .
+
  */
 
 /*@import "foundation_and_overrides";*/
@@ -159,3 +159,69 @@
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
+@import "presets";
+
+.display{
+  background: #eee;
+  font-size: 11px;
+  margin-bottom: 10px;
+  line-height: 2rem;
+  border: solid 1px #c6c6c6;
+}
+
+.swatch{
+  float: left;
+  margin-bottom: 1em;
+  width: 96%;
+  /*margin-right: 2%;*/
+  background-color: white;
+  padding: 10px 0;
+  padding: 0.625rem 0;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.swatch-preview{
+  display: block;
+  float: left;
+  height: 60px;
+  width: 100%;
+  margin: 0 0.8em 0.5em 0;
+}
+
+.swatch-details{
+  list-style: none;
+  float: left;
+  margin: 0 1em 0 0;
+  font-size: 0.8em;
+  clear: both;
+}
+
+/* Section accordion styling */
+dd.accordion-navigation > a.title-wrapper, dd.active > a.title-wrapper {
+  display: block;
+  padding: .2rem 1rem;
+
+  @include accordion-header-color($of-orange);
+
+  h2, h5 {
+    display: inline-block;
+    color: white;
+    font-weight: 600;
+  }
+
+  .title{
+    font-size: 2rem;
+  }
+
+  .author {
+    margin-left: 20px;
+    display: inline-block;
+    color: white;
+  }
+}
+
+.accordion dd > .content{
+  padding: 0 0.935rem;
+}
+

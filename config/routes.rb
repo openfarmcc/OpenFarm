@@ -1,5 +1,9 @@
 OpenFarm::Application.routes.draw do
 
+  # get "pages/about"
+  # get "pages/contact"
+  get "pages/styles"
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,
     controllers: {

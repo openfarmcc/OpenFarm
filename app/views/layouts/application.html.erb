@@ -30,13 +30,12 @@
   </head>
 
   <body>
-    <nav class="top-bar" data-topbar>
+    <div class="sticky">
+    <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
                 <h1>
                   <%= link_to(image_tag('openfarm_logo.svg', :width => '110px', :alt => 'Open Farm'), root_path) %>
-
-                    <%= link_to "OpenFarm", root_path %>
                 </h1>
             </li>
             <li class="toggle-topbar menu-icon">
@@ -91,6 +90,7 @@
             </ul>
         </section>
     </nav>
+    </div>
     <% if notice %>
         <div data-alert class="alert-box success radius columns large-4 small-centered">
           <%= notice %>

@@ -13,16 +13,6 @@ Examples of other applications using OpenFarm: a mobile application for home gar
 
 [![Stories in Ready](https://badge.waffle.io/FarmBot/OpenFarm.png?label=ready)](http://waffle.io/FarmBot/OpenFarm)
 
-### User Flow
-
-![User Flow Diagram] (http://i.imgur.com/YowIq1N.jpg)
-
-![Information Architecture Diagram] (http://i.imgur.com/qZzF4OZ.jpg)
-
-### Mockups
-
-To view the most recent mockups, click [here] (https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0)
-
 ### Getting Started (Setup)
 
 You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed. To get started with a local copy of the project, run:
@@ -56,6 +46,20 @@ For Facebook it is the same way, except the fields are `FACEBOOK_APP_ID` and `FA
  3. Send pull request to master.
 
 Not sure where to help? Take a look [over here](http://waffle.io/FarmBot/OpenFarm).
+
+### FAQ
+
+Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels). 
+
+### User Flow
+
+![User Flow Diagram] (http://i.imgur.com/YowIq1N.jpg)
+
+![Information Architecture Diagram] (http://i.imgur.com/qZzF4OZ.jpg)
+
+### Mockups
+
+To view the most recent mockups, click [here] (https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0)
 
 ### Contributors
 

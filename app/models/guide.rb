@@ -5,12 +5,10 @@ class Guide
   include Mongoid::Search
   belongs_to :crop
   belongs_to :user
-
   has_many :stages
   has_many :requirements
-
   field :name
   field :overview
-
+  validates_presence_of :user, :crop, :name
   # TODO: All the other fields
 end

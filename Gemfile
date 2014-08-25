@@ -14,20 +14,21 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-
 gem 'bcrypt-ruby'
 
 
 group :development, :test do
+  gem 'rubocop'
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
   gem 'quiet_assets' # Turns off the Rails asset pipeline log
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :test do
-  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'

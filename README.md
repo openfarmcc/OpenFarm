@@ -21,9 +21,11 @@ You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.o
 $ git clone https://github.com/FarmBot/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
-$ rake db:setup
+$ rake db:migrate
 $ rails s
 ```
+
+If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
 
 #### OAuth
 
@@ -69,7 +71,7 @@ To view the most recent mockups, click [here] (https://drive.google.com/open?id=
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Farmbot Project, et. al. [(http://go.farmbot.it/)](http://go.farmbot.it/)
+Copyright (c) 2014 Farmbot Project, et. al. [(http://go.farmbot.it/)](http://go.farmbot.it/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

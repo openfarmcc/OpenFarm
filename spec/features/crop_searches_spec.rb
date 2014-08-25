@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe 'Crop search', :type => :controller do
-  let!(:crop){FactoryGirl.create(:crop, :radish)}
+  let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
   it 'finds documents' do
     visit root_path

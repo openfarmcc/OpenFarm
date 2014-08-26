@@ -14,13 +14,24 @@ guidesApp.controller('newGuideCtrl',
       user : USER_ID
     };
 
-    $http.get("/crops.json")
-      .success(function(r){
+    //Typeahead search for crops
+    $scope.search = function () {
+      $http({
+        url: '/api/crops',
+        method: "GET",
+        params: {query: $scope.query}
+      }).success(function(r){
         $scope.crops = r;
       })
       .error(function(r){
-        // TODO: add a data alert
+        alert('Could not retrieve data from server. Please try again later.');
       });
+    };
+
+    //Gets fired when user selects dropdown.
+    $scope.cropSelected = function ($item, $model, $label) {
+      $scope.new_guide.crop = $item;
+    };
 
     $scope.submitForm = function(){
       var crop_id;

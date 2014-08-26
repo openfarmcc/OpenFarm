@@ -11,7 +11,7 @@ describe Crop do
 
   context '#full_text_search' do
 
-    let!(:crop){FactoryGirl.create(:crop)}
+    let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
     it 'searches by name' do
       result = Crop.full_text_search('Common Horseradish').first

@@ -27,7 +27,8 @@ Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
 RSpec.configure do |config|
-
+  config.include Devise::TestHelpers, type: :controller
+  config.include ApiHelpers, type: :controller
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
@@ -47,4 +48,8 @@ RSpec.configure do |config|
   config.after do
     DatabaseCleaner.clean
   end
+end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
 end

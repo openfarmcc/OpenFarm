@@ -39,7 +39,7 @@ end
 gem 'high_voltage'
 gem 'devise'
 gem 'rails_admin'
-
+gem 'ng-rails-csrf' # TODO: Token auth, or something...
 # Some extra gems for signing up through Twitter or Facebook
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'

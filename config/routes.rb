@@ -20,7 +20,8 @@ OpenFarm::Application.routes.draw do
   resources :requirements
   
   namespace :api, defaults: {format: 'json'} do
-    resources :crops, only: :index
+    resources :crops,  only: :index
+    resources :guides, only: :create
   end
   # match ':controller(/:action)', :via => [:get, :post]
 

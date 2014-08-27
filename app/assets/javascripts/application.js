@@ -16,6 +16,7 @@
 //- require jquery-ui
 //= require mm-foundation-0.3.0.js
 //= require mm-foundation-tpls-0.3.0.js
+//= require ng-rails-csrf
 //= require_tree .
 
 $(function(){ 

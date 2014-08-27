@@ -16,4 +16,11 @@ describe 'Crop search', :type => :controller do
     click_button 'Search!'
     expect(page).to have_content(crop.name)
   end
+
+  it 'handles plurals' do
+    visit root_path
+    fill_in 'q', with: 'Tomatoes'
+    click_button 'Search!'
+    expect(page).to have_content(crop.name)
+  end
 end

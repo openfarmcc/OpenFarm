@@ -1,7 +1,10 @@
 class CropSearchesController < ApplicationController
 
   def search
-    @results = Crop.full_text_search(params[:cropsearch][:q],{:max_results => 100})
+    # Singularize a word to only search singulars.
+    search_word = params[:cropsearch][:q].singularize
+    @results = Crop.full_text_search(search_word, 
+      :max_results => 100)
     if @results.empty?
       @results = Crop.all.limit(100)
     end

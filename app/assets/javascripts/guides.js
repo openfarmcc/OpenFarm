@@ -52,3 +52,8 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
     });
   };
 });
+
+guidesApp.controller('showGuideCtrl', 
+  function guidesApp($scope, $http){
+    
+  });

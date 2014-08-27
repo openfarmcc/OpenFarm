@@ -17,7 +17,6 @@ describe Api::CropsController, :type => :controller do
   it 'returns [] for tiny searches' do
     get "index", format: :json, query: 'mu'
     expect(response.status).to eq(200)
-    expect(json["crops"].length).to eq(0)
-    expect(json["crops"]).to eq([])
+    expect(json).to eq([])
   end
 end

@@ -1,7 +1,7 @@
 .hero-background {
   width: 100%;
   height: 100%;
-  /*position: fixed;*/
+  min-height: 640px;
   background: image-url('green_wheat_dark10.jpg') no-repeat center center fixed;
   background-size: cover;
 }

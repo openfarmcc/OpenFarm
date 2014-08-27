@@ -13,17 +13,22 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
 
   //Typeahead search for crops
   $scope.search = function () {
-    $http({
-      url: '/api/crops',
-      method: "GET",
-      params: {
-        query: $scope.query
-      }
-    }).success(function (r) {
-      $scope.crops = r;
-    }).error(function (r) {
-      alert('Could not retrieve data from server. Please try again later.');
-    });
+    // be nice and only hit the server if
+    // length >= 3
+    if ($scope.query.length >= 3){
+      $http({
+        url: '/api/crops',
+        method: "GET",
+        params: {
+          query: $scope.query
+        }
+      }).success(function (r) {
+        $scope.crops = r;
+        console.log($scope.crops);
+      }).error(function (r) {
+        alert('Could not retrieve data from server. Please try again later.');
+      });
+    }
   };
 
   //Gets fired when user selects dropdown.

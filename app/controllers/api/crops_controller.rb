@@ -1,8 +1,12 @@
 module Api
   class CropsController < Api::Controller
+    skip_before_action :authenticate_user!, only: :index
     def index
-      # TODO: Add querying
-      respond_with(Crop.all.limit(100))
+      if params[:query].present? && (params[:query].length > 2)
+        render json: Crop.full_text_search(params[:query]).limit(5)
+      else
+        render json: []
+      end
     end
   end
 end

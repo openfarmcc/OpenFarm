@@ -14,9 +14,9 @@
 //= require jquery_ujs
 //= require foundation
 //- require jquery-ui
-//= require angular.min.js
 //= require mm-foundation-0.3.0.js
 //= require mm-foundation-tpls-0.3.0.js
+//= require ng-rails-csrf
 //= require_tree .
 
 $(function(){ 

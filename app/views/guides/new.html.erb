@@ -24,7 +24,7 @@
           typeahead="crop.name for crop in crops" 
           class="form-control"
           ng-selected="testSelection()">
-          <p>Selected crop: {{ new_guide.crop.name }}</p>
+          <p ng-cloak ng-if="new_guide.crop">Selected crop: {{ new_guide.crop.name }}</p>
         <label for="guide_overview">Overview</label>
         <textarea id="guide_overview" name="guide[overview]"
           ng-model="new_guide.overview"></textarea>

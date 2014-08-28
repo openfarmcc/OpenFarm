@@ -34,3 +34,26 @@
     }
   }
 }
+.links{
+  text-align: center;
+  margin-bottom: 1rem;
+
+  li{
+    display: inline-block;
+  }
+
+  li::before{
+    content:'• ';
+    color: white;
+  }
+
+  li:first-child::before{
+    content:'';
+  }
+
+  a.hero-link{
+    color: white;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+}

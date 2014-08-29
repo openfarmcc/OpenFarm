@@ -22,11 +22,10 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
         params: {
           query: $scope.query
         }
-      }).success(function (r) {
-        $scope.crops = r;
-        console.log($scope.crops);
-      }).error(function (r) {
-        alert('Could not retrieve data from server. Please try again later.');
+      }).success(function (response) {
+        $scope.crops = response.crops;
+      }).error(function (response, code) {
+        alert(code + ' error. Could not retrieve data from server. Please try again later.');
       });
     }
   };
@@ -46,7 +45,7 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
         overview: $scope.new_guide.overview
       }
     }).success(function (r) {
-      window.location.href = r._id;
+      window.location.href = r.guide._id;
     }).error(function (r) {
       alert(r.error);
     });

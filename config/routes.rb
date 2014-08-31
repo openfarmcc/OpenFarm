@@ -21,7 +21,9 @@ OpenFarm::Application.routes.draw do
   
   namespace :api, defaults: {format: 'json'} do
     resources :crops,  only: :index
-    resources :guides, only: :create
+    resources :guides, only: :create do
+      get 's3', on: :collection
+    end
   end
   # match ':controller(/:action)', :via => [:get, :post]
 

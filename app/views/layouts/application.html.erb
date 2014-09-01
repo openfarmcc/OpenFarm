@@ -22,7 +22,6 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
   	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= javascript_tag "var USER_ID = '#{current_user.try(:id).to_s}';" if protect_against_forgery? %>

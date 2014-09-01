@@ -34,7 +34,6 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
   $scope.cropSelected = function ($item, $model, $label) {
     $scope.new_guide.crop = $item;
   };
-
   $scope.submitForm = function () {
     $http({
       url: '/api/guides',

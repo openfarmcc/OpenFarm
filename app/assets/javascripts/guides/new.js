@@ -1,7 +1,10 @@
 // Used for creating a new guide. Does things like typeahead search and form validation and stuff
 var guidesApp = angular.module('guidesApp', ['mm.foundation', 'ng-rails-csrf']);
 
-guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
+guidesApp.controller('newGuideCtrl', 
+  ['$scope',
+   '$http',
+  function ($scope, $http) {
 
   $scope.crops = [];
 
@@ -50,4 +53,4 @@ guidesApp.controller('newGuideCtrl', function guidesApp($scope, $http) {
       alert(r.error);
     });
   };
-});
+}]);

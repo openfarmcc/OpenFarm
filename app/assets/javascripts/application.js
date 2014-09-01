@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //- require jquery-ui
+//= require angular/angular 
+//= require ng-rails-csrf
+//= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation
 //= require foundation/foundation.abide
@@ -34,7 +36,6 @@
 //= require foundation/foundation.equalizer
 //= require foundation/mm-foundation-0.3.0.js
 //= require foundation/mm-foundation-tpls-0.3.0.js
-//= require ng-rails-csrf
 //= require_tree ./guides
 
 $(function(){ 

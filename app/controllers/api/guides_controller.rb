@@ -10,8 +10,8 @@ module Api
     end
 
     def s3
-      # AKIAJ6RMTJ4UZZLRJS7A
-      # GKy7MnL4EbLboLUqL/p2NTbRR5AyS8IrmhiS1ms+
+      # Access Key ID: AKIAJ6RMTJ4UZZLRJS7A
+      # Secret Access Key: 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
       render json: {
         policy:    s3_upload_policy,
         signature: s3_upload_signature,
@@ -41,7 +41,7 @@ private
     end
 
     def s3_upload_signature
-      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), 'AKIAJ6RMTJ4UZZLRJS7A', s3_upload_policy)).gsub("\n","")
+      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), 'GKy7MnL4EbLboLUqL/p2NTbRR5AyS8IrmhiS1ms+', s3_upload_policy)).gsub("\n","")
     end
 # = = = = =
   end

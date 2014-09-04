@@ -19,7 +19,7 @@ describe 'Crop search', :type => :controller do
 
   it 'handles plurals' do
     visit root_path
-    fill_in 'q', with: 'Tomatoes'
+    fill_in 'q', with: 'radishes'
     click_button 'Search!'
     expect(page).to have_content(crop.name)
   end

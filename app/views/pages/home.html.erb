@@ -22,9 +22,25 @@
               <% end %>
         </div>
     </div>
-    <div class="small-4 small-centered columns"></div>
-    <div class="small-4 small-centered columns"><iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/roryaronson/openfarm-learn-to-grow-anything/widget/card.html?v=2" width="220"></iframe></div>
-    <div class="small-4 small-centered columns"></div>
+    <div class="row links">
+        <ul>
+        <li>
+        <%= link_to('Mailing List', page_path('mailing-list'), :class=>'hero-link' ) %>
+        </li>
+        <li>
+
+        <%= link_to('Styles', page_path('styles'), :class=>'hero-link' ) %>
+        </li>
+
+        <li>
+            <%= link_to('Blog', 'http://blog.openfarm.cc', :class=>'hero-link') %>
+        </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="small-3 small-centered columns"><iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/roryaronson/openfarm-learn-to-grow-anything/widget/card.html?v=2" width="220"></iframe></div>
+        <div class="small-4 small-centered columns"></div>
+    </div>
 </div>
     <div class="github-fork-ribbon-wrapper right-bottom">
         <div class="github-fork-ribbon">

@@ -84,7 +84,6 @@ class GuidesController < ApplicationController
   end
 
   def update
-    puts "******* UPDATING" 
     @guide = Guide.find(params[:id])
     @guide.update_attributes(guides_params)
     if @guide.save

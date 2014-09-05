@@ -216,7 +216,6 @@ angular.module('ngS3upload.directives', []).
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
-                      debugger
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', false);

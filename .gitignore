@@ -25,3 +25,4 @@ coverage/
 
 # Ignore Mac Finder stuff
 .DS_Store
+/config/app_environment_variables.rb

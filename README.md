@@ -27,6 +27,10 @@ $ rails s
 
 If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
 
+#### Sensitive Information
+
+All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `app_environment_variables.rb` accordingly. See `example_app_environment_variables.rb` for an example.
+
 #### OAuth
 
 OpenFarm supports OAuth through Facebook and Twitter, however you have to enable it yourself.

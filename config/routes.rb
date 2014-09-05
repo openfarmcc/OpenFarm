@@ -20,10 +20,9 @@ OpenFarm::Application.routes.draw do
   resources :requirements
   
   namespace :api, defaults: {format: 'json'} do
+    get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: :index
-    resources :guides, only: :create do
-      get 's3', on: :collection
-    end
+    resources :guides, only: :create
   end
   # match ':controller(/:action)', :via => [:get, :post]
 

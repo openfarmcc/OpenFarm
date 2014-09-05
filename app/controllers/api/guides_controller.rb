@@ -34,6 +34,7 @@ private
             { "bucket" =>  'farmbot' },
             [ "starts-with", "$key", "" ],
             { "acl" => "public-read" },
+            { success_action_status: '201' },
             [ "starts-with", "$Content-Type", "" ],
             [ "content-length-range", 0, 10 * 1024 * 1024 ]
           ]

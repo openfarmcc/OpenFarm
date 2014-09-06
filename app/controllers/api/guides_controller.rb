@@ -1,6 +1,5 @@
 module Api
   class GuidesController < Api::Controller
-
     def create
       crop = Guide.new(guide_params)
       if crop.save
@@ -10,7 +9,7 @@ module Api
       end
     end
 
-private
+  private
 
     def guide_params
       output           = params.permit(:crop_id, :name, :overview)

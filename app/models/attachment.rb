@@ -14,6 +14,6 @@ class Attachment
   #   s3_bucket: ENV['S3_BUCKET_NAME'],
   #   path: ":class/:id/:basename_:style.:extension"
 
-  # validates_attachment :file, content_type: {content_type: ACCEPTED_CONTENT_TYPES}
-
+  # validates_attachment :file,
+                         # content_type: {content_type: ACCEPTED_CONTENT_TYPES}
 end

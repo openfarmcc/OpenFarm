@@ -21,7 +21,7 @@ You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.o
 $ git clone https://github.com/FarmBot/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
-$ rake db:migrate
+$ rake db:setup
 $ rails s
 ```
 

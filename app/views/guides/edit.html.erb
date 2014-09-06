@@ -1,16 +1,64 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h1>Edit Your Guide </h1>
-    <% if @is_editing %>
-    <%= form_for @guide do |f| %>
-        <%= f.label(:name) %>
-        <%= f.text_field(:name) %>
-        <%= f.label(:overview) %>
-        <%= f.text_area(:overview) %>
-        <%= submit_tag('Update Guide', :class => "button tiny") %>
-      <% end %>
-    <% end %>
-    <dl class="accordion" data-accordion>
+<div ng-app="guidesApp" 
+     ng-controller="editGuideCtrl"
+     ng-cloak>
+    
+    <div class="row">
+    <form accept-charset="UTF-8"
+      class="small-10 large-10 columns centered edit-overview"
+      name="edit-overview"
+      method="post"
+      >
+      <h1>Edit Your Guide</h1>
+      <div class="columns large-3">
+        <span class="crop-image">
+          <img ng-cloak
+               ng-class="{ 'no-image' : !new_guide.crop.image }"
+               src="{{ new_guide.crop.image || '/assets/empty-pot.svg' }}" 
+               alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+        </span>
+      </div>
+      <div class="columns large-9">
+        <p>
+          You've successfully created a guide.
+        </p>
+        <p>
+          Give other OpenFarm users a bit more details about how to grow your plant.
+        </p>
+        <label for="guide_crop_overview">
+          Growing Process Overview
+        </label>
+        <textarea id="guide_overview" 
+                  name="guide[overview]"
+                  ng-model="new_guide.overview"
+                  rows="5">
+        </textarea>
+      </div>
+
+    </form>
+    </div>
+    <div class="row">
+    <div class="large-10 small-10 columns centered">
+
+    <accordion>
+      <accordion-group is-open="isopen" class="accordion-navigation prerequisites-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            Prerequisites
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          Prerequisites are the small details that make sure this plant grows successfully.
+        </p>
+
+
+    </accordion-group>
+    </accordion>
+    </div>
+    </div>
+
+    <!-- <dl class="accordion" data-accordion>
       <dd class="accordion-navigation prerequisites-wrapper">
         <a href="#prerequisites" class="title-wrapper">
           <h2 class="title">Prerequisites</h2>
@@ -108,7 +156,7 @@
             <% end %>
           </div>
           <div class="row plant-timeline">
-            <!-- TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS -->
+            TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS
           </div>
           <div class="row months">
             <% @months.each do |m| %>
@@ -216,6 +264,6 @@
           </div>
         </div>
       </dd>
-    </dl>
+    </dl> -->
   </div>
 </div>

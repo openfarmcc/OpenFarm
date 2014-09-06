@@ -9,7 +9,7 @@ guidesApp.config(['$httpProvider', function($httpProvider) {
 }]);
 
 
-guidesApp.controller('newGuideCtrl', ['$scope', '$http', 
+guidesApp.controller('editGuideCtrl', ['$scope', '$http', 
   function guidesApp($scope, $http) {
 
   $scope.crops = [];

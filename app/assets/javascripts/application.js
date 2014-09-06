@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //- require jquery-ui
-//= require angular/angular 
+//= require angular/angular
+//= require angular/angular-sanitize
 //= require ng-rails-csrf
+//= require_tree ./angular-libs
 //= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation
@@ -37,6 +39,7 @@
 //= require foundation/mm-foundation-0.3.0.js
 //= require foundation/mm-foundation-tpls-0.3.0.js
 //= require_tree ./guides
+//= require delete_me_later
 
 $(function(){ 
 	$(document).foundation({

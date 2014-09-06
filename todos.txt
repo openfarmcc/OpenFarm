@@ -1,3 +1,0 @@
-TODOs:
-
- - Upgrade to latest Ruby / Rails version on production.

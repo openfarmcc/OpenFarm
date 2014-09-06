@@ -9,6 +9,8 @@ module Api
       end
     end
 
+    private
+
     def guide_params
       output           = params.permit(:crop_id, :name, :overview)
       output[:user_id] = current_user

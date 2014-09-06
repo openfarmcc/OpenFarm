@@ -7,6 +7,7 @@ class Guide
   belongs_to :user
   has_many :stages
   has_many :requirements
+  has_many :attachments
   field :name
   field :overview
   validates_presence_of :user, :crop, :name

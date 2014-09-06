@@ -14,7 +14,7 @@ module Api
     def s3_upload_policy
       @p ||= Base64.encode64(
         { 'expiration' => 1.hour.from_now.utc.xmlschema,
-         'conditions' => [
+          'conditions' => [
            { 'bucket' =>  ENV['S3_BUCKET_NAME'] },
            ['starts-with', '$key', ''],
            { 'acl' => 'public-read' },
@@ -25,9 +25,10 @@ module Api
     end
 
     def s3_upload_signature
-      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'),
-                      ENV['S3_SECRET_KEY'],
-                      s3_upload_policy)).gsub('\n', '')
+      digest = OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'),
+                                    ENV['S3_SECRET_KEY'],
+                                    s3_upload_policy)
+      Base64.encode64(digest).gsub('\n', '')
     end
   end
 end

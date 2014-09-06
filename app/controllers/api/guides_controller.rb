@@ -9,7 +9,7 @@ module Api
       end
     end
 
-  private
+    private
 
     def guide_params
       output           = params.permit(:crop_id, :name, :overview)

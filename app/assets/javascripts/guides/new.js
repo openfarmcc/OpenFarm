@@ -49,6 +49,9 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.nextStep = function(){
     $scope.step += 1;
   }
+  $scope.previousStep = function(){
+    $scope.step -= 1;
+  }
 
   $scope.submitForm = function () {
     $http({
@@ -81,11 +84,4 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http',
       return addresses;
     });
   };
-
-
 }]);
-
-guidesApp.controller('showGuideCtrl', 
-  function guidesApp($scope, $http){
-    
-  });

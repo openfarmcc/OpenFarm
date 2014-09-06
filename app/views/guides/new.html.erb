@@ -49,14 +49,20 @@
           <!-- <input id="guide_user" name="guide[user]" 
             type="hidden" 
             ng-model="new_guide.user"> -->
-
-            <input class="button small right"  
-              data-disable-with="Saving..." 
-              name="commit" 
-              type="submit"
-              value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
-              ng-disabled="!new_guide.crop"
-              ng-click="nextStep()"/>
+          </div>
+          <div class="row">
+            <div class="columns large-12">
+              <a class="button small secondary left"
+                name="back"
+                a href="/guides/">Cancel</a>
+              <input class="button small right"  
+                data-disable-with="Saving..." 
+                name="commit" 
+                type="submit"
+                value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
+                ng-disabled="!new_guide.crop"
+                ng-click="nextStep()"/>
+            </div>
           </div>
         
         
@@ -101,13 +107,27 @@
                       ng-model="new_guide.overview"
                       rows="10">
             </textarea>
-            <input class="button small right"  
-              data-disable-with="Saving..." 
-              name="commit" 
-              type="submit"
-              value="{{ new_guide.crop || !new_guide.name ? 'Done: Add Extras' : 'Call your guide something.' }}"
-              ng-disabled="!new_guide.crop || !new_guide.name"
-              ng-click="submitForm()"/>
+          </div>
+          <div class="row">
+            <div class="columns large-12">
+              <a class="button small secondary left"
+                name="back"
+                a href="/guides/">Cancel</a>
+                
+              <input class="button small secondary left"
+                name="back"
+                type="submit"
+                value="Back"
+                ng-click="previousStep()">
+
+              <input class="button small right"  
+                data-disable-with="Saving..." 
+                name="commit" 
+                type="submit"
+                value="{{ new_guide.crop || !new_guide.name ? 'Done: Add Extras' : 'Call your guide something.' }}"
+                ng-disabled="!new_guide.crop || !new_guide.name"
+                ng-click="submitForm()"/>
+            </div>
           </div>
         </form>
       </section>

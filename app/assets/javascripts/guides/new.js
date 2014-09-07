@@ -64,7 +64,8 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http',
         overview: $scope.new_guide.overview
       }
     }).success(function (r) {
-      window.location.href = "/guides/" + r.guide._id + "/edit/";
+      console.log(r);
+      // window.location.href = "/guides/" + r.guide._id + "/edit/";
     }).error(function (r) {
       alert(r.error);
     });

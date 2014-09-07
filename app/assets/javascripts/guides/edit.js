@@ -23,13 +23,11 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
     $scope.getGuide();
 
     $scope.saveGuide = function(){
-      $http({
-        url: '/api/guides/' + $scope.guide._id,
-        method: "PUT",
-        params: $scope.guide
-      }).success(function (response) {
-        console.log('yay!');
-      }).error(function (response, code) {
+      $http.put('/api/guides/' + $scope.guide._id + "/", $scope.guide)
+      .success(function (response) {
+        console.log("success");
+      })
+      .error(function (response, code) {
         // ToDo: make a dynamic alert.
         alert(code + ' error. Could not retrieve data from server.' + 
               ' Please try again later.');

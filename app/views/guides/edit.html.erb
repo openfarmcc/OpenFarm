@@ -48,8 +48,8 @@
     <div class="row">
     <div class="large-10 small-10 columns centered">
 
-    <accordion>
-      <accordion-group is-open="isopen" class="accordion-navigation prerequisites-wrapper">
+    <accordion close-others="false">
+      <accordion-group is-open="true" class="accordion-navigation prerequisites-wrapper">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
@@ -60,9 +60,33 @@
         <p>
           Prerequisites are the small details that make sure this plant grows successfully.
         </p>
+      </accordion-group>
 
+      <accordion-group is-open="true" class="accordion-navigation timeline-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            Timeline
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          When does your plant grow? How long?
+        </p>
+      </accordion-group>
 
-    </accordion-group>
+      <accordion-group is-open="true" class="accordion-navigation instructions-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            Instructions
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          A detailed, step by step guide on when to do what. 
+        </p>
+      </accordion-group>
     </accordion>
     </div>
     </div>
@@ -117,11 +141,11 @@
             </div>
             <div class="small-2 columns compatability-score-container">
               <% if not @is_editing %>
-              <!-- <p>This guide is</p>
+              <p>This guide is</p>
               <div class="score-circle high-score">
                 <div class="score">42%</div>
               </div>
-              <p>compatable with you and your garden</p> -->
+              <p>compatable with you and your garden</p>
               <p>
                 We're working on a compatibility score, so that you'll be able to see
                 how compatible your garden and this guide are.

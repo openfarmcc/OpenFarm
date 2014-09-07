@@ -21,7 +21,7 @@ module Api
 
     def update
       guide = Guide.find(params[:id])
-      guide.update_attributes(guides_params)
+      guide.update_attributes(guide_params)
       if guide.save
         render json: guide
       else

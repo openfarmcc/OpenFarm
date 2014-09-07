@@ -9,7 +9,7 @@ guidesApp.config(['$httpProvider', function($httpProvider) {
 }]);
 
 
-guidesApp.controller('editGuideCtrl', ['$scope', '$http', 
+guidesApp.controller('newGuideCtrl', ['$scope', '$http', 
   function guidesApp($scope, $http) {
 
   $scope.crops = [];
@@ -18,8 +18,8 @@ guidesApp.controller('editGuideCtrl', ['$scope', '$http',
   $scope.new_guide = {
     name: '',
     crop: undefined,
-    overview: '',
-    user: USER_ID
+    overview: ''
+    // user: USER_ID
   };
 
   //Typeahead search for crops
@@ -36,6 +36,7 @@ guidesApp.controller('editGuideCtrl', ['$scope', '$http',
       }).success(function (response) {
         $scope.crops = response.crops;
       }).error(function (response, code) {
+        // ToDo: make a dynamic alert.
         alert(code + ' error. Could not retrieve data from server. Please try again later.');
       });
     }
@@ -85,3 +86,4 @@ guidesApp.controller('editGuideCtrl', ['$scope', '$http',
     });
   };
 }]);
+

@@ -1,4 +1,4 @@
-<div ng-app="guidesApp" 
+<div ng-app="editGuidesApp" 
      ng-controller="editGuideCtrl"
      ng-cloak>
     
@@ -8,7 +8,16 @@
       name="edit-overview"
       method="post"
       >
-      <h1>Edit Your Guide</h1>
+      <div class="column large-10">
+        <h1>Edit Your Guide</h1>
+      </div>
+      <div class="column large-2">
+        <input type="button"
+             class="button small"
+             ng-click="saveGuide()"
+             value="Save Guide">
+      </div>
+      
       <div class="columns large-3">
         <span class="crop-image">
           <img ng-cloak
@@ -29,7 +38,7 @@
         </label>
         <textarea id="guide_overview" 
                   name="guide[overview]"
-                  ng-model="new_guide.overview"
+                  ng-model="guide.overview"
                   rows="5">
         </textarea>
       </div>
@@ -267,3 +276,6 @@
     </dl> -->
   </div>
 </div>
+
+<%= javascript_tag "var GUIDE_ID = '#{@guide.try(:id).to_s}';" %>
+

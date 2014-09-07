@@ -1,11 +1,31 @@
 module Api
   class GuidesController < Api::Controller
     def create
-      crop = Guide.new(guide_params)
-      if crop.save
-        render json: crop
+      guide = Guide.new(guide_params)
+      if guide.save
+        render json: guide
       else
-        render json: crop.errors, status: :unprocessable_entity
+        render json: guide.errors, status: :unprocessable_entity
+      end
+    end
+
+    def show
+      guide = Guide.find(params[:id])
+      if guide
+        render json: guide
+      else
+        # ToDo: This isn't right.
+        render json: {}, status: :not_found
+      end
+    end
+
+    def update
+      guide = Guide.find(params[:id])
+      guide.update_attributes(guides_params)
+      if guide.save
+        render json: guide
+      else
+        render json: guide.errors, status: :unprocessable_entity
       end
     end
 

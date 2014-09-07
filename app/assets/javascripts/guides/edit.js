@@ -1,11 +1,38 @@
-var guidesApp = angular.module('guidesApp', [
+var editGuidesApp = angular.module('editGuidesApp', [
   'mm.foundation', 
   'ng-rails-csrf'
   ]);
 
-guidesApp.controller('newGuideCtrl', ['$scope', '$http', 
+editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 
   function guidesApp($scope, $http) {
 
-    
-    
+    $scope.getGuide = function(){
+      $http({
+        url: '/api/guides/' + GUIDE_ID,
+        method: "GET"
+      }).success(function (response) {
+        $scope.guide = response.guide;
+        console.log($scope.guide);
+      }).error(function (response, code) {
+        // ToDo: make a dynamic alert.
+        alert(code + ' error. Could not retrieve data from server.' + 
+              ' Please try again later.');
+      });  
+    } 
+
+    $scope.getGuide();
+
+    $scope.saveGuide = function(){
+      $http({
+        url: '/api/guides/' + $scope.guide._id,
+        method: "PUT",
+        params: $scope.guide
+      }).success(function (response) {
+        console.log('yay!');
+      }).error(function (response, code) {
+        // ToDo: make a dynamic alert.
+        alert(code + ' error. Could not retrieve data from server.' + 
+              ' Please try again later.');
+      })
+    }
 }]);

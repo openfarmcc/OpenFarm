@@ -23,7 +23,9 @@
           <label 
             for="guide_crop_id">What's the plant called?</label>
             <!-- { updateOn: 'default blur', debounce: {'default': 5000, 'blur': 5000} } -->
-          <input type="text" 
+          <input
+            id="crop_name"
+            type="text" 
             ng-model="query"
             ng-change="search()"
             typeahead-on-select='cropSelected($item, $model, $label)'

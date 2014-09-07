@@ -21,11 +21,15 @@ You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.o
 $ git clone https://github.com/FarmBot/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
-$ rake db:migrate
+$ rake db:setup
 $ rails s
 ```
 
 If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
+
+#### Sensitive Information
+
+All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `app_environment_variables.rb` accordingly. See `example_app_environment_variables.rb` for an example.
 
 #### OAuth
 

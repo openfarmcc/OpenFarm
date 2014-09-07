@@ -1,0 +1,12 @@
+<div class="row" ng-app='s3upload' ng-controller="s3ctrl">
+  <div class="columns large-3">
+    <h1>Hi.</h1>
+    <div s3-upload
+    bucket="bucket"
+    ng-model="q"
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'images/'}">
+      {{ hello }}
+    </div>
+  </div>
+</div>
+

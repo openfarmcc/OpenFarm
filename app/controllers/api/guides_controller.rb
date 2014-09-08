@@ -1,5 +1,8 @@
 module Api
   class GuidesController < Api::Controller
+
+  #   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
     def create
       guide = Guide.new(guide_params)
       if guide.save

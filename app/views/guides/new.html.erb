@@ -1,7 +1,11 @@
 <div ng-app="guidesApp" 
      ng-controller="newGuideCtrl"
-     class="small-12 columns"
+     class="small-12 columns ng-cloak"
      ng-cloak>
+
+    <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns box">
       <section name="step-1" ng-show="step === 1">
@@ -20,19 +24,18 @@
             <p>
               Great, you're going to be adding your own guide! We'll need to know what plant you're creating it for.
             </p>
-          <label 
-            for="guide_crop_id">What's the plant called?</label>
-            <!-- { updateOn: 'default blur', debounce: {'default': 5000, 'blur': 5000} } -->
-          <input
-            id="crop_name"
-            type="text" 
-            ng-model="query"
-            ng-change="search()"
-            typeahead-on-select='cropSelected($item, $model, $label)'
-            typeahead="crop.name for crop in crops"
-            typeahead-wait-ms="555"
-            class="form-control">
-
+            <label 
+              for="guide_crop_id">What's the plant called?</label>
+              <!-- { updateOn: 'default blur', debounce: {'default': 5000, 'blur': 5000} } -->
+            <input
+              id="crop_name"
+              type="text"
+              ng-model="query"
+              ng-change="search()"
+              typeahead-on-select='cropSelected($item, $model, $label)'
+              typeahead="crop.name for crop in crops"
+              typeahead-wait-ms="555"
+              class="form-control"/>
           </div>
           <div class="columns large-6">
             <span class="crop-image">
@@ -44,9 +47,21 @@
             <p ng-if="new_guide.crop">
               <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name + ':' : ''"></strong><span ng-bind="new_guide.crop.information"></span>
             </p>
-            <p ng-if="!new_guide.crop">
+            <p ng-if="!new_guide.crop && !crop_not_found">
               Enter a crop and it will be shown here.
             </p>
+            <span ng-if="crop_not_found">
+              <p>
+                <strong>Uh oh!</strong> We couldn't find that crop in our database.
+              </p>
+              <!-- <p>
+                Is it one of these: 
+                  <select ng-options="crop in possible_crops"></select>
+              </p> -->
+              <p>
+                You'll have to <a href="/crops/new/?name={{ query }}">add one</a>.
+              </p>
+            </span>
 
           <!-- <input id="guide_user" name="guide[user]" 
             type="hidden" 

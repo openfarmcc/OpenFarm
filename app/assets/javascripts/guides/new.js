@@ -3,24 +3,50 @@ var guidesApp = angular.module('guidesApp', [
   'ng-rails-csrf'
   ]);
 
-guidesApp.config(['$httpProvider', function($httpProvider) {
+guidesApp.config(['$httpProvider', '$locationProvider', 
+  function($httpProvider, $locationProvider) {
     // $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $locationProvider.html5Mode(true); 
 }]);
 
+guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',  
+  function guidesApp($scope, $http, $location) {
 
-guidesApp.controller('newGuideCtrl', ['$scope', '$http', 
-  function guidesApp($scope, $http) {
+  
+  $scope.alerts = [];
 
   $scope.crops = [];
   $scope.step = 1;
+  $scope.crop_not_found = false;
 
   $scope.new_guide = {
     name: '',
     crop: undefined,
     overview: ''
-    // user: USER_ID
   };
+
+  if ($location.search().crop_id){
+    $http.get('/api/crops/' + $location.search().crop_id)
+      .success(function(r){
+        console.log(r);
+        $scope.new_guide.crop = r.crop;
+        $scope.query = r.crop.name;
+      })
+      .error(function(r, e){
+        $scope.alerts.push({
+          msg: e,
+          type: 'alert'
+        });
+        console.log(e);
+      });
+
+    $scope.default_crop = $location.search().crop_id;
+  }
+  
+  $scope.default_crop_
+
+  
 
   //Typeahead search for crops
   $scope.search = function () {
@@ -34,10 +60,17 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http',
           query: $scope.query
         }
       }).success(function (response) {
-        $scope.crops = response.crops;
+        console.log(response.crops);
+        if (response.crops.length){
+          $scope.crops = response.crops;
+        } else {
+          $scope.crop_not_found = true;
+        }
       }).error(function (response, code) {
-        // ToDo: make a dynamic alert.
-        alert(code + ' error. Could not retrieve data from server. Please try again later.');
+        $scope.alerts.push({
+          msg: code + ' error. Could not retrieve data from server. Please try again later.',
+          type: 'warning'
+        });
       });
     }
   };
@@ -55,20 +88,28 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http',
   }
 
   $scope.submitForm = function () {
-    $http({
-      url: '/api/guides',
-      method: "POST",
-      params: {
-        name: $scope.new_guide.name,
-        crop_id: $scope.new_guide.crop._id,
-        overview: $scope.new_guide.overview
+    var params = {
+      "guide": {
+          name: $scope.new_guide.name,
+          crop_id: $scope.new_guide.crop._id,
+          overview: $scope.new_guide.overview
       }
-    }).success(function (r) {
-      console.log(r);
-      // window.location.href = "/guides/" + r.guide._id + "/edit/";
-    }).error(function (r) {
-      alert(r.error);
-    });
+    };
+    $http.post('/api/guides/', params)
+      .success(function (r) {        
+        window.location.href = "/guides/" + r.guide._id + "/edit/";
+      })
+      .error(function (r) {
+        $scope.alerts.push({
+          msg: r.error,
+          type: 'alert'
+        });
+        console.log(r.error);
+      });
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
   };
 
   // Any function returning a promise object can be used to load values asynchronously

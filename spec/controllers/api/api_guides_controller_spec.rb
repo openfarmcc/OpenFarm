@@ -1,4 +1,5 @@
 require "spec_helper"
+require "pry"
 
 describe Api::GuidesController, :type => :controller do
 
@@ -9,12 +10,15 @@ describe Api::GuidesController, :type => :controller do
 
   it "should create guides" do
     sign_in FactoryGirl.create(:user)
-    json = {name: 'brocolini in the desert',
+    data = {name: 'brocolini in the desert',
             overview: 'something exotic',
             crop_id: FactoryGirl.create(:crop).id.to_s}
-    post 'create', guide: json, format: :json
+    post 'create', guide: data, format: :json
+
     expect(response.status).to eq(200)
-    expect(json['guide']['_id'].to eq(guide.id.to_s))
+    
+    expect(json['guide']['name']).to eq(data[:name])
+    expect(json['guide']['crop_id']).to eq(data[:crop_id])
   end
 
   it "should return an error with wrong guide information"

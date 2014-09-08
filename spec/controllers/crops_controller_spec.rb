@@ -15,7 +15,9 @@ describe CropsController, :type => :controller do
   it 'Should direct to show page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     post 'create', :crop => crop
-    response.should redirect_to "/crops/#{assigns(:crop).id}"
+    expect(response.status).to eq(302)
+    expect(response).to redirect_to new_guide_path(crop_id: Crop.last.id.to_s,
+                                                   crop_name: Crop.last.name)
   end
   
   it 'Should redirect back to form after unsuccessful crop creation' do

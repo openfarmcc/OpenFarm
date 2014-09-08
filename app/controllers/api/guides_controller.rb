@@ -13,9 +13,12 @@ module Api
       guide = Guide.find(params[:id])
       if guide
         render json: guide
-      else
-        # ToDo: This isn't right.
-        render json: {}, status: :not_found
+      # You don't need this.
+      # http://guides.rubyonrails.org/
+      #  action_controller_overview.html#rescue-from
+      # else
+      #   # ToDo: This isn't right.
+      #   render json: {}, status: :not_found
       end
     end
 
@@ -32,8 +35,8 @@ module Api
     private
 
     def guide_params
-      output           = params.permit(:crop_id, :name, :overview)
-      output[:user_id] = current_user
+      output = params.require(:guide)
+      output[:user_id] = current_user.id.to_s
       output
     end
   end

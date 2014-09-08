@@ -8,12 +8,13 @@ describe Api::GuidesController, :type => :controller do
   end
 
   it "should create guides" do
-    guide = FactoryGirl.attributes_for(:guide)
-    post 'create', :guide => guide, format: :json
-    # TODO: Having some issues here, not quite sure what the 
-    # way forward is. 
-    #expect(response.status).to eq(200)
-    #expect(json['guide']['_id'].to eq(guide.id.to_s))
+    sign_in FactoryGirl.create(:user)
+    json = {name: 'brocolini in the desert',
+            overview: 'something exotic',
+            crop_id: FactoryGirl.create(:crop).id.to_s}
+    post 'create', guide: json, format: :json
+    expect(response.status).to eq(200)
+    expect(json['guide']['_id'].to eq(guide.id.to_s))
   end
 
   it "should return an error with wrong guide information"

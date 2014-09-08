@@ -40,6 +40,10 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.before(:each, type: :controller) do
+    request.env["rack.url_scheme"] = "https"
+  end
+
   config.before :each do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start

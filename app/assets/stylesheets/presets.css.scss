@@ -13,7 +13,7 @@ $warning-color: #f08a24;
 $info-color: #eecb91;
 
 @mixin accordion-header-color($color){
-  & > a.title-wrapper{
+  & > a, & > a.title-wrapper{
     background-color: $color;
     transition: .5s;
     &:hover{
@@ -21,6 +21,90 @@ $info-color: #eecb91;
     }
   }
 }
+
+
+/* Section accordion styling */
+.accordion dd.accordion-navigation > a, 
+.accordion dd.active > a,
+.accordion dd.active > a.title-wrapper {
+  display: block;
+  padding: .2rem 1rem;
+
+  @include accordion-header-color($of-orange);
+
+  h2, h5 {
+    display: inline-block;
+    color: white;
+    font-weight: 600;
+  }
+
+  .title{
+    font-size: 2rem;
+  }
+
+  .author {
+    margin-left: 20px;
+    display: inline-block;
+    color: white;
+  }
+}
+
+.accordion dd > .content{
+  padding: 0 0.935rem;
+}
+
+.home_search input{
+  border: 1px solid silver;
+}
+
+/*
+
+  Generic tweaks
+
+*/
+
+.centered{
+  margin-right: auto;
+  margin-left: auto;
+  float: none !important;
+}
+
+.box{
+  border-radius: 2px;
+  background: rgba(198,159,96,0.04);
+  -moz-box-shadow:    0px 0px 3px 0px rgba(0,0,0,0.25);
+  box-shadow:         0px 0px 3px 0px rgba(0,0,0,0.25);
+  h1{
+    font-size: 2rem;
+  }
+}
+
+// Hack: this doesn't seem to be editable in 
+// Foundation && Overrides.
+input, textarea{
+  border-radius: 3px;
+}
+
+.button.primary{
+  background-image: -o-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: -moz-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: -ms-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: linear-gradient(-179deg, #C1E081 0%, #A2BF6B 100%);
+  -moz-box-shadow:    0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
+  box-shadow:         0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
+  border-radius: 2px;
+  font-family: SourceSansPro-Bold;
+}
+
+.ng-cloak {
+    opacity: 0;
+}
+
+/*
+
+  Icons
+
+*/
 
 .icon::before{
   content: ' ';

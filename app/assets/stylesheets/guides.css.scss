@@ -3,7 +3,11 @@
 @import 'presets';
 
 
-/* Plant overview section */
+/* 
+
+  Plant overview section 
+
+*/
 .accordion .overview-wrapper{
   @include accordion-header-color($of-orange);
 
@@ -45,7 +49,11 @@
   }
 }
 
-/* Plant overview section */
+/* 
+
+  Plant overview section 
+
+*/
 .accordion .prerequisites-wrapper {
   @include accordion-header-color($of-blue);
 
@@ -143,7 +151,11 @@
 
 }
 
-/* Timeline overview section */
+/* 
+
+  Timeline overview section 
+
+*/
 .accordion .timeline-wrapper{
 
   color: white;
@@ -179,7 +191,11 @@
 }
 
 
-/* Instructions overview section */
+/* 
+
+  Instructions overview section 
+
+*/
 .accordion .instructions-wrapper{
   @include accordion-header-color($of-green);
 
@@ -218,7 +234,11 @@
   }
 }
 
-/* Usage overview section */
+/* 
+
+  Usage overview section 
+
+*/
 .accordion .usage-wrapper{
   @include accordion-header-color($of-red); 
   color: #111;
@@ -230,7 +250,11 @@
   }
 }
 
-/* Forum section */
+/* 
+
+  Forum section 
+
+*/
 .accordion .forum-wrapper{
   @include accordion-header-color($of-yellow);
 
@@ -252,4 +276,52 @@
 }
 
 
+/*
+
+  New Guide
+
+*/
+
+.box{
+  margin: 2rem 0;
+  padding-top: 1rem;
+}
+
+form.new-guide{
+  display: inline-block;
+  width: 100%;
+  margin: 2rem 0;
+
+  .block{
+    height: 2rem;
+    display: block;
+  }
+
+  p{
+    font-size: .9rem;
+    color: #171717;
+    line-height: 1.5rem;
+  }
+}
+
+
+
+.crop-image{
+  background: #fff;
+  width: 100%;
+  height: 124px;
+  border-radius: 2px;
+  border: 0px solid #979797;
+  -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+  box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+  display: inline-block;
+  margin-bottom: 1rem;
+
+  img.no-image{
+    transform: translate(-50%, -50%);
+    position: relative;
+    top: 50%;
+    left: 50%;
+  }
+}
 

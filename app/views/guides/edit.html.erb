@@ -1,16 +1,97 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h1>Edit Your Guide </h1>
-    <% if @is_editing %>
-    <%= form_for @guide do |f| %>
-        <%= f.label(:name) %>
-        <%= f.text_field(:name) %>
-        <%= f.label(:overview) %>
-        <%= f.text_area(:overview) %>
-        <%= submit_tag('Update Guide', :class => "button tiny") %>
-      <% end %>
-    <% end %>
-    <dl class="accordion" data-accordion>
+<div ng-app="editGuidesApp" 
+     ng-controller="editGuideCtrl"
+     ng-cloak>
+    
+    <div class="row">
+    <form accept-charset="UTF-8"
+      class="small-10 large-10 columns centered edit-overview"
+      name="edit-overview"
+      method="post"
+      >
+      <div class="column large-10">
+        <h1>Edit Your Guide</h1>
+      </div>
+      <div class="column large-2">
+        <input type="button"
+             class="button small"
+             ng-click="saveGuide()"
+             value="Save Guide">
+      </div>
+      
+      <div class="columns large-3">
+        <span class="crop-image">
+          <img ng-cloak
+               ng-class="{ 'no-image' : !new_guide.crop.image }"
+               src="{{ new_guide.crop.image || '/assets/empty-pot.svg' }}" 
+               alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+        </span>
+      </div>
+      <div class="columns large-9">
+        <p>
+          You've successfully created a guide.
+        </p>
+        <p>
+          Give other OpenFarm users a bit more details about how to grow your plant.
+        </p>
+        <label for="guide_crop_overview">
+          Growing Process Overview
+        </label>
+        <textarea id="guide_overview" 
+                  name="guide[overview]"
+                  ng-model="guide.overview"
+                  rows="5">
+        </textarea>
+      </div>
+
+    </form>
+    </div>
+    <div class="row">
+    <div class="large-10 small-10 columns centered">
+
+    <accordion close-others="false">
+      <accordion-group is-open="true" class="accordion-navigation prerequisites-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            Prerequisites
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          Prerequisites are the small details that make sure this plant grows successfully.
+        </p>
+      </accordion-group>
+
+      <accordion-group is-open="true" class="accordion-navigation timeline-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            Timeline
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          When does your plant grow? How long?
+        </p>
+      </accordion-group>
+
+      <accordion-group is-open="true" class="accordion-navigation instructions-wrapper">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            Instructions
+          </h2>
+            
+        </accordion-heading>
+        <p>
+          A detailed, step by step guide on when to do what. 
+        </p>
+      </accordion-group>
+    </accordion>
+    </div>
+    </div>
+
+    <!-- <dl class="accordion" data-accordion>
       <dd class="accordion-navigation prerequisites-wrapper">
         <a href="#prerequisites" class="title-wrapper">
           <h2 class="title">Prerequisites</h2>
@@ -60,11 +141,11 @@
             </div>
             <div class="small-2 columns compatability-score-container">
               <% if not @is_editing %>
-              <!-- <p>This guide is</p>
+              <p>This guide is</p>
               <div class="score-circle high-score">
                 <div class="score">42%</div>
               </div>
-              <p>compatable with you and your garden</p> -->
+              <p>compatable with you and your garden</p>
               <p>
                 We're working on a compatibility score, so that you'll be able to see
                 how compatible your garden and this guide are.
@@ -108,7 +189,7 @@
             <% end %>
           </div>
           <div class="row plant-timeline">
-            <!-- TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS -->
+            TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS
           </div>
           <div class="row months">
             <% @months.each do |m| %>
@@ -216,6 +297,9 @@
           </div>
         </div>
       </dd>
-    </dl>
+    </dl> -->
   </div>
 </div>
+
+<%= javascript_tag "var GUIDE_ID = '#{@guide.try(:id).to_s}';" %>
+

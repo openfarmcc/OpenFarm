@@ -197,31 +197,4 @@
   clear: both;
 }
 
-/* Section accordion styling */
-dd.accordion-navigation > a.title-wrapper, dd.active > a.title-wrapper {
-  display: block;
-  padding: .2rem 1rem;
-
-  @include accordion-header-color($of-orange);
-
-  h2, h5 {
-    display: inline-block;
-    color: white;
-    font-weight: 600;
-  }
-
-  .title{
-    font-size: 2rem;
-  }
-
-  .author {
-    margin-left: 20px;
-    display: inline-block;
-    color: white;
-  }
-}
-
-.accordion dd > .content{
-  padding: 0 0.935rem;
-}
 

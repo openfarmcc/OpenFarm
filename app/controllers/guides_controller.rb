@@ -49,10 +49,9 @@ class GuidesController < ApplicationController
   end
   
   def create
-    puts params[:guide]
     @guide = Guide.new(guides_params)
     if @guide.save
-      render json: @guide
+      redirect_to(:action => 'edit', :id => @guide.id)
     else
       render :new
     end

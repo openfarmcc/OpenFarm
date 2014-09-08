@@ -29,7 +29,7 @@ class CropsController < ApplicationController
     @crop = Crop.new(crops_params)
     if @crop.save
       redirect_to(:controller => 'guides', :action => 'new', 
-                  :crop_id => @crop.id, :crop_name => @crop.name)
+                  :crop_id => @crop.id)
     else
       render :new
     end

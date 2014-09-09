@@ -20,15 +20,12 @@ module Api
            { 'acl' => 'public-read' },
            { success_action_status: '201' },
            ['starts-with', '$Content-Type', ''],
-           ['content-length-range', 1, 2 * 1024 * 1024]
+           ['content-length-range', 1, 4 * 1024 * 1024]
          ] }.to_json).gsub(/\n/, '')
     end
 
     def s3_upload_signature
-      digest = OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'),
-                                    ENV['S3_SECRET_KEY'],
-                                    s3_upload_policy)
-      Base64.encode64(digest).gsub('\n', '')
+      Base64.encode64(OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), ENV['S3_SECRET_KEY'], s3_upload_policy)).gsub("\n","")
     end
   end
 end

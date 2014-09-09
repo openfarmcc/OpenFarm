@@ -2,7 +2,6 @@
 var s3upload = angular.module('s3upload', ['ngS3upload']);
 
 var s3upload_controller = function ($scope) {
-  $scope.bucket= "openfarmbucket";
   $scope.s3upload = {};
 };
 

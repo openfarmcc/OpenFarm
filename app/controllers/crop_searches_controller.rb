@@ -6,8 +6,7 @@ class CropSearchesController < ApplicationController
     search_word = params[:cropsearch][:q].singularize
 
     # Use search term to find crops
-    @crops = Crop.full_text_search(search_word, 
-      :max_results => 2)
+    @crops = Crop.full_text_search(search_word, :max_results => 2)
     if @crops.empty?
       @crops = Crop.all.limit(2)
     end

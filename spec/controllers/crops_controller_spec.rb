@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'uri'
 
 describe CropsController, :type => :controller do
   it 'Should direct to a new page' do
@@ -12,12 +13,11 @@ describe CropsController, :type => :controller do
     expect(response).to render_template(:show)
   end
   
-  it 'Should direct to show page after successful crop creation' do
+  it 'Should direct to create guide page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     post 'create', :crop => crop
     expect(response.status).to eq(302)
-    expect(response).to redirect_to new_guide_path(crop_id: Crop.last.id.to_s,
-                                                   crop_name: Crop.last.name)
+    response.should redirect_to "/guides/new?crop_id=#{assigns(:crop).id}"
   end
   
   it 'Should redirect back to form after unsuccessful crop creation' do

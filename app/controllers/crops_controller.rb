@@ -11,7 +11,7 @@ class CropsController < ApplicationController
   end
 
   def new
-    @crop = Crop.new(:name => params[:name])
+    @crop = Crop.new(name: params[:name])
   end
   
   def show
@@ -28,8 +28,8 @@ class CropsController < ApplicationController
   def create
     @crop = Crop.new(crops_params)
     if @crop.save
-      redirect_to(:controller => 'guides', :action => 'new', 
-                  :crop_id => @crop.id, :crop_name => @crop.name)
+      redirect_to(controller: 'guides', action: 'new',
+                  crop_id: @crop.id)
     else
       render :new
     end

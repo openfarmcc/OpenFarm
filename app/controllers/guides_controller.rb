@@ -100,5 +100,4 @@ class GuidesController < ApplicationController
   def guides_params
     params.require(:guide).permit(:name, :user, :crop_id, :overview)
   end
-
 end

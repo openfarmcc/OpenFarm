@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Allow certain fields for devise - needed in Rails 4.0+
   before_filter :update_sanitized_params, if: :devise_controller?
 
-protected
+  protected
 
   # This method allows devise to pass non standard attributes through and
   # thereby comply with 'strong parameters'.

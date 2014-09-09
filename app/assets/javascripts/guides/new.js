@@ -5,6 +5,8 @@ var guidesApp = angular.module('guidesApp', [
 
 guidesApp.config(['$httpProvider', '$locationProvider', 
   function($httpProvider, $locationProvider) {
+    // TODO: This probably has something to do with why Google's 
+    // Location APIs aren't working
     // $httpProvider.defaults.useXDomain = true;
     // delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $locationProvider.html5Mode(true); 
@@ -12,10 +14,7 @@ guidesApp.config(['$httpProvider', '$locationProvider',
 
 guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',  
   function guidesApp($scope, $http, $location) {
-
-  
   $scope.alerts = [];
-
   $scope.crops = [];
   $scope.step = 1;
   $scope.crop_not_found = false;
@@ -43,10 +42,6 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
 
     $scope.default_crop = $location.search().crop_id;
   }
-  
-  $scope.default_crop_
-
-  
 
   //Typeahead search for crops
   $scope.search = function () {

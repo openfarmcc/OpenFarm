@@ -11,6 +11,7 @@ class Crop
   validates_presence_of :name
   field :binomial_name
   field :description
+  field :image
   #TODO: Add tags to sun_requirements and sowing_method. See mongoid_search docs
   field :sun_requirements
   field :sowing_method

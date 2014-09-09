@@ -1,11 +1,9 @@
 .search-result-crop {
   position: relative;
   display: inline-block;
+  background-color: #EEE;
   width: 180px;
   height: 240px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   padding: 0;
   margin-right: 8px;
 
@@ -13,6 +11,29 @@
   opacity: 0.9;
   &:hover {
     opacity: 1;
+  }
+
+  .leaf-placeholder {
+    $size: 40px;
+    position: absolute;
+    font-size: $size;
+    width: $size;
+    height: $size;
+    top: 50%;
+    left: 50%;
+    margin-top: -($size/2);
+    margin-left: -($size/2);
+  }
+
+  .crop-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .crop-name {

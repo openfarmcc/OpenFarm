@@ -16,6 +16,7 @@ describe CropsController, :type => :controller do
   it 'Should direct to create guide page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     post 'create', :crop => crop
+    expect(response.status).to eq(302)
     response.should redirect_to "/guides/new?crop_id=#{assigns(:crop).id}"
   end
   

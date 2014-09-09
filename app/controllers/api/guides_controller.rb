@@ -1,7 +1,7 @@
 module Api
   class GuidesController < Api::Controller
 
-  #   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def create
       guide = Guide.new(guide_params)
@@ -16,12 +16,12 @@ module Api
       guide = Guide.find(params[:id])
       if guide
         render json: guide
-      # You don't need this.
-      # http://guides.rubyonrails.org/
-      #  action_controller_overview.html#rescue-from
-      # else
-      #   # ToDo: This isn't right.
-      #   render json: {}, status: :not_found
+        # You don't need this.
+        # http://guides.rubyonrails.org/
+        #  action_controller_overview.html#rescue-from
+        # else
+        #   # ToDo: This isn't right.
+        #   render json: {}, status: :not_found
       end
     end
 

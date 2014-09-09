@@ -87,7 +87,7 @@ class GuidesController < ApplicationController
     @guide.update_attributes(guides_params)
     if @guide.save
       flash[:notice] = "Guide saved successfully."
-      redirect_to(:action => 'show', :id => @guide.id)
+      redirect_to(action: 'show', id: @guide.id)
     else
       flash[:notice] = "Something went wrong."
       @is_editing = true

@@ -1,9 +1,9 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "Guides" do
+describe 'Guides' do
   include IntegrationHelper
   # js: true runs the test in a headless webkit browser.
-  it "creates a guide", js: true do
+  it 'creates a guide', js: true do
     # TODO, test when it's done.
     # FactoryGirl.create(:crop, name: 'The whole plant name')
     # visit new_guide_path

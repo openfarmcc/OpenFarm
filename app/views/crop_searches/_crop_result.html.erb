@@ -1,0 +1,12 @@
+<%= link_to crop do %>
+  <li class="search-result-crop">
+    <% if crop.image.nil? %>
+      <i class="leaf-placeholder fa fa-leaf"></i>
+    <% else %>
+      <div class="crop-image" style="background-image: url('<%= asset_path(crop.image) %>')"></div>
+    <% end %>
+    <div class="crop-name">
+      <h3><%= crop.name %></h3>
+    </div>
+  </li>
+<% end %>

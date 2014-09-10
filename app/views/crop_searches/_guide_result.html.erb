@@ -1,0 +1,11 @@
+<%= link_to guide do %>
+  <li class="search-result-guide">
+    <div class="guide-info">
+      <h3 class="guide-name"><%= guide.name %></h3>
+      <p class="guide-author">by <%= guide.user.display_name %></p>
+    </div>
+    <div class="guide-description">
+      <p><%= guide.overview %></p>
+    </div>
+  </li>
+<% end %>

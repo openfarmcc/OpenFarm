@@ -1,0 +1,49 @@
+.search-result-guide {
+  width: 100%;
+  min-height: 40px;
+  margin-bottom: 12px;
+  padding: 4px 10px;
+  list-style: none;
+  border: 1px solid #CCCCCC;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: #EEEEEE;
+  }
+
+  .guide-info {
+    display: block;
+    margin: 0;
+  }
+
+  .guide-name {
+    display: inline-block;
+    margin: 0;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .guide-author {
+    display: inline-block;
+    margin: 0;
+    color: #A9A9A9;
+    font-size: 0.9em;
+    margin-left: 6px;
+  }
+
+  // .guide-rating {
+  //   display: inline-block;
+  //   margin: 0;
+  //   margin-left: 20px;
+  //   color: #F1C232; // yellow from the mock-ups
+  // }
+
+  .guide-description {
+    display: block;
+    p {
+      margin: 0;
+      color: #666;
+    }
+  }
+}

@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
+gem 'rack-attack'
 
 group :development, :test do
   gem 'rubocop'

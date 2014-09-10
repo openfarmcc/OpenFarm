@@ -6,6 +6,6 @@ class Attachment
   has_mongoid_attached_file :file
   validates_attachment_size :file, in: 1.byte..2.megabytes
   validates_attachment :file,
-    content_type: { content_type:
-      ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+                       content_type: { content_type:
+                         ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 end

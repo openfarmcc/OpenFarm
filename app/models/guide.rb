@@ -15,6 +15,6 @@ class Guide
   has_mongoid_attached_file :featured_image
   validates_attachment_size :featured_image, in: 1.byte..2.megabytes
   validates_attachment :featured_image,
-    content_type: { content_type:
-      ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+                       content_type: { content_type:
+                         ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 end

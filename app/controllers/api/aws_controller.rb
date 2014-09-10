@@ -28,7 +28,7 @@ module Api
       Base64.encode64(
         OpenSSL::HMAC.digest(
           OpenSSL::Digest::Digest.new(
-            'sha1'), ENV['S3_SECRET_KEY'], upload_policy)).gsub("\n","")
+            'sha1'), ENV['S3_SECRET_KEY'], upload_policy)).gsub('\n', '')
     end
   end
 end

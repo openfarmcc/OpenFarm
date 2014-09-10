@@ -1,6 +1,7 @@
 <div class="row" ng-app='s3upload' ng-controller="s3ctrl">
   <div class="columns large-3">
-    <h1>Hi.</h1>
+    <h1>Upload Test</h1>
+    <p>REMEmBER: The `bucket` attribute does an eval() on its value. So enter a string inside of a string for literal values.</p>
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"

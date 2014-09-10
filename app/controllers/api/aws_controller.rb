@@ -25,9 +25,10 @@ module Api
     end
 
     def upload_signature
-      sha    = OpenSSL::Digest.new('sha1')
-      digest = OpenSSL::HMAC.digest(sha, ENV['S3_SECRET_KEY'], upload_policy)
-      Base64.encode64(digest).gsub('\n', '')
+      Base64.encode64(
+        OpenSSL::HMAC.digest(
+          OpenSSL::Digest::Digest.new(
+            'sha1'), ENV['S3_SECRET_KEY'], upload_policy)).gsub('\n', '')
     end
   end
 end

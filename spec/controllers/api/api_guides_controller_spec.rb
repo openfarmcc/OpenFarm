@@ -28,7 +28,7 @@ describe Api::GuidesController, type: :controller do
     # not, this test will always fail currently.
     # SOLUTION:
     # TODO: Install VCR in the test suite and remove the following line.
-    skip "You dont have an S3 bucket :(" unless ENV['S3_BUCKET_NAME'].present?
+    skip 'You dont have an S3 bucket :(' unless ENV['S3_BUCKET_NAME'].present?
     params = { name: 'Bunnies',
                overview: 'A bunny from imgur.com',
                featured_image: 'http://i.imgur.com/AEe76j7.jpg',

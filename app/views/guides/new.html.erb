@@ -58,7 +58,7 @@
                   <select ng-options="crop in possible_crops"></select>
               </p> -->
               <p>
-                You'll have to <a href="/crops/new/?name={{ query }}">add one</a>.
+                You'll have to <a ng-click="createCrop()">add one</a>.
               </p>
             </span>
 

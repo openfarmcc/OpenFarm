@@ -3,10 +3,17 @@ class CropSearchesController < ApplicationController
   # TODO: eventually this search should also be searching guides
   def search
     # Singularize a word to only search singulars.
-    search_word = params[:cropsearch][:q].singularize
+    # TODO : Write test case for this
+    # TODO : Make this less of a hacky hotfix. Was getting production 500's.
+    # Sorry
+    if params[:cropsearch]
+      search_word = params[:cropsearch][:q].to_s
+    else
+      search_word = params[:q].to_s
+    end
 
     # Use search term to find crops
-    @crops = Crop.full_text_search(search_word, max_results: 2)
+    @crops = Crop.full_text_search(search_word.singularize, max_results: 2)
     if @crops.empty?
       @crops = Crop.all.limit(2)
     end

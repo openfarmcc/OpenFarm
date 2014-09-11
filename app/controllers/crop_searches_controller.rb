@@ -7,9 +7,9 @@ class CropSearchesController < ApplicationController
     # TODO : Make this less of a hacky hotfix. Was getting production 500's.
     # Sorry
     if params[:cropsearch]
-      search_word = params[:cropsearch][:q]
+      search_word = params[:cropsearch][:q].to_s
     else
-      search_word = params[:q]
+      search_word = params[:q].to_s
     end
 
     # Use search term to find crops

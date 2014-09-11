@@ -36,6 +36,10 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production do
+  gem 'exception_notification'
+end
+
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
 gem 'devise'

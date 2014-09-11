@@ -11,7 +11,7 @@
           <div class="row">
             <div class="small-3 columns img-container">
               <img class="plant image" src="http://www.organicgardening.com/sites/default/files/images/tomato-tips-380-1.jpg" alt="tomatoes!">
-              <% if @guide.user.id == current_user.id %>
+              <% if @guide.owned_by?(current_user) %>
                 <%= link_to(icon('edit') + " edit", {:action => 'edit'}, :class=>'edit-link') %>
               <% end %>
             </div>

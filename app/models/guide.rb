@@ -19,6 +19,6 @@ class Guide
                          ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   def owned_by?(user)
-    guide.user && (self.user == user)
+    user && (self.user == user)
   end
 end

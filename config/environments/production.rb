@@ -76,11 +76,11 @@ OpenFarm::Application.configure do
   :password  => ENV["MANDRILL_APIKEY"]
   }
   config.middleware.use ExceptionNotification::Rack,
-  :email => {
-    :email_prefix => "[OpenFarm Errors] ",
-    :sender_address => %{"notifier" <notifier@openfarm.cc>},
-    :exception_recipients => %w{rick.carlino@gmail.com}
-  }
+    email: {
+      email_prefix: "[OpenFarm Errors] ",
+      sender_address: %{"notifier" <notifier@openfarm.cc>},
+      exception_recipients: %w{rick.carlino@gmail.com}
+    }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp

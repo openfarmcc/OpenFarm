@@ -75,7 +75,10 @@ OpenFarm::Application.configure do
   :user_name => ENV["MANDRILL_USERNAME"],
   :password  => ENV["MANDRILL_APIKEY"]
   }
-
+  config.middleware.use ExceptionNotifier,
+    :sender_address       => %{"OpenFarm Errors" <rick.carlino@gmail.com>},
+    :exception_recipients => %w{rick.carlino+errors@gmail.com}
+  ExceptionNotifier::Rake.configure
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp

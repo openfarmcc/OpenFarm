@@ -79,8 +79,12 @@ OpenFarm::Application.configure do
     email: {
       email_prefix: '[OpenFarm Errors] ',
       sender_address: %{"notifier" <notifier@openfarm.cc>},
-      exception_recipients: %w{rick.carlino@gmail.com}
-    }
+      exception_recipients: ["rick.carlino@gmail.com", "svansintjan@gmail.com"]
+    },
+    ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
+                        'AbstractController::ActionNotFound',
+                        'ActionController::RoutingError',
+                        'ActionController::InvalidAuthenticityToken']
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp

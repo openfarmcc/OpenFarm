@@ -7,8 +7,8 @@ class Crop
   include Mongoid::Search
   has_many :guides
 
-  field :name#, localize: true
-  field :common_names   , type: Array
+  field :name# , localize: true
+  field :common_names, type: Array
   validates_presence_of :name
   field :binomial_name
   field :description

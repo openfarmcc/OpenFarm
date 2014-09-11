@@ -1,4 +1,4 @@
-<%= link_to crop do %>
+<a href="/crops/<%= crop.name.downcase.gsub! /\W{1}/,'-'%>/<%= crop.id %>">
   <li class="search-result-crop">
     <% if crop.image.nil? %>
       <i class="leaf-placeholder fa fa-leaf"></i>
@@ -9,4 +9,4 @@
       <h3><%= crop.name %></h3>
     </div>
   </li>
-<% end %>
+</a>

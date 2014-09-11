@@ -5,7 +5,6 @@
 
     <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns box">
       <section name="step-1" ng-show="step === 1">
@@ -45,7 +44,7 @@
                    alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
             </span>
             <p ng-if="new_guide.crop">
-              <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name + ':' : ''"></strong><span ng-bind="new_guide.crop.information"></span>
+              <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name + ':' : ''"></strong><span ng-bind="new_guide.crop.description"></span>
             </p>
             <p ng-if="!new_guide.crop && !crop_not_found">
               Enter a crop and it will be shown here.

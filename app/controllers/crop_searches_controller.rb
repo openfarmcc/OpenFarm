@@ -3,28 +3,14 @@ class CropSearchesController < ApplicationController
 
   # TODO: eventually this search should also be searching guides
   def search
-    # Singularize a word to only search singulars.
-    if params && params[:cropsearch]
-      search_word = params[:cropsearch][:q].singularize
-    else
-      search_word = ''
-    # TODO : Write test case for this
-    # TODO : Make this less of a hacky hotfix. Was getting production 500's.
-    # Sorry
-    #     if params[:cropsearch]
-    #       search_word = params[:cropsearch][:q].to_s
-    #     else
-    #       search_word = params[:q].to_s
-    # >>>>>>> 6537ba0f7e6cc8090a308a938eb394c38c3629f8
-    end
-
-    # Use search term to find crops
-    @crops = Crop.full_text_search(search_word.singularize, max_results: 2)
+    query = (params[:cropsearch] && params[:cropsearch][:q]).to_s.singularize
+    @crops = Crop.full_text_search(query, max_results: 2)
     if @crops.empty?
-      @crops = Crop.all.limit(2)
+      @crops = Crop.all.desc('_id').limit(2)
     end
 
     # Use the crop results to look-up guides
+    # TODO: Refactor this query.
     crop_ids = @crops.pluck(:id)
     @guides = crop_ids.map! do |id|
       Guide.where(crop_id: id)

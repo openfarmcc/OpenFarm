@@ -1,4 +1,4 @@
-<a href="/crops/<%= crop.name.downcase.gsub! /\W{1}/,'-'%>/<%= crop.id %>">
+<a href="/crops/<%= crop.name.downcase.gsub(/\W{1}/,'-')%>/<%= crop.id %>">
   <li class="search-result-crop">
     <% if crop.image.nil? %>
       <i class="leaf-placeholder fa fa-leaf"></i>

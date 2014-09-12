@@ -73,7 +73,12 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   //Gets fired when user selects dropdown.
   $scope.cropSelected = function ($item, $model, $label) {
     $scope.new_guide.crop = $item;
+    $scope.crop_not_found = false;
   };
+
+  $scope.createCrop = function(){
+    window.location.href = '/crops/new/?name=' + $scope.query;
+  }
 
   $scope.nextStep = function(){
     $scope.step += 1;

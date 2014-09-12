@@ -2,12 +2,6 @@ class GuidesController < ApplicationController
 
   def index
     @guides = Guide.all
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @guides }
-
-    end
   end
 
   def show
@@ -35,12 +29,6 @@ class GuidesController < ApplicationController
     }
 
     @guide = Guide.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @guide }
-
-    end
 
   end
 

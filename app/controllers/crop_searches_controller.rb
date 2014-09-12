@@ -1,4 +1,5 @@
 class CropSearchesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :search
 
   # TODO: eventually this search should also be searching guides
   def search

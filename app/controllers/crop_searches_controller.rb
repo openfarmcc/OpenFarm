@@ -15,7 +15,7 @@ class CropSearchesController < ApplicationController
     #     else
     #       search_word = params[:q].to_s
     # >>>>>>> 6537ba0f7e6cc8090a308a938eb394c38c3629f8
-    #     end
+    end
 
     # Use search term to find crops
     @crops = Crop.full_text_search(search_word.singularize, max_results: 2)

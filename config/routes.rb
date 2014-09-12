@@ -12,6 +12,7 @@ OpenFarm::Application.routes.draw do
   # shareable link.
   post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
   get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
+  get 'crops/*name/:id' => 'crops#show'
   
   resources :users
   resources :crops

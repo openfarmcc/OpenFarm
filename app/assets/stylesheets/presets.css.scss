@@ -57,6 +57,18 @@ $info-color: #eecb91;
   border: 1px solid silver;
 }
 
+.top-bar input[type='submit']{
+  padding: 0;
+  line-height: 2.125;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.top-bar .search{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 /*
 
   Generic tweaks

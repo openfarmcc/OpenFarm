@@ -43,7 +43,24 @@
 
             <!-- Search box Section -->
             <% unless current_page?(root_path) %>
-            <form class="home_search" method="get" action="/crop_search"><!-- TODO: change to a guide search -->
+            <%= form_for :cropsearch, url:
+              crop_search_via_post_path, method: 'post' do |f| %>
+              <div class="left">
+
+                <div class="row collapse postfix-round">
+
+                  <div class="small-4 columns">
+                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: "What do you want to grow?" %>
+                    
+                  </div>
+                  <div class="small-2 columns end">
+                    <%= f.submit "Search!", data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <!-- <form class="home_search" method="get" action="/crop_search">
+            <!--
               <div class="left">
                 <div class="small-9 columns">
                   <input type="text"
@@ -55,7 +72,7 @@
                   <a class="button secondary right inline">Search</a>
                 </div>
               </div>
-            </form>
+            </form> -->
             <% end %>
 
             <!-- Right Nav Section -->

@@ -2,12 +2,7 @@ class CropsController < ApplicationController
 
   def index
     @crops = Crop.all
-    respond_to do |format|
-      # WOA 
-      format.html # show.html.erb
-      format.json { render json: @crops }
-
-    end
+    redirect_to(controller: 'crop_searches', action: 'search')
   end
 
   def new

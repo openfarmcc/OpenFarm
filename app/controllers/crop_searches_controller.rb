@@ -7,10 +7,18 @@ class CropSearchesController < ApplicationController
       search_word = params[:cropsearch][:q].singularize
     else
       search_word = ''
-    end
+    # TODO : Write test case for this
+    # TODO : Make this less of a hacky hotfix. Was getting production 500's.
+    # Sorry
+    #     if params[:cropsearch]
+    #       search_word = params[:cropsearch][:q].to_s
+    #     else
+    #       search_word = params[:q].to_s
+    # >>>>>>> 6537ba0f7e6cc8090a308a938eb394c38c3629f8
+    #     end
 
     # Use search term to find crops
-    @crops = Crop.full_text_search(search_word, max_results: 2)
+    @crops = Crop.full_text_search(search_word.singularize, max_results: 2)
     if @crops.empty?
       @crops = Crop.all.limit(2)
     end

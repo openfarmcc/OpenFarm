@@ -3,7 +3,7 @@ class CropSearchesController < ApplicationController
   # TODO: eventually this search should also be searching guides
   def search
     # Singularize a word to only search singulars.
-    if params[:cropsearch]
+    if params && params[:cropsearch]
       search_word = params[:cropsearch][:q].singularize
     else
       search_word = ''

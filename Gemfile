@@ -16,6 +16,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
 
 group :development, :test do

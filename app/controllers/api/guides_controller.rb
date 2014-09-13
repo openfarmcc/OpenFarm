@@ -1,6 +1,6 @@
 module Api
   class GuidesController < Api::Controller
-
+    skip_before_action :authenticate_user!, only: [:index, :show]
     def create
       guide = Guide.new(guide_params)
       if guide.save

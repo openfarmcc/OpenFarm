@@ -20,4 +20,30 @@ describe GuidesController do
     post 'create', guide: guide
     expect(response).to render_template(:new)
   end
+
+  it 'should show the edit page if the user owns the guide' do
+    guide = FactoryGirl.create(:guide)
+    user = guide.user
+    sign_in user
+    get 'edit', id: guide.id
+    expect(response).to render_template(:edit)
+  end
+
+  it 'should redirect to the guide if the user does not own it' do
+    guide = FactoryGirl.create(:guide)
+    user = FactoryGirl.create(:user)
+    sign_in user
+    get 'edit', id: guide.id
+    response.should redirect_to "/guides/#{guide.id}"
+  end
+
+  it 'should show the index page' do
+    get 'index'
+    expect(response).to render_template(:index)
+  end
+
+  it 'should redirect to show after successful update' 
+    # Not sure this test makes sense, since this will be largely 
+    # done through Ajax. as a result, does it still make sense 
+    # to have the update path?
 end

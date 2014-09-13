@@ -23,19 +23,14 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'uploads a featured_image' do
-    # PROBLEM: If someone wants to contribute and run the test suite on their
-    # local machine, they will need to create an amazon bucket of their own. If
-    # not, this test will always fail currently.
-    # SOLUTION:
-    # TODO: Install VCR in the test suite and remove the following line.
-    skip 'You dont have an S3 bucket :(' unless ENV['S3_BUCKET_NAME'].present?
-    params = { name: 'Bunnies',
-               overview: 'A bunny from imgur.com',
-               featured_image: 'http://i.imgur.com/AEe76j7.jpg',
+    params = { name: 'Just 1 pixel.',
+               overview: 'A tiny pixel test image.',
+               featured_image: 'http://placehold.it/1x1.jpg',
                crop_id: FactoryGirl.create(:crop).id.to_s }
     sign_in FactoryGirl.create(:user)
-    post 'create', guide: params
-
+    VCR.use_cassette('controllers/api/api_guides_controller_spec') do
+      post 'create', guide: params
+    end
     expect(response.status).to eq(201)
     img_url = json['guide']['featured_image']
     expect(img_url).to include('.jpg')

@@ -31,6 +31,12 @@ If all went well, you will have a seeded database and can use the account `admin
 
 All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `app_environment_variables.rb` accordingly. See `example_app_environment_variables.rb` for an example.
 
+#### Style Guides and formatting.
+
+ * We use the [ThoghtBot Style Guide](https://github.com/thoughtbot/guides/tree/master/style) when writiting Ruby. The exception to this is that we use 'single quotes' instead of "double quotes".
+ * When design API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
+ * Please write specs for your code. We use Rspec as our testing framework.
+
 #### OAuth
 
 OpenFarm supports OAuth through Facebook and Twitter, however you have to enable it yourself.

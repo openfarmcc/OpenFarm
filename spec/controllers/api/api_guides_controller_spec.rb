@@ -53,12 +53,11 @@ describe Api::GuidesController, type: :controller do
     expect(json['guide']['name']).to eq(guide.name)
   end
 
-  it 'should return a not found error if a guide isn\'t found' do
+  it 'should return a not found error if a guide isn\'t found'
   # get 'show', id: '1', format: :json
   # expect(response.status).to eq(404)
   # This test fails, largely because I don't know how to
   # implement it.
-  end
 
   it 'should update a guide'
 end

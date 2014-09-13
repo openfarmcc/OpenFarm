@@ -35,6 +35,8 @@ group :test do
   gem 'poltergeist'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do

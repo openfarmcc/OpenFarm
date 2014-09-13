@@ -8,22 +8,22 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'vcr'
-#====== PHANTOMJS stuff
+# ====== PHANTOMJS stuff
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: true)
 end
-#=====
+# =====
 
-#===== VCR stuff (records HTTP requests for playback)
+# ===== VCR stuff (records HTTP requests for playback)
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr'
   c.hook_into :webmock # or :fakeweb
   c.default_cassette_options = { record: :none,
                                  match_requests_on: [:host, :method] }
 end
-#=====
+# =====
 
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist

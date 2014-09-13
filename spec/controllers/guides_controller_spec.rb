@@ -43,7 +43,7 @@ describe GuidesController do
   end
 
   it 'should redirect to show after successful update'
-    # Not sure this test makes sense, since this will be largely 
-    # done through Ajax. as a result, does it still make sense 
+    # Not sure this test makes sense, since this will be largely
+    # done through Ajax. as a result, does it still make sense
     # to have the update path?
 end

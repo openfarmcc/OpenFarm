@@ -23,21 +23,20 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'uploads a featured_image' do
-    crop_id = FactoryGirl.create(:crop).id.to_s
     params = { name: 'Just 1 pixel.',
                overview: 'A tiny pixel test image.',
                featured_image: 'http://placehold.it/1x1.jpg',
-               crop_id: crop_id }
+               crop_id: FactoryGirl.create(:crop).id.to_s }
     sign_in FactoryGirl.create(:user)
     VCR.use_cassette('controllers/api/api_guides_controller_spec') do
       post 'create', guide: params
-      expect(response.status).to eq(201)
-      img_url = json['guide']['featured_image']
-      expect(img_url).to include('.jpg')
-      expect(img_url).to include('featured_images')
-      expect(img_url).to include('http://')
-      expect(img_url).to include('amazonaws.com')
     end
+    expect(response.status).to eq(201)
+    img_url = json['guide']['featured_image']
+    expect(img_url).to include('.jpg')
+    expect(img_url).to include('featured_images')
+    expect(img_url).to include('http://')
+    expect(img_url).to include('amazonaws.com')
   end
 
   it 'should return an error with wrong guide information'

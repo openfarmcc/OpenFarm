@@ -1,0 +1,27 @@
+nl:
+    users:
+        email_address: "Email adres"
+        display_name: "Gebruikers naam"
+        password: "Paswoord"
+        password_confirmation: "Herhaal Paswoord"
+        location: "Plaats"
+        soil_type: "Aarde Type"
+        preferred_growing_style: "Verkozen Groei Techniek"
+        years_experience: "Jaren Ervaring"
+    crops:
+        name: "Naam"
+        binomial_name: "Binomiale Naam"
+        description: "Beschrijving"
+        sun_requirements: "Zon-eisen"
+        sowing_method: "Methode van zaaien"
+        spread: "Spreiding"
+        days_to_maturity: "Groeitijd"
+        row_spacing: "Ruimte tussen rijen"
+        height: "Hoogte"
+    guides:
+        crop: "Gewas"
+        user: "Gebruiker"
+        stages: "Stadia"
+        requirements: "Behoeftes"
+        name: "Naam"
+        overview: "Overzicht"

@@ -39,4 +39,10 @@ en:
         days_to_maturity: "Days to Maturity"
         row_spacing: "Row Spacing"
         height: "Height"
-  
+    guides:
+        crop: "Crop"
+        user: "User"
+        stages: "Stages"
+        requirements: "Requirements"
+        name: "Name"
+        overview: "Overview"

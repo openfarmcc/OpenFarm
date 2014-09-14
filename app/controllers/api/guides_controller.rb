@@ -42,9 +42,9 @@ module Api
     # TODO: This does not belong in the controller at all. This is wrong.
     # bad bad bad.
     def parse_url(url)
-      return "http://openfarm.cc/img/page.png"
+      return 'http://openfarm.cc/img/page.png'
     rescue TypeError => error
-      error = {error: "The URL provided appears to not be valid"}
+      error = { error: 'The URL provided appears to not be valid' }
       render(json: error, status: :unprocessable_entity) and return
     end
   end

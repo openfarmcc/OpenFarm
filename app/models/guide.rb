@@ -12,7 +12,7 @@ class Guide
   field :overview
   validates_presence_of :user, :crop, :name
 
-  has_mongoid_attached_file :featured_image
+  has_mongoid_attached_file :featured_image, default_url: '/img/empty-pot.png'
   validates_attachment_size :featured_image, in: 1.byte..2.megabytes
   validates_attachment :featured_image,
                        content_type: { content_type:

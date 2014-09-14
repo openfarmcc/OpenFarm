@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
-gem 'rails_12factor' # for dokku
 
 # Foundation
 gem 'foundation-rails', '~> 5.2.0'
@@ -41,6 +40,7 @@ end
 
 group :production do
   gem 'exception_notification'
+  gem 'rails_12factor' # for dokku
 end
 
 #Used for static pages in /app/views/pages

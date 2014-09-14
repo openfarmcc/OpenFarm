@@ -32,10 +32,20 @@ module Api
     def guide_params
       output = params.require(:guide)
       if params[:featured_image]
-        output[:featured_image] = URI(params[:featured_image])
+        output[:featured_image] = parse_url(params[:featured_image])
       end
       output[:user_id] = current_user.id.to_s
       output
+    end
+
+    # TODO: Add mutator gem to tell people they need absoloute URLs, etc etc
+    # TODO: This does not belong in the controller at all. This is wrong.
+    # bad bad bad.
+    def parse_url(*_url)
+      return 'http://openfarm.cc/img/page.png'
+    rescue TypeError
+      error = { error: 'The URL provided appears to not be valid' }
+      render(json: error, status: :unprocessable_entity) and return
     end
   end
 end

@@ -15,7 +15,7 @@ class Crop
   field :binomial_name
   field :description
   field :image
-  field :data_sources, :type => Hash
+  field :data_sources, type: Hash
   #TODO: Add tags to sun_requirements and sowing_method. See mongoid_search docs
   field :sun_requirements
   field :sowing_method
@@ -24,8 +24,8 @@ class Crop
   field :row_spacing, type: Integer
   field :height, type: Integer
 
-  field :sowing_time, :type => Hash
-  field :harvest_time, :type => Hash
+  field :sowing_time, type: Hash
+  field :harvest_time, type: Hash
 
   search_in :name, :binomial_name, :description
   slug :name

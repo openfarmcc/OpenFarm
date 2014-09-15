@@ -2,6 +2,7 @@
 # avoided to stay generic (ex: edible fungi).
 class Crop
   include Mongoid::Document
+  include Mongoid::Timestamps
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
@@ -13,13 +14,14 @@ class Crop
   field :binomial_name
   field :description
   field :image
+  field :data_sources, :type => Hash
   #TODO: Add tags to sun_requirements and sowing_method. See mongoid_search docs
   field :sun_requirements
   field :sowing_method
-  field :spread          , type: Integer
+  field :spread, type: Integer
   field :days_to_maturity, type: Integer
-  field :row_spacing     , type: Integer
-  field :height          , type: Integer
+  field :row_spacing, type: Integer
+  field :height, type: Integer
 
   field :sowing_time, :type => Hash
   field :harvest_time, :type => Hash

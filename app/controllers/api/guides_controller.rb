@@ -16,14 +16,13 @@ module Api
     end
 
     def update
-      guide = Guide.find(params[:id])
-      # TODO: Patch this hole for the entire API using before_filters
-      raise 'opps' unless guide.user == current_user
-      guide.update_attributes(guide_params)
-      if guide.save
-        render json: guide
+      outcome = UpdateGuide.run(params,
+                                user: current_user,
+                                guide: Guide.find(params[:id]))
+      if outcome.success?
+        render json: outcome.result
       else
-        render json: guide.errors, status: :unprocessable_entity
+        render json: outcome.errors.message, status: :unprocessable_entity
       end
     end
 

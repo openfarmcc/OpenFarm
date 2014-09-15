@@ -54,5 +54,9 @@ describe Api::GuidesController, type: :controller do
   # This test fails, largely because I don't know how to
   # implement it.
 
-  it 'should update a guide'
+  it 'should update a guide' do
+    sign_in FactoryGirl.create(:user)
+    guide = FactoryGirl.create(:guide)
+    put :update, id: guide.id, overview: 'updated'
+  end
 end

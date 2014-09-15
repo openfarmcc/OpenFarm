@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
-gem 'rails_12factor' # for dokku
 
 # Foundation
 gem 'foundation-rails', '~> 5.2.0'
@@ -16,6 +15,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
 
 group :development, :test do
@@ -34,10 +34,13 @@ group :test do
   gem 'poltergeist'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do
   gem 'exception_notification'
+  gem 'rails_12factor' # for dokku
 end
 
 #Used for static pages in /app/views/pages

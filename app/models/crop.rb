@@ -3,6 +3,7 @@
 class Crop
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
@@ -27,4 +28,5 @@ class Crop
   field :harvest_time, :type => Hash
 
   search_in :name, :binomial_name, :description
+  slug :name
 end

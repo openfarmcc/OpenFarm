@@ -6,6 +6,11 @@ describe CropsController, :type => :controller do
     get 'new'
     expect(response).to render_template(:new)
   end
+
+  it 'Should redirect to crop_searches' do
+    get 'index'
+    response.should redirect_to controller: 'crop_searches', action: 'search'
+  end
   
   it 'Should render a show page' do
     crop = FactoryGirl.create(:crop)

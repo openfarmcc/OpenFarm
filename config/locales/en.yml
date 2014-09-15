@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+    application:
+        hi: "Hi"
+        create_guide: "Create guide"
+        user_settings: "User settings"
+        log_out: "Log out"
     users:
         email_address: "Email Address"
         display_name: "Display Name"
@@ -40,9 +45,17 @@ en:
         row_spacing: "Row Spacing"
         height: "Height"
     guides:
+        index:
+            guides: "Guides"
         crop: "Crop"
         user: "User"
         stages: "Stages"
         requirements: "Requirements"
         name: "Name"
         overview: "Overview"
+    pages:
+        home:
+            placeholder: "What do you want to grow?"
+            hero_header: "Learn to grow anything."
+            search: "Search!"
+            hero_sub_header: "A free and open database for farming and gardening knowledge."

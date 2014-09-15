@@ -1,4 +1,9 @@
 nl:
+    application:
+        hi: "Hallo"
+        create_guide: "Maak een gids aan"
+        user_settings: "Instellingen"
+        log_out: "Afmelden"
     users:
         email_address: "Email adres"
         display_name: "Gebruikers naam"
@@ -19,12 +24,20 @@ nl:
         row_spacing: "Ruimte tussen rijen"
         height: "Hoogte"
     guides:
+        index:
+            guides: "Gidsen"
         crop: "Gewas"
         user: "Gebruiker"
         stages: "Stadia"
         requirements: "Behoeftes"
         name: "Naam"
         overview: "Overzicht"
+    pages:
+        home:
+            placeholder: "Wat wil je doen groeien?"
+            search: "Zoeken!"
+            hero_header: "Leer hoe je alles laat groeien."
+            hero_sub_header: "Een gratis en open databank over tuinieren en boeren."
     date:
         abbr_day_names:
         - zo

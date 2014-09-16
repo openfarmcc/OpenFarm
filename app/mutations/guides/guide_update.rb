@@ -18,13 +18,13 @@ class GuideUpdate < Mutations::Command
     return guide
   end
 
-private
+  private
 
   def validate_permissions
     if guide.user != user
       add_error :user,
                 :unauthorized_user,
-                "You can only update guides that you own."
+                'You can only update guides that you own.'
     end
   end
 
@@ -32,11 +32,12 @@ private
     if featured_image.present? && !valid_url?(featured_image)
       add_error :featured_image,
                 :invalid_url,
-                "Must be a fully formed URL, including the HTTP:// or HTTPS://"
+                'Must be a fully formed URL, including the HTTP:// or HTTPS://'
     end
   end
 
   def set_valid_params
+    # TODO: Probably a DRYer way of doing this.
     guide.overview       = overview if overview.present?
     guide.name           = name if name.present?
     guide.featured_image = featured_image if featured_image.present?

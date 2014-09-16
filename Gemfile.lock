@@ -149,6 +149,8 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    mutations (0.7.2)
+      activesupport
     nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
     nokogiri (1.6.1)
@@ -330,6 +332,7 @@ DEPENDENCIES
   mongoid-paperclip
   mongoid_search
   mongoid_slug
+  mutations
   ng-rails-csrf
   omniauth-facebook
   omniauth-twitter

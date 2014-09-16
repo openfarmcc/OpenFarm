@@ -203,6 +203,8 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
+    rack-attack (4.1.1)
+      rack
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -340,6 +342,7 @@ DEPENDENCIES
   pry
   pry-nav
   quiet_assets
+  rack-attack
   rails (= 4.0.2)
   rails_12factor
   rails_admin

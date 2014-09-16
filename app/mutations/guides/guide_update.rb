@@ -1,8 +1,8 @@
 class GuideUpdate < Mutations::Command
   required do
     string :id
-    model  :user
-    model  :guide
+    model :user
+    model :guide
   end
 
   optional do
@@ -15,7 +15,7 @@ class GuideUpdate < Mutations::Command
     validate_permissions
     validate_image_url
     set_valid_params
-    return guide
+    guide
   end
 
   private
@@ -46,7 +46,7 @@ class GuideUpdate < Mutations::Command
 
   def valid_url?
     uri = URI.parse(url)
-    uri.kind_of?(URI::HTTP)
+    uri.is_a?(URI::HTTP)
   rescue URI::InvalidURIError
     false
   end

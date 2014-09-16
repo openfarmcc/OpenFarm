@@ -22,6 +22,7 @@ module Api
       if outcome.success?
         render json: outcome.result
       else
+        binding.pry
         render json: outcome.errors.message, status: :unprocessable_entity
       end
     end

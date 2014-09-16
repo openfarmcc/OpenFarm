@@ -29,6 +29,7 @@ group :development, :test do
   gem 'quiet_assets' # Turns off the Rails asset pipeline log
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'metric_fu' # Code quality tool.
 end
 
 group :test do

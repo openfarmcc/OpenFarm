@@ -44,10 +44,10 @@ class User
   #   )
   # end
 
-  def password_required?
-    # Don't need password if we're using OAuth
-    (user_authentications.empty? || !password.blank?) && super
-  end
+  # def password_required?
+  #   # Don't need password if we're using OAuth
+  #   (user_authentications.empty? || !password.blank?) && super
+  # end
   # NOTE TO FUTURE DEVELOPERS:
 
   # This never saw use in production. It was an omniauth helper method.

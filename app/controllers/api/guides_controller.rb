@@ -16,7 +16,7 @@ module Api
     end
 
     def update
-      outcome = GuideUpdate.run(params,
+      outcome = Guides::UpdateGuide.run(params,
                                 user: current_user,
                                 guide: Guide.find(params[:id]))
       if outcome.success?

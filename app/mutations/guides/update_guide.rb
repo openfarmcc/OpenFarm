@@ -33,7 +33,8 @@ module Guides
       if featured_image.present? && !valid_url?(featured_image)
         add_error :featured_image,
                   :invalid_url,
-                  'Must be a fully formed URL, including the HTTP:// or HTTPS://'
+                  "Must be a fully formed URL, including the HTTP:// or "\
+                  "HTTPS://"
       end
     end
 

@@ -18,6 +18,7 @@ gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
+gem 'rack-attack'
 
 group :development, :test do
   gem 'rubocop'

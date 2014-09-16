@@ -1,4 +1,4 @@
-class UpdateGuide < Mutations::Command
+class GuideUpdate < Mutations::Command
   required do
     string :id
     model  :user

@@ -6,13 +6,13 @@ OpenFarm::Application.routes.draw do
       omniauth_callbacks: "user_authentications",
       registrations: "registrations"
     }
-  get '/:locale' => 'high_voltage/pages#show', id: 'home'
+  
   root :to => 'high_voltage/pages#show', id: 'home'
 
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
-  post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
-  get 'crop_search' => 'crop_searches#search', as: :crop_search_via_get
+  post '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_post
+  get '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_get
   
   scope "(:locale)", locale: /en|nl/ do
     resources :users
@@ -27,6 +27,8 @@ OpenFarm::Application.routes.draw do
     resources :crops,  only: [:index, :show]
     resources :guides, only: [:create, :show, :update]
   end
+
+  get '/:locale' => 'high_voltage/pages#show', id: 'home'
   # match ':controller(/:action)', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest

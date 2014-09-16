@@ -21,10 +21,11 @@
 
 en:
     application:
-        hi: "Hi"
+        greeting: "Hi, %{user}"
         create_guide: "Create guide"
         user_settings: "User settings"
         log_out: "Log out"
+        create_account: "Create an Account"
     users:
         email_address: "Email Address"
         display_name: "Display Name"
@@ -47,6 +48,10 @@ en:
     guides:
         index:
             guides: "Guides"
+        edit:
+            edit_title: "Edit Your Guide"
+            successful_creation: "You've successfully created a guide."
+            more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
         crop: "Crop"
         user: "User"
         stages: "Stages"
@@ -56,6 +61,6 @@ en:
     pages:
         home:
             placeholder: "What do you want to grow?"
-            hero_header: "Learn to grow anything."
             search: "Search!"
+            hero_header: "Learn to grow anything."
             hero_sub_header: "A free and open database for farming and gardening knowledge."

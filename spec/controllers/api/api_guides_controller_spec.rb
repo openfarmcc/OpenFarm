@@ -77,6 +77,6 @@ describe Api::GuidesController, type: :controller do
   it 'validates URL paramters' do
     put :update, id: guide.id, featured_image: 'not a real URL'
     expect(response.status).to eq(422)
-    expect(json['featured_image']).to include("Must be a fully formed URL")
+    expect(json['featured_image']).to include('Must be a fully formed URL')
   end
 end

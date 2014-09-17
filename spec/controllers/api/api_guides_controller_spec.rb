@@ -39,7 +39,13 @@ describe Api::GuidesController, type: :controller do
     expect(img_url).to include('amazonaws.com')
   end
 
-  it 'should return an error with wrong guide information'
+  it 'create guide should return an error when wrong info is passed' do
+    sign_in FactoryGirl.create(:user)
+    params = { overview: 'A tiny pixel test image.',
+               crop_id: FactoryGirl.create(:crop).id.to_s }
+    post 'create', guide: params
+    expect(response.status).to eq(422)
+  end
 
   it 'should show a specific guide' do
     guide = FactoryGirl.create(:guide)

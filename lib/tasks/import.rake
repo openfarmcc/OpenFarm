@@ -13,7 +13,7 @@ namespace :data_imports do
       genus = c.fetch('unit_name1', '')
       species = c.fetch('unit_name2', '')
       sub_species = c.fetch('unit_name3', '')
-      sub_species['<null>'] = ''
+      sub_species.gsub!('<null>', '')
       binomial_name = genus + ' ' + species + ' ' + sub_species
       name = c['vernacular_name']
       tsn = c['tsn']

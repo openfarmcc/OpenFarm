@@ -2,10 +2,10 @@ OpenFarm::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users # ,
-    # controllers: {
-      # omniauth_callbacks: "user_authentications",
-      # registrations: "registrations"
-    # }
+  # controllers: {
+  # omniauth_callbacks: "user_authentications",
+  # registrations: "registrations"
+  # }
   root :to => 'high_voltage/pages#show', id: 'home'
 
   # Accept searches via POST and GET so that users can search with forms -or-

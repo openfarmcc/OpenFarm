@@ -70,6 +70,6 @@ describe Api::GuidesController, type: :controller do
     guide = FactoryGirl.create(:guide)
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(422) # WRONG. See TODO in mutation.
-    expect(response.body).to include("You can only update guides that you own.")
+    expect(response.body).to include('You can only update guides that you own.')
   end
 end

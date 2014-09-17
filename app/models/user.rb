@@ -33,7 +33,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable#, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
 
   # def apply_omniauth omni
   #   user_authentications << UserAuthentication.new(

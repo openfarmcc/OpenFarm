@@ -59,7 +59,7 @@
 #       else
 #         # This will usually happen if the provider does not give out the email
 #         # *cough* Twitter *cough*
-#         # Since email is a required field in Devise, redirect them to the signup
+#         # Since email is a required field in Devise, redirect them to signup
 #         # page and tell them to fill in their email.
 #         session[:omniauth] = omni.except "extra"
 #         redirect_to new_user_registration_path

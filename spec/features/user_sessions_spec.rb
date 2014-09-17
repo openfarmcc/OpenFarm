@@ -16,19 +16,19 @@ describe "User sessions" do
     fill_in :user_years_experience, with: '3'
     fill_in :user_preferred_growing_style, with: 'manure composting'
     click_button "Create User"
-    expect(page).to have_content("Welcome! You have signed up successfully.")
+    expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
   it "logs out" do
     login_as user
     visit root_path
     click_link "Logout"
-    see("Signed out successfully.")
+    see('Signed out successfully.')
   end
 
   it "doesn't let the user access the admin panel" do
     visit rails_admin.dashboard_path
-    expect(page).to have_content("I told you kids to get out of here!")
+    expect(page).to have_content('I told you kids to get out of here!')
   end
 
   it "lets the user access the admin panel if they're an admin"

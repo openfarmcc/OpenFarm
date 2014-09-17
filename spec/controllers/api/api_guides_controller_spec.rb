@@ -4,7 +4,8 @@ describe Api::GuidesController, type: :controller do
 
   include ApiHelpers
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
+  let(:guide) { FactoryGirl.create(:guide, user: user) }
 
   before do
     @beans_v2 = FactoryGirl.create(:guide, name: 'lee\'s mung bean')
@@ -71,5 +72,11 @@ describe Api::GuidesController, type: :controller do
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(422) # WRONG. See TODO in mutation.
     expect(response.body).to include('You can only update guides that you own.')
+  end
+
+  it 'validates URL paramters' do
+    put :update, id: guide.id, featured_image: 'not a real URL'
+    expect(response.status).to eq(422)
+    expect(json['featured_image']).to include("Must be a fully formed URL")
   end
 end

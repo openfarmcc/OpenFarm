@@ -12,9 +12,12 @@ module Guides
       string :featured_image
     end
 
-    def execute
+    def validate
       validate_permissions
       validate_image_url
+    end
+
+    def execute
       set_valid_params
       guide
     end
@@ -48,7 +51,7 @@ module Guides
       guide.save
     end
 
-    def valid_url?
+    def valid_url?(url)
       uri = URI.parse(url)
       uri.is_a?(URI::HTTP)
     rescue URI::InvalidURIError

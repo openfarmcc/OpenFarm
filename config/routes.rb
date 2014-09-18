@@ -13,10 +13,10 @@ OpenFarm::Application.routes.draw do
 
   scope '(:locale)', locale: /en|nl/ do
     root to: 'high_voltage/pages#show', id: 'home'
-    post '(:locale)/crop_search' => 'crop_searches#search', 
-          as: :crop_search_via_post
-    get '(:locale)/crop_search' => 'crop_searches#search', 
-          as: :crop_search_via_get
+    post '(:locale)/crop_search' => 'crop_searches#search',
+         as: :crop_search_via_post
+    get '(:locale)/crop_search' => 'crop_searches#search',
+        as: :crop_search_via_get
     resources :users
     resources :crops
     resources :guides

@@ -44,6 +44,5 @@ module Guides
                 :crop_not_found,
                 "Could not find a crop with id #{crop_id}."
     end
-
   end
 end

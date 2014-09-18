@@ -4,13 +4,13 @@
   <%= f.label :display_name, I18n.t('users.display_name') %>
   <%= f.text_field :display_name %>
 
-  <% if @user.password_required? %>
+  <% #if @user.password_required? # Omniauth only %>
     <%= f.label :password, I18n.t('users.password') %>
     <%= f.password_field :password %>
 
     <%= f.label :password_confirmation, I18n.t('users.password_confirmation') %>
     <%= f.password_field :password_confirmation %>
-  <% end %>
+  <% #end %>
 
   <%= f.label :email, I18n.t('users.email_address') %>
   <%= f.email_field :email %>

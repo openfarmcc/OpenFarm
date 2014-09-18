@@ -17,6 +17,8 @@ gem 'bcrypt-ruby'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
+gem 'mutations'
+gem 'rack-attack'
 
 group :development, :test do
   gem 'rubocop'
@@ -27,6 +29,7 @@ group :development, :test do
   gem 'quiet_assets' # Turns off the Rails asset pipeline log
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'metric_fu' # Code quality tool.
 end
 
 group :test do

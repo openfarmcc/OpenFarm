@@ -4,6 +4,8 @@ describe Api::GuidesController, type: :controller do
 
   include ApiHelpers
 
+  let(:user) { FactoryGirl.create(:user) }
+
   before do
     @beans_v2 = FactoryGirl.create(:guide, name: 'lee\'s mung bean')
     FactoryGirl.create_list(:guide, 2)
@@ -54,5 +56,20 @@ describe Api::GuidesController, type: :controller do
   # This test fails, largely because I don't know how to
   # implement it.
 
-  it 'should update a guide'
+  it 'should update a guide' do
+    sign_in user
+    guide = FactoryGirl.create(:guide, user: user, overview: 'old')
+    put :update, id: guide.id, overview: 'updated'
+    expect(response.status).to eq(200)
+    guide.reload
+    expect(guide.overview).to eq('updated')
+  end
+
+  it 'should not update someone elses guide' do
+    sign_in FactoryGirl.create(:user)
+    guide = FactoryGirl.create(:guide)
+    put :update, id: guide.id, overview: 'updated'
+    expect(response.status).to eq(422) # WRONG. See TODO in mutation.
+    expect(response.body).to include('You can only update guides that you own.')
+  end
 end

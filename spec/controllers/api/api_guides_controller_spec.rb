@@ -14,6 +14,7 @@ describe Api::GuidesController, type: :controller do
 
   it 'create guides' do
     sign_in FactoryGirl.create(:user)
+    old_length = Guide.all.length
     data = { name: 'brocolini in the desert',
              overview: 'something exotic',
              crop_id: FactoryGirl.create(:crop).id.to_s }
@@ -22,6 +23,8 @@ describe Api::GuidesController, type: :controller do
 
     expect(json['guide']['name']).to eq(data[:name])
     expect(json['guide']['crop_id']).to eq(data[:crop_id])
+
+    expect(Guide.all.length).to eq(old_length + 1)
   end
 
   it 'uploads a featured_image' do

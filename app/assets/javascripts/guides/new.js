@@ -3,14 +3,19 @@ var guidesApp = angular.module('guidesApp', [
   'ng-rails-csrf'
   ]);
 
-guidesApp.config(['$httpProvider', '$locationProvider', 
-  function($httpProvider, $locationProvider) {
-    // TODO: This probably has something to do with why Google's 
-    // Location APIs aren't working
-    // $httpProvider.defaults.useXDomain = true;
-    // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    $locationProvider.html5Mode(true); 
-}]);
+// guidesApp.config(['$httpProvider', '$locationProvider', 
+//   function($httpProvider, $locationProvider) {
+//     // TODO: This probably has something to do with why Google's 
+//     // Location APIs aren't working
+//     // $httpProvider.defaults.useXDomain = true;
+//     // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//     $locationProvider.html5Mode(true); 
+// }]);
+
+getUrlVar = function(key){
+  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
+  return result && unescape(result[1]) || ""; 
+};
 
 guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',  
   function guidesApp($scope, $http, $location) {
@@ -25,8 +30,8 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     overview: ''
   };
 
-  if ($location.search().crop_id){
-    $http.get('/api/crops/' + $location.search().crop_id)
+  if (getUrlVar("crop_id")){
+    $http.get('/api/crops/' + getUrlVar("crop_id"))
       .success(function(r){
         console.log(r);
         $scope.new_guide.crop = r.crop;
@@ -89,15 +94,14 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
 
   $scope.submitForm = function () {
     var params = {
-      "guide": {
           name: $scope.new_guide.name,
           crop_id: $scope.new_guide.crop._id,
-          overview: $scope.new_guide.overview
+          overview: $scope.new_guide.overview || null
       }
-    };
     $http.post('/api/guides/', params)
-      .success(function (r) {        
-        window.location.href = "/guides/" + r.guide._id + "/edit/";
+      .success(function (r) {
+        console.log(r); 
+        // window.location.href = "/guides/" + r.guide._id + "/edit/";
       })
       .error(function (r) {
         $scope.alerts.push({
@@ -127,5 +131,9 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
       return addresses;
     });
   };
+
+  $scope.cancel = function(path){
+    window.location.href = path || '/';
+  }
 }]);
 

@@ -7,17 +7,14 @@ OpenFarm::Application.routes.draw do
   # omniauth_callbacks: "user_authentications",
   # registrations: "registrations"
   # }
-  
 
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
-
   
-  
-  scope "(:locale)", locale: /en|nl/ do
-    root :to => 'high_voltage/pages#show', id: 'home'
+  scope '(:locale)', locale: /en|nl/ do
+    root to: 'high_voltage/pages#show', id: 'home'
     post '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_post
-  get '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_get
+    get '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_get
     resources :users
     resources :crops
     resources :guides

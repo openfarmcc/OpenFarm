@@ -37,6 +37,7 @@ class GuidesController < ApplicationController
   end
 
   def edit
+    puts Guide.all
     @guide = Guide.find(params[:id])
 
     if not @guide.user.id == current_user.id

@@ -1,11 +1,11 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "User sessions" do
+describe 'User sessions' do
   include IntegrationHelper
   let(:user) { FactoryGirl.create(:user) }
-  it "logs in" do
+  it 'logs in' do
     visit root_path
-    click_link "Create an Account"
+    click_link 'Create an Account'
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'passwerd'
     fill_in :user_password_confirmation, with: 'passwerd'
@@ -15,15 +15,15 @@ describe "User sessions" do
     fill_in :user_soil_type, with: 'rocky'
     fill_in :user_years_experience, with: '3'
     fill_in :user_preferred_growing_style, with: 'manure composting'
-    click_button "Create User"
-    expect(page).to have_content("Welcome! You have signed up successfully.")
+    click_button 'Create User'
+    expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
-  it "logs out" do
+  it 'logs out' do
     login_as user
     visit root_path
-    click_link "Log out"
-    see("Signed out successfully.")
+    click_link 'Log out'
+    see('Signed out successfully.')
   end
 
 end

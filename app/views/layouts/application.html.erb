@@ -51,11 +51,11 @@
                 <div class="row collapse postfix-round">
 
                   <div class="small-4 columns">
-                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: "What do you want to grow?" %>
+                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
                     
                   </div>
                   <div class="small-2 columns end">
-                    <%= f.submit "Search!", data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                    <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
                   </div>
                 </div>
               </div>
@@ -80,21 +80,21 @@
             <ul class="right">
                 <% if current_user %>
                     <li class="has-dropdown">
-                        <a href="#">Hi, <%= current_user.display_name %></a>
+                        <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                             <li>
                                 <!-- <%= link_to "Create Crop", new_crop_path %>-->
-                                <%= link_to "Create Guide", new_guide_path %>
-                                <%= link_to "User Settings", edit_user_registration_path %>
+                                <%= link_to t('application.create_guide'), new_guide_path %>
+                                <%= link_to t('application.user_settings'), edit_user_registration_path %>
                             </li>
                         </ul>
                     </li>
                     <li class="has-form">
-                        <%= link_to("Logout", destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
+                        <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
                     </li>
                 <% else %>
                     <li class="has-form">
-                        <%= link_to("Create an Account", new_user_registration_path, class: 'button', id: 'register') %>
+                        <%= link_to("application.create_account", new_user_registration_path, class: 'button', id: 'register') %>
                     </li>
                     <li class="divider"></li>
                     <li class="has-form">

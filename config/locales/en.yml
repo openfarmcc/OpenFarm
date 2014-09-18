@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+    application:
+        greeting: "Hi, %{user}"
+        create_guide: "Create guide"
+        user_settings: "User settings"
+        log_out: "Log out"
+        create_account: "Create an Account"
     users:
         email_address: "Email Address"
         display_name: "Display Name"
@@ -40,9 +46,21 @@ en:
         row_spacing: "Row Spacing"
         height: "Height"
     guides:
+        index:
+            guides: "Guides"
+        edit:
+            edit_title: "Edit Your Guide"
+            successful_creation: "You've successfully created a guide."
+            more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
         crop: "Crop"
         user: "User"
         stages: "Stages"
         requirements: "Requirements"
         name: "Name"
         overview: "Overview"
+    pages:
+        home:
+            placeholder: "What do you want to grow?"
+            search: "Search!"
+            hero_header: "Learn to grow anything."
+            hero_sub_header: "A free and open database for farming and gardening knowledge."

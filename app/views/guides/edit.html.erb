@@ -10,7 +10,7 @@
       method="post"
       >
       <div class="column large-10">
-        <h1>Edit Your Guide</h1>
+        <h1><%= t '.edit_title' %></h1>
       </div>
       <div class="column large-2">
         <input type="button"
@@ -29,10 +29,10 @@
       </div>
       <div class="columns large-9">
         <p>
-          You've successfully created a guide.
+          <%= t('.successful_creation') %>
         </p>
         <p>
-          Give other OpenFarm users a bit more details about how to grow your plant.
+          <%= t('.more_details') %>
         </p>
         <label for="guide_crop_overview">
           Growing Process Overview

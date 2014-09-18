@@ -1,4 +1,10 @@
 nl:
+    application:
+        greeting: "Hallo %{user}"
+        create_guide: "Maak een gids aan"
+        user_settings: "Instellingen"
+        log_out: "Afmelden"
+        create_account: "Account aanmaken"
     users:
         email_address: "Email adres"
         display_name: "Gebruikers naam"
@@ -19,12 +25,24 @@ nl:
         row_spacing: "Ruimte tussen rijen"
         height: "Hoogte"
     guides:
+        index:
+            guides: "Gidsen"
+        edit:
+            edit_title: "Je gids bewerken"
+            successful_creation: "Je hebt een gids gemaakt."
+            more_details: "Geef andere OpenFarm gebruikers een beetje meer details over hoe je je plant laad groeien."
         crop: "Gewas"
         user: "Gebruiker"
         stages: "Stadia"
         requirements: "Behoeftes"
         name: "Naam"
         overview: "Overzicht"
+    pages:
+        home:
+            placeholder: "Wat wil je laten groeien?"
+            search: "Zoeken!"
+            hero_header: "Leer hoe je alles laat groeien."
+            hero_sub_header: "Een gratis en open databank over tuinieren en boeren."
     date:
         abbr_day_names:
         - zo

@@ -100,8 +100,8 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
       }
     $http.post('/api/guides/', params)
       .success(function (r) {
-        console.log(r); 
-        // window.location.href = "/guides/" + r.guide._id + "/edit/";
+        // console.log(r); 
+        window.location.href = "/guides/" + r.guide._id + "/edit/";
       })
       .error(function (r) {
         $scope.alerts.push({

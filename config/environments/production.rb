@@ -73,12 +73,12 @@ OpenFarm::Application.configure do
                                           port:      587,
                                           user_name: ENV['MANDRILL_USERNAME'],
                                           password:  ENV['MANDRILL_APIKEY'] }
-  
+
   config.middleware.use ExceptionNotification::Rack,
     email: {
       email_prefix: '[OpenFarm Errors] ',
       sender_address: %{"notifier" <notifier@openfarm.cc>},
-      exception_recipients: ["rick.carlino@gmail.com", "svansintjan@gmail.com"]
+      exception_recipients: ENV['ALERTS'].split('|')
     },
     ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
                         'AbstractController::ActionNotFound',

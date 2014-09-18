@@ -1,6 +1,5 @@
 module Guides
   class CreateGuide < Mutations::Command
-
     attr_writer :guide
 
     include Guides::GuidesConcern

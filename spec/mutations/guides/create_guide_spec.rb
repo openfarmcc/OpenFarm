@@ -12,9 +12,9 @@ describe Guides::CreateGuide do
 
   it 'requires fields' do
     errors = cg.run({}).errors.message_list
-    expect(errors).to include("Name is required")
-    expect(errors).to include("Crop is required")
-    expect(errors).to include("User is required")
+    expect(errors).to include('Name is required')
+    expect(errors).to include('Crop is required')
+    expect(errors).to include('User is required')
   end
 
   it 'grabs a blank guide from #guide' do
@@ -31,7 +31,7 @@ describe Guides::CreateGuide do
     params[:crop_id] = 'wrong'
     results = cg.run(params)
     message = results.errors.message_list.first
-    expect(message).to include("Could not find a crop with id wrong.")
+    expect(message).to include('Could not find a crop with id wrong.')
   end
 
   it 'creates valid guides' do

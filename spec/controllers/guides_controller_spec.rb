@@ -13,13 +13,6 @@ describe GuidesController do
   end
 
   it 'directs to edit page after successful guide creation'
-  
-  it 'redirects back to form after unsuccessful crop creation' do
-    guide = FactoryGirl.attributes_for(:guide)
-    guide[:name] = ''
-    post 'create', guide: guide
-    expect(response).to render_template(:new)
-  end
 
   it 'should show the edit page if the user owns the guide' do
     guide = FactoryGirl.create(:guide)

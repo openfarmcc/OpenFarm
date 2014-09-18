@@ -11,6 +11,7 @@ OpenFarm::Application.routes.draw do
 
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
+
   post '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_post
   get '(:locale)/crop_search' => 'crop_searches#search', as: :crop_search_via_get
   
@@ -73,7 +74,7 @@ OpenFarm::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

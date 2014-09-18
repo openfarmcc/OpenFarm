@@ -12,13 +12,13 @@ OpenFarm::Application.routes.draw do
   # shareable link.
   post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
   get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
-  
+
   resources :users
   resources :crops
-  resources :guides
+  resources :guides, except: [:create, :destroy, :update]
   resources :stages
   resources :requirements
-  
+
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]
@@ -68,7 +68,7 @@ OpenFarm::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -40,4 +40,3 @@ describe Guides::CreateGuide do
     expect(result.valid?).to be(true)
   end
 end
-

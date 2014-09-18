@@ -1,6 +1,5 @@
 module Guides
   class UpdateGuide < Mutations::Command
-
     include Guides::GuidesConcern
 
     required do

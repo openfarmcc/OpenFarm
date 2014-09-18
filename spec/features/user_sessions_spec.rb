@@ -22,7 +22,7 @@ describe "User sessions" do
   it "logs out" do
     login_as user
     visit root_path
-    click_link "Logout"
+    click_link "Log out"
     see("Signed out successfully.")
   end
 

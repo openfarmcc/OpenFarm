@@ -25,6 +25,7 @@ en:
         create_guide: "Create guide"
         user_settings: "User settings"
         log_out: "Log out"
+        log_in: "Log in"
         create_account: "Create an Account"
     users:
         email_address: "Email Address"

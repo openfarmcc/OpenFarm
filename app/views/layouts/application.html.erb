@@ -43,7 +43,8 @@
         <section class="top-bar-section">
 
             <!-- Search box Section -->
-            <% unless current_page?(root_path) %>
+            <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %> 
+            <% unless current_page?(root_path) or current_page?("/") %>
             <%= form_for :cropsearch, url:
               crop_search_via_post_path, method: 'post' do |f| %>
               <div class="left">
@@ -94,11 +95,11 @@
                     </li>
                 <% else %>
                     <li class="has-form">
-                        <%= link_to("application.create_account", new_user_registration_path, class: 'button', id: 'register') %>
+                        <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>
                     </li>
                     <li class="divider"></li>
                     <li class="has-form">
-                        <%= link_to("Sign In", new_user_session_path, class: 'button', id: 'login') %>
+                        <%= link_to( t("application.log_in"), new_user_session_path, class: 'button', id: 'login') %>
                     </li>
                 <% end %>
             </ul>

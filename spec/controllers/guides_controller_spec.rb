@@ -27,7 +27,7 @@ describe GuidesController do
     user = FactoryGirl.create(:user)
     sign_in user
     get 'edit', id: guide.id
-    response.should redirect_to "/guides/#{guide.id}"
+    response.should redirect_to "/en/guides/#{guide.id}"
   end
 
   it 'should show the index page' do

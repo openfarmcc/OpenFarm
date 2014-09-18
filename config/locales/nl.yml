@@ -4,6 +4,7 @@ nl:
         create_guide: "Maak een gids aan"
         user_settings: "Instellingen"
         log_out: "Afmelden"
+        log_in: "Aanmelden"
         create_account: "Account aanmaken"
     users:
         email_address: "Email adres"

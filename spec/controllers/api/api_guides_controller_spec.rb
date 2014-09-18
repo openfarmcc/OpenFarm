@@ -12,13 +12,12 @@ describe Api::GuidesController, type: :controller do
     FactoryGirl.create_list(:guide, 2)
   end
 
-  it 'should create guides' do
+  it 'create guides' do
     sign_in FactoryGirl.create(:user)
     data = { name: 'brocolini in the desert',
              overview: 'something exotic',
              crop_id: FactoryGirl.create(:crop).id.to_s }
-    post 'create', guide: data, format: :json
-
+    post 'create', data, format: :json
     expect(response.status).to eq(201)
 
     expect(json['guide']['name']).to eq(data[:name])
@@ -32,7 +31,7 @@ describe Api::GuidesController, type: :controller do
                crop_id: FactoryGirl.create(:crop).id.to_s }
     sign_in FactoryGirl.create(:user)
     VCR.use_cassette('controllers/api/api_guides_controller_spec') do
-      post 'create', guide: params
+      post 'create', params
     end
     expect(response.status).to eq(201)
     img_url = json['guide']['featured_image']

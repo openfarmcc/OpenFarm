@@ -69,10 +69,10 @@ OpenFarm::Application.configure do
   # Set this to true and configure the email server for immediate delivery to
   # raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.smtp_settings = {  address:   'smtp.mandrillapp.com',
-                                          port:      587,
-                                          user_name: ENV['MANDRILL_USERNAME'],
-                                          password:  ENV['MANDRILL_APIKEY'] }
+  config.action_mailer.smtp_settings = { address:   'smtp.mandrillapp.com',
+                                         port:      587,
+                                         user_name: ENV['MANDRILL_USERNAME'],
+                                         password:  ENV['MANDRILL_APIKEY'] }
 
   config.middleware.use ExceptionNotification::Rack,
     email: {

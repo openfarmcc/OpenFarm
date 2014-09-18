@@ -11,5 +11,4 @@ class GuideSerializer < ApplicationSerializer
       img.url
     end
   end
-  
 end

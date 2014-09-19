@@ -362,7 +362,7 @@ $button-margin-bottom: 0;//rem-calc(20);
 // $button-border-color: scale-color($bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
+$button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.

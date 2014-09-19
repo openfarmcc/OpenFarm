@@ -1,29 +1,36 @@
 OpenFarm::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users # ,
   # controllers: {
   # omniauth_callbacks: "user_authentications",
   # registrations: "registrations"
   # }
-  root :to => 'high_voltage/pages#show', id: 'home'
 
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
-  post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
-  get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
 
-  resources :users
-  resources :crops
-  resources :guides, except: [:create, :destroy, :update]
-  resources :stages
-  resources :requirements
+  scope '(:locale)', locale: /en|nl/ do
+    root to: 'high_voltage/pages#show', id: 'home'
+    post '(:locale)/crop_search' => 'crop_searches#search',
+         as: :crop_search_via_post
+    get '(:locale)/crop_search' => 'crop_searches#search',
+        as: :crop_search_via_get
+    resources :users
+    resources :crops
+    resources :guides
+    resources :stages
+    resources :requirements
+  end
 
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]
     resources :guides, only: [:create, :show, :update]
   end
+
+  get '/:locale' => 'high_voltage/pages#show', id: 'home'
   # match ':controller(/:action)', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest

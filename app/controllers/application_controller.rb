@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
   # Allow certain fields for devise - needed in Rails 4.0+
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  before_action :set_locale
+
+  def default_url_options(options = {})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    logger.debug params
+    # I18n.locale params['locale']
+    { locale: I18n.locale }
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
   protected
 
   # This method allows devise to pass non standard attributes through and
@@ -25,5 +38,4 @@ class ApplicationController < ActionController::Base
       redirect_to '/' and return
     end
   end
-
 end

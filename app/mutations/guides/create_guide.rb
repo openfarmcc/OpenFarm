@@ -35,6 +35,7 @@ module Guides
       guide.user           = user
       guide.overview       = overview if overview
       guide.featured_image = featured_image if featured_image
+      guide.save
     end
 
     def validate_crop

@@ -3,8 +3,8 @@
     <div class="hero row">
         <div class="small-10 small-centered columns">
             <img src="<%= image_path 'openfarm_logo.png' %>" width="420px">
-            <h1>Learn to grow anything.</h1>
-            <h2>A free and open database for farming and gardening knowledge.</h2>
+            <h1><%=t '.hero_header' %></h1>
+            <h2><%=t '.hero_sub_header' %></h2>
         </div>
         <div class="small-10 small-centered columns">
           <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
@@ -12,10 +12,10 @@
                     <div class="small-12 small-centered columns">
                         <div class="row collapse">
                             <div class="small-8 large-9 columns">
-                              <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: "What do you want to grow?" %>
+                              <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('.placeholder') %>
                             </div>
                             <div class="small-4 large-3 columns">
-                              <%= f.submit "Search!", data: { disable_with: "Searching..." }, class: 'button postfix' %>
+                              <%= f.submit t('.search'), data: { disable_with: "Searching..." }, class: 'button postfix' %>
                             </div>
                         </div>
                     </div>

@@ -17,4 +17,8 @@ class Guide
   validates_attachment :featured_image,
                        content_type: { content_type:
                          ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+  def owned_by?(current_user)
+    !!(current_user && self.user == current_user)
+  end
 end

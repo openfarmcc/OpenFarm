@@ -9,7 +9,8 @@
 
 */
 .accordion .overview-wrapper{
-  @include accordion-header-color($of-orange);
+  /*@include accordion-header-color($of-orange);*/
+  @include accordion-header-color($of-green);
 
   .content {
       background-color: #FCE5CD;
@@ -55,7 +56,8 @@
 
 */
 .accordion .prerequisites-wrapper {
-  @include accordion-header-color($of-blue);
+  /*@include accordion-header-color($of-blue);*/
+  @include accordion-header-color($of-green);
 
    .content {
       background-color: #C9DAF8;
@@ -159,8 +161,8 @@
 .accordion .timeline-wrapper{
 
   color: white;
-
-  @include accordion-header-color($of-purple);
+  @include accordion-header-color($of-green);
+  /*@include accordion-header-color($of-purple);*/
 
   &> .content, &> .content.active{
     padding: 0 0.9375rem;
@@ -240,7 +242,7 @@
 
 */
 .accordion .usage-wrapper{
-  @include accordion-header-color($of-red); 
+  /*@include accordion-header-color($of-red); */
   color: #111;
   .content, .content.active{
     padding: 1.935rem;
@@ -256,7 +258,7 @@
 
 */
 .accordion .forum-wrapper{
-  @include accordion-header-color($of-yellow);
+  /*@include accordion-header-color($of-yellow);*/
 
   color: #111;
   .content, .content.active{

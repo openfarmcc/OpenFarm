@@ -1,0 +1,17 @@
+.edit-crop-app{
+  margin-top: 1rem;
+}
+
+h1{
+  cursor: pointer;
+}
+
+h1.has-tip, h1.has-tip:hover{
+  border-bottom: none;
+  color: inherit;
+}
+
+input[type=text].hidden-edit-field{
+  font-size: 2rem;
+  height: 3.5rem;
+}

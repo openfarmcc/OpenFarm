@@ -1,7 +1,11 @@
 <div class="row" ng-app='s3upload' ng-controller="s3ctrl">
   <div class="columns large-3">
-    <h1>Upload Test</h1>
-    <p>REMEMBER: The `bucket` attribute does an eval() on its value. So enter a string inside of a string for literal values.</p>
+    <h>Upload Test</h1>
+    <h3>Notes:</h3>
+    <ul>
+      <li> The `bucket` attribute does an eval() on its value. So enter a string inside of a string for literal values.</li>
+      <li>You can find the angular code for this in delete_me_later.js.erb</li>
+    </ul>
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"
@@ -9,4 +13,27 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="row" ng-app='s3upload' ng-controller="s3ctrl">
+<div class="columns large-3"></div>
+  <form>
+  <fieldset>
+    <legend>Bare Minimum Guide Creation Example (with images)</legend>
+    <label>Crop ID</label>
+    <input ng-model='guide.crop_id' type="text" />
+    <label>Name</label>
+    <input ng-model='crop.name' type="text" />
+    <label>featured_image URL</label>
+    <div s3-upload
+    bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+    ng-model="s3upload"
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'images/'}">
+    </div>
+    <input type="text" placeholder="Wait for this one to finish uploading." />
+    <button>Create a Guide</button>
+  </fieldset>
+</form>
+</div>
+
+ -->
 

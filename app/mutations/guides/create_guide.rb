@@ -30,6 +30,7 @@ module Guides
     end
 
     def set_params
+      # TODO: Figure out why Guide.create(@inputs) is broke
       guide.crop           = @crop
       guide.name           = name
       guide.user           = user

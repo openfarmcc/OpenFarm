@@ -4,7 +4,7 @@
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"
-    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'images/'}">
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"
-    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp1/'}">
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
     </div>
     <input ng-model='guide.featured_image' type="text" placeholder="Wait for this one to finish uploading." />
     <button ng-click='d()'>Create a Guide</button>

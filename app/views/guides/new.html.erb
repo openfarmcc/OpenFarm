@@ -36,7 +36,7 @@
             <span class="crop-image">
               <img ng-cloak
                    ng-class="{ 'no-image' : !new_guide.crop.image }"
-                   src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
+                   ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
                    alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
             </span>
             <p ng-if="new_guide.crop">

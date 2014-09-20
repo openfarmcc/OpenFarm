@@ -31,7 +31,7 @@
         <span class="crop-image">
           <img ng-cloak
                ng-class="{ 'no-image' : !new_guide.crop.image }"
-               src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
+               ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
                alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
         </span>
       </div>
@@ -62,20 +62,28 @@
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
-            Prerequisites
+            Requirements
           </h2>
             
         </accordion-heading>
         <p>
-          Prerequisites are the small details that make sure this plant grows successfully.
+          Requirements are the small details that make sure this plant grows successfully.
         </p>
         <div class="box">
           <p class="text-center columns centered small-6">
-            Add some prerequisites to your guide, so that other people can quickly see what they need to be successful.
+            Add some requirements to your guide, so that other people can quickly see what they need to be successful.
           </p>
-          <p class="text-center columns centered small-6">
+          <!-- <p class="text-center columns centered small-6">
             Here's some suggestions based on the crop and what other users have used in the past. Just click on the ones you think fit.
-          </p>
+          </p> -->
+          <div class="row">
+            <div class="small-6 columns">
+              
+            </div>
+            <div class="small-6 columns">
+            hi
+            </div>
+          </div>
         </div>
       </accordion-group>
 

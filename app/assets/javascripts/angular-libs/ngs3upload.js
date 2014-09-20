@@ -95,7 +95,7 @@ angular.module('ngS3upload.services', []).
         scope.$apply(function () {
           self.uploads--;
           scope.uploading = false;
-          if (xhr.status === 204) { // successful upload
+          if ((xhr.status === 201) || (xhr.status === 204)) { // successful upload
             scope.success = true;
             deferred.resolve(xhr);
             scope.$emit('s3upload:success', xhr);
@@ -210,15 +210,14 @@ angular.module('ngS3upload.directives', []).
                       s3Options.signature,
                       selectedFile
                     ).then(function (resp) {
-                      // TODO: Fix this. Why is it in the failure callback?
-                      window.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
+                      scope.$parent.guide.featured_image = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       ngModel.$setViewValue(s3Uri + key);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
                       // TODO: Fix this. Why is it in the failure callback?
-                      window.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
+                      scope.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', false);

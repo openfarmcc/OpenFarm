@@ -1,23 +1,23 @@
 var guidesApp = angular.module('guidesApp', [
-  'mm.foundation', 
+  'mm.foundation',
   'ng-rails-csrf'
   ]);
 
-// guidesApp.config(['$httpProvider', '$locationProvider', 
+// guidesApp.config(['$httpProvider', '$locationProvider',
 //   function($httpProvider, $locationProvider) {
-//     // TODO: This probably has something to do with why Google's 
+//     // TODO: This probably has something to do with why Google's
 //     // Location APIs aren't working
 //     // $httpProvider.defaults.useXDomain = true;
 //     // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//     $locationProvider.html5Mode(true); 
+//     $locationProvider.html5Mode(true);
 // }]);
 
 getUrlVar = function(key){
-  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search); 
-  return result && unescape(result[1]) || ""; 
+  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+  return result && unescape(result[1]) || "";
 };
 
-guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',  
+guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   function guidesApp($scope, $http, $location) {
   $scope.alerts = [];
   $scope.crops = [];
@@ -100,7 +100,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
       }
     $http.post('/api/guides/', params)
       .success(function (r) {
-        // console.log(r); 
+        // console.log(r);
         window.location.href = "/guides/" + r.guide._id + "/edit/";
       })
       .error(function (r) {

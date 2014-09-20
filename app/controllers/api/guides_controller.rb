@@ -1,6 +1,7 @@
 module Api
   class GuidesController < Api::Controller
     skip_before_action :authenticate_user!, only: [:index, :show]
+
     def create
       @outcome = Guides::CreateGuide.run(params, user: current_user)
       respond_with_mutation(:created)

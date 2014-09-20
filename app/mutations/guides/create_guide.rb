@@ -30,20 +30,21 @@ module Guides
     end
 
     def set_params
+      # TODO: Figure out why Guide.create(@inputs) is broke
       guide.crop           = @crop
       guide.name           = name
       guide.user           = user
       guide.overview       = overview if overview
-      guide.featured_image = featured_image if featured_image
+      # TODO: Defer to background via ActiveJob
+      guide.featured_image = URI(featured_image) if featured_image
       guide.save
     end
 
     def validate_crop
       @crop = Crop.find(crop_id)
     rescue Mongoid::Errors::DocumentNotFound
-      add_error :crop_id,
-                :crop_not_found,
-                "Could not find a crop with id #{crop_id}."
+      msg = 'Could not find a crop with id #{crop_id}.'
+      add_error :crop_id, :crop_not_found, msg
     end
   end
 end

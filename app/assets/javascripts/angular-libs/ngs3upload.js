@@ -210,12 +210,15 @@ angular.module('ngS3upload.directives', []).
                       s3Options.signature,
                       selectedFile
                     ).then(function (resp) {
-                      var url = i.responseXML.getElementsByTagName("Location")[0].innerHTML
+                      // TODO: Fix this. Why is it in the failure callback?
+                      window.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       ngModel.$setViewValue(s3Uri + key);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
+                      // TODO: Fix this. Why is it in the failure callback?
+                      window.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', false);

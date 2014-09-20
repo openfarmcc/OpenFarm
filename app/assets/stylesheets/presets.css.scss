@@ -22,6 +22,54 @@ $info-color: #eecb91;
   }
 }
 
+/*
+
+  Generic tweaks
+  First, because they're what get over-written
+
+*/
+
+.centered{
+  margin-right: auto;
+  margin-left: auto;
+  float: none !important;
+}
+
+.box{
+  border-radius: 2px;
+  background: rgba(198,159,96,0.04);
+  -moz-box-shadow:    0px 0px 3px 0px rgba(0,0,0,0.25);
+  box-shadow:         0px 0px 3px 0px rgba(0,0,0,0.25);
+  h1{
+    font-size: 2rem;
+  }
+}
+
+// Hack: this doesn't seem to be editable in 
+// Foundation && Overrides.
+input, textarea{
+  border-radius: 3px;
+}
+
+.button{
+  border-radius: 3px;
+}
+
+.button.primary{
+  background-image: -o-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: -moz-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: -ms-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
+  background-image: linear-gradient(-179deg, #C1E081 0%, #A2BF6B 100%);
+  -moz-box-shadow:    0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
+  box-shadow:         0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
+  border-radius: 3px;
+  font-family: SourceSansPro-Bold;
+}
+
+.ng-cloak {
+    opacity: 0;
+}
+
 
 /* Section accordion styling */
 .accordion dd.accordion-navigation > a, 
@@ -62,55 +110,17 @@ $info-color: #eecb91;
   line-height: 2.125;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .top-bar .search{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+
 }
 
-/*
 
-  Generic tweaks
-
-*/
-
-.centered{
-  margin-right: auto;
-  margin-left: auto;
-  float: none !important;
-}
-
-.box{
-  border-radius: 2px;
-  background: rgba(198,159,96,0.04);
-  -moz-box-shadow:    0px 0px 3px 0px rgba(0,0,0,0.25);
-  box-shadow:         0px 0px 3px 0px rgba(0,0,0,0.25);
-  h1{
-    font-size: 2rem;
-  }
-}
-
-// Hack: this doesn't seem to be editable in 
-// Foundation && Overrides.
-input, textarea{
-  border-radius: 3px;
-}
-
-.button.primary{
-  background-image: -o-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: -moz-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: -ms-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: linear-gradient(-179deg, #C1E081 0%, #A2BF6B 100%);
-  -moz-box-shadow:    0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
-  box-shadow:         0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
-  border-radius: 2px;
-  font-family: SourceSansPro-Bold;
-}
-
-.ng-cloak {
-    opacity: 0;
-}
 
 /*
 

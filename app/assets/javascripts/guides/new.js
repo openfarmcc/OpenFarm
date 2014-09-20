@@ -1,3 +1,5 @@
+
+
 var guidesApp = angular.module('guidesApp', [
   'mm.foundation', 
   'ng-rails-csrf'
@@ -23,6 +25,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   $scope.crops = [];
   $scope.step = 1;
   $scope.crop_not_found = false;
+  $scope.addresses = [];
 
   $scope.new_guide = {
     name: '',
@@ -79,6 +82,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   $scope.cropSelected = function ($item, $model, $label) {
     $scope.new_guide.crop = $item;
     $scope.crop_not_found = false;
+    $scope.new_guide.crop.description = '';
   };
 
   $scope.createCrop = function(){
@@ -116,24 +120,33 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     $scope.alerts.splice(index, 1);
   };
 
+  var geocoder = new google.maps.Geocoder();
+
   // Any function returning a promise object can be used to load values asynchronously
   $scope.getLocation = function(val) {
-    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: val,
-        sensor: false
-      }
-    }).then(function(res){
-      var addresses = [];
-      angular.forEach(res.data.results, function(item){
-        addresses.push(item.formatted_address);
+    console.log('val', val);
+    if (geocoder) {
+      geocoder.geocode({ 'address': val }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              var addresses = [];
+              angular.forEach(results, function(item){
+                addresses.push(item.formatted_address);
+              })
+              console.log('addresses');
+              $scope.addresses = addresses;
+           }
+           else {
+              console.log("Geocoding failed: " + status);
+           }
+        
       });
-      return addresses;
-    });
+    }
   };
 
   $scope.cancel = function(path){
     window.location.href = path || '/';
   }
+
+  
 }]);
 

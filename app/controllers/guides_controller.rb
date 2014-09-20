@@ -59,6 +59,5 @@ class GuidesController < ApplicationController
     @new_requirement = Requirement.new
 
     @new_stage = Stage.new
-
   end
 end

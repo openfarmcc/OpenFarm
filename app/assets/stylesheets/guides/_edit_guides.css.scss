@@ -1,5 +1,8 @@
-.edit-crop-app{
-  margin-top: 1rem;
+@import 'presets';
+@import 'foundation/functions';
+
+.edit-guide-app{
+  margin: 2rem 0 4rem;
 }
 
 h1{
@@ -14,4 +17,79 @@ h1.has-tip, h1.has-tip:hover{
 input[type=text].hidden-edit-field{
   font-size: 2rem;
   height: 3.5rem;
+}
+
+p.section-text{
+  margin-top: 1rem;
+}
+
+
+.edit-guide-app .box{
+  padding: 1.5rem 0;
+  margin-top: 0;
+}
+
+.requirements{
+  .actual-requirements{
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+}
+
+.requirement{
+  border-radius: 3px;
+  background: #EFF1F4;
+  border: 1px solid #E7E8EB;
+  width: 90%;
+  padding: 0 1rem;
+  margin: 0 1rem;
+  display: inline-block;
+  opacity: .5;
+  /*transition: .2s;*/
+
+  &.active{
+    background-color: scale-color($of-green, $lightness: 35%);
+    /*background-color: $of-green;*/
+    opacity: 1;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  .title{
+    margin: 0 ;
+  }
+
+  &:hover{
+    opacity: .7;
+  }
+
+  input[type=range]{
+    width: 66%;
+    margin: 0 1rem 0 0;
+  }
+
+  input[type=checkbox]{
+    margin-bottom: 0;
+  }
+
+  .columns{
+    padding: .5rem inherit;
+  }
+
+  .choices select{
+    display: inline-block;
+    /*width: 35%;*/
+    background-color: inherit;
+    cursor: pointer;
+    /*margin-top: .1rem;*/
+    margin-bottom: 0;
+  }
+}
+
+.row.requirements-results{
+  text-align: center;
+  margin-top: 1rem;
 }

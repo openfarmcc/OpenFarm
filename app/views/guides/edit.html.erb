@@ -1,7 +1,7 @@
 <div ng-app="editGuidesApp" 
      ng-controller="editGuideCtrl"
      ng-cloak
-     class="edit-crop-app">
+     class="edit-guide-app">
     
     <div class="row">
     <form accept-charset="UTF-8"
@@ -13,7 +13,7 @@
         <h1 ng-click="editing_name = ! editing_name"
             ng-show="!editing_name"
             title="Click to edit"
-            >{{ guide.name }} <span class="fa fa-edit"></span></h1>
+            ><span class="fa fa-edit"></span> {{ guide.name }} </h1>
         <input ng-show="editing_name" 
                ng-model="guide.name"
                type="text"
@@ -24,7 +24,7 @@
         <input type="button"
              class="button small"
              ng-click="saveGuide()"
-             value="Save Guide">
+             value="Save Guide"/>
       </div>
       
       <div class="columns large-3">
@@ -37,7 +37,6 @@
       </div>
       <div class="columns large-9">
         <p>
-          <%= t('.successful_creation') %>
         </p>
         <p>
           <%= t('.more_details') %>
@@ -58,7 +57,7 @@
     <div class="large-10 small-10 columns centered">
 
     <accordion close-others="false">
-      <accordion-group is-open="true" class="accordion-navigation">
+      <accordion-group is-open="true" class="accordion-navigation requirements">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
@@ -66,28 +65,76 @@
           </h2>
             
         </accordion-heading>
-        <p>
+        <p class="section-text">
           Requirements are the small details that make sure this plant grows successfully.
+          If you don't know everything, or it's not applicable, that's okay. 
         </p>
         <div class="box">
-          <p class="text-center columns centered small-6">
-            Add some requirements to your guide, so that other people can quickly see what they need to be successful.
-          </p>
           <!-- <p class="text-center columns centered small-6">
             Here's some suggestions based on the crop and what other users have used in the past. Just click on the ones you think fit.
           </p> -->
           <div class="row">
-            <div class="small-6 columns">
-              
+            <div class="small-12 columns actual-requirements">
+              <div class="requirement"
+                ng-class="{ active : r.active }"
+                ng-repeat="r in guide.requirements.slice(0, guide.requirements.length)">
+                  <div class="small-1 columns"
+                      >
+                      <input type="checkbox" ng-model="r.active">
+                  </div>
+
+                  <div class="small-4 columns title"
+                      >{{ r.name }}:</div>
+                  <div class="small-6 columns choices">
+                    <select 
+                      ng-if="r.type == 'select'"
+                      ng-model="r.value" 
+                      ng-init=""
+                      ng-options="o for o in r.options"
+                      ng-change="r.active = true"
+                      >
+                      <option>Don't know</option>
+                      <option>Not Applicable</option>
+                    </select>
+
+                    <span ng-if="r.type == 'range'">
+                    <input 
+                      type="range" 
+                      min="{{ r.options[0] }}"
+                      max="{{ r.options[1] }}"
+                      step="{{ r.options[2] }}"
+                      ng-change="r.active = true"
+                      ng-model="r.value"
+                           />{{ r.value }}</span>
+                  </div>
+              </div>
             </div>
-            <div class="small-6 columns">
-            hi
+          </div>
+          <div class="row requirements-results">
+            <div class="small-6 columns centered">
+              <span ng-show="filtered_requirements.length > 0">
+                You've selected: <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
+                </span>
+              </span>
+              <span ng-show="filtered_requirements.length == 0">You haven't selected anything yet</span>
             </div>
           </div>
         </div>
+        <div class="row">
+
+          <p class="section-text columns large-8">
+            If you're happy with your guide so far, save it!
+          </p>
+          <span class="columns large-2">
+            <input type="button"
+                 class="button small"
+                 ng-click="saveGuide()"
+                 value="Save Guide"/>
+          </span>
+        </div>
       </accordion-group>
 
-      <accordion-group is-open="true" class="accordion-navigation timeline-wrapper">
+      <!-- <accordion-group is-open="true" class="accordion-navigation timeline-wrapper">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
@@ -111,7 +158,7 @@
         <p>
           A detailed, step by step guide on when to do what. 
         </p>
-      </accordion-group>
+      </accordion-group> -->
     </accordion>
     </div>
     </div>

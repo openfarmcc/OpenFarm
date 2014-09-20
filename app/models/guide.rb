@@ -9,6 +9,7 @@ class Guide
   has_many :requirements
 
   field :name
+  field :location
   field :overview
   validates_presence_of :user, :crop, :name
 

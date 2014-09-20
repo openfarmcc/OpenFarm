@@ -43,7 +43,7 @@ module Guides
     def validate_crop
       @crop = Crop.find(crop_id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = 'Could not find a crop with id #{crop_id}.'
+      msg = "Could not find a crop with id #{crop_id}."
       add_error :crop_id, :crop_not_found, msg
     end
   end

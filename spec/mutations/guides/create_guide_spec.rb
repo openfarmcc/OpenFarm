@@ -25,7 +25,7 @@ describe Guides::CreateGuide do
     results = cg.run(params.merge(featured_image: 'not/absoloute.png'))
     message = results.errors.message_list.first
     expect(message).to include('Must be a fully formed URL')
-    optns = {featured_image: 'http://placehold.it/1x1.png'}
+    optns = { featured_image: 'http://placehold.it/1x1.png' }
     VCR.use_cassette('mutations/guides/create_guide.rb') do
       results = cg.run(params.merge(optns))
     end

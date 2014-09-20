@@ -35,7 +35,7 @@ module Guides
       guide.name           = name
       guide.user           = user
       guide.overview       = overview if overview
-      #TODO: Defer to background via ActiveJob
+      # TODO: Defer to background via ActiveJob
       guide.featured_image = URI(featured_image) if featured_image
       guide.save
     end
@@ -43,7 +43,7 @@ module Guides
     def validate_crop
       @crop = Crop.find(crop_id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a crop with id #{crop_id}."
+      msg = 'Could not find a crop with id #{crop_id}.'
       add_error :crop_id, :crop_not_found, msg
     end
   end

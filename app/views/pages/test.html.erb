@@ -4,7 +4,7 @@
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"
-    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'images/'}">
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
     </div>
   </div>
 </div>
@@ -22,9 +22,9 @@
     <div s3-upload
     bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
     ng-model="s3upload"
-    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'images/'}">
+    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
     </div>
-    <input ng-model='uploadUrl' type="text" placeholder="Wait for this one to finish uploading." />
+    <input ng-model='guide.featured_image' type="text" placeholder="Wait for this one to finish uploading." />
     <button ng-click='d()'>Create a Guide</button>
     <h3>Notes:</h3>
     <ul>
@@ -32,6 +32,9 @@
       <li>You can find the angular code for this in delete_me_later.js.erb</li>
     </ul>
   </fieldset>
+  <tr ng-repeat="(key, value) in result">
+    <td> {{key}} </td> <td> {{ value }} </td>
+  </tr>
 </form>
 </div>
 

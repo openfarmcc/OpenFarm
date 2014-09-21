@@ -16,6 +16,33 @@
   * POSTing URLs instead of files means we can defer the process of downloading/cropping/resizing images to a background worker which creates a better experience for API and Website users.
   * We can pay a third party (currently S3) to manage the file storage infastructure, which frees up developers to work on more pertinent tasks and features.
 
+## How Do Uploads Work Client Side?
+
+### The Easy Way
+
+ 1. Host the image somewhere else (Imgur, Photobucket, Flickr, whatever...)
+
+ 2. Post the fully formed image URL to `api/guides` within the `{featured_image: "http://..."}` field.
+
+### The Less Easy Way
+
+ 1. Make an authenticated GET request to `/api/aws`. The response contains the following fields:
+   * A security signature ("signature" field)
+   * A security policy ("policy" field)
+   * An AWS public access key ("key" field)
+
+ 2. Do an HTTP Form post with the following fields:
+   * `success_action_status` set to `201`. If not set, AWS will not give you an XML response, which is needed to know the fully formed URL of your temp file.
+   * `key` set to `temp/SOME_UNIQUE_IDENTIFIER.jpg`. This is the filename of your tempfile. Client side users are only allowed to put files into the `temp/` folder.
+   * `acl` key set to `public-read`.
+   * `Content-Type` usually set to something such as `image/jpeg`
+   * `AWSAccessKeyId` set to the `key` given in step 1.
+   * `policy` set using the `policy` key in step 1.
+   * `signature` set using security signature from step 1.
+   * `file` the binary image you are uploading.
+
+ 3. Parse the URL out of the XML response from step 2. You have 24 hours to POST this URL as the `featured_image` field of a guide.
+
 ## Client Side Setup
 
 1. Create a new S3 bucket.

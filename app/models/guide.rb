@@ -17,5 +17,9 @@ class Guide
   validates_attachment_size :featured_image, in: 1.byte..2.megabytes
   validates_attachment :featured_image,
                        content_type: { content_type:
-                         ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+                         ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
+
+  def owned_by?(current_user)
+    !!(current_user && user == current_user)
+  end
 end

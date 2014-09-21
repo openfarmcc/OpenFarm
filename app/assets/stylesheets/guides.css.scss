@@ -289,6 +289,41 @@
   padding-top: 1rem;
 }
 
+.create-guide-steps{
+  max-width: 640px;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: .8rem;
+  color: #C69F60;
+
+  .step{
+    opacity: .6;
+  }
+
+  .active{ 
+    opacity: 1;
+  }
+
+  span{
+    border-radius: 2rem;
+    font-size: .6rem;
+    width: 1.2rem;
+    text-align: center;
+    height: 1.2rem;
+    padding-top: .2rem;
+    vertical-align: middle;
+    display: inline-block;
+    background-image: -o-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+    background-image: -moz-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+    background-image: -ms-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+    background-image: linear-gradient(-179deg, #FFFFFF 0%, #EFF1F4 100%);
+    /* Sketch doesnt export pattern fills at this point */
+    border: 1px solid rgba(0,0,0,0.10);
+    -moz-box-shadow:    0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
+    box-shadow:         0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
+  }
+}
+
 form.new-guide{
   display: inline-block;
   width: 100%;
@@ -303,6 +338,7 @@ form.new-guide{
     font-size: .9rem;
     color: #171717;
     line-height: 1.5rem;
+    margin-bottom: .5rem;
   }
   input.button.small.secondary.left{
     margin-left: .5rem;

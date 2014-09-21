@@ -100,7 +100,8 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     var params = {
           name: $scope.new_guide.name,
           crop_id: $scope.new_guide.crop._id,
-          overview: $scope.new_guide.overview || null
+          overview: $scope.new_guide.overview || null,
+          location: $scope.new_guide.location || null
       }
     $http.post('/api/guides/', params)
       .success(function (r) {
@@ -127,17 +128,17 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     console.log('val', val);
     if (geocoder) {
       geocoder.geocode({ 'address': val }, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-              var addresses = [];
-              angular.forEach(results, function(item){
-                addresses.push(item.formatted_address);
-              })
-              console.log('addresses');
-              $scope.addresses = addresses;
-           }
-           else {
-              console.log("Geocoding failed: " + status);
-           }
+        if (status == google.maps.GeocoderStatus.OK) {
+            var addresses = [];
+            angular.forEach(results, function(item){
+              addresses.push(item.formatted_address);
+            })
+            console.log('addresses');
+            $scope.addresses = addresses;
+         }
+         else {
+            console.log("Geocoding failed: " + status);
+         }
         
       });
     }

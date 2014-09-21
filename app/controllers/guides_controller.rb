@@ -30,6 +30,8 @@ class GuidesController < ApplicationController
 
     @guide = Guide.find(params[:id])
 
+    # @guide.impressionist_count(filter: :session_hash)
+
   end
 
   def new

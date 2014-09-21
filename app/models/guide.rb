@@ -3,6 +3,10 @@ class Guide
   include Mongoid::Search
   include Mongoid::Paperclip
 
+  is_impressionable counter_cache: true, 
+                    column_name: :impressions, 
+                    unique: :session_hash
+
   belongs_to :crop
   belongs_to :user
   has_many :stages
@@ -11,6 +15,7 @@ class Guide
   field :name
   field :location
   field :overview
+  field :impressions, default: 0
   validates_presence_of :user, :crop, :name
 
   has_mongoid_attached_file :featured_image, default_url: '/img/empty-pot.png'

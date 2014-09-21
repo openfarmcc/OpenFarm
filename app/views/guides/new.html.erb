@@ -7,6 +7,21 @@
 
     <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
+  <div class="row create-guide-steps">
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 1 }">
+      <span>1</span> Choose a plant
+    </div>
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 2 }">
+      <span>2</span> Name and location
+    </div>
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 3 }">
+      <span>3</span> Finish and details
+    </div>
+  </div>
+
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns box">
       <section name="step-1" ng-show="step === 1">

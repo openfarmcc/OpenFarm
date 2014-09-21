@@ -13,52 +13,60 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
 
     $scope.initGuide = function(){
       if (!$scope.guide.requirements.length){
-        $scope.guide.requirements = [{
-          value: 'Full Sun',
-          type: "select",
-          name: "Sun / Shade",
-          options: ['Full Sun', 'Partial Sun', 'Shaded']
-        },{
-          value: 7.5,
-          type: "range",
-          name: "pH",
-          options: [0, 12, .5]
-        },{
-          value: 20,
-          type: "range",
-          name: "Temperature",
-          options: [-10, 50, 2]
-        },{
-          value: 'Medium Loam',
-          type: "select",
-          name: "Soil",
-          options: ['Medium Loam', 'Clay Loam', 'Silt', 'Silty Loam', 'Clay', 'Sandy Clay', 'Sandy Loam', 'Sand']
-        },{
-          value: 'High Usage',
-          type: "select",
-          name: "Water",
-          options: ['High Usage', 'Medium Usage', 'Low Usage']
-        },{
-          value: 'Greenhouse',
-          type: "select",
-          name: "Location",
-          options: ['Greenhouse', 'Potted', 'Outside']
-        },{
-          value: 'Organic',
-          type: "select",
-          name: "Practices",
-          options: ['Organic', 'Conventional', 'Biodynamic', 'Permaculture', 'Conventional', 'Hydroponic']
-        },{
-          value: 'High',
-          type: "select",
-          name: "Time Commitment",
-          options: ['High', 'Medium', 'Low']
-        },{
-          value: 'High',
-          type: "select",
-          name: "Physical Strength",
-          options: ['High', 'Medium', 'Low']
-        }]
+
+        $http.get("/api/guide_requirement_options/")
+          .success(function(response, status){
+            // console.log(response.guide_requirement_options, status);
+            $scope.guide.requirements = 
+                response.guide_requirement_options;
+          })
+
+        // $scope.guide.requirements = [{
+        //   value: 'Full Sun',
+        //   type: "select",
+        //   name: "Sun / Shade",
+        //   options: ['Full Sun', 'Partial Sun', 'Shaded']
+        // },{
+        //   value: 7.5,
+        //   type: "range",
+        //   name: "pH",
+        //   options: [0, 12, .5]
+        // },{
+        //   value: 20,
+        //   type: "range",
+        //   name: "Temperature",
+        //   options: [-10, 50, 2]
+        // },{
+        //   value: 'Medium Loam',
+        //   type: "select",
+        //   name: "Soil",
+        //   options: ['Medium Loam', 'Clay Loam', 'Silt', 'Silty Loam', 'Clay', 'Sandy Clay', 'Sandy Loam', 'Sand']
+        // },{
+        //   value: 'High Usage',
+        //   type: "select",
+        //   name: "Water",
+        //   options: ['High Usage', 'Medium Usage', 'Low Usage']
+        // },{
+        //   value: 'Greenhouse',
+        //   type: "select",
+        //   name: "Location",
+        //   options: ['Greenhouse', 'Potted', 'Outside']
+        // },{
+        //   value: 'Organic',
+        //   type: "select",
+        //   name: "Practices",
+        //   options: ['Organic', 'Conventional', 'Biodynamic', 'Permaculture', 'Conventional', 'Hydroponic']
+        // },{
+        //   value: 'High',
+        //   type: "select",
+        //   name: "Time Commitment",
+        //   options: ['High', 'Medium', 'Low']
+        // },{
+        //   value: 'High',
+        //   type: "select",
+        //   name: "Physical Strength",
+        //   options: ['High', 'Medium', 'Low']
+        // }]
       }
     }
 

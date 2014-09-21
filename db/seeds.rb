@@ -8,3 +8,5 @@ FactoryGirl.create_list(:crop, 10)
 FactoryGirl.create_list(:crop, 10)
 FactoryGirl.create_list(:crop, 10)
 FactoryGirl.create_list(:crop, 10)
+
+# TODO: add seeds for GuideRequirementOption

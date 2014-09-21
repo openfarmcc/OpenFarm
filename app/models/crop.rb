@@ -7,6 +7,13 @@ class Crop
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
+
+  # Impressionist
+  is_impressionable counter_cache: true, 
+                    column_name: :impressions, 
+                    unique: :session_hash
+  field :impressions, default: 0
+
   has_many :guides
 
   field :name# , localize: true

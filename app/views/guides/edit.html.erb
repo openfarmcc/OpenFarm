@@ -41,14 +41,17 @@
         <p>
           <%= t('.more_details') %>
         </p>
-        <label for="guide_crop_overview">
-          Growing Process Overview
+        <label for="guide_overview">
+          Tell us a little about how you grew your crop.
         </label>
         <textarea id="guide_overview" 
                   name="guide[overview]"
                   ng-model="guide.overview"
                   rows="5">
         </textarea>
+        <p>
+          To get more into details, describe your process <a href="#stages">in stages</a>. 
+        </p>
       </div>
 
     </form>
@@ -76,17 +79,15 @@
           </h2>
         </accordion-heading>
         <p class="section-text">
-          Requirements are the small details that make sure this plant grows successfully.
-          If you don't know everything, or it's not applicable, that's okay. 
+          Requirements are the small details that make sure this crop grows successfully.
+          If you don't know everything, or it's not applicable, that's okay.
         </p>
         <div class="box">
-          <!-- <p class="text-center columns centered small-6">
-            Here's some suggestions based on the crop and what other users have used in the past. Just click on the ones you think fit.
-          </p> -->
           <div class="row">
             <div class="small-12 columns actual-requirements">
               <div class="requirement"
                 ng-class="{ active : r.active }"
+                ng-init="r.value = r.default_value"
                 ng-repeat="r in guide.requirements.slice(0, guide.requirements.length)">
                   <div class="small-1 columns"
                       >
@@ -98,6 +99,7 @@
                   <div class="small-6 columns choices">
                     <select 
                       ng-if="r.type == 'select'"
+
                       ng-model="r.value" 
                       ng-init=""
                       ng-options="o for o in r.options"
@@ -144,20 +146,20 @@
         </div>
       </accordion-group>
 
-      <!-- <accordion-group is-open="true" class="accordion-navigation timeline-wrapper">
+      <accordion-group is-open="true" class="accordion-navigation">
         <accordion-heading class="title-wrapper">
-          <h2 class="title">
+          <h2 class="title" id="stages">
             <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
-            Timeline
+            Stages
           </h2>
             
         </accordion-heading>
-        <p>
-          When does your plant grow? How long?
+        <p class="section-text">
+          Each stage of growing your crop.
         </p>
       </accordion-group>
 
-      <accordion-group is-open="true" class="accordion-navigation instructions-wrapper">
+      <!-- <accordion-group is-open="true" class="accordion-navigation instructions-wrapper">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>

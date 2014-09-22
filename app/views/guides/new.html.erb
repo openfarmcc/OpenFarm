@@ -70,9 +70,9 @@
             <div class="columns large-12">
               <a class="button small secondary left"
                 name="back"
-                a href="/guides/">Cancel</a>
+                href="<%= root_path %>"
+                ng-click="cancel('<%= root_path %>')">Cancel and Go To Home</a>
               <input class="button small right"  
-                data-disable-with="Saving..." 
                 name="commit" 
                 type="submit"
                 value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
@@ -128,8 +128,8 @@
             <div class="columns large-12">
               <a class="button small secondary left"
                 name="back"
-                a href="/guides/">Cancel</a>
-                
+                href="<%= root_path %>"
+                ng-click="cancel()">Cancel and Go To Home</a>
               <input class="button small secondary left"
                 name="back"
                 type="submit"

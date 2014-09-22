@@ -12,7 +12,7 @@
             <div class="small-3 columns img-container">
               <img class="plant image" src="http://www.organicgardening.com/sites/default/files/images/tomato-tips-380-1.jpg" alt="tomatoes!">
 
-              <% if current_user && @guide.owned_by?(current_user) %>
+              <% if @guide.owned_by?(current_user) %>
                 <%= link_to(icon('edit') + " edit", {:action => 'edit'}, :class=>'edit-link') %>
               <% end %>
             </div>
@@ -57,7 +57,7 @@
                       <td class="title show-for-medium-up"><%= r.name %></td>
                       <td class="description"><%= r.requirement %></td>
                     </tr>
-                  <% end %>          
+                  <% end %>
                 </tbody>
               </table>
             </div>
@@ -77,7 +77,7 @@
                       <td class="title show-for-medium-up"><%= r.name %></td>
                       <td class="description"><%= r.requirement %></td>
                     </tr>
-                  <% end %>             
+                  <% end %>
                 </tbody>
               </table>
             </div>
@@ -155,7 +155,7 @@
             </ul>
           </div>
           <div class="row tabs-content">
-            <div class="content active" 
+            <div class="content active"
                  id="instructions-overview">
                  <div class="columns small-12">
                   Overview

@@ -11,13 +11,6 @@ class CropsController < ApplicationController
   
   def show
     @crop = Crop.find(params[:id])
-
-    respond_to do |format|
-      # WOA 
-      format.html # show.html.erb
-      format.json { render json: @crop }
-
-    end
   end
   
   def create

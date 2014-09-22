@@ -4,24 +4,27 @@ describe Api::GuidesController, type: :controller do
 
   include ApiHelpers
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
+  let(:guide) { FactoryGirl.create(:guide, user: user) }
 
   before do
     @beans_v2 = FactoryGirl.create(:guide, name: 'lee\'s mung bean')
     FactoryGirl.create_list(:guide, 2)
   end
 
-  it 'should create guides' do
+  it 'create guides' do
     sign_in FactoryGirl.create(:user)
+    old_length = Guide.all.length
     data = { name: 'brocolini in the desert',
              overview: 'something exotic',
              crop_id: FactoryGirl.create(:crop).id.to_s }
-    post 'create', guide: data, format: :json
-
+    post 'create', data, format: :json
     expect(response.status).to eq(201)
 
     expect(json['guide']['name']).to eq(data[:name])
     expect(json['guide']['crop_id']).to eq(data[:crop_id])
+
+    expect(Guide.all.length).to eq(old_length + 1)
   end
 
   it 'uploads a featured_image' do
@@ -31,7 +34,7 @@ describe Api::GuidesController, type: :controller do
                crop_id: FactoryGirl.create(:crop).id.to_s }
     sign_in FactoryGirl.create(:user)
     VCR.use_cassette('controllers/api/api_guides_controller_spec') do
-      post 'create', guide: params
+      post 'create', params
     end
     expect(response.status).to eq(201)
     img_url = json['guide']['featured_image']
@@ -77,5 +80,11 @@ describe Api::GuidesController, type: :controller do
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(422) # WRONG. See TODO in mutation.
     expect(response.body).to include('You can only update guides that you own.')
+  end
+
+  it 'validates URL paramters' do
+    put :update, id: guide.id, featured_image: 'not a real URL'
+    expect(response.status).to eq(422)
+    expect(json['featured_image']).to include('Must be a fully formed URL')
   end
 end

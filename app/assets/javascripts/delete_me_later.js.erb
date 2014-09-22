@@ -1,8 +1,23 @@
-// This is a testing ground that @rickCarlino and @simonv3 use for S3 testing
-var s3upload = angular.module('s3upload', ['ngS3upload']);
+ // This is a testing ground that @rickCarlino and @simonv3 use for S3 testing
+var s3upload = angular.module('s3upload', ['ngS3upload', 'ng-rails-csrf']);
 
-var s3upload_controller = function ($scope) {
-  $scope.s3upload = {};
+var s3upload_controller = function ($scope, $http) {
+
+  $scope.guide = {
+    crop_id: "<%= Crop.first.id.to_s rescue nil %>",
+    name: "Test Guide created with Angular.",
+    featured_image: 'This will be a hidden field in the final product, probably.',
+  }
+
+  $scope.d = function () {
+    $http.post('/api/guides/', $scope.guide)
+      .success(function (r) {
+        alert(JSON.stringify(r));
+      })
+      .error(function (r) {
+        alert(JSON.stringify(r));
+      });
+  }
 };
 
-s3upload.controller('s3ctrl', ['$scope', s3upload_controller]);
+s3upload.controller('s3ctrl', ['$scope', '$http', s3upload_controller]);

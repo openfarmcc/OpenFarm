@@ -35,15 +35,6 @@ class GuidesController < ApplicationController
   def new
     @guide = Guide.new
   end
-  
-  def create
-    @guide = Guide.new(guides_params)
-    if @guide.save
-      redirect_to(:action => 'edit', :id => @guide.id)
-    else
-      render :new
-    end
-  end
 
   def edit
     @guide = Guide.find(params[:id])
@@ -68,24 +59,5 @@ class GuidesController < ApplicationController
 
     @new_stage = Stage.new
 
-  end
-
-  def update
-    @guide = Guide.find(params[:id])
-    @guide.update_attributes(guides_params)
-    if @guide.save
-      flash[:notice] = "Guide saved successfully."
-      redirect_to(action: 'show', id: @guide.id)
-    else
-      flash[:notice] = "Something went wrong."
-      @is_editing = true
-      render('show')
-    end
-
-  end
-  
-  private
-  def guides_params
-    params.require(:guide).permit(:name, :user, :crop_id, :overview)
   end
 end

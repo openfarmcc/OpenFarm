@@ -22,7 +22,7 @@ describe CropsController, :type => :controller do
     crop = FactoryGirl.attributes_for(:crop)
     post 'create', :crop => crop
     expect(response.status).to eq(302)
-    response.should redirect_to "/guides/new?crop_id=#{assigns(:crop).id}"
+    response.should redirect_to "/en/guides/new?crop_id=#{assigns(:crop).id}"
   end
   
   it 'Should redirect back to form after unsuccessful crop creation' do

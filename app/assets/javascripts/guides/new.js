@@ -51,6 +51,10 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     $scope.default_crop = $location.search().crop_id;
   }
 
+  $scope.$watch('loadingCrops', function(){
+    // console.log($scope.loadingCrops);
+  })
+
   //Typeahead search for crops
   $scope.search = function () {
     // be nice and only hit the server if
@@ -63,7 +67,6 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
           query: $scope.query
         }
       }).success(function (response) {
-        console.log(response.crops);
         if (response.crops.length){
           $scope.crops = response.crops;
         } else {

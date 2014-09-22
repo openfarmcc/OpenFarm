@@ -33,58 +33,69 @@
           id="new-guide-step-1"
           method="post"
           >
-          <div class="columns large-6">
-            <label 
-              for="guide_crop_id"><%= t('.what_plant') %></label>
-            <input
-              id="crop_name"
-              type="text"
-              ng-model="query"
-              ng-change="search()"
-              typeahead-on-select='cropSelected($item, $model, $label)'
-              typeahead="crop.name for crop in crops"
-              typeahead-loading="loadingCrops"
-              typeahead-wait-ms="1000"
-              class="form-control"/>
-            <i ng-show="loadingLocations" class="fa fa-refresh">loading crops</i>
-
-          </div>
-          <div class="columns large-6">
-            
-            <span class="crop-image">
-              <img ng-cloak
-                   ng-class="{ 'no-image' : !new_guide.crop.image }"
-                   ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
-                   alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
-            </span>
-
-            
-            <p>
-              <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name : ''"></strong>
-            </p>
-            <p ng-show="new_guide.crop">
-              <span ng-bind="new_guide.crop.description"></span>
-              <span ng-show="!new_guide.crop.description && !editCropDescription">
-                <em>
-                  We've got no information for this crop at the moment. To add a short description, <a ng-click="editCropDescription = !editCropDescription">click here</a>.</em>
-                  
-              </span>
-              <textarea
-                    ng-if="editCropDescription"
-                    ng-bind="new_guide.crop.description"
-                    placeholder="A short description of your crop"></textarea>
+          <div class="row">
+            <div class="columns large-6">
+              <label 
+                for="guide_crop_id"><%= t('.what_plant') %></label>
+              <input
+                id="crop_name"
+                type="text"
+                ng-model="query"
+                ng-change="search()"
+                typeahead-on-select='cropSelected($item, $model, $label)'
+                typeahead="crop.name for crop in crops"
+                typeahead-loading="loadingCrops"
+                typeahead-wait-ms="555"
+                typeahead-min-length="3"
+                class="form-control"/>
+              <i ng-show="loadingCrops" class="fa fa-refresh">loading crops</i>
+            </div>
+            <div class="columns large-6">
               
-            </p>
-            <span ng-if="crop_not_found">
+              <span class="crop-image">
+                <img ng-cloak
+                     ng-class="{ 'no-image' : !new_guide.crop.image }"
+                     ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
+                     alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+              </span>
+
+              
               <p>
-                <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
+                <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name : ''"></strong>
+                <em ng-bind="new_guide.crop.binomial_name"></em>
               </p>
-              <p>
-                <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
+              <p ng-show="new_guide.crop">
+                <span ng-bind="new_guide.crop.description"></span>
+                <span ng-show="!new_guide.crop.description && !editCropDescription">
+                  <em>
+                    We've got no information for this crop at the moment. To add a short description, <a ng-click="editCropDescription = !editCropDescription">click here</a>.</em>
+                    
+                </span>
+                <span ng-if="editCropDescription">
+                  <textarea
+                        ng-bind="new_guide.crop.description"
+                        placeholder="The {{ new_guide.crop.name }} is native to..."></textarea>
+                  <label>
+                    Do you know a URL that has more information?
+                  </label>
+                  <input type="text"
+                      ng-bind="new_guide.crop.extra_info_url"
+                      placeholder="http://wikipedia.com/...">
+                </span>
+                </p>
+                
               </p>
-            </span>
+              <span ng-if="crop_not_found">
+                <p>
+                  <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
+                </p>
+                <p>
+                  <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
+                </p>
+              </span>
+            </div>
           </div>
-          <div class="">
+          <div class="button-wrapper row">
             <div class="columns large-12">
               <a class="button small secondary left"
                 name="back"
@@ -109,31 +120,35 @@
           id="new-guide-step-2"
           method="post"
           >
-          <div class="columns large-6">
-            <p>
-              <%= t('.tell_us_how_you_grow') %>
-              <strong>{{ new_guide.crop.name }}</strong>.
-            </p>
-            <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
-            <input id="guide_name" name="guide[name]" type="text" 
-            ng-model="new_guide.name">
-
+          <div class="row">
+            <div class="columns large-6">
+              <p>
+                <%= t('.youre_growing_a') %>
+                <strong>{{ new_guide.crop.name }}</strong>.
+              </p>
+              <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
+              <input id="guide_name" name="guide[name]" 
+                type="text" 
+                ng-model="new_guide.name"
+                placeholder="<%= current_user.display_name %>'s {{new_guide.name}}"
+                >
+            </div>
+            <div class="columns large-6">
+              <label for="guide_name">Where are you growing it?</label>
+              <input type="text" 
+                     ng-model="guide.location"
+                     placeholder="Ex: Hanoi, Portland, California" 
+                     typeahead="address for address in addresses"
+                     ng-change="getLocation(guide.location)"
+                     typeahead-min-length="3"
+                     typeahead-loading="loadingLocations"
+                     typeahead-wait-ms="555"
+                     class="form-control"
+                     name="guide[location]">
+              <i ng-show="loadingLocations" class="fa fa-refresh">loading locations</i>
+            </div>
           </div>
-          <div class="columns large-6">
-            <label for="guide_name">Where are you growing it?</label>
-            <input type="text" 
-                   ng-model="guide.location"
-                   placeholder="Ex: Hanoi, Portland, California" 
-                   typeahead="address for address in addresses"
-                   ng-change="getLocation(guide_location)"
-                   typeahead-loading="loadingLocations"
-                   typeahead-wait-ms="1000"
-                   class="form-control"
-                   name="guide[location]">
-            <i ng-show="loadingLocations" class="fa fa-refresh">loading locations</i>
-
-          </div>
-          <div class="">
+          <div class="button-wrapper row">
             <div class="columns large-12">
               <a class="button small secondary left"
                 name="back"

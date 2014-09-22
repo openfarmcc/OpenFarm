@@ -5,7 +5,7 @@ class GuideSerializer < ApplicationSerializer
   def featured_image
     img = object.featured_image
     if img.blank?
-      # HACKY HACK IS SO HACKY.
+      # TODO HACKY HACK IS SO HACKY.
       'http://openfarm.cc/img/page.png'
     else
       img.url

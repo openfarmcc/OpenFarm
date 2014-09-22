@@ -1,13 +1,10 @@
 module Api
   class GuidesController < Api::Controller
     skip_before_action :authenticate_user!, only: [:index, :show]
+
     def create
-      guide = Guide.new(guide_params)
-      if guide.save
-        render json: guide, status: :created
-      else
-        render json: guide.errors, status: :unprocessable_entity
-      end
+      @outcome = Guides::CreateGuide.run(params, user: current_user)
+      respond_with_mutation(:created)
     end
 
     def show
@@ -16,36 +13,10 @@ module Api
     end
 
     def update
-      guide = Guide.find(params[:id])
-      # TODO: Patch this hole for the entire API using before_filters
-      raise 'opps' unless guide.user == current_user
-      guide.update_attributes(guide_params)
-      if guide.save
-        render json: guide
-      else
-        render json: guide.errors, status: :unprocessable_entity
-      end
-    end
-
-    private
-
-    def guide_params
-      output = params.require(:guide)
-      if params[:featured_image]
-        output[:featured_image] = parse_url(params[:featured_image])
-      end
-      output[:user_id] = current_user.id.to_s
-      output
-    end
-
-    # TODO: Add mutator gem to tell people they need absoloute URLs, etc etc
-    # TODO: This does not belong in the controller at all. This is wrong.
-    # bad bad bad.
-    def parse_url(*_url)
-      return 'http://openfarm.cc/img/page.png'
-    rescue TypeError
-      error = { error: 'The URL provided appears to not be valid' }
-      render(json: error, status: :unprocessable_entity) and return
+      @outcome = Guides::UpdateGuide.run(params,
+                                user: current_user,
+                                guide: Guide.find(params[:id]))
+      respond_with_mutation(:ok)
     end
   end
 end

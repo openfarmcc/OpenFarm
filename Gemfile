@@ -21,6 +21,7 @@ gem 'mutations'
 gem 'rack-attack'
 
 group :development, :test do
+  # gem 'rspec_api_documentation'
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'pry'

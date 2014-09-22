@@ -21,7 +21,6 @@ gem 'mutations'
 gem 'rack-attack'
 
 group :development, :test do
-  # gem 'rspec_api_documentation'
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'pry'
@@ -34,6 +33,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'

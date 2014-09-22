@@ -33,6 +33,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'

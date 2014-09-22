@@ -210,13 +210,13 @@ angular.module('ngS3upload.directives', []).
                       s3Options.signature,
                       selectedFile
                     ).then(function (resp) {
+                      // TODO: Un-hardcode this.
                       scope.$parent.guide.featured_image = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       ngModel.$setViewValue(s3Uri + key);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
-                      // TODO: Fix this. Why is it in the failure callback?
                       scope.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
@@ -239,10 +239,10 @@ angular.module('ngS3upload.directives', []).
       },
       template: '<div class="upload-wrap">' +
         '<button class="btn btn-primary" type="button"><span ng-if="!filename">Choose file</span><span ng-if="filename">Replace file</span></button>' +
-        '<a ng-href="{{ filename  }}" target="_blank" class="" ng-if="filename" > Stored file </a>' +
-        '<div class="progress progress-striped" ng-class="{active: uploading}" ng-show="attempt" style="margin-top: 10px">' +
-        '<div class="bar" style="width: {{ progress }}%;" ng-class="barClass()"></div>' +
-        '</div>' +
+        '<a ng-href="{{ filename  }}" target="_blank" class="" ng-if="filename" > OK! (click for preview) </a>' +
+        // '<div class="progress progress-striped" ng-class="{active: uploading}" ng-show="attempt" style="margin-top: 10px">' +
+        // '<div class="bar" style="width: {{ progress }}%;" ng-class="barClass()"></div>' +
+        // '</div>' +
         '<input type="file" style="display: none"/>' +
         '</div>'
     };

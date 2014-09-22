@@ -97,6 +97,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    doc_yo_self (0.0.1)
     docile (1.1.1)
     erubis (2.7.0)
     exception_notification (4.0.1)
@@ -399,6 +400,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
+  doc_yo_self
   exception_notification
   factory_girl_rails
   faker

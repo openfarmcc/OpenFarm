@@ -1,0 +1,29 @@
+<% if response.success? %>
+# <%= request.method %> <%= request.path %>
+<% if note.present? %>
+## Notes
+<%= note %>
+<% end %>
+## Params
+```
+<%=
+out = request.params;
+out.delete(:controller);
+out.delete(:action);
+out.delete(:format);
+out.delete(:id);
+JSON.pretty_generate(JSON.parse(out.to_json))
+%>
+```
+
+## Response
+```
+<%=
+begin
+  JSON.pretty_generate(JSON.parse(response.body))
+rescue
+  response.body
+end
+%>
+```
+<% end %>

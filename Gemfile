@@ -43,6 +43,7 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor' # for dokku
 end

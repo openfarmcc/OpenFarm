@@ -6,6 +6,7 @@ development:
         - localhost:27017
       options:
   options:
+
 test:
   sessions:
     default:
@@ -20,6 +21,11 @@ test:
         retry_interval: 0
 
 production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+
+staging:
   sessions:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>

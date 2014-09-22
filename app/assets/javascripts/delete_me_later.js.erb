@@ -4,7 +4,7 @@ var s3upload = angular.module('s3upload', ['ngS3upload', 'ng-rails-csrf']);
 var s3upload_controller = function ($scope, $http) {
 
   $scope.guide = {
-    crop_id: "<%= Crop.first.id.to_s || nil %>",
+    crop_id: "<%= Crop.first.id.to_s rescue nil %>",
     name: "Test Guide created with Angular.",
     featured_image: 'This will be a hidden field in the final product, probably.',
   }

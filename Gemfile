@@ -20,6 +20,7 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
 gem 'coveralls', require: false # TODO: Move in to test / dev group.
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'rubocop'

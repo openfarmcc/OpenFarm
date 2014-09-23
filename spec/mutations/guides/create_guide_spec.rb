@@ -22,12 +22,6 @@ describe Guides::CreateGuide do
   end
 
   it 'validates invalid URLs' do
-    unless ENV['S3_BUCKET_NAME'].present?
-      pending "You need to have S3 setup locally to run this test."\
-           "For now, we are letting it slide since it takes a considerable"\
-           "amount of effort. In the future, consider setting up an S3 test"\
-           "bucket for your local dev environment."
-    end
     results = cg.run(params.merge(featured_image: 'not/absoloute.png'))
     message = results.errors.message_list.first
     expect(message).to include('Must be a fully formed URL')

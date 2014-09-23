@@ -28,12 +28,6 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'uploads a featured_image' do
-    unless ENV['S3_BUCKET_NAME'].present?
-      pending "You need to have S3 setup locally to run this test."\
-           "For now, we are letting it slide since it takes a considerable"\
-           "amount of effort. In the future, consider setting up an S3 test"\
-           "bucket for your local dev environment."
-    end
     params = { name: 'Just 1 pixel.',
                overview: 'A tiny pixel test image.',
                featured_image: 'http://placehold.it/1x1.jpg',
@@ -51,12 +45,6 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'create guide should return an error when wrong info is passed' do
-    unless ENV['S3_BUCKET_NAME'].present?
-      pending "You need to have S3 setup locally to run this test."\
-           "For now, we are letting it slide since it takes a considerable"\
-           "amount of effort. In the future, consider setting up an S3 test"\
-           "bucket for your local dev environment."
-    end
     sign_in FactoryGirl.create(:user)
     params = { overview: 'A tiny pixel test image.',
                crop_id: FactoryGirl.create(:crop).id.to_s }

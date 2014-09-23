@@ -30,7 +30,4 @@ describe 'User sessions' do
     visit rails_admin.dashboard_path
     expect(page).to have_content('I told you kids to get out of here!')
   end
-
-  it "lets the user access the admin panel if they're an admin"
-
 end

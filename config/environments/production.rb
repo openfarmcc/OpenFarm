@@ -78,7 +78,7 @@ OpenFarm::Application.configure do
     email: {
       email_prefix: '[OpenFarm Errors] ',
       sender_address: %{"notifier" <notifier@openfarm.cc>},
-      exception_recipients: ENV['ALERTS'].split('|')
+      exception_recipients: ENV['ALERTS'].to_s.split('|')
     },
     ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
                         'AbstractController::ActionNotFound',

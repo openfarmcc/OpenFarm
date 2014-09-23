@@ -7,13 +7,15 @@ class Crop
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
+  # history tracking all Crop documents
+  # note: tracking will not work until #track_history is invoked
+  include Mongoid::History::Trackable
 
-  # Impressionist
   is_impressionable counter_cache: true, 
                     column_name: :impressions, 
                     unique: :session_hash
   field :impressions, default: 0
-
+  
   has_many :guides
 
   field :name# , localize: true
@@ -22,7 +24,7 @@ class Crop
   field :binomial_name
   field :description
   field :image
-  field :data_sources, type: Hash
+  has_many :crop_data_sources
   #TODO: Add tags to sun_requirements and sowing_method. See mongoid_search docs
   field :sun_requirements
   field :sowing_method
@@ -36,4 +38,9 @@ class Crop
 
   search_in :name, :binomial_name, :description
   slug :name
+
+  # See https://github.com/aq1018/mongoid-history
+  track_history on: [:description, :image],
+                modifier_field: :modifier,
+                version_field: :version,
 end

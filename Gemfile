@@ -20,6 +20,7 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
 gem 'impressionist'
+gem 'mongoid-history'
 
 group :development, :test do
   gem 'rubocop'
@@ -34,6 +35,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'
@@ -43,6 +45,7 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor' # for dokku
 end

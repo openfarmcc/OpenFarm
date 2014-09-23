@@ -25,6 +25,8 @@ VCR.configure do |c|
 end
 # =====
 
+Paperclip.options[:log] = false
+
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -38,7 +40,18 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.order = "random"
+  if ENV['DOCS'] == 'true'
+    DocYoSelf.config do |c|
+      c.template_file = 'spec/template.md.erb'
+      c.output_file   = 'api_docs.md'
+    end
 
+    config.after(:each, type: :controller) do
+      DocYoSelf.run!(request, response) if request.url.include?('/api/')
+    end
+
+    config.after(:suite) { DocYoSelf.finish! }
+  end
   config.before :each do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start

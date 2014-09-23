@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov'
@@ -43,6 +44,7 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor' # for dokku
 end

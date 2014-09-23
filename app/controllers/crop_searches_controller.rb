@@ -6,7 +6,7 @@ class CropSearchesController < ApplicationController
     query = (params[:cropsearch] && params[:cropsearch][:q]).to_s.singularize
     @crops = Crop.full_text_search(query, max_results: 2)
     if @crops.empty?
-      @crops = Crop.all.desc('_id').limit(5)
+      @crops = Crop.all.desc('_id').limit(25)
     end
 
     # Use the crop results to look-up guides

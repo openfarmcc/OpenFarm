@@ -21,19 +21,19 @@ class ApplicationController < ActionController::Base
   # This method allows devise to pass non standard attributes through and
   # thereby comply with 'strong parameters'.
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) do |user|
-      user.permit *safe_user_attrs
+    devise_parameter_sanitizer.for(:sign_up) do |params|
+      params.permit *safe_user_attrs
     end
 
-    devise_parameter_sanitizer.for(:account_update) do |user|
-      user.permit *safe_user_attrs
+    devise_parameter_sanitizer.for(:account_update) do |params|
+      params.permit *(safe_user_attrs << :current_password)
     end
   end
 
   # List of attributes that are safe for mass assignment on User objects.
   def safe_user_attrs
-    [:display_name, :location, :soil_type, :years_experience, :email, :password,
-     :preferred_growing_style, :password_confirmation]
+    [:display_name, :email, :location, :password, :password_confirmation,
+     :preferred_growing_style, :soil_type, :years_experience]
   end
 
   def current_admin

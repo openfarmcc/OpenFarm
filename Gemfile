@@ -19,6 +19,7 @@ gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
+gem 'mongoid-history'
 
 group :development, :test do
   gem 'rubocop'

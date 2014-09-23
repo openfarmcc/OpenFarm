@@ -98,6 +98,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    easy_diff (0.0.3)
     erubis (2.7.0)
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
@@ -181,6 +182,10 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
+    mongoid-history (0.4.4)
+      activesupport
+      easy_diff
+      mongoid (>= 3.0)
     mongoid-paperclip (0.0.9)
       paperclip (>= 2.3.6)
     mongoid_search (0.3.2)
@@ -409,6 +414,7 @@ DEPENDENCIES
   launchy
   metric_fu
   mongoid!
+  mongoid-history
   mongoid-paperclip
   mongoid_search
   mongoid_slug

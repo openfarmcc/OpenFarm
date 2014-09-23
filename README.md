@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)
+[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
 OpenFarm
 ========
 

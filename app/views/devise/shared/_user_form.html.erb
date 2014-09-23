@@ -5,11 +5,15 @@
   <%= f.text_field :display_name %>
 
   <% #if @user.password_required? # Omniauth only %>
-    <%= f.label :password, I18n.t('users.password') %>
-    <%= f.password_field :password %>
+    <%= f.label :current_password, I18n.t('users.current_password') %>
+    <%= f.password_field :current_password, autocomplete: "off" %>
+
+    <%= f.label :password, I18n.t('users.password') + I18n.t('users.password_blank_ok') %>
+    <%= f.password_field :password, autocomplete: "off" %>
 
     <%= f.label :password_confirmation, I18n.t('users.password_confirmation') %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
   <% #end %>
 
   <%= f.label :email, I18n.t('users.email_address') %>
@@ -31,5 +35,4 @@
   <%= f.text_field :preferred_growing_style %>
 
   <%= f.submit class: 'button submit' %>
-
 <% end %>

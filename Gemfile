@@ -6,7 +6,6 @@ gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
 gem 'foundation-rails', '~> 5.2.0'
-# gem 'jquery-ui-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
@@ -19,10 +18,11 @@ gem 'mongoid_slug'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
-gem 'coveralls', require: false # TODO: Move in to test / dev group.
 gem 'rack-cors', require: 'rack/cors'
+# gem 'simple_token_authentication'
 
 group :development, :test do
+  gem 'coveralls', require: false
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'pry'

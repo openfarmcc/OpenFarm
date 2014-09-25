@@ -3,13 +3,17 @@ class Token
 
   before_validation :generate_access_token
 
+  attr_reader :plaintext
+
   field :secret
   field :expiration, type: Time, default: ->{ Time.current + 1.month }
   validates :secret, :expiration, :user_id, presence: true
   belongs_to :user
 
-  def plaintext
-    @plaintext  ||= SecureRandom.hex
+  # Creates a token the way it would be sent to a controller. Ex: "t@g.com:1234"
+  def fully_formed
+    warn 'PLAINTEXT NOT SET AUTH WILL ACT WEIRD' unless plaintext.present?
+    "#{user.email}:#{plaintext}"
   end
 
   private
@@ -20,6 +24,7 @@ class Token
     # Generate the secret
     # Encrypt the secret (in case the DB gets hacked.)
     if self.new_record? && !self.secret?
+      @plaintext  = SecureRandom.hex
       self.secret = Digest::SHA512.hexdigest(plaintext)
     end
   end

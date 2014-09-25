@@ -16,7 +16,7 @@ class Api::Controller < ActionController::Base
       else
         # TODO Use rescue_from hooks for all of these errors.
         msg = """Unauthorized. Please be aware that tokens follow the format of
-         <email>:<token>. Example: "joe@yahoo.com:1ADASDsss" """.squish
+         <email>:<token>. Example: \"joe@yahoo.com:1ADASDsss\" """.squish
         render json: {error: msg}, status: :unauthorized
       end
     end

@@ -1,33 +1,40 @@
 class Token
   include Mongoid::Document
 
-  after_initialize :generate_access_token
-
-  attr_reader :plaintext
+  before_validation :generate_access_token
 
   field :secret
   field :expiration, type: Time, default: ->{ Time.current + 1.month }
   validates :secret, :expiration, :user_id, presence: true
   belongs_to :user
+
+  def plaintext
+    @plaintext  ||= SecureRandom.hex
+  end
+
   private
 
+  # Performs two actions: 1. Temporarily stores the plaintext token.
+  # 2. Hashes the token and stores it to the database.
   def generate_access_token
-      # Generate the secret
-      @plaintext  = SecureRandom.hex
-      # Encrypt the secret (in case the DB gets hacked.)
-      self.secret = Digest::SHA256.hexdigest(SecureRandom.hex)
+    # Generate the secret
+    # Encrypt the secret (in case the DB gets hacked.)
+    if self.new_record? && !self.secret?
+      self.secret = Digest::SHA512.hexdigest(plaintext)
+    end
   end
 
   # (String) plaintext: An email address, then a colon (':') then a token in
   # plaintext. Example: "rick@me.com:1234567"
   # Returns User object on success. Otherwise `false`
   def self.get_user(token)
-    email, plaintext = *token.split(':')
-    user = email && User.find_by(email: email)
-    guess = Digest::SHA256.hexdigest(plaintext)
-    if user && Devise.secure_compare(user.token.secret, guess)
-      return user
+    email, pt        = *token.split(':')
+    user             = email && User.find_by(email: email)
+    guess            = Digest::SHA512.hexdigest(pt)
+    if user && user.token && Devise.secure_compare(user.token.secret, guess)
+      user
+    else
+      false
     end
-    false
   end
 end

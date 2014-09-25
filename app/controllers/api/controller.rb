@@ -15,7 +15,9 @@ class Api::Controller < ActionController::Base
         sign_in user, store: false
       else
         # TODO Use rescue_from hooks for all of these errors.
-        render json: {error: 'unauthorized.'}, status: :unauthorized
+        msg = """Unauthorized. Please be aware that tokens follow the format of
+         <email>:<token>. Example: "joe@yahoo.com:1ADASDsss" """.squish
+        render json: {error: msg}, status: :unauthorized
       end
     end
   end

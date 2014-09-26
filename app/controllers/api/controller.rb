@@ -9,16 +9,13 @@ class Api::Controller < ActionController::Base
   protected
 
   def authenticate_from_token!
+    request.authorization.present? ? token_auth : authenticate_user!
+  end
+
+  def token_auth
     authenticate_or_request_with_http_token do |token, options|
       user = Token.get_user(token)
-      if user
-        sign_in user, store: false
-      else
-        # TODO Use rescue_from hooks for all of these errors.
-        msg = """Unauthorized. Please be aware that tokens follow the format of
-         <email>:<token>. Example: \"joe@yahoo.com:1ADASDsss\" """.squish
-        render json: {error: msg}, status: :unauthorized
-      end
+      sign_in user, store: false if user
     end
   end
 

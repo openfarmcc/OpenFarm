@@ -8,7 +8,7 @@ describe Token do
     expect(token.plaintext.length).to eq(32)
     expect(token.secret).to eq(Digest::SHA512.hexdigest(token.plaintext))
     days_to_expiration = (token.expiration.to_date - Date.today).to_i
-    expect(days_to_expiration).to eq(30)
+    expect(days_to_expiration).to be > 27
   end
 
   it 'requires a user' do

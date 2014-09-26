@@ -6,7 +6,7 @@ class Token
   attr_reader :plaintext
 
   field :secret
-  field :expiration, type: Time, default: ->{ Time.current + 1.month }
+  field :expiration, type: Time, default: ->{ Time.current + 30.days }
   validates :secret, :expiration, :user_id, presence: true
   belongs_to :user
 

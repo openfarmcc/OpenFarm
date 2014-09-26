@@ -4,7 +4,7 @@ describe Api::GuidesController, type: :controller do
 
   include ApiHelpers
 
-  let!(:user) { make_api_user }
+  let(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
   let(:guide) { FactoryGirl.create(:guide, user: user) }
 
   before do
@@ -13,6 +13,7 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'create guides' do
+    sign_in FactoryGirl.create(:user)
     old_length = Guide.all.length
     data = { name: 'brocolini in the desert',
              overview: 'something exotic',
@@ -45,6 +46,7 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'create guide should return an error when wrong info is passed' do
+    sign_in FactoryGirl.create(:user)
     params = { overview: 'A tiny pixel test image.',
                crop_id: FactoryGirl.create(:crop).id.to_s }
     post 'create', guide: params
@@ -63,9 +65,9 @@ describe Api::GuidesController, type: :controller do
   # expect(response.status).to eq(404)
   # This test fails, largely because I don't know how to
   # implement it.
-  # TODO finish this spec up ^
 
   it 'should update a guide' do
+    sign_in user
     guide = FactoryGirl.create(:guide, user: user, overview: 'old')
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(200)
@@ -74,6 +76,7 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'should not update someone elses guide' do
+    sign_in FactoryGirl.create(:user)
     guide = FactoryGirl.create(:guide)
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(422) # WRONG. See TODO in mutation.

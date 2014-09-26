@@ -3,6 +3,7 @@ class User
 
   embeds_many :user_authentications
   has_many :guides
+  has_one :token, dependent: :delete
   accepts_nested_attributes_for :user_authentications
   ## Database authenticatable
   field :email,              :type => String, :default => ""

@@ -15,7 +15,7 @@ class Token
     if plaintext.present?
       "#{user.email}:#{plaintext}"
     else
-      "EXPIRED - CANT RETRIEVE"
+      'EXPIRED - CANT RETRIEVE'
     end
   end
 

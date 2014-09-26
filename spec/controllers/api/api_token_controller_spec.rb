@@ -1,0 +1,26 @@
+require 'spec_helper'
+
+describe Api::TokensController, type: :controller do
+
+  include ApiHelpers
+
+  let(:user) { FactoryGirl.create(:user) }
+
+  it 'creates a token' do
+    data = {email: user.email, password: user.password}
+    post :create, data, format: :json
+    expect(response.status).to eq(201)
+    user.reload
+    token      = json['token']
+    expiration = Time.parse(token['expiration'])
+    email      = token['secret'].split(':').first
+    expect(User.find_by(email: email)).to eq(user)
+    expect(token['secret']).to match(/#{user.email}\:.*/)
+  end
+
+  it 'deletes a token' do
+    user = make_api_user
+    delete :destroy
+    expect(json['error']).to eq('not implemented yet.')
+  end
+end

@@ -12,8 +12,11 @@ class Token
 
   # Creates a token the way it would be sent to a controller. Ex: "t@g.com:1234"
   def fully_formed
-    warn 'PLAINTEXT NOT SET AUTH WILL ACT WEIRD' unless plaintext.present?
-    "#{user.email}:#{plaintext}"
+    if plaintext.present?
+      "#{user.email}:#{plaintext}"
+    else
+      "EXPIRED - CANT RETRIEVE"
+    end
   end
 
   private
@@ -36,6 +39,7 @@ class Token
     email, pt        = *token.split(':')
     user             = email && User.find_by(email: email)
     guess            = Digest::SHA512.hexdigest(pt)
+    # TODO Not currently checking for expiration.
     if user && user.token && Devise.secure_compare(user.token.secret, guess)
       user
     else

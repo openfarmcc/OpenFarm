@@ -4,6 +4,7 @@
 ## Notes
 <%= note %>
 <% end %>
+<% if request.params.present? %>
 ## Params
 ```
 <%=
@@ -15,7 +16,9 @@ out.delete(:id);
 JSON.pretty_generate(JSON.parse(out.to_json))
 %>
 ```
+<% end %>
 
+<% if response.body.present? %>
 ## Response
 ```
 <%=
@@ -26,4 +29,5 @@ rescue
 end
 %>
 ```
+<% end %>
 <% end %>

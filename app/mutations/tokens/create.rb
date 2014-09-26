@@ -27,4 +27,3 @@ module Tokens
     end
   end
 end
-

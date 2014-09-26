@@ -8,7 +8,7 @@ module Api
     end
 
     def destroy
-      render json: {error: 'not implemented yet.'}, status: :unavailable
+      render json: { error: 'not implemented yet.' }, status: :unavailable
     end
   end
 end

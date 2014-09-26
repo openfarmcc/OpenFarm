@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
 OpenFarm
 ========
 
@@ -34,7 +35,7 @@ All secrets (such as S3 credentials) are stored in ENV variables. You will need 
 #### Style Guides and formatting.
 
  * We use the [ThoghtBot Style Guide](https://github.com/thoughtbot/guides/tree/master/style) when writiting Ruby. The exception to this is that we use 'single quotes' instead of "double quotes".
- * When design API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
+ * When designing API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
  * Please write specs for your code. We use Rspec as our testing framework.
 
 #### OAuth
@@ -61,7 +62,7 @@ Not sure where to help? Take a look [over here](http://waffle.io/FarmBot/OpenFar
 
 ### FAQ
 
-Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels). 
+Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
 ### User Flow
 

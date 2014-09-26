@@ -20,6 +20,7 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
 gem 'mongoid-history'
+gem 'coveralls', require: false # TODO: Move in to test / dev group.
 
 group :development, :test do
   gem 'rubocop'

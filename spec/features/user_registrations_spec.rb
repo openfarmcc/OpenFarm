@@ -1,13 +1,18 @@
 require "spec_helper"
 
 describe 'User registrations' do
+  include IntegrationHelper
 
-  it 'creates an account'
+  let(:user) { FactoryGirl.create(:user) }
 
-  it 'views an account'
-
-  it 'updates an account'
-
-  it 'destroys an account'
-
+  it 'can change user settings' do
+    pending 'Getting closer.'
+    login_as user
+    visit edit_user_registration_path(user)
+    fill_in :user_display_name, with: 'Bert'
+    fill_in :user_current_password, with: user.password
+    click_button 'Update User'
+    see('You updated your account successfully')
+    expect(user.display_name).to eq('bert')
+  end
 end

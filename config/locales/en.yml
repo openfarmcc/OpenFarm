@@ -31,6 +31,8 @@ en:
         email_address: "Email Address"
         display_name: "Display Name"
         password: "Password"
+        current_password: "Current Password (we need your current password to confirm your changes)"
+        password_blank_ok: " (leave blank if you don't want to change it)"
         password_confirmation: "Confirm Password"
         location: "Location"
         soil_type: "Soil Type"

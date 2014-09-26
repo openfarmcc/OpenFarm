@@ -217,6 +217,9 @@ angular.module('ngS3upload.directives', []).
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
+                      alert("There was an error uploading your image. Developers: See JS console for details.");
+                      console.log('Bad response from Amazon S3:');
+                      console.lof(resp);
                       scope.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);

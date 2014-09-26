@@ -1,6 +1,6 @@
 module Api
   class GuidesController < Api::Controller
-    skip_before_action :authenticate_user!, only: [:index, :show]
+    skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
       @outcome = Guides::CreateGuide.run(params, user: current_user)

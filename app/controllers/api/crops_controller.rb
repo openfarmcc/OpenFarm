@@ -1,6 +1,6 @@
 module Api
   class CropsController < Api::Controller
-    skip_before_action :authenticate_user!, only: [:index, :show]
+    skip_before_action :authenticate_from_token!, only: [:index, :show]
     def index
       if params[:query].present? && (params[:query].length > 2)
         q = params[:query].singularize

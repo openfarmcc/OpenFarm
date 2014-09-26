@@ -47,12 +47,12 @@
 
 1. Create a new S3 bucket.
 2. Paste the config listed under "CORS Config" by clicking "Edit CORS config" under "Permissions" within the Bucket settings panel.
-3. Create an IAM user for the S3 bucket. BE SURE TO COPY THE CREDENTIALS NOW. IT IS YOUR ONLY CHANCE TO DO SO.
+3. Create an IAM user for the S3 bucket (click under "My Account" => "Security Credentials" in the top right). BE SURE TO COPY THE CREDENTIALS NOW. IT IS YOUR ONLY CHANCE TO DO SO.
 4. Paste the credentials into `app_environment_variables.rb` See `app_environment_variables.rb.example` for more info.
 5. Create the IAM permissions listed in "IAM Policy - Client" below.
 6. Create the IAM permissions listed in "IAM Policy - Client" below.
 6. Your bucket should be ready to take uploads at this point.
-7. (Suggested, not required) Under the 'lifecycle' tab, set objects within `temp/` to expire after a day.
+7. (Suggested, not required) Under the 'lifecycle' tab in your S3 bucket, set objects within `temp/` to expire after a day. If you don't do this, they will pile up.
 
 ### CORS Config
 
@@ -74,16 +74,17 @@
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": ["s3:PutObject", "s3:PutObjectAcl"],
-            "Resource": "arn:aws:s3:::YOUR_NAME_HERE/temp/*"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:PutObjectAcl"],
+      "Resource": "arn:aws:s3:::YOUR_NAME_HERE/temp/*"
+    }
+  ]
 }
 ```
+
 
 ### IAM Policy - Server
 

@@ -13,7 +13,7 @@ class Api::Controller < ActionController::Base
   end
 
   def token_auth
-    authenticate_or_request_with_http_token do |token, options|
+    authenticate_or_request_with_http_token do |token, _options|
       user = Token.get_user(token)
       sign_in user, store: false if user
     end

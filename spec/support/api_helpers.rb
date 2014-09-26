@@ -6,11 +6,11 @@ module ApiHelpers
   def make_api_user
     token = FactoryGirl.create(:token)
     set_token(token)
-    return token.user
+    token.user
   end
 
   def set_token(token)
-    controller.request.env['HTTP_AUTHORIZATION'] = "Token token="\
+    controller.request.env['HTTP_AUTHORIZATION'] = 'Token token='\
                                                    "#{token.fully_formed}"
   end
 end

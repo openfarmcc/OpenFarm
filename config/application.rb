@@ -36,12 +36,11 @@ module OpenFarm
                                     logger: -> { Rails.logger } do
       allow do
         origins '*'
-
         resource '/api/*',
-          headers: :any,
-          methods: [:get, :post, :delete, :put, :patch, :options, :head],
-          credentials: false, # No cookies.
-          max_age: 0
+                 headers: :any,
+                 methods: [:get, :post, :delete, :put, :patch, :options, :head],
+                 credentials: false, # No cookies.
+                 max_age: 0
       end
     end
     config.middleware.use Rack::Attack

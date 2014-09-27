@@ -21,8 +21,10 @@ describe Api::TokensController, type: :controller do
 
   it 'deletes a token' do
     user = make_api_user
+    expect(user.token).to be_a_kind_of(Token)
     delete :destroy
     user.reload
-    expect(json['error']).to eq('not implemented yet.')
+    expect(response.status).to eq(204)
+    expect(user.token).to eq(nil)
   end
 end

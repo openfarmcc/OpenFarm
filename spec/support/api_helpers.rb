@@ -13,4 +13,8 @@ module ApiHelpers
     controller.request.env['HTTP_AUTHORIZATION'] = 'Token token='\
                                                    "#{token.fully_formed}"
   end
+
+  def note(msg)
+    DocYoSelf.note msg.squish
+  end
 end

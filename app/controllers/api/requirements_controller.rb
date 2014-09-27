@@ -3,8 +3,8 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      @outcome = Requirements::CreateRequirement.run(params, 
-                                user: current_user)
+      @outcome = Requirements::CreateRequirement.run(params,
+                                                     user: current_user)
       # TODO something with #@outcome.errors
       respond_with_mutation(:created)
     end
@@ -15,9 +15,10 @@ module Api
     end
 
     def update
+      requirement = Requirement.find(params[:id])
       @outcome = Requirements::UpdateRequirement.run(params,
-                                user: current_user,
-                                requirement: Requirement.find(params[:id]))
+                                                     user: current_user,
+                                                     requirement: requirement)
       respond_with_mutation(:ok)
     end
 

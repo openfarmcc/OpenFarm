@@ -41,7 +41,7 @@ module Guides
       guide.location       = location if location.present?
       guide.name           = name if name.present?
 
-      # TODO, this is uncommented because it returns an 
+      # TODO, this is uncommented because it returns an
       # error when you don't have the Amazon static stuff
       # set up properly (I assume).
 

@@ -5,6 +5,6 @@ module Api
     def index
       render json: StageOption.all
     end
-    
+
   end
 end

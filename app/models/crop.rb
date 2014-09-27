@@ -11,11 +11,11 @@ class Crop
   # note: tracking will not work until #track_history is invoked
   include Mongoid::History::Trackable
 
-  is_impressionable counter_cache: true, 
-                    column_name: :impressions, 
+  is_impressionable counter_cache: true,
+                    column_name: :impressions,
                     unique: :session_hash
   field :impressions, default: 0
-  
+
   has_many :guides
 
   field :name# , localize: true
@@ -43,5 +43,5 @@ class Crop
   track_history on: [:description, :image],
                 modifier_field: :modifier,
                 version_field: :version
-  
+
 end

@@ -1,6 +1,5 @@
 module Stages
   class CreateStage < Mutations::Command
-
     required do
       model :user
       string :guide_id
@@ -39,7 +38,7 @@ module Stages
 
     def set_params
       stage.guide          = @guide
-      # TODO: validate that the stage name is one 
+      # TODO: validate that the stage name is one
       # of stage options, or should we?
       stage.name           = name
       stage.instructions   = instructions

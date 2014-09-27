@@ -1,6 +1,5 @@
 module Requirements
   class CreateRequirement < Mutations::Command
-
     required do
       model :user
       string :guide_id
@@ -33,7 +32,7 @@ module Requirements
 
     def set_params
       requirement.guide          = @guide
-      # TODO: validate that the stage name is one 
+      # TODO: validate that the stage name is one
       # of stage options, or should we?
       requirement.name           = name
       requirement.required       = required

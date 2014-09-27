@@ -1,6 +1,5 @@
 module Stages
   class UpdateStage < Mutations::Command
-
     required do
       string :id
       model :user

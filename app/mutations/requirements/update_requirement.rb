@@ -1,6 +1,5 @@
 module Requirements
   class UpdateRequirement < Mutations::Command
-
     required do
       string :id
       model :user

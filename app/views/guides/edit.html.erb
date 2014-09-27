@@ -30,6 +30,8 @@
         <input type="button"
              class="button small"
              ng-click="saveGuide()"
+             data-disable-with="Saving..."
+             ng-disabled="saving"
              value="Save Guide"/>
       </div>
       
@@ -170,7 +172,7 @@
                 <div class="columns large-12 stage-description">
                   <p>{{ s.description }}</p>
                   <textarea placeholder="{{ s.default_value }}"
-                    ng-bind="s.value">
+                    ng-model="s.instructions">
                   </textarea>
                 </div>
               </div>

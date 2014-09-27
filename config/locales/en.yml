@@ -74,6 +74,9 @@ en:
         requirements: "Requirements"
         name: "Name"
         overview: "Overview"
+    stages:
+        edit:
+            successful_creation: "You've successfully created a stage."
     pages:
         home:
             placeholder: "What do you want to grow?"

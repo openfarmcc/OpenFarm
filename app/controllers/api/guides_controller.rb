@@ -3,7 +3,6 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      puts params
       @outcome = Guides::CreateGuide.run(params, user: current_user)
       respond_with_mutation(:created)
       flash[:notice] = t('guides.edit.successful_creation')

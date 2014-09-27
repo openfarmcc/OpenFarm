@@ -20,7 +20,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           .success(function(response, status){
             $scope.guide.requirements = 
                 response.requirement_options;
-          })
+          });
       }
       if (!$scope.guide.stages.length){
 
@@ -28,8 +28,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           .success(function(response, status){
             $scope.guide.stages = 
                 response.stage_options;
-            console.log($scope.guide.stages);
-          })
+          });
       }
     }
 
@@ -59,21 +58,63 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
     $scope.getGuide();
 
     $scope.saveGuide = function(){
+      $scope.saving = true;
       $http.put('/api/guides/' + $scope.guide._id + "/", $scope.guide)
         .success(function (response) {
           console.log("success");
+          $scope.saving = false;
+
         })
         .error(function (response, code) {
           $scope.alerts.push({
             msg: code + ' error. Could not retrieve data from server. Please try again later.',
             type: 'warning'
           });
-        })
+          $scope.saving = false;
+        });
+
+      angular.forEach($scope.guide.requirements, function(item){
+        if (item.status === undefined){
+          // in the case where the status hasn't been
+          // defined yet, it's a good bet that the
+          // status doesn't exist yet. 
+        }
+      });
+      angular.forEach($scope.guide.stages, function(item){
+      if (item.status === undefined){
+        console.log(item);
+        // in the case where the status hasn't been
+        // defined yet, it's a good bet that the
+        // stage doesn't exist yet. in this case, create it,
+        // and set status to created if instructions
+        // exist.
+        if (item.instructions){
+          var data = {
+            name: item.name,
+            instructions: item.instructions,
+            guide: $scope.guide._id
+          }
+          console.log(data);
+          $http.post('/api/stages/', data)
+            .success(function (response){
+              console.log("created stage successfully")
+            })
+            .error(function (response, code){
+              $scope.alerts.push({
+                msg: code + ' error. Could not retrieve data from server. Please try again later.',
+                type: 'warning'
+              });
+            });
+        }
+      }
+    });
     };
+
+
+
 
     if (!$scope.guide.requirements){
       console.log('no requirements');
-
     }
     // TODO: figure this out for the sake of code non-repeat
     $scope.closeAlert = function(index) {

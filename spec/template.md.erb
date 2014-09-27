@@ -4,20 +4,19 @@
 ## Notes
 <%= note %>
 <% end %>
-<% if request.params.present? %>
-## Params
-```
-<%=
+<%
 out = request.params;
 out.delete(:controller);
 out.delete(:action);
 out.delete(:format);
 out.delete(:id);
-JSON.pretty_generate(JSON.parse(out.to_json))
 %>
+<% if out.present? %>
+## Params
+```
+<%= JSON.pretty_generate(JSON.parse(out.to_json)) %>
 ```
 <% end %>
-
 <% if response.body.present? %>
 ## Response
 ```

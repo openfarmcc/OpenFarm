@@ -2,6 +2,7 @@
 # GET /api/crops
 
 
+
 ## Params
 ```
 {
@@ -10,22 +11,21 @@
 ```
 
 
-
 ## Response
 ```
 {
   "crops": [
     {
-      "_id": "54255fab736d619c822c0000",
+      "_id": "5426d2c4736d61c6a5310000",
       "name": "mung bean",
-      "binomial_name": "quidem nobis",
-      "description": "Sequi distinctio aut optio pariatur eaque dolores voluptates.",
-      "sun_requirements": "shade",
+      "binomial_name": "optio ad",
+      "description": "Rerum praesentium est rem optio.",
+      "sun_requirements": "full",
       "sowing_method": "container",
-      "spread": 8,
-      "days_to_maturity": 38,
-      "row_spacing": 8,
-      "height": 12
+      "spread": 10,
+      "days_to_maturity": 16,
+      "row_spacing": 18,
+      "height": 10
     }
   ]
 }
@@ -33,14 +33,8 @@
 
 
 
-# GET /api/crops/54255faa736d619c822b0000
+# GET /api/crops/5426d2c4736d61c6a53a0000
 
-
-## Params
-```
-{
-}
-```
 
 
 
@@ -48,54 +42,16 @@
 ```
 {
   "crop": {
-    "_id": "54255faa736d619c822b0000",
-    "name": "azure Prohaska",
-    "binomial_name": "et nesciunt",
-    "description": "Repellendus libero odio commodi.",
-    "sun_requirements": "full",
+    "_id": "5426d2c4736d61c6a53a0000",
+    "name": "orange Herzog",
+    "binomial_name": "inventore consequatur",
+    "description": "Sit consequatur non deserunt repellendus ad modi fuga facere.",
+    "sun_requirements": "shade",
     "sowing_method": "direct",
-    "spread": 10,
-    "days_to_maturity": 19,
-    "row_spacing": 9,
-    "height": 11
-  }
-}
-```
-
-
-
-
-# POST /api/guides
-
-
-## Params
-```
-{
-  "name": "Just 1 pixel.",
-  "overview": "A tiny pixel test image.",
-  "featured_image": "http://placehold.it/1x1.jpg",
-  "crop_id": "54255fab736d619c82380000"
-}
-```
-
-
-
-## Response
-```
-{
-  "guide": {
-    "_id": "54255fab736d619c823a0000",
-    "crop_id": "54255fab736d619c82380000",
-    "user_id": "54255fab736d619c82390000",
-    "stages": [
-
-    ],
-    "requirements": [
-
-    ],
-    "name": "Just 1 pixel.",
-    "overview": "A tiny pixel test image.",
-    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/54255fab736d619c823a0000.jpg?1411735467"
+    "spread": 13,
+    "days_to_maturity": 46,
+    "row_spacing": 6,
+    "height": 4
   }
 }
 ```
@@ -103,6 +59,7 @@
 
 
 # POST /api/guides
+
 
 
 ## Params
@@ -110,19 +67,18 @@
 {
   "name": "brocolini in the desert",
   "overview": "something exotic",
-  "crop_id": "54255fab736d619c82810000"
+  "crop_id": "5426d2c5736d61c6a5b70000"
 }
 ```
-
 
 
 ## Response
 ```
 {
   "guide": {
-    "_id": "54255fab736d619c82820000",
-    "crop_id": "54255fab736d619c82810000",
-    "user_id": "54255fab736d619c82800000",
+    "_id": "5426d2c5736d61c6a5b80000",
+    "crop_id": "5426d2c5736d61c6a5b70000",
+    "user_id": "5426d2c5736d61c6a5b60000",
     "stages": [
 
     ],
@@ -138,34 +94,37 @@
 
 
 
+# POST /api/guides
 
-# GET /api/guides/54255fab736d619c825c0000
 
 
 ## Params
 ```
 {
+  "name": "Just 1 pixel.",
+  "overview": "A tiny pixel test image.",
+  "featured_image": "http://placehold.it/1x1.jpg",
+  "crop_id": "5426d2c5736d61c6a5860000"
 }
 ```
-
 
 
 ## Response
 ```
 {
   "guide": {
-    "_id": "54255fab736d619c825c0000",
-    "crop_id": "54255fab736d619c825b0000",
-    "user_id": "54255fab736d619c825d0000",
+    "_id": "5426d2c5736d61c6a5880000",
+    "crop_id": "5426d2c5736d61c6a5860000",
+    "user_id": "5426d2c5736d61c6a5870000",
     "stages": [
 
     ],
     "requirements": [
 
     ],
-    "name": "lime Greenfelder",
-    "overview": "Voluptatem similique ipsum perspiciatis eos.",
-    "featured_image": "https://openfarm.cc/img/page.png"
+    "name": "Just 1 pixel.",
+    "overview": "A tiny pixel test image.",
+    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/5426d2c5736d61c6a5880000.jpg?1411830469"
   }
 }
 ```
@@ -173,7 +132,8 @@
 
 
 
-# PUT /api/guides/54255fab736d619c82760000
+# PUT /api/guides/5426d2c5736d61c6a57c0000
+
 
 
 ## Params
@@ -184,21 +144,20 @@
 ```
 
 
-
 ## Response
 ```
 {
   "guide": {
-    "_id": "54255fab736d619c82760000",
-    "crop_id": "54255fab736d619c82750000",
-    "user_id": "54255fab736d619c82740000",
+    "_id": "5426d2c5736d61c6a57c0000",
+    "crop_id": "5426d2c5736d61c6a57b0000",
+    "user_id": "5426d2c5736d61c6a57a0000",
     "stages": [
 
     ],
     "requirements": [
 
     ],
-    "name": "magenta Kuhn",
+    "name": "salmon Collier",
     "overview": "updated",
     "featured_image": "https://openfarm.cc/img/page.png"
   }
@@ -207,26 +166,71 @@
 
 
 
+# GET /api/guides/5426d2c5736d61c6a5930000
 
-# POST /api/token
-
-
-## Params
-```
-{
-  "email": "lew.harris@loweskiles.net",
-  "password": "password"
-}
-```
 
 
 
 ## Response
 ```
 {
+  "guide": {
+    "_id": "5426d2c5736d61c6a5930000",
+    "crop_id": "5426d2c5736d61c6a5920000",
+    "user_id": "5426d2c5736d61c6a5940000",
+    "stages": [
+
+    ],
+    "requirements": [
+
+    ],
+    "name": "plum Braun",
+    "overview": "Explicabo enim deleniti accusamus eaque voluptatum culpa est et.",
+    "featured_image": "https://openfarm.cc/img/page.png"
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+# DELETE /api/token
+
+## Notes
+You must be logged in to perform this action. No parameters are required. This is a log out action, essentially.
+
+
+
+
+
+
+# POST /api/token
+
+## Notes
+Hit this API endpoint to generate an authentication token. Take the token that it returns and insert it as a request header like so: `Authorization: Token token=YOUR_TOKEN_HERE`
+
+
+
+## Params
+```
+{
+  "email": "marcellus.strosin@rosenbaum.org",
+  "password": "password"
+}
+```
+
+
+## Response
+```
+{
   "token": {
-    "expiration": "2014-10-26T12:44:28.108Z",
-    "secret": "lew.harris@loweskiles.net:ce4e8502abbe7ac1d28523f88808d89a"
+    "expiration": "2014-10-27T15:07:48.626Z",
+    "secret": "marcellus.strosin@rosenbaum.org:67fcccce4285380fa0ff141abf98236a"
   }
 }
 ```

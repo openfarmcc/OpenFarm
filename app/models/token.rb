@@ -15,6 +15,10 @@ class Token
     if plaintext.present?
       "#{user.email}:#{plaintext}"
     else
+      # This error takes place when you attempt to pull up a unencrypted token
+      # token from an object that has already been store in the database. We do
+      # not store unencrypted tokens, so the only way to fix this error is to
+      # destroy the token and create a new one.
       'EXPIRED - CANT RETRIEVE'
     end
   end

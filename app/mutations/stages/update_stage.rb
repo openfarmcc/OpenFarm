@@ -3,13 +3,14 @@ module Stages
 
     required do
       string :id
-      model :guide
-      string :name
-      string :instructions
+      model :user
+      model :stage
     end
 
     optional do
+      string :name
       string :days_start
+      string :instructions
       string :days_end
     end
 

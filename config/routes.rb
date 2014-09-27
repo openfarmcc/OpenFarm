@@ -31,7 +31,7 @@ OpenFarm::Application.routes.draw do
     resources :requirement_options, only: [:index]
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]
-    resources :requirements, only: [:create, :show, :update]
+    resources :requirements, only: [:create, :show, :update, :destroy]
   end
 
   get '/:locale' => 'high_voltage/pages#show', id: 'home'

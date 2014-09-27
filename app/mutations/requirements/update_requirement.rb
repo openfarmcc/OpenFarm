@@ -1,11 +1,15 @@
 module Requirements
-  class UpdateRequirements < Mutations::Command
+  class UpdateRequirement < Mutations::Command
 
     required do
       string :id
-      model :guide
+      model :user
+      model :requirement
+    end
+
+    optional do
       string :name
-      string :requirement
+      string :required
     end
 
     def validate
@@ -29,8 +33,8 @@ module Requirements
 
     def set_valid_params
       # TODO: Probably a DRYer way of doing this.
-      requirement.name           = name if name.present?
-      requirement.requirement    = requirement if requirement.present?
+      requirement.name        = name if name.present?
+      requirement.required    = required if required.present?
 
       requirement.save
     end

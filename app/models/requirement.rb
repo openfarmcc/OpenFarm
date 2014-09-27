@@ -5,9 +5,6 @@ class Requirement
   belongs_to :guide
 
   field :name,        type: String
-  field :requirement, type: String
+  field :required,    type: String
   field :slug,        type: String 
-  
-  #TODO: validations
-
 end

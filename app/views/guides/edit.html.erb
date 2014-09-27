@@ -104,11 +104,10 @@
                   <div class="small-6 columns choices">
                     <select 
                       ng-if="r.type == 'select'"
-
                       ng-model="r.value" 
                       ng-init=""
                       ng-options="o for o in r.options"
-                      ng-change="r.active = true"
+                      ng-change="r.active = true; setStatus(r);"
                       >
                       <option>Don't know</option>
                       <option>Not Applicable</option>
@@ -172,7 +171,8 @@
                 <div class="columns large-12 stage-description">
                   <p>{{ s.description }}</p>
                   <textarea placeholder="{{ s.default_value }}"
-                    ng-model="s.instructions">
+                    ng-model="s.instructions"
+                    ng-change="setStatus(s)">
                   </textarea>
                 </div>
               </div>

@@ -14,29 +14,54 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
     };
 
     $scope.initGuide = function(){
-      if (!$scope.guide.requirements.length){
-
-        $http.get("/api/requirement_options/")
+      // get the missing requirements
+      $http.get("/api/requirement_options/")
           .success(function(response, status){
-            $scope.guide.requirements = 
-                response.requirement_options;
+            angular.forEach(response.requirement_options, function(optional_r){
+              var req_exists = false;
+              angular.forEach($scope.guide.requirements, function(existing_r){
+                if (existing_r.name === optional_r.name){
+                  req_exists = true;
+                  existing_r.status = "existing";
+                  existing_r.value = existing_r.required;
+                  existing_r.options = optional_r.options;
+                  existing_r.type = optional_r.type;
+                  existing_r.active = true;
+                }
+              });
+              if (!req_exists){
+                $scope.guide.requirements.push(optional_r);
+              }
+            });
+          })
+          .error(function(response, code){
+            $scope.alerts.push({
+              msg: code + ' error. We had trouble fetching all requirement options.',
+              type: 'warning'
+            });
           });
-      }
-      if (!$scope.guide.stages.length){
-
-        $http.get("/api/stage_options/")
-          .success(function(response, status){
-            $scope.guide.stages = 
-                response.stage_options;
+      // get the missing stages
+      $http.get("/api/stage_options/")
+        .success(function(response, status){
+          angular.forEach(response.stage_options, function(optional_s){
+            var stage_exists = false;
+            angular.forEach($scope.guide.stages, function(existing_s){
+              if (existing_s.name === optional_s.name){
+                stage_exists = true;
+                existing_s.status = "existing";
+              }
+            });
+            if (!stage_exists){
+              $scope.guide.stages.push(optional_s);
+            }
           });
-      }
-    }
-
-    // console.log($scope.guide);
-    
-    $scope.updateReq = function(req_name, value){
-      console.log('changing');
-      // console.log(req_name, value);
+        })
+        .error(function(response, code){
+          $scope.alerts.push({
+            msg: code + ' error. We had trouble fetching all stage options.',
+            type: 'warning'
+          });
+        });
     }
 
     $scope.getGuide = function(){
@@ -45,7 +70,6 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
         method: "GET"
       }).success(function (response) {
         $scope.guide = response.guide;
-        console.log($scope.guide);
         $scope.initGuide();
       }).error(function (response, code) {
         $scope.alerts.push({
@@ -56,6 +80,12 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
     } 
 
     $scope.getGuide();
+
+    $scope.setStatus = function(item){
+      if (item.status){
+        item.status = 'edited';
+      }
+    }
 
     $scope.saveGuide = function(){
       $scope.saving = true;
@@ -77,12 +107,67 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
         if (item.status === undefined){
           // in the case where the status hasn't been
           // defined yet, it's a good bet that the
-          // status doesn't exist yet. 
+          // status doesn't exist yet.
+          if (item.active){
+            var data = {
+              name: item.name,
+              required: item.value,
+              guide: $scope.guide
+            }
+            $http.post('/api/requirements/', data)
+              .success(function (response){
+                // TODO: indicate that save happened
+                // successfully
+              })
+              .error(function (response, code){
+                $scope.alerts.push({
+                  msg: code + ' error. Could not create Requirement.',
+                  type: 'warning'
+                });
+              })
+          }
         }
+        if (item.status === 'edited'){
+          if (item.active){
+            var data = {
+              name: item.name,
+              required: item.value
+            }
+            $http.put('/api/requirements/' + item._id + '/', data)
+              .success(function (response){
+                // TODO: indicate that save happened
+                // successfully
+              })
+              .error(function (response, code){
+                $scope.alerts.push({
+                  msg: code + ' error. Could not update Requirement.',
+                  type: 'warning'
+                });
+              });
+          }
+        }
+        if ((item.status === 'existing' || 
+             item.status === 'edited') && 
+             !item.active){
+          console.log('deleting', item);
+          $http.delete('/api/requirements/' + item._id + '/')
+            .success(function (response){
+              // TODO: indicate that save happened
+              // successfully
+            })
+            .error(function (response, code){
+              $scope.alerts.push({
+                msg: code + ' error. Could not update Requirement.',
+                type: 'warning'
+              });
+            });
+        }
+        // TODO: else, if it's edited and not
+        // active anymore, we should probably 
+        // remove the requirement.
       });
       angular.forEach($scope.guide.stages, function(item){
       if (item.status === undefined){
-        console.log(item);
         // in the case where the status hasn't been
         // defined yet, it's a good bet that the
         // stage doesn't exist yet. in this case, create it,
@@ -94,18 +179,34 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
             instructions: item.instructions,
             guide: $scope.guide
           }
-          console.log(data);
           $http.post('/api/stages/', data)
             .success(function (response){
-              console.log("created stage successfully")
+              // TODO: indicate that save happened
+              // successfully.
             })
             .error(function (response, code){
               $scope.alerts.push({
-                msg: code + ' error. Could not retrieve data from server. Please try again later.',
+                msg: code + ' error. Could not create Stage.',
                 type: 'warning'
               });
             });
         }
+      } else if (item.status === 'edited'){
+        var data = {
+          name: item.name,
+          instructions: item.instructions
+        }
+        $http.put('/api/stages/' + item._id + '/', data)
+          .success( function (response){
+            // TODO: indicate that save happened
+            // successfully.
+          })
+          .error(function (response, code){
+            $scope.alerts.push({
+              msg: code + ' error. Could not update Stage.',
+              type: 'warning'
+            });
+          });
       }
     });
     };

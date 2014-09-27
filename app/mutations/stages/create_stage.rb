@@ -3,6 +3,7 @@ module Stages
 
     required do
       model :guide
+      model :user
       string :name
       string :instructions
     end
@@ -17,12 +18,23 @@ module Stages
     end
 
     def validate
+      validate_permissions
       validate_guide
     end
 
     def execute
       set_params
       stage
+    end
+
+    def validate_permissions
+      if guide.user != user
+        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
+        # in the controller.
+        add_error :user,
+                  :unauthorized_user,
+                  'You can only update stages that belong to your guides.'
+      end
     end
 
     def set_params

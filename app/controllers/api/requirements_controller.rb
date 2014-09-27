@@ -3,9 +3,11 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      puts "creating: " + params.to_s
-      @outcome = Requirements::CreateRequirement.run(params[:stage], guide: params[:guide], user: current_user)
-      puts @outcome.success?
+      guide = Guide.find(params[:guide][:_id])
+      @outcome = Requirements::CreateRequirement.run(params, 
+                                guide: guide,
+                                user: current_user)
+      # TODO something with #@outcome.errors
       respond_with_mutation(:created)
     end
 
@@ -19,6 +21,11 @@ module Api
                                 user: current_user,
                                 requirement: Requirement.find(params[:id]))
       respond_with_mutation(:ok)
+    end
+
+    def destroy
+      Requirement.find(params[:id]).destroy
+      render json: {}
     end
   end
 end

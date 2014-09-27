@@ -7,6 +7,8 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
 
   function guidesApp($scope, $http) {
 
+    $scope.alerts = [];
+
     $scope.guide = {
       requirements : []
     };
@@ -14,59 +16,20 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
     $scope.initGuide = function(){
       if (!$scope.guide.requirements.length){
 
-        $http.get("/api/guide_requirement_options/")
+        $http.get("/api/requirement_options/")
           .success(function(response, status){
-            // console.log(response.guide_requirement_options, status);
             $scope.guide.requirements = 
-                response.guide_requirement_options;
+                response.requirement_options;
           })
+      }
+      if (!$scope.guide.stages.length){
 
-        // $scope.guide.requirements = [{
-        //   value: 'Full Sun',
-        //   type: "select",
-        //   name: "Sun / Shade",
-        //   options: ['Full Sun', 'Partial Sun', 'Shaded']
-        // },{
-        //   value: 7.5,
-        //   type: "range",
-        //   name: "pH",
-        //   options: [0, 12, .5]
-        // },{
-        //   value: 20,
-        //   type: "range",
-        //   name: "Temperature",
-        //   options: [-10, 50, 2]
-        // },{
-        //   value: 'Medium Loam',
-        //   type: "select",
-        //   name: "Soil",
-        //   options: ['Medium Loam', 'Clay Loam', 'Silt', 'Silty Loam', 'Clay', 'Sandy Clay', 'Sandy Loam', 'Sand']
-        // },{
-        //   value: 'High Usage',
-        //   type: "select",
-        //   name: "Water",
-        //   options: ['High Usage', 'Medium Usage', 'Low Usage']
-        // },{
-        //   value: 'Greenhouse',
-        //   type: "select",
-        //   name: "Location",
-        //   options: ['Greenhouse', 'Potted', 'Outside']
-        // },{
-        //   value: 'Organic',
-        //   type: "select",
-        //   name: "Practices",
-        //   options: ['Organic', 'Conventional', 'Biodynamic', 'Permaculture', 'Conventional', 'Hydroponic']
-        // },{
-        //   value: 'High',
-        //   type: "select",
-        //   name: "Time Commitment",
-        //   options: ['High', 'Medium', 'Low']
-        // },{
-        //   value: 'High',
-        //   type: "select",
-        //   name: "Physical Strength",
-        //   options: ['High', 'Medium', 'Low']
-        // }]
+        $http.get("/api/stage_options/")
+          .success(function(response, status){
+            $scope.guide.stages = 
+                response.stage_options;
+            console.log($scope.guide.stages);
+          })
       }
     }
 
@@ -83,11 +46,13 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
         method: "GET"
       }).success(function (response) {
         $scope.guide = response.guide;
+        console.log($scope.guide);
         $scope.initGuide();
       }).error(function (response, code) {
-        // ToDo: make a dynamic alert.
-        alert(code + ' error. Could not retrieve data from server.' + 
-              ' Please try again later.');
+        $scope.alerts.push({
+          msg: code + ' error. Could not retrieve data from server. Please try again later.',
+          type: 'warning'
+        });
       });  
     } 
 
@@ -99,9 +64,10 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           console.log("success");
         })
         .error(function (response, code) {
-          // ToDo: make a dynamic alert.
-          alert(code + ' error. Could not retrieve data from server.' + 
-                ' Please try again later.');
+          $scope.alerts.push({
+            msg: code + ' error. Could not retrieve data from server. Please try again later.',
+            type: 'warning'
+          });
         })
     };
 
@@ -109,6 +75,10 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
       console.log('no requirements');
 
     }
+    // TODO: figure this out for the sake of code non-repeat
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
 }]);
 
 editGuidesApp.directive('focusMe', function($timeout, $parse) {

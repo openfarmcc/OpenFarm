@@ -1,18 +1,7 @@
-
-
 var guidesApp = angular.module('guidesApp', [
   'mm.foundation',
   'ng-rails-csrf'
   ]);
-
-// guidesApp.config(['$httpProvider', '$locationProvider',
-//   function($httpProvider, $locationProvider) {
-//     // TODO: This probably has something to do with why Google's
-//     // Location APIs aren't working
-//     // $httpProvider.defaults.useXDomain = true;
-//     // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//     $locationProvider.html5Mode(true);
-// }]);
 
 getUrlVar = function(key){
   var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
@@ -120,9 +109,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
       });
   };
 
-  $scope.closeAlert = function(index) {
-    $scope.alerts.splice(index, 1);
-  };
+
 
   var geocoder = new google.maps.Geocoder();
 

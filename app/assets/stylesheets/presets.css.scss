@@ -72,9 +72,9 @@ input, textarea{
 
 
 /* Section accordion styling */
-.accordion dd.accordion-navigation > a, 
-.accordion dd.active > a,
-.accordion dd.active > a.title-wrapper {
+.accordion > dd.accordion-navigation > a, 
+.accordion > dd.active > a,
+.accordion > dd.active > a.title-wrapper {
   display: block;
   padding: .2rem 1rem;
 

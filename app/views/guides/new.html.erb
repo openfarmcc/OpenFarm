@@ -66,7 +66,8 @@
               </p>
               <p ng-show="new_guide.crop">
                 <span ng-bind="new_guide.crop.description"></span>
-                <span ng-show="!new_guide.crop.description && !editCropDescription">
+                <!-- TODO: create this functionality -->
+                <!-- <span ng-show="!new_guide.crop.description && !editCropDescription">
                   <em>
                     We've got no information for this crop at the moment. To add a short description, <a ng-click="editCropDescription = !editCropDescription">click here</a>.</em>
                     
@@ -82,7 +83,7 @@
                       ng-bind="new_guide.crop.extra_info_url"
                       placeholder="http://wikipedia.com/...">
                 </span>
-                </p>
+                -->
                 
               </p>
               <span ng-if="crop_not_found">
@@ -136,10 +137,10 @@
             <div class="columns large-6">
               <label for="guide_name">Where are you growing it?</label>
               <input type="text" 
-                     ng-model="guide.location"
+                     ng-model="new_guide.location"
                      placeholder="Ex: Hanoi, Portland, California" 
                      typeahead="address for address in addresses"
-                     ng-change="getLocation(guide.location)"
+                     ng-change="getLocation(new_guide.location)"
                      typeahead-min-length="3"
                      typeahead-loading="loadingLocations"
                      typeahead-wait-ms="555"

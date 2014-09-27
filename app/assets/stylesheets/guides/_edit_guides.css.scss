@@ -59,7 +59,9 @@ p.section-text{
   }
 
   .title{
-    margin: 0 ;
+    margin: 0;
+    font-size: .9rem;
+    margin-top: .5rem;
   }
 
   &:hover{
@@ -72,7 +74,8 @@ p.section-text{
   }
 
   input[type=checkbox]{
-    margin-bottom: 0;
+    margin: 0 .2rem 0 -.5rem;
+    /*margin-top: .8rem;*/
   }
 
   .columns{
@@ -92,4 +95,24 @@ p.section-text{
 .row.requirements-results{
   text-align: center;
   margin-top: 1rem;
+}
+
+/****
+*
+* $STAGES
+*
+****/
+
+
+.tabs{
+  dd a{
+    /*padding: .5rem 1rem;*/
+  }
+  h3{
+    font-size: .8rem;
+  }
+}
+
+.stage-description{
+  padding: 0 2rem;
 }

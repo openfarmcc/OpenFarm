@@ -1,4 +1,4 @@
-class GuideRequirementOptionSerializer < ApplicationSerializer
+class RequirementOptionSerializer < ApplicationSerializer
   attributes :default_value, :type, :name, :options
 
   def options

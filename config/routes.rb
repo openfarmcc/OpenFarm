@@ -28,7 +28,8 @@ OpenFarm::Application.routes.draw do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]
     resources :guides, only: [:create, :show, :update]
-    resources :guide_requirement_options, only: [:index]
+    resources :requirement_options, only: [:index]
+    resources :stage_options, only: [:index]
   end
 
   get '/:locale' => 'high_voltage/pages#show', id: 'home'

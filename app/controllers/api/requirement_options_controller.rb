@@ -5,6 +5,5 @@ module Api
     def index
       render json: RequirementOption.all
     end
-
   end
 end

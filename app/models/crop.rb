@@ -43,5 +43,4 @@ class Crop
   track_history on: [:description, :image],
                 modifier_field: :modifier,
                 version_field: :version
-
 end

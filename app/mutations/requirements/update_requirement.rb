@@ -27,7 +27,7 @@ module Requirements
         # in the controller.
         add_error :user,
                   :unauthorized_user,
-                  'You can only update requirements that you own.'
+                  'You can only update requirements that belong to your guides.'
       end
     end
 

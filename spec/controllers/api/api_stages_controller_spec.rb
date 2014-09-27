@@ -38,7 +38,7 @@ describe Api::StagesController, type: :controller do
   it 'should return an error when a guide is not provided'
 
   it 'should show a specific stage' do
-    stage = FactoryGirl.create(:stage, guide: guide)
+    stage = FactoryGirl.create(:stage)
     get 'show', id: stage.id, format: :json
     expect(response.status).to eq(200)
     expect(json['stage']['name']).to eq(stage.name)

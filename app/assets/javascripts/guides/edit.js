@@ -112,7 +112,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
             var data = {
               name: item.name,
               required: item.value,
-              guide: $scope.guide
+              guide_id: $scope.guide._id
             }
             $http.post('/api/requirements/', data)
               .success(function (response){
@@ -177,7 +177,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           var data = {
             name: item.name,
             instructions: item.instructions,
-            guide: $scope.guide
+            guide_id: $scope.guide._id
           }
           $http.post('/api/stages/', data)
             .success(function (response){

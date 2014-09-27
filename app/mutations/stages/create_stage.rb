@@ -2,8 +2,8 @@ module Stages
   class CreateStage < Mutations::Command
 
     required do
-      model :guide
       model :user
+      string :guide_id
       string :name
       string :instructions
     end
@@ -18,8 +18,8 @@ module Stages
     end
 
     def validate
-      validate_permissions
       validate_guide
+      validate_permissions
     end
 
     def execute
@@ -28,12 +28,12 @@ module Stages
     end
 
     def validate_permissions
-      if guide.user != user
+      if @guide.user != user
         # TODO: Make a custom 'unauthorized' exception that we can rescue_from
         # in the controller.
         add_error :user,
                   :unauthorized_user,
-                  'You can only update stages that belong to your guides.'
+                  'You can only create stages for guides that belong to you.'
       end
     end
 
@@ -49,10 +49,10 @@ module Stages
     end
 
     def validate_guide
-      @guide = Guide.find(guide)
+      @guide = Guide.find(guide_id)
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a guide with id #{guide_id}."
-      add_error :guide, :guide_not_found, msg
+      add_error :guide_id, :guide_not_found, msg
     end
   end
 end

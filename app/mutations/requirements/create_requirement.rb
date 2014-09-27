@@ -2,8 +2,8 @@ module Requirements
   class CreateRequirement < Mutations::Command
 
     required do
-      model :guide
       model :user
+      string :guide_id
       string :name
       string :required
     end
@@ -22,7 +22,7 @@ module Requirements
     end
 
     def validate_permissions
-      if guide.user != user
+      if @guide.user != user
         # TODO: Make a custom 'unauthorized' exception that we can rescue_from
         # in the controller.
         add_error :user,
@@ -41,7 +41,7 @@ module Requirements
     end
 
     def validate_guide
-      @guide = Guide.find(guide)
+      @guide = Guide.find(guide_id)
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a guide with id #{guide_id}."
       add_error :guide, :guide_not_found, msg

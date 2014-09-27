@@ -3,9 +3,7 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      guide = Guide.find(params[:guide][:_id])
       @outcome = Requirements::CreateRequirement.run(params, 
-                                guide: guide,
                                 user: current_user)
       # TODO something with #@outcome.errors
       respond_with_mutation(:created)

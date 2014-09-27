@@ -1,5 +1,5 @@
-module Guides
-  class UpdateGuide < Mutations::Command
+module Requirements
+  class UpdateRequirements < Mutations::Command
 
     required do
       string :id
@@ -29,8 +29,8 @@ module Guides
 
     def set_valid_params
       # TODO: Probably a DRYer way of doing this.
-      guide.name           = name if name.present?
-      guide.requirement    = requirement if requirement.present?
+      requirement.name           = name if name.present?
+      requirement.requirement    = requirement if requirement.present?
 
       requirement.save
     end

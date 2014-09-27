@@ -92,7 +92,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           var data = {
             name: item.name,
             instructions: item.instructions,
-            guide: $scope.guide._id
+            guide: $scope.guide
           }
           console.log(data);
           $http.post('/api/stages/', data)

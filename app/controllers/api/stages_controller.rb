@@ -4,7 +4,7 @@ module Api
 
     def create
       puts "creating: " + params.to_s
-      @outcome = Stages::CreateStage.run(params[:stage], guide: params[:guide], user: current_user)
+      @outcome = Stages::CreateStage.run(params, user: current_user)
       puts @outcome.success?
       respond_with_mutation(:created)
     end

@@ -3,7 +3,7 @@ development:
     default:
       database: open_farm_development
       hosts:
-        - localhost:27017
+        - mongo
       options:
   options:
 
@@ -12,7 +12,7 @@ test:
     default:
       database: open_farm_test
       hosts:
-        - localhost:27017
+        - mongo
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to

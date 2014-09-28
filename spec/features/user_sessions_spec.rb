@@ -16,7 +16,7 @@ describe 'User sessions' do
     fill_in :user_years_experience, with: 3
     fill_in :user_preferred_growing_style, with: 'aquaponics'
     click_button 'Create User'
-    see "Welcome! You have signed up successfully."
+    see 'Welcome! You have signed up successfully.'
     usr = User.find_by(email: 'm@il.com')
     expect(usr.display_name).to eq('Rick')
     expect(usr.valid_password?('password123')).to eq(true)

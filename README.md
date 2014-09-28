@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
+[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/pr)](http://issuestats.com/github/farmbot/openfarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/issue)](http://issuestats.com/github/farmbot/openfarm)
 OpenFarm
 ========
 

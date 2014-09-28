@@ -32,6 +32,9 @@ OpenFarm::Application.routes.draw do
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]
     resources :requirements, only: [:create, :show, :update, :destroy]
+    # TODO Figure out why I can't use a singular resource route here.
+    post 'token', to: 'tokens#create'
+    delete 'token', to: 'tokens#destroy'
   end
 
   get '/:locale' => 'high_voltage/pages#show', id: 'home'

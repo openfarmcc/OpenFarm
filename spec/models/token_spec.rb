@@ -29,4 +29,15 @@ describe Token do
     key   = "#{email}:#{pt}"
     expect(Token.get_user(key)).to eq(false)
   end
+
+  it 'gives error messages if accessing a GCed token' do
+    id = token._id
+    token = nil # Garbage collect the newly created token.
+    token = Token.find id
+    expect(token.fully_formed).to eq('EXPIRED - CANT RETRIEVE')
+  end
+
+  it 'provides email and plaintext for newly created tokens' do
+    expect(token.fully_formed).to eq("#{token.user.email}:#{token.plaintext}")
+  end
 end

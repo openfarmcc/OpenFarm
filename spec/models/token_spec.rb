@@ -34,7 +34,7 @@ describe Token do
     id = token._id
     token = nil # Garbage collect the newly created token.
     token = Token.find id
-    expect(token.fully_formed).to eq("EXPIRED - CANT RETRIEVE")
+    expect(token.fully_formed).to eq('EXPIRED - CANT RETRIEVE')
   end
 
   it 'provides email and plaintext for newly created tokens' do

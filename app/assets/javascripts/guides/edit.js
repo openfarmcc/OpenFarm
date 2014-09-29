@@ -26,6 +26,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
                   existing_r.value = existing_r.required;
                   existing_r.options = optional_r.options;
                   existing_r.type = optional_r.type;
+
                   existing_r.active = true;
                 }
               });
@@ -48,6 +49,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
             angular.forEach($scope.guide.stages, function(existing_s){
               if (existing_s.name === optional_s.name){
                 stage_exists = true;
+                existing_s.order = optional_r.order;
                 existing_s.status = "existing";
               }
             });

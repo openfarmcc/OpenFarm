@@ -24,7 +24,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: true)
 end
 # =====
-
+Delayed::Worker.delay_jobs = false
 # ===== VCR stuff (records HTTP requests for playback)
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr'

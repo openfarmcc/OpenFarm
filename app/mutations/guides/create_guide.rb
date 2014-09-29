@@ -35,9 +35,10 @@ module Guides
       guide.name           = name
       guide.user           = user
       guide.overview       = overview if overview
-      # TODO: Defer to background via ActiveJob
-      guide.featured_image = URI(featured_image) if featured_image
       guide.save
+      if featured_image
+        guide.update_attributes(featured_image: URI(featured_image))
+      end
     end
 
     def validate_crop

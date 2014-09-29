@@ -4,10 +4,9 @@ class Requirement
   include Mongoid::Search
   belongs_to :guide
 
-  field :name,        type: String
-  field :requirement, type: String
-  field :slug,        type: String 
-  
-  #TODO: validations
+  validates_presence_of :guide
 
+  field :name,        type: String
+  field :required,    type: String
+  field :slug,        type: String
 end

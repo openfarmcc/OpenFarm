@@ -10,6 +10,7 @@ module Guides
 
     optional do
       string :overview
+      string :location
       string :name
       string :featured_image
     end
@@ -37,8 +38,14 @@ module Guides
     def set_valid_params
       # TODO: Probably a DRYer way of doing this.
       guide.overview       = overview if overview.present?
+      guide.location       = location if location.present?
       guide.name           = name if name.present?
-      guide.featured_image = featured_image if featured_image.present?
+
+      # TODO, this is uncommented because it returns an
+      # error when you don't have the Amazon static stuff
+      # set up properly (I assume).
+
+      # guide.featured_image = featured_image if featured_image.present?
       guide.save
     end
   end

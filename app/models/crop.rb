@@ -7,6 +7,15 @@ class Crop
   # For more info about search, see:
   # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
+  # history tracking all Crop documents
+  # note: tracking will not work until #track_history is invoked
+  include Mongoid::History::Trackable
+
+  is_impressionable counter_cache: true,
+                    column_name: :impressions,
+                    unique: :session_hash
+  field :impressions, default: 0
+
   has_many :guides
 
   field :name# , localize: true
@@ -29,4 +38,9 @@ class Crop
 
   search_in :name, :binomial_name, :description
   slug :name
+
+  # See https://github.com/aq1018/mongoid-history
+  track_history on: [:description, :image],
+                modifier_field: :modifier,
+                version_field: :version
 end

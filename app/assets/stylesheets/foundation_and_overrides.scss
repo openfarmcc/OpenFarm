@@ -1113,17 +1113,17 @@ $input-box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.20);
 
 // $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
+$tabs-navigation-padding: rem-calc(8);
 // $tabs-navigation-bg-color: #efefef  ;
-// $tabs-navigation-active-bg-color: #fff;
+$tabs-navigation-active-bg-color: $primary-color;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: #222;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
 // $tabs-navigation-font-family: $body-font-family;
 
-// $tabs-content-margin-bottom: rem-calc(24);
-// $tabs-content-padding: $column-gutter/2;
+$tabs-content-margin-bottom: 0;
+$tabs-content-padding: 0;
 
 // $tabs-vertical-navigation-margin-bottom: 1.25rem;
 

@@ -23,7 +23,7 @@ ADD     Gemfile /openfarm/Gemfile
 ADD     Gemfile.lock /openfarm/Gemfile.lock
 WORKDIR /openfarm
 
-RUN     cd /openfarm && bundle install
+RUN     bundle install
 
 # ADD code for production, this will be replaced by a volume during development
 ADD     . /openfarm

@@ -3,7 +3,7 @@ development:
     default:
       database: open_farm_development
       hosts:
-        - mongo
+        - <%= ENV['MONGO_HOST'] || 'localhost:27017' %>
       options:
   options:
 
@@ -12,7 +12,7 @@ test:
     default:
       database: open_farm_test
       hosts:
-        - mongo
+        - <%= ENV['MONGO_HOST'] || 'localhost:27017' %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to

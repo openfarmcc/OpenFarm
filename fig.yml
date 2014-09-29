@@ -12,6 +12,7 @@ webapp:
         SERVER_S3_ACCESS_KEY:
         SERVER_S3_SECRET_KEY:
         ALERTS:
+        MONGO_HOST: mongo_1
 
 mongo:
     image: 'mongo:2.6'

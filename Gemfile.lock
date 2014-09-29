@@ -97,6 +97,11 @@ GEM
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
+    delayed_job (4.0.4)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_mongoid (2.1.0)
+      delayed_job (>= 3.0, < 5)
+      mongoid (>= 3.0, < 5)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -416,6 +421,7 @@ DEPENDENCIES
   coffee-rails
   coveralls
   database_cleaner
+  delayed_job_mongoid
   devise
   doc_yo_self
   exception_notification

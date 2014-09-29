@@ -19,7 +19,7 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'mutations'
 gem 'rack-attack'
 gem 'rack-cors', require: 'rack/cors'
-# gem 'simple_token_authentication'
+gem 'delayed_job_mongoid'
 
 group :development, :test do
   gem 'coveralls', require: false

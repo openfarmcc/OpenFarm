@@ -23,8 +23,17 @@ module Api
     end
 
     def destroy
-      Requirement.find(params[:id]).destroy
-      render json: {}
+      # TODO Fix the respond_with_mutation method to take a mutation by value
+      # and automatically infer the response.
+      @outcome = Requirements::DestroyRequirement.run(params,
+                                                     user: current_user)
+      if @outcome.success?
+        render nothing: true, status: :no_content
+      else
+        render json: @outcome.errors.message, status: :unprocessable_entity
+      end
+      # Requirement.find(params[:id]).destroy
+      # render json: {}
     end
   end
 end

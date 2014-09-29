@@ -15,7 +15,7 @@ module Requirements
     end
 
     def authorize_user
-      if @requirement.guide.user != user
+      if @requirement && (@requirement.guide.user != user)
         # TODO: Make a custom 'unauthorized' exception that we can rescue_from
         # in the controller.
         add_error :user,
@@ -27,7 +27,7 @@ module Requirements
     def find_requirement
       @requirement = Requirement.find(id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a requirement with id #{guide_id}."
+      msg = "Could not find a requirement with id #{id}."
       add_error :requirement, :requirement_not_found, msg
     end
   end

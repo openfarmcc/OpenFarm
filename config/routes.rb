@@ -28,6 +28,10 @@ OpenFarm::Application.routes.draw do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]
     resources :guides, only: [:create, :show, :update]
+    resources :requirement_options, only: [:index]
+    resources :stage_options, only: [:index]
+    resources :stages, only: [:create, :show, :update]
+    resources :requirements, only: [:create, :show, :update, :destroy]
     # TODO Figure out why I can't use a singular resource route here.
     post 'token', to: 'tokens#create'
     delete 'token', to: 'tokens#destroy'

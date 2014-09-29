@@ -22,56 +22,10 @@ $info-color: #eecb91;
   }
 }
 
-
-/* Section accordion styling */
-.accordion dd.accordion-navigation > a, 
-.accordion dd.active > a,
-.accordion dd.active > a.title-wrapper {
-  display: block;
-  padding: .2rem 1rem;
-
-  @include accordion-header-color($of-orange);
-
-  h2, h5 {
-    display: inline-block;
-    color: white;
-    font-weight: 600;
-  }
-
-  .title{
-    font-size: 2rem;
-  }
-
-  .author {
-    margin-left: 20px;
-    display: inline-block;
-    color: white;
-  }
-}
-
-.accordion dd > .content{
-  padding: 0 0.935rem;
-}
-
-.home_search input{
-  border: 1px solid silver;
-}
-
-.top-bar input[type='submit']{
-  padding: 0;
-  line-height: 2.125;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.top-bar .search{
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
 /*
 
   Generic tweaks
+  First, because they're what get over-written
 
 */
 
@@ -97,6 +51,10 @@ input, textarea{
   border-radius: 3px;
 }
 
+.button{
+  border-radius: 3px;
+}
+
 .button.primary{
   background-image: -o-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
   background-image: -moz-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
@@ -104,13 +62,65 @@ input, textarea{
   background-image: linear-gradient(-179deg, #C1E081 0%, #A2BF6B 100%);
   -moz-box-shadow:    0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
   box-shadow:         0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
-  border-radius: 2px;
+  border-radius: 3px;
   font-family: SourceSansPro-Bold;
 }
 
 .ng-cloak {
     opacity: 0;
 }
+
+
+/* Section accordion styling */
+.accordion > dd.accordion-navigation > a, 
+.accordion > dd.active > a,
+.accordion > dd.active > a.title-wrapper {
+  display: block;
+  padding: .2rem 1rem;
+
+  @include accordion-header-color($of-orange);
+
+  h2, h5 {
+    display: inline-block;
+    /*color: white;*/
+    font-weight: 600;
+  }
+
+  .title{
+    font-size: 2rem;
+  }
+
+  .author {
+    margin-left: 20px;
+    display: inline-block;
+    /*color: white;*/
+  }
+}
+
+.accordion dd > .content{
+  padding: 0 0.935rem;
+}
+
+.home_search input{
+  border: 1px solid silver;
+}
+
+.top-bar input[type='submit']{
+  padding: 0;
+  line-height: 2.125;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.top-bar .search{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+
+}
+
+
 
 /*
 

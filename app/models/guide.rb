@@ -3,13 +3,20 @@ class Guide
   include Mongoid::Search
   include Mongoid::Paperclip
 
+  is_impressionable counter_cache: true,
+                    column_name: :impressions,
+                    unique: :session_hash
+  field :impressions, default: 0
+
   belongs_to :crop
   belongs_to :user
   has_many :stages
   has_many :requirements
 
   field :name
+  field :location
   field :overview
+
   validates_presence_of :user, :crop, :name
 
   has_mongoid_attached_file :featured_image,

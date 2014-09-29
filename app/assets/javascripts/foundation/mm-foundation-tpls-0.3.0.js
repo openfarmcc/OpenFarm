@@ -3028,9 +3028,9 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
       };
 
       var getMatchesAsync = function(inputValue) {
-
         var locals = {$viewValue: inputValue};
         isLoadingSetter(originalScope, true);
+        console.log(originalScope.loadingCrops);
         $q.when(parserResult.source(originalScope, locals)).then(function(matches) {
 
           //it might happen that several async queries were in progress if a user were typing fast
@@ -3060,6 +3060,7 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
             } else {
               resetMatches();
             }
+
             isLoadingSetter(originalScope, false);
           }
         }, function(){
@@ -3067,6 +3068,8 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
           isLoadingSetter(originalScope, false);
         });
       };
+
+
 
       resetMatches();
 
@@ -3081,6 +3084,7 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
       modelCtrl.$parsers.unshift(function (inputValue) {
 
         hasFocus = true;
+        isLoadingSetter(originalScope, true);
 
         if (inputValue && inputValue.length >= minSearch) {
           if (waitTime > 0) {

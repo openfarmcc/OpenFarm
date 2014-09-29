@@ -13,6 +13,7 @@ module Guides
     optional do
       string :overview
       string :featured_image
+      string :location
     end
 
     def guide
@@ -35,6 +36,7 @@ module Guides
       guide.name           = name
       guide.user           = user
       guide.overview       = overview if overview
+      guide.location       = location if location
       guide.save
       if featured_image
         guide.update_attributes(featured_image: URI(featured_image))

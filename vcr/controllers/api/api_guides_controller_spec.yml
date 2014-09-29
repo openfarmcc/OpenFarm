@@ -125,4 +125,69 @@ http_interactions:
       string: ''
     http_version: 
   recorded_at: Sat, 20 Sep 2014 23:17:00 GMT
+- request:
+    method: put
+    uri: https://farmbot.s3.amazonaws.com/test/media/guides/featured_images/542534f253696d11150d0000.jpg
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQAAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AA
+        EQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYH
+        CAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQy
+        gZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElK
+        U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Sl
+        pqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz
+        9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALUR
+        AAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkj
+        M1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFla
+        Y2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKz
+        tLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/a
+        AAwDAQACEQMRAD8A9MooooA//9k=
+    headers:
+      Content-Type:
+      - image/jpg
+      Content-Length:
+      - '695'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Fri, 26 Sep 2014 16:42:11 +0700
+      Authorization:
+      - AWS AKIAJ6RMTJ4UZZLRJS7A:QtTs5kY2Pyn24WSwjPkL/MXrNR8=
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      X-Amz-Request-Id:
+      - 84CDC0740C689D7F
+      X-Amz-Id-2:
+      - sp8/ilStz/a1MUbShj6suu1xM4+PdwTcrwCGPrX7XHWBuZgMWpa4Vp1wtXpEpwAd
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 26 Sep 2014 09:42:16 GMT
+      Connection:
+      - close
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Error><Code>InvalidAccessKeyId</Code><Message>The AWS Access Key Id you provided does not exist in our records.</Message><RequestId>84CDC0740C689D7F</RequestId><HostId>sp8/ilStz/a1MUbShj6suu1xM4+PdwTcrwCGPrX7XHWBuZgMWpa4Vp1wtXpEpwAd</HostId><AWSAccessKeyId>AKIAJ6RMTJ4UZZLRJS7A</AWSAccessKeyId></Error>
+    http_version: 
+  recorded_at: Fri, 26 Sep 2014 09:42:17 GMT
 recorded_with: VCR 2.9.3

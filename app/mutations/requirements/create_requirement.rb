@@ -13,6 +13,7 @@ module Requirements
 
     def validate
       validate_guide
+      validate_permissions
     end
 
     def execute
@@ -21,12 +22,12 @@ module Requirements
     end
 
     def validate_permissions
-      if @guide.user != user
+      if @guide && (@guide.user != user)
         # TODO: Make a custom 'unauthorized' exception that we can rescue_from
         # in the controller.
         add_error :user,
                   :unauthorized_user,
-                  'You can only update stages that belong to your guides.'
+                  'You cant create requirements for guides you dont own.'
       end
     end
 

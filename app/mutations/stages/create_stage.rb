@@ -27,7 +27,7 @@ module Stages
     end
 
     def validate_permissions
-      if @guide.user != user
+      if @guide && (@guide.user != user)
         # TODO: Make a custom 'unauthorized' exception that we can rescue_from
         # in the controller.
         add_error :user,

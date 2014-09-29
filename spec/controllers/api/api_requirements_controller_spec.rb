@@ -33,6 +33,8 @@ describe Api::RequirementsController, type: :controller do
   end
 
   it 'should return an error when wrong info is passed to create' do
+    # FIXME reword this to better describe whats going on or make assertions on
+    # the response body text.
     data = {
       required: "#{Faker::Lorem.sentences(2)}",
       guide_id: guide.id
@@ -58,6 +60,16 @@ describe Api::RequirementsController, type: :controller do
   it 'should return a not found error if a guide is not found' do
     post :create, name: 'sunlight', required: true, guide_id: 1
     expect(json["guide"]).to eq("Could not find a guide with id 1.")
+    expect(response.status).to eq(422)
+  end
+
+  it 'dissalows adding requirements to other peoples guides' do
+    data = { name: 'sunlight',
+             required: true,
+             guide_id: FactoryGirl.create(:guide) }
+    post :create, data
+    expect(json['user']).to eq(
+      "You cant create requirements for guides you dont own.")
     expect(response.status).to eq(422)
   end
 

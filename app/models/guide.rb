@@ -30,6 +30,4 @@ class Guide
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
-
-
 end

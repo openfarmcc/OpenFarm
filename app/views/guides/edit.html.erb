@@ -162,7 +162,8 @@
           Each stage of growing your crop.
         </p>
         <tabset class="tabs">
-          <tab ng-repeat="s in guide.stages">
+
+          <tab ng-repeat="s in guide.stages | orderBy:'order'">
             <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
               <h3>{{ s.name }}</h3>
             </tab-heading>

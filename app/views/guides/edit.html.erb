@@ -36,17 +36,17 @@
       </div>
 
       <div class="columns large-3">
-<div s3-upload
-bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-ng-model="s3upload"
-s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-</div>
-        <span class="crop-image">
+        <div s3-upload
+        bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+        ng-model="s3upload"
+        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+        <!-- <span class="crop-image">
           <img ng-cloak
                ng-class="{ 'no-image' : !new_guide.crop.image }"
                ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
                alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
-        </span>
+        </span> -->
       </div>
       <div class="columns large-9">
         <p>

@@ -106,6 +106,12 @@
         </section>
     </nav>
     </div>
+    <% for item in Announcement.current(session[:announcement_hide_time]) %>
+        <div data-alert class="alert-box warning radius columns large-4 small-centered">
+          <%= item.message %>
+          <%= link_to('×', 'api/announcements/hide', class: 'close', remote: true) %>
+        </div>
+    <% end %>
     <% if notice %>
         <div data-alert class="alert-box success radius columns large-4 small-centered">
           <%= notice %>
@@ -118,6 +124,7 @@
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
+
     <%= yield %>
     
   </body>

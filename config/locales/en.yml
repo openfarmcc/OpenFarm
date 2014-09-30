@@ -55,12 +55,28 @@ en:
             edit_title: "Edit Your Guide"
             successful_creation: "You've successfully created a guide."
             more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
+        new:
+            create_a_guide: "Create a Guide"
+            what_plant: "What plant are you're creating your guide for?"
+            enter_a_crop: "Enter a crop and it will be shown here"
+            uh_oh: "Uh oh!"
+            not_found: "We couldn't find that crop in our database."
+            cancel_and_go_to_home: "Cancel and go to home."
+            you_will_have_to: "You'll have to "
+            add_one: "add one"
+            some_information: "Some Information"
+            youre_growing_a: "You're growing a"
+            before_we_create_your_guide: "Before we create your guide, we need some basic information."
+            what_do_you_want_to_call_your_guide: "What do you want to call your guide?"
         crop: "Crop"
         user: "User"
         stages: "Stages"
         requirements: "Requirements"
         name: "Name"
         overview: "Overview"
+    stages:
+        edit:
+            successful_creation: "You've successfully created a stage."
     pages:
         home:
             placeholder: "What do you want to grow?"

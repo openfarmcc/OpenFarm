@@ -9,8 +9,5 @@ class Stage
   field :days_start, type: Integer
   field :days_end, type: Integer
   field :instructions, type: String
-  field :slug, type: String
-
-  #TODO: validations
   
 end

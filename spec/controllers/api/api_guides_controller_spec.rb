@@ -47,9 +47,9 @@ describe Api::GuidesController, type: :controller do
 
   it 'create guide should return an error when wrong info is passed' do
     sign_in FactoryGirl.create(:user)
-    params = { overview: 'A tiny pixel test image.',
+    data = { overview: 'A tiny pixel test image.',
                crop_id: FactoryGirl.create(:crop).id.to_s }
-    post 'create', guide: params
+    post 'create', guide: data
     expect(response.status).to eq(422)
   end
 

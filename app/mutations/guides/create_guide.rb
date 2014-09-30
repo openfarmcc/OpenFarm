@@ -13,6 +13,7 @@ module Guides
     optional do
       string :overview
       string :featured_image
+      string :location
     end
 
     def guide
@@ -35,9 +36,11 @@ module Guides
       guide.name           = name
       guide.user           = user
       guide.overview       = overview if overview
-      # TODO: Defer to background via ActiveJob
-      guide.featured_image = URI(featured_image) if featured_image
+      guide.location       = location if location
       guide.save
+      if featured_image
+        guide.update_attributes(featured_image: URI(featured_image))
+      end
     end
 
     def validate_crop

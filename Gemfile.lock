@@ -97,6 +97,11 @@ GEM
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
+    delayed_job (4.0.4)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_mongoid (2.1.0)
+      delayed_job (>= 3.0, < 5)
+      mongoid (>= 3.0, < 5)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -147,7 +152,11 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
+    httpclient (2.4.0)
     i18n (0.6.9)
+    impressionist (1.5.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -421,6 +430,7 @@ DEPENDENCIES
   coffee-rails
   coveralls
   database_cleaner
+  delayed_job_mongoid
   devise
   doc_yo_self
   exception_notification
@@ -429,6 +439,7 @@ DEPENDENCIES
   font-awesome-sass
   foundation-rails (~> 5.2.0)
   high_voltage
+  impressionist
   jquery-rails
   launchy
   metric_fu

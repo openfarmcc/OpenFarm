@@ -3,15 +3,6 @@ var guidesApp = angular.module('guidesApp', [
   'ng-rails-csrf'
   ]);
 
-// guidesApp.config(['$httpProvider', '$locationProvider',
-//   function($httpProvider, $locationProvider) {
-//     // TODO: This probably has something to do with why Google's
-//     // Location APIs aren't working
-//     // $httpProvider.defaults.useXDomain = true;
-//     // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//     $locationProvider.html5Mode(true);
-// }]);
-
 getUrlVar = function(key){
   var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
   return result && unescape(result[1]) || "";
@@ -23,6 +14,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   $scope.crops = [];
   $scope.step = 1;
   $scope.crop_not_found = false;
+  $scope.addresses = [];
 
   $scope.new_guide = {
     name: '',
@@ -48,6 +40,10 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     $scope.default_crop = $location.search().crop_id;
   }
 
+  $scope.$watch('loadingCrops', function(){
+    // console.log($scope.loadingCrops);
+  })
+
   //Typeahead search for crops
   $scope.search = function () {
     // be nice and only hit the server if
@@ -60,7 +56,6 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
           query: $scope.query
         }
       }).success(function (response) {
-        console.log(response.crops);
         if (response.crops.length){
           $scope.crops = response.crops;
         } else {
@@ -79,6 +74,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
   $scope.cropSelected = function ($item, $model, $label) {
     $scope.new_guide.crop = $item;
     $scope.crop_not_found = false;
+    $scope.new_guide.crop.description = '';
   };
 
   $scope.createCrop = function(){
@@ -96,7 +92,8 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
     var params = {
           name: $scope.new_guide.name,
           crop_id: $scope.new_guide.crop._id,
-          overview: $scope.new_guide.overview || null
+          overview: $scope.new_guide.overview || null,
+          location: $scope.new_guide.location || null
       }
     $http.post('/api/guides/', params)
       .success(function (r) {
@@ -112,28 +109,35 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
       });
   };
 
-  $scope.closeAlert = function(index) {
-    $scope.alerts.splice(index, 1);
-  };
+
+
+  var geocoder = new google.maps.Geocoder();
 
   // Any function returning a promise object can be used to load values asynchronously
   $scope.getLocation = function(val) {
-    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: val,
-        sensor: false
-      }
-    }).then(function(res){
-      var addresses = [];
-      angular.forEach(res.data.results, function(item){
-        addresses.push(item.formatted_address);
+    console.log('val', val);
+    if (geocoder) {
+      geocoder.geocode({ 'address': val }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var addresses = [];
+            angular.forEach(results, function(item){
+              addresses.push(item.formatted_address);
+            })
+            console.log('addresses');
+            $scope.addresses = addresses;
+         }
+         else {
+            console.log("Geocoding failed: " + status);
+         }
+        
       });
-      return addresses;
-    });
+    }
   };
 
   $scope.cancel = function(path){
     window.location.href = path || '/';
   }
+
+  
 }]);
 

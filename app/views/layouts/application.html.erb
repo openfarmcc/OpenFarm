@@ -45,36 +45,22 @@
             <!-- Search box Section -->
             <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %> 
             <% unless current_page?(root_path) or current_page?("/") %>
-            <%= form_for :cropsearch, url:
-              crop_search_via_post_path, method: 'post' do |f| %>
-              <div class="left">
+              <%= form_for :cropsearch, url:
+                crop_search_via_post_path, method: 'post' do |f| %>
+                <div class="left">
 
-                <div class="row collapse postfix-round">
+                  <div class="row collapse postfix-round">
 
-                  <div class="small-4 columns">
-                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
-                    
+                    <div class="small-4 columns">
+                      <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
+                      
+                    </div>
+                    <div class="small-2 columns end">
+                      <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                    </div>
                   </div>
-                  <div class="small-2 columns end">
-                    <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
-                  </div>
                 </div>
-              </div>
-            <% end %>
-            <!-- <form class="home_search" method="get" action="/crop_search">
-            <!--
-              <div class="left">
-                <div class="small-9 columns">
-                  <input type="text"
-                    name="q"
-                    maxlength="120"
-                    placeholder="Search OpenFarm">
-                </div>
-                <div class="small-3 columns">
-                  <a class="button secondary right inline">Search</a>
-                </div>
-              </div>
-            </form> -->
+              <% end %>
             <% end %>
 
             <!-- Right Nav Section -->
@@ -84,7 +70,6 @@
                         <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                             <li>
-                                <!-- <%= link_to "Create Crop", new_crop_path %>-->
                                 <%= link_to t('application.create_guide'), new_guide_path %>
                                 <%= link_to t('application.user_settings'), edit_user_registration_path %>
                             </li>
@@ -109,7 +94,7 @@
     <% for item in Announcement.current(session[:announcement_hide_time]) %>
         <div data-alert class="alert-box warning radius columns large-4 small-centered">
           <%= item.message %>
-          <%= link_to('×', 'api/announcements/hide', class: 'close', remote: true) %>
+          <%= link_to('&times;'.html_safe, 'api/announcements/hide', class: 'close', remote: true) %>
         </div>
     <% end %>
     <% if notice %>

@@ -5,18 +5,20 @@ class Announcement
   field :message
   field :starts_at, type: DateTime
   field :ends_at, type: DateTime
+  field :is_permanent, type: Boolean, default: false
+
+  scope :active, where(:starts_at.lte => Time.now,
+                       :ends_at.gte => Time.now)
+
+  scope :permanent, where(is_permanent: true)
+
+  scope :showing, -> { any_of([permanent.selector, active.selector]) }
 
   def self.current(hide_time)
-    # puts DateTime.current()
-    puts hide_time
-    # with_scope :where => { :starts_at.lte => DateTime.now, :ends_at.gte => DateTime.now }
     if hide_time.nil?
-      where(:starts_at.lte => Time.now,
-            :ends_at.gte => Time.now)
+      showing
     else
-      where(:starts_at.lte => Time.now,
-            :ends_at.gte => Time.now,
-            :updated_at.gte => hide_time)
+      showing.union.where(:updated_at.gte => hide_time)
     end
   end
 end

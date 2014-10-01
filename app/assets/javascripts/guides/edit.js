@@ -1,9 +1,10 @@
 var editGuidesApp = angular.module('editGuidesApp', [
-  'mm.foundation', 
+  'mm.foundation',
+  'ngS3upload',
   'ng-rails-csrf'
   ]);
 
-editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 
+editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
 
   function guidesApp($scope, $http) {
 
@@ -78,8 +79,8 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
           msg: code + ' error. Could not retrieve data from server. Please try again later.',
           type: 'warning'
         });
-      });  
-    } 
+      });
+    }
 
     $scope.getGuide();
 
@@ -148,8 +149,8 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
               });
           }
         }
-        if ((item.status === 'existing' || 
-             item.status === 'edited') && 
+        if ((item.status === 'existing' ||
+             item.status === 'edited') &&
              !item.active){
           console.log('deleting', item);
           $http.delete('/api/requirements/' + item._id + '/')
@@ -165,7 +166,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
             });
         }
         // TODO: else, if it's edited and not
-        // active anymore, we should probably 
+        // active anymore, we should probably
         // remove the requirement.
       });
       angular.forEach($scope.guide.stages, function(item){
@@ -231,9 +232,9 @@ editGuidesApp.directive('focusMe', function($timeout, $parse) {
     link: function(scope, element, attrs) {
       var model = $parse(attrs.focusMe);
       scope.$watch(model, function(value) {
-        if(value === true) { 
+        if(value === true) {
           $timeout(function() {
-            element[0].focus(); 
+            element[0].focus();
           });
         }
       });

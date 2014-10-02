@@ -31,11 +31,9 @@ class HttpImport
 
   def handle_row(row)
     return if row[0] == 'tsn'
-    crop = Crop.find_or_create_by(name: row[1, 2].join(' '))
-    crop.name             = row[-1]
-    crop.common_names     = Array(row[-1])
-    crop.crop_data_source = source
-    crop.save
+    crop = Crop.find_or_create_by(name: row[1, 2].join(' '),
+                                  common_names: Array(row[-1]),
+                                  crop_data_source: source)
     print '.'
   rescue => e
     puts "Failure on #{row[0]}: #{e.message}"

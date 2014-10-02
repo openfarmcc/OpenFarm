@@ -181,10 +181,9 @@ angular.module('ngS3upload.directives', []).
             // Bind the button click event
             var button = angular.element(element.children()[0]),
               file = angular.element(element.find("input")[0]);
-            button.bind('click', function (e) {
-              file[0].click();
-            });
-
+              element.bind('click', function (e) {
+               file[0].click();
+              });
             // Update the scope with the view value
             ngModel.$render = function () {
               scope.filename = ngModel.$viewValue;
@@ -240,14 +239,31 @@ angular.module('ngS3upload.directives', []).
           }
         };
       },
-      template: '<div class="upload-wrap">' +
-        '<button class="btn btn-primary" type="button"><span ng-if="!filename">Choose file</span><span ng-if="filename">Replace file</span></button>' +
-        '<a ng-href="{{ filename  }}" target="_blank" class="" ng-if="filename" > OK! (click for preview) </a>' +
-        // '<div class="progress progress-striped" ng-class="{active: uploading}" ng-show="attempt" style="margin-top: 10px">' +
-        // '<div class="bar" style="width: {{ progress }}%;" ng-class="barClass()"></div>' +
-        // '</div>' +
-        '<input type="file" style="display: none"/>' +
-        '</div>'
+      template: "<span class='crop-image'>"+
+                "<span ng-if='filename'>"+
+                "<div class='wrapper'>"+
+                // removed the link here, because it was interferring
+                // with the "dialog pop up for file loading" and the
+                // actual viewing the file, will have to figure out a
+                // different way to view a larger version of the file.
+                "<img ng-class=\"{ 'has-image' : !new_guide.crop.image }\" ng-src='{{ filename  }}'/>"+
+                "</div>"+
+                "</span>"+
+                "<div ng-if='!filename' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
+                "<i class='leaf-placeholder fa fa-leaf'></i>"+
+                "<p class='to-upload'>Upload a picture</p>"+
+                "<p class='loading'>Loading...</p>"+
+                "</div>"+
+                "<input type='file' style='display: none'/>"+
+                "</span>"
+                // '<div class="upload-wrap">' +
+                //
+                //   '<a ng-href="{{ filename  }}" target="_blank" class="" ng-if="filename" > OK! (click for preview) </a>' +
+                // '<div class="progress progress-striped" ng-class="{active: uploading}" ng-show="attempt" style="margin-top: 10px">' +
+                // '<div class="bar" style="width: {{ progress }}%;" ng-class="barClass()"></div>' +
+                // '</div>' +
+                // '<input type="file" style="display: none"/>' +
+                // '</div>'
     };
   }]);
 })(window, document);

@@ -14,6 +14,52 @@ h1.has-tip, h1.has-tip:hover{
   color: inherit;
 }
 
+.crop-image{
+  cursor: pointer;
+  color: $secondary-color;
+
+  &.ng-invalid-uploading{
+    p.loading{
+      display: block;
+    }
+    p.to-upload{
+      display: none;
+    }
+  }
+
+  .wrapper{
+    height: 100%;
+    position: relative;
+
+    .leaf-placeholder{
+      transform: translate(0%, -30%);
+      margin: auto;
+      top: 0; bottom: 0; right: 0; left: 0;
+      position: absolute;
+      height: 3rem;
+      width: 3rem;
+      font-size: 3rem;
+    }
+  }
+  p{
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  .loading{
+    display: none;
+  }
+  a{
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    margin-bottom: -2rem;
+  }
+}
+
+
+
 input[type=text].hidden-edit-field{
   font-size: 2rem;
   height: 3.5rem;
@@ -28,6 +74,12 @@ p.section-text{
   padding: 1.5rem 0;
   margin-top: 0;
 }
+
+/****
+*
+* $REQUIREMENTS
+*
+****/
 
 .requirements{
   .actual-requirements{

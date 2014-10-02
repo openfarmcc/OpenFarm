@@ -40,13 +40,8 @@ module Guides
       guide.overview       = overview if overview.present?
       guide.location       = location if location.present?
       guide.name           = name if name.present?
-
-      # TODO, this is uncommented because it returns an
-      # error when you don't have the Amazon static stuff
-      # set up properly (I assume).
-
-      # guide.featured_image = featured_image if featured_image.present?
       guide.save
+      set_featured_image_async
     end
   end
 end

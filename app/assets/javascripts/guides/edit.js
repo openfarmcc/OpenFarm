@@ -50,7 +50,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
             angular.forEach($scope.guide.stages, function(existing_s){
               if (existing_s.name === optional_s.name){
                 stage_exists = true;
-                existing_s.order = optional_r.order;
+                existing_s.order = optional_s.order;
                 existing_s.status = "existing";
               }
             });
@@ -73,6 +73,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
         method: "GET"
       }).success(function (response) {
         $scope.guide = response.guide;
+        console.log($scope.guide);
         $scope.initGuide();
       }).error(function (response, code) {
         $scope.alerts.push({

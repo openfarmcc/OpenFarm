@@ -240,13 +240,19 @@ angular.module('ngS3upload.directives', []).
         };
       },
       template: "<span class='crop-image'>"+
-                "<div ng-if='filename'>"+
-                "<a ng-href='{{ filename  }}' target='_blank' ng-if='filename' >"+
-                "<img ng-class=\"{ 'no-image' : !new_guide.crop.image }\" ng-src='{{ filename  }}' class='no-image'>"+
-                "</a>"+
+                "<span ng-if='filename'>"+
+                "<div class='wrapper'>"+
+                // removed the link here, because it was interferring
+                // with the "dialog pop up for file loading" and the
+                // actual viewing the file, will have to figure out a
+                // different way to view a larger version of the file.
+                "<img ng-class=\"{ 'has-image' : !new_guide.crop.image }\" ng-src='{{ filename  }}'/>"+
                 "</div>"+
-                "<div ng-if='!filename'>"+
-                "<img ng-class=\"{ 'no-image' : !new_guide.crop.image }\" ng-src='/img/empty-pot.png' alt='no crop selected' class='no-image' src='/img/empty-pot.png'>"+
+                "</span>"+
+                "<div ng-if='!filename' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
+                "<i class='leaf-placeholder fa fa-leaf'></i>"+
+                "<p class='to-upload'>Upload a picture</p>"+
+                "<p class='loading'>Loading...</p>"+
                 "</div>"+
                 "<input type='file' style='display: none'/>"+
                 "</span>"

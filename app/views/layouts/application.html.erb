@@ -94,7 +94,7 @@
     <% for item in Announcement.current(session[:announcement_hide_time]) %>
         <div data-alert class="alert-box warning radius columns large-4 small-centered">
           <%= item.message %>
-          <%= link_to('&times;'.html_safe, 'api/announcements/hide', class: 'close', remote: true) %>
+          <%= link_to('&times;'.html_safe, 'announcements/hide', class: 'close', remote: true) %>
         </div>
     <% end %>
     <% if notice %>

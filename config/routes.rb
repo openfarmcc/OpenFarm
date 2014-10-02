@@ -24,6 +24,9 @@ OpenFarm::Application.routes.draw do
     resources :requirements
   end
 
+  # TODO, surely this isn't right?
+  get 'announcements/hide', to: 'announcements#hide'
+
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]
@@ -32,8 +35,6 @@ OpenFarm::Application.routes.draw do
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]
     resources :requirements, only: [:create, :show, :update, :destroy]
-    # TODO, surely this isn't right?
-    get 'announcements/hide', to: 'announcements#hide'
     # TODO Figure out why I can't use a singular resource route here.
     post 'token', to: 'tokens#create'
     delete 'token', to: 'tokens#destroy'

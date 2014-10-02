@@ -1,4 +1,5 @@
 OpenFarm::Application.configure do
+  Delayed::Worker.delay_jobs = false
   # Settings specified here will take precedence over those in
   # config/application.rb.
 

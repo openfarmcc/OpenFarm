@@ -38,9 +38,7 @@ module Guides
       guide.overview       = overview if overview
       guide.location       = location if location
       guide.save
-      if featured_image
-        guide.update_attributes(featured_image: URI(featured_image))
-      end
+      set_featured_image_async
     end
 
     def validate_crop

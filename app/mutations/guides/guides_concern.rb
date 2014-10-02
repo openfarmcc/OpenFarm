@@ -16,5 +16,11 @@ module Guides
                   'HTTPS://'
       end
     end
+
+    def set_featured_image_async
+      if featured_image
+        guide.update_attributes(featured_image: URI(featured_image))
+      end
+    end
   end
 end

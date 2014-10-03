@@ -24,6 +24,9 @@ OpenFarm::Application.routes.draw do
     resources :requirements
   end
 
+  # TODO, surely this isn't right?
+  get 'announcements/hide', to: 'announcements#hide'
+
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops,  only: [:index, :show]

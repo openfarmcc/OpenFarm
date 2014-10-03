@@ -1,28 +1,41 @@
-require 'csv'  
+require 'csv'
 
-
-namespace :data_imports do
+namespace :data do
   desc "Import CSV file from ITIS"
-  task :import_csv => :environment do
-    file = ENV['data_file']
-    CSV.foreach(file, headers: true) do |row|
-      c = row.to_hash
-      genus = c.fetch('unit_name1', '')
-      species = c.fetch('unit_name2', '')
-      sub_species = c.fetch('unit_name3', '')
-      sub_species.gsub!('<null>', '')
-      binomial_name = genus + ' ' + species + ' ' + sub_species
-      name = c['vernacular_name']
-      tsn = c['tsn']
-      crop = Crop.create!(
-        binomial_name: binomial_name,
-        name: name
-        )
-      crop.crop_data_sources.create!(
-        source_name: "tsn",
-        reference: tsn
-        )
+  task csv: :environment do
+  HttpImport.new(ENV['CSV_URL']).run
+  end
+end
 
+class HttpImport
+  attr_reader :uri, :request, :source
+  def initialize(url)
+    @uri     = URI(url)
+    @request = Net::HTTP::Get.new uri
+    @source  = CropDataSource.find_or_create_by(source_name: "ITIS")
+  end
+
+  def run
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      http.request request do |response|
+        response.read_body{|r| parse(r)}
+      end
     end
+    puts 'Done'
+  end
+
+  def parse(response)
+    rows = response.split("\n").map(&:parse_csv).select{|r| r.length == 5}
+    rows.map{|r| handle_row(r) }
+  end
+
+  def handle_row(row)
+    return if row[0] == 'tsn'
+    crop = Crop.find_or_create_by(name: row[1, 2].join(' '),
+                                  common_names: Array(row[-1]),
+                                  crop_data_source: source)
+    print '.'
+  rescue => e
+    puts "Failure on #{row[0]}: #{e.message}"
   end
 end

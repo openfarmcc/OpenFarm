@@ -1,4 +1,5 @@
 class GuidesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @guides = Guide.all

@@ -1,6 +1,5 @@
 class Requirement
   include Mongoid::Document
-  # https://github.com/mauriciozaffari/mongoid_search
   include Mongoid::Search
   belongs_to :guide
 

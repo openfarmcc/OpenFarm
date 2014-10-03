@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe GuidesController do
   it 'directs to a new page' do
+    user = FactoryGirl.create(:user)
+    sign_in user
     get 'new'
     expect(response).to render_template(:new)
   end

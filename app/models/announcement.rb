@@ -5,7 +5,7 @@ class Announcement
   field :message
   field :starts_at, type: DateTime
   field :ends_at, type: DateTime
-  field :is_permanent, type: Boolean, default: false
+  field :is_permanent, type: Mongoid::Boolean, default: false
 
   scope :active, where(:starts_at.lte => Time.now,
                        :ends_at.gte => Time.now)

@@ -31,7 +31,8 @@ class HttpImport
 
   def handle_row(row)
     return if row[0] == 'tsn'
-    crop = Crop.find_or_create_by(name: row[1, 2].join(' '),
+    crop = Crop.find_or_create_by(name: row[-1],
+                                  binomial_name: row[1, 2].join(' '),
                                   common_names: Array(row[-1]),
                                   crop_data_source: source)
     print '.'

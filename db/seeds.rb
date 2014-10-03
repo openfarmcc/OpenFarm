@@ -1,5 +1,5 @@
 require 'factory_girl_rails'
-if Rails.env != "production"# <= Prevent catastrophe
+if Rails.env != 'production'# <= Prevent catastrophe
   Mongoid.purge!
   FactoryGirl.create(:user, admin: true,
                             email: 'admin@admin.com',

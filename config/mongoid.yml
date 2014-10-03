@@ -3,15 +3,16 @@ development:
     default:
       database: open_farm_development
       hosts:
-        - localhost:27017
+        - <%= ENV['MONGO_HOST'] || 'localhost:27017' %>
       options:
   options:
+
 test:
   sessions:
     default:
       database: open_farm_test
       hosts:
-        - localhost:27017
+        - <%= ENV['MONGO_HOST'] || 'localhost:27017' %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
@@ -20,6 +21,11 @@ test:
         retry_interval: 0
 
 production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>
+
+staging:
   sessions:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>

@@ -44,7 +44,7 @@ $total-columns: 12;
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -57,7 +57,7 @@ $total-columns: 12;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #c7a979; // #008CBA;
+$primary-color: #99B36C; // #008CBA;
 $secondary-color: #e7e7e7;
 $alert-color: #ff6666;
 $success-color: #74E29D;
@@ -65,7 +65,7 @@ $warning-color: #f08a24;
 $info-color: #eecb91;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
+$global-radius: 3px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -339,10 +339,10 @@ $hr-margin: rem-calc(20);
 
 // We use this to control the display property.
 // $button-display: inline-block;
-// $button-margin-bottom: rem-calc(20);
+$button-margin-bottom: 0;//rem-calc(20);
 
 // We use these to control button text styles.
-// $button-font-family: $body-font-family;
+// $button-font-family: SourceSansPro-Bold;
 // $button-font-color: #fff;
 // $button-font-color-alt: #333;
 // $button-font-tny: rem-calc(11);
@@ -356,13 +356,13 @@ $hr-margin: rem-calc(20);
 // $button-function-factor: -20%;
 
 // We use these to control button border styles.
-// $button-border-width: 0px;
+// $button-border-width: 2px;
 // $button-border-style: solid;
 // $button-bg: $primary-color;
 // $button-border-color: scale-color($bg, $lightness: $button-function-factor);
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
+$button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity for disabled buttons.
@@ -523,10 +523,10 @@ $hr-margin: rem-calc(20);
 // $input-border-color: scale-color(#fff, $lightness: -20%);
 // $input-focus-border-color: scale-color(#fff, $lightness: -40%);
 // $input-border-style: solid;
-// $input-border-width: 1px;
-// $input-border-radius: 10px; //$global-radius;
+$input-border-width: 0px;
+$input-border-radius: $global-radius;
 // $input-disabled-bg: #ddd;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+$input-box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.20);
 // $input-include-glowing-effect: true;
 
 // We use these to style the fieldset border and spacing.
@@ -1113,17 +1113,17 @@ $hr-margin: rem-calc(20);
 
 // $include-html-tabs-classes: $include-html-classes;
 
-// $tabs-navigation-padding: rem-calc(16);
+$tabs-navigation-padding: rem-calc(8);
 // $tabs-navigation-bg-color: #efefef  ;
-// $tabs-navigation-active-bg-color: #fff;
+$tabs-navigation-active-bg-color: $primary-color;
 // $tabs-navigation-hover-bg-color: scale-color($tabs-navigation-bg-color, $lightness: -6%);
 // $tabs-navigation-font-color: #222;
 // $tabs-navigation-active-font-color: $tabs-navigation-font-color;
 // $tabs-navigation-font-size: rem-calc(16);
 // $tabs-navigation-font-family: $body-font-family;
 
-// $tabs-content-margin-bottom: rem-calc(24);
-// $tabs-content-padding: $column-gutter/2;
+$tabs-content-margin-bottom: 0;
+$tabs-content-padding: 0;
 
 // $tabs-vertical-navigation-margin-bottom: 1.25rem;
 

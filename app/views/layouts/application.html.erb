@@ -15,17 +15,15 @@
 
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   	<title>
         <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
     </title>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script>
   	<%= stylesheet_link_tag    "application" %>
-  	<%= javascript_include_tag "custom.modernizr" %>
     <%= csrf_meta_tags %>
     <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
     <%= javascript_tag "var USER_ID = '#{current_user.try(:id).to_s}';" if protect_against_forgery? %>
+    <%= javascript_include_tag "application" %>
   </head>
 
   <body>
@@ -34,7 +32,7 @@
         <ul class="title-area">
             <li class="name">
                 <h1>
-                  <%= link_to(image_tag('openfarm_logo.svg', :width => '110px', :alt => 'Open Farm'), root_path) %>
+                  <%= link_to(image_tag('openfarm_logo.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
                 </h1>
             </li>
             <li class="toggle-topbar menu-icon">
@@ -45,8 +43,26 @@
         <section class="top-bar-section">
 
             <!-- Search box Section -->
-            <% unless current_page?(root_path) %>
-            <form class="home_search" method="get" action="/crop_search"><!-- TODO: change to a guide search -->
+            <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %> 
+            <% unless current_page?(root_path) or current_page?("/") %>
+            <%= form_for :cropsearch, url:
+              crop_search_via_post_path, method: 'post' do |f| %>
+              <div class="left">
+
+                <div class="row collapse postfix-round">
+
+                  <div class="small-4 columns">
+                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
+                    
+                  </div>
+                  <div class="small-2 columns end">
+                    <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <!-- <form class="home_search" method="get" action="/crop_search">
+            <!--
               <div class="left">
                 <div class="small-9 columns">
                   <input type="text"
@@ -58,32 +74,32 @@
                   <a class="button secondary right inline">Search</a>
                 </div>
               </div>
-            </form>
+            </form> -->
             <% end %>
 
             <!-- Right Nav Section -->
             <ul class="right">
                 <% if current_user %>
                     <li class="has-dropdown">
-                        <a href="#">Hi, <%= current_user.display_name %></a>
+                        <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                             <li>
-                                <%= link_to "Create Crop", new_crop_path %>
-                                <%= link_to "Create Guide", new_guide_path %>
-                                <%= link_to "User Settings", edit_user_registration_path %>
+                                <!-- <%= link_to "Create Crop", new_crop_path %>-->
+                                <%= link_to t('application.create_guide'), new_guide_path %>
+                                <%= link_to t('application.user_settings'), edit_user_registration_path %>
                             </li>
                         </ul>
                     </li>
                     <li class="has-form">
-                        <%= link_to("Logout", destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
+                        <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
                     </li>
                 <% else %>
                     <li class="has-form">
-                        <%= link_to("Create an Account", new_user_registration_path, class: 'button', id: 'register') %>
+                        <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>
                     </li>
                     <li class="divider"></li>
                     <li class="has-form">
-                        <%= link_to("Sign In", new_user_session_path, class: 'button', id: 'login') %>
+                        <%= link_to( t("application.log_in"), new_user_session_path, class: 'button', id: 'login') %>
                     </li>
                 <% end %>
             </ul>
@@ -103,8 +119,6 @@
         </div>
     <% end %>
     <%= yield %>
-
-    <%= javascript_include_tag "application" %>
     
   </body>
 </html>

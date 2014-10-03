@@ -9,4 +9,12 @@ describe Guide do
     expect(errors[:user]).to include("can't be blank")
     expect(errors[:crop]).to include("can't be blank")
   end
+
+  it 'checks ownership with #owned_by()' do
+    guide = FactoryGirl.create(:guide)
+    other_user = FactoryGirl.create(:user)
+    expect(guide.owned_by?(guide.user)).to eq(true)
+    expect(guide.owned_by?(nil)).to eq(false)
+    expect(guide.owned_by?(other_user)).to eq(false)
+  end
 end

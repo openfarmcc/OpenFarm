@@ -1,13 +1,22 @@
 class CropSearchesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: :search
 
+  # TODO: eventually this search should also be searching guides
   def search
-    # Singularize a word to only search singulars.
-    search_word = params[:cropsearch][:q].singularize
-    @results = Crop.full_text_search(search_word, 
-      :max_results => 100)
-    if @results.empty?
-      @results = Crop.all.limit(100)
+    query = (params[:cropsearch] && params[:cropsearch][:q]).to_s.singularize
+    @crops = Crop.full_text_search(query, max_results: 2)
+    if @crops.empty?
+      @crops = Crop.all.desc('_id').limit(25)
     end
+
+    # Use the crop results to look-up guides
+    # TODO: Refactor this query.
+    crop_ids = @crops.pluck(:id)
+    @guides = crop_ids.map! do |id|
+      Guide.where(crop_id: id)
+    end
+    @guides.flatten!
+
     render :show
   end
 end

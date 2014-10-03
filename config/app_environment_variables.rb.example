@@ -1,0 +1,18 @@
+# YOU NEED TO SET SENSITIVE SECRETS AND STUFF IN HERE.
+
+ENV['S3_BUCKET_NAME']        = 'my_bucket'
+# Public Policy Here:
+ENV['S3_ACCESS_KEY']         = '987'
+ENV['S3_SECRET_KEY']         = '654'
+# Trusted Policy Here:
+ENV['SERVER_S3_ACCESS_KEY']  = '123'
+ENV['SERVER_S3_SECRET_KEY']  = '456'
+
+# Emails seperated by pipes('|')
+ENV['ALERTS']                = "t@g.com|a@b.com"
+
+Someday, we will need to finish these for OAuth support.....
+ENV['TWITTER_CONSUMER_KEY'] = my-consumer-key
+ENV['TWITTER_CONSUMER_SECRET'] = my-consumer-secret
+ENV['FACEBOOK_APP_ID'] = 123
+ENV['FACEBOOK_APP_SECRET'] = 45

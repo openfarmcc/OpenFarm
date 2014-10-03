@@ -1,221 +1,210 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h1>Edit Your Guide </h1>
-    <% if @is_editing %>
-    <%= form_for @guide do |f| %>
-        <%= f.label(:name) %>
-        <%= f.text_field(:name) %>
-        <%= f.label(:overview) %>
-        <%= f.text_area(:overview) %>
-        <%= submit_tag('Update Guide', :class => "button tiny") %>
-      <% end %>
-    <% end %>
-    <dl class="accordion" data-accordion>
-      <dd class="accordion-navigation prerequisites-wrapper">
-        <a href="#prerequisites" class="title-wrapper">
-          <h2 class="title">Prerequisites</h2>
-        </a>
-        <div id="prerequisites" class="content active">
-          <div class="row">
-            <div class="small-5 columns prerequisite-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th width="20"></th>
-                    <th class="show-for-medium-up" width="100"></th>
-                    <th width="200"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @guide.requirements.to_a.first((@guide.requirements.length / 2.0).floor).each do |r| %>
-                    <tr>
-                      <td class="icon icon-<%= r.slug %>"></td>
-                      <td class="title show-for-medium-up"><%= r.name %></td>
-                      <td class="description"><%= r.requirement %></td>
-                      <td class="icon delete"></td>
-                    </tr>
-                  <% end %>          
-                </tbody>
-              </table>
-            </div>
-            <div class="small-5 columns prerequisite-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th width="20"></th>
-                    <th class="show-for-medium-up" width="100"></th>
-                    <th width="200"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @guide.requirements[(@guide.requirements.length / 2.0).floor..@guide.requirements.length].to_a.each do |r| %>
-                    <tr>
-                      <td class="icon icon-<%= r.slug %>"></td>
-                      <td class="title show-for-medium-up"><%= r.name %></td>
-                      <td class="description"><%= r.requirement %></td>
-                    </tr>
-                  <% end %>             
-                </tbody>
-              </table>
-            </div>
-            <div class="small-2 columns compatability-score-container">
-              <% if not @is_editing %>
-              <!-- <p>This guide is</p>
-              <div class="score-circle high-score">
-                <div class="score">42%</div>
-              </div>
-              <p>compatable with you and your garden</p> -->
-              <p>
-                We're working on a compatibility score, so that you'll be able to see
-                how compatible your garden and this guide are.
-              </p>
-              <% end %>
-            </div>
-          </div>
-          <% if @is_editing %>
-          <div class="row">
-            <div class="columns small-3">
-              Add a requirement:
-            </div>
-            <div class="columns small-9">
-              <%= form_for(:requirement, :url => {:controller => 'requirements', :action => 'create'}) do |f| %>
-                  <%= f.hidden_field(:guide_id, value: @guide.id) %>
-                  <%= f.label(:name) %>
-                  <%= f.text_field(:name) %>
-                  <%= f.label(:requirement) %>
-                  <%= f.text_field(:requirement) %>
-                  <%= f.label(:slug) %>
-                  <%= f.text_area(:slug) %>
-                  <%= submit_tag('Add Requirement', {:class => 'button tiny'}) %>
-                <% end %>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </dd>
+<div ng-app="editGuidesApp"
+     ng-controller="editGuideCtrl"
+     ng-cloak
+     class="edit-guide-app">
 
-      <dd class="accordion-navigation timeline-wrapper">
-        <a href="#timeline" class="title-wrapper">
-          <h2 class="title">Timeline</h2>
-        </a>
-        <div id="timeline" class="content active">
-          <div class="row seasons">
-            <% @seasons.each do |season, dates| %>
-              <div class="columns small-3">
-                <h3><%= season %></h3>
-                <span class="dates"><%= dates %></span>
+    <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+      <div class="">
+        {{alert.msg}}
+      </div>
+    </alert>
+
+    <div class="row">
+    <form accept-charset="UTF-8"
+      class="small-10 large-10 columns centered edit-overview"
+      name="edit-overview"
+      method="post"
+      >
+      <div class="column large-10">
+        <h1 ng-click="editing_name = ! editing_name"
+            ng-show="!editing_name"
+            title="Click to edit"
+            ><span class="fa fa-edit"></span> {{ guide.name }} </h1>
+        <input ng-show="editing_name"
+               ng-model="guide.name"
+               type="text"
+               class="hidden-edit-field"
+               focus-me="editing_name"/>
+      </div>
+      <div class="column large-2">
+        <input type="button"
+             class="button small"
+             ng-click="saveGuide()"
+             data-disable-with="Saving..."
+             ng-disabled="saving"
+             value="Save Guide"/>
+      </div>
+
+      <div class="columns large-3">
+        <div s3-upload
+        bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+        ng-model="s3upload"
+        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+        <p>
+          <%= link_to(icon('eye') + " View Guide", {:action => 'show'}, :class=>'edit-link') %>
+        </p>
+        <!-- <span class="crop-image">
+          <img ng-cloak
+               ng-class="{ 'no-image' : !new_guide.crop.image }"
+               ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
+               alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+        </span> -->
+      </div>
+      <div class="columns large-9">
+        <p>
+        </p>
+        <p>
+          <%= t('.more_details') %>
+        </p>
+        <label for="guide_overview">
+          Tell us a little about how you grew your crop.
+        </label>
+        <textarea id="guide_overview"
+                  name="guide[overview]"
+                  ng-model="guide.overview"
+                  rows="5">
+        </textarea>
+        <p>
+          To get more into details, describe your process <a href="#stages">in stages</a>.
+        </p>
+      </div>
+
+    </form>
+    </div>
+    <div class="row">
+    <div class="large-10 small-10 columns centered">
+
+    <accordion close-others="false">
+      <accordion-group is-open="false" class="accordion-navigation statistics">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            Statistics
+          </h2>
+        </accordion-heading>
+        <p class="section-text">
+        Your guide has had <%= pluralize(@guide.impressions.count, 'view') %>
+        </p>
+      </accordion-group>
+      <accordion-group is-open="true" class="accordion-navigation requirements">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            Requirements
+          </h2>
+        </accordion-heading>
+        <p class="section-text">
+          Requirements are the small details that make sure this crop grows successfully.
+          If you don't know everything, or it's not applicable, that's okay.
+        </p>
+        <div class="box">
+          <div class="row">
+            <div class="small-12 columns actual-requirements">
+              <div class="requirement"
+                ng-class="{ active : r.active }"
+                ng-init="r.value = r.default_value"
+                ng-repeat="r in guide.requirements.slice(0, guide.requirements.length)">
+                  <div class="small-6 columns title"
+                    >
+                    <input type="checkbox" ng-model="r.active">
+                      {{ r.name }}:</div>
+                  <div class="small-6 columns choices">
+                    <select
+                      ng-if="r.type == 'select'"
+                      ng-model="r.value"
+                      ng-init=""
+                      ng-options="o for o in r.options"
+                      ng-change="r.active = true; setStatus(r);"
+                      >
+                      <option>Don't know</option>
+                      <option>Not Applicable</option>
+                    </select>
+
+                    <span ng-if="r.type == 'range'">
+                    <input
+                      type="range"
+                      min="{{ r.options[0] }}"
+                      max="{{ r.options[1] }}"
+                      step="{{ r.options[2] }}"
+                      ng-change="r.active = true"
+                      ng-model="r.value"
+                           />{{ r.value }}</span>
+                  </div>
               </div>
-            <% end %>
+            </div>
           </div>
-          <div class="row plant-timeline">
-            <!-- TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS -->
-          </div>
-          <div class="row months">
-            <% @months.each do |m| %>
-              <div class="columns small-1">
-                <%= m %>
-              </div>
-            <% end %>
+          <div class="row requirements-results">
+            <div class="small-6 columns centered">
+              <span ng-show="filtered_requirements.length > 0">
+                You've selected: <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
+                </span>
+              </span>
+              <span ng-show="filtered_requirements.length == 0">You haven't selected anything yet</span>
+            </div>
           </div>
         </div>
-      </dd>
+        <div class="row">
 
-      <dd class="accordion-navigation instructions-wrapper">
-        <a href="#instructions" class="title-wrapper">
-          <h2 class="title">Growing Instructions</h2>
-        </a>
-        <div id="instructions" class="content active">
-          <div class="row stage-headers">
-            <div class="columns small-2">
-              <div class="stage-title">Stage:</div>
-            </div>
-            <ul class="columns small-10 tabs stages" data-tab>
-              <li class="tab-title active">
-                <a href="#instructions-overview">
-                  <h3>Overview</h3>
-                  <span>&nbsp;</span>
-                </a>
-              </li>
-              <% @guide.stages.to_a.each do |stage| %>
-                <li class="tab-title">
-                  <a href="#instructions-<%= stage['slug'] %>">
-                    <h3><%= stage['name'] %></h3>
-                    <% if stage['days'] != '' %>
-                      <span class="days">
-                        <%= stage['days_start'] %> - <%= stage['days_end'] %>
-                      </span>
-                    <% else %>
-                      <span>&nbsp;</span>
-                    <% end %>
-                  </a>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="row tabs-content">
-            <div class="content active" 
-                 id="instructions-overview">
-                 <div class="columns small-12">
-                  Overview
+          <p class="section-text columns large-8">
+            If you're happy with your guide so far, save it!
+          </p>
+          <span class="columns large-2">
+            <input type="button"
+                 class="button small"
+                 ng-click="saveGuide()"
+                 value="Save Guide"/>
+          </span>
+        </div>
+      </accordion-group>
+
+      <accordion-group is-open="true" class="accordion-navigation">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title" id="stages">
+            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            Stages
+          </h2>
+
+        </accordion-heading>
+        <p class="section-text">
+          Each stage of growing your crop.
+        </p>
+        <tabset class="tabs">
+
+          <tab ng-repeat="s in guide.stages | orderBy:'order'">
+            <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
+              <h3>{{ s.name }}</h3>
+            </tab-heading>
+            <div class="box">
+              <div class="row">
+                <div class="columns large-12 stage-description">
+                  <p>{{ s.description }}</p>
+                  <textarea placeholder="{{ s.default_value }}"
+                    ng-model="s.instructions"
+                    ng-change="setStatus(s)">
+                  </textarea>
                 </div>
+              </div>
             </div>
-            <% @guide.stages.to_a.each do |stage| %>
-              <div class="content"
-                   id="instructions-<%= stage['slug'] %>">
-                   <div class="columns small-12">
-                   <%= stage['instructions'] %>
-                   </div>
-              </div>
-            <% end %>
-          </div>
-          <% if @is_editing %>
-            <div class="row">
-              <div class="columns small-3">
-                Add a stage:
-              </div>
-              <div class="columns small-9">
-                <%= form_for(:stage, :url => {:controller => 'stages', :action => 'create'}) do |f| %>
-                    <%= f.hidden_field(:guide_id, value: @guide.id) %>
-                    <%= f.label(:name) %>
-                    <%= f.text_field(:name) %>
-                    <%= f.label(:days_start) %>
-                    <%= f.number_field(:days_start) %>
-                    <%= f.label(:days_end) %>
-                    <%= f.number_field(:days_end) %>
-                    <%= f.label(:instructions) %>
-                    <%= f.text_area(:instructions) %>
-                    <%= submit_tag('Add Stage', {:class => 'button tiny'}) %>
+          </tab>
+        </tabset>
+        <div class="row">
 
-                  <% end %>
-              </div>
-            </div>
-          <% end %>
+          <p class="section-text columns large-8">
+            If you're happy with your guide so far, save it!
+          </p>
+          <span class="columns large-2">
+            <input type="button"
+                 class="button small"
+                 ng-click="saveGuide()"
+                 value="Save Guide"/>
+          </span>
         </div>
-      </dd>
-      <dd class="accordion-navigation usage-wrapper">
-        <a href="#usage" class="title-wrapper">
-          <h2 class="title">Recipes and Usage</h2>
-        </a>
-        <div id="usage" class="content">
-          <div class="row">
-            <div class="columns small-5 small-centered">
-              Recipes and Usage are still being designed. You can help us out by taking a look at <a href="https://github.com/FarmBot/OpenFarm">the project page on Github</a>.
-            </div>
-          </div>
-        </div>
-      </dd>
-      <dd class="accordion-navigation forum-wrapper">
-        <a href="#forum" class="title-wrapper">
-          <h2 class="title">Forums</h2>
-        </a>
-        <div id="forum" class="content">
-          <div class="row">
-            <div class="columns small-5 small-centered">
-              The Forums are still being built. You can help us out by taking a look at <a href="https://github.com/FarmBot/OpenFarm">the project page on Github</a>.
-            </div>
-          </div>
-        </div>
-      </dd>
-    </dl>
+      </accordion-group>
+    </accordion>
+    </div>
   </div>
 </div>
+
+<%= javascript_tag "var GUIDE_ID = '#{@guide.try(:id).to_s}';" %>
+

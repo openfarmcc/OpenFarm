@@ -1,0 +1,151 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://placehold.it/1x1.png
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 20 Sep 2014 23:17:01 GMT
+      Content-Type:
+      - image/png
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=de012bae79c6a2f62228ba6d8c5783f611411255021912; expires=Mon, 23-Dec-2019
+        23:50:00 GMT; path=/; domain=.placehold.it; HttpOnly
+      Expires:
+      - Mon, 20 Oct 2014 23:17:01 GMT
+      Cache-Control:
+      - public, max-age=2592000
+      Last-Modified:
+      - Fri, 19 Nov 2010 07:00:00 GMT
+      Cf-Cache-Status:
+      - HIT
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 16d1bbeef1ed10b7-ORD
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyW
+        lpYU2uzLAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==
+    http_version: 
+  recorded_at: Sat, 20 Sep 2014 23:17:01 GMT
+- request:
+    method: put
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/guides/featured_images/541e0aed736d61ce63a30000.png
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyW
+        lpYU2uzLAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==
+    headers:
+      Content-Type:
+      - image/png
+      Content-Length:
+      - '85'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Sat, 20 Sep 2014 18:17:01 -0500
+      Authorization:
+      - AWS AKIAJUSSX57FDRHRYC7A:muS5Xe75JJxT8Eeg3YnIBd1a8DU=
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - o9IHImkM8jD9c6HHoLD+qCVMUc2618/ELE5u343tf48x5e32GHNyyR++Rt8SbLs5
+      X-Amz-Request-Id:
+      - EB49A5EB37AABE3F
+      Date:
+      - Sat, 20 Sep 2014 23:17:03 GMT
+      Etag:
+      - '"c9c4f628a0c47c85ccd5300c1dc35731"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sat, 20 Sep 2014 23:17:01 GMT
+- request:
+    method: put
+    uri: https://farmbot.s3.amazonaws.com/test/media/guides/featured_images/542534fb53696d1115860000.png
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyW
+        lpYU2uzLAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==
+    headers:
+      Content-Type:
+      - image/png
+      Content-Length:
+      - '85'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.3.9 ruby/2.1.2 x86_64-darwin13.0
+      Date:
+      - Fri, 26 Sep 2014 16:42:19 +0700
+      Authorization:
+      - AWS AKIAJ6RMTJ4UZZLRJS7A:/mdySJBe5ApUhJqtU6ty4UwAj18=
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      X-Amz-Request-Id:
+      - 646938D64EE2259D
+      X-Amz-Id-2:
+      - 0rS8+cVkom+j/p8L38mtLG929cP2rHF5sj0InVRyw7JPVMXAIdV+anWu1PQ/BnVv
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 26 Sep 2014 09:42:19 GMT
+      Connection:
+      - close
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <Error><Code>InvalidAccessKeyId</Code><Message>The AWS Access Key Id you provided does not exist in our records.</Message><RequestId>646938D64EE2259D</RequestId><HostId>0rS8+cVkom+j/p8L38mtLG929cP2rHF5sj0InVRyw7JPVMXAIdV+anWu1PQ/BnVv</HostId><AWSAccessKeyId>AKIAJ6RMTJ4UZZLRJS7A</AWSAccessKeyId></Error>
+    http_version: 
+  recorded_at: Fri, 26 Sep 2014 09:42:20 GMT
+recorded_with: VCR 2.9.3

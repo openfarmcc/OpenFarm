@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/pr)](http://issuestats.com/github/farmbot/openfarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/issue)](http://issuestats.com/github/farmbot/openfarm)
 OpenFarm
 ========
 
@@ -21,11 +22,21 @@ You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.o
 $ git clone https://github.com/FarmBot/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
-$ rake db:migrate
+$ rake db:setup
 $ rails s
 ```
 
 If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
+
+#### Sensitive Information
+
+All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `app_environment_variables.rb` accordingly. See `example_app_environment_variables.rb` for an example.
+
+#### Style Guides and formatting.
+
+ * We use the [ThoghtBot Style Guide](https://github.com/thoughtbot/guides/tree/master/style) when writiting Ruby. The exception to this is that we use 'single quotes' instead of "double quotes".
+ * When designing API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
+ * Please write specs for your code. We use Rspec as our testing framework.
 
 #### OAuth
 
@@ -51,7 +62,7 @@ Not sure where to help? Take a look [over here](http://waffle.io/FarmBot/OpenFar
 
 ### FAQ
 
-Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels). 
+Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
 ### User Flow
 

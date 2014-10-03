@@ -2,33 +2,22 @@ class CropsController < ApplicationController
 
   def index
     @crops = Crop.all
-    respond_to do |format|
-      # WOA 
-      format.html # show.html.erb
-      format.json { render json: @crops }
-
-    end
+    redirect_to(controller: 'crop_searches', action: 'search')
   end
 
   def new
-    @crop = Crop.new
+    @crop = Crop.new(name: params[:name])
   end
   
   def show
     @crop = Crop.find(params[:id])
-
-    respond_to do |format|
-      # WOA 
-      format.html # show.html.erb
-      format.json { render json: @crop }
-
-    end
   end
   
   def create
     @crop = Crop.new(crops_params)
     if @crop.save
-      redirect_to @crop
+      redirect_to(controller: 'guides', action: 'new',
+                  crop_id: @crop.id)
     else
       render :new
     end

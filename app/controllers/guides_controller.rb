@@ -2,12 +2,6 @@ class GuidesController < ApplicationController
 
   def index
     @guides = Guide.all
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @guides }
-
-    end
   end
 
   def show
@@ -35,27 +29,10 @@ class GuidesController < ApplicationController
     }
 
     @guide = Guide.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @guide }
-
-    end
-
   end
 
   def new
     @guide = Guide.new
-  end
-  
-  def create
-    puts params[:guide]
-    @guide = Guide.new(guides_params)
-    if @guide.save
-      render json: @guide
-    else
-      render :new
-    end
   end
 
   def edit
@@ -80,27 +57,5 @@ class GuidesController < ApplicationController
     @new_requirement = Requirement.new
 
     @new_stage = Stage.new
-
   end
-
-  def update
-    puts "******* UPDATING" 
-    @guide = Guide.find(params[:id])
-    @guide.update_attributes(guides_params)
-    if @guide.save
-      flash[:notice] = "Guide saved successfully."
-      redirect_to(:action => 'show', :id => @guide.id)
-    else
-      flash[:notice] = "Something went wrong."
-      @is_editing = true
-      render('show')
-    end
-
-  end
-  
-  private
-  def guides_params
-    params.require(:guide).permit(:name, :user, :crop_id, :overview)
-  end
-
 end

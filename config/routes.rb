@@ -1,28 +1,43 @@
 OpenFarm::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users,
-    controllers: {
-      omniauth_callbacks: "user_authentications",
-      registrations: "registrations"
-    }
-  root :to => 'high_voltage/pages#show', id: 'home'
+
+  devise_for :users # ,
+  # controllers: {
+  # omniauth_callbacks: "user_authentications",
+  # registrations: "registrations"
+  # }
 
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
-  post 'crop_search' => 'crop_searches#search', as: :crop_search_via_post
-  get 'crop_search' => 'crop_searches#search', as:  :crop_search_via_get
-  
-  resources :users
-  resources :crops
-  resources :guides
-  resources :stages
-  resources :requirements
-  
-  namespace :api, defaults: {format: 'json'} do
-    resources :crops,  only: :index
-    resources :guides, only: :create
+
+  scope '(:locale)', locale: /en|nl/ do
+    root to: 'high_voltage/pages#show', id: 'home'
+    post '(:locale)/crop_search' => 'crop_searches#search',
+         as: :crop_search_via_post
+    get '(:locale)/crop_search' => 'crop_searches#search',
+        as: :crop_search_via_get
+    resources :users
+    resources :crops
+    resources :guides
+    resources :stages
+    resources :requirements
   end
+
+  namespace :api, defaults: {format: 'json'} do
+    get '/aws/s3_access_token' => 'aws#s3_access_token'
+    resources :crops,  only: [:index, :show]
+    resources :guides, only: [:create, :show, :update]
+    resources :requirement_options, only: [:index]
+    resources :stage_options, only: [:index]
+    resources :stages, only: [:create, :show, :update]
+    resources :requirements, only: [:create, :show, :update, :destroy]
+    # TODO Figure out why I can't use a singular resource route here.
+    post 'token', to: 'tokens#create'
+    delete 'token', to: 'tokens#destroy'
+  end
+
+  get '/:locale' => 'high_voltage/pages#show', id: 'home'
   # match ':controller(/:action)', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest
@@ -67,7 +82,7 @@ OpenFarm::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

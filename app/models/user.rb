@@ -3,6 +3,7 @@ class User
 
   embeds_many :user_authentications
   has_many :guides
+  has_one :token, dependent: :delete
   accepts_nested_attributes_for :user_authentications
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -29,34 +30,38 @@ class User
   field :preferred_growing_style, type: String
   field :years_experience, type: Integer
   field :admin,   :type => Boolean, default: false
-  scope :admin, ->() { where(admin: true) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
 
-  def apply_omniauth omni
-    user_authentications << UserAuthentication.new(
-      provider: omni["provider"],
-      uid: omni["uid"],
-      token: omni["credentials"].token,
-      token_secret: omni["credentials"].secret
-    )
-  end
+  # def apply_omniauth omni
+  #   user_authentications << UserAuthentication.new(
+  #     provider: omni["provider"],
+  #     uid: omni["uid"],
+  #     token: omni["credentials"].token,
+  #     token_secret: omni["credentials"].secret
+  #   )
+  # end
 
-  def password_required?
-    # Don't need password if we're using OAuth
-    (user_authentications.empty? || !password.blank?) && super
-  end
+  # def password_required?
+  #   # Don't need password if we're using OAuth
+  #   (user_authentications.empty? || !password.blank?) && super
+  # end
+  # NOTE TO FUTURE DEVELOPERS:
 
-  def update_with_password params, *options
-    # Need to handle cases where the user authenticates through OAuth and not
-    # through email/passwords
-    if encrypted_password.blank?
-      update_attributes params, *options
-    else
-      super
-    end
-  end
+  # This never saw use in production. It was an omniauth helper method.
+  # I am going to comment it out to avoid confusing developers. We might bring
+  # it back at some point. If this is still commented out after 12/01/14, let's
+  # consider removing it completely
+  # def update_with_password params, *options
+  #   # Need to handle cases where the user authenticates through OAuth and not
+  #   # through email/passwords
+  #   if encrypted_password.blank?
+  #     update_attributes params, *options
+  #   else
+  #     super
+  #   end
+  # end
 end

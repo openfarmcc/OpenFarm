@@ -1,42 +1,179 @@
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 <div ng-app="guidesApp" 
      ng-controller="newGuideCtrl"
-     class="small-12 columns">
+     class="small-12 columns ng-cloak"
+     ng-cloak>
+
+    <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+  <div class="row create-guide-steps">
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 1 }">
+      <span>1</span> Choose a plant
+    </div>
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 2 }">
+      <span>2</span> Name and location
+    </div>
+    <div class="large-4 medium-4 small-4 columns step"
+        ng-class="{ 'active' : step === 3 }">
+      <span>3</span> Finish and details
+    </div>
+  </div>
+
   <div class="row">
-    <div class="large-8 medium-10 small-12 small-centered columns">
-      <h1>Add a new Guide!</h1>
-      <form 
-        accept-charset="UTF-8" 
-        class="new_guide"
-        id="new_guide" 
-        method="post"
-        >
-        <label for="guide_name">Guide Name</label>
-        <input id="guide_name" name="guide[name]" type="text" 
-          ng-model="new_guide.name">
-        <label 
-          for="guide_crop_id">For Crop:</label>
-          <!-- { updateOn: 'default blur', debounce: {'default': 5000, 'blur': 5000} } -->
-        <input type="text" 
-          ng-model="query"
-          ng-change="search()"
-          typeahead-on-select='cropSelected($item, $model, $label)'
-          typeahead="crop.name for crop in crops"
-          typeahead-wait-ms="555"
-          class="form-control">
-          <p ng-cloak ng-if="new_guide.crop">Selected crop: {{ new_guide.crop.name }}</p>
-        <label for="guide_overview">Overview</label>
-        <textarea id="guide_overview" name="guide[overview]"
-          ng-model="new_guide.overview"></textarea>
-        <input id="guide_user" name="guide[user]" 
-          type="hidden" 
-          ng-model="new_guide.user">
-        <input class="button small"  
-          data-disable-with="Saving..." 
-          name="commit" 
-          type="submit" 
-          value="Save Guide!"
-          ng-click="submitForm()">
-      </form>
+    <div class="large-8 medium-10 small-12 small-centered columns box">
+      <section name="step-1" ng-show="step === 1">
+        <h1 class="columns large-6">
+          <%= t('.create_a_guide') %>
+        </h1>
+        <form accept-charset="UTF-8"
+          class="new-guide new-guide-step-1"
+          id="new-guide-step-1"
+          method="post"
+          >
+          <div class="row">
+            <div class="columns large-6">
+              <label 
+                for="guide_crop_id"><%= t('.what_plant') %></label>
+              <input
+                id="crop_name"
+                type="text"
+                ng-model="query"
+                ng-change="search()"
+                typeahead-on-select='cropSelected($item, $model, $label)'
+                typeahead="crop.name for crop in crops"
+                typeahead-loading="loadingCrops"
+                typeahead-wait-ms="555"
+                typeahead-min-length="3"
+                class="form-control"/>
+              <i ng-show="loadingCrops" class="fa fa-refresh">loading crops</i>
+            </div>
+            <div class="columns large-6">
+              
+              <span class="crop-image">
+                <img ng-cloak
+                     ng-class="{ 'no-image' : !new_guide.crop.image }"
+                     ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
+                     alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+              </span>
+
+              
+              <p>
+                <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name : ''"></strong>
+                <em ng-bind="new_guide.crop.binomial_name"></em>
+              </p>
+              <p ng-show="new_guide.crop">
+                <span ng-bind="new_guide.crop.description"></span>
+                <!-- TODO: create this functionality -->
+                <!-- <span ng-show="!new_guide.crop.description && !editCropDescription">
+                  <em>
+                    We've got no information for this crop at the moment. To add a short description, <a ng-click="editCropDescription = !editCropDescription">click here</a>.</em>
+                    
+                </span>
+                <span ng-if="editCropDescription">
+                  <textarea
+                        ng-bind="new_guide.crop.description"
+                        placeholder="The {{ new_guide.crop.name }} is native to..."></textarea>
+                  <label>
+                    Do you know a URL that has more information?
+                  </label>
+                  <input type="text"
+                      ng-bind="new_guide.crop.extra_info_url"
+                      placeholder="http://wikipedia.com/...">
+                </span>
+                -->
+                
+              </p>
+              <span ng-if="crop_not_found">
+                <p>
+                  <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
+                </p>
+                <p>
+                  <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
+                </p>
+              </span>
+            </div>
+          </div>
+          <div class="button-wrapper row">
+            <div class="columns large-12">
+              <a class="button small secondary left"
+                name="back"
+                href="<%= root_path %>"
+                ng-click="cancel('<%= root_path %>')"><%= t('.cancel_and_go_to_home') %></a>
+              <input class="button small right"  
+                name="commit" 
+                type="submit"
+                value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
+                ng-disabled="!new_guide.crop"
+                ng-click="nextStep()"/>
+            </div>
+          </div>
+        </form>
+      </section>
+      <section name="step-2" ng-show="step === 2">
+        <h1 class="columns large-6">
+          <%= t('.some_information') %>
+        </h1>
+        <form accept-charset="UTF-8"
+          class="new-guide new-guide-step-2"
+          id="new-guide-step-2"
+          method="post"
+          >
+          <div class="row">
+            <div class="columns large-6">
+              <p>
+                <%= t('.youre_growing_a') %>
+                <strong>{{ new_guide.crop.name }}</strong>.
+              </p>
+              <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
+              <input id="guide_name" name="guide[name]" 
+                type="text" 
+                ng-model="new_guide.name"
+                placeholder="<%= current_user.display_name %>'s {{new_guide.name}}"
+                >
+            </div>
+            <div class="columns large-6">
+              <label for="guide_name">Where are you growing it?</label>
+              <input type="text" 
+                     ng-model="new_guide.location"
+                     placeholder="Ex: Hanoi, Portland, California" 
+                     typeahead="address for address in addresses"
+                     ng-change="getLocation(new_guide.location)"
+                     typeahead-min-length="3"
+                     typeahead-loading="loadingLocations"
+                     typeahead-wait-ms="555"
+                     class="form-control"
+                     name="guide[location]">
+              <i ng-show="loadingLocations" class="fa fa-refresh">loading locations</i>
+            </div>
+          </div>
+          <div class="button-wrapper row">
+            <div class="columns large-12">
+              <a class="button small secondary left"
+                name="back"
+                href="<%= root_path %>"
+                ng-click="cancel()"><%= t('.cancel_and_go_to_home') %></a>
+              <input class="button small secondary left"
+                name="back"
+                type="submit"
+                value="Back"
+                ng-click="previousStep()">
+
+              <input class="button small right"  
+                data-disable-with="Saving..." 
+                name="commit" 
+                type="submit"
+                value="{{ new_guide.crop || !new_guide.name ? 'Done: Add Extras' : 'Call your guide something.' }}"
+                ng-disabled="!new_guide.crop || !new_guide.name"
+                ng-click="submitForm()"/>
+            </div>
+          </div>
+        </form>
+      </section>
+      <section >
+      </section>
     </div>
   </div>
 </div>

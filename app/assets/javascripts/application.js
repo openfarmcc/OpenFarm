@@ -1,24 +1,25 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //- require jquery-ui
-//= require mm-foundation-0.3.0.js
-//= require mm-foundation-tpls-0.3.0.js
+//= require angular/angular
+//= require angular/angular-sanitize
 //= require ng-rails-csrf
-//= require_tree .
+//= require_tree ./angular-libs
+//= require foundation
+//= require foundation/custom.modernizr
+//= require foundation/foundation
+//= require foundation/foundation.accordion
+//= require foundation/foundation.alert
+//= require foundation/foundation.dropdown
+//= require foundation/foundation.tooltip
+//= require foundation/foundation.topbar
+//= require foundation/mm-foundation-0.3.0.js
+//= require foundation/mm-foundation-tpls-0.3.0.js
+//= require_tree ./guides
+//= require delete_me_later
 
+
+//TODO: Need a better folder structure
 $(function(){ 
 	$(document).foundation({
 		  accordion: {
@@ -32,6 +33,7 @@ $(function(){
 		  }
 		});
 });
+
 (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
     i[r] = i[r] || function() {

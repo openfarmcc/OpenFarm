@@ -1,18 +1,23 @@
 module Api
   class GuidesController < Api::Controller
+    skip_before_action :authenticate_from_token!, only: [:index, :show]
+
     def create
-      crop = Guide.new(guide_params)
-      if crop.save
-        render json: crop
-      else
-        render json: crop.errors, status: :unprocessable_entity
-      end
+      @outcome = Guides::CreateGuide.run(params, user: current_user)
+      respond_with_mutation(:created)
+      flash[:notice] = t('guides.edit.successful_creation')
     end
 
-    def guide_params
-      output           = params.permit(:crop_id, :name, :overview)
-      output[:user_id] = current_user
-      output
+    def show
+      guide = Guide.find(params[:id])
+      render json: guide
+    end
+
+    def update
+      @outcome = Guides::UpdateGuide.run(params,
+                                user: current_user,
+                                guide: Guide.find(params[:id]))
+      respond_with_mutation(:ok)
     end
   end
 end

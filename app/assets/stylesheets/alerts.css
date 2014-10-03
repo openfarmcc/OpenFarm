@@ -1,12 +1,9 @@
-.alert {
-  /*background: transparent;*/
-  margin-bottom: -43px;
-  z-index: 5;
-}
-
 .alert-box {
-  /*background: transparent;*/
-  margin-bottom: -43px;
+  /*margin-bottom: -43px;*/
   z-index: 5;
   top: 12px;
+}
+
+.home-alert-wrapper{
+  height: 0;
 }

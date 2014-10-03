@@ -12,6 +12,13 @@ $success-color: #74E29D;
 $warning-color: #f08a24;
 $info-color: #eecb91;
 
+@mixin background-gradient($from, $to){
+  background-image: -o-linear-gradient(-90deg, $from 0%, $to 100%);
+  background-image: -moz-linear-gradient(-90deg, $from 0%, $to 100%);
+  background-image: -ms-linear-gradient(-90deg, $from 0%, $to 100%);
+  background-image: linear-gradient(-180deg, $from 0%, $to 100%);
+}
+
 @mixin accordion-header-color($color){
   & > a, & > a.title-wrapper{
     background-color: $color;
@@ -21,6 +28,8 @@ $info-color: #eecb91;
     }
   }
 }
+
+
 
 /*
 
@@ -48,22 +57,35 @@ $info-color: #eecb91;
 // Hack: this doesn't seem to be editable in 
 // Foundation && Overrides.
 input, textarea{
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+@mixin button-box-shadow(){
+  -moz-box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
 }
 
 .button{
-  border-radius: 3px;
+  // For some reason the foundation styles don't
+  // acknowledge the button radius set on line :365
+  border-radius: 4px;
+  @include button-box-shadow();
 }
 
-.button.primary{
-  background-image: -o-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: -moz-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: -ms-linear-gradient(-89deg, #C1E081 0%, #A2BF6B 100%);
-  background-image: linear-gradient(-179deg, #C1E081 0%, #A2BF6B 100%);
-  -moz-box-shadow:    0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
-  box-shadow:         0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.25);
+.button{
+  @include background-gradient(#A2BD6A, #A2BF6B);
   border-radius: 3px;
-  font-family: SourceSansPro-Bold;
+  /*font-family: SourceSansPro-Bold;*/
+}
+
+.button.alert{
+  background-image: none;
+}
+.button.secondary{
+  background-image: none;
+}
+.button.success{
+  background-image: none;
 }
 
 .ng-cloak {
@@ -119,8 +141,6 @@ input, textarea{
   border-bottom-right-radius: 0;
 
 }
-
-
 
 /*
 

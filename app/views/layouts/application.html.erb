@@ -106,6 +106,10 @@
         </section>
     </nav>
     </div>
+    <% if current_page?(root_path) or current_page?("/") %>
+      <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
+      <div class="home-alert-wrapper">
+    <% end %>
     <% if notice %>
         <div data-alert class="alert-box success radius columns large-4 small-centered">
           <%= notice %>
@@ -118,6 +122,11 @@
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
+    <% if current_page?(root_path) or current_page?("/") %>
+      <%# if we're at root, we need to create a wrapper for these to float them somewhere else, close that wrapper %>
+      </div>
+    <% end %>
+
     <%= yield %>
     
   </body>

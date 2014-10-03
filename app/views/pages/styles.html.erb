@@ -66,9 +66,12 @@ Website Style Guide
   <div class="columns large-1 small-1 display">
     11
   </div>
-  <div class="columns large-1 small-1 display">
+  <div class="columns large-1 small-1 display left">
     12
   </div>
+  <p class="columns large-12 small-12">
+    If you're viewing this on a small screen, the grid will wrap. Why? Because a 12 column grid is composed of too small blocks for a mobile screen. Like is mentioned below, don't break down the grid beyond large-6 on a small page.
+  </p>
   </div>
 
   <br/>
@@ -255,9 +258,9 @@ Website Style Guide
 <div class="row">
   <h2>Alerts</h2>
   <p>
-    Don't use the foundation standard alert. Use specific alerts instead. Use a <kbd>radius</kbd>.
+    Don't use the foundation standard alert. Use specific alerts instead. Use a <kbd>radius</kbd>. Limit them to size <kbd>large-6</kbd>. Center them with <kbd>centered</kbd>.
   </p>
-  <div class="columns large-12">
+  <div class="columns large-6 centered">
     <div data-alert="" class="alert-box success radius">
       This is a <kbd>success</kbd> alert.
       <a href="#" class="close">×</a>

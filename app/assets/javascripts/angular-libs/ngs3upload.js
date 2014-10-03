@@ -240,16 +240,21 @@ angular.module('ngS3upload.directives', []).
         };
       },
       template: "<span class='crop-image'>"+
+                "<span ng-if='guide.featured_image !== \"leaf-grey.png\"'>"+
+                "<div class='wrapper'>"+
+                "<img ng-src='{{ guide.featured_image  }}'/>"+
+                "</div>"+
+                "</span>"+
                 "<span ng-if='filename'>"+
                 "<div class='wrapper'>"+
                 // removed the link here, because it was interferring
                 // with the "dialog pop up for file loading" and the
                 // actual viewing the file, will have to figure out a
                 // different way to view a larger version of the file.
-                "<img ng-class=\"{ 'has-image' : !new_guide.crop.image }\" ng-src='{{ filename  }}'/>"+
+                "<img ng-src='{{ filename  }}'/>"+
                 "</div>"+
                 "</span>"+
-                "<div ng-if='!filename' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
+                "<div ng-if='!filename && guide.featured_image === \"leaf-grey.png\"' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
                 "<i class='leaf-placeholder fa fa-leaf'></i>"+
                 "<p class='to-upload'>Upload a picture</p>"+
                 "<p class='loading'>Loading...</p>"+

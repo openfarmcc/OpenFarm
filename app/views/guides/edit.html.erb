@@ -41,6 +41,9 @@
         ng-model="s3upload"
         s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
         </div>
+        <p>
+          <%= link_to(icon('eye') + " View Guide", {:action => 'show'}, :class=>'edit-link') %>
+        </p>
         <!-- <span class="crop-image">
           <img ng-cloak
                ng-class="{ 'no-image' : !new_guide.crop.image }"

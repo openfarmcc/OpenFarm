@@ -19,8 +19,13 @@ class Fixnum
 end
 
 class TrueClass
-  def to_i; 1; end
-  def to_bool; self; end
+  def to_i
+    1
+  end
+
+  def to_bool
+    self
+  end
 end
 
 class FalseClass

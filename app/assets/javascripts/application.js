@@ -47,3 +47,8 @@ $(function(){
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
+
+getUrlVar = function(key){
+  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+  return result && unescape(result[1]) || "";
+};

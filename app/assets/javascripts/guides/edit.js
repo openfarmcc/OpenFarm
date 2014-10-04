@@ -5,8 +5,7 @@ var editGuidesApp = angular.module('editGuidesApp', [
   ]);
 
 editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
-
-  function guidesApp($scope, $http) {
+  function editGuidesApp($scope, $http) {
 
     $scope.alerts = [];
 

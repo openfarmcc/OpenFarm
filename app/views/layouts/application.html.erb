@@ -4,8 +4,8 @@
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> 
-<html lang="en"> 
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
 <!--<![endif]-->
   <head>
   	<meta charset="utf-8" />
@@ -43,38 +43,24 @@
         <section class="top-bar-section">
 
             <!-- Search box Section -->
-            <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %> 
+            <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
             <% unless current_page?(root_path) or current_page?("/") %>
-            <%= form_for :cropsearch, url:
-              crop_search_via_post_path, method: 'post' do |f| %>
-              <div class="left">
+              <%= form_for :cropsearch, url:
+                crop_search_via_post_path, method: 'post' do |f| %>
+                <div class="left">
 
-                <div class="row collapse postfix-round">
+                  <div class="row collapse postfix-round">
 
-                  <div class="small-4 columns">
-                    <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
-                    
+                    <div class="small-4 columns">
+                      <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
+
+                    </div>
+                    <div class="small-2 columns end">
+                      <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                    </div>
                   </div>
-                  <div class="small-2 columns end">
-                    <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
-                  </div>
                 </div>
-              </div>
-            <% end %>
-            <!-- <form class="home_search" method="get" action="/crop_search">
-            <!--
-              <div class="left">
-                <div class="small-9 columns">
-                  <input type="text"
-                    name="q"
-                    maxlength="120"
-                    placeholder="Search OpenFarm">
-                </div>
-                <div class="small-3 columns">
-                  <a class="button secondary right inline">Search</a>
-                </div>
-              </div>
-            </form> -->
+              <% end %>
             <% end %>
 
             <!-- Right Nav Section -->
@@ -84,7 +70,6 @@
                         <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                             <li>
-                                <!-- <%= link_to "Create Crop", new_crop_path %>-->
                                 <%= link_to t('application.create_guide'), new_guide_path %>
                                 <%= link_to t('application.user_settings'), edit_user_registration_path %>
                             </li>
@@ -109,6 +94,12 @@
     <% if current_page?(root_path) or current_page?("/") %>
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
       <div class="home-alert-wrapper">
+    <% Announcement.current(session[:announcement_hide_time]).each do |item| %>
+        <div data-alert class="alert-box warning radius columns large-4 small-centered">
+          <%= item.message %>
+          <%= link_to('&times;'.html_safe, 'announcements/hide', class: 'close', remote: true) %>
+        </div>
+    <% end %>
     <% end %>
     <% if notice %>
         <div data-alert class="alert-box success radius columns large-4 small-centered">
@@ -126,8 +117,7 @@
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else, close that wrapper %>
       </div>
     <% end %>
-
     <%= yield %>
-    
+
   </body>
 </html>

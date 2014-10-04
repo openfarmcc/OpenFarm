@@ -1,7 +1,7 @@
 class CropDataSource
   include Mongoid::Document
 
-  belongs_to :crop
+  has_many :crops
 
   field :source_name, type: String
   field :reference, type: String

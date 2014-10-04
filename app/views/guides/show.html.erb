@@ -4,8 +4,8 @@
      class="show-guide-app">
 
     <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
-      <div class="">
-        {{alert.msg}}
+      <div>
+        {{ alert.msg }}
       </div>
     </alert>
 
@@ -26,9 +26,8 @@
         </p>
       </div>
       <div class="columns large-9">
-        <p>
-          {{ guide.overview }}
-        </p>
+        <div class="markdown" markdown="guide.overview">
+        </div>
       </div>
 
     </form>
@@ -37,21 +36,33 @@
     <div class="large-10 small-10 columns centered">
 
     <accordion close-others="false">
-      <accordion-group is-open="false" class="accordion-navigation statistics">
+      <accordion-group is-open="stat.isopen" class="accordion-navigation statistics">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            <i ng-class="{'fa fa-minus': stat.isopen, 'fa fa-plus': !stat.isopen}"></i>
             Statistics
           </h2>
         </accordion-heading>
         <p class="section-text">
-        This guide has had <%= pluralize(@guide.impressions.count, 'view') %>
+          <div class="box">
+            <div class="row">
+              <div class="empty columns large-12 centered">
+
+                 <i class="fa fa-bar-chart-o"></i><br/>
+                  Once we know a bit more about this guide, you'll see some interesting statistics here.
+               </div>
+             </div>
+          </div>
+        
         </p>
       </accordion-group>
-      <accordion-group is-open="true" class="accordion-navigation requirements">
+      <accordion-group 
+        ng-init="r.isopen = true"
+        is-open="r.isopen"
+        class="accordion-navigation requirements">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            <i ng-class="{'fa fa-minus': r.isopen, 'fa fa-plus': !r.isopen}"></i>
             Requirements
           </h2>
         </accordion-heading>
@@ -60,24 +71,35 @@
         </p>
         <div class="box">
           <div class="row">
-            <div class="small-12 columns actual-requirements">
+            <div 
+              ng-if="guide.requirements.length"class="small-12 columns actual-requirements">
+              <ul>
+
+                <li ng-repeat="r in guide.requirements" class="requirement">
+                  <span class="small-6 columns"
+                    ng-bind="r.name + ':'"></span>
+                  <span class="small-6 columns"
+                    ng-bind="r.required"></span>
+                </li>
+              </ul>
             </div>
-          </div>
-          <div class="row requirements-results">
-            <div class="small-6 columns centered">
-              <span ng-show="filtered_requirements.length > 0">
-                You've selected: <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
-                </span>
-              </span>
+            <div class="small-12 columns empty"
+              ng-if="guide.requirements.length === 0">
+              <i class="fa fa-thumbs-down"></i>
+              <br/>
+              The person who made this guide hasn't added any requirements yet!
             </div>
           </div>
         </div>
       </accordion-group>
 
-      <accordion-group is-open="true" class="accordion-navigation">
+      <accordion-group
+        is-open="stag.isopen"
+        ng-init="stag.isopen = true"
+        class="accordion-navigation">
         <accordion-heading class="title-wrapper">
           <h2 class="title" id="stages">
-            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            <i ng-class="{'fa fa-minus': stag.isopen, 'fa fa-plus': !stag.isopen}"></i>
             Stages
           </h2>
 
@@ -85,6 +107,16 @@
         <p class="section-text">
           Each stage of growing this crop, with details.
         </p>
+        <div class="box"
+          ng-if="guide.stages.length === 0">
+          <div class="row">
+            <div class="small-12 columns empty">
+              <i class="fa fa-thumbs-down"></i>
+              <br/>
+              The person who made this guide hasn't added any stages yet!
+            </div>
+          </div>
+        </div>
         <tabset class="tabs">
 
           <tab ng-repeat="s in guide.stages | orderBy:'order'">
@@ -95,10 +127,8 @@
               <div class="row">
                 <div class="columns large-12 stage-description">
                   <p>{{ s.description }}</p>
-                  <textarea placeholder="{{ s.default_value }}"
-                    ng-model="s.instructions"
-                    ng-change="setStatus(s)">
-                  </textarea>
+                  <div class="markdown" markdown="s.instructions">
+                  </div>
                 </div>
               </div>
             </div>

@@ -29,8 +29,6 @@ $info-color: #eecb91;
   }
 }
 
-
-
 /*
 
   Generic tweaks
@@ -186,4 +184,31 @@ input, textarea{
 }
 .icon.of-time-of-year::before{
   background: image-url('guide-icons/temperature.svg'); 
+}
+
+/*
+
+  Markdown corrections
+
+*/
+
+textarea + .markdown-help-text{
+  font-size: .8rem;
+  margin-top: -.8rem; // supposedly the textarea for this input has a margin-bottom
+}
+
+.markdown{
+  h1{
+    font-size: 1.2rem;
+  }
+  h2{
+    font-size: 1.1rem;
+  } 
+  h3{
+    font-size: 1rem;
+  }
+
+  h4, h5, h6{
+    font-size: .8rem;
+  }
 }

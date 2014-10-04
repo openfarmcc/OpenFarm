@@ -4,6 +4,7 @@
 //= require angular/angular
 //= require angular/angular-sanitize
 //= require ng-rails-csrf
+//= require_tree ./libs
 //= require_tree ./angular-libs
 //= require foundation
 //= require foundation/custom.modernizr

@@ -1,11 +1,12 @@
 var editGuidesApp = angular.module('editGuidesApp', [
   'mm.foundation',
   'ngS3upload',
-  'ng-rails-csrf'
+  'ng-rails-csrf',
+  'openFarmModule'
   ]);
 
-editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
-  function editGuidesApp($scope, $http) {
+editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
+  function editGuidesApp($scope, $http, guideService) {
 
     $scope.alerts = [];
 
@@ -66,23 +67,20 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
         });
     }
 
-    $scope.getGuide = function(){
-      $http({
-        url: '/api/guides/' + GUIDE_ID,
-        method: "GET"
-      }).success(function (response) {
-        $scope.guide = response.guide;
-        console.log($scope.guide);
+    $scope.setGuide = function(success, object){
+      if (success){
+        $scope.guide = object;
         $scope.initGuide();
-      }).error(function (response, code) {
+      } else {
         $scope.alerts.push({
-          msg: code + ' error. Could not retrieve data from server. Please try again later.',
+          msg: object + ' error. Could not retrieve data from server. ' +
+            'Please try again later.',
           type: 'warning'
         });
-      });
+      }
     }
 
-    $scope.getGuide();
+    guideService.getGuide(GUIDE_ID, $scope.setGuide);
 
     $scope.setStatus = function(item){
       if (item.status){
@@ -92,6 +90,12 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http',
 
     $scope.saveGuide = function(){
       $scope.saving = true;
+      if ($scope.guide.featured_image === "/assets/leaf-grey.png"){
+        $scope.guide.featured_image = null;
+      }
+      if ($scope.guide.overview === ""){
+        $scope.guide.overview = null;
+      }
       $http.put('/api/guides/' + $scope.guide._id + "/", $scope.guide)
         .success(function (response) {
           console.log("success");

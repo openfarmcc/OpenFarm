@@ -2,281 +2,36 @@
 
 @import 'presets';
 
-
-/* 
-
-  Plant overview section 
-
-*/
-.accordion .overview-wrapper{
-  /*@include accordion-header-color($of-orange);*/
-  @include accordion-header-color($of-green);
-
-  .content {
-      background-color: #FCE5CD;
-  }
-
-  .content .overview-title {
-      font-weight: 600;
-  }
-
-  .content .nav-container {
-      padding: 0; /* Disabling Foundation's padding for weird nav highlighting */
-      border-left: 1px solid grey;
-  }
-
-  .content .nav-container .nav-title {
-      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-      font-weight: 600;
-  }
-
-  .content .nav-container ul {
-      margin-left: 0;
-  }
-
-  .content .nav-container ul li {
-      list-style: none;
-      margin-bottom: 4px;
-  }
-
-  .content .nav-container ul li a {
-      display: block;
-      padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-      color: #444;
-  }
-
-  .content .nav-container ul li:hover {
-      background-color: $of-orange;
-  }
-}
-
-/* 
-
-  Plant overview section 
-
-*/
-.accordion .prerequisites-wrapper {
-  /*@include accordion-header-color($of-blue);*/
-  @include accordion-header-color($of-green);
-
-   .content {
-      background-color: #C9DAF8;
-
-      .prerequisites-title {
-          font-weight: 600;
-      }
-
-      .prerequisite-table-container table {
-          width: 100%;
-          border: 0;
-          border-spacing: 0;
-          border-collapse: separate;
-          thead {
-              display: none;
-          }
-
-          td.prerequisite-icon {
-          }
-
-          td.prerequisite-title {
-          }
-
-          td.description {
-              font-weight: bold;
-          }
-      }
-
-      
-
-      .compatability-score-container {
-          text-align: center;
-          p {
-              margin: 1rem 0;
-              line-height: 1;
-          }
-
-          .score-circle {
-              width: 90px;
-              height: 90px;
-              margin: 12px 0;
-              display: inline-block;
-              border-radius: 50%;
-              background-color: grey;
-          }
-
-          .score-circle.low-score {
-              background-color: #BD2B20;
-          }
-
-          .score-circle.med-score {
-              background-color: #FAB900;    
-          }
-
-          .score-circle.high-score {
-              background-color: green;    
-          }
-
-          .score-circle .score {
-              text-align: center;
-              line-height: 90px;
-              color: white;
-              font-size: 1.75em;
-              font-weight: bold;
-          }
-      }
-
-
-      .nav-container .nav-title {
-          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-          font-weight: 600;
-      }
-
-      .nav-container ul {
-          margin-left: 0;
-      }
-
-      .nav-container ul li {
-          list-style: none;
-          margin-bottom: 4px;
-      }
-
-      .nav-container ul li a {
-          display: block;
-          padding: 0 0.9375rem; /* Werid nav padding -- this is unsafe */
-          color: #444;
-      }
-
-      .nav-container ul li:hover {
-          background-color: $of-orange;
-      }
-  } 
-
-}
-
-/* 
-
-  Timeline overview section 
-
-*/
-.accordion .timeline-wrapper{
-
-  color: white;
-  @include accordion-header-color($of-green);
-  /*@include accordion-header-color($of-purple);*/
-
-  &> .content, &> .content.active{
-    padding: 0 0.9375rem;
-  }
-
-  .seasons{
-    background-color: $of-purple + 50;
-    font-size: .8em;
-    text-align: center;
-    padding: .375rem 0;
-
-    h3{
-      color: white;
-      font-size: 1.3em;
-      margin-bottom: 0;
-    }
-  }
-
-  .plant-timeline{
-    height: 150px;
-  }
-
-  .months{
-    background-color: $of-purple + 50;
-    padding: .375rem 0;
-    font-size: .8em;
-  }
-}
-
-
-/* 
-
-  Instructions overview section 
-
-*/
-.accordion .instructions-wrapper{
-  @include accordion-header-color($of-green);
-
-  .stage-title{
-    margin-top: .6rem;
-    font-size: 1.4rem;
-  }
-
-  .stage-headers{
-    background-color: $of-green + 50;
-  }
-
-  .tabs.stages{
-
-    li.active a{
-      background-color: $of-green;
-    }
-
-    li a{
-      cursor: pointer;
-      text-align: center;
-      font-size: .9em;
-      padding: .5rem 1rem;
-      background-color: $of-green + 50;
-      transition: .5s;
-
-      h3{
-        font-size: .9em;
-        margin-bottom: 0;
-        line-height: 1;
-      }  
-      .days{
-        font-size: .7em;
-      }
-    }
-  }
-}
-
-/* 
-
-  Usage overview section 
-
-*/
-.accordion .usage-wrapper{
-  /*@include accordion-header-color($of-red); */
-  color: #111;
-  .content, .content.active{
-    padding: 1.935rem;
-    background-color: $of-red + 200;
-    font-size: 1rem;
-    text-align: center;
-  }
-}
-
-/* 
-
-  Forum section 
-
-*/
-.accordion .forum-wrapper{
-  /*@include accordion-header-color($of-yellow);*/
-
-  color: #111;
-  .content, .content.active{
-    padding: 1.935rem;
-    background-color: $of-yellow + 200;
-    font-size: 1rem;
-    text-align: center;
-  }
-}
-
 .guides-list{
   margin-top: 2rem;
-
   table{
     width: 100%;
   }
 }
 
+/* 
+
+  Show Guide
+
+*/
+
+.empty{
+  text-align: center;
+  padding-bottom: 1rem;
+  i{
+    font-size: 1.5rem;
+  }
+}
+
+
+.actual-requirements{
+  ul{
+    list-style: none;
+  }
+  li{
+
+  }
+}
 
 /*
 
@@ -348,7 +103,6 @@ form.new-guide{
     margin-left: .5rem;
   }
 }
-
 .crop-image{
   background: #fff;
   width: 100%;

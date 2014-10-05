@@ -17,10 +17,6 @@ module Api
       @outcome = Guides::UpdateGuide.run(params,
                                 user: current_user,
                                 guide: Guide.find(params[:id]))
-      if not @outcome.success?
-        puts @outcome.errors.message
-      end
-      # TODO, how do you make this return more information
       respond_with_mutation(:ok)
     end
   end

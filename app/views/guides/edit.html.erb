@@ -44,12 +44,6 @@
         <p>
           <%= link_to(icon('eye') + " View Guide", {:action => 'show'}, :class=>'edit-link') %>
         </p>
-        <!-- <span class="crop-image">
-          <img ng-cloak
-               ng-class="{ 'no-image' : !new_guide.crop.image }"
-               ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
-               alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
-        </span> -->
       </div>
       <div class="columns large-9">
         <p>
@@ -67,9 +61,9 @@
                   ng-maxlength="400">
         </textarea>
         <%# TODO Actually re-inforce this 400 character limit overview %>
-        <small class="" ng-show="editOverview.overview.$error.maxlength">
+        <small class="" ng-if="editOverview.overview.$error.maxlength">
         Overview can't be longer than 400 characters</small>
-        <p class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</p>
+        <small class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</small>
         <p>
           To get more into details, describe your process <a href="#stages">in stages</a>.
         </p>

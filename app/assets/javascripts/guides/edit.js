@@ -7,6 +7,9 @@ var editGuidesApp = angular.module('editGuidesApp', [
 
 editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
   function editGuidesApp($scope, $http, guideService) {
+    // setting this to true temporarily because
+    // other wise the ajax loader doesn't load
+    $scope.saving = true;
 
     $scope.alerts = [];
 
@@ -15,6 +18,8 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     };
 
     $scope.initGuide = function(){
+
+      $scope.saving = false;
       // get the missing requirements
       $http.get("/api/requirement_options/")
           .success(function(response, status){

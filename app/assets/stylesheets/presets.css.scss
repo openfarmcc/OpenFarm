@@ -76,6 +76,12 @@ input, textarea{
   /*font-family: SourceSansPro-Bold;*/
 }
 
+.button[disabled=disabled], .button[disabled], .button[disabled]:hover{
+  background-image: url(ajax-loader-button-disabled.gif);
+  background-position: 4px center;
+  background-repeat: no-repeat;
+}
+
 .button.alert{
   background-image: none;
 }
@@ -195,6 +201,8 @@ input, textarea{
 textarea + .markdown-help-text{
   font-size: .8rem;
   margin-top: -.8rem; // supposedly the textarea for this input has a margin-bottom
+  display: block;
+  margin-bottom: 1rem;
 }
 
 .markdown{

@@ -29,9 +29,12 @@
 
 .canopy{
   height: 300px;
+  margin-bottom: 1rem;
 }
 
 .image-wrapper{
+  background-image: url(leaf-grey-canopy.png);
+  background-position: top;
   position: absolute;
   top: 0;
   left: 0;
@@ -39,6 +42,8 @@
   bottom: 0;
   overflow: hidden;
   height: 300px;
+  border-bottom: 1px solid rgb(51, 51, 51);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 .image-wrapper img{
@@ -60,6 +65,11 @@
       color: $of-green;
       font-weight: 300;
     }
+  }
+  .edit-link{
+    position: absolute;
+    top: 1rem;
+    right: 0;
   }
 }
 

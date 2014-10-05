@@ -167,3 +167,17 @@ p.section-text{
 .stage-description{
   padding: 0 2rem;
 }
+
+
+/*
+
+$SIZES
+
+*/
+@media only screen and (max-width: 40.063em){
+  .requirements .actual-requirements{
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+}

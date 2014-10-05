@@ -56,6 +56,11 @@ $info-color: #eecb91;
 // Foundation && Overrides.
 input, textarea{
   border-radius: 4px;
+  margin-bottom: 0;
+}
+
+small.error{
+  margin-bottom: 0;
 }
 
 @mixin button-box-shadow(){
@@ -91,7 +96,6 @@ input, textarea{
 .button.success{
   background-image: none;
 }
-
 .ng-cloak {
     opacity: 0;
 }
@@ -198,10 +202,10 @@ input, textarea{
 
 */
 
-textarea + .markdown-help-text{
+.markdown-help-text{
   font-size: .8rem;
-  margin-top: -.8rem; // supposedly the textarea for this input has a margin-bottom
   display: block;
+  margin-top: .25rem;
   margin-bottom: 1rem;
 }
 

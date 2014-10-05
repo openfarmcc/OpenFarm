@@ -58,11 +58,14 @@
                   name="overview"
                   ng-model="guide.overview"
                   rows="6"
-                  ng-maxlength="400">
+                  ng-maxlength="400"
+                  required>
         </textarea>
         <%# TODO Actually re-inforce this 400 character limit overview %>
-        <small class="" ng-if="editOverview.overview.$error.maxlength">
+        <small class="error" ng-if="editOverview.overview.$error.maxlength">
         Overview can't be longer than 400 characters</small>
+        <small class="error" ng-if="editOverview.overview.$error.required">
+        You should add an overview!</small>
         <small class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</small>
         <p>
           To get more into details, describe your process <a href="#stages">in stages</a>.

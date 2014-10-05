@@ -8,29 +8,26 @@
         {{ alert.msg }}
       </div>
     </alert>
-
-    <div class="row">
-    <form accept-charset="UTF-8"
-      class="small-10 large-10 columns centered edit-overview"
-      name="edit-overview"
-      method="post"
-      >
-      <div class="column large-10">
+    <div class="canopy">
+      <div class="image-wrapper">
+        <img ng-src="/assets/leaf-grey-canopy.png"
+          ng-if="guide.featured_image.indexOf('leaf-grey') > -1" 
+          ng-attr-alt="{{ guide.name }}"/>
+        <img ng-src="{{ guide.featured_image }}"
+          ng-if="guide.featured_image.indexOf('leaf-grey') === -1" 
+          ng-attr-alt="{{ guide.name }}"/>
+      </div>
+    </div>
+    <div class="row title">
+      <div class="column large-10 centered">
         <h1> {{ guide.name }} </h1>
+        <h2> Guide by <span>{{ guide.user.display_name }}</span></h2>
+        <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
       </div>
-
-      <div class="columns large-3">
-        <img ng-src="{{ guide.featured_image }}" ng-attr-alt="{{ guide.name }}"/>
-        <p>
-          <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
-        </p>
-      </div>
-      <div class="columns large-9">
+      <div class="columns large-10 centered">
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
-
-    </form>
     </div>
     <div class="row">
     <div class="large-10 small-10 columns centered">

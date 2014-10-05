@@ -3,7 +3,7 @@
      ng-cloak
      class="edit-guide-app">
 
-    <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+    <alert ng-cloak class="ng-cloak columns large-6 centered radius" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
       <div class="">
         {{alert.msg}}
       </div>
@@ -12,7 +12,7 @@
     <div class="row">
     <form accept-charset="UTF-8"
       class="small-10 large-10 columns centered edit-overview"
-      name="edit-overview"
+      name="editOverview"
       method="post"
       >
       <div class="column large-10">
@@ -58,13 +58,17 @@
           <%= t('.more_details') %>
         </p>
         <label for="guide_overview">
-          Tell us a little about how you grew your crop. 
+          Overview: tell us a little about how you grew your crop. 
         </label>
         <textarea id="guide_overview"
-                  name="guide[overview]"
+                  name="overview"
                   ng-model="guide.overview"
-                  rows="6">
+                  rows="6"
+                  ng-maxlength="400">
         </textarea>
+        <%# TODO Actually re-inforce this 400 character limit overview %>
+        <small class="" ng-show="editOverview.overview.$error.maxlength">
+        Overview can't be longer than 400 characters</small>
         <p class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</p>
         <p>
           To get more into details, describe your process <a href="#stages">in stages</a>.

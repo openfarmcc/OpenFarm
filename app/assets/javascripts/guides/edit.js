@@ -67,13 +67,13 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         });
     }
 
-    $scope.setGuide = function(success, object){
+    $scope.setGuide = function(success, response, code){
       if (success){
-        $scope.guide = object;
+        $scope.guide = response;
         $scope.initGuide();
       } else {
         $scope.alerts.push({
-          msg: object + ' error. Could not retrieve data from server. ' +
+          msg: code + ' error. Could not retrieve data from server. ' +
             'Please try again later.',
           type: 'warning'
         });
@@ -93,9 +93,6 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       if ($scope.guide.featured_image === "/assets/leaf-grey.png"){
         $scope.guide.featured_image = null;
       }
-      if ($scope.guide.overview === ""){
-        $scope.guide.overview = null;
-      }
       $http.put('/api/guides/' + $scope.guide._id + "/", $scope.guide)
         .success(function (response) {
           console.log("success");
@@ -103,10 +100,14 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
 
         })
         .error(function (response, code) {
-          $scope.alerts.push({
-            msg: code + ' error. Could not retrieve data from server. Please try again later.',
-            type: 'warning'
+          angular.forEach(response, function(value, key){
+            console.log(key, value);
+            $scope.alerts.push({
+              msg: value,
+              type: 'alert'
+            });  
           });
+          
           $scope.saving = false;
         });
 

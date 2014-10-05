@@ -23,6 +23,45 @@
   }
 }
 
+.show-guide-app{
+  position: relative;
+}
+
+.canopy{
+  height: 300px;
+}
+
+.image-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  height: 300px;
+}
+
+.image-wrapper img{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  margin: auto 0;
+  width: 100%;
+}
+
+.title{
+  h2{
+    font-weight: 100;
+    color: $secondary-color;
+    /*font-family: "Helvetica Neue";*/
+    span{
+      color: $of-green;
+      font-weight: 300;
+    }
+  }
+}
 
 .actual-requirements{
   ul{

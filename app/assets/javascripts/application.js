@@ -4,6 +4,7 @@
 //= require angular/angular
 //= require angular/angular-sanitize
 //= require ng-rails-csrf
+//= require_tree ./libs
 //= require_tree ./angular-libs
 //= require foundation
 //= require foundation/custom.modernizr
@@ -47,3 +48,8 @@ $(function(){
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
+
+getUrlVar = function(key){
+  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+  return result && unescape(result[1]) || "";
+};

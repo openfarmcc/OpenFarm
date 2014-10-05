@@ -121,7 +121,7 @@ $global-radius: 3px;
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-$header-font-family: "source sans pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;//, $body-font-family;
+$header-font-family: "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;//, $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -131,12 +131,12 @@ $header-font-family: "source sans pro", "Helvetica Neue", "Helvetica", Helvetica
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
-// $h2-font-size: rem-calc(37);
-// $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
-// $h5-font-size: rem-calc(18);
-// $h6-font-size: 1rem;
+$h1-font-size: rem-calc(40);
+$h2-font-size: rem-calc(30);
+$h3-font-size: rem-calc(26);
+$h4-font-size: rem-calc(22);
+$h5-font-size: rem-calc(16);
+$h6-font-size: 1rem;
 
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
@@ -514,7 +514,7 @@ $button-radius: $global-radius;
 // $form-label-line-height: 1.5;
 // $form-label-font-color: scale-color(#000, $lightness: 30%);
 // $form-label-small-transform: capitalize;
-// $form-label-bottom-margin: 0;
+/*$form-label-bottom-margin: 0;*/
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);
 // $input-font-size: rem-calc(14);
@@ -552,7 +552,7 @@ $input-box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.20);
 
 // We use these to style the error states for inputs and labels
 // $input-error-message-padding: rem-calc(6 9 9);
-// $input-error-message-top: -1px;
+$input-error-message-top: 0;
 // $input-error-message-font-size: rem-calc(12);
 // $input-error-message-font-weight: $font-weight-normal;
 // $input-error-message-font-style: italic;

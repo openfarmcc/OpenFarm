@@ -29,8 +29,6 @@ $info-color: #eecb91;
   }
 }
 
-
-
 /*
 
   Generic tweaks
@@ -58,6 +56,11 @@ $info-color: #eecb91;
 // Foundation && Overrides.
 input, textarea{
   border-radius: 4px;
+  margin-bottom: 0;
+}
+
+small.error{
+  margin-bottom: 0;
 }
 
 @mixin button-box-shadow(){
@@ -78,6 +81,12 @@ input, textarea{
   /*font-family: SourceSansPro-Bold;*/
 }
 
+.button[disabled=disabled], .button[disabled], .button[disabled]:hover{
+  background-image: url(ajax-loader-button-disabled.gif);
+  background-position: 4px center;
+  background-repeat: no-repeat;
+}
+
 .button.alert{
   background-image: none;
 }
@@ -87,7 +96,6 @@ input, textarea{
 .button.success{
   background-image: none;
 }
-
 .ng-cloak {
     opacity: 0;
 }
@@ -186,4 +194,33 @@ input, textarea{
 }
 .icon.of-time-of-year::before{
   background: image-url('guide-icons/temperature.svg'); 
+}
+
+/*
+
+  Markdown corrections
+
+*/
+
+.markdown-help-text{
+  font-size: .8rem;
+  display: block;
+  margin-top: .25rem;
+  margin-bottom: 1rem;
+}
+
+.markdown{
+  h1{
+    font-size: 1.2rem;
+  }
+  h2{
+    font-size: 1.1rem;
+  } 
+  h3{
+    font-size: 1rem;
+  }
+
+  h4, h5, h6{
+    font-size: .8rem;
+  }
 }

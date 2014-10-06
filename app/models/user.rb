@@ -35,6 +35,7 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
+  field :mailing_list, type: Mongoid::Boolean, default: false
 
   # def apply_omniauth omni
   #   user_authentications << UserAuthentication.new(

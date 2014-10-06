@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe 'User registrations' do
   include IntegrationHelper
@@ -22,8 +22,8 @@ describe 'User registrations' do
     fill_in :user_display_name, with: 'Bert'
     fill_in :user_password, with: 'hello_world'
     fill_in :user_password_confirmation, with: 'hello_world'
-    check("user_mailing_list")
-    see "Get (occassional) updates about OpenFarm via email"
+    check('user_mailing_list')
+    see 'Get (occassional) updates about OpenFarm via email'
     click_button 'Create User'
     see('You have signed up successfully.')
     expect(user.reload.mailing_list).to eq(true)
@@ -36,7 +36,7 @@ describe 'User registrations' do
     fill_in :user_password, with: 'hello_world'
     fill_in :user_password_confirmation, with: 'hello_world'
     uncheck :user_mailing_list
-    see "Get (occassional) updates about OpenFarm via email"
+    see 'Get (occassional) updates about OpenFarm via email'
     click_button 'Create User'
     see('You have signed up successfully.')
     expect(user.reload.mailing_list).to eq(false)

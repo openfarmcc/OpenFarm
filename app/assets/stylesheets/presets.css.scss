@@ -81,7 +81,7 @@ small.error{
   /*font-family: SourceSansPro-Bold;*/
 }
 
-.button[disabled=disabled], .button[disabled], .button[disabled]:hover{
+.button[disabled=disabled].loading, .button[disabled].loading, .button[disabled].loading:hover{
   background-image: url(ajax-loader-button-disabled.gif);
   background-position: 4px center;
   background-repeat: no-repeat;

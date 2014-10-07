@@ -30,6 +30,7 @@
         <input type="button"
              class="button small"
              ng-click="saveGuide()"
+             ng-class="{ 'loading' : saving }"
              data-disable-with="Saving..."
              ng-disabled="saving"
              value="Save Guide"/>
@@ -162,6 +163,8 @@
           <span class="columns large-2">
             <input type="button"
                  class="button small"
+                 ng-class="{ 'loading' : saving }"
+                 ng-disabled="saving"
                  ng-click="saveGuide()"
                  value="Save Guide"/>
           </span>
@@ -212,6 +215,7 @@
             <input type="button"
                  class="button small"
                  ng-click="saveGuide()"
+                 ng-class="{ 'loading' : saving }"
                  value="Save Guide"/>
           </span>
         </div>

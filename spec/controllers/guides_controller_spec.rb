@@ -43,4 +43,28 @@ describe GuidesController do
   # Not sure this test makes sense, since this will be largely
   # done through Ajax. as a result, does it still make sense
   # to have the update path?
+
+  it 'should add an impression if a user shows the guide' do
+    guide = FactoryGirl.create(:guide)
+    user = FactoryGirl.create(:user)
+    sign_in user
+    get 'show', id: guide.id
+    guide.reload
+    expect(guide.impressions_field).to eq(1)
+  end
+
+  it 'should add an impression if a guide is shown without a session' do
+    guide = FactoryGirl.create(:guide)
+    get 'show', id: guide.id
+    guide.reload
+    expect(guide.impressions_field).to eq(1)
+  end
+
+  it 'should not add an impression if a guide is shown with same session' do
+    guide = FactoryGirl.create(:guide)
+    get 'show', id: guide.id
+    get 'show', id: guide.id
+    guide.reload
+    expect(guide.impressions_field).to eq(1)
+  end
 end

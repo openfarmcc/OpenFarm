@@ -4,9 +4,10 @@ class Guide
   include Mongoid::Paperclip
 
   is_impressionable counter_cache: true,
-                    column_name: :impressions,
+                    column_name: :impressions_field,
                     unique: :session_hash
-  field :impressions, default: 0
+
+  field :impressions_field, default: 0
 
   belongs_to :crop
   belongs_to :user

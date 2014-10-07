@@ -1,4 +1,5 @@
 <%= javascript_include_tag "home" %>
+<%= javascript_include_tag "search" %>
 <div class="hero-background">
     <div class="hero row">
         <div class="small-10 small-centered columns">
@@ -11,8 +12,14 @@
                 <div class="row">
                     <div class="small-12 small-centered columns">
                         <div class="row collapse">
-                            <div class="small-8 large-9 columns">
-                              <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('.placeholder') %>
+                            <div class="small-8 large-9 columns"
+                                ng-app="searchApp" 
+                                ng-controller="searchCtrl">
+                                
+                                <%= text_field_tag :q, nil, {class: 'search', name: 'cropsearch[q]', placeholder: t('.placeholder'),
+                                    maxlength: '120', autocomplete: 'off', 'ng-model'=>'query', 'ng-change'=>'search()',
+                                    'typeahead'=>'crop.name for crop in crops', 'typeahead-wait-ms'=>'555', 'typeahead-min-length'=>'3'} %>
+
                             </div>
                             <div class="small-4 large-3 columns">
                               <%= f.submit t('.search'), data: { disable_with: "Searching..." }, class: 'button postfix' %>

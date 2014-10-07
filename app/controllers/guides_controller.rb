@@ -1,4 +1,5 @@
 class GuidesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :update]
 
   def index
     @guides = Guide.all

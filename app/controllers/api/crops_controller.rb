@@ -4,9 +4,9 @@ module Api
     def index
       if params[:query].present? && (params[:query].length > 2)
         q = params[:query]
-        render json: { "crops" => Crop.search(q, fields: ["name^20", "common_names^10", "binomial_name^10", "description"], limit: 5) }
+        render json: { 'crops' => Crop.search(q, fields: ['name^20', 'common_names^10', 'binomial_name^10', 'description'], limit: 5) }
       else
-        render json: { "crops" => [] }
+        render json: { 'crops' => [] }
       end
     end
 

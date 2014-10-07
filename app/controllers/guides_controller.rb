@@ -6,7 +6,7 @@ class GuidesController < ApplicationController
 
   def show
     @guide = Guide.find(params[:id])
-    impressionist(@guide, "", unique: [:session_hash])
+    impressionist(@guide, '', unique: [:session_hash])
   end
 
   def new

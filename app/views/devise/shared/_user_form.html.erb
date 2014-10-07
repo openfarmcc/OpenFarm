@@ -37,5 +37,8 @@
   <%= f.label :preferred_growing_style, I18n.t('users.preferred_growing_style') %>
   <%= f.text_field :preferred_growing_style %>
 
+  <%= f.check_box :mailing_list %>
+  <%= f.label :mailing_list, I18n.t('users.mailing_list') %>
+  <br/>
   <%= f.submit class: 'button submit' %>
 <% end %>

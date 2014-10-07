@@ -38,6 +38,7 @@ en:
         soil_type: "Soil Type"
         preferred_growing_style: "Preferred Growing Method"
         years_experience: "Years Experience"
+        mailing_list: "Get (occassional) updates about OpenFarm via email"
     crops:
         name: "Name"
         binomial_name: "Binomial Name"

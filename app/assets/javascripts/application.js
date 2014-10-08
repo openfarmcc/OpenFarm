@@ -16,6 +16,8 @@
 //= require foundation/foundation.topbar
 //= require foundation/mm-foundation-0.3.0.js
 //= require foundation/mm-foundation-tpls-0.3.0.js
+//= require slick
+//= require_tree ./crops
 //= require_tree ./guides
 //= require delete_me_later
 

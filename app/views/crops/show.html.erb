@@ -3,6 +3,11 @@
     <div class="row">
       <div class="large-8 medium-10 small-12 small-centered columns">
         <h1><%= @crop.name %></h1>
+        <div class="crop-images">
+        <% @crop.images.each do |image| %>
+          <div><%= image_tag image.attachment.url if image.attachment %></div>
+        <% end %>
+        </div>
         <table class="crop">
             <tbody>
             <tr>
@@ -37,6 +42,10 @@
               <td><%= I18n.t('crops.height') %></td>
               <td><%= @crop.height %></td>
             </tr>
+            <tr>
+              <td><%= link_to(I18n.t('crops.add_an_image'), '#', data: {:'reveal-id' => 'add-image'}) %></td>
+              <td></td>
+            </tr>
             </tbody>
           </table>
       </div>
@@ -44,3 +53,13 @@
   </div>
 </div>
 
+<div id="add-image" class="reveal-modal small" data-reveal>
+  <h2>Add An Image</h2>
+  <p>
+    <%= form_for(@new_image, url: crop_images_path(@crop), html: { multipart: true}) do |f| %>
+      <%= f.file_field :attachment %>
+      <input class='button small' name='commit' type='submit' value='Upload Image'></input>
+    <% end %>
+  </p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>

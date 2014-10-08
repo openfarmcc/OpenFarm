@@ -8,11 +8,12 @@ class CropsController < ApplicationController
   def new
     @crop = Crop.new(name: params[:name])
   end
-  
+
   def show
     @crop = Crop.find(params[:id])
+    @new_image = Image.new()
   end
-  
+
   def create
     @crop = Crop.new(crops_params)
     if @crop.save
@@ -22,7 +23,7 @@ class CropsController < ApplicationController
       render :new
     end
   end
-  
+
   private
   def crops_params
     params.require(:crop).permit(:name, :binomial_name, :description, 

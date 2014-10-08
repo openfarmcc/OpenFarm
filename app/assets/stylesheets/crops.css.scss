@@ -11,3 +11,8 @@ table.crop {
     font-weight: 800;
   }
 }
+
+.slick-prev:before, .slick-next:before { 
+  color:red !important;
+}
+

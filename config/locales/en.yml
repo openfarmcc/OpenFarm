@@ -49,6 +49,7 @@ en:
         days_to_maturity: "Days to Maturity"
         row_spacing: "Row Spacing"
         height: "Height"
+        add_an_image: "Add an image"
     guides:
         index:
             guides: "Guides"

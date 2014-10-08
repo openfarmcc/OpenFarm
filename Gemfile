@@ -22,6 +22,7 @@ gem 'impressionist'
 gem 'mongoid-history'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
+gem 'slick_rails'
 
 group :development, :test do
   gem 'coveralls', require: false

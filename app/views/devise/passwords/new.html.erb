@@ -2,25 +2,22 @@
   <div class="columns small-10 small-centered">
     <center><h2>Forgot your password?</h2></center>
 
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-    <% if resource.errors.any? %>
-      <div class="alert-box alert radius columns small-6 small-centered" data-alert="">
-        <% resource.errors.full_messages.each do |full_message| %>
-          <%= full_message %>
-        <% end %>
-        <a class="close" href="#">×</a>
-      </div>
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert-box alert radius columns small-6 small-centered" data-alert="">
+          <% resource.errors.full_messages.each do |full_message| %>
+            <%= full_message %>
+          <% end %>
+          <a class="close" href="#">×</a>
+        </div>
+      <% end %>
+
+
+      <div class='columns small-6 small-centered'>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, :autofocus => true %>
+
+        <%= f.submit "Send me reset password instructions", class:'small button'%>
     <% end %>
-
-
-    <div class='columns small-6 small-centered'>
-      <%= f.label :email %><br />
-      <%= f.email_field :email, :autofocus => true %>
-
-      <%= f.submit "Send me reset password instructions", class:'small button'%>
-  <% end %>
-
-  <br>
-  <%= render "devise/shared/links" %>
   </div>
 </div>

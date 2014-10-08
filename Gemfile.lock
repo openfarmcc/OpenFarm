@@ -112,6 +112,14 @@ GEM
     doc_yo_self (0.0.1)
     docile (1.1.1)
     easy_diff (0.0.3)
+    elasticsearch (1.0.5)
+      elasticsearch-api (= 1.0.5)
+      elasticsearch-transport (= 1.0.5)
+    elasticsearch-api (1.0.5)
+      multi_json
+    elasticsearch-transport (1.0.5)
+      faraday
+      multi_json
     erubis (2.7.0)
     eventmachine (1.0.3)
     exception_notification (4.0.1)
@@ -369,6 +377,10 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    searchkick (0.8.3)
+      activemodel
+      elasticsearch (>= 1)
+      hashie
     sexp_processor (4.4.4)
     simplecov (0.8.2)
       docile (~> 1.1.0)
@@ -464,6 +476,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   sass-rails (~> 4.0.0)
+  searchkick
   simplecov
   therubyracer
   thin

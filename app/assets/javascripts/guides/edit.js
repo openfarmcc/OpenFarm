@@ -225,8 +225,6 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     };
 
 
-
-
     if (!$scope.guide.requirements){
       console.log('no requirements');
     }

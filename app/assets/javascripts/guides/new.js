@@ -3,12 +3,7 @@ var guidesApp = angular.module('guidesApp', [
   'ng-rails-csrf'
   ]);
 
-getUrlVar = function(key){
-  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
-  return result && unescape(result[1]) || "";
-};
-
-guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
+guidesApp.controller('newGuideCtrl', ['$scope', '$http',
   function guidesApp($scope, $http, $location) {
   $scope.alerts = [];
   $scope.crops = [];
@@ -37,7 +32,7 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
         console.log(e);
       });
 
-    $scope.default_crop = $location.search().crop_id;
+    // $scope.default_crop = $location.search().crop_id;
   }
 
   $scope.$watch('loadingCrops', function(){
@@ -108,8 +103,6 @@ guidesApp.controller('newGuideCtrl', ['$scope', '$http', '$location',
         console.log(r.error);
       });
   };
-
-
 
   var geocoder = new google.maps.Geocoder();
 

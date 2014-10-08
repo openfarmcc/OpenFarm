@@ -31,6 +31,7 @@ VCR.configure do |c|
   c.hook_into :webmock # or :fakeweb
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
+  c.ignore_hosts '127.0.0.1', 'localhost'
 end
 # =====
 

@@ -240,7 +240,7 @@ angular.module('ngS3upload.directives', []).
         };
       },
       template: "<span class='crop-image'>"+
-                "<span ng-if='guide.featured_image !== \"leaf-grey.png\"'>"+
+                "<span ng-if='!filename && guide.featured_image.indexOf(\"leaf-grey\") === -1'>"+
                 "<div class='wrapper'>"+
                 "<img ng-src='{{ guide.featured_image  }}'/>"+
                 "</div>"+
@@ -254,7 +254,7 @@ angular.module('ngS3upload.directives', []).
                 "<img ng-src='{{ filename  }}'/>"+
                 "</div>"+
                 "</span>"+
-                "<div ng-if='!filename && guide.featured_image === \"leaf-grey.png\"' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
+                "<div ng-if='!filename && guide.featured_image.indexOf(\"leaf-grey\") > -1' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
                 "<i class='leaf-placeholder fa fa-leaf'></i>"+
                 "<p class='to-upload'>Upload a picture</p>"+
                 "<p class='loading'>Loading...</p>"+

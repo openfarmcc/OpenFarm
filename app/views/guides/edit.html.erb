@@ -3,7 +3,7 @@
      ng-cloak
      class="edit-guide-app">
 
-    <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+    <alert ng-cloak class="ng-cloak columns large-6 centered radius" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
       <div class="">
         {{alert.msg}}
       </div>
@@ -12,7 +12,7 @@
     <div class="row">
     <form accept-charset="UTF-8"
       class="small-10 large-10 columns centered edit-overview"
-      name="edit-overview"
+      name="editOverview"
       method="post"
       >
       <div class="column large-10">
@@ -30,6 +30,7 @@
         <input type="button"
              class="button small"
              ng-click="saveGuide()"
+             ng-class="{ 'loading' : saving }"
              data-disable-with="Saving..."
              ng-disabled="saving"
              value="Save Guide"/>
@@ -44,12 +45,6 @@
         <p>
           <%= link_to(icon('eye') + " View Guide", {:action => 'show'}, :class=>'edit-link') %>
         </p>
-        <!-- <span class="crop-image">
-          <img ng-cloak
-               ng-class="{ 'no-image' : !new_guide.crop.image }"
-               ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
-               alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
-        </span> -->
       </div>
       <div class="columns large-9">
         <p>
@@ -58,13 +53,21 @@
           <%= t('.more_details') %>
         </p>
         <label for="guide_overview">
-          Tell us a little about how you grew your crop.
+          Overview: tell us a little about how you grew your crop. 
         </label>
         <textarea id="guide_overview"
-                  name="guide[overview]"
+                  name="overview"
                   ng-model="guide.overview"
-                  rows="5">
+                  rows="6"
+                  ng-maxlength="400"
+                  required>
         </textarea>
+        <%# TODO Actually re-inforce this 400 character limit overview %>
+        <small class="error" ng-if="editOverview.overview.$error.maxlength">
+        Overview can't be longer than 400 characters</small>
+        <small class="error" ng-if="editOverview.overview.$error.required">
+        You should add an overview!</small>
+        <small class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</small>
         <p>
           To get more into details, describe your process <a href="#stages">in stages</a>.
         </p>
@@ -76,10 +79,13 @@
     <div class="large-10 small-10 columns centered">
 
     <accordion close-others="false">
-      <accordion-group is-open="false" class="accordion-navigation statistics">
+      <accordion-group
+        is-open="stat.isopen"
+        ng-init="stat.isopen = true"
+        class="accordion-navigation statistics">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            <i ng-class="{'fa fa-chevron-down': stat.isopen, 'fa fa-chevron-right': !stat.isopen}"></i>
             Statistics
           </h2>
         </accordion-heading>
@@ -87,15 +93,20 @@
         Your guide has had <%= pluralize(@guide.impressions.count, 'view') %>
         </p>
       </accordion-group>
-      <accordion-group is-open="true" class="accordion-navigation requirements">
+      <accordion-group 
+        is-open="req.isopen"
+        ng-init="req.isopen = true"
+        class="accordion-navigation requirements">
         <accordion-heading class="title-wrapper">
           <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+            <i ng-class="{'fa fa-chevron-down': req.isopen, 'fa fa-chevron-right': !req.isopen}"></i>
             Requirements
           </h2>
         </accordion-heading>
         <p class="section-text">
           Requirements are the small details that make sure this crop grows successfully.
+        </p>
+        <p>
           If you don't know everything, or it's not applicable, that's okay.
         </p>
         <div class="box">
@@ -152,16 +163,21 @@
           <span class="columns large-2">
             <input type="button"
                  class="button small"
+                 ng-class="{ 'loading' : saving }"
+                 ng-disabled="saving"
                  ng-click="saveGuide()"
                  value="Save Guide"/>
           </span>
         </div>
       </accordion-group>
 
-      <accordion-group is-open="true" class="accordion-navigation">
+      <accordion-group
+        is-open="stag.isopen"
+        ng-init="stag.isopen = true"
+        class="accordion-navigation">
         <accordion-heading class="title-wrapper">
           <h2 class="title" id="stages">
-            <i ng-class="{'fa fa-chevron-down': isOpen, 'fa fa-chevron-right': !isOpen}"></i>
+            <i ng-class="{'fa fa-chevron-down': stag.isopen, 'fa fa-chevron-right': !stag.isopen}"></i>
             Stages
           </h2>
 
@@ -181,8 +197,10 @@
                   <p>{{ s.description }}</p>
                   <textarea placeholder="{{ s.default_value }}"
                     ng-model="s.instructions"
-                    ng-change="setStatus(s)">
+                    ng-change="setStatus(s)"
+                    rows="6">
                   </textarea>
+                  <p class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</p>
                 </div>
               </div>
             </div>
@@ -197,6 +215,7 @@
             <input type="button"
                  class="button small"
                  ng-click="saveGuide()"
+                 ng-class="{ 'loading' : saving }"
                  value="Save Guide"/>
           </span>
         </div>

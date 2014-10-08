@@ -1,201 +1,141 @@
-<div class="row">
-  <div class="small-12 columns">
-    <dl class="accordion" data-accordion>
-      <dd class="accordion-navigation overview-wrapper">
-        <a href="#overview" class="title-wrapper">
-          <h2 class="title"><%= @guide.name %></h2>
-          <h5 class="author">Guide by: <%= @guide.user.display_name %> for Crop <%= @guide.crop.name if @guide.crop %></h5>
-        </a>
+<div ng-app="showGuidesApp"
+     ng-controller="showGuideCtrl"
+     ng-cloak
+     class="show-guide-app">
 
-        <div id="overview" class="content active">
+    <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+      <div>
+        {{ alert.msg }}
+      </div>
+    </alert>
+    <div class="canopy">
+      <div class="image-wrapper">
+        <img ng-src="/assets/leaf-grey-canopy.png"
+          ng-if="guide.featured_image.indexOf('leaf-grey') > -1" 
+          ng-attr-alt="{{ guide.name }}"/>
+        <img ng-src="{{ guide.featured_image }}"
+          ng-if="guide.featured_image.indexOf('leaf-grey') === -1" 
+          ng-attr-alt="{{ guide.name }}"/>
+      </div>
+    </div>
+    <div class="row title">
+      <div class="column large-10 centered">
+        <h1> {{ guide.name }} </h1>
+        <h2> Guide by <span>{{ guide.user.display_name }}</span></h2>
+        <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
+      </div>
+      <div class="columns large-10 centered">
+        <div class="markdown" markdown="guide.overview">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="large-10 small-10 columns centered">
+
+    <accordion close-others="false">
+      <accordion-group is-open="stat.isopen" class="accordion-navigation statistics">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-minus': stat.isopen, 'fa fa-plus': !stat.isopen}"></i>
+            Statistics
+          </h2>
+        </accordion-heading>
+        <p class="section-text">
+          <div class="box">
+            <div class="row">
+              <div class="empty columns large-12 centered">
+
+                 <i class="fa fa-bar-chart-o"></i><br/>
+                  Once we know a bit more about this guide, you'll see some interesting statistics here.
+               </div>
+             </div>
+          </div>
+        
+        </p>
+      </accordion-group>
+      <accordion-group 
+        ng-init="r.isopen = true"
+        is-open="r.isopen"
+        class="accordion-navigation requirements">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title">
+            <i ng-class="{'fa fa-minus': r.isopen, 'fa fa-plus': !r.isopen}"></i>
+            Requirements
+          </h2>
+        </accordion-heading>
+        <p class="section-text">
+          Requirements are the small details that make sure this crop grows successfully.
+        </p>
+        <div class="box">
           <div class="row">
-            <div class="small-3 columns img-container">
-              <%= image_tag(@guide.featured_image, class: "plant image", alt: @guide.crop.name) %>
-
-              <% if @guide.owned_by?(current_user) %>
-                <%= link_to(icon('edit') + " edit", {:action => 'edit'}, :class=>'edit-link') %>
-              <% end %>
-            </div>
-            <div class="small-7 columns overview-container">
-              <h5 class="overview-title">Overview</h5>
-              <%= @guide.overview %>
-            </div>
-            <div class="small-2 columns nav-container">
-              <h5 class="nav-title">Navigation</h5>
+            <div 
+              ng-if="guide.requirements.length"class="small-12 columns actual-requirements">
               <ul>
-                  <li><a href="#prerequisites">Prerequisites</a></li>
-                  <li><a href="#timeline">Timeline</a></li>
-                  <li><a href="#growing-instructions">Growing Instructions</a></li>
-                  <!-- <li><a href="#tips-and-tricks">Tips and Tricks</a></li> -->
-                  <!-- <li><a href="#shopping-list">Shopping List</a></li> -->
-                  <li><a href="#recipes-and-usage">Recipes and Usage</a></li>
-                  <li><a href="#forum">Forum</a></li>
+
+                <li ng-repeat="r in guide.requirements" class="requirement">
+                  <span class="small-6 columns"
+                    ng-bind="r.name + ':'"></span>
+                  <span class="small-6 columns"
+                    ng-bind="r.required"></span>
+                </li>
               </ul>
             </div>
+            <div class="small-12 columns empty"
+              ng-if="guide.requirements.length === 0">
+              <i class="fa fa-thumbs-down"></i>
+              <br/>
+              The person who made this guide hasn't added any requirements yet!
+            </div>
           </div>
         </div>
-      </dd>
-      <dd class="accordion-navigation prerequisites-wrapper">
-        <a href="#prerequisites" class="title-wrapper">
-          <h2 class="title">Prerequisites</h2>
-        </a>
-        <div id="prerequisites" class="content active">
+      </accordion-group>
+
+      <accordion-group
+        is-open="stag.isopen"
+        ng-init="stag.isopen = true"
+        class="accordion-navigation">
+        <accordion-heading class="title-wrapper">
+          <h2 class="title" id="stages">
+            <i ng-class="{'fa fa-minus': stag.isopen, 'fa fa-plus': !stag.isopen}"></i>
+            Stages
+          </h2>
+
+        </accordion-heading>
+        <p class="section-text">
+          Each stage of growing this crop, with details.
+        </p>
+        <div class="box"
+          ng-if="guide.stages.length === 0">
           <div class="row">
-            <div class="small-5 columns prerequisite-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th width="20"></th>
-                    <th class="show-for-medium-up" width="100"></th>
-                    <th width="200"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @guide.requirements.to_a.first((@guide.requirements.length / 2.0).floor).each do |r| %>
-                    <tr>
-                      <td class="icon of-<%= r.slug %>"></td>
-                      <td class="title show-for-medium-up"><%= r.name %></td>
-                      <td class="description"><%= r.required %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-            <div class="small-5 columns prerequisite-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th width="20"></th>
-                    <th class="show-for-medium-up" width="100"></th>
-                    <th width="200"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% @guide.requirements[(@guide.requirements.length / 2.0).floor..@guide.requirements.length].to_a.each do |r| %>
-                    <tr>
-                      <td class="icon of-<%= r.slug %>"></td>
-                      <td class="title show-for-medium-up"><%= r.name %></td>
-                      <td class="description"><%= r.required %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-            <div class="small-2 columns compatability-score-container">
-              <!-- <p>This guide is</p>
-              <div class="score-circle high-score">
-                <div class="score">42%</div>
-              </div>
-              <p>compatable with you and your garden</p> -->
-              <p>
-                We're working on a compatibility score, so that you'll be able to see
-                how compatible your garden and this guide are.
-              </p>
+            <div class="small-12 columns empty">
+              <i class="fa fa-thumbs-down"></i>
+              <br/>
+              The person who made this guide hasn't added any stages yet!
             </div>
           </div>
         </div>
-      </dd>
+        <tabset class="tabs">
 
-      <dd class="accordion-navigation timeline-wrapper">
-        <a href="#timeline" class="title-wrapper">
-          <h2 class="title">Timeline</h2>
-        </a>
-        <div id="timeline" class="content active">
-          <div class="row seasons">
-            <% @seasons.each do |season, dates| %>
-              <div class="columns small-3">
-                <h3><%= season %></h3>
-                <span class="dates"><%= dates %></span>
-              </div>
-            <% end %>
-          </div>
-          <div class="row plant-timeline">
-            <!-- TODO: Actual timeline. This should probably be built using CSS, but we're waiting on this data from the DBS -->
-          </div>
-          <div class="row months">
-            <% @months.each do |m| %>
-              <div class="columns small-1">
-                <%= m %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </dd>
-
-      <dd class="accordion-navigation instructions-wrapper">
-        <a href="#instructions" class="title-wrapper">
-          <h2 class="title">Growing Instructions</h2>
-        </a>
-        <div id="instructions" class="content active">
-          <div class="row stage-headers">
-            <div class="columns small-2">
-              <div class="stage-title">Stage:</div>
-            </div>
-            <ul class="columns small-10 tabs stages" data-tab>
-              <li class="tab-title active">
-                <a href="#instructions-overview">
-                  <h3>Overview</h3>
-                  <span>&nbsp;</span>
-                </a>
-              </li>
-              <% @guide.stages.to_a.each do |stage| %>
-                <li class="tab-title">
-                  <a href="#instructions-<%= stage['slug'] %>">
-                    <h3><%= stage['name'] %></h3>
-                    <% if stage['days'] != '' %>
-                      <span class="days">
-                        <%= stage['days_start'] %> - <%= stage['days_end'] %>
-                      </span>
-                    <% else %>
-                      <span>&nbsp;</span>
-                    <% end %>
-                  </a>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="row tabs-content">
-            <div class="content active"
-                 id="instructions-overview">
-                 <div class="columns small-12">
-                  Overview
+          <tab ng-repeat="s in guide.stages | orderBy:'order'">
+            <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
+              <h3>{{ s.name }}</h3>
+            </tab-heading>
+            <div class="box">
+              <div class="row">
+                <div class="columns large-12 stage-description">
+                  <p>{{ s.description }}</p>
+                  <div class="markdown" markdown="s.instructions">
+                  </div>
                 </div>
-            </div>
-            <% @guide.stages.to_a.each do |stage| %>
-              <div class="content"
-                   id="instructions-<%= stage['slug'] %>">
-                   <div class="columns small-12">
-                   <%= stage['instructions'] %>
-                   </div>
               </div>
-            <% end %>
-          </div>
-        </div>
-      </dd>
-      <dd class="accordion-navigation usage-wrapper">
-        <a href="#usage" class="title-wrapper">
-          <h2 class="title">Recipes and Usage</h2>
-        </a>
-        <div id="usage" class="content">
-          <div class="row">
-            <div class="columns small-5 small-centered">
-              Recipes and Usage are still being designed. You can help us out by taking a look at <a href="https://github.com/FarmBot/OpenFarm">the project page on Github</a>.
             </div>
-          </div>
-        </div>
-      </dd>
-      <dd class="accordion-navigation forum-wrapper">
-        <a href="#forum" class="title-wrapper">
-          <h2 class="title">Forums</h2>
-        </a>
-        <div id="forum" class="content">
-          <div class="row">
-            <div class="columns small-5 small-centered">
-              The Forums are still being built. You can help us out by taking a look at <a href="https://github.com/FarmBot/OpenFarm">the project page on Github</a>.
-            </div>
-          </div>
-        </div>
-      </dd>
-    </dl>
+          </tab>
+        </tabset>
+      </accordion-group>
+    </accordion>
+    </div>
   </div>
 </div>
+
+<%= javascript_tag "var GUIDE_ID = '#{@guide.try(:id).to_s}';" %>
+

@@ -17,6 +17,7 @@ class Crop
   field :impressions, default: 0
 
   has_many :guides
+  has_many :images
 
   field :name# , localize: true
   field :common_names, type: Array

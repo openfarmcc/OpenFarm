@@ -18,7 +18,9 @@ OpenFarm::Application.routes.draw do
     get '(:locale)/crop_search' => 'crop_searches#search',
         as: :crop_search_via_get
     resources :users
-    resources :crops
+    resources :crops do
+      resources :images, only: [:create]
+    end
     resources :guides
     resources :stages
     resources :requirements

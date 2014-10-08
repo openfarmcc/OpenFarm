@@ -375,6 +375,8 @@ GEM
       multi_json
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    slick_rails (1.3.8)
+      railties (>= 3.1)
     slop (3.4.7)
     sprockets (2.10.1)
       hike (~> 1.2)
@@ -465,6 +467,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 4.0.0)
   simplecov
+  slick_rails
   therubyracer
   thin
   uglifier (>= 1.3.0)

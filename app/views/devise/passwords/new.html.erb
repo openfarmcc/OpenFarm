@@ -1,16 +1,28 @@
 <div class="row">
-	<div class="columns large-4 small-centered">
-		<h2>Forgot your password?</h2>
+  <div class="columns small-12 centered">
+    <div class='row'>
+      <div class='columns large-5 centered '><h2>Forgot your password?</h2></div>
+    </div>
 
-	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-	  <%= devise_error_messages! %>
+    <div class='row'>
+      <div class="columns small-10 centered">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+          <% if resource.errors.any? %>
+            <div class="alert-box alert radius columns small-6 centered" data-alert="">
+              <% resource.errors.full_messages.each do |full_message| %>
+                <%= full_message %>
+              <% end %>
+              <a class="close" href="#">×</a>
+            </div>
+          <% end %>
 
-	  <div><%= f.label :email %><br />
-	  <%= f.email_field :email, :autofocus => true %></div>
 
-	  <div><%= f.submit "Send me reset password instructions", class:'small button'%></div>
-	<% end %>
+          <div class='columns small-6 centered'>
+            <%= f.label :email %><br />
+            <%= f.email_field :email, :autofocus => true %>
 
-	<%= render "devise/shared/links" %>
-	</div>
+            <%= f.submit "Send me reset password instructions", class:'small button'%>
+        <% end %>
+      </div>
+    </div>
 </div>

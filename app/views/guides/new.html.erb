@@ -1,6 +1,6 @@
-<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="//maps.google.com/maps/api/js?sensor=false"></script>
 
-<div ng-app="guidesApp" 
+<div ng-app="guidesApp"
      ng-controller="newGuideCtrl"
      class="small-12 columns ng-cloak"
      ng-cloak>
@@ -35,7 +35,7 @@
           >
           <div class="row">
             <div class="columns large-6">
-              <label 
+              <label
                 for="guide_crop_id"><%= t('.what_plant') %></label>
               <input
                 id="crop_name"
@@ -51,15 +51,15 @@
               <i ng-show="loadingCrops" class="fa fa-refresh">loading crops</i>
             </div>
             <div class="columns large-6">
-              
+
               <span class="crop-image">
                 <img ng-cloak
                      ng-class="{ 'no-image' : !new_guide.crop.image }"
-                     ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}" 
+                     ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
                      alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
               </span>
 
-              
+
               <p>
                 <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name : ''"></strong>
                 <em ng-bind="new_guide.crop.binomial_name"></em>
@@ -70,7 +70,7 @@
                 <!-- <span ng-show="!new_guide.crop.description && !editCropDescription">
                   <em>
                     We've got no information for this crop at the moment. To add a short description, <a ng-click="editCropDescription = !editCropDescription">click here</a>.</em>
-                    
+
                 </span>
                 <span ng-if="editCropDescription">
                   <textarea
@@ -84,7 +84,7 @@
                       placeholder="http://wikipedia.com/...">
                 </span>
                 -->
-                
+
               </p>
               <span ng-if="crop_not_found">
                 <p>
@@ -102,8 +102,8 @@
                 name="back"
                 href="<%= root_path %>"
                 ng-click="cancel('<%= root_path %>')"><%= t('.cancel_and_go_to_home') %></a>
-              <input class="button small right"  
-                name="commit" 
+              <input class="button small right"
+                name="commit"
                 type="submit"
                 value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
                 ng-disabled="!new_guide.crop"
@@ -128,17 +128,17 @@
                 <strong>{{ new_guide.crop.name }}</strong>.
               </p>
               <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
-              <input id="guide_name" name="guide[name]" 
-                type="text" 
+              <input id="guide_name" name="guide[name]"
+                type="text"
                 ng-model="new_guide.name"
                 placeholder="<%= current_user.display_name %>'s {{new_guide.name}}"
                 >
             </div>
             <div class="columns large-6">
               <label for="guide_name">Where are you growing it?</label>
-              <input type="text" 
+              <input type="text"
                      ng-model="new_guide.location"
-                     placeholder="Ex: Hanoi, Portland, California" 
+                     placeholder="Ex: Hanoi, Portland, California"
                      typeahead="address for address in addresses"
                      ng-change="getLocation(new_guide.location)"
                      typeahead-min-length="3"
@@ -161,9 +161,9 @@
                 value="Back"
                 ng-click="previousStep()">
 
-              <input class="button small right"  
-                data-disable-with="Saving..." 
-                name="commit" 
+              <input class="button small right"
+                data-disable-with="Saving..."
+                name="commit"
                 type="submit"
                 value="{{ new_guide.crop || !new_guide.name ? 'Done: Add Extras' : 'Call your guide something.' }}"
                 ng-disabled="!new_guide.crop || !new_guide.name"

@@ -1,7 +1,10 @@
 class Guide
   include Mongoid::Document
-  include Mongoid::Search
   include Mongoid::Paperclip
+  include Mongoid::Slug
+  # For more info about search, see:
+  # https://github.com/ankane/searchkick
+  searchkick
 
   is_impressionable counter_cache: true,
                     column_name: :impressions_field,
@@ -31,4 +34,9 @@ class Guide
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
+
+  def search_data
+    as_json only: [:name, :overview, :crop_id]
+  end
+  slug :name
 end

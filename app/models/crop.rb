@@ -5,8 +5,8 @@ class Crop
   include Mongoid::Timestamps
   include Mongoid::Slug
   # For more info about search, see:
-  # https://github.com/mauriciozaffari/mongoid_search
-  include Mongoid::Search
+  # https://github.com/ankane/searchkick
+  searchkick
   # history tracking all Crop documents
   # note: tracking will not work until #track_history is invoked
   include Mongoid::History::Trackable
@@ -36,7 +36,9 @@ class Crop
   field :sowing_time, type: Hash
   field :harvest_time, type: Hash
 
-  search_in :name, :binomial_name, :description
+  def search_data
+    as_json only: [:name, :common_names, :binomial_name, :description]
+  end
   slug :name
 
   # See https://github.com/aq1018/mongoid-history

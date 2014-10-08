@@ -49,7 +49,14 @@ $(function(){
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
 
-getUrlVar = function(key){
+// TODO: move these somewhere actually useful.
+
+var getUrlVar = function(key){
   var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
   return result && unescape(result[1]) || "";
 };
+
+var getIDFromURL = function(key){
+  var result = new RegExp(key + "/([0-9a-f]*)", "i").exec(window.location.pathname);
+  return result && unescape(result[1]) || "";
+}

@@ -38,7 +38,8 @@ openFarmModule.factory('userService', ['$http',
     };
 }]);
 
-openFarmModule.directive('markdown', function ($sanitize) {
+openFarmModule.directive('markdown', ['$sanitize', 
+  function markdown($sanitize) {
     var converter = new Showdown.converter();
     return {
         restrict: 'A',
@@ -53,7 +54,7 @@ openFarmModule.directive('markdown', function ($sanitize) {
             renderMarkdown();
         }
     }
-});
+}]);
 
 
 

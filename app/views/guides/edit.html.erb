@@ -18,7 +18,7 @@
       <div class="column large-10">
         <h1 ng-click="editing_name = ! editing_name"
             ng-show="!editing_name"
-            title="Click to edit"
+            title="<%= t('.click_to_edit') %>"
             ><span class="fa fa-edit"></span> {{ guide.name }} </h1>
         <input ng-show="editing_name"
                ng-model="guide.name"
@@ -33,7 +33,7 @@
              ng-class="{ 'loading' : saving }"
              data-disable-with="Saving..."
              ng-disabled="saving"
-             value="Save Guide"/>
+             value="<%= t('.save_guide') %>"/>
       </div>
 
       <div class="columns large-3">
@@ -53,7 +53,7 @@
           <%= t('.more_details') %>
         </p>
         <label for="guide_overview">
-          Overview: tell us a little about how you grew your crop. 
+          <%= t('.overview') %>
         </label>
         <textarea id="guide_overview"
                   name="overview"
@@ -64,12 +64,14 @@
         </textarea>
         <%# TODO Actually re-inforce this 400 character limit overview %>
         <small class="error" ng-if="editOverview.overview.$error.maxlength">
-        Overview can't be longer than 400 characters</small>
+        <%= t('.can_not_be_longer_than_400_chars') %></small>
         <small class="error" ng-if="editOverview.overview.$error.required">
-        You should add an overview!</small>
-        <small class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</small>
+        <%= t('.you_should_add_an_overview') %></small>
+        <small class="markdown-help-text">
+          <%= t('.using_markdown_is_okay_html') %>
+        </small>
         <p>
-          To get more into details, describe your process <a href="#stages">in stages</a>.
+          <%= t('.to_get_more_into_details_html') %>
         </p>
       </div>
 
@@ -86,11 +88,11 @@
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': stat.isopen, 'fa fa-chevron-right': !stat.isopen}"></i>
-            Statistics
+            <%= t('.statistics') %>
           </h2>
         </accordion-heading>
         <p class="section-text">
-        Your guide has had <%= pluralize(@guide.impressions.count, 'view') %>
+        <%= t('.impressions', count: @guide.impressions.count) %>
         </p>
       </accordion-group>
       <accordion-group 
@@ -100,14 +102,14 @@
         <accordion-heading class="title-wrapper">
           <h2 class="title">
             <i ng-class="{'fa fa-chevron-down': req.isopen, 'fa fa-chevron-right': !req.isopen}"></i>
-            Requirements
+            <%= t('.requirements') %>
           </h2>
         </accordion-heading>
         <p class="section-text">
-          Requirements are the small details that make sure this crop grows successfully.
+          <%= t('.requirements_are_the_small_details') %>
         </p>
         <p>
-          If you don't know everything, or it's not applicable, that's okay.
+          <%= t('.if_you_do_not_know_everything_thats_okay') %>
         </p>
         <div class="box">
           <div class="row">
@@ -148,17 +150,17 @@
           <div class="row requirements-results">
             <div class="small-6 columns centered">
               <span ng-show="filtered_requirements.length > 0">
-                You've selected: <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
+                <%= t('.you_have_selected') %> <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
                 </span>
               </span>
-              <span ng-show="filtered_requirements.length == 0">You haven't selected anything yet</span>
+              <span ng-show="filtered_requirements.length == 0"><%= t('.you_have_not_selected_anything') %></span>
             </div>
           </div>
         </div>
         <div class="row">
 
           <p class="section-text columns large-8">
-            If you're happy with your guide so far, save it!
+            <%= t('.if_you_are_happy_with_your_guide_so_far') %>
           </p>
           <span class="columns large-2">
             <input type="button"
@@ -166,7 +168,7 @@
                  ng-class="{ 'loading' : saving }"
                  ng-disabled="saving"
                  ng-click="saveGuide()"
-                 value="Save Guide"/>
+                 value="<%= t('.save_guide') %>"/>
           </span>
         </div>
       </accordion-group>
@@ -178,12 +180,15 @@
         <accordion-heading class="title-wrapper">
           <h2 class="title" id="stages">
             <i ng-class="{'fa fa-chevron-down': stag.isopen, 'fa fa-chevron-right': !stag.isopen}"></i>
-            Stages
+            <%= t('.stages') %>
           </h2>
 
         </accordion-heading>
         <p class="section-text">
-          Each stage of growing your crop.
+          <%= t('.each_stage_of_growing_your_crop') %>
+        </p>
+        <p class="section-text">
+          <%= t('.if_you_do_not_know_everything_thats_okay') %>
         </p>
         <tabset class="tabs">
 
@@ -200,7 +205,8 @@
                     ng-change="setStatus(s)"
                     rows="6">
                   </textarea>
-                  <p class="markdown-help-text">Using <a href="http://daringfireball.net/projects/markdown/syntax">markdown</a> is okay!</p>
+                  <p class="markdown-help-text">          <%= t('.using_markdown_is_okay_html') %>
+
                 </div>
               </div>
             </div>
@@ -209,14 +215,14 @@
         <div class="row">
 
           <p class="section-text columns large-8">
-            If you're happy with your guide so far, save it!
+            <%= t('.if_you_are_happy_with_your_guide_so_far') %>
           </p>
           <span class="columns large-2">
             <input type="button"
                  class="button small"
                  ng-click="saveGuide()"
                  ng-class="{ 'loading' : saving }"
-                 value="Save Guide"/>
+                 value="<%= t('.save_guide') %>"/>
           </span>
         </div>
       </accordion-group>
@@ -224,6 +230,3 @@
     </div>
   </div>
 </div>
-
-<%= javascript_tag "var GUIDE_ID = '#{@guide.try(:id).to_s}';" %>
-

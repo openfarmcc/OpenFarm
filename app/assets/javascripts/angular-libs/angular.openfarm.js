@@ -19,7 +19,27 @@ openFarmModule.factory('guideService', ['$http',
     };
 }]);
 
-openFarmModule.directive('markdown', function ($sanitize) {
+openFarmModule.factory('userService', ['$http', 
+  function userService($http) {
+    
+    // get the guide specified.
+    var getUser = function(user_id, callback){
+      $http({
+        url: '/api/users/' + user_id,
+        method: "GET"
+      }).success(function (response) {
+        return callback (true, response.user);
+      }).error(function (response, code) {
+        return callback(false, response, code)
+      });
+    };
+    return {
+      "getUser": getUser
+    };
+}]);
+
+openFarmModule.directive('markdown', ['$sanitize', 
+  function markdown($sanitize) {
     var converter = new Showdown.converter();
     return {
         restrict: 'A',
@@ -34,24 +54,7 @@ openFarmModule.directive('markdown', function ($sanitize) {
             renderMarkdown();
         }
     }
-});
-
-openFarmModule.factory('userService', ['$http', 
-  function userService($http) {
-    
-    // get the guide specified.
-    var getUser = function(user_id, callback){
-      $http({
-        url: '/api/users/' + user_id,
-        method: "GET"
-      }).success(function (response) {
-        return callback (true, response);
-      }).error(function (response, code) {
-        return callback(false, response, code)
-      });
-    };
-    return {
-      "getUser": getUser
-    };
 }]);
+
+
 

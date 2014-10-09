@@ -9,8 +9,9 @@ showGuidesApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     'userService',
   function showGuidesApp($scope, $http, guideService, userService) {
 
+    $scope.guide_id = getIDFromURL('guides');
+
     $scope.setUser = function(success, object, code){
-      console.log(object)
 
       if (success){
         $scope.guide.user = object;
@@ -36,5 +37,5 @@ showGuidesApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     }
 
-    guideService.getGuide(GUIDE_ID, $scope.setGuide);
+    guideService.getGuide($scope.guide_id, $scope.setGuide);
   }]);

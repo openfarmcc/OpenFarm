@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.1.3'
 
 gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
 
@@ -22,6 +22,7 @@ gem 'impressionist'
 gem 'mongoid-history'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
+gem 'patron'
 gem 'searchkick'
 
 group :development, :test do

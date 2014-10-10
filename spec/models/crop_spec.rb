@@ -14,16 +14,16 @@ describe Crop do
     let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
     it 'searches by name' do
-      result = Crop.full_text_search('Common Horseradish').first
+      result = Crop.search('Common Horseradish').first
       expect(result).to eq(crop)
     end
 
     it 'searches by binomial name' do
-      expect(Crop.full_text_search('Armoracia rusticana').first).to eq(crop)
+      expect(Crop.search('Armoracia rusticana').first).to eq(crop)
     end
 
     it 'searches by description' do
-      expect(Crop.full_text_search('Brassicaceae family').first).to eq(crop)
+      expect(Crop.search('Brassicaceae family').first).to eq(crop)
     end
   end
 end

@@ -6,6 +6,7 @@ describe 'Crop search', type: :controller do
   it 'finds documents' do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
+    Crop.searchkick_index.refresh
     fill_in 'q', with: 'radish'
     click_button 'Search!'
     expect(page).to have_content(crop.name)
@@ -15,6 +16,7 @@ describe 'Crop search', type: :controller do
     visit root_path
     fill_in 'q', with: ''
     FactoryGirl.create_list(:crop, 10)
+    Crop.searchkick_index.refresh
     click_button 'Search!'
     expect(page).to have_content(Crop.last.name)
   end
@@ -23,6 +25,7 @@ describe 'Crop search', type: :controller do
     visit root_path
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
+    Crop.searchkick_index.refresh
     click_button 'Search!'
     expect(page).to have_content(crop.name)
   end
@@ -31,6 +34,7 @@ describe 'Crop search', type: :controller do
     visit crop_search_via_get_path(cropsearch: { q: 'red' })
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
+    Crop.searchkick_index.refresh
     click_button 'Search!'
     expect(page).to have_content(crop.name)
   end

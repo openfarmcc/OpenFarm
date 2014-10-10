@@ -9,20 +9,23 @@ describe Crop do
     expect(Crop.create(name: nil)).to_not be_valid
   end
 
-  context '#full_text_search' do
+  context '#search' do
 
     let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
     it 'searches by name' do
+      Crop.searchkick_index.refresh
       result = Crop.search('Common Horseradish').first
       expect(result).to eq(crop)
     end
 
     it 'searches by binomial name' do
+      Crop.searchkick_index.refresh
       expect(Crop.search('Armoracia rusticana').first).to eq(crop)
     end
 
     it 'searches by description' do
+      Crop.searchkick_index.refresh
       expect(Crop.search('Brassicaceae family').first).to eq(crop)
     end
   end

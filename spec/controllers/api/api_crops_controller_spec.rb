@@ -5,6 +5,7 @@ describe Api::CropsController, :type => :controller do
   before do
     @beans = FactoryGirl.create(:crop, name: 'mung bean')
     FactoryGirl.create_list(:crop, 2)
+    Crop.searchkick_index.refresh
   end
 
   it 'lists crops.' do

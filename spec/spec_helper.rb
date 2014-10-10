@@ -63,6 +63,8 @@ RSpec.configure do |config|
     config.after(:suite) { DocYoSelf.finish! }
   end
   config.before :each do
+    Guide.reindex
+    Crop.reindex
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end

@@ -29,7 +29,8 @@ describe GuidesController do
     user = FactoryGirl.create(:user)
     sign_in user
     get 'edit', id: guide.id
-    response.should redirect_to "/en/guides/#{guide.id}"
+    # TODO This is wrong. Should be `redirect_to guides_path(guide)`.
+    response.should redirect_to "/en/guides/#{guide.slug}"
   end
 
   it 'should show the index page' do

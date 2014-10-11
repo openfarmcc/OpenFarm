@@ -4,3 +4,5 @@ InlineComment:
   Enabled: false
 java_script:
   enabled: true
+coffee_script:
+  enabled: true

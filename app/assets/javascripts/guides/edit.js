@@ -11,6 +11,8 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     // other wise the ajax loader doesn't load
     $scope.saving = true;
 
+    $scope.guide_id = getIDFromURL("guides");
+
     $scope.alerts = [];
 
     $scope.guide = {
@@ -85,7 +87,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       }
     }
 
-    guideService.getGuide(GUIDE_ID, $scope.setGuide);
+    guideService.getGuide($scope.guide_id, $scope.setGuide);
 
     $scope.setStatus = function(item){
       if (item.status){
@@ -223,8 +225,6 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       }
     });
     };
-
-
 
 
     if (!$scope.guide.requirements){

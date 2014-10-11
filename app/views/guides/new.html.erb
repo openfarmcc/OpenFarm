@@ -10,15 +10,15 @@
   <div class="row create-guide-steps">
     <div class="large-4 medium-4 small-4 columns step"
         ng-class="{ 'active' : step === 1 }">
-      <span>1</span> Choose a plant
+      <span>1</span> <%= t('.choose_a_crop') %>
     </div>
     <div class="large-4 medium-4 small-4 columns step"
         ng-class="{ 'active' : step === 2 }">
-      <span>2</span> Name and location
+      <span>2</span> <%= t('.name_and_location') %>
     </div>
     <div class="large-4 medium-4 small-4 columns step"
         ng-class="{ 'active' : step === 3 }">
-      <span>3</span> Finish and details
+      <span>3</span> <%= t('.finish_and_details') %>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
                 typeahead-wait-ms="555"
                 typeahead-min-length="3"
                 class="form-control"/>
-              <i ng-show="loadingCrops" class="fa fa-refresh">loading crops</i>
+              <i ng-show="loadingCrops" class="fa fa-refresh"><%= t('.loading_crops') %></i>
             </div>
             <div class="columns large-6">
 
@@ -56,9 +56,8 @@
                 <img ng-cloak
                      ng-class="{ 'no-image' : !new_guide.crop.image }"
                      ng-src="{{ new_guide.crop.image || '/img/empty-pot.png' }}"
-                     alt="{{ new_guide.crop.name || 'no crop selected'}}"/>
+                     alt="{{ new_guide.crop.name || '<%= t('.no_crop_selected') %>'}}"/>
               </span>
-
 
               <p>
                 <strong ng-cloak ng-bind="new_guide.crop.name ? new_guide.crop.name : ''"></strong>
@@ -105,7 +104,7 @@
               <input class="button small right"
                 name="commit"
                 type="submit"
-                value="{{ new_guide.crop ? 'Next: Some Information' : 'Choose a crop to continue' }}"
+                value="{{ new_guide.crop ? '<%= t('.next_name_and_location') %>' : '<%= t('.choose_a_crop_to_continue') %>' }}"
                 ng-disabled="!new_guide.crop"
                 ng-click="nextStep()"/>
             </div>
@@ -131,11 +130,11 @@
               <input id="guide_name" name="guide[name]"
                 type="text"
                 ng-model="new_guide.name"
-                placeholder="<%= current_user.display_name %>'s {{new_guide.name}}"
+                placeholder="<%= current_user.display_name %>'s {{ new_guide.name }}"
                 >
             </div>
             <div class="columns large-6">
-              <label for="guide_name">Where are you growing it?</label>
+              <label for="guide_name"><%= t('.where_are_you_growing_it') %></label>
               <input type="text"
                      ng-model="new_guide.location"
                      placeholder="Ex: Hanoi, Portland, California"
@@ -146,7 +145,7 @@
                      typeahead-wait-ms="555"
                      class="form-control"
                      name="guide[location]">
-              <i ng-show="loadingLocations" class="fa fa-refresh">loading locations</i>
+              <i ng-show="loadingLocations" class="fa fa-refresh"><%= t('.loading_locations') %></i>
             </div>
           </div>
           <div class="button-wrapper row">
@@ -158,14 +157,14 @@
               <input class="button small secondary left"
                 name="back"
                 type="submit"
-                value="Back"
+                value="<%= t('.back') %>"
                 ng-click="previousStep()">
 
               <input class="button small right"
                 data-disable-with="Saving..."
                 name="commit"
                 type="submit"
-                value="{{ new_guide.crop || !new_guide.name ? 'Done: Add Extras' : 'Call your guide something.' }}"
+                value="{{ new_guide.crop || !new_guide.name ? '<%= t('.done_add_extras') %>' : '<%= t('.call_your_guide_something') %>' }}"
                 ng-disabled="!new_guide.crop || !new_guide.name"
                 ng-click="submitForm()"/>
             </div>

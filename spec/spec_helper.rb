@@ -31,7 +31,7 @@ VCR.configure do |c|
   c.hook_into :webmock # or :fakeweb
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
-  c.ignore_hosts '127.0.0.1', 'localhost'
+  c.ignore_hosts '127.0.0.1', 'localhost', 'localhost:9200'
 end
 # =====
 
@@ -48,7 +48,7 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
-
+  config.fail_fast = true
   config.order = "random"
   if ENV['DOCS'] == 'true'
     DocYoSelf.config do |c|
@@ -63,6 +63,8 @@ RSpec.configure do |config|
     config.after(:suite) { DocYoSelf.finish! }
   end
   config.before :each do
+    Guide.reindex
+    Crop.reindex
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end

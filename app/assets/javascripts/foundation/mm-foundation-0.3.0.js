@@ -28,7 +28,7 @@ angular.module('mm.foundation.accordion', [])
       });
     }
   };
-  
+
   // This is called from the accordion-group directive to add itself to the accordion
   this.addGroup = function(groupScope) {
     var that = this;
@@ -81,7 +81,7 @@ angular.module('mm.foundation.accordion', [])
       accordionCtrl.addGroup(scope);
 
       scope.isOpen = false;
-      
+
       if ( attrs.isOpen ) {
         getIsOpen = $parse(attrs.isOpen);
         setIsOpen = getIsOpen.assign;
@@ -227,7 +227,7 @@ angular.module('mm.foundation.buttons', [])
       function getFalseValue() {
         return getCheckboxValue(attrs.btnCheckboxFalse, false);
       }
-      
+
       function getCheckboxValue(attributeValue, defaultValue) {
         var val = scope.$eval(attributeValue);
         return angular.isDefined(val) ? val : defaultValue;
@@ -983,7 +983,7 @@ angular.module('mm.foundation.modal', ['mm.foundation.transition'])
           backdropDomEl = $compile('<div modal-backdrop></div>')(backdropScope);
           body.append(backdropDomEl);
         }
-          
+
         var angularDomEl = angular.element('<div modal-window></div>');
         angularDomEl.attr('window-class', modal.windowClass);
         angularDomEl.attr('index', openedWindows.length() - 1);
@@ -1487,7 +1487,7 @@ angular.module( 'mm.foundation.tooltip', [ 'mm.foundation.position', 'mm.foundat
 
   // The options specified to the provider globally.
   var globalOptions = {};
-  
+
   /**
    * `options({})` allows global configuration of all tooltips in the
    * application.
@@ -1556,7 +1556,7 @@ angular.module( 'mm.foundation.tooltip', [ 'mm.foundation.position', 'mm.foundat
 
       var startSym = $interpolate.startSymbol();
       var endSym = $interpolate.endSymbol();
-      var template = 
+      var template =
         '<div '+ directiveName +'-popup '+
           'title="'+startSym+'tt_title'+endSym+'" '+
           'content="'+startSym+'tt_content'+endSym+'" '+
@@ -1681,7 +1681,7 @@ angular.module( 'mm.foundation.tooltip', [ 'mm.foundation.position', 'mm.foundat
               // Set the initial positioning.
               tooltip.css({ top: 0, left: 0, display: 'block' });
 
-              // Now we add it to the DOM because need some info about it. But it's not 
+              // Now we add it to the DOM because need some info about it. But it's not
               // visible yet anyway.
               if ( appendToBody ) {
                   $document.find( 'body' ).append( tooltip );
@@ -1708,9 +1708,8 @@ angular.module( 'mm.foundation.tooltip', [ 'mm.foundation.position', 'mm.foundat
               //if tooltip is going to be shown after delay, we must cancel this
               $timeout.cancel( popupTimeout );
 
-              // And now we remove it from the DOM. However, if we have animation, we 
+              // And now we remove it from the DOM. However, if we have animation, we
               // need to wait for it to expire beforehand.
-              // FIXME: this is a placeholder for a port of the transitions library.
               if ( scope.tt_animation ) {
                 transitionTimeout = $timeout(removeTooltip, 500);
               } else {
@@ -2443,7 +2442,7 @@ angular.module("mm.foundation.topbar", [])
                     if (!$scope.stickyTopbar || !$scope.isSticky()) {
                         return;
                     }
-                    
+
                     var $class = angular.element($document[0].querySelector('.' + $scope.settings.stickyClass));
 
                     var distance = stickyoffset;
@@ -2455,14 +2454,14 @@ angular.module("mm.foundation.topbar", [])
                             $class.removeClass('fixed');
                             body.css('padding-top', '');
                         }
-                    }  
+                    }
                 };
 
                 $scope.toggle = function(on) {
                     if(!$scope.breakpoint()){
                         return false;
                     }
-                    
+
                     var expand = (on === undefined) ? !topbar.hasClass('expanded') : on;
 
                     if (expand){
@@ -2547,7 +2546,7 @@ angular.module("mm.foundation.topbar", [])
 
             },
             controller: ['$window', '$scope', 'closest', function($window, $scope, closest) {
-            
+
                 $scope.settings = {};
                 $scope.settings.stickyClass = $scope.stickyClass || 'sticky';
                 $scope.settings.backText = $scope.backText || 'Back';
@@ -2621,7 +2620,7 @@ angular.module("mm.foundation.topbar", [])
                     if($scope.index < 1 || !breakpoint()){
                         return;
                     }
-                    
+
                     var $link = angular.element(event.currentTarget);
                     var $movedLi = closest($link, 'li.moved');
                     var $previousLevelUl = $movedLi.parent();
@@ -2686,7 +2685,7 @@ angular.module("mm.foundation.topbar", [])
             transclude: true,
             link: function ($scope, element, attrs, topBar) {
                 var section = element;
-                
+
                 $scope.reset = function(){
                     angular.element(section[0].querySelectorAll('li.moved')).removeClass('moved');
                 };
@@ -2760,7 +2759,7 @@ angular.module("mm.foundation.topbar", [])
                         element.toggleClass('not-click');
                     }
                 });
-                
+
                 element.bind('mouseleave', function() {
                     element.removeClass('not-click');
                 });
@@ -2922,7 +2921,7 @@ angular.module( 'mm.foundation.tour', [ 'mm.foundation.position', 'mm.foundation
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -3072,7 +3071,7 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
       //we need to propagate user's query so we can higlight matches
       scope.query = undefined;
 
-      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later 
+      //Declare the timeout promise var outside the function scope so that stacked calls can be cancelled later
       var timeoutPromise;
 
       //plug into $parsers pipeline to open a typeahead on view changes initiated from DOM

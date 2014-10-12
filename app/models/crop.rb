@@ -25,7 +25,6 @@ class Crop
   field :description
   field :image
   belongs_to :crop_data_source
-  #TODO: Add tags to sun_requirements and sowing_method. See mongoid_search docs
   field :sun_requirements
   field :sowing_method
   field :spread, type: Integer

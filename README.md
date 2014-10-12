@@ -2,17 +2,19 @@
 OpenFarm
 ========
 
-OpenFarm ([OpenFarm.cc](http://openfarm.cc)) is a free and open database for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants. The data is crowdsourced and includes all of the necessary paramaters for a machine or human to successfully grow a plant, ie: seed spacing and depth, water regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents including all of the necessary paramaters for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
 
-This project is closely related to the FarmBot project but also distinctly separate. OpenFarm is a standalone database that will simply provide data to other applications. For FarmBot, OpenFarm will supply the default settings to grow a plant when a user selects it in the graphical FarmBot frontend.
+This project is closely related to the [FarmBot Project](http://go.farmbot.it) but also distinctly separate. OpenFarm is a standalone database that will simply provide data to other applications such as FarmBot.
 
-OpenFarm will also have a web frontend of its own to allow anyone to access the data and make contributions.
+Other use cases: a mobile app for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", etc.
 
-Examples of other applications using OpenFarm: a mobile application for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", Wolfram Alpha displaying the data for "growng tomatoes" which is also showed to users asking Siri on iDevices, etc.
+### Community Discussion Group
 
-### Feature Discussion
+For discussing features, feature requests and ideas, and interfacing with our users at large (and contributors not on GitHub), please check out our public [Loom.io group](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group)
 
-For discussing features, feature requests and ideas, please check out the [Loom.io page](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group)
+### Core Contributor Group
+
+We're currently [trying out Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
 
 ### Getting Started (Setup)
 
@@ -78,7 +80,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ### Data License
 
-The data within the OpenFarm.cc database is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
+All data within the OpenFarm.cc database is in the [Public Domain (CC0)](creativecommons.org/publicdomain/zero/1.0/)
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/FarmBot/openfarm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

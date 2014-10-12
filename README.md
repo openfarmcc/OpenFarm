@@ -10,13 +10,13 @@ OpenFarm will also have a web frontend of its own to allow anyone to access the 
 
 Examples of other applications using OpenFarm: a mobile application for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", Wolfram Alpha displaying the data for "growng tomatoes" which is also showed to users asking Siri on iDevices, etc.
 
-### Issue Tracker
+### Feature Discussion
 
-[![Stories in Ready](https://badge.waffle.io/FarmBot/OpenFarm.png?label=ready)](http://waffle.io/FarmBot/OpenFarm)
+For discussing features, feature requests and ideas, please check out the [Loom.io page](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group)
 
 ### Getting Started (Setup)
 
-You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed. To get started with a local copy of the project, run:
+You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed. To get started with a local copy of the project, run:
 
 ```bash
 $ git clone https://github.com/FarmBot/OpenFarm.git
@@ -38,27 +38,13 @@ All secrets (such as S3 credentials) are stored in ENV variables. You will need 
  * When designing API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
  * Please write specs for your code. We use Rspec as our testing framework.
 
-#### OAuth
-
-OpenFarm supports OAuth through Facebook and Twitter, however you have to enable it yourself.
-
-For Twitter, you need to set the `TWITTER_CONSUMER_KEY` and `TWITTER_CONSUMER_SECRET` environment variables before starting the server:
-
-```bash
-export TWITTER_CONSUMER_KEY=my-consumer-key
-export TWITTER_CONSUMER_SECRET=my-consumer-secret
-rails s
-```
-
-For Facebook it is the same way, except the fields are `FACEBOOK_APP_ID` and `FACEBOOK_APP_SECRET`.
-
 ### How to Contribute
 
  1. Fork this repo.
- 2. Fix stuff, add features.
+ 2. Fix stuff, write features, unit tests(!).
  3. Send pull request to master.
 
-Not sure where to help? Take a look [over here](http://waffle.io/FarmBot/OpenFarm).
+Not sure where to help? Take a look at the issues thread. It is advisable to let other know your intent to implement a feautre before starting, as it lets other contributors focus their efforts elsewhere.
 
 ### FAQ
 

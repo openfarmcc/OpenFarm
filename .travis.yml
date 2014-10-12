@@ -1,4 +1,13 @@
 language: ruby
 services:
-  - mongodb
-  - elasticsearch
+- mongodb
+- elasticsearch
+env:
+  global:
+  - secure: NM1WbrGJE05ycKIfwuFym6zbj2sNCB0tIFIE8/QXDqNPYo+hWwPSzDwzJ3jKY93xyPduNeRrzRN1ARPrUR1AozpKEBz2fphak7lppteNxZxMMgFU/8d5aSDJmixKeO/yqdhhyj5zBCyKih5Bh3F1Z4OS6J4Y1DLVmfJe/RnYpW0=
+  - secure: ZTB1qTZ67pS+YGjrlPV0/yfen40Gf38/wFTFU1jr93nmarcuW7ELh3ib3sH1EnDxcrHwJ4ImWAD9cK7G6VeR/BLugtEhoHquX6QhRHSW3lsUEUHVSCLrxKHyuaymLVi67CUdqBRS+jvuLYRo6PHvidxRhh9sLvCY8jwv8VH85A8=
+  - secure: BL/rIiTjIMWgb2GZ0CAyBMehdxLXeB0PQqlN7Pjb/Ic5rR0iSeyIHQ979E+qWqw/lVgDl/eEGDKTfbUvTwdTvZMul4wvhN7LHQqrFxUQol+fCYKopK23fA4eXm7RDUjavsc7xyW6UxwdDnsnlQ7szWQB+BRppa2TAnyq77vYlxM=
+  - secure: mbqxtn2capXmq4FeQzHz7KLBigv1QVt5oaG1H48lWUh0NQhUkY5wDG0e9Ai4CsRfWnDtouYiQgVXNUgTG2Bx7pngn2Dn0uBDTDKuNJuLUMh2Pt3MPLL0IEOjSPD1wgZmtYpb9lNDKDAUNuwCwJhitS47qJhFT7B9NwVnXE8E3o4=
+  - secure: cuv1l8TD8U/dADgzw9F071r6i41ZsInLmo3dNbw4000OoinXnM+FrUv6JXO2zOm2H8hVY9fIgvkwschYdvyQAe41yW0QAioM/XOAgp3AltXJJYkrroK+S8tCeBHeGLBlzwHHgvWs5D/MyPT98i3Gbn3UFSZPTd3eeFvl49T4f3c=
+  - secure: Fl1T6/x9mGMug0roQcXylnyItmii0ybhj/SA95gMgDDxUS4PAqP5XIHSafN96DrQm0J54TOAakkLItGMzmZBu/Z/cySBXrsgFjXgLfoBURdm+Hl2LrMimvY4dRrUNT6URzqzh6RfQweSqx7KunjTgUsIK2nK+wuGU3sFQh6a7tg=
+  - secure: IrnYukDRUfosdaFNsEXxkXiNLeHlWPHWzdvGhlBKvKrYHruV8iMEKrVpDZAmDYcCIIKHEvyDV7pF540+QihtJaxl1EEBjsjh/GT5HBNijGq4e5uLgFJjTek9U9YwwStF+GjYQfHCAoc3ojC+xGgYz0l7m/QTq+Q1y8J4n6olDWI=

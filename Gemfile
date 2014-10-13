@@ -22,7 +22,7 @@ gem 'impressionist'
 gem 'mongoid-history'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
-gem 'patron'
+gem 'patron' # For searchKick
 gem 'searchkick'
 
 group :development, :test do
@@ -51,20 +51,19 @@ end
 group :production, :staging do
   gem 'thin'
   gem 'exception_notification'
-  gem 'rails_12factor' # for dokku
+  gem 'rails_12factor'
 end
 
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
 gem 'devise'
 gem 'rails_admin'
-gem 'ng-rails-csrf' # TODO: Token auth, or something...
+gem 'ng-rails-csrf'
 # Some extra gems for signing up through Twitter or Facebook
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+# gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
 
 # Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'
-gem 'mongoid_search'
 gem 'active_model_serializers'

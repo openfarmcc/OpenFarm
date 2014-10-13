@@ -135,7 +135,6 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
-    fast-stemmer (1.0.2)
     fattr (2.2.2)
     flay (2.5.0)
       ruby_parser (~> 3.0)
@@ -159,7 +158,6 @@ GEM
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    httpauth (0.2.0)
     httpclient (2.4.0)
     i18n (0.6.9)
     impressionist (1.5.1)
@@ -172,8 +170,6 @@ GEM
       railties (>= 3.2.16)
     json (1.8.1)
     json_pure (1.8.1)
-    jwt (0.1.8)
-      multi_json (>= 1.5)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -214,9 +210,6 @@ GEM
       mongoid (>= 3.0)
     mongoid-paperclip (0.0.9)
       paperclip (>= 2.3.6)
-    mongoid_search (0.3.2)
-      fast-stemmer (~> 1.0.0)
-      mongoid (>= 3.0.0)
     mongoid_slug (3.2.1)
       mongoid (> 3.0)
       stringex (~> 2.0)
@@ -234,27 +227,6 @@ GEM
     ng-rails-csrf (0.1.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
-    oauth (0.4.7)
-    oauth2 (0.8.1)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-facebook (1.5.1)
-      omniauth-oauth2 (~> 1.1.0)
-    omniauth-oauth (1.0.1)
-      oauth
-      omniauth (~> 1.0)
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
-    omniauth-twitter (1.0.1)
-      multi_json (~> 1.3)
-      omniauth-oauth (~> 1.0)
     optionable (0.2.0)
     origin (2.0.0)
     orm_adapter (0.5.0)
@@ -459,12 +431,9 @@ DEPENDENCIES
   mongoid!
   mongoid-history
   mongoid-paperclip
-  mongoid_search
   mongoid_slug
   mutations
   ng-rails-csrf
-  omniauth-facebook
-  omniauth-twitter
   patron
   poltergeist
   pry

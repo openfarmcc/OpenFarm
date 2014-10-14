@@ -1,3 +1,4 @@
+require 'openfarm_errors'
 class Api::Controller < ActionController::Base
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
@@ -5,6 +6,11 @@ class Api::Controller < ActionController::Base
   respond_to :json
 
   before_action :authenticate_from_token!
+
+   rescue_from OpenfarmErrors::NotAuthorized do |exc|
+      json = { error: "Not Authorized. #{exc.message}" }
+      render json: json, status: 401
+    end
 
   protected
 

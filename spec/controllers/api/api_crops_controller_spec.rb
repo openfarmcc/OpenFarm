@@ -28,6 +28,4 @@ describe Api::CropsController, :type => :controller do
     expect(response.status).to eq(200)
     expect(json['crop']['name']).to eq(crop.name)
   end
-
-  it 'should return a 404 when a crop doesn\'t exist'
 end

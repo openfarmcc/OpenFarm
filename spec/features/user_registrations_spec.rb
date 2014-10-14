@@ -16,7 +16,6 @@ describe 'User registrations' do
   end
 
   it 'opts in to the mailing list' do
-    pending 'This is broke. Why?'
     visit new_user_registration_path
     fill_in :user_email, with: 'bert@me.com'
     fill_in :user_display_name, with: 'Bert'
@@ -26,7 +25,8 @@ describe 'User registrations' do
     see 'Get (occassional) updates about OpenFarm via email'
     click_button 'Create User'
     see('You have signed up successfully.')
-    expect(user.reload.mailing_list).to eq(true)
+    bert = User.find_by(email: 'bert@me.com')
+    expect(bert.mailing_list).to eq(true)
   end
 
   it 'opts out of the mailing list' do
@@ -39,6 +39,7 @@ describe 'User registrations' do
     see 'Get (occassional) updates about OpenFarm via email'
     click_button 'Create User'
     see('You have signed up successfully.')
-    expect(user.reload.mailing_list).to eq(false)
+    bert = User.find_by(email: 'bert@me.com')
+    expect(bert.mailing_list).to eq(false)
   end
 end

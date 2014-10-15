@@ -1,8 +1,23 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <% if resource.errors.any? %>
+    <div class="alert-box alert radius" data-alert="">
+      <ul>
+      <% resource.errors.full_messages.each do |full_message| %>
+        <li><%= full_message %></li>
+      <% end %>
+      </ul>
+      <a class="close" href="#">×</a>
+    </div>
+  <% end %>
 
   <%= f.label :display_name, I18n.t('users.display_name') %>
   <%= f.text_field :display_name %>
+
+  <%= f.label :email, I18n.t('users.email_address') %>
+  <%= f.email_field :email %>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
 
   <% if @user.new_record? %>
     <%= f.label :password, I18n.t('users.password') %>
@@ -15,30 +30,5 @@
     <%= f.password_field :password, autocomplete: "off" %>
   <% end %>
 
-
-    <%= f.label :password_confirmation, I18n.t('users.password_confirmation') %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-
-  <%= f.label :email, I18n.t('users.email_address') %>
-  <%= f.email_field :email %>
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <%= f.label :location, I18n.t('users.location') %>
-  <%= f.text_field :location %>
-
-  <%= f.label :soil_type, I18n.t('users.soil_type') %>
-  <%= f.text_field :soil_type %>
-
-  <%= f.label :years_experience, I18n.t('users.years_experience') %>
-  <%= f.text_field :years_experience %>
-
-  <%= f.label :preferred_growing_style, I18n.t('users.preferred_growing_style') %>
-  <%= f.text_field :preferred_growing_style %>
-
-  <%= f.check_box :mailing_list %>
-  <%= f.label :mailing_list, I18n.t('users.mailing_list') %>
-  <br/>
   <%= f.submit class: 'button submit' %>
 <% end %>

@@ -4,6 +4,7 @@ $of-purple: #674ea7;
 $of-green: #6aa84f;
 $of-red: #cc0000;
 $of-yellow: #f1c232;
+$of-dark: #4a4a4a;
 
 $primary-color: #c7a979; // #008CBA;
 $secondary-color: #e7e7e7;
@@ -112,7 +113,7 @@ small.error{
 
   h2, h5 {
     display: inline-block;
-    /*color: white;*/
+    color: white;
     font-weight: 600;
   }
 
@@ -123,7 +124,6 @@ small.error{
   .author {
     margin-left: 20px;
     display: inline-block;
-    /*color: white;*/
   }
 }
 
@@ -147,7 +147,6 @@ small.error{
 .top-bar .search{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-
 }
 
 /*

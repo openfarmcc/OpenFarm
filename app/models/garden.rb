@@ -1,6 +1,5 @@
 class Garden
   include Mongoid::Document
-  include Mongoid::Search
   include Mongoid::Paperclip
 
   belongs_to :user

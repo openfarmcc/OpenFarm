@@ -31,9 +31,7 @@ module OpenFarm
     # config.i18n.default_locale = :de
     I18n.enforce_available_locales = false
     config.assets.initialize_on_precompile = false
-    config.middleware.insert_before 'ActionDispatch::Static',
-                                    'Rack::Cors',
-                                    logger: -> { Rails.logger } do
+    config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
       allow do
         origins '*'
         resource '/api/*',

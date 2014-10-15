@@ -10,6 +10,7 @@ SimpleCov.start do
   add_filter 'config/initializers/rack-attack.rb'
   add_filter 'config/environment.rb'
   add_filter 'config/initializers/mongoid.rb'
+  add_filter 'config/initializers/backtrace_silencers.rb'
 end
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'

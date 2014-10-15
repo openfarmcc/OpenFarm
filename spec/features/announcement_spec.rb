@@ -17,9 +17,4 @@ describe 'Announcements' do
     visit root_path
     expect(page).to have_content('Test Announcement')
   end
-
-  # I have no idea how to inspect sessions
-  it 'does not show announcements once they have been hidden'
-
-  it 'shows announcements that are newer than the hidden value'
 end

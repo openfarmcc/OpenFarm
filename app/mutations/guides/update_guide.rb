@@ -27,11 +27,8 @@ module Guides
 
     def validate_permissions
       if guide.user != user
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'You can only update guides that you own.'
+        msg = 'You can only modify guides that you created.'
+        raise OpenfarmErrors::NotAuthorized, msg
       end
     end
 

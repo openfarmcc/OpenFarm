@@ -22,11 +22,8 @@ module Requirements
 
     def validate_permissions
       if requirement.guide.user != user
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'You can only update requirements that belong to your guides.'
+        msg = 'You can only update requirements that belong to your guides.'
+        raise OpenfarmErrors::NotAuthorized, msg
       end
     end
 
@@ -34,7 +31,6 @@ module Requirements
       # TODO: Probably a DRYer way of doing this.
       requirement.name        = name if name.present?
       requirement.required    = required if required.present?
-
       requirement.save
     end
   end

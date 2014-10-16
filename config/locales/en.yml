@@ -39,7 +39,7 @@ en:
         share_your_knowledge_with_guide_creation: "Share your knowledge with guide creation."
         email_address: "Email Address"
         display_name: "Username:"
-        password: "Password:"
+        password: "New Password:"
         current_password: "Current Password (we need your current password to confirm your changes)"
         password_blank_ok: " (leave blank if you don't want to change it)"
         password_confirmation: "Confirm Password"

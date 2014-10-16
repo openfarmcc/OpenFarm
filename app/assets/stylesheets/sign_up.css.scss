@@ -1,0 +1,46 @@
+@import "presets.css.scss";
+
+.bar-header{
+  background: $of-green;
+  margin-bottom: 2rem;
+
+  h1{
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+.infos{
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
+
+  .image{
+    height: 80px;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  img{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+
+  p{
+    width: 80%;
+    line-height: 1.2;
+    color: $of-dark;
+    margin: 0 auto;
+  }
+}
+
+.sign-in{
+  margin-bottom: 4rem;
+}

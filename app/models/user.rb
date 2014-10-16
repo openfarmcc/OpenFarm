@@ -3,6 +3,7 @@ class User
 
   embeds_many :user_authentications
   has_many :guides
+  has_many :gardens
   has_one :token, dependent: :delete
   accepts_nested_attributes_for :user_authentications
   ## Database authenticatable
@@ -26,8 +27,6 @@ class User
   field :display_name, type: String
   validates_presence_of :display_name
   field :location, type: String
-  field :soil_type, type: String
-  field :preferred_growing_style, type: String
   field :years_experience, type: Integer
   field :admin,   :type => Boolean, default: false
 

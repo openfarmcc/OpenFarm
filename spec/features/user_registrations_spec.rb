@@ -15,31 +15,35 @@ describe 'User registrations' do
     expect(user.reload.display_name).to eq('Bert')
   end
 
-  it 'opts in to the mailing list' do
-    visit new_user_registration_path
-    fill_in :user_email, with: 'bert@me.com'
-    fill_in :user_display_name, with: 'Bert'
-    fill_in :user_password, with: 'hello_world'
-    fill_in :user_password_confirmation, with: 'hello_world'
-    check('user_mailing_list')
-    see 'Get (occassional) updates about OpenFarm via email'
-    click_button 'Create User'
-    see('You have signed up successfully.')
-    bert = User.find_by(email: 'bert@me.com')
-    expect(bert.mailing_list).to eq(true)
+  it 'can change user password' do
+    login_as user
+    visit edit_user_registration_path(user)
+    fill_in :user_current_password, with: user.password
+    fill_in :user_password, with: "bert1234"
+    click_button 'Update User'
+    see('You updated your account successfully')
   end
 
-  it 'opts out of the mailing list' do
-    visit new_user_registration_path
-    fill_in :user_email, with: 'bert@me.com'
+  it 'should fail with wrong password' do
+    login_as user
+    original_name = user.display_name
+    visit edit_user_registration_path(user)
+    fill_in :user_current_password, with: 'wrongpassword'
     fill_in :user_display_name, with: 'Bert'
-    fill_in :user_password, with: 'hello_world'
-    fill_in :user_password_confirmation, with: 'hello_world'
-    uncheck :user_mailing_list
-    see 'Get (occassional) updates about OpenFarm via email'
-    click_button 'Create User'
-    see('You have signed up successfully.')
-    bert = User.find_by(email: 'bert@me.com')
-    expect(bert.mailing_list).to eq(false)
+    click_button 'Update User'
+    new_name = user.reload.display_name
+    # Dunno why, but it wasn't liking user.reload.display_name
+    # in the expect() below
+    expect(new_name).to eq(original_name)
+    see('Current password is invalid')
+  end
+
+  it 'should fail with faulty new password' do
+    login_as user
+    visit edit_user_registration_path(user)
+    fill_in :user_current_password, with: user.password
+    fill_in :user_password, with: "2short"
+    click_button 'Update User'
+    see('Password is too short')
   end
 end

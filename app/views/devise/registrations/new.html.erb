@@ -1,15 +1,37 @@
-<br/>
-<div class="row">
-  <div class="small-12 columns">
-    <div class="row">
-      <div class="large-8 medium-10 small-12 small-centered columns">
-        <div class="panel">
-          <h1>Hey there!</h1>
-          <%= render 'devise/shared/user_form' %>
-          <hr/>
-          <%= render "devise/shared/links" %>
-        </div>
-      </div>
+
+<div class="bar-header">
+  <h1><%= t('users.create_your_openfarm_profile') %></h1>
+</div>
+<div class="row infos">
+  <div class="large-3 columns">
+    <div class="image">
+      <%= image_tag('conversation.png', alt: t('users.community')) %>
     </div>
+    <p><%= t('users.join_a_community', users: User.all().length) %></p>
+  </div>
+  <div class="large-3 columns">
+    <div class="image">
+      <%= image_tag('compatibility.png', alt: t('users.compatibility')) %>
+    </div>
+    <p><%= t('users.find_guides_based_on_compatibility') %></p>
+  </div>
+  <div class="large-3 columns">
+    <div class="image">
+      <%= image_tag('star.png', alt: t('users.favorite')) %>
+    </div>
+    <p><%= t('users.star_your_favorite_guides_and_crops') %></p>
+  </div>
+  <div class="large-3 columns">
+    <div class="image">
+      <%= image_tag('create.png', alt: t('users.create')) %>
+    </div>
+    <p><%= t('users.share_your_knowledge_with_guide_creation') %></p>
+  </div>
+</div>
+<div class="row sign-in">
+  <div class="large-6 medium-8 small-12 small-centered columns">
+    <%= render 'devise/shared/user_form' %>
+    <hr/>
+    <%= render "devise/shared/links" %>
   </div>
 </div>

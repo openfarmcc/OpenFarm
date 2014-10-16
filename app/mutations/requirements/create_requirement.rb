@@ -23,11 +23,8 @@ module Requirements
 
     def validate_permissions
       if @guide && (@guide.user != user)
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'You cant create requirements for guides you dont own.'
+        msg = 'You cant create requirements for guides you did not create.'
+        raise OpenfarmErrors::NotAuthorized, msg
       end
     end
 

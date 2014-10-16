@@ -65,16 +65,16 @@ describe Api::StagesController, type: :controller do
              guide_id: FactoryGirl.create(:guide).id,
              name: 'hello' }
     post 'create', data, format: :json
-    expect(json['user']).to eq(
+    expect(json['error']).to include(
       "You can only create stages for guides that belong to you.")
-    expect(response.status).to eq(422)
+    expect(response.status).to eq(401)
   end
 
   it 'should not update a stage on someone elses guide' do
     guide = FactoryGirl.create(:guide)
     stage = FactoryGirl.create(:stage, guide: guide)
     put :update, id: stage.id, overview: 'updated'
-    expect(response.status).to eq(422) # WRONG. See TODO in mutation.
+    expect(response.status).to eq(401)
     expect(response.body).to include('You can only update stages that belong to your guides.')
   end
 end

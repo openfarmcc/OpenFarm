@@ -45,8 +45,8 @@ describe Api::RequirementsController, type: :controller do
 
   it 'only allows you to edit your requirements' do
     put :update, id: FactoryGirl.create(:requirement).id, required: 'updated'
-    expect(response.status).to eq(422)
-    expect(json['user']).to eq(
+    expect(response.status).to eq(401)
+    expect(json['error']).to include(
       'You can only update requirements that belong to your guides.')
   end
 
@@ -68,9 +68,9 @@ describe Api::RequirementsController, type: :controller do
              required: true,
              guide_id: FactoryGirl.create(:guide) }
     post :create, data
-    expect(json['user']).to eq(
-      "You cant create requirements for guides you dont own.")
-    expect(response.status).to eq(422)
+    expect(json['error']).to include(
+      "cant create requirements for guides you did not create")
+    expect(response.status).to eq(401)
   end
 
   it 'should update a requirement' do
@@ -86,16 +86,16 @@ describe Api::RequirementsController, type: :controller do
     guide = FactoryGirl.create(:guide)
     requirement = FactoryGirl.create(:requirement, guide: guide)
     put :update, id: requirement.id, required: 'updated'
-    expect(response.status).to eq(422) # WRONG. See TODO in mutation.
+    expect(response.status).to eq(401)
     expect(response.body).to include(
       'You can only update requirements that belong to your guides.')
   end
 
   it 'only destroys requirements owned by the user' do
     delete :destroy, id: FactoryGirl.create(:requirement)
-    expect(json['user']).to eq(
+    expect(json['error']).to include(
       "can only destroy requirements that belong to your guides.")
-    expect(response.status).to eq(422)
+    expect(response.status).to eq(401)
   end
 
   it 'handles deletion of unknown requirements' do

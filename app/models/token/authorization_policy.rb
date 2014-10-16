@@ -2,8 +2,8 @@ class Token
   class AuthorizationPolicy
     attr_reader :email, :user, :guess
 
-    def initialize(string)
-      @email, pt = *token.split(':')
+    def initialize(token_string)
+      @email, pt = *token_string.split(':')
       @guess     = Digest::SHA512.hexdigest(pt)
     end
 

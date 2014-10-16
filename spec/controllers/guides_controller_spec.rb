@@ -14,8 +14,6 @@ describe GuidesController do
     expect(response).to render_template(:show)
   end
 
-  it 'directs to edit page after successful guide creation'
-
   it 'should show the edit page if the user owns the guide' do
     guide = FactoryGirl.create(:guide)
     user = guide.user
@@ -37,13 +35,6 @@ describe GuidesController do
     get 'index'
     expect(response).to render_template(:index)
   end
-
-  it 'should not show an edit link if the user is not an editor'
-
-  it 'should redirect to show after successful update'
-  # Not sure this test makes sense, since this will be largely
-  # done through Ajax. as a result, does it still make sense
-  # to have the update path?
 
   it 'should add an impression if a user shows the guide' do
     guide = FactoryGirl.create(:guide)

@@ -60,12 +60,6 @@ describe Api::GuidesController, type: :controller do
     expect(json['guide']['name']).to eq(guide.name)
   end
 
-  it 'should return a not found error if a guide isn\'t found'
-  # get 'show', id: '1', format: :json
-  # expect(response.status).to eq(404)
-  # This test fails, largely because I don't know how to
-  # implement it.
-
   it 'should update a guide' do
     sign_in user
     guide = FactoryGirl.create(:guide, user: user, overview: 'old')
@@ -79,8 +73,8 @@ describe Api::GuidesController, type: :controller do
     sign_in FactoryGirl.create(:user)
     guide = FactoryGirl.create(:guide)
     put :update, id: guide.id, overview: 'updated'
-    expect(response.status).to eq(422) # WRONG. See TODO in mutation.
-    expect(response.body).to include('You can only update guides that you own.')
+    expect(response.status).to eq(401)
+    expect(response.body).to include('only modify guides that you created')
   end
 
   it 'validates URL paramters' do

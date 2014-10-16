@@ -17,6 +17,7 @@ describe Token do
   end
 
   it '#get_user returns a user when correct' do
+    pending 'This is no longer relevant'
     pt    = token.plaintext
     email = token.user.email
     key   = "#{email}:#{pt}"

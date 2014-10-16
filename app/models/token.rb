@@ -35,19 +35,4 @@ class Token
       self.secret = Digest::SHA512.hexdigest(plaintext)
     end
   end
-
-  # (String) plaintext: An email address, then a colon (':') then a token in
-  # plaintext. Example: "rick@me.com:1234567"
-  # Returns User object on success. Otherwise `false`
-  def self.get_user(token)
-    email, pt        = *token.split(':')
-    user             = email && User.find_by(email: email)
-    guess            = Digest::SHA512.hexdigest(pt)
-    # TODO Not currently checking for expiration.
-    if user && user.token && Devise.secure_compare(user.token.secret, guess)
-      user
-    else
-      false
-    end
-  end
 end

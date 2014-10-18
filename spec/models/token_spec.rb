@@ -16,20 +16,6 @@ describe Token do
     expect(token.valid?).to eq(false)
   end
 
-  it '#get_user returns a user when correct' do
-    pt    = token.plaintext
-    email = token.user.email
-    key   = "#{email}:#{pt}"
-    expect(Token.get_user(key)).to eq(token.user)
-  end
-
-  it '#get_user returns false when wrong' do
-    pt    = 'notevenclose'
-    email = token.user.email
-    key   = "#{email}:#{pt}"
-    expect(Token.get_user(key)).to eq(false)
-  end
-
   it 'gives error messages if accessing a GCed token' do
     id = token._id
     token = nil # Garbage collect the newly created token.

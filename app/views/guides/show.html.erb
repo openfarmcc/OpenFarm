@@ -11,10 +11,10 @@
     <div class="canopy">
       <div class="image-wrapper">
         <img ng-src="/assets/leaf-grey-canopy.png"
-          ng-if="guide.featured_image.indexOf('leaf-grey') > -1" 
+          ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
           ng-attr-alt="{{ guide.name }}"/>
         <img ng-src="{{ guide.featured_image }}"
-          ng-if="guide.featured_image.indexOf('leaf-grey') === -1" 
+          ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
           ng-attr-alt="{{ guide.name }}"/>
       </div>
     </div>
@@ -22,7 +22,9 @@
       <div class="column large-10 centered">
         <h1> {{ guide.name }} </h1>
         <h2> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
+        <% if @guide.owned_by?(current_user) %>
         <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
+        <% end %>
       </div>
       <div class="columns large-10 centered">
         <div class="markdown" markdown="guide.overview">
@@ -50,10 +52,10 @@
                </div>
              </div>
           </div>
-        
+
         </p>
       </accordion-group>
-      <accordion-group 
+      <accordion-group
         ng-init="r.isopen = true"
         is-open="r.isopen"
         class="accordion-navigation requirements">
@@ -68,7 +70,7 @@
         </p>
         <div class="box">
           <div class="row">
-            <div 
+            <div
               ng-if="guide.requirements.length"class="small-12 columns actual-requirements">
               <ul>
 

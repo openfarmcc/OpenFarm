@@ -16,30 +16,30 @@
 {
   "crops": [
     {
-      "_id": "544107f1736d613f09130000",
+      "_id": "5443cfde736d61104b150100",
       "_slugs": [
         "mung-bean"
       ],
-      "binomial_name": "doloremque esse",
+      "binomial_name": "velit sit",
       "common_names": null,
-      "created_at": "2014-10-17T12:13:37.109Z",
+      "created_at": "2014-10-19T14:51:10.419Z",
       "crop_data_source_id": null,
-      "days_to_maturity": 30,
-      "description": "Ad distinctio similique possimus itaque.",
+      "days_to_maturity": 26,
+      "description": "Minus blanditiis numquam aspernatur eos et distinctio impedit.",
       "harvest_time": null,
-      "height": 12,
+      "height": 9,
       "image": null,
       "impressions": [
 
       ],
       "modifier_id": null,
       "name": "mung bean",
-      "row_spacing": 8,
-      "sowing_method": "direct",
+      "row_spacing": 9,
+      "sowing_method": "container",
       "sowing_time": null,
-      "spread": 16,
-      "sun_requirements": "full",
-      "updated_at": "2014-10-17T12:13:37.109Z",
+      "spread": 8,
+      "sun_requirements": "shade",
+      "updated_at": "2014-10-19T14:51:10.419Z",
       "version": null
     }
   ]
@@ -48,7 +48,7 @@
 
 
 
-# GET /api/crops/544107f1736d613f091c0000
+# GET /api/crops/5443cfde736d61104b1e0100
 
 
 
@@ -57,20 +57,19 @@
 ```
 {
   "crop": {
-    "_id": "544107f1736d613f091c0000",
-    "name": "mint green Romaguera",
-    "binomial_name": "illo deserunt",
-    "description": "Dolore non est voluptas eum dolorem quisquam id nobis.",
+    "_id": "5443cfde736d61104b1e0100",
+    "name": "plum Block",
+    "binomial_name": "debitis accusantium",
+    "description": "Et eum quod labore tempora expedita velit et.",
     "sun_requirements": "shade",
-    "sowing_method": "direct",
-    "spread": 11,
-    "days_to_maturity": 45,
-    "row_spacing": 4,
-    "height": 10
+    "sowing_method": "container",
+    "spread": 5,
+    "days_to_maturity": 52,
+    "row_spacing": 7,
+    "height": 12
   }
 }
 ```
-
 
 
 
@@ -83,7 +82,7 @@
 {
   "name": "brocolini in the desert",
   "overview": "something exotic",
-  "crop_id": "544107f8736d613f09b60000"
+  "crop_id": "5443cfda736d61104bf20000"
 }
 ```
 
@@ -92,9 +91,9 @@
 ```
 {
   "guide": {
-    "_id": "544107f8736d613f09b70000",
-    "crop_id": "544107f8736d613f09b60000",
-    "user_id": "544107f8736d613f09b50000",
+    "_id": "5443cfda736d61104bf30000",
+    "crop_id": "5443cfda736d61104bf20000",
+    "user_id": "5443cfda736d61104bf10000",
     "stages": [
 
     ],
@@ -111,6 +110,7 @@
 
 
 
+
 # POST /api/guides
 
 
@@ -121,7 +121,7 @@
   "name": "Just 1 pixel.",
   "overview": "A tiny pixel test image.",
   "featured_image": "http://placehold.it/1x1.jpg",
-  "crop_id": "544107f7736d613f09a90000"
+  "crop_id": "5443cfd9736d61104bc20000"
 }
 ```
 
@@ -130,9 +130,9 @@
 ```
 {
   "guide": {
-    "_id": "544107f7736d613f09ab0000",
-    "crop_id": "544107f7736d613f09a90000",
-    "user_id": "544107f7736d613f09aa0000",
+    "_id": "5443cfd9736d61104bc40000",
+    "crop_id": "5443cfd9736d61104bc20000",
+    "user_id": "5443cfd9736d61104bc30000",
     "stages": [
 
     ],
@@ -141,7 +141,7 @@
     ],
     "name": "Just 1 pixel.",
     "overview": "A tiny pixel test image.",
-    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/544107f7736d613f09ab0000.jpg?1413548024",
+    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/5443cfd9736d61104bc40000.jpg?1413730265",
     "location": null
   }
 }
@@ -149,36 +149,7 @@
 
 
 
-
-# GET /api/guides/544107f6736d613f097a0000
-
-
-
-
-## Response
-```
-{
-  "guide": {
-    "_id": "544107f6736d613f097a0000",
-    "crop_id": "544107f6736d613f09790000",
-    "user_id": "544107f6736d613f097b0000",
-    "stages": [
-
-    ],
-    "requirements": [
-
-    ],
-    "name": "magenta O'Connell",
-    "overview": "Aperiam iure cumque ea quia.",
-    "featured_image": "/assets/leaf-grey.png",
-    "location": null
-  }
-}
-```
-
-
-
-# PUT /api/guides/544107f7736d613f09870000
+# PUT /api/guides/5443cfd9736d61104bd00000
 
 
 
@@ -194,22 +165,51 @@
 ```
 {
   "guide": {
-    "_id": "544107f7736d613f09870000",
-    "crop_id": "544107f6736d613f09860000",
-    "user_id": "544107f6736d613f09850000",
+    "_id": "5443cfd9736d61104bd00000",
+    "crop_id": "5443cfd9736d61104bcf0000",
+    "user_id": "5443cfd9736d61104bce0000",
     "stages": [
 
     ],
     "requirements": [
 
     ],
-    "name": "violet Konopelski",
+    "name": "salmon Barrows",
     "overview": "updated",
     "featured_image": "/assets/leaf-grey.png",
     "location": null
   }
 }
 ```
+
+
+
+# GET /api/guides/5443cfda736d61104be60000
+
+
+
+
+## Response
+```
+{
+  "guide": {
+    "_id": "5443cfda736d61104be60000",
+    "crop_id": "5443cfda736d61104be50000",
+    "user_id": "5443cfda736d61104be70000",
+    "stages": [
+
+    ],
+    "requirements": [
+
+    ],
+    "name": "azure Murphy",
+    "overview": "Pariatur id reprehenderit officiis perferendis beatae ut inventore.",
+    "featured_image": "/assets/leaf-grey.png",
+    "location": null
+  }
+}
+```
+
 
 
 
@@ -225,25 +225,28 @@
   "requirement_options": [
     {
       "default_value": null,
-      "type": "range",
-      "name": "grey Wolff",
+      "type": "select",
+      "name": "pink MacGyver",
       "options": [
         [
-          "placeat"
+          "vel"
         ],
         [
-          "tempore"
+          "optio"
         ]
       ]
     },
     {
       "default_value": null,
       "type": "range",
-      "name": "gold Orn",
+      "name": "lavender Carroll",
       "options": [
-        2,
-        8,
-        4
+        [
+          "ducimus"
+        ],
+        [
+          "ducimus"
+        ]
       ]
     }
   ]
@@ -260,9 +263,9 @@
 ## Params
 ```
 {
-  "name": "sint",
-  "required": "[\"tempora\", \"eum\"]",
-  "guide_id": "544107fd736d613f09f90000"
+  "name": "nemo",
+  "required": "[\"dolores\", \"ea\"]",
+  "guide_id": "5443cfd4736d61104b660000"
 }
 ```
 
@@ -271,13 +274,13 @@
 ```
 {
   "requirement": {
-    "_id": "544107fd736d613f09fa0000",
+    "_id": "5443cfd4736d61104b670000",
     "guide": {
-      "_id": "544107fd736d613f09f90000",
+      "_id": "5443cfd4736d61104b660000",
       "_slugs": [
-        "mint-green-bernhard"
+        "lime-dach"
       ],
-      "crop_id": "544107fd736d613f09f80000",
+      "crop_id": "5443cfd4736d61104b650000",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -285,12 +288,12 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "mint green Bernhard",
-      "overview": "Reiciendis et nobis harum consequatur.",
-      "user_id": "544107fd736d613f09f40000"
+      "name": "lime Dach",
+      "overview": "Officia sint inventore voluptatem.",
+      "user_id": "5443cfd4736d61104b610000"
     },
-    "name": "sint",
-    "required": "[\"tempora\", \"eum\"]"
+    "name": "nemo",
+    "required": "[\"dolores\", \"ea\"]"
   }
 }
 ```
@@ -300,7 +303,8 @@
 
 
 
-# PUT /api/requirements/544107fc736d613f09e10000
+
+# PUT /api/requirements/5443cfd5736d61104b800000
 
 
 
@@ -316,13 +320,13 @@
 ```
 {
   "requirement": {
-    "_id": "544107fc736d613f09e10000",
+    "_id": "5443cfd5736d61104b800000",
     "guide": {
-      "_id": "544107fc736d613f09e00000",
+      "_id": "5443cfd5736d61104b7f0000",
       "_slugs": [
-        "plum-bode"
+        "tan-abernathy"
       ],
-      "crop_id": "544107fc736d613f09df0000",
+      "crop_id": "5443cfd5736d61104b7e0000",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -330,11 +334,11 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "plum Bode",
-      "overview": "Quibusdam atque saepe vero fuga pariatur repudiandae aut.",
-      "user_id": "544107fc736d613f09db0000"
+      "name": "tan Abernathy",
+      "overview": "Vitae voluptatem sed et quia error.",
+      "user_id": "5443cfd5736d61104b7a0000"
     },
-    "name": "orchid Conroy",
+    "name": "magenta Strosin",
     "required": "updated"
   }
 }
@@ -343,15 +347,8 @@
 
 
 
-# DELETE /api/requirements/544107fd736d613f09010100
 
-
-
-
-
-
-
-# GET /api/requirements/544107fe736d613f09180100
+# GET /api/requirements/5443cfd6736d61104b9f0000
 
 
 
@@ -360,13 +357,13 @@
 ```
 {
   "requirement": {
-    "_id": "544107fe736d613f09180100",
+    "_id": "5443cfd6736d61104b9f0000",
     "guide": {
-      "_id": "544107fe736d613f09160100",
+      "_id": "5443cfd6736d61104b9d0000",
       "_slugs": [
-        "yellow-larson"
+        "yellow-stracke"
       ],
-      "crop_id": "544107fe736d613f09150100",
+      "crop_id": "5443cfd6736d61104b9c0000",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -374,15 +371,21 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "yellow Larson",
-      "overview": "Sed repellendus nihil vel.",
-      "user_id": "544107fe736d613f09170100"
+      "name": "yellow Stracke",
+      "overview": "Saepe quia laborum est amet vel.",
+      "user_id": "5443cfd6736d61104b9e0000"
     },
-    "name": "salmon Feeney",
-    "required": "[\"aliquid\", \"labore\"]"
+    "name": "silver Kihn",
+    "required": "[\"quo\", \"architecto\"]"
   }
 }
 ```
+
+
+
+# DELETE /api/requirements/5443cfd6736d61104baa0000
+
+
 
 
 
@@ -397,23 +400,22 @@
 {
   "stage_options": [
     {
-      "default_value": "enim",
-      "name": "purple Bauch",
-      "slug": "purple-bauch",
-      "description": "Labore iste in culpa facere.",
-      "order": 4
+      "default_value": "aliquid",
+      "name": "azure Daniel",
+      "slug": "azure-daniel",
+      "description": "Consectetur ipsum accusantium sunt.",
+      "order": 3
     },
     {
-      "default_value": "velit",
-      "name": "olive Rosenbaum",
-      "slug": "olive-rosenbaum",
-      "description": "Quos accusamus voluptatem rerum.",
-      "order": 3
+      "default_value": "rerum",
+      "name": "turquoise Hirthe",
+      "slug": "turquoise-hirthe",
+      "description": "Sit perferendis voluptas cumque.",
+      "order": 5
     }
   ]
 }
 ```
-
 
 
 
@@ -426,9 +428,9 @@
 ## Params
 ```
 {
-  "name": "sint",
-  "instructions": "[\"Neque consequatur deleniti dolore nihil laboriosam qui praesentium.\", \"Quam eum incidunt earum praesentium quisquam.\"]",
-  "guide_id": "544107f5736d613f095f0000"
+  "name": "eum",
+  "instructions": "[\"Praesentium quo ad qui provident sit.\", \"Blanditiis beatae excepturi non sunt est et.\"]",
+  "guide_id": "5443cfe2736d61104b440100"
 }
 ```
 
@@ -437,13 +439,13 @@
 ```
 {
   "stage": {
-    "_id": "544107f5736d613f09600000",
+    "_id": "5443cfe2736d61104b450100",
     "guide": {
-      "_id": "544107f5736d613f095f0000",
+      "_id": "5443cfe2736d61104b440100",
       "_slugs": [
-        "salmon-bartoletti"
+        "blue-runte"
       ],
-      "crop_id": "544107f5736d613f095e0000",
+      "crop_id": "5443cfe2736d61104b430100",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -451,12 +453,12 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "salmon Bartoletti",
-      "overview": "Voluptatem quasi placeat qui illo maiores iste voluptate iusto.",
-      "user_id": "544107f5736d613f095a0000"
+      "name": "blue Runte",
+      "overview": "Sed voluptates assumenda occaecati minus.",
+      "user_id": "5443cfe2736d61104b3f0100"
     },
-    "name": "sint",
-    "instructions": "[\"Neque consequatur deleniti dolore nihil laboriosam qui praesentium.\", \"Quam eum incidunt earum praesentium quisquam.\"]"
+    "name": "eum",
+    "instructions": "[\"Praesentium quo ad qui provident sit.\", \"Blanditiis beatae excepturi non sunt est et.\"]"
   }
 }
 ```
@@ -464,42 +466,7 @@
 
 
 
-# GET /api/stages/544107f4736d613f09410000
-
-
-
-
-## Response
-```
-{
-  "stage": {
-    "_id": "544107f4736d613f09410000",
-    "guide": {
-      "_id": "544107f4736d613f093f0000",
-      "_slugs": [
-        "lavender-swift"
-      ],
-      "crop_id": "544107f4736d613f093e0000",
-      "featured_image_content_type": null,
-      "featured_image_file_name": null,
-      "featured_image_file_size": null,
-      "featured_image_fingerprint": null,
-      "featured_image_updated_at": null,
-      "impressions_field": 0,
-      "location": null,
-      "name": "lavender Swift",
-      "overview": "Soluta in eius qui nihil dignissimos omnis iusto.",
-      "user_id": "544107f4736d613f09400000"
-    },
-    "name": "ivory Orn",
-    "instructions": "[\"Et non aperiam officia minima.\", \"Est quaerat incidunt eos ratione id.\"]"
-  }
-}
-```
-
-
-
-# PUT /api/stages/544107f4736d613f09480000
+# PUT /api/stages/5443cfe1736d61104b320100
 
 
 
@@ -515,13 +482,13 @@
 ```
 {
   "stage": {
-    "_id": "544107f4736d613f09480000",
+    "_id": "5443cfe1736d61104b320100",
     "guide": {
-      "_id": "544107f4736d613f09470000",
+      "_id": "5443cfe1736d61104b310100",
       "_slugs": [
-        "purple-considine"
+        "gold-goodwin"
       ],
-      "crop_id": "544107f4736d613f09460000",
+      "crop_id": "5443cfe1736d61104b300100",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -529,15 +496,61 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "purple Considine",
-      "overview": "Quidem ad velit repellendus fuga.",
-      "user_id": "544107f4736d613f09420000"
+      "name": "gold Goodwin",
+      "overview": "Similique eveniet harum perspiciatis sapiente molestias sit saepe itaque.",
+      "user_id": "5443cfe1736d61104b2c0100"
     },
-    "name": "sky blue Boyer",
+    "name": "magenta Lehner",
     "instructions": "updated"
   }
 }
 ```
+
+
+
+# GET /api/stages/5443cfe2736d61104b3e0100
+
+
+
+
+## Response
+```
+{
+  "stage": {
+    "_id": "5443cfe2736d61104b3e0100",
+    "guide": {
+      "_id": "5443cfe2736d61104b3c0100",
+      "_slugs": [
+        "tan-kunde"
+      ],
+      "crop_id": "5443cfe2736d61104b3b0100",
+      "featured_image_content_type": null,
+      "featured_image_file_name": null,
+      "featured_image_file_size": null,
+      "featured_image_fingerprint": null,
+      "featured_image_updated_at": null,
+      "impressions_field": 0,
+      "location": null,
+      "name": "tan Kunde",
+      "overview": "Ipsum ut ab magnam ut minima.",
+      "user_id": "5443cfe2736d61104b3d0100"
+    },
+    "name": "yellow Bernhard",
+    "instructions": "[\"Tempore atque enim illo soluta illum.\", \"Sunt quibusdam asperiores explicabo suscipit deleniti a aliquid.\"]"
+  }
+}
+```
+
+
+
+
+# DELETE /api/token
+
+## Notes
+You must be logged in to perform this action. No parameters are required. This is a log out action, essentially.
+
+
+
 
 
 
@@ -551,7 +564,7 @@ Hit this API endpoint to generate an authentication token. Take the token that i
 ## Params
 ```
 {
-  "email": "cornelius.metz@rath.info",
+  "email": "carrie@klingkunze.info",
   "password": "password"
 }
 ```
@@ -561,21 +574,11 @@ Hit this API endpoint to generate an authentication token. Take the token that i
 ```
 {
   "token": {
-    "expiration": "2014-11-16T12:13:51.100Z",
-    "secret": "cornelius.metz@rath.info:44a6a5d28d71e5125810a40340618ee9"
+    "expiration": "2014-11-18T14:51:04.422Z",
+    "secret": "carrie@klingkunze.info:3c2b54b7ca7f0032c7b999a0c3667690"
   }
 }
 ```
-
-
-
-# DELETE /api/token
-
-## Notes
-You must be logged in to perform this action. No parameters are required. This is a log out action, essentially.
-
-
-
 
 
 

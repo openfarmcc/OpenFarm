@@ -23,7 +23,7 @@ describe Token::AuthorizationPolicy do
     id = token._id
     token = nil # Garbage collect the newly created token.
     token = Token.find id
-    expect(token.fully_formed).to eq('EXPIRED - CANT RETRIEVE')
+    expect { token.fully_formed }.to raise_error(OpenfarmErrors::StaleToken)
   end
 
   it 'provides email and plaintext for newly created tokens' do

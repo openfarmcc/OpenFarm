@@ -2,8 +2,6 @@ class Guide
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
-  # For more info about search, see:
-  # https://github.com/ankane/searchkick
   searchkick
 
   is_impressionable counter_cache: true,

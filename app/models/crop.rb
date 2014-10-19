@@ -4,8 +4,6 @@ class Crop
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
-  # For more info about search, see:
-  # https://github.com/ankane/searchkick
   searchkick
   # history tracking all Crop documents
   # note: tracking will not work until #track_history is invoked
@@ -18,7 +16,7 @@ class Crop
 
   has_many :guides
 
-  field :name# , localize: true
+  field :name
   field :common_names, type: Array
   validates_presence_of :name
   field :binomial_name

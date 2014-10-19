@@ -28,7 +28,7 @@ module Requirements
     end
 
     def set_valid_params
-      # TODO: Probably a DRYer way of doing this.
+      # TODO: Probably a DRYer way of doing this. Enforce nil: false, perhaps?
       requirement.name        = name if name.present?
       requirement.required    = required if required.present?
       requirement.save

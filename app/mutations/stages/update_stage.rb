@@ -24,11 +24,8 @@ module Stages
 
     def validate_permissions
       if stage.guide.user != user
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'You can only update stages that belong to your guides.'
+        msg = 'You can only update stages that belong to your guides.'
+        raise OpenfarmErrors::NotAuthorized, msg
       end
     end
 

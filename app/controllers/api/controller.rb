@@ -20,7 +20,7 @@ class Api::Controller < ActionController::Base
 
   def token_auth
     authenticate_or_request_with_http_token do |token, _options|
-      user = Token.get_user(token)
+      user = Token::AuthorizationPolicy.new(token).build
       sign_in user, store: false if user
     end
   end

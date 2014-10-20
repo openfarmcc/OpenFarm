@@ -14,9 +14,3 @@ ENV['ALERTS']                = "t@g.com|a@b.com"
 ENV['SECRET_KEY_BASE']       = '58f4e3cc1646c5eebbedc3dce699f76a527de45b5451a5'\
                                '82e2b334e008a4c2cc8b70999230257f61c9522ad56dc3'\
                                'a66654d29b227aa6e6bf5b4f2df49dd617be'
-
-Someday, we will need to finish these for OAuth support.....
-ENV['TWITTER_CONSUMER_KEY'] = my-consumer-key
-ENV['TWITTER_CONSUMER_SECRET'] = my-consumer-secret
-ENV['FACEBOOK_APP_ID'] = 123
-ENV['FACEBOOK_APP_SECRET'] = 45

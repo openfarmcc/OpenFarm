@@ -5,7 +5,6 @@ module Api
     def create
       @outcome = Stages::CreateStage.run(params,
                                          user: current_user)
-      # want better error messaging
       respond_with_mutation(:created)
     end
 

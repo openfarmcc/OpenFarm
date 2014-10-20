@@ -15,11 +15,11 @@ class Token
     if plaintext.present?
       "#{user.email}:#{plaintext}"
     else
-      # This error takes place when you attempt to pull up a unencrypted token
-      # token from an object that has already been store in the database. We do
-      # not store unencrypted tokens, so the only way to fix this error is to
-      # destroy the token and create a new one.
-      'EXPIRED - CANT RETRIEVE'
+      raise OpenfarmErrors::StaleToken, """You attempted to access the
+      plaintext version of an access token. Unfortunately, this token has
+      been saved and therefore no longer has a viewable plaintext secret.
+      You must create a new token and destroy the old one or provide the
+      plaintext secret  by other means.""".squish
     end
   end
 
@@ -33,21 +33,6 @@ class Token
     if self.new_record? && !self.secret?
       @plaintext  = SecureRandom.hex
       self.secret = Digest::SHA512.hexdigest(plaintext)
-    end
-  end
-
-  # (String) plaintext: An email address, then a colon (':') then a token in
-  # plaintext. Example: "rick@me.com:1234567"
-  # Returns User object on success. Otherwise `false`
-  def self.get_user(token)
-    email, pt        = *token.split(':')
-    user             = email && User.find_by(email: email)
-    guess            = Digest::SHA512.hexdigest(pt)
-    # TODO Not currently checking for expiration.
-    if user && user.token && Devise.secure_compare(user.token.secret, guess)
-      user
-    else
-      false
     end
   end
 end

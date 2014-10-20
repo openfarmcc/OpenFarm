@@ -1,6 +1,5 @@
 class Stage
   include Mongoid::Document
-  # https://github.com/mauriciozaffari/mongoid_search
 
   belongs_to :guide
 

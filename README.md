@@ -81,6 +81,3 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 ### Data License
 
 All data within the OpenFarm.cc database is in the [Public Domain (CC0)](creativecommons.org/publicdomain/zero/1.0/)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/FarmBot/openfarm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

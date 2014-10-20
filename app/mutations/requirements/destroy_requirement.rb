@@ -16,11 +16,8 @@ module Requirements
 
     def authorize_user
       if @requirement && (@requirement.guide.user != user)
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'can only destroy requirements that belong to your guides.'
+        msg = 'You can only destroy requirements that belong to your guides.'
+        raise OpenfarmErrors::NotAuthorized, msg
       end
     end
 

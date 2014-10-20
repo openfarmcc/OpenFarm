@@ -9,7 +9,7 @@ class Garden
   validates_presence_of :user
 
   field :location # users can have gardens in different locations
-  field :garden_type # outdoor, indoor, hydroponic, etc
+  field :type # outdoor, indoor, hydroponic, etc
   field :average_sun # full, partial, etc
   field :soil_type # clay, high organic, etc
   field :ph # 0-14

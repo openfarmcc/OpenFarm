@@ -1,8 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
-#   def create
-#     super
+  def create
+    garden = Garden.new(
+      :user = request.user)
+
+    super
 #     # session[:omniauth] = nil unless @user.new_record?
-#   end
+  end
   protected
 
   # https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-

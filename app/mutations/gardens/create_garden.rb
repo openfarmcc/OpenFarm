@@ -3,7 +3,11 @@ module Gardens
     required do
       model :user
       string :name
+    end
+
+    optional do
       string :location
+      string :description
       string :type
       string :average_sun
       string :soil_type
@@ -15,23 +19,9 @@ module Gardens
       @garden ||= Garden.new
     end
 
-    def validate
-      validate_permissions
-    end
-
     def execute
       set_params
       garden
-    end
-
-    def validate_permissions
-      if @guide && (@guide.user != user)
-        # TODO: Make a custom 'unauthorized' exception that we can rescue_from
-        # in the controller.
-        add_error :user,
-                  :unauthorized_user,
-                  'You cant create requirements for guides you dont own.'
-      end
     end
 
     def set_params
@@ -40,6 +30,7 @@ module Gardens
       # of stage options, or should we?
       garden.name           = name
       garden.location       = location if location
+      garden.description    = description if description
       garden.type           = type if type
       garden.average_sun    = average_sun if average_sun
       garden.soil_type      = soil_type if soil_type

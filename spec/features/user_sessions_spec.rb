@@ -49,4 +49,14 @@ describe 'User sessions' do
     click_button 'Create User'
     expect(page).to have_content("Create a Guide")
   end
+
+  it 'should create a new garden for a newly registered user' do
+    visit new_user_registration_path
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    click_button 'Create User'
+    usr = User.find_by(email: 'm@il.com')
+    expect(Garden.all.last.user).to eq (usr)
+  end
 end

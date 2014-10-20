@@ -6,6 +6,7 @@ class Garden
   # TODO: information about the plants in the garden: placement, dates planted, guides used, etc
 
   field :name
+  field :description
   validates_presence_of :user
 
   field :location # users can have gardens in different locations

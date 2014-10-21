@@ -36,7 +36,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    expect(page).to have_content("Need to make some changes?")
+    expect(page).to have_content("Welcome Rick")
   end
 
   it 'should redirect the user to the page they were viewing after sign up' do
@@ -59,4 +59,12 @@ describe 'User sessions' do
     usr = User.find_by(email: 'm@il.com')
     expect(Garden.all.last.user).to eq (usr)
   end
+
+  it 'should show an error message if no location is defined' do
+    # TODO: See test below.
+  end
+
+  it 'should direct to the gardens page after successful completion'
+    # TODO: since the input field is rendered with javascript
+    # can capybara still see this?
 end

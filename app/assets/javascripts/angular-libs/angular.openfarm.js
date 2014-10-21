@@ -97,6 +97,7 @@ openFarmModule.directive('location', [
       template: '<input type="text"'+
              'ng-model="location"'+
              'autocomplete="off"'+
+             'id="location"'+
              'placeholder="Ex: Hanoi, Portland, California"'+
              'typeahead="address for address in addresses"'+
              'ng-change="getLocation(location)"'+

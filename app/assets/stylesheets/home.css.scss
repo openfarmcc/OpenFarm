@@ -87,19 +87,6 @@ video { display: block; }
   max-width: initial;
   height: inherit;
 
-  // TODO: Yolo centering hacks are ick
-  & > .row {
-    padding-top: 12%;
-  }
-
-  // & > .row {
-  //   display: table;
-  //   & > div {
-  //     display: table-cell;
-  //     vertical-align: middle;
-  //   }
-  // }
-
   .logo {
     display: block;
     margin: 0 auto 10px auto;
@@ -236,7 +223,6 @@ video { display: block; }
   text-align: center;
 
   li {
-    // See media query
     display: block;
     margin: 0 10px;
   }

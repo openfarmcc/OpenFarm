@@ -7,7 +7,7 @@ video { display: block; }
   }
 }
 
-// Change steps from horizontal to vertical on small
+// Change list elements from horizontal to vertical on small screens
 @media #{$medium-up} {
   ul.steps li.step {
     display: table-cell;
@@ -20,7 +20,6 @@ video { display: block; }
 }
 
 // Special home nav style
-
 .home-nav {
   position: absolute;
   z-index: 1;
@@ -167,6 +166,8 @@ video { display: block; }
   .search-bar-container {
     display: table;
     width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
   }
 
   .search-bar {

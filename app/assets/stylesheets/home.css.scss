@@ -1,58 +1,254 @@
-.hero-background {
-  width: 100%;
-  min-height: 640px;
-  background: image-url('green_wheat_dark10.jpg') no-repeat center center fixed;
-  background-size: cover;
+// Because <ie9 doesn't know what video is.
+video { display: block; }
+
+@media screen and (max-device-width: 800px) {
+  .video-background video {
+    display: none;
+  }
 }
 
-.hero {
-
-  &.row {
-    padding-top: 14%;
+// Change steps from horizontal to vertical on small
+@media #{$medium-up} {
+  ul.steps li.step {
+    display: table-cell;
+    float: left;
   }
 
-  h1 {
-    color: white;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
-    margin-bottom: 0;
+  ul.links li {
+    display: inline-block;
   }
+}
 
-  h2 {
-    color: white;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
-    margin-bottom: 0.65em;
-  }
+// Special home nav style
 
-  input {
-    height: 50px;
-    font-size: 1.2em;
+.home-nav {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
 
-    &.button {
-      background-color: #85CB2B;
-      border-color: #4BA122;
+  nav {
+    background-color: transparent !important;
+
+    li {
+      background: transparent !important;
+      a {
+        background: transparent !important;
+        font-size: 0.8em;
+        color: white;
+        font-weight: 800;
+      }
+    }
+
+    // nudge the right menu down and over
+    ul.right {
+      margin-top: 10px;
+      margin-right: 20px;
     }
   }
 }
-.links{
+
+.video-background {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: image-url('home_video_first_frame.jpeg') no-repeat center center;
+  background-size: cover;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto; z-index: -100;
+    background: image-url('home_video_first_frame.jpeg') no-repeat center center;
+    background-size: cover;
+  }
+}
+
+.the-blackness {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.35);
+}
+
+.hero {
+  position: relative;
+  max-width: initial;
+  height: inherit;
+
+  // TODO: Yolo centering hacks are ick
+  & > .row {
+    padding-top: 12%;
+  }
+
+  // & > .row {
+  //   display: table;
+  //   & > div {
+  //     display: table-cell;
+  //     vertical-align: middle;
+  //   }
+  // }
+
+  .logo {
+    display: block;
+    margin: 0 auto 10px auto;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    color: white;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
+    margin-bottom: 0;
+    font-weight: 800;
+  }
+
+  ul.steps {
+    $step-circle-size: 50px;
+
+    display: table; // Hacks for centering the ul
+    list-style: none;
+    margin: 20px auto 30px auto;
+
+    li.step {
+      display: block;
+      line-height: $step-circle-size;
+      vertical-align: middle;
+      margin: 15px;
+      font-size: 1.2rem;
+      color: white;
+      font-weight: 600;
+
+      .step-circle {
+        display: block;
+        box-sizing: border-box;
+        float: left;
+        width: $step-circle-size;
+        height: $step-circle-size;
+        margin-right: 15px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background-color: #CCC;
+        color: white;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: $step-circle-size - 5px;
+        vertical-align: middle;
+      }
+
+      .step-circle.step-circle-1 {
+        background-color: rgba(120, 63,  4, 0.7);
+      }
+
+      .step-circle.step-circle-2 {
+        background-color: rgba(191, 144, 0, 0.7);
+      }
+
+      .step-circle.step-circle-3 {
+        background-color: rgba(106, 168, 79, 0.7);
+      }
+    }
+  }
+
+  // The search bar is laid out with tables.
+  // Yes this makes sense...for backwards compatability and feeling bad
+  // Eventually we will have the sweet, sweet flexbox.
+  .search-bar-container {
+    display: table;
+    width: 100%;
+  }
+
+  .search-bar {
+    display: table-row;
+    position: relative;
+    $search-bar-height: 50px;
+
+    .search-input-container {
+      display: table-cell;
+      width: 100%;
+    }
+
+    input.search-input {
+      display: table-cell;
+      width: 100%;
+
+      height: $search-bar-height;
+      border: 2px solid white;
+      background-color: rgba(0,0,0,0.4);
+      border-radius: 999rem;
+      color: white;
+      padding: 0 10px 0 $search-bar-height/2;
+      font-size: 1.2em;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .search-button-container {
+      display: table-cell;
+      width: auto;
+    }
+
+    input.search-button {
+      display: table-cell;
+
+      padding: 0 35px;
+      top: 0;
+      right: 0;
+      height: $search-bar-height;
+      border: 2px solid white;
+      border-radius: 999rem;
+      border-left: 0;
+      font-size: 1.2em;
+      color: white;
+      background-image: none;
+      background-color: rgba(106, 168, 79, 0.7);
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      // TODO: get rid of need for !important :(
+      border-top-right-radius: 999rem !important;
+      border-bottom-right-radius: 999rem !important;
+
+      &:hover {
+        background-color: rgba(106, 168, 79, 1);
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: #333333;
+  padding: 40px 20px;
+}
+
+.links {
   text-align: center;
-  margin-bottom: 1rem;
 
-  li{
-    display: inline-block;
+  li {
+    // See media query
+    display: block;
+    margin: 0 10px;
   }
 
-  li::before{
-    content:'• ';
+  a.hero-link {
     color: white;
-  }
-
-  li:first-child::before{
-    content:'';
-  }
-
-  a.hero-link{
-    color: white;
-    text-decoration: underline;
+    padding: 3px 10px;
+    text-decoration: none;
     white-space: nowrap;
+
+    &:hover {
+      background-color: #666;
+      border-radius: 3px;
+    }
   }
 }

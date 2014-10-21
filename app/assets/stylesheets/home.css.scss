@@ -32,11 +32,25 @@ video { display: block; }
 
     li {
       background: transparent !important;
+
+      &.divider {
+        display: none;
+      }
+
       a {
-        background: transparent !important;
+        background: rgba(0,0,0,0.25) !important;
         font-size: 0.8em;
         color: white;
         font-weight: 800;
+
+        // Special case
+        &#logout {
+          padding-right: 15px;
+        }
+
+        &:hover {
+          background-color: rgba(0,0,0,0.5) !important;
+        }
       }
     }
 

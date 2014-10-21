@@ -15,7 +15,6 @@
 //= require foundation/foundation.topbar
 //= require foundation/mm-foundation-0.3.0.js
 //= require foundation/mm-foundation-tpls-0.3.0.js
-//= require_tree ./guides
 //= require delete_me_later
 
 
@@ -56,6 +55,6 @@ var getUrlVar = function(key) {
 };
 
 var getIDFromURL = function(key) {
-  var result = new RegExp(key + "/([0-9a-f]*)", "i").exec(window.location.pathname);
+  var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
   return result && unescape(result[1]) || "";
-}
+};

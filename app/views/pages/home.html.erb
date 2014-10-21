@@ -1,5 +1,4 @@
-<%= javascript_include_tag "home" %>
-<%= javascript_include_tag "search" %>
+
 <div class="hero-background">
     <div class="hero row">
         <div class="small-10 small-centered columns">
@@ -13,7 +12,6 @@
                     <div class="small-12 small-centered columns">
                         <div class="row collapse">
                             <div class="small-8 large-9 columns"
-                                ng-app="searchApp" 
                                 ng-controller="searchCtrl">
                                 
                                 <%= text_field_tag :q, nil, {class: 'search', name: 'cropsearch[q]', placeholder: t('.placeholder'),
@@ -60,3 +58,7 @@
             <a href="https://github.com/farmbot/openfarm">Fork me on GitHub</a>
         </div>
     </div>
+<% content_for(:end_js) do %>
+    <%= javascript_include_tag "home" %>
+    <%= javascript_include_tag "search" %>
+<% end %>

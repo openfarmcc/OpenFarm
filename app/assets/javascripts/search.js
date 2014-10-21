@@ -1,10 +1,5 @@
-var searchApp = angular.module('searchApp', [
-  'mm.foundation',
-  'ng-rails-csrf'
-  ]);
-
-searchApp.controller('searchCtrl', ['$scope', '$http', '$location',
-  function searchApp($scope, $http, $location) {
+openFarmApp.controller('searchCtrl', ['$scope', '$http', '$location',
+  function searchCtrl($scope, $http, $location) {
   $scope.crops = [];
    
   //Typeahead search for crops    
@@ -22,7 +17,7 @@ searchApp.controller('searchCtrl', ['$scope', '$http', '$location',
         if (response.crops.length){
           $scope.crops = response.crops;
         }
-      })
+      });
     }
   };    
 }]);

@@ -7,7 +7,7 @@ video { display: block; }
   }
 }
 
-// Change steps from horizontal to vertical on small
+// Change list elements from horizontal to vertical on small screens
 @media #{$medium-up} {
   ul.steps li.step {
     display: table-cell;
@@ -20,7 +20,6 @@ video { display: block; }
 }
 
 // Special home nav style
-
 .home-nav {
   position: absolute;
   z-index: 1;
@@ -33,11 +32,25 @@ video { display: block; }
 
     li {
       background: transparent !important;
+
+      &.divider {
+        display: none;
+      }
+
       a {
-        background: transparent !important;
+        background: rgba(0,0,0,0.25) !important;
         font-size: 0.8em;
         color: white;
         font-weight: 800;
+
+        // Special case
+        &#logout {
+          padding-right: 15px;
+        }
+
+        &:hover {
+          background-color: rgba(0,0,0,0.5) !important;
+        }
       }
     }
 
@@ -87,19 +100,6 @@ video { display: block; }
   position: relative;
   max-width: initial;
   height: inherit;
-
-  // TODO: Yolo centering hacks are ick
-  & > .row {
-    padding-top: 12%;
-  }
-
-  // & > .row {
-  //   display: table;
-  //   & > div {
-  //     display: table-cell;
-  //     vertical-align: middle;
-  //   }
-  // }
 
   .logo {
     display: block;
@@ -167,6 +167,8 @@ video { display: block; }
   .search-bar-container {
     display: table;
     width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
   }
 
   .search-bar {
@@ -235,7 +237,6 @@ video { display: block; }
   text-align: center;
 
   li {
-    // See media query
     display: block;
     margin: 0 10px;
   }

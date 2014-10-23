@@ -51,7 +51,8 @@ describe 'User sessions' do
   end
 
   it 'should create a new garden for a newly registered user' do
-    visit new_user_registration_path
+    visit root_path
+    click_link 'register'
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
@@ -61,7 +62,8 @@ describe 'User sessions' do
   end
 
   it 'should show an error message if no location is defined', js: true do
-    visit new_user_registration_path
+    visit root_path
+    click_link 'register'
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
@@ -70,8 +72,9 @@ describe 'User sessions' do
     expect(page).to have_content("Location can't be blank")
   end
 
-  it 'should direct to the gardens page after successful completion'
-    visit new_user_registration_path
+  it 'should direct to the gardens page after successful completion', js: true do
+    visit root_path
+    click_link 'register'
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
@@ -79,4 +82,5 @@ describe 'User sessions' do
     fill_in :location, with: 'Chicago'
     click_button 'Next: Add Garden'
     expect(page).to have_content("Garden management is coming soon")
+  end
 end

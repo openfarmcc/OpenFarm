@@ -5,7 +5,6 @@ class UsersController < ApplicationController
       user: current_user)
     if @outcome.errors
       flash[:alert] = @outcome.errors.message_list
-      puts flash[:alert]
       redirect_to(controller: 'users', 
         action: 'finish')
     else

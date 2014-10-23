@@ -28,7 +28,7 @@ gem 'searchkick'
 group :development, :test do
   gem 'coveralls', require: false
   gem 'rubocop'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'pry'
   gem 'pry-nav'
   gem 'better_errors'
@@ -41,7 +41,7 @@ end
 
 group :test do
   gem 'doc_yo_self'
-  gem 'capybara'
+  gem 'capybara', '~> 2.2.0'
   gem 'poltergeist'
   gem 'simplecov'
   gem 'database_cleaner'

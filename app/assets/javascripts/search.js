@@ -1,5 +1,5 @@
-openFarmApp.controller('searchCtrl', ['$scope', '$http', '$location',
-  function searchCtrl($scope, $http, $location) {
+openFarmApp.controller('searchCtrl', ['$scope', '$http',
+  function searchCtrl($scope, $http) {
   $scope.crops = [];
    
   //Typeahead search for crops    

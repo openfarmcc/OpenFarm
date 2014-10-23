@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
+  gem 'better_errors'
   gem 'launchy'
   gem 'quiet_assets' # Turns off the Rails asset pipeline log
   gem 'factory_girl_rails'

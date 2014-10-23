@@ -49,6 +49,10 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt-ruby (3.1.2)
+    better_errors (2.0.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bson (2.0.0)
     bson_ext (1.5.1)
     builder (3.1.4)
@@ -405,6 +409,7 @@ DEPENDENCIES
   active_model_serializers
   aws-sdk (~> 1.55.0)
   bcrypt-ruby
+  better_errors
   bson_ext
   capybara
   coffee-rails

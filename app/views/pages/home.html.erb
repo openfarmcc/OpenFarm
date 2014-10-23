@@ -69,3 +69,7 @@
         </ul>
     </div>
 </div>
+<% content_for(:end_js) do %>
+    <%= javascript_include_tag "home" %>
+    <%= javascript_include_tag "search" %>
+<% end %>

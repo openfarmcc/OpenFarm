@@ -1,15 +1,8 @@
-var showGuidesApp = angular.module('showGuidesApp', [
-  'mm.foundation',
-  'ngS3upload',
-  'ng-rails-csrf',
-  'openFarmModule'
-  ]);
-
-showGuidesApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
+openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     'userService',
-  function showGuidesApp($scope, $http, guideService, userService) {
-
-    $scope.guide_id = getIDFromURL('guides');
+  function showGuideCtrl($scope, $http, guideService, userService) {
+    $scope.guide_id = getIDFromURL('guides') || GUIDE_ID;
+    $scope.alerts = [];
 
     $scope.setUser = function(success, object, code){
 
@@ -22,7 +15,7 @@ showGuidesApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
           type: 'warning'
         });
       }
-    }
+    };
 
     $scope.setGuide = function(success, object, code){
       if (success){
@@ -35,7 +28,7 @@ showGuidesApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
           type: 'warning'
         });
       }
-    }
+    };
 
     guideService.getGuide($scope.guide_id, $scope.setGuide);
   }]);

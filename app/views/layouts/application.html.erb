@@ -5,7 +5,8 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en">
+<html lang="en"
+  ng-app="openFarmApp">
 <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
@@ -22,6 +23,8 @@
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
+    <%# Controller specific start JS %>
+    <%= yield(:start_js) %>
     <%= javascript_include_tag "application" %>
   </head>
 
@@ -92,6 +95,7 @@
           </section>
       </nav>
     </div>
+    <%= yield(:banner) %>
     <% if current_page?(root_path) or current_page?("/") %>
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
       <div class="home-alert-wrapper">
@@ -110,7 +114,13 @@
     <% end %>
     <% if alert %>
         <div data-alert class="alert-box alert radius columns large-4 small-centered">
-          <%= alert %>
+          <% if alert.is_a?(Array) %>
+            <% alert.each do |a| %>
+              <%= a %>
+            <% end %>
+          <% else %>
+            <%= alert %>
+          <% end %>
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
@@ -119,6 +129,9 @@
       </div>
     <% end %>
     <%= yield %>
+
+    <%# Controller specific end JS %>
+    <%= yield(:end_js) %>
 
   </body>
 </html>

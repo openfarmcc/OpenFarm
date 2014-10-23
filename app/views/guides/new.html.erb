@@ -1,7 +1,8 @@
-<script src="//maps.google.com/maps/api/js?sensor=false"></script>
+<% content_for(:start_js) do %>
+<%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+<% end %>
 
-<div ng-app="guidesApp"
-     ng-controller="newGuideCtrl"
+<div ng-controller="newGuideCtrl"
      class="small-12 columns ng-cloak"
      ng-cloak>
 
@@ -135,7 +136,11 @@
             </div>
             <div class="columns large-6">
               <label for="guide_name"><%= t('.where_are_you_growing_it') %></label>
-              <input type="text"
+              <span location
+                    ng-model="new_guide.location"
+                    loading-text="<%= t('application.loading_locations') %>">
+              </span>
+              <!-- <input type="text"
                      ng-model="new_guide.location"
                      placeholder="Ex: Hanoi, Portland, California"
                      typeahead="address for address in addresses"
@@ -145,7 +150,7 @@
                      typeahead-wait-ms="555"
                      class="form-control"
                      name="guide[location]">
-              <i ng-show="loadingLocations" class="fa fa-refresh"><%= t('.loading_locations') %></i>
+              <i ng-show="loadingLocations" class="fa fa-refresh"><%= t('application.loading_locations') %></i> -->
             </div>
           </div>
           <div class="button-wrapper row">
@@ -176,3 +181,7 @@
     </div>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_include_tag 'guides/new' %>
+<% end %>

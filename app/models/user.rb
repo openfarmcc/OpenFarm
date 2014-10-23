@@ -26,11 +26,13 @@ class User
   validates_presence_of :display_name
   field :location, type: String
   field :years_experience, type: Integer
-  field :admin,   :type => Boolean, default: false
+  field :units, type: String
+  field :mailing_list, type: Mongoid::Boolean, default: false
+
+  field :admin, type: Mongoid::Boolean, default: false
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
-  field :mailing_list, type: Mongoid::Boolean, default: false
 end

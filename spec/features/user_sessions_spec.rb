@@ -30,7 +30,7 @@ describe 'User sessions' do
     expect(page).to have_content('I told you kids to get out of here!')
   end
 
-  it 'should redirect the user to their edit page after sign up' do
+  it 'should redirect the user to their finish page after sign up' do
     visit new_user_registration_path
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'

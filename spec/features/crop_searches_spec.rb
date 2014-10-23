@@ -8,7 +8,7 @@ describe 'Crop search', type: :controller do
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     fill_in 'q', with: 'radish'
-    click_button 'Search!'
+    click_button 'Search'
     expect(page).to have_content(crop.name)
   end
 
@@ -17,7 +17,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: ''
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
-    click_button 'Search!'
+    click_button 'Search'
     expect(page).to have_content(Crop.last.name)
   end
 
@@ -26,7 +26,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
-    click_button 'Search!'
+    click_button 'Search'
     expect(page).to have_content(crop.name)
   end
 
@@ -35,7 +35,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
-    click_button 'Search!'
+    click_button 'Search'
     expect(page).to have_content(crop.name)
   end
 end

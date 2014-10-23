@@ -41,9 +41,11 @@ nl:
     pages:
         home:
             placeholder: "Wat wil je laten groeien?"
-            search: "Zoeken!"
-            hero_header: "Leer hoe je alles laat groeien."
-            hero_sub_header: "Een gratis en open databank over tuinieren en boeren."
+            search: "Zoeken"
+            hero_header: "Leer tuinieren en planten kweken met gemeenschappelijk samengestelde gidsen"
+            step_1: "Kies een gewas"
+            step_2: "Vind een gids"
+            step_3: "Laat groeien!"
     date:
         abbr_day_names:
         - zo

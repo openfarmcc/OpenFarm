@@ -11,7 +11,6 @@
 
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
-@import "presets";
 
 // $experimental: true;
 
@@ -63,6 +62,10 @@ $alert-color: #ff6666;
 $success-color: #74E29D;
 $warning-color: #f08a24;
 $info-color: #eecb91;
+
+// OpenFarm Colors
+$openfarm-green: #85CB2B;
+$openfarm-green-muted: #99B36C;
 
 // We use these to make sure border radius matches unless we want it different.
 $global-radius: 3px;

@@ -1,37 +1,55 @@
 <%= javascript_include_tag "home" %>
 <%= javascript_include_tag "search" %>
-<div class="hero-background">
-    <div class="hero row">
-        <div class="small-10 small-centered columns">
-            <img src="<%= image_path 'openfarm_logo.png' %>" width="420px">
-            <h1><%=t '.hero_header' %></h1>
-            <h2><%=t '.hero_sub_header' %></h2>
-        </div>
-        <div class="small-10 small-centered columns">
-          <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
+<div class="hero">
+    <div class="video-background">
+        <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
+            <source src="<%= asset_path 'home_video.webm' %>" type="video/webm">
+            <source src="<%= asset_path 'home_video.mp4' %>" type="video/mp4">
+        </video>
+    </div>
+    <div class="the-blackness"></div>
+    <div class="row row-table row-full-height">
+        <div class="small-12 small-centered column-middle columns">
+            <img class="logo" src="<%= image_path 'openfarm_logo.png' %>" width="420px">
+            <h2 class="text-center"><%=t '.hero_header' %></h2>
+            <ul class="steps text-center clearfix">
+                <li class="step">
+                    <div class="step-circle step-circle-1">1</div>
+                    <%= t '.step_1' %>
+                </li>
+                <li class="step">
+                    <div class="step-circle step-circle-2">2</div>
+                    <%= t '.step_2' %>
+                </li>
+                <li class="step">
+                    <div class="step-circle step-circle-3">3</div>
+                    <%= t '.step_3' %>
+                </li>
+            </ul>
+            <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
                 <div class="row">
                     <div class="small-12 small-centered columns">
-                        <div class="row collapse">
-                            <div class="small-8 large-9 columns"
-                                ng-app="searchApp" 
-                                ng-controller="searchCtrl">
-                                
-                                <%= text_field_tag :q, nil, {class: 'search', name: 'cropsearch[q]', placeholder: t('.placeholder'),
-                                    maxlength: '120', autocomplete: 'off', 'ng-model'=>'query', 'ng-change'=>'search()',
-                                    'typeahead'=>'crop.name for crop in crops', 'typeahead-wait-ms'=>'555', 'typeahead-min-length'=>'3'} %>
-
-                            </div>
-                            <div class="small-4 large-3 columns">
-                              <%= f.submit t('.search'), data: { disable_with: "Searching..." }, class: 'button postfix' %>
+                        <div class="search-bar-container">
+                            <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
+                                <div class="search-input-container">
+                                    <%= text_field_tag :q, nil, {class: 'search-input', name: 'cropsearch[q]',   placeholder: t('.placeholder'),
+                                            maxlength: '120', autocomplete: 'off', 'ng-model'=>'query', 'ng-change'=>  'search()',
+                                            'typeahead'=>'crop.name for crop in crops', 'typeahead-wait-ms'=>'555', '  typeahead-min-length'=>'3'} %>
+                                </div>
+                                <div class="search-button-container">
+                                    <%= f.submit t('.search'), data: { disable_with: "Searching..." }, class: 'search-button button postfix' %>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              <% end %>
+            <% end %>
         </div>
     </div>
-    <div class="row links">
-        <ul>
+</div>
+<div class="footer">
+    <div>
+        <ul class="links">
         <li>
         <%= link_to('Mailing List', page_path('mailing-list'), :class=>'hero-link' ) %>
         </li>
@@ -50,13 +68,4 @@
         </li>
         </ul>
     </div>
-    <div class="row">
-        <div class="small-3 small-centered columns"><iframe frameborder="0" height="420" scrolling="no" src="https://www.kickstarter.com/projects/roryaronson/openfarm-learn-to-grow-anything/widget/card.html?v=2" width="220"></iframe></div>
-        <div class="small-4 small-centered columns"></div>
-    </div>
 </div>
-    <div class="github-fork-ribbon-wrapper right-bottom">
-        <div class="github-fork-ribbon">
-            <a href="https://github.com/farmbot/openfarm">Fork me on GitHub</a>
-        </div>
-    </div>

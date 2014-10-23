@@ -131,6 +131,8 @@ en:
     pages:
         home:
             placeholder: "What do you want to grow?"
-            search: "Search!"
-            hero_header: "Learn to grow anything."
-            hero_sub_header: "A free and open database for farming and gardening knowledge."
+            search: "Search"
+            hero_header: "Learn to farm or garden with community created guides"
+            step_1: "Choose a Crop"
+            step_2: "Find a Guide"
+            step_3: "Grow!"

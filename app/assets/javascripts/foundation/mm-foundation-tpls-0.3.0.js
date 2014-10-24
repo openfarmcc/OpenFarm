@@ -3027,7 +3027,6 @@ angular.module('mm.foundation.typeahead', ['mm.foundation.position', 'mm.foundat
       var getMatchesAsync = function(inputValue) {
         var locals = {$viewValue: inputValue};
         isLoadingSetter(originalScope, true);
-        console.log(originalScope.loadingCrops);
         $q.when(parserResult.source(originalScope, locals)).then(function(matches) {
 
           //it might happen that several async queries were in progress if a user were typing fast

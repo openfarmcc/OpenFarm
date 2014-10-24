@@ -5,7 +5,10 @@ OpenFarm::Application.routes.draw do
   devise_for :users, controllers: {
       registrations: "registrations"
     }
-
+  devise_scope :users do
+    get 'users/finish' => 'users#finish'
+    put 'users' => 'users#update'
+  end
   # Accept searches via POST and GET so that users can search with forms -or-
   # shareable link.
 
@@ -20,14 +23,15 @@ OpenFarm::Application.routes.draw do
     resources :guides
     resources :stages
     resources :requirements
+    resources :gardens
   end
 
   get 'announcements/hide', to: 'announcements#hide'
 
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
-    resources :crops,  only: [:index, :show]
-    resources :users,  only: [:show]
+    resources :crops, only: [:index, :show]
+    resources :users, only: [:show]
     resources :guides, only: [:create, :show, :update]
     resources :requirement_options, only: [:index]
     resources :stage_options, only: [:index]

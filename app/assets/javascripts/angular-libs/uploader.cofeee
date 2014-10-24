@@ -1,8 +1,0 @@
-# How do you guys like coffeescript?
-
-directive = ->
-  {template: 'Hello: {{ world }}'}
-
-angular
-  .module('myModule', [])
-  .directive('fileUploader', directive)

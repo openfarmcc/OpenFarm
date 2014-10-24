@@ -1,0 +1,2 @@
+class GardensController < ApplicationController
+end

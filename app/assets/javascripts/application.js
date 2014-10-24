@@ -54,6 +54,6 @@ var getUrlVar = function(key) {
 };
 
 var getIDFromURL = function(key) {
-  var result = new RegExp(key + "/([0-9a-f]*)", "i").exec(window.location.pathname);
+  var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
   return result && unescape(result[1]) || "";
-}
+};

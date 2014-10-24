@@ -77,9 +77,13 @@ small.error{
 }
 
 .button{
-  @include background-gradient(#A2BD6A, #A2BF6B);
+  @include background-gradient(#A2BD6A, #83A544);
   border-radius: 3px;
-  /*font-family: SourceSansPro-Bold;*/
+  transition: .2s background-image;
+}
+
+.button:hover{
+  @include background-gradient(#8FAB54, #7A9841);
 }
 
 .button[disabled=disabled].loading, .button[disabled].loading, .button[disabled].loading:hover{
@@ -113,7 +117,6 @@ small.error{
 
   h2, h5 {
     display: inline-block;
-    color: white;
     font-weight: 600;
   }
 

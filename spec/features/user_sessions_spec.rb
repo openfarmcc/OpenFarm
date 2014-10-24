@@ -30,13 +30,13 @@ describe 'User sessions' do
     expect(page).to have_content('I told you kids to get out of here!')
   end
 
-  it 'should redirect the user to their edit page after sign up' do
+  it 'should redirect the user to their finish page after sign up' do
     visit new_user_registration_path
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    expect(page).to have_content("Need to make some changes?")
+    expect(page).to have_content("Welcome Rick")
   end
 
   it 'should redirect the user to the page they were viewing after sign up' do
@@ -48,5 +48,39 @@ describe 'User sessions' do
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
     expect(page).to have_content("Create a Guide")
+  end
+
+  it 'should create a new garden for a newly registered user' do
+    visit root_path
+    click_link 'register'
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    click_button 'Create User'
+    usr = User.find_by(email: 'm@il.com')
+    expect(Garden.all.last.user).to eq (usr)
+  end
+
+  it 'should show an error message if no location is defined', js: true do
+    visit root_path
+    click_link 'register'
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    click_button 'Create User'
+    click_button 'Next: Add Garden'
+    expect(page).to have_content("Location can't be blank")
+  end
+
+  it 'should direct to the gardens page after successful completion', js: true do
+    visit root_path
+    click_link 'register'
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    click_button 'Create User'
+    fill_in :location, with: 'Chicago'
+    click_button 'Next: Add Garden'
+    expect(page).to have_content("Garden management is coming soon")
   end
 end

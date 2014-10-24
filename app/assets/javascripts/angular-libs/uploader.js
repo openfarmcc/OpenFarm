@@ -1,14 +1,14 @@
-var uploader = function() {
-  return {
-    restrict: 'A',
-    controller: function () { alert('hi'); },
-    template: 'Hello: {{ world }}'
-  };
-};
+openFarmModule.directive('uploader', ['$http',
+  function($http) {
+    return {
+      restrict: 'A',
+      link: function($scope, el, attr) {
+        debugger;
+      }
+    };
+}]);
 
-openFarmApp.directive('uploader', uploader);
 
-openFarmApp.controller('fake', function($scope){
-  $scope.hey = 'hi';
-});
-
+openFarmApp.controller('testbed', function($scope){
+    $scope.hey = '[Yahoo. So 90s](http://www.yahoo.com)'
+  });

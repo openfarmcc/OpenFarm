@@ -1,17 +1,18 @@
-var editGuidesApp = angular.module('editGuidesApp', [
-  'mm.foundation',
-  'ngS3upload',
-  'ng-rails-csrf',
-  'openFarmModule'
-  ]);
+// var editGuidesApp = angular.module('editGuidesApp', [
+//   'mm.foundation',
+//   'ngS3upload',
+//   'ng-rails-csrf',
+//   'openFarmModule'
+//   ]);
 
-editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
-  function editGuidesApp($scope, $http, guideService) {
+openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
+  function editGuideCtrl($scope, $http, guideService) {
     // setting this to true temporarily because
     // other wise the ajax loader doesn't load
     $scope.saving = true;
 
-    $scope.guide_id = getIDFromURL("guides");
+    $scope.guide_id = getIDFromURL("guides") || GUIDE_ID;
+    console.log($scope.guide_id);
 
     $scope.alerts = [];
 
@@ -236,7 +237,7 @@ editGuidesApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     };
 }]);
 
-editGuidesApp.directive('focusMe', function($timeout, $parse) {
+openFarmApp.directive('focusMe', function($timeout, $parse) {
   return {
     //scope: true,   // optionally create a child scope
     link: function(scope, element, attrs) {

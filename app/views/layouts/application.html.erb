@@ -5,91 +5,97 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en">
+<html lang="en"
+  ng-app="openFarmApp">
 <!--<![endif]-->
   <head>
-  	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+    <!-- Uncomment to make IE8 render like IE7 -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
   	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
   	<title>
         <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
     </title>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
-  	<%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
+    <%# Controller specific start JS %>
+    <%= yield(:start_js) %>
     <%= javascript_include_tag "application" %>
   </head>
 
   <body>
-    <div class="sticky">
-    <nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-            <li class="name">
-                <h1>
-                  <%= link_to(image_tag('openfarm_logo.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
-                </h1>
-            </li>
-            <li class="toggle-topbar menu-icon">
-                <a href="#"><span>Menu</span></a>
-            </li>
-        </ul>
+    <div class="<%= if (current_page?(root_path) or current_page?("/")) then 'home-nav' else 'sticky' end %>">
+      <nav class="top-bar" data-topbar role="navigation">
+          <ul class="title-area">
+              <li class="name">
+                <% unless current_page?(root_path) or current_page?("/") %>
+                  <h1>
+                    <%= link_to(image_tag('openfarm_logo.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
+                  </h1>
+                <% end %>
+              </li>
+              <li class="toggle-topbar menu-icon">
+                  <a href="#"><span>Menu</span></a>
+              </li>
+          </ul>
 
-        <section class="top-bar-section">
+          <section class="top-bar-section">
 
-            <!-- Search box Section -->
-            <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
-            <% unless current_page?(root_path) or current_page?("/") %>
-              <%= form_for :cropsearch, url:
-                crop_search_via_post_path, method: 'post' do |f| %>
-                <div class="left">
+              <!-- Search box Section -->
+              <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
+              <% unless current_page?(root_path) or current_page?("/") %>
+                <%= form_for :cropsearch, url:
+                  crop_search_via_post_path, method: 'post' do |f| %>
+                  <div class="left">
 
-                  <div class="row collapse postfix-round">
+                    <div class="row collapse postfix-round">
 
-                    <div class="small-4 columns">
-                      <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
+                      <div class="small-4 columns">
+                        <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
 
-                    </div>
-                    <div class="small-2 columns end">
-                      <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                      </div>
+                      <div class="small-2 columns end">
+                        <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
-            <% end %>
-
-            <!-- Right Nav Section -->
-            <ul class="right">
-                <% if current_user %>
-                    <li class="has-dropdown">
-                        <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
-                        <ul class="dropdown">
-                            <li>
-                                <%= link_to t('application.create_guide'), new_guide_path %>
-                                <%= link_to t('application.user_settings'), edit_user_registration_path %>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-form">
-                        <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
-                    </li>
-                <% else %>
-                    <li class="has-form">
-                        <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="has-form">
-                        <%= link_to( t("application.log_in"), new_user_session_path, class: 'button', id: 'login') %>
-                    </li>
                 <% end %>
-            </ul>
-        </section>
-    </nav>
+              <% end %>
+
+              <!-- Right Nav Section -->
+              <ul class="right">
+                  <% if current_user %>
+                      <li class="has-dropdown">
+                          <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
+                          <ul class="dropdown">
+                              <li>
+                                  <%= link_to t('application.create_guide'), new_guide_path %>
+                                  <%= link_to t('application.user_settings'), edit_user_registration_path %>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="has-form">
+                          <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
+                      </li>
+                  <% else %>
+                      <li class="has-form">
+                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>
+                      </li>
+                      <li class="divider"></li>
+                      <li class="has-form">
+                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button', id: 'login') %>
+                      </li>
+                  <% end %>
+              </ul>
+          </section>
+      </nav>
     </div>
+    <%= yield(:banner) %>
     <% if current_page?(root_path) or current_page?("/") %>
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
       <div class="home-alert-wrapper">
@@ -108,7 +114,13 @@
     <% end %>
     <% if alert %>
         <div data-alert class="alert-box alert radius columns large-4 small-centered">
-          <%= alert %>
+          <% if alert.is_a?(Array) %>
+            <% alert.each do |a| %>
+              <%= a %>
+            <% end %>
+          <% else %>
+            <%= alert %>
+          <% end %>
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
@@ -117,6 +129,9 @@
       </div>
     <% end %>
     <%= yield %>
+
+    <%# Controller specific end JS %>
+    <%= yield(:end_js) %>
 
   </body>
 </html>

@@ -28,7 +28,8 @@ gem 'searchkick'
 group :development, :test do
   gem 'coveralls', require: false
   gem 'rubocop'
-  gem 'rspec-rails'
+  gem 'better_errors'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'

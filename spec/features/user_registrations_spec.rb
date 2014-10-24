@@ -46,4 +46,5 @@ describe 'User registrations' do
     click_button 'Update User'
     see('Password is too short')
   end
+
 end

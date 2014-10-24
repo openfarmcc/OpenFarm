@@ -7,10 +7,10 @@ class Announcement
   field :ends_at, type: DateTime
   field :is_permanent, type: Mongoid::Boolean, default: false
 
-  scope :active, where(:starts_at.lte => Time.now,
-                       :ends_at.gte => Time.now)
+  scope :active, -> { where(:starts_at.lte => Time.now,
+                            :ends_at.gte => Time.now) }
 
-  scope :permanent, where(is_permanent: true)
+  scope :permanent, -> { where(is_permanent: true) }
 
   scope :showing, -> { any_of([permanent.selector, active.selector]) }
 

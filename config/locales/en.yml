@@ -22,11 +22,14 @@
 en:
     application:
         greeting: "Hi, %{user}"
+        skip: "Do This Later"
         create_guide: "Create guide"
         user_settings: "User settings"
         log_out: "Log out"
         log_in: "Log in"
         create_account: "Create an Account"
+        loading_locations: "loading locations"
+
     users:
         create_your_openfarm_profile: "Create your OpenFarm Profile"
         community: "Community"
@@ -46,7 +49,18 @@ en:
         location: "Location"
         years_experience: "Years Experience"
         mailing_list: "Get (occassional) updates about OpenFarm via email"
-    crops:
+        finish:
+            welcome: "Welcome %{user}!"
+            openfarm_works_best_when: "OpenFarm works best when we know the following:"
+            where_do_you_farm: "Where do you farm or garden?"
+            city_or_zip: "City or Zip Code is Recommended."
+            location_placeholder: "Portland, OR, USA"
+            describe_your_growing_practices: "Describe your growing practices"
+            check_all_that_apply: "Check all that apply"
+            units_preference: "What units do you prefer"
+            email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
+            add_garden: "Next: Add Garden"
+    crops:  
         name: "Name"
         binomial_name: "Binomial Name"
         description: "Description"
@@ -88,7 +102,6 @@ en:
             name_and_location: "Name and location"
             finish_and_details: "Finish and details"
             loading_crops: "loading crops"
-            loading_locations: "loading locations"
             no_crop_selected: "No crop selected"
             create_a_guide: "Create a Guide"
             what_plant: "What plant are you're creating your guide for?"
@@ -131,6 +144,8 @@ en:
     pages:
         home:
             placeholder: "What do you want to grow?"
-            search: "Search!"
-            hero_header: "Learn to grow anything."
-            hero_sub_header: "A free and open database for farming and gardening knowledge."
+            search: "Search"
+            hero_header: "Learn to farm or garden with community created guides"
+            step_1: "Choose a Crop"
+            step_2: "Find a Guide"
+            step_3: "Grow!"

@@ -1,5 +1,4 @@
-<div ng-app="showGuidesApp"
-     ng-controller="showGuideCtrl"
+<div ng-controller="showGuideCtrl"
      ng-cloak
      class="show-guide-app">
 
@@ -138,3 +137,7 @@
     </div>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_include_tag 'guides/show' %>
+<% end %>

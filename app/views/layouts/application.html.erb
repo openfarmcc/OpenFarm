@@ -6,11 +6,17 @@
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en"
-  ng-app="openFarmApp">
+  ng-app="openFarmApp"
+  itemscope itemtype="http://schema.org/Article"
+  xmlns:fb="http://ogp.me/ns/fb#">
 <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-
+    
+	<%= render 'meta/global' %>
+	<%= render 'meta/page' %>
+	<%= render 'meta/social_network' %>
+	
     <!-- Uncomment to make IE8 render like IE7 -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 

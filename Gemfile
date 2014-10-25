@@ -9,7 +9,6 @@ gem 'foundation-rails', '~> 5.2.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
@@ -33,10 +32,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
-  gem 'quiet_assets' # Turns off the Rails asset pipeline log
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'metric_fu' # Code quality tool.
 end
 
 group :test do
@@ -60,11 +57,7 @@ gem 'high_voltage'
 gem 'devise'
 gem 'rails_admin'
 gem 'ng-rails-csrf'
-# Some extra gems for signing up through Twitter or Facebook
-# gem 'omniauth-twitter'
-# gem 'omniauth-facebook'
 
-# Helps Mongo run fast.
 gem 'bson_ext'
 gem 'mongoid', :github => 'mongoid/mongoid'
 gem 'active_model_serializers'

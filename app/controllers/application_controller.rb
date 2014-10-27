@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   # List of attributes that are safe for mass assignment on User objects.
   def safe_user_attrs
-    [:display_name, :email, :location, :password, :is_units,
+    [:display_name, :email, :location, :password, :units,
      :years_experience, :mailing_list, :is_private]
   end
 

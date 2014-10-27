@@ -12,7 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
-    puts params
+    #ToDo check for password
     super
   end
   

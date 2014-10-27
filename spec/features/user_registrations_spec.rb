@@ -47,9 +47,16 @@ describe 'User registrations' do
     see('Password is too short')
   end
 
-  it 'should need a password to delete an account' do
+  it 'should fail without using a password to delete an account' do
     login_as user
     visit edit_user_registration_path(user)
     click_button 'Permanently delete your account.'
+    # TODO: fail
+  end
+  it 'should succeed when using a password to delete an account' do
+    login_as user
+    visit edit_user_registration_path(user)
+    click_button 'Permanently delete your account.'
+    # TODO: succeed
   end
 end

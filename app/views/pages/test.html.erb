@@ -4,8 +4,10 @@
   <div ng-controller='testbed'>
   <h1>{{ world }}</h1>
   <label>
-    <input type="file" uploader="hi">
-    Upload a file
+    <input type="file" uploader="fileUrl">
   </label>
+  <p>Your uploaded file will be shown below.</p>
+  <p>{{ fileUrl }}</p>
+  <a ng-if="fileUrl" ng-href="{{ fileUrl }}">Here is your file, ma'am.</a>
   </div>
 </div>

@@ -1,0 +1,90 @@
+# Click button to select file
+# Get s3 key ===========================
+# var handleKey = function(resp, stat){
+#     options.s3 = resp
+#   };
+# var fail = function(resp, stat){
+#   alert(resp.error);
+# };
+# $http
+#   .get("/api/aws/s3_access_token")
+#   .success(handleKey)
+#   .error(fail);
+# upload to s3
+# attach temp URL to specified scope var
+directive = ($http) ->
+  data = {}
+
+  randChr = (length) ->
+    chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    result = ""
+    i = length
+
+    while i > 0
+      result += chars[Math.round(Math.random() * (chars.length - 1))]
+      --i
+    result
+
+  handleKey = (resp, stat) ->
+    data.s3 = resp
+
+  failKey = (resp, stat) ->
+    alert "Key generation error. Try refreshing the page. #{stat}:#{resp.error}"
+
+  badUpload = (event) ->
+    debugger
+
+  goodUpload = (event) ->
+    # This is where I left off for Sunday. I have a working uploader, but I dont
+    # yet have a way of giving the response object back to the controller.
+    # Without that, the controller has no way of know which URL their upload was
+    # placed in.
+    debugger
+
+  handleFile = (event) ->
+    file = @files[0]
+    sendToAws(file)
+    true
+
+  sendToAws = (file) ->
+    random_file_path = "temp/#{randChr(11)}.#{file.name.split('.').pop()}"
+    fd = new FormData()
+    fd.append "success_action_status", 201
+    fd.append "key", random_file_path
+    fd.append "acl", 'public-read'
+    fd.append "Content-Type", file.type
+    fd.append "AWSAccessKeyId", data.s3.key  #ex: "AKIAIMEZ67MHXLYQ6JNQ"
+    fd.append "policy", data.s3.policy       # "zE1Ml(long)1dfQ=="
+    fd.append "signature", data.s3.signature # "EPA(short)U7I="
+    fd.append "file", file
+
+    uri = "https://<%= ENV['S3_BUCKET_NAME'] %>.s3.amazonaws.com/"
+
+    xhr = new XMLHttpRequest()
+    xhr.addEventListener("load", goodUpload, false);
+    xhr.addEventListener("error", badUpload, false);
+    xhr.open('POST', uri, true)
+    xhr.send(fd)
+
+  getS3Permissions = ->
+    $http
+      .get("/api/aws/s3_access_token")
+      .success(handleKey)
+      .error(failKey)
+
+  restrict: "A"
+  link: ($scope, el, attr) ->
+    # TODO: Add a promise or sth to wait on the S3 Certificate
+    el.on "click", getS3Permissions
+    el.on "change", handleFile
+
+# $scope[attr.uploader] = url; // Set the URL into the
+# directive =
+#   directiveObject
+
+openFarmModule.directive "uploader", [
+  "$http"
+  directive
+]
+openFarmApp.controller "testbed", ($scope) ->
+  $scope.world = 'hello'

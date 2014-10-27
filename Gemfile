@@ -11,6 +11,7 @@ gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'coffee-rails'
 gem 'bcrypt-ruby'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid_slug'

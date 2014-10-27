@@ -345,6 +345,7 @@ DEPENDENCIES
   better_errors
   bson_ext
   capybara
+  coffee-rails
   coveralls
   database_cleaner
   delayed_job_mongoid

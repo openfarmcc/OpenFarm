@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protect_from_forgery with: :exception
 
   # Allow certain fields for devise - needed in Rails 4.0+
@@ -30,8 +33,8 @@ class ApplicationController < ActionController::Base
 
   # List of attributes that are safe for mass assignment on User objects.
   def safe_user_attrs
-    [:display_name, :email, :location, :password,
-     :years_experience, :mailing_list]
+    [:display_name, :email, :location, :password, :is_units,
+     :years_experience, :mailing_list, :is_private]
   end
 
   def current_admin
@@ -41,5 +44,12 @@ class ApplicationController < ActionController::Base
       flash[:notice] = 'I told you kids to get out of here!'
       redirect_to '/' and return
     end
+  end
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = "Woops, that's not a page!"
+    redirect_to(request.referrer || root_path)
   end
 end

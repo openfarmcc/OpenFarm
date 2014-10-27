@@ -10,6 +10,11 @@ class RegistrationsController < Devise::RegistrationsController
     
 #     # session[:omniauth] = nil unless @user.new_record?
   end
+
+  def destroy
+    puts params
+    super
+  end
   
   protected
   

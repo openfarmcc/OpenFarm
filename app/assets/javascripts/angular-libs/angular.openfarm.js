@@ -2,16 +2,16 @@ var openFarmApp = angular.module('openFarmApp', [
   'mm.foundation',
   'ng-rails-csrf',
   'ngS3upload',
-  'openFarmModule',
+  'openFarmModule'
 ]);
 
 var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
 
-openFarmModule.factory('guideService', ['$http', 
+openFarmModule.factory('guideService', ['$http',
   function guideService($http) {
-    
+
     // get the guide specified.
     var getGuide = function(guide_id, callback){
       $http({
@@ -28,9 +28,9 @@ openFarmModule.factory('guideService', ['$http',
     };
 }]);
 
-openFarmModule.factory('userService', ['$http', 
+openFarmModule.factory('userService', ['$http',
   function userService($http) {
-    
+
     // get the guide specified.
     var getUser = function(user_id, callback){
       $http({
@@ -47,7 +47,7 @@ openFarmModule.factory('userService', ['$http',
     };
 }]);
 
-openFarmModule.directive('markdown', ['$sanitize', 
+openFarmModule.directive('markdown', ['$sanitize',
   function markdown($sanitize) {
     var converter = new Showdown.converter();
     return {

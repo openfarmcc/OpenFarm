@@ -4,16 +4,21 @@ class RegistrationsController < Devise::RegistrationsController
     @outcome = Gardens::CreateGarden.run(
       params,
       user: current_user,
-      name: "Your First Garden",
-      description: "We created this garden automatically to get you started" +
-                   ". You can edit it to better suit your needs!")
+      name: I18n.t('registrations.your_first_garden'),
+      description: I18n.t('registrations.we_automatically_generated_this_garden')
+    )
     
 #     # session[:omniauth] = nil unless @user.new_record?
   end
 
   def destroy
-    #ToDo check for password
-    super
+    password = params[:user][:password_confirmation]
+    if current_user.valid_password?(password)
+      super
+    else
+      flash[:alert] = I18n.t('registrations.need_password')
+      redirect_to(edit_user_registration_path(current_user))
+    end
   end
   
   protected

@@ -51,12 +51,16 @@ describe 'User registrations' do
     login_as user
     visit edit_user_registration_path(user)
     click_button 'Permanently delete your account.'
-    # TODO: fail
+    see('You need to supply your password to delete your account')
   end
+
   it 'should succeed when using a password to delete an account' do
     login_as user
     visit edit_user_registration_path(user)
+    fill_in :user_password_confirmation, with: user.password
     click_button 'Permanently delete your account.'
-    # TODO: succeed
+    see('Your account was successfully cancelled.')
+    expect { User.find(user.id) }.to raise_error(
+      Mongoid::Errors::DocumentNotFound)
   end
 end

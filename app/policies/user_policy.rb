@@ -25,7 +25,7 @@ class UserPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.admin?
+      if @user.admin?
         @scope.all
       else
         @scope.where(is_private: false)

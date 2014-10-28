@@ -21,6 +21,9 @@
 
 en:
     application:
+        site_description: "Learn to farm or garden with community created guides"
+        keywords: "gardening, farming, seeds, planting, growing, community, instructions, how-to"
+        site_title: "OpenFarm - You Can Grow Anything"
         greeting: "Hi, %{user}"
         skip: "Do This Later"
         create_guide: "Create guide"

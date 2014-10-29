@@ -48,6 +48,9 @@
     </div>
 </div>
 <div class="footer">
+    <h2 class="text-center">Featured Crops</h2>
+    <p class="text-center">Check out what people are growing and grow it yourself!</p>
+    <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
     <div>
         <ul class="links">
         <li>

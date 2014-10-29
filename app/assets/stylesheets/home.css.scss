@@ -1,6 +1,7 @@
 // Because <ie9 doesn't know what video is.
 video { display: block; }
 
+// Hide video on mobile
 @media screen and (max-device-width: 800px) {
   .video-background video {
     display: none;
@@ -231,6 +232,54 @@ video { display: block; }
 .footer {
   background-color: #333333;
   padding: 40px 20px;
+
+  h1, h2, h3, h4, h5, p {
+    color: white;
+  }
+}
+
+.featured-crops-grid {
+  margin-top: 30px;
+
+  .featured-crop-container {
+    margin-bottom: 30px;
+
+    .featured-crop {
+      position: relative;
+      height: 344px;
+
+      &:hover {
+        .blackness {
+          opacity: 1;
+          // TODO: Compass
+          -webkit-transition: opacity ease-in-out 200ms;
+          -moz-transition: opacity ease-in-out 200ms;
+          -o-transition: opacity ease-in-out 200ms;
+          transition: opacity ease-in-out 200ms;
+        }
+      }
+    }
+
+    .blackness {
+      background-color: rgba(0,0,0,0.35);
+      opacity: 0.5;
+    }
+
+    .crop-image {
+      // display: block;
+      // border: 1px solid #dce0e0;
+      background-color: #f5f5f5;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .crop-name {
+      color: white;
+      font-weight: 800;
+      text-align: center;
+      padding: 30px;
+    }
+  }
 }
 
 .links {

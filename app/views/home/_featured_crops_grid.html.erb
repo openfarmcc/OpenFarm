@@ -1,0 +1,13 @@
+<div class="featured-crops-grid">
+  <!-- rows -->
+  <% 3.times do |r| %>
+    <!-- Only show one row on mobile -->
+    <div class="row <%= 'hidden-for-small-only' if (r > 0) %>">
+    <!-- cols -->
+    <% 3.times do |c| %>
+      <% crop = @featured_crops[3*r + c] %>
+      <%= render partial:'featured_crop', object: crop, as:'crop' %>
+    <% end %>
+    </div>
+  <% end %>
+</div>

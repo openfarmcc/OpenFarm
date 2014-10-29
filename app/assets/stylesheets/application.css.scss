@@ -50,9 +50,18 @@
   clear: both;
 }
 
+.full-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 // Apply this to a row that will vertically center a column
 .row.row-table {
   display: table;
+  table-layout: fixed;
   width: 100%; // Tables will only be as big as they need to without this
 }
 
@@ -64,6 +73,7 @@
 .columns.column-middle {
   display: table-cell;
   vertical-align: middle;
+  float: none;
 }
 
 @import 'font-awesome';

@@ -34,6 +34,7 @@ VCR.configure do |c|
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
   c.ignore_hosts '127.0.0.1', 'localhost', 'localhost:9200'
+  c.allow_http_connections_when_no_cassette = true
 end
 # =====
 

@@ -1,7 +1,6 @@
 module Stages
   class UpdateStage < Mutations::Command
     required do
-      string :id
       model :user
       model :stage
     end
@@ -30,12 +29,12 @@ module Stages
     end
 
     def set_valid_params
-      # TODO: Probably a DRYer way of doing this.
+      # TODO: Should we wrap our request params in a hash and not keep them in a
+      # root element? That way we could just update_attributes(stage_params)
       stage.instructions   = instructions if instructions.present?
       stage.days_start     = days_start if days_start.present?
       stage.days_end       = days_end if days_end.present?
       stage.name           = name if name.present?
-
       stage.save
     end
   end

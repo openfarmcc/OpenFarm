@@ -5,5 +5,3 @@ InlineComment:
 java_script:
   enabled: true
   config_file: config/javascript.json
-coffee_script:
-  enabled: true

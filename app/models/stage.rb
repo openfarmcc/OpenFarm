@@ -8,4 +8,6 @@ class Stage
   field :days_end, type: Integer
   field :instructions, type: String
 
+
+
 end

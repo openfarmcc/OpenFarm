@@ -24,6 +24,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'patron' # For searchKick
 gem 'searchkick'
+gem "pundit"
 
 group :development, :test do
   gem 'coveralls', require: false

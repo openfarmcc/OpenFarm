@@ -7,5 +7,12 @@ FactoryGirl.define do
     password_confirmation { |u| u.password }
     admin false
     password 'password'
+    is_private false
+    trait :admin do
+      admin :false
+    end
+    trait :is_private do
+      is_private :true
+    end
   end
 end

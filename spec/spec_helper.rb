@@ -18,6 +18,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'vcr'
+require 'pundit/rspec'
 # ====== PHANTOMJS stuff
 require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist

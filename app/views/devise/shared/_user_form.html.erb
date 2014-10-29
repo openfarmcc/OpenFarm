@@ -15,6 +15,7 @@
 
   <%= f.label :email, I18n.t('users.email_address') %>
   <%= f.email_field :email %>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -28,6 +29,9 @@
 
     <%= f.label :password, I18n.t('users.password') + I18n.t('users.password_blank_ok') %>
     <%= f.password_field :password, autocomplete: "off" %>
+
+    <%= f.check_box :is_private %><%= f.label :is_private, I18n.t('users.is_private') %>
+    <br/>
   <% end %>
 
   <%= f.submit class: 'button submit' %>

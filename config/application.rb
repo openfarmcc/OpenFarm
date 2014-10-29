@@ -1,5 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-
+# This line violates the 80 character limit of lines. If hound doesnt say anything, I know that its not working.
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'

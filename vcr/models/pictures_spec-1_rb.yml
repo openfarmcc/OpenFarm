@@ -1,0 +1,285 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://placehold.it/1x1.jpg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 30 Oct 2014 11:44:20 GMT
+      Content-Type:
+      - image/jpg
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d911588bee3596b84ac07aa1789c2f0621414669460135; expires=Mon, 23-Dec-2019
+        23:50:00 GMT; path=/; domain=.placehold.it; HttpOnly
+      Expires:
+      - Sat, 29 Nov 2014 11:44:20 GMT
+      Cache-Control:
+      - public, max-age=2592000
+      Last-Modified:
+      - Fri, 19 Nov 2010 07:00:00 GMT
+      Cf-Cache-Status:
+      - MISS
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 18175c3dd06b10b7-ORD
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQAAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AA
+        EQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYH
+        CAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQy
+        gZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElK
+        U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Sl
+        pqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz
+        9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALUR
+        AAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkj
+        M1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFla
+        Y2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKz
+        tLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/a
+        AAwDAQACEQMRAD8A9MooooA//9k=
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 11:44:21 GMT
+- request:
+    method: put
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/pictures/attachments/54522496736d61b3be2b0100.
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQAAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AA
+        EQgAAQABAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYH
+        CAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQy
+        gZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElK
+        U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Sl
+        pqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz
+        9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALUR
+        AAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkj
+        M1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFla
+        Y2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKz
+        tLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/a
+        AAwDAQACEQMRAD8A9MooooA//9k=
+    headers:
+      Content-Type:
+      - image/jpeg
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '695'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.55.0 ruby/2.1.3 x86_64-darwin13.0
+      Date:
+      - Thu, 30 Oct 2014 11:44:22 GMT
+      Authorization:
+      - AWS AKIAJUSSX57FDRHRYC7A:F0DaNhnJlqn8LT+H8c3cAK71Vfk=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - c1ALm7PQZoJw8sN4syfUCQMjVhs58MVklTCQFCRvHOKte/k5vipdSP20zBm9lUaJQDsbAxAZf0w=
+      X-Amz-Request-Id:
+      - C43ABB26A43271C3
+      Date:
+      - Thu, 30 Oct 2014 11:44:22 GMT
+      Etag:
+      - '"f8b3ad1fa4c198ed23c8007d086499ad"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 11:44:23 GMT
+- request:
+    method: put
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/pictures/attachments/54522496736d61b3be2b0100.jpg
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQEAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/8AACwgAZABkAQERAP/EABUAAQEAAAAAAAAA
+        AAAAAAAAAAAH/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAAPwCmAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//Z
+    headers:
+      Content-Type:
+      - image/jpeg
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '267'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.55.0 ruby/2.1.3 x86_64-darwin13.0
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Authorization:
+      - AWS AKIAJUSSX57FDRHRYC7A:yLvKW+hPp7bJeFytMFZAFZ4K8uA=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - dlM64q2Iyt423X7Nx2IJaPZBx3vwyrBtavKA4frDHhwtYr8yN/B1Jo6IjfPHm1ZGkCvpzzt0ZUU=
+      X-Amz-Request-Id:
+      - 73447E9A6ADEF681
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Etag:
+      - '"c713ca30ce44d508cc798b2e5edf3321"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 11:44:23 GMT
+- request:
+    method: put
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/pictures/attachments/54522496736d61b3be2b0100.jpg
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQEAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/8AACwgA+gD6AQERAP/EABUAAQEAAAAAAAAA
+        AAAAAAAAAAAH/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQAAPwCmAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z
+    headers:
+      Content-Type:
+      - image/jpeg
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '480'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.55.0 ruby/2.1.3 x86_64-darwin13.0
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Authorization:
+      - AWS AKIAJUSSX57FDRHRYC7A:yLvKW+hPp7bJeFytMFZAFZ4K8uA=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - "/q+flTx5NQKS7QyNclOvjBA7YZ2YDMA0H4Z9YiSrJqSktmMtpscfRuiZY0xEs4ozOErZw8QNnII="
+      X-Amz-Request-Id:
+      - 77D13CFF4567462E
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Etag:
+      - '"60b34032680c6bca61e7db98f479d8b4"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 11:44:23 GMT
+- request:
+    method: put
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/pictures/attachments/54522496736d61b3be2b0100.jpg
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        /9j/4AAQSkZJRgABAQEAAQABAAD//gA+Q1JFQVRPUjogZ2QtanBlZyB2MS4w
+        ICh1c2luZyBJSkcgSlBFRyB2NjIpLCBkZWZhdWx0IHF1YWxpdHkK/9sAQwAI
+        BgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3
+        KSwwMTQ0NB8nOT04MjwuMzQy/8AACwgAAQABAQERAP/EABQAAQAAAAAAAAAA
+        AAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oACAEBAAA/AEx//9k=
+    headers:
+      Content-Type:
+      - image/jpeg
+      Accept-Encoding:
+      - ''
+      Content-Length:
+      - '224'
+      X-Amz-Acl:
+      - public-read
+      User-Agent:
+      - aws-sdk-ruby/1.55.0 ruby/2.1.3 x86_64-darwin13.0
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Authorization:
+      - AWS AKIAJUSSX57FDRHRYC7A:yLvKW+hPp7bJeFytMFZAFZ4K8uA=
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - rTyTO1Q4FHgSVwChF3Qafb6JMCY0uTnF0Gr9V+UApwhhD+cuj/c0BU7vAGsBnyfGHN/AFTzXBA0=
+      X-Amz-Request-Id:
+      - 0980BED9179A5F0D
+      Date:
+      - Thu, 30 Oct 2014 11:44:23 GMT
+      Etag:
+      - '"4d3ddfe60a45543f6e882f49f89fee87"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 30 Oct 2014 11:44:24 GMT
+recorded_with: VCR 2.9.3

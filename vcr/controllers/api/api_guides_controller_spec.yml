@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 29 Oct 2014 12:40:36 GMT
+      - Thu, 30 Oct 2014 11:44:12 GMT
       Content-Type:
       - image/jpg
       Transfer-Encoding:
@@ -27,10 +27,10 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=d4da00e77ff88b93d778251f69c4b76771414586436323; expires=Mon, 23-Dec-2019
+      - __cfduid=d6963378f98d038f7a4965ea8033652461414669451819; expires=Mon, 23-Dec-2019
         23:50:00 GMT; path=/; domain=.placehold.it; HttpOnly
       Expires:
-      - Fri, 28 Nov 2014 12:40:36 GMT
+      - Sat, 29 Nov 2014 11:44:12 GMT
       Cache-Control:
       - public, max-age=2592000
       Last-Modified:
@@ -42,7 +42,7 @@ http_interactions:
       Server:
       - cloudflare-nginx
       Cf-Ray:
-      - 180f714b07640167-ORD
+      - 18175c09d0a70167-ORD
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -63,10 +63,10 @@ http_interactions:
         tLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/a
         AAwDAQACEQMRAD8A9MooooA//9k=
     http_version: 
-  recorded_at: Wed, 29 Oct 2014 12:40:38 GMT
+  recorded_at: Thu, 30 Oct 2014 11:44:13 GMT
 - request:
     method: put
-    uri: https://openfarm-rick.s3.amazonaws.com/test/media/guides/featured_images/5450e046736d610502bc0000.jpg
+    uri: https://openfarm-rick.s3.amazonaws.com/test/media/guides/featured_images/5452248b736d61b3bebc0000.jpg
     body:
       encoding: ASCII-8BIT
       string: !binary |-
@@ -98,9 +98,9 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby/1.55.0 ruby/2.1.3 x86_64-darwin13.0
       Date:
-      - Wed, 29 Oct 2014 12:40:38 GMT
+      - Thu, 30 Oct 2014 11:44:15 GMT
       Authorization:
-      - AWS AKIAJUSSX57FDRHRYC7A:c30mpyLZ3QxV7vnZ649W7jzTLn0=
+      - AWS AKIAJUSSX57FDRHRYC7A:NyD2HP9V0yn04t6t5sXwqjXO9+0=
       Accept:
       - "*/*"
   response:
@@ -109,11 +109,11 @@ http_interactions:
       message: OK
     headers:
       X-Amz-Id-2:
-      - S5Hi4s+eP9ER3hwe4RetBjWlwfV4mQQk41zgj+eX2LfzddPT94OcB7Iq2tlo3q/89g6A3h4rUVA=
+      - KUsYwWCuUOsWJyV+bug6XznSw1+sV80OXkSOJCWNVorHqtH7TGtbea1v1nIdjEgbGR81qAFkktk=
       X-Amz-Request-Id:
-      - E678758031973BA9
+      - 6934B6517A16F519
       Date:
-      - Wed, 29 Oct 2014 12:40:39 GMT
+      - Thu, 30 Oct 2014 11:44:16 GMT
       Etag:
       - '"f8b3ad1fa4c198ed23c8007d086499ad"'
       Content-Length:
@@ -124,5 +124,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Wed, 29 Oct 2014 12:40:40 GMT
+  recorded_at: Thu, 30 Oct 2014 11:44:16 GMT
 recorded_with: VCR 2.9.3

@@ -1,0 +1,109 @@
+<% content_for(:banner) do %>
+  <div class="bar-header">
+    <h1><%= t('gardens.your_gardens') %></h1>
+  </div>
+<% end %>
+<div class="gardens">
+<div class="garden" rv-each->
+  <div class="row header">
+    <div class="columns large-9">
+      <h2>Backyard</h2>
+    </div>
+    <div class="columns large-3 edit">
+      <i class="fa fa-lock"></i>
+      <a class="button secondary tiny" href="#">Edit Garden</a>
+    </div>
+  </div>
+  <div class="row info">
+    <div class="columns large-3">
+      <img src="http://placehold.it/350?text=garden
+      +image"/>
+    </div>
+    <div class="columns large-9">
+      <div class="description">
+        Garden description
+      </div>
+      <table>
+        <tr>
+          <th>
+            Garden Type
+          </th>
+          <td>
+            Outdoors
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Sunlight
+          </th>
+          <td>
+            Full Sun
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Soil Type
+          </th>
+          <td>
+            Sandy Loam
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row crops">
+  <div class="columns large-12">
+    <table>
+      <tr>
+        <td>
+          <input type="checkbox"/>
+        </td>
+        <th>
+          Crop
+        </th>
+        <th>
+          Guide
+        </th>
+        <th>
+          Sowed
+        </th>
+        <th>
+          Life Stage
+        </th>
+        <th>
+          Quantity
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox"/>
+        </td>
+        <td>
+          Crop Name
+        </td>
+        <td>
+          Guide Name
+        </td>
+        <td>
+          02-22-22
+        </td>
+        <td>
+          Juvenile
+        </td>
+        <td>
+          2
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          Add Plant
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</div>
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user._id}';" %>
+  <%= javascript_include_tag 'users/gardens' %>
+<% end %>

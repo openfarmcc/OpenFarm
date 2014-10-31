@@ -5,7 +5,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.alerts = [];
 
     $scope.setUser = function(success, object, code){
-
       if (success){
         $scope.guide.user = object;
       } else {

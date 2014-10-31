@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  after_action :verify_authorized, except: [:index, :finish]
+  after_action :verify_authorized, except: [:index, :finish, :gardens]
 
   def update
     authorize current_user
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to(controller: 'users', 
         action: 'finish')
     else
-      redirect_to :gardens
+      redirect_to(controller: 'users', action: 'gardens')
     end
   end
 
@@ -23,5 +23,10 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
+  end
+
+  def gardens
+    @gardens = current_user.gardens
+    puts @gardens
   end
 end

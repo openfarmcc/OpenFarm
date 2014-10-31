@@ -1,6 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/FarmBot/OpenFarm/badge.png)](https://coveralls.io/r/FarmBot/OpenFarm)[![Code Climate](https://codeclimate.com/github/FarmBot/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/pr)](http://issuestats.com/github/farmbot/openfarm)[![Issue Stats](http://issuestats.com/github/farmbot/openfarm/badge/issue)](http://issuestats.com/github/farmbot/openfarm)
 OpenFarm
 ========
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/FarmBot/OpenFarm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents including all of the necessary paramaters for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
 

@@ -1,4 +1,5 @@
 module Stages
+  # TODO Start new naming convention: Stages::Update
   class UpdateStage < Mutations::Command
     required do
       model :user

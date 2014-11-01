@@ -1,5 +1,6 @@
 module Guides
   # Place shared functionality between Guide mutations here to stay DRY.
+  #  OMG LOOK AT HOW LONG THIS LINE IS WHY ISNT HOUND TELLING ME THAT IM WRONG RIGHT NOW I NEED AN ADULT!!!
   module GuidesConcern
     def validate_image_url
       if featured_image.present? && !featured_image.valid_url?

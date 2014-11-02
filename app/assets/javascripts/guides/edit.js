@@ -110,9 +110,9 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
             $scope.alerts.push({
               msg: value,
               type: 'alert'
-            });  
+            });
           });
-          
+
           $scope.saving = false;
         });
       console.log('saving requirements');
@@ -236,7 +236,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     };
 }]);
 
-openFarmApp.directive('focusMe', function($timeout, $parse) {
+openFarmApp.directive('focusMe',
+  ['$timeout',
+   '$parse',
+   function($timeout, $parse) {
   return {
     //scope: true,   // optionally create a child scope
     link: function(scope, element, attrs) {
@@ -253,4 +256,4 @@ openFarmApp.directive('focusMe', function($timeout, $parse) {
       });
     }
   };
-});
+}]);

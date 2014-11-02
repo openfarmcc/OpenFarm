@@ -9,12 +9,21 @@ describe Guides::CreateGuide do
     expect(mutation.run(params).success?).to be_true
   end
 
-  it 'updates a users image via URL' do
-    image_params = params.merge(image_url: 'http://i.imgur.com/2haLt4J.jpg')
-    VCR.use_cassette('mutations/stages/update_stage.rb') do
-      results = mutation.run(image_params)
+  it 'updates a stage image via URL' do
+    VCR.use_cassette('mutations/stages/update_stage') do
+      image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
+      results      = mutation.run(image_params)
+      pics = results.result.pictures
+      expect(pics.count).to eq(1)
+      expect(pics.first.attachment.url.valid_url?).to be_true
     end
-    pending 'Now, go forth an write image stuff.'
+  end
+
+  it 'disallows phony URLs' do
+    image_params = params.merge(images: 'iWroteThisWrong.net/2haLt4J.jpg')
+    results      = mutation.run(image_params)
+    expect(results.success?).to be_false
+    expect(results.errors.message[:images]).to include("not a valid URL")
   end
 
 end

@@ -11,6 +11,7 @@ module Users
       string :years_experience
       string :mailing_list
       string :units
+      string :is_private
     end
 
     def execute
@@ -23,6 +24,7 @@ module Users
       user.display_name   = display_name if display_name.present?
       user.mailing_list   = mailing_list if mailing_list.present?
       user.units          = units if units.present?
+      user.is_private     = is_private if is_private.present?
       user.save
     end
   end

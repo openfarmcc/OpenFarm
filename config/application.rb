@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
@@ -8,6 +7,7 @@ Bundler.require(:default, Rails.env)
 module OpenFarm
   class Application < Rails::Application
     I18n.enforce_available_locales = false
+    config.i18n.fallbacks = [:en]
     config.assets.initialize_on_precompile = false
     config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
       allow do

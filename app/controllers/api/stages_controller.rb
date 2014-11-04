@@ -3,8 +3,7 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      @outcome = Stages::CreateStage.run(params,
-                                         user: current_user)
+      @outcome = Stages::CreateStage.run(params, user: current_user)
       respond_with_mutation(:created)
     end
 
@@ -16,8 +15,8 @@ module Api
     def update
       stage = Stage.find(params[:id])
       @outcome = Stages::UpdateStage.run(params,
-                                         user: current_user,
-                                         stage: stage)
+                                         stage: stage,
+                                         user: current_user,)
       respond_with_mutation(:ok)
     end
   end

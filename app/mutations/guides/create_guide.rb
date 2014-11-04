@@ -38,6 +38,7 @@ module Guides
       guide.overview       = overview if overview
       guide.location       = location if location
       guide.save
+      # TODO : Verify that we actually need to do this:
       set_featured_image_async
     end
 

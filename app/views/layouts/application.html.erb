@@ -56,11 +56,11 @@
                     <div class="row collapse postfix-round">
 
                       <div class="small-4 columns">
-                        <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('pages.home.placeholder') %>
+                        <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('home.placeholder') %>
 
                       </div>
                       <div class="small-2 columns end">
-                        <%= f.submit t('pages.home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                        <%= f.submit t('home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
                       </div>
                     </div>
                   </div>
@@ -71,7 +71,7 @@
               <ul class="right">
                   <% if current_user %>
                       <li class="has-dropdown">
-                          <a href="#"><%= t('application.greeting', user: current_user.display_name) %></a>
+                          <a href="#"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
                           <ul class="dropdown">
                               <li>
                                   <%= link_to t('application.create_guide'), new_guide_path %>

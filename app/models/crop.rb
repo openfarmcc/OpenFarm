@@ -15,6 +15,7 @@ class Crop
   field :impressions, default: 0
 
   has_many :guides
+  field :guides_count, type: Fixnum, default: 0
 
   field :name
   field :common_names, type: Array

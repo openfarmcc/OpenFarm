@@ -10,7 +10,7 @@ class Guide
 
   field :impressions_field, default: 0
 
-  belongs_to :crop
+  belongs_to :crop, counter_cache: true
   belongs_to :user
   has_many :stages
   has_many :requirements

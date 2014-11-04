@@ -11,19 +11,19 @@
     <div class="row row-table row-full-height">
         <div class="small-12 small-centered column-middle columns">
             <img class="logo" src="<%= image_path 'openfarm_logo.png' %>" width="420px">
-            <h2 class="text-center"><%=t '.hero_header' %></h2>
-            <ul class="steps text-center clearfix">
+            <h2 class="text-center"><%=t 'home.hero_header' %></h2>
+            <ul class="steps text-center clearfix hidden-for-small-down">
                 <li class="step">
                     <div class="step-circle step-circle-1">1</div>
-                    <%= t '.step_1' %>
+                    <%= t 'home.step_1' %>
                 </li>
                 <li class="step">
                     <div class="step-circle step-circle-2">2</div>
-                    <%= t '.step_2' %>
+                    <%= t 'home.step_2' %>
                 </li>
                 <li class="step">
                     <div class="step-circle step-circle-3">3</div>
-                    <%= t '.step_3' %>
+                    <%= t 'home.step_3' %>
                 </li>
             </ul>
             <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
@@ -32,12 +32,12 @@
                         <div class="search-bar-container">
                             <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
                                 <div class="search-input-container">
-                                    <%= text_field_tag :q, nil, {class: 'search-input', name: 'cropsearch[q]',   placeholder: t('.placeholder'),
+                                    <%= text_field_tag :q, nil, {class: 'search-input', name: 'cropsearch[q]',   placeholder: t('home.placeholder'),
                                             maxlength: '120', autocomplete: 'off', 'ng-model'=>'query', 'ng-change'=>  'search()',
                                             'typeahead'=>'crop.name for crop in crops', 'typeahead-wait-ms'=>'555', '  typeahead-min-length'=>'3'} %>
                                 </div>
                                 <div class="search-button-container">
-                                    <%= f.submit t('.search'), data: { disable_with: "Searching..." }, class: 'search-button button postfix' %>
+                                    <%= f.submit t('home.search'), data: { disable_with: "Searching..." }, class: 'search-button button postfix' %>
                                 </div>
                             </div>
                         </div>
@@ -45,13 +45,16 @@
                 </div>
             <% end %>
         </div>
+        <a href="#explore-community-favorites" id="explore-community-favorites" class="explore-community-favorites text-center">
+            <h2><%= t('home.explore_community_favorites') %></h2>
+            <i class="fa fa-angle-down"></i>
+        </a>
     </div>
 </div>
-<div class="footer">
-    <h2 class="text-center">Featured Crops</h2>
-    <p class="text-center">Check out what people are growing and grow it yourself!</p>
+<div class="featured-crops">
     <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
-    <div>
+</div>
+<div class="footer">
         <ul class="links">
         <li>
         <%= link_to('Mailing List', page_path('mailing-list'), :class=>'hero-link' ) %>
@@ -70,7 +73,6 @@
             <%= link_to('Code of Conduct',page_path('code_of_conduct'), :class=>'hero-link' ) %>
         </li>
         </ul>
-    </div>
 </div>
 <% content_for(:end_js) do %>
     <%= javascript_include_tag "home" %>

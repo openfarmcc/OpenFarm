@@ -8,30 +8,30 @@ $(window).unload(function() {
 
 // Cool title effect for "community favorites"
 $(window).load(function() {
-  $pageHeight = $($('.hero')[0]).height();
+  pageHeight = $($('.hero')[0]).height();
   // get the height including margins of the featured crops title
-  $exploreCommunityFavoritesTitleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
+  titleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
 
   // On resize, recalculate the above values
   $(window).resize(function() {
-    $pageHeight = $($('.hero')[0]).height();
-    $exploreCommunityFavoritesTitleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
+    pageHeight = $($('.hero')[0]).height();
+    titleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
   })
 
   $(window).scroll(function() {
-    scrollHandler($(window).scrollTop());
+    updateTitleBackground($(window).scrollTop());
   })
-})
+});
 
-// Black out the title background when the user scrolls to the featured crops header
-function scrollHandler(scrollPos) {
-  $exploreCommunityFavoritesTitle = $($(".explore-community-favorites")[0]);
+// Darken the title background when the user scrolls to the featured crops header
+function updateTitleBackground(scrollPos) {
+  $exploreCommunityFavoritesTitle = $($('.explore-community-favorites')[0]);
   // The extra 1px lets smooth scrolling still trigger the change
-  if (scrollPos >= ($pageHeight - $exploreCommunityFavoritesTitleHeight - 1)) {
-    $exploreCommunityFavoritesTitle.addClass("full-black");
+  if (scrollPos >= (pageHeight - titleHeight - 1)) {
+    $exploreCommunityFavoritesTitle.addClass('full-black');
   }
   else {
-    $exploreCommunityFavoritesTitle.removeClass("full-black");
+    $exploreCommunityFavoritesTitle.removeClass('full-black');
   }
 }
 

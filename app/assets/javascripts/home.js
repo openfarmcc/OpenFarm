@@ -17,11 +17,11 @@ $(window).load(function() {
   $(window).resize(function() {
     pageHeight = $($('.hero')[0]).height();
     titleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
-  })
+  });
 
   $(window).scroll(function() {
     updateTitleBackground($(window).scrollTop(), pageHeight, titleHeight);
-  })
+  });
 });
 
 // Darken the title background when the user scrolls to the featured crops header

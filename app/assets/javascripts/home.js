@@ -26,13 +26,13 @@ $(window).load(function() {
 
 // Darken the title background when the user scrolls to the featured crops header
 function updateTitleBackground(scrollPos, pageHeight, titleHeight) {
-  $exploreCommunityFavoritesTitle = $($('.explore-community-favorites')[0]);
+  var exploreCommunityFavoritesTitle = $($('.explore-community-favorites')[0]);
   // The extra 1px lets smooth scrolling still trigger the change
   if (scrollPos >= (pageHeight - titleHeight - 1)) {
-    $exploreCommunityFavoritesTitle.addClass('full-black');
+    exploreCommunityFavoritesTitle.addClass('full-black');
   }
   else {
-    $exploreCommunityFavoritesTitle.removeClass('full-black');
+    exploreCommunityFavoritesTitle.removeClass('full-black');
   }
 }
 

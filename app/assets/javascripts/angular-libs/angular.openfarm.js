@@ -11,7 +11,6 @@ var openFarmModule = angular.module('openFarmModule', [
 
 openFarmModule.factory('guideService', ['$http',
   function guideService($http) {
-
     // get the guide specified.
     var getGuide = function(guide_id, callback){
       $http({

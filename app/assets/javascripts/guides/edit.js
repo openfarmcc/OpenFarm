@@ -115,7 +115,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
 
           $scope.saving = false;
         });
-      console.log('saving requirements');
       angular.forEach($scope.guide.requirements, function(item){
         console.log(item.name, item.status);
         if (item.status === undefined){

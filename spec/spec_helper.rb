@@ -11,6 +11,7 @@ SimpleCov.start do
   add_filter 'config/environment.rb'
   add_filter 'config/initializers/mongoid.rb'
   add_filter 'config/initializers/backtrace_silencers.rb'
+  add_filter 'spec/'
 end
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -27,6 +28,7 @@ Capybara.register_driver :poltergeist do |app|
 end
 # =====
 Delayed::Worker.delay_jobs = false
+
 # ===== VCR stuff (records HTTP requests for playback)
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr'
@@ -34,6 +36,7 @@ VCR.configure do |c|
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
   c.ignore_hosts '127.0.0.1', 'localhost', 'localhost:9200'
+  # c.allow_http_connections_when_no_cassette = true
 end
 # =====
 

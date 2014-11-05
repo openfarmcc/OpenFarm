@@ -16,30 +16,30 @@
 {
   "crops": [
     {
-      "_id": "5443cfde736d61104b150100",
+      "_id": "545226ab736d61b45d800100",
       "_slugs": [
         "mung-bean"
       ],
-      "binomial_name": "velit sit",
+      "binomial_name": "quis ad",
       "common_names": null,
-      "created_at": "2014-10-19T14:51:10.419Z",
+      "created_at": "2014-10-30T11:53:15.112Z",
       "crop_data_source_id": null,
-      "days_to_maturity": 26,
-      "description": "Minus blanditiis numquam aspernatur eos et distinctio impedit.",
+      "days_to_maturity": 21,
+      "description": "Numquam tempore ab itaque temporibus odit magni placeat.",
       "harvest_time": null,
-      "height": 9,
+      "height": 16,
       "image": null,
       "impressions": [
 
       ],
       "modifier_id": null,
       "name": "mung bean",
-      "row_spacing": 9,
-      "sowing_method": "container",
+      "row_spacing": 10,
+      "sowing_method": "direct",
       "sowing_time": null,
-      "spread": 8,
+      "spread": 4,
       "sun_requirements": "shade",
-      "updated_at": "2014-10-19T14:51:10.419Z",
+      "updated_at": "2014-10-30T11:53:15.112Z",
       "version": null
     }
   ]
@@ -48,7 +48,7 @@
 
 
 
-# GET /api/crops/5443cfde736d61104b1e0100
+# GET /api/crops/545226aa736d61b45d7f0100
 
 
 
@@ -57,15 +57,15 @@
 ```
 {
   "crop": {
-    "_id": "5443cfde736d61104b1e0100",
-    "name": "plum Block",
-    "binomial_name": "debitis accusantium",
-    "description": "Et eum quod labore tempora expedita velit et.",
+    "_id": "545226aa736d61b45d7f0100",
+    "name": "azure Durgan",
+    "binomial_name": "omnis voluptas",
+    "description": "Molestias ex qui qui.",
     "sun_requirements": "shade",
-    "sowing_method": "container",
-    "spread": 5,
-    "days_to_maturity": 52,
-    "row_spacing": 7,
+    "sowing_method": "direct",
+    "spread": 9,
+    "days_to_maturity": 13,
+    "row_spacing": 5,
     "height": 12
   }
 }
@@ -82,7 +82,7 @@
 {
   "name": "brocolini in the desert",
   "overview": "something exotic",
-  "crop_id": "5443cfda736d61104bf20000"
+  "crop_id": "5452268d736d61b45d160000"
 }
 ```
 
@@ -91,9 +91,9 @@
 ```
 {
   "guide": {
-    "_id": "5443cfda736d61104bf30000",
-    "crop_id": "5443cfda736d61104bf20000",
-    "user_id": "5443cfda736d61104bf10000",
+    "_id": "5452268d736d61b45d170000",
+    "crop_id": "5452268d736d61b45d160000",
+    "user_id": "5452268d736d61b45d150000",
     "stages": [
 
     ],
@@ -121,7 +121,7 @@
   "name": "Just 1 pixel.",
   "overview": "A tiny pixel test image.",
   "featured_image": "http://placehold.it/1x1.jpg",
-  "crop_id": "5443cfd9736d61104bc20000"
+  "crop_id": "5452268c736d61b45d090000"
 }
 ```
 
@@ -130,9 +130,9 @@
 ```
 {
   "guide": {
-    "_id": "5443cfd9736d61104bc40000",
-    "crop_id": "5443cfd9736d61104bc20000",
-    "user_id": "5443cfd9736d61104bc30000",
+    "_id": "5452268c736d61b45d0b0000",
+    "crop_id": "5452268c736d61b45d090000",
+    "user_id": "5452268c736d61b45d0a0000",
     "stages": [
 
     ],
@@ -141,7 +141,7 @@
     ],
     "name": "Just 1 pixel.",
     "overview": "A tiny pixel test image.",
-    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/5443cfd9736d61104bc40000.jpg?1413730265",
+    "featured_image": "http://s3.amazonaws.com/openfarm-rick/test/media/guides/featured_images/5452268c736d61b45d0b0000.jpg?1414669965",
     "location": null
   }
 }
@@ -149,7 +149,37 @@
 
 
 
-# PUT /api/guides/5443cfd9736d61104bd00000
+
+# GET /api/guides/5452268e736d61b45d2f0000
+
+
+
+
+## Response
+```
+{
+  "guide": {
+    "_id": "5452268e736d61b45d2f0000",
+    "crop_id": "5452268e736d61b45d2e0000",
+    "user_id": "5452268e736d61b45d300000",
+    "stages": [
+
+    ],
+    "requirements": [
+
+    ],
+    "name": "azure Hettinger",
+    "overview": "Nulla debitis nisi adipisci commodi ab excepturi est.",
+    "featured_image": "/assets/leaf-grey.png",
+    "location": null
+  }
+}
+```
+
+
+
+
+# PUT /api/guides/5452268f736d61b45d530000
 
 
 
@@ -165,52 +195,22 @@
 ```
 {
   "guide": {
-    "_id": "5443cfd9736d61104bd00000",
-    "crop_id": "5443cfd9736d61104bcf0000",
-    "user_id": "5443cfd9736d61104bce0000",
+    "_id": "5452268f736d61b45d530000",
+    "crop_id": "5452268f736d61b45d520000",
+    "user_id": "5452268f736d61b45d510000",
     "stages": [
 
     ],
     "requirements": [
 
     ],
-    "name": "salmon Barrows",
+    "name": "azure Lockman",
     "overview": "updated",
     "featured_image": "/assets/leaf-grey.png",
     "location": null
   }
 }
 ```
-
-
-
-# GET /api/guides/5443cfda736d61104be60000
-
-
-
-
-## Response
-```
-{
-  "guide": {
-    "_id": "5443cfda736d61104be60000",
-    "crop_id": "5443cfda736d61104be50000",
-    "user_id": "5443cfda736d61104be70000",
-    "stages": [
-
-    ],
-    "requirements": [
-
-    ],
-    "name": "azure Murphy",
-    "overview": "Pariatur id reprehenderit officiis perferendis beatae ut inventore.",
-    "featured_image": "/assets/leaf-grey.png",
-    "location": null
-  }
-}
-```
-
-
 
 
 
@@ -226,26 +226,26 @@
     {
       "default_value": null,
       "type": "select",
-      "name": "pink MacGyver",
+      "name": "white Torp",
       "options": [
         [
-          "vel"
+          "molestias"
         ],
         [
-          "optio"
+          "eaque"
         ]
       ]
     },
     {
       "default_value": null,
-      "type": "range",
-      "name": "lavender Carroll",
+      "type": "select",
+      "name": "lavender Kling",
       "options": [
         [
-          "ducimus"
+          "quia"
         ],
         [
-          "ducimus"
+          "quam"
         ]
       ]
     }
@@ -263,9 +263,9 @@
 ## Params
 ```
 {
-  "name": "nemo",
-  "required": "[\"dolores\", \"ea\"]",
-  "guide_id": "5443cfd4736d61104b660000"
+  "name": "voluptate",
+  "required": "[\"illum\", \"magnam\"]",
+  "guide_id": "54522696736d61b45de10000"
 }
 ```
 
@@ -274,13 +274,13 @@
 ```
 {
   "requirement": {
-    "_id": "5443cfd4736d61104b670000",
+    "_id": "54522696736d61b45de20000",
     "guide": {
-      "_id": "5443cfd4736d61104b660000",
+      "_id": "54522696736d61b45de10000",
       "_slugs": [
-        "lime-dach"
+        "maroon-ritchie"
       ],
-      "crop_id": "5443cfd4736d61104b650000",
+      "crop_id": "54522696736d61b45de00000",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -288,12 +288,12 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "lime Dach",
-      "overview": "Officia sint inventore voluptatem.",
-      "user_id": "5443cfd4736d61104b610000"
+      "name": "maroon Ritchie",
+      "overview": "Rerum voluptas eligendi earum debitis voluptatem.",
+      "user_id": "54522696736d61b45ddc0000"
     },
-    "name": "nemo",
-    "required": "[\"dolores\", \"ea\"]"
+    "name": "voluptate",
+    "required": "[\"illum\", \"magnam\"]"
   }
 }
 ```
@@ -303,8 +303,52 @@
 
 
 
+# DELETE /api/requirements/54522694736d61b45da30000
 
-# PUT /api/requirements/5443cfd5736d61104b800000
+
+
+
+
+
+
+
+# GET /api/requirements/54522695736d61b45dbb0000
+
+
+
+
+## Response
+```
+{
+  "requirement": {
+    "_id": "54522695736d61b45dbb0000",
+    "guide": {
+      "_id": "54522695736d61b45db90000",
+      "_slugs": [
+        "grey-miller"
+      ],
+      "crop_id": "54522695736d61b45db80000",
+      "featured_image_content_type": null,
+      "featured_image_file_name": null,
+      "featured_image_file_size": null,
+      "featured_image_fingerprint": null,
+      "featured_image_updated_at": null,
+      "impressions_field": 0,
+      "location": null,
+      "name": "grey Miller",
+      "overview": "In laboriosam rem dolor nihil ipsum aut.",
+      "user_id": "54522695736d61b45dba0000"
+    },
+    "name": "salmon Shanahan",
+    "required": "[\"doloremque\", \"aut\"]"
+  }
+}
+```
+
+
+
+
+# PUT /api/requirements/54522696736d61b45dd40000
 
 
 
@@ -320,13 +364,13 @@
 ```
 {
   "requirement": {
-    "_id": "5443cfd5736d61104b800000",
+    "_id": "54522696736d61b45dd40000",
     "guide": {
-      "_id": "5443cfd5736d61104b7f0000",
+      "_id": "54522696736d61b45dd30000",
       "_slugs": [
-        "tan-abernathy"
+        "plum-ryan"
       ],
-      "crop_id": "5443cfd5736d61104b7e0000",
+      "crop_id": "54522696736d61b45dd20000",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -334,59 +378,15 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "tan Abernathy",
-      "overview": "Vitae voluptatem sed et quia error.",
-      "user_id": "5443cfd5736d61104b7a0000"
+      "name": "plum Ryan",
+      "overview": "Facilis repudiandae sapiente labore.",
+      "user_id": "54522696736d61b45dce0000"
     },
-    "name": "magenta Strosin",
+    "name": "red Crooks",
     "required": "updated"
   }
 }
 ```
-
-
-
-
-
-# GET /api/requirements/5443cfd6736d61104b9f0000
-
-
-
-
-## Response
-```
-{
-  "requirement": {
-    "_id": "5443cfd6736d61104b9f0000",
-    "guide": {
-      "_id": "5443cfd6736d61104b9d0000",
-      "_slugs": [
-        "yellow-stracke"
-      ],
-      "crop_id": "5443cfd6736d61104b9c0000",
-      "featured_image_content_type": null,
-      "featured_image_file_name": null,
-      "featured_image_file_size": null,
-      "featured_image_fingerprint": null,
-      "featured_image_updated_at": null,
-      "impressions_field": 0,
-      "location": null,
-      "name": "yellow Stracke",
-      "overview": "Saepe quia laborum est amet vel.",
-      "user_id": "5443cfd6736d61104b9e0000"
-    },
-    "name": "silver Kihn",
-    "required": "[\"quo\", \"architecto\"]"
-  }
-}
-```
-
-
-
-# DELETE /api/requirements/5443cfd6736d61104baa0000
-
-
-
 
 
 
@@ -400,22 +400,23 @@
 {
   "stage_options": [
     {
-      "default_value": "aliquid",
-      "name": "azure Daniel",
-      "slug": "azure-daniel",
-      "description": "Consectetur ipsum accusantium sunt.",
-      "order": 3
+      "default_value": "autem",
+      "name": "purple McDermott",
+      "slug": "purple-mcdermott",
+      "description": "Qui sunt non odio nulla.",
+      "order": 1
     },
     {
-      "default_value": "rerum",
-      "name": "turquoise Hirthe",
-      "slug": "turquoise-hirthe",
-      "description": "Sit perferendis voluptas cumque.",
-      "order": 5
+      "default_value": "quia",
+      "name": "sky blue Schumm",
+      "slug": "sky-blue-schumm",
+      "description": "Velit tempore nisi sint sed autem ea deserunt ut.",
+      "order": 7
     }
   ]
 }
 ```
+
 
 
 
@@ -428,9 +429,9 @@
 ## Params
 ```
 {
-  "name": "eum",
-  "instructions": "[\"Praesentium quo ad qui provident sit.\", \"Blanditiis beatae excepturi non sunt est et.\"]",
-  "guide_id": "5443cfe2736d61104b440100"
+  "name": "doloribus",
+  "instructions": "[\"Ullam voluptas quae modi sit.\", \"Consequuntur sit optio cum rerum nobis est et.\"]",
+  "guide_id": "545226a3736d61b45d290100"
 }
 ```
 
@@ -439,13 +440,13 @@
 ```
 {
   "stage": {
-    "_id": "5443cfe2736d61104b450100",
+    "_id": "545226a3736d61b45d2a0100",
     "guide": {
-      "_id": "5443cfe2736d61104b440100",
+      "_id": "545226a3736d61b45d290100",
       "_slugs": [
-        "blue-runte"
+        "cyan-nikolaus"
       ],
-      "crop_id": "5443cfe2736d61104b430100",
+      "crop_id": "545226a3736d61b45d280100",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -453,12 +454,47 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "blue Runte",
-      "overview": "Sed voluptates assumenda occaecati minus.",
-      "user_id": "5443cfe2736d61104b3f0100"
+      "name": "cyan Nikolaus",
+      "overview": "Aut quae placeat dolores suscipit accusantium rerum esse.",
+      "user_id": "545226a3736d61b45d240100"
     },
-    "name": "eum",
-    "instructions": "[\"Praesentium quo ad qui provident sit.\", \"Blanditiis beatae excepturi non sunt est et.\"]"
+    "name": "doloribus",
+    "instructions": "[\"Ullam voluptas quae modi sit.\", \"Consequuntur sit optio cum rerum nobis est et.\"]"
+  }
+}
+```
+
+
+
+# GET /api/stages/545226a4736d61b45d390100
+
+
+
+
+## Response
+```
+{
+  "stage": {
+    "_id": "545226a4736d61b45d390100",
+    "guide": {
+      "_id": "545226a4736d61b45d370100",
+      "_slugs": [
+        "cyan-kautzer"
+      ],
+      "crop_id": "545226a4736d61b45d360100",
+      "featured_image_content_type": null,
+      "featured_image_file_name": null,
+      "featured_image_file_size": null,
+      "featured_image_fingerprint": null,
+      "featured_image_updated_at": null,
+      "impressions_field": 0,
+      "location": null,
+      "name": "cyan Kautzer",
+      "overview": "Dolore neque ut aut omnis ipsum molestiae non corrupti.",
+      "user_id": "545226a4736d61b45d380100"
+    },
+    "name": "silver McLaughlin",
+    "instructions": "[\"Aperiam cumque asperiores quia.\", \"Aut autem et occaecati est.\"]"
   }
 }
 ```
@@ -466,7 +502,7 @@
 
 
 
-# PUT /api/stages/5443cfe1736d61104b320100
+# PUT /api/stages/545226a4736d61b45d4c0100
 
 
 
@@ -482,13 +518,13 @@
 ```
 {
   "stage": {
-    "_id": "5443cfe1736d61104b320100",
+    "_id": "545226a4736d61b45d4c0100",
     "guide": {
-      "_id": "5443cfe1736d61104b310100",
+      "_id": "545226a4736d61b45d4b0100",
       "_slugs": [
-        "gold-goodwin"
+        "fuchsia-hessel"
       ],
-      "crop_id": "5443cfe1736d61104b300100",
+      "crop_id": "545226a4736d61b45d4a0100",
       "featured_image_content_type": null,
       "featured_image_file_name": null,
       "featured_image_file_size": null,
@@ -496,50 +532,17 @@
       "featured_image_updated_at": null,
       "impressions_field": 0,
       "location": null,
-      "name": "gold Goodwin",
-      "overview": "Similique eveniet harum perspiciatis sapiente molestias sit saepe itaque.",
-      "user_id": "5443cfe1736d61104b2c0100"
+      "name": "fuchsia Hessel",
+      "overview": "Quidem id neque accusantium ut et enim dignissimos.",
+      "user_id": "545226a4736d61b45d460100"
     },
-    "name": "magenta Lehner",
+    "name": "magenta Schmitt",
     "instructions": "updated"
   }
 }
 ```
 
 
-
-# GET /api/stages/5443cfe2736d61104b3e0100
-
-
-
-
-## Response
-```
-{
-  "stage": {
-    "_id": "5443cfe2736d61104b3e0100",
-    "guide": {
-      "_id": "5443cfe2736d61104b3c0100",
-      "_slugs": [
-        "tan-kunde"
-      ],
-      "crop_id": "5443cfe2736d61104b3b0100",
-      "featured_image_content_type": null,
-      "featured_image_file_name": null,
-      "featured_image_file_size": null,
-      "featured_image_fingerprint": null,
-      "featured_image_updated_at": null,
-      "impressions_field": 0,
-      "location": null,
-      "name": "tan Kunde",
-      "overview": "Ipsum ut ab magnam ut minima.",
-      "user_id": "5443cfe2736d61104b3d0100"
-    },
-    "name": "yellow Bernhard",
-    "instructions": "[\"Tempore atque enim illo soluta illum.\", \"Sunt quibusdam asperiores explicabo suscipit deleniti a aliquid.\"]"
-  }
-}
-```
 
 
 
@@ -564,7 +567,7 @@ Hit this API endpoint to generate an authentication token. Take the token that i
 ## Params
 ```
 {
-  "email": "carrie@klingkunze.info",
+  "email": "manuel@treutel.org",
   "password": "password"
 }
 ```
@@ -574,14 +577,11 @@ Hit this API endpoint to generate an authentication token. Take the token that i
 ```
 {
   "token": {
-    "expiration": "2014-11-18T14:51:04.422Z",
-    "secret": "carrie@klingkunze.info:3c2b54b7ca7f0032c7b999a0c3667690"
+    "expiration": "2014-11-29T11:53:10.537Z",
+    "secret": "manuel@treutel.org:ca80cf3f7e66166bc37af0e4d56146fd"
   }
 }
 ```
-
-
-
 
 
 

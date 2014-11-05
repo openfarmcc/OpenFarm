@@ -8,9 +8,10 @@ $(window).unload(function() {
 
 // Cool title effect for "community favorites"
 $(window).load(function() {
-  pageHeight = $($('.hero')[0]).height();
+  // get the  height of the hero
+  var pageHeight = $($('.hero')[0]).height();
   // get the height including margins of the featured crops title
-  titleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
+  var titleHeight = $($('.explore-community-favorites')[0]).outerHeight(true);
 
   // On resize, recalculate the above values
   $(window).resize(function() {
@@ -19,12 +20,12 @@ $(window).load(function() {
   })
 
   $(window).scroll(function() {
-    updateTitleBackground($(window).scrollTop());
+    updateTitleBackground($(window).scrollTop(), pageHeight, titleHeight);
   })
 });
 
 // Darken the title background when the user scrolls to the featured crops header
-function updateTitleBackground(scrollPos) {
+function updateTitleBackground(scrollPos, pageHeight, titleHeight) {
   $exploreCommunityFavoritesTitle = $($('.explore-community-favorites')[0]);
   // The extra 1px lets smooth scrolling still trigger the change
   if (scrollPos >= (pageHeight - titleHeight - 1)) {

@@ -13,70 +13,72 @@
 
 */
 
-.empty{
-  text-align: center;
-  padding-bottom: 1rem;
-  i{
-    font-size: 1.5rem;
-  }
-}
-
-.show-guide-app{
-  position: relative;
-}
-
-.canopy{
-  height: 300px;
-  margin-bottom: 1rem;
-}
-
-.image-wrapper{
-  /*background-image: url(leaf-grey-canopy.png);*/
-  background-position: top;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  height: 300px;
-  border-bottom: 1px solid rgb(51, 51, 51);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-}
-
-.image-wrapper img{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -9999px;
-  bottom: -9999px;
-  margin: auto 0;
-  width: 100%;
-}
-
-.title{
-  h2{
-    font-weight: 100;
-    color: $secondary-color;
-    /*font-family: "Helvetica Neue";*/
-    span{
-      color: $of-green;
-      font-weight: 300;
+.guide {
+  .empty{
+    text-align: center;
+    padding-bottom: 1rem;
+    i{
+      font-size: 1.5rem;
     }
   }
-  .edit-link{
+
+  .show-guide-app{
+    position: relative;
+  }
+
+  .canopy{
+    height: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .image-wrapper{
+    /*background-image: url(leaf-grey-canopy.png);*/
+    background-position: top;
     position: absolute;
-    top: 1rem;
+    top: 0;
+    left: 0;
     right: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 300px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   }
-}
 
-.actual-requirements{
-  ul{
-    list-style: none;
+  .image-wrapper img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    margin: auto 0;
+    width: 100%;
   }
-  li{
 
+  .title{
+    h2{
+      font-weight: 100;
+      color: $secondary-color;
+      /*font-family: "Helvetica Neue";*/
+      span{
+        color: $of-green;
+        font-weight: 300;
+      }
+    }
+    .edit-link{
+      position: absolute;
+      top: 1rem;
+      right: 0;
+    }
+  }
+
+  .actual-requirements{
+    ul{
+      list-style: none;
+    }
+    li{
+
+    }
   }
 }
 
@@ -86,87 +88,91 @@
 
 */
 
-.box{
-  margin: 2rem 0;
-  padding-top: 1rem;
-}
-
-.create-guide-steps{
-  max-width: 640px;
-  margin-top: 2rem;
-  text-align: center;
-  font-size: .8rem;
-  color: #C69F60;
-
-  .step{
-    opacity: .6;
+.new-guide {
+  .box{
+    margin: 2rem inherit;
+    padding-top: 1rem;
   }
 
-  .active{ 
-    opacity: 1;
-  }
-
-  span{
-    border-radius: 2rem;
-    font-size: .6rem;
-    width: 1.2rem;
-    text-align: center;
-    height: 1.2rem;
-    padding-top: .2rem;
-    vertical-align: middle;
-    display: inline-block;
-    background-image: -o-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
-    background-image: -moz-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
-    background-image: -ms-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
-    background-image: linear-gradient(-179deg, #FFFFFF 0%, #EFF1F4 100%);
-    /* Sketch doesnt export pattern fills at this point */
-    border: 1px solid rgba(0,0,0,0.10);
-    -moz-box-shadow:    0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
-    box-shadow:         0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
-  }
-}
-
-form.new-guide{
-  display: inline-block;
-  width: 100%;
-  margin: 2rem 0;
-
-  .button-wrapper{
+  .create-guide-steps{
+    max-width: 640px;
     margin-top: 2rem;
+    text-align: center;
+    font-size: .8rem;
+    color: #C69F60;
+
+    .step{
+      opacity: .6;
+    }
+
+    .active{ 
+      opacity: 1;
+    }
+
+    span{
+      border-radius: 2rem;
+      font-size: .6rem;
+      width: 1.2rem;
+      text-align: center;
+      height: 1.2rem;
+      padding-top: .2rem;
+      vertical-align: middle;
+      display: inline-block;
+      // TODO: Use Compass to DRY
+      background-image: -o-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+      background-image: -moz-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+      background-image: -ms-linear-gradient(-89deg, #FFFFFF 0%, #EFF1F4 100%);
+      background-image: linear-gradient(-179deg, #FFFFFF 0%, #EFF1F4 100%);
+      /* Sketch doesnt export pattern fills at this point */
+      border: 1px solid rgba(0,0,0,0.10);
+      -moz-box-shadow:    0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
+      box-shadow:         0px 1px 1px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px #FFFFFF;
+    }
   }
 
-  .block{
-    height: 2rem;
-    display: block;
-  }
+  form.new-guide{
+    display: inline-block;
+    width: 100%;
+    margin: 2rem 0;
 
-  p{
-    font-size: .9rem;
-    color: #171717;
-    line-height: 1.5rem;
-    margin-bottom: .5rem;
+    .button-wrapper{
+      margin-top: 2rem;
+    }
+
+    .block{
+      height: 2rem;
+      display: block;
+    }
+
+    p{
+      font-size: .9rem;
+      color: #171717;
+      line-height: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    input.button.small.secondary.left{
+      margin-left: .5rem;
+    }
   }
-  input.button.small.secondary.left{
-    margin-left: .5rem;
+  .crop-image{
+    background: #fff;
+    width: 100%;
+    height: 124px;
+    border-radius: 2px;
+    border: 0px solid #979797;
+    -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    img.no-image{
+      transform: translate(-50%, -50%);
+      position: relative;
+      top: 50%;
+      left: 50%;
+    }
   }
 }
-.crop-image{
-  background: #fff;
-  width: 100%;
-  height: 124px;
-  border-radius: 2px;
-  border: 0px solid #979797;
-  -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
-  box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
-  display: inline-block;
-  margin-bottom: 1rem;
 
-  img.no-image{
-    transform: translate(-50%, -50%);
-    position: relative;
-    top: 50%;
-    left: 50%;
-  }
-}
 
 @import "guides/_edit_guides.css.scss"

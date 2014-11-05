@@ -149,11 +149,11 @@ en:
     stages:
         edit:
             successful_creation: "You've successfully created a stage."
-    pages:
-        home:
-            placeholder: "What do you want to grow?"
-            search: "Search"
-            hero_header: "Learn to farm or garden with community created guides"
-            step_1: "Choose a Crop"
-            step_2: "Find a Guide"
-            step_3: "Grow!"
+    home:
+        placeholder: "What do you want to grow?"
+        search: "Search"
+        hero_header: "Learn to farm or garden with community created guides"
+        explore_community_favorites: "Explore community favorites"
+        step_1: "Choose a Crop"
+        step_2: "Find a Guide"
+        step_3: "Grow!"

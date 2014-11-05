@@ -13,7 +13,7 @@ OpenFarm::Application.routes.draw do
   # shareable link.
 
   scope '(:locale)', locale: /en|nl/ do
-    root to: 'high_voltage/pages#show', id: 'home'
+    root to:'home#show'
     post '(:locale)/crop_search' => 'crop_searches#search',
          as: :crop_search_via_post
     get '(:locale)/crop_search' => 'crop_searches#search',
@@ -42,5 +42,5 @@ OpenFarm::Application.routes.draw do
     delete 'token', to: 'tokens#destroy'
   end
 
-  get '/:locale' => 'high_voltage/pages#show', id: 'home'
+  get '/:locale' => 'home#show'
 end

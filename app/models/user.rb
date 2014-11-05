@@ -31,6 +31,8 @@ class User
 
   field :admin, type: Mongoid::Boolean, default: false
 
+  # Privacy fields
+  field :is_private, type: Mongoid::Boolean, default: false
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -6,18 +6,24 @@
 <!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en"
-  ng-app="openFarmApp">
+  ng-app="openFarmApp"
+  itemscope itemtype="http://schema.org/Article"
+  xmlns:fb="http://ogp.me/ns/fb#">
 <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-
+    
+	<%= render 'meta/global' %>
+	<%= render 'meta/page' %>
+	<%= render 'meta/social_network' %>
+	
     <!-- Uncomment to make IE8 render like IE7 -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
   	<title>
-        <%= content_for?(:title) ? yield(:title) : "OpenFarm" %>
+        <%= content_for?(:title) ? yield(:title) : t('application.site_title') %>
     </title>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>

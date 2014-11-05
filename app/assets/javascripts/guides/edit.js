@@ -12,7 +12,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.saving = true;
 
     $scope.guide_id = getIDFromURL("guides") || GUIDE_ID;
-    console.log($scope.guide_id);
 
     $scope.alerts = [];
 
@@ -73,7 +72,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
             type: 'warning'
           });
         });
-    }
+    };
 
     $scope.setGuide = function(success, response, code){
       if (success){
@@ -86,7 +85,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
           type: 'warning'
         });
       }
-    }
+    };
 
     guideService.getGuide($scope.guide_id, $scope.setGuide);
 
@@ -94,7 +93,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       if (item.status){
         item.status = 'edited';
       }
-    }
+    };
 
     $scope.saveGuide = function(){
       $scope.saving = true;
@@ -102,24 +101,23 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         $scope.guide.featured_image = null;
       }
       $http.put('/api/guides/' + $scope.guide._id + "/", $scope.guide)
-        .success(function (response) {
-          console.log("success");
+        .success(function (response, object) {
+          console.log("success", object);
           $scope.saving = false;
-
         })
         .error(function (response, code) {
           angular.forEach(response, function(value, key){
-            console.log(key, value);
             $scope.alerts.push({
               msg: value,
               type: 'alert'
-            });  
+            });
           });
-          
+
           $scope.saving = false;
         });
-
+      console.log('saving requirements');
       angular.forEach($scope.guide.requirements, function(item){
+        console.log(item.name, item.status);
         if (item.status === undefined){
           // in the case where the status hasn't been
           // defined yet, it's a good bet that the
@@ -129,18 +127,19 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
               name: item.name,
               required: item.value,
               guide_id: $scope.guide._id
-            }
+            };
             $http.post('/api/requirements/', data)
               .success(function (response){
                 // TODO: indicate that save happened
                 // successfully
+                item.status = 'edited';
               })
               .error(function (response, code){
                 $scope.alerts.push({
                   msg: code + ' error. Could not create Requirement.',
                   type: 'warning'
                 });
-              })
+              });
           }
         }
         if (item.status === 'edited'){
@@ -148,7 +147,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
             var data = {
               name: item.name,
               required: item.value
-            }
+            };
             $http.put('/api/requirements/' + item._id + '/', data)
               .success(function (response){
                 // TODO: indicate that save happened
@@ -165,7 +164,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         if ((item.status === 'existing' ||
              item.status === 'edited') &&
              !item.active){
-          console.log('deleting', item);
           $http.delete('/api/requirements/' + item._id + '/')
             .success(function (response){
               // TODO: indicate that save happened
@@ -199,6 +197,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
             .success(function (response){
               // TODO: indicate that save happened
               // successfully.
+              item.status = 'edited';
             })
             .error(function (response, code){
               $scope.alerts.push({
@@ -237,7 +236,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     };
 }]);
 
-openFarmApp.directive('focusMe', function($timeout, $parse) {
+openFarmApp.directive('focusMe',
+  ['$timeout',
+   '$parse',
+   function($timeout, $parse) {
   return {
     //scope: true,   // optionally create a child scope
     link: function(scope, element, attrs) {
@@ -254,4 +256,4 @@ openFarmApp.directive('focusMe', function($timeout, $parse) {
       });
     }
   };
-});
+}]);

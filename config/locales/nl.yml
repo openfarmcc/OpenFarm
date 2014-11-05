@@ -6,9 +6,26 @@ nl:
         log_out: "Afmelden"
         log_in: "Aanmelden"
         create_account: "Account aanmaken"
+    devise:
+        sessions:
+            user:
+                signed_out: "Je bent afgemeld."
+                signed_up: "Welkom!"
     users:
+        create_your_openfarm_profile: "Maak een OpenFarm profiel"
+        community: "Gemeenschap"
+        join_a_community: "Word deel van een gemeenschap van %{users} mensen."
+        compatibility: "Wat past?"
+        find_guides_based_on_compatibility: "Vind planten gidsen die in jouw tuin passen."
+        favorite: "Save"
+        star_your_favorite_guides_and_crops: "Save je favoriete gewassen en gidsen."
+        create: "Maak"
+        share_your_knowledge_with_guide_creation: "Deel jou kennis met de wereld."
         email_address: "Email adres"
         display_name: "Gebruikers naam"
+        current_password: "Paswoord (we hebben jouw huidig paswoord nodig om je veranderingen te bevestigen"
+        password_blank_ok: " (laat het leeg als je je paswoord niet wil veranderen)"
+        is_private: "Is je profiel privé?"
         password: "Paswoord"
         password_confirmation: "Herhaal Paswoord"
         location: "Plaats"
@@ -122,7 +139,7 @@ nl:
               other: minder dan %{count} seconden
           over_x_years:
               one: meer dan een jaar
-              other: meer dan %{count} jaar
+              other: 'meer dan %{count} jaar'
           x_days:
               one: 1 dag
               other: ! '%{count} dagen'

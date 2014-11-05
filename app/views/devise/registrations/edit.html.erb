@@ -5,7 +5,14 @@
         <h1>Need to make some changes?</h1>
         <%= render 'devise/shared/user_form' %>
         <h3>Cancel my account</h3>
-        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'button submit' %></p>
+        <p>Unhappy?
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :delete) do |f| %>
+          <%= f.label :password_confirmation, I18n.t('users.current_password') %>
+
+          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          <%= f.submit I18n.t('users.delete'), class: 'button submit', :data => { confirm: "Are you sure?" } %>
+        <% end %>
+        <%# <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: 'button submit' %></p>
         <%= link_to "Back", :back %>
       </div>
     </div>

@@ -1,0 +1,7 @@
+<div class="featured-crops-grid">
+  <div class="row ">
+  <% @featured_crops.each_with_index do |crop, index| %>
+    <!-- Only the first 3 will display on mobile -->
+    <%= render partial:'featured_crop', object:crop, as:'crop', locals: {index:index} %>
+  <% end %>
+</div>

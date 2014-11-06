@@ -12,10 +12,10 @@ var openFarmModule = angular.module('openFarmModule', [
 openFarmModule.factory('guideService', ['$http',
   function guideService($http) {
     // get the guide specified.
-    var getGuide = function(guide_id, alerts, callback){
+    var getGuide = function(guideId, alerts, callback){
       $http({
-        url: '/api/guides/' + guide_id,
-        method: "GET"
+        url: '/api/guides/' + guideId,
+        method: 'GET'
       }).success(function (response) {
         return callback (true, response.guide);
       }).error(function (response, code) {
@@ -27,17 +27,17 @@ openFarmModule.factory('guideService', ['$http',
       });
     };
     return {
-      "getGuide": getGuide
+      'getGuide': getGuide
     };
 }]);
 
 openFarmModule.factory('cropService', ['$http',
   function cropService($http) {
     // get the guide specified.
-    var getCrop = function(crop_id, alerts, callback){
+    var getCrop = function(cropId, alerts, callback){
       $http({
-        url: '/api/crops/' + crop_id,
-        method: "GET"
+        url: '/api/crops/' + cropId,
+        method: 'GET'
       }).success(function (response) {
         return callback (true, response.crop);
       }).error(function (response, code) {
@@ -49,7 +49,7 @@ openFarmModule.factory('cropService', ['$http',
       });
     };
     return {
-      "getCrop": getCrop
+      'getCrop': getCrop
     };
 }]);
 
@@ -57,10 +57,10 @@ openFarmModule.factory('userService', ['$http',
   function userService($http) {
 
     // get the guide specified.
-    var getUser = function(user_id, alerts, callback){
+    var getUser = function(userId, alerts, callback){
       $http({
-        url: '/api/users/' + user_id,
-        method: "GET"
+        url: '/api/users/' + userId,
+        method: 'GET'
       }).success(function (response) {
         return callback (true, response.user);
       }).error(function (response, code) {
@@ -73,78 +73,78 @@ openFarmModule.factory('userService', ['$http',
     };
 
     return {
-      "getUser": getUser,
+      'getUser': getUser,
     };
 
 }]);
 
 openFarmModule.factory('gardenService', ['$http',
   function gardenService($http) {
-    var saveGardenCrop = function(garden, garden_crop, alerts, callback){
+    var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
       // TODO: this is on pause until there's a way to 
       // actually add crops and guides to a garden.
       var url = '/api/gardens/'+ garden._id +
-                '/garden_crops/' + garden_crop._id;
-      $http.put(url, garden_crop)
+                '/garden_crops/' + gardenCrop._id;
+      $http.put(url, gardenCrop)
         .success(function (response, object) {
           alerts.push({
-            "type": "success",
-            "msg": "Success!"
+            'type': 'success',
+            'msg': 'Success!'
           });
         })
         .error(function (response, code){
           alerts.push({
-            "type": "alert",
-            "msg": response
+            'type': 'alert',
+            'msg': response
           });
         });
     };
 
     var addGardenCropToGarden = function(garden, guide, alerts, callback){
       var data = {
-        garden_id: garden._id, 
-        guide_id: guide._id
+        'garden_id': garden._id,
+        'guide_id': guide._id
       };
-      $http.post("/api/gardens/" + garden._id +"/garden_crops/", data)
+      $http.post('/api/gardens/' + garden._id +'/garden_crops/', data)
         .success(function(success, response){
           alerts.push({
-            "type": "success",
-            "msg": "Success!"
+            'type': 'success',
+            'msg': 'Success!'
           });
           callback(success, response);
         })
         .error(function(response, code){
           alerts.push({
-            "type": "alert",
-            "msg": response
+            'type': 'alert',
+            'msg': response
           });
           callback(success, response);
         });
     };
 
-    var deleteGardenCrop = function(garden, garden_crop, alerts, callback){
+    var deleteGardenCrop = function(garden, gardenCrop, alerts, callback){
       var url = '/api/gardens/'+ garden._id +
-                '/garden_crops/' + garden_crop._id;
+                '/garden_crops/' + gardenCrop._id;
       $http.delete(url)
         .success(function(response, object){
           alerts.push({
-            "type": "success",
-            "msg": "Deleted crop",
+            'type': 'success',
+            'msg': 'Deleted crop',
           });
           return callback(response, object);
         })
         .error(function(response, code){
           alerts.push({
-            "type": "alert",
-            "msg": response
+            'type': 'alert',
+            'msg': response
           });
           return callback(response, code);
         });
     };
     return {
-      "saveGardenCrop": saveGardenCrop,
-      "addGardenCropToGarden": addGardenCropToGarden,
-      "deleteGardenCrop": deleteGardenCrop
+      'saveGardenCrop': saveGardenCrop,
+      'addGardenCropToGarden': addGardenCropToGarden,
+      'deleteGardenCrop': deleteGardenCrop
     };
 }]);
 
@@ -187,7 +187,7 @@ openFarmModule.directive('location', [
                   $scope.addresses = addresses;
                  }
                  else {
-                    console.log("Geocoding failed: " + status);
+                    console.log('Geocoding failed: ' + status);
                  }
               });
             }
@@ -222,13 +222,13 @@ openFarmModule.directive('alerts', ['$timeout',
           $scope.closeAlert = function(index) {
             $scope.alerts.splice(index, 1);
           };
-          // $scope.$watch('alerts.length', function(){
-          //   if ($scope.alerts.length > 0){
-          //     $timeout(function(){
-          //       $scope.alerts = [];
-          //     }, 3000);
-          //   }
-          // });
+          $scope.$watch('alerts.length', function(){
+            if ($scope.alerts.length > 0){
+              $timeout(function(){
+                $scope.alerts = [];
+              }, 3000);
+            }
+          });
       }],
       template: 
         '<alert ng-cloak ' +

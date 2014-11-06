@@ -2,12 +2,8 @@
      ng-cloak
      class="edit-guide-app">
 
-    <alert ng-cloak class="ng-cloak columns large-6 centered radius" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
-      <div class="">
-        {{alert.msg}}
-      </div>
-    </alert>
-
+    <div alerts ng-model="alerts"></div>
+    
     <div class="row">
     <form accept-charset="UTF-8"
       class="small-10 large-10 columns centered edit-overview"

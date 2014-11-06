@@ -2,11 +2,8 @@
      ng-cloak
      class="show-guide-app">
 
-    <alert ng-cloak class="ng-cloak columns large-6 centered" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
-      <div>
-        {{ alert.msg }}
-      </div>
-    </alert>
+    <div alerts ng-model="alerts"></div>
+
     <div class="canopy">
       <div class="image-wrapper">
         <img ng-src="/assets/leaf-grey-canopy.png"
@@ -24,6 +21,16 @@
         <% if @guide.owned_by?(current_user) %>
         <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
         <% end %>
+        <button href="#" data-dropdown="addToGarden" aria-controls="addToGarden" aria-expanded="false" class="button tiny secondary dropdown add-to-garden">Add To Garden</button><br>
+        <ul id="addToGarden" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+          <li ng-repeat="garden in current_user.gardens">
+            <a ng-click="addToGarden(garden)">
+              <i class="fa fa-spin fa-spinner" ng-show="garden.adding"></i>
+              <i class="fa fa-check" ng-show="garden.added"></i>
+              {{ garden.name }}
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="columns large-10 centered">
         <div class="markdown" markdown="guide.overview">
@@ -139,5 +146,6 @@
 </div>
 
 <% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user._id}';" %>
   <%= javascript_include_tag 'guides/show' %>
 <% end %>

@@ -34,7 +34,13 @@ OpenFarm::Application.routes.draw do
     resources :crops, only: [:index, :show]
     resources :users, only: [:show]
     resources :guides, only: [:create, :show, :update]
-    resources :gardens, only: [:show]
+    resources :gardens, only: [:show] do
+      resources :garden_crops, only: [:index,
+                                      :show,
+                                      :create,
+                                      :update,
+                                      :destroy]
+    end
     resources :requirement_options, only: [:index]
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]

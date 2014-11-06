@@ -3,10 +3,8 @@
 //= require angular/angular
 //= require angular/angular-sanitize
 //= require ng-rails-csrf
-//= require  ./libs/underscore
-//= require  ./libs/backbone
-//= require  ./libs/showdown
-//= require  ./libs/rivets
+//= require ./libs/showdown
+//= require ./libs/moment.min
 //= require_tree ./angular-libs
 //= require foundation
 //= require foundation/custom.modernizr

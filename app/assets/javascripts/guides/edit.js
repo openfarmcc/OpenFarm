@@ -1,10 +1,3 @@
-// var editGuidesApp = angular.module('editGuidesApp', [
-//   'mm.foundation',
-//   'ngS3upload',
-//   'ng-rails-csrf',
-//   'openFarmModule'
-//   ]);
-
 openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
   function editGuideCtrl($scope, $http, guideService) {
     // setting this to true temporarily because
@@ -78,16 +71,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       if (success){
         $scope.guide = response;
         $scope.initGuide();
-      } else {
-        $scope.alerts.push({
-          msg: code + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
       }
     };
 
-    guideService.getGuide($scope.guide_id, $scope.setGuide);
+    guideService.getGuide($scope.guide_id, $scope.alerts, $scope.setGuide);
 
     $scope.setStatus = function(item){
       if (item.status){
@@ -104,6 +91,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         .success(function (response, object) {
           console.log("success", object);
           $scope.saving = false;
+          $scope.alerts.push({
+            msg: "Your guide has been updated!",
+            type: 'success'
+          });
         })
         .error(function (response, code) {
           angular.forEach(response, function(value, key){
@@ -223,15 +214,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
           });
       }
     });
-    };
-
-
-    if (!$scope.guide.requirements){
-      console.log('no requirements');
-    }
-    // TODO: figure this out for the sake of code non-repeat
-    $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
     };
 }]);
 

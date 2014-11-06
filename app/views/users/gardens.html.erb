@@ -3,15 +3,18 @@
     <h1><%= t('gardens.your_gardens') %></h1>
   </div>
 <% end %>
-<div class="gardens" controller="gardenCtrl">
-<div class="garden">
+<div class="gardens" ng-controller="gardenCtrl">
+
+<div alerts ng-model="alerts"></div>
+
+<div class="garden" ng-repeat="garden in gardens">
   <div class="row header">
     <div class="columns large-9">
-      <h2>Backyard</h2>
+      <h2 ng-bind="garden.name"></h2>
     </div>
     <div class="columns large-3 edit">
       <i class="fa fa-lock"></i>
-      <a class="button secondary tiny" href="#">Edit Garden</a>
+      <a class="button secondary tiny" ng-click="garden.editing = !garden.editing"><i class="fa fa-edit"></i> Edit Garden</a>
     </div>
   </div>
   <div class="row info">
@@ -20,8 +23,8 @@
       +image"/>
     </div>
     <div class="columns large-9">
-      <div class="description">
-        Garden description
+      <div class="description markdown"
+           markdown="garden.description">
       </div>
       <table>
         <tr>
@@ -29,7 +32,16 @@
             Garden Type
           </th>
           <td>
-            Outdoors
+           <span ng-bind="garden.type">
+           </span>
+           <select>
+            <option value="organic">Organic</option>
+            <option value="hydroponic">Hydroponic</option>
+           </select>
+           <input type="text"
+                 ng-model="garden.type"
+                 ng-if="garden.editing"
+                 />
           </td>
         </tr>
         <tr>
@@ -37,7 +49,12 @@
             Sunlight
           </th>
           <td>
-            Full Sun
+            <span ng-bind="garden.average_sun">
+            </span>
+            <input type="text"
+                 ng-model="garden.average_sun"
+                 ng-if="garden.editing"
+                 />
           </td>
         </tr>
         <tr>
@@ -45,18 +62,64 @@
             Soil Type
           </th>
           <td>
-            Sandy Loam
+            <span ng-bind="garden.soil_type">
+            </span>
+            <input type="text"
+                 ng-model="garden.soil_type"
+                 ng-if="garden.editing"
+                 />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            pH
+          </th>
+          <td>
+            <span ng-bind="garden.ph">
+            </span>
+            <input type="range"
+                 ng-model="garden.ph"
+                 ng-if="garden.editing"
+                 />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Growing Practices
+          </th>
+          <td ng-bind="garden.growing_practices">
           </td>
         </tr>
       </table>
+    </div>
+  </div>
+  <div class="row edit-buttons"
+       ng-show="garden.selected">
+    <div class="columns large-3 right">
+      <a type="button"
+         ng-show="!garden.editing"
+         class="button secondary tiny"
+         ng-init="garden.editing_crops = false"
+         ng-click="garden.editing_crops = !garden.editing_crops"
+      ><i class="fa fa-edit"></i> Edit</a>
+      <a type="button"
+         ng-show="garden.editing"
+         class="button secondary tiny"
+         ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);"
+      ><i class="fa fa-save"></i> Save Changes</a>
+      <input type="button" value="Delete" class="button alert tiny" ng-click="deleteSelected(garden)"/>
     </div>
   </div>
   <div class="row crops">
   <div class="columns large-12">
     <table>
       <tr>
+
         <td>
-          <input type="checkbox"/>
+          <input type="checkbox"
+                 ng-model="garden.selectAll"
+                 ng-change="selectAll(garden)"
+                 ng-disabled="garden.editing_crops"/>
         </td>
         <th>
           Crop
@@ -74,29 +137,53 @@
           Quantity
         </th>
       </tr>
-      <tr>
+      <tr ng-repeat="crop in garden.garden_crops"
+          ng-hide="crop.hide">
         <td>
-          <input type="checkbox"/>
+          <input type="checkbox"
+                 ng-model="crop.selected"
+                 ng-change="checkSelected(garden)"
+                 ng-disabled="crop.selected && garden.editing_crops"
+                 />
         </td>
         <td>
-          Crop Name
+          <span ng-bind="crop.guide.crop.name">
+          </span>
         </td>
         <td>
-          Guide Name
+          <span ng-bind="crop.guide.name">
+          </span>
         </td>
         <td>
-          02-22-22
+          <span ng-bind="crop.sowed|date:'yyyy-MM-dd'"
+                ng-if="!(crop.selected && garden.editing)">
+          </span>
+          <input type="date"
+                 ng-model="crop.sowed"
+                 ng-if="crop.selected && garden.editing_crops"
+                 />
         </td>
         <td>
-          Juvenile
+          <span ng-bind="crop.stage"
+                ng-if="!(crop.selected && garden.editing_crops)">
+          </span>
+          <input type="text"
+                 ng-model="crop.stage"
+                 ng-if="crop.selected && garden.editing_crops"/>
+
         </td>
         <td>
-          2
+          <span ng-bind="crop.quantity"
+                ng-show="!(crop.selected && garden.editing_crops)">
+          </span>
+          <input type="number"
+                 ng-model="crop.quantity"
+                 ng-show="crop.selected && garden.editing_crops"/>
         </td>
       </tr>
       <tr>
         <td colspan="6">
-          Add Plant
+          To add another plant to this garden, look for a guide you want to use!
         </td>
       </tr>
     </table>

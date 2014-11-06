@@ -1,33 +1,47 @@
 openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
-    'userService',
-  function showGuideCtrl($scope, $http, guideService, userService) {
+    'userService', 'gardenService',
+  function showGuideCtrl($scope,
+    $http,
+    guideService,
+    userService,
+    gardenService) {
     $scope.guide_id = getIDFromURL('guides') || GUIDE_ID;
     $scope.alerts = [];
 
     $scope.setUser = function(success, object, code){
       if (success){
         $scope.guide.user = object;
-      } else {
-        $scope.alerts.push({
-          msg: code + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
+      }
+    };
+
+    $scope.setCurrentUser = function(success, object, code){
+      if (success){
+        $scope.current_user = object;
       }
     };
 
     $scope.setGuide = function(success, object, code){
       if (success){
         $scope.guide = object;
-        userService.getUser($scope.guide.user_id, $scope.setUser);
-      } else {
-        $scope.alerts.push({
-          msg: object + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
+        userService.getUser($scope.guide.user_id, $scope.alerts, $scope.setUser);
       }
     };
 
-    guideService.getGuide($scope.guide_id, $scope.setGuide);
+    $scope.addToGarden = function(garden){
+      garden.adding = true;
+      var callback = function(success, response){
+        if (success){
+          garden.adding = false;
+          garden.added = true;
+        }
+      };
+      gardenService.addGardenCropToGarden(garden,
+        $scope.guide,
+        $scope.alerts,
+        callback);
+    };
+
+    userService.getUser(USER_ID, $scope.alerts, $scope.setCurrentUser);
+
+    guideService.getGuide($scope.guide_id, $scope.alerts, $scope.setGuide);
   }]);

@@ -1,22 +1,65 @@
-// Going to start transitioning to Backbone I think
-// as I learn more about it.
-
-var Garden = Backbone.Model.extend({
-  // Default Garden attribute values 
-  defaults: {
-    name: '',
-    isPublic: false,
-    image: '',
-    description: '',
-    gardenExtras: [],
-    crops: []
-  }
-});
 openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
-  function gardenCtrl($scope, $http, userService) {
-    console.log('hi');
-    $scope.setUser = function(success, user){
+  'gardenService', 'cropService',
+  function gardenCtrl($scope,
+                      $http,
+                      userService,
+                      gardenService,
+                      cropService) {
+
+    $scope.alerts = [];
+
+    $scope.init = function(success, user){
+      $scope.current_user = user;
       $scope.gardens = user.gardens;
+      angular.forEach(user.gardens, function(garden){
+        angular.forEach(garden.garden_crops, function(crop){
+          var callback = function(success, response){
+            crop.guide.crop = response;
+          };
+          cropService.getCrop(crop.guide.crop_id, $scope.alerts, callback);  
+        });
+      });
     };
-    userService.getUser(USER_ID, $scope.setUser);
+    userService.getUser(USER_ID, $scope.alerts, $scope.init);
+
+    $scope.selectAll = function(garden){
+      angular.forEach(garden.garden_crops, function(crop){
+        crop.selected = garden.selectAll;
+      });
+      $scope.checkSelected(garden);
+    };
+
+    $scope.checkSelected = function(garden){
+      garden.selected = false;
+      angular.forEach(garden.garden_crops, function(crop){
+        if (crop.selected === true){
+          garden.selected = true;
+        }
+      });
+      if (garden.selected === false){
+        garden.selectAll = false;
+      }
+    };
+
+    $scope.saveGardenCropChanges = function(garden){
+      angular.forEach(garden.garden_crops, function(crop){
+        gardenService.saveGardenCrop(garden,
+                                     crop,
+                                     $scope.alerts);
+      });
+    };
+
+    $scope.deleteSelected = function(garden){
+      angular.forEach(garden.garden_crops, function(crop, index){
+        if (crop.selected){
+          var removeFromList = function(success){
+            crop.hide = true;
+          };
+          gardenService.deleteGardenCrop(garden,
+                                         crop,
+                                         $scope.alerts,
+                                         removeFromList);  
+        }
+      });
+    };
 }]);

@@ -19,5 +19,4 @@ class Garden
   field :growing_practices, type: Array # organic, permaculutre, etc
 
   scope :is_public, -> { where(is_private: true) }
-  accepts_nested_attributes_for :garden_crops
 end

@@ -23,8 +23,8 @@ module GardenCrops
     end
 
     def find_garden_crop
-      @garden_crop = Garden.find(garden_id)
-        .garden_crops.find(id)
+      @garden_crop = Garden.find(garden_id).
+          garden_crops.find(id)
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a garden_crop with id #{id}."
       add_error :garden_crop, :garden_crop_not_found, msg

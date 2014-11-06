@@ -32,14 +32,14 @@ module GardenCrops
     def validate_guide
       @guide = Guide.find(guide_id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a guide with id #{guide_id}."
+      msg = 'Could not find a guide with id #{guide_id}.'
       add_error :guide, :guide_not_found, msg
     end
 
     def validate_garden
       @garden = Garden.find(garden_id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a garden with id #{garden_id}."
+      msg = 'Could not find a garden with id #{garden_id}.'
       add_error :guide, :garden_not_found, msg
     end
 
@@ -48,7 +48,6 @@ module GardenCrops
         msg = 'You can\'t create garden crops for gardens you don\'t own.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
-      
     end
 
     def set_params

@@ -8,19 +8,19 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.alerts = [];
 
-    $scope.setUser = function(success, object, code){
+    $scope.setUser = function(success, object){
       if (success){
         $scope.guide.user = object;
       }
     };
 
-    $scope.setCurrentUser = function(success, object, code){
+    $scope.setCurrentUser = function(success, object){
       if (success){
         $scope.currentUser = object;
       }
     };
 
-    $scope.setGuide = function(success, object, code){
+    $scope.setGuide = function(success, object){
       if (success){
         $scope.guide = object;
         userService.getUser($scope.guide.user_id,
@@ -31,7 +31,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
     $scope.addToGarden = function(garden){
       garden.adding = true;
-      var callback = function(success, response){
+      var callback = function(success){
         if (success){
           garden.adding = false;
           garden.added = true;

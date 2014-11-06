@@ -19,7 +19,7 @@ openFarmModule.factory('guideService', ['$http',
       }).success(function (response) {
         return callback (true, response.guide);
       }).error(function (response, code) {
-        $scope.alerts.push({
+        alerts.push({
           msg: code + ' error. Could not retrieve data from server. ' +
             'Please try again later.',
           type: 'warning'
@@ -41,7 +41,7 @@ openFarmModule.factory('cropService', ['$http',
       }).success(function (response) {
         return callback (true, response.crop);
       }).error(function (response, code) {
-        $scope.alerts.push({
+        alerts.push({
           msg: code + ' error. Could not retrieve data from server. ' +
             'Please try again later.',
           type: 'warning'
@@ -55,7 +55,6 @@ openFarmModule.factory('cropService', ['$http',
 
 openFarmModule.factory('userService', ['$http',
   function userService($http) {
-
     // get the guide specified.
     var getUser = function(userId, alerts, callback){
       $http({
@@ -64,7 +63,7 @@ openFarmModule.factory('userService', ['$http',
       }).success(function (response) {
         return callback (true, response.user);
       }).error(function (response, code) {
-        $scope.alerts.push({
+        alerts.push({
           msg: response,
           type: 'warning'
         });
@@ -91,12 +90,14 @@ openFarmModule.factory('gardenService', ['$http',
             'type': 'success',
             'msg': 'Success!'
           });
+          return callback(response, object);
         })
         .error(function (response, code){
           alerts.push({
             'type': 'alert',
             'msg': response
           });
+          return callback(response, code);
         });
     };
 
@@ -118,7 +119,7 @@ openFarmModule.factory('gardenService', ['$http',
             'type': 'alert',
             'msg': response
           });
-          callback(success, response);
+          callback(response, response);
         });
     };
 
@@ -230,7 +231,7 @@ openFarmModule.directive('alerts', ['$timeout',
             }
           });
       }],
-      template: 
+      template:
         '<alert ng-cloak ' +
           'class="ng-cloak columns large-6 centered radius float" ' +
           'ng-repeat="alert in alerts" ' +

@@ -16,6 +16,7 @@
     "$",
     "jQuery",
 
+    "console",
     "jasmine",
     "beforeEach",
     "describe",

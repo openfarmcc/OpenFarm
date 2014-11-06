@@ -4,7 +4,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
     // other wise the ajax loader doesn't load
     $scope.saving = true;
 
-    $scope.guide_id = getIDFromURL("guides") || GUIDE_ID;
+    $scope.guideId = getIDFromURL("guides") || GUIDE_ID;
 
     $scope.alerts = [];
 
@@ -74,7 +74,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
-    guideService.getGuide($scope.guide_id, $scope.alerts, $scope.setGuide);
+    guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
 
     $scope.setStatus = function(item){
       if (item.status){
@@ -114,9 +114,9 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
           // status doesn't exist yet.
           if (item.active){
             var data = {
-              name: item.name,
-              required: item.value,
-              guide_id: $scope.guide._id
+              'name': item.name,
+              'required': item.value,
+              'guide_id': $scope.guide._id
             };
             $http.post('/api/requirements/', data)
               .success(function (response){
@@ -179,9 +179,9 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         // exist.
         if (item.instructions){
           var data = {
-            name: item.name,
-            instructions: item.instructions,
-            guide_id: $scope.guide._id
+            'name': item.name,
+            'instructions': item.instructions,
+            'guide_id': $scope.guide._id
           }
           $http.post('/api/stages/', data)
             .success(function (response){

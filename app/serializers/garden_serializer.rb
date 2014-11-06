@@ -12,10 +12,10 @@ class GardenSerializer < ApplicationSerializer
   # conform to JSONApi out of the box.
   # There might be a solution here:
   # https://github.com/rails-api/active_model_serializers/issues/646
-  embeds_many :garden_crops  #,
-            # embed: :ids,
-            # key: :garden_crops,
-            # embed_namespace: :links
+  embeds_many :garden_crops # ,
+  # embed: :ids,
+  # key: :garden_crops,
+  # embed_namespace: :links
 
   # has_many :garden_crops
 

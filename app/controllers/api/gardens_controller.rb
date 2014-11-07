@@ -11,6 +11,14 @@ module Api
       end
     end
 
+    def update
+      garden = Garden.find(params[:id])
+      @outcome = Gardens::UpdateGarden.run(params,
+                                          user: current_user,
+                                          garden: garden)
+      respond_with_mutation(:ok)
+    end
+
     # def index
     #   gardens = Pundit.policy_scope(current_user, Garden)
     #   render json: { gardens: gardens }

@@ -22,4 +22,18 @@ describe Api::UsersController, :type => :controller do
     get 'show', id: private_user.id, format: :json
     expect(response.status).to eq(401)
   end
+
+  it 'shows public users to a user' do
+    viewing_user.save
+    sign_in viewing_user
+    get 'show', id: public_user.id, format: :json
+    expect(response.status).to eq(200)
+    expect(json['user']).to have_key('location')
+  end
+
+  it 'shows basics to non-logged in users' do
+    get 'show', id: public_user.id, format: :json
+    expect(response.status).to eq(200)
+    expect(json['user']).to_not have_key('location')
+  end
 end

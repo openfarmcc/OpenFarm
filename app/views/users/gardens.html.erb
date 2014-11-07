@@ -4,45 +4,52 @@
   </div>
 <% end %>
 <div class="gardens" ng-controller="gardenCtrl">
-
 <div alerts ng-model="alerts"></div>
 
-<div class="garden" ng-repeat="garden in gardens">
+<div class="garden" ng-repeat="garden in gardens" ng-cloak>
   <div class="row header">
     <div class="columns large-9">
       <h2 ng-bind="garden.name"></h2>
     </div>
     <div class="columns large-3 edit">
       <i class="fa fa-lock"></i>
-      <a class="button secondary tiny" ng-click="garden.editing = !garden.editing"><i class="fa fa-edit"></i> Edit Garden</a>
+      <a class="button secondary tiny"
+         ng-click="garden.editing = !garden.editing"
+         ng-show="!garden.editing"><i class="fa fa-edit"></i> Edit Garden</a>
+      <a class="button secondary tiny"
+         ng-click="garden.editing = !garden.editing; saveGarden(garden)"
+         ng-show="garden.editing"><i class="fa fa-save"></i> Save Garden</a>
     </div>
   </div>
   <div class="row info">
     <div class="columns large-3">
-      <img src="http://placehold.it/350?text=garden
-      +image"/>
+      <img src="http://placehold.it/350&text=garden+images+soon"/>
     </div>
     <div class="columns large-9">
       <div class="description markdown"
-           markdown="garden.description">
+           markdown="garden.description"
+           ng-if="!garden.editing">
       </div>
-      <table>
+      <textarea ng-if="garden.editing"
+                ng-model="garden.description">
+      </textarea>
+      <table class="details">
         <tr>
           <th>
             Garden Type
           </th>
           <td>
-           <span ng-bind="garden.type">
-           </span>
-           <select>
-            <option value="organic">Organic</option>
-            <option value="hydroponic">Hydroponic</option>
-            <option value="hydroponic">Hydroponic</option>
-           </select>
-           <input type="text"
-                 ng-model="garden.type"
-                 ng-if="garden.editing"
-                 />
+            <span ng-bind="garden.type"
+                  ng-if="!garden.editing">
+            </span>
+           <%# TODO: This should probably be 
+               based on something stored in the 
+               backend %>
+            <select ng-if="garden.editing"
+                    ng-model="garden.type">
+              <option value="Outdoors">Outdoors</option>
+              <option value="Indoors">Indoors</option>
+            </select>
           </td>
         </tr>
         <tr>
@@ -50,12 +57,18 @@
             Sunlight
           </th>
           <td>
-            <span ng-bind="garden.average_sun">
+            <span ng-bind="garden.average_sun"
+                  ng-if="!garden.editing">
             </span>
-            <input type="text"
-                 ng-model="garden.average_sun"
-                 ng-if="garden.editing"
-                 />
+            <%# TODO: This should probably be 
+                based on something stored in the 
+                backend %>
+            <select ng-if="garden.editing"
+                    ng-model="garden.average_sun">
+              <option value="Full Sun">Full Sun</option>
+              <option value="Partial Sun">Partial Sun</option>
+              <option value="Full Shade">Full Shade</option>
+            </select>
           </td>
         </tr>
         <tr>
@@ -63,12 +76,19 @@
             Soil Type
           </th>
           <td>
-            <span ng-bind="garden.soil_type">
+            <span ng-bind="garden.soil_type"
+                  ng-if="!garden.editing">
             </span>
-            <input type="text"
-                 ng-model="garden.soil_type"
-                 ng-if="garden.editing"
-                 />
+            <%# TODO: This should probably be 
+                based on something stored in the 
+                backend %>
+            <select ng-if="garden.editing"
+                    ng-model="garden.soil_type">
+              <option value="Loam">Loam</option>
+              <option value="Clay">Clay</option>
+              <option value="Silt">Sandy</option>
+              <option value="Full Shade">Silty</option>
+            </select>
           </td>
         </tr>
         <tr>
@@ -76,9 +96,12 @@
             pH
           </th>
           <td>
-            <span ng-bind="garden.ph">
+            <span ng-bind="garden.ph" class="ph">
             </span>
             <input type="range"
+                 min="0"
+                 max="15"
+                 step=".5"
                  ng-model="garden.ph"
                  ng-if="garden.editing"
                  />
@@ -88,7 +111,10 @@
           <th>
             Growing Practices
           </th>
-          <td ng-bind="garden.growing_practices">
+          <td>
+          <span ng-bind="garden.growing_practices"
+                ng-if="!garden.editing">
+          </span>
           </td>
         </tr>
       </table>
@@ -98,13 +124,13 @@
        ng-show="garden.selected">
     <div class="columns large-3 right">
       <a type="button"
-         ng-show="!garden.editing"
+         ng-show="!garden.editing_crops"
          class="button secondary tiny"
          ng-init="garden.editing_crops = false"
          ng-click="garden.editing_crops = !garden.editing_crops"
       ><i class="fa fa-edit"></i> Edit</a>
       <a type="button"
-         ng-show="garden.editing"
+         ng-show="garden.editing_crops"
          class="button secondary tiny"
          ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);"
       ><i class="fa fa-save"></i> Save Changes</a>
@@ -139,7 +165,9 @@
         </th>
       </tr>
       <tr ng-repeat="crop in garden.garden_crops"
+          ng-init="crop.hide = false"
           ng-hide="crop.hide">
+
         <td>
           <input type="checkbox"
                  ng-model="crop.selected"

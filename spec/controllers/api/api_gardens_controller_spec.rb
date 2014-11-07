@@ -23,6 +23,7 @@ describe Api::GardensController, type: :controller do
       @other_user = FactoryGirl.create :user
       sign_in @viewing_user
     end
+
     it 'should show admins gardens regardless of privacy setting' do
       @viewing_user.admin = true
       @viewing_user.save
@@ -83,6 +84,32 @@ describe Api::GardensController, type: :controller do
       get 'show', id: private_garden.id
       expect(response.status).to eq(200)
       expect(json['garden']['name']).to eq(private_garden.name)
+    end
+  end
+
+  describe 'update' do
+    before do
+      @viewing_user = FactoryGirl.create :user
+      sign_in @viewing_user
+    end
+
+    it 'should not allow editing of non-owned gardens' do
+      garden = FactoryGirl.create(:garden)
+      put :update,
+          id: garden.id,
+          name: 'updated',
+          format: :json
+      expect(response.status).to eq(422)
+    end
+
+    it 'should edit owned gardens' do
+      garden = FactoryGirl.create(:garden, user: @viewing_user)
+      put :update,
+          id: garden.id,
+          name: 'updated',
+          format: :json
+      expect(response.status).to eq(200)
+      expect(garden.reload.name).to eq('updated')
     end
   end
 end

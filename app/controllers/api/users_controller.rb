@@ -5,7 +5,7 @@ module Api
     def show
       user = User.find(params[:id])
       if Pundit.policy(current_user, user).show?
-        render json: { user: user }
+        render json: user
       else
         raise OpenfarmErrors::NotAuthorized
       end

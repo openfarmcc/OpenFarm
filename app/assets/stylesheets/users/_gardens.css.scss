@@ -31,4 +31,20 @@
     margin-bottom: .5rem;
     text-align: right;
   }
+  .details{
+    td{
+      width: 50%;
+    }
+
+    td{
+      input, select{
+        margin-bottom: 0;
+      }
+    }
+
+    .ph{
+      width: 10%;
+      display: inline-block;
+    }
+  }
 }

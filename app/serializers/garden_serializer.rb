@@ -18,12 +18,4 @@ class GardenSerializer < ApplicationSerializer
   # embed_namespace: :links
 
   # has_many :garden_crops
-
-  def filter(keys)
-    if Pundit.policy(scope, object).show?
-      keys - [:admin]
-    else
-      [:_id, :display_name]
-    end
-  end
 end

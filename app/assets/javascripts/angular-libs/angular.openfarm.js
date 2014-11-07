@@ -79,6 +79,36 @@ openFarmModule.factory('userService', ['$http',
 
 openFarmModule.factory('gardenService', ['$http',
   function gardenService($http) {
+    var saveGarden = function(garden, alerts, callback){
+      var url = '/api/gardens/' + garden._id;
+      var data = {
+        'description': garden.description || null,
+        'type': garden.type || null,
+        'location': garden.location || null,
+        'average_sun': garden.average_sun || null,
+        'ph': garden.ph || null,
+        'soil_type': garden.soil_type || null
+      };
+      $http.put(url, data)
+        .success(function (response, object) {
+          alerts.push({
+            'type': 'success',
+            'msg': 'Success!'
+          });
+          if (callback){
+            return callback(response, object);
+          }
+        })
+        .error(function (response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(response, code);  
+          }
+        });
+    };
     var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
       // TODO: this is on pause until there's a way to 
       // actually add crops and guides to a garden.
@@ -90,14 +120,18 @@ openFarmModule.factory('gardenService', ['$http',
             'type': 'success',
             'msg': 'Success!'
           });
-          return callback(response, object);
+          if (callback){
+            return callback(response, object);
+          }
         })
         .error(function (response, code){
           alerts.push({
             'type': 'alert',
             'msg': response
           });
-          return callback(response, code);
+          if (callback){
+            return callback(response, code);  
+          }
         });
     };
 
@@ -111,14 +145,18 @@ openFarmModule.factory('gardenService', ['$http',
             'type': 'success',
             'msg': 'Success!'
           });
-          callback(success, response);
+          if (callback){
+            return callback(success, response);  
+          }
         })
         .error(function(response, code){
           alerts.push({
             'type': 'alert',
             'msg': response
           });
-          callback(response, response);
+          if (callback){
+            return callback(success, response);  
+          }
         });
     };
 
@@ -131,17 +169,22 @@ openFarmModule.factory('gardenService', ['$http',
             'type': 'success',
             'msg': 'Deleted crop',
           });
-          return callback(response, object);
+          if (callback){
+            return callback(true, response, object);  
+          }
         })
         .error(function(response, code){
           alerts.push({
             'type': 'alert',
             'msg': response
           });
-          return callback(response, code);
+          if (callback){
+            return callback(false, response, code);  
+          }
         });
     };
     return {
+      'saveGarden': saveGarden,
       'saveGardenCrop': saveGardenCrop,
       'addGardenCropToGarden': addGardenCropToGarden,
       'deleteGardenCrop': deleteGardenCrop

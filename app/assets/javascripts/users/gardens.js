@@ -16,7 +16,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
           var callback = function(success, response){
             crop.guide.crop = response;
           };
-          cropService.getCrop(crop.guide.crop_id, $scope.alerts, callback);  
+          cropService.getCrop(crop.guide.crop_id, $scope.alerts, callback);
         });
       });
     };

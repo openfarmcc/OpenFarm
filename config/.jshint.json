@@ -15,6 +15,9 @@
   "predef": [
     "$",
     "jQuery",
+    "openFarmApp",
+    "USER_ID",
+    "GUIDE_ID",
 
     "console",
     "jasmine",

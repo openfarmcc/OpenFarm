@@ -96,7 +96,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(response, object);
+            return callback(true, response, object);
           }
         })
         .error(function (response, code){
@@ -105,7 +105,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': response
           });
           if (callback){
-            return callback(response, code);  
+            return callback(false, response, code);
           }
         });
     };
@@ -121,7 +121,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(response, object);
+            return callback(true, response, object);
           }
         })
         .error(function (response, code){
@@ -130,7 +130,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': response
           });
           if (callback){
-            return callback(response, code);  
+            return callback(false, response, code);
           }
         });
     };
@@ -140,13 +140,13 @@ openFarmModule.factory('gardenService', ['$http',
         'guide_id': guide._id
       };
       $http.post('/api/gardens/' + garden._id +'/garden_crops/', data)
-        .success(function(success, response){
+        .success(function(response, object){
           alerts.push({
             'type': 'success',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(success, response);  
+            return callback(true, response, object);  
           }
         })
         .error(function(response, code){
@@ -155,7 +155,9 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': response
           });
           if (callback){
-            return callback(success, response);  
+            // TODO: I need to make these consistent. What do these functions
+            // return?
+            return callback(false, response, code);
           }
         });
     };
@@ -179,7 +181,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': response
           });
           if (callback){
-            return callback(false, response, code);  
+            return callback(false, response, code);
           }
         });
     };

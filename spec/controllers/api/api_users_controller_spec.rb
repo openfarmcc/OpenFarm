@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe Api::UsersController, :type => :controller do
+describe Api::UsersController, type: :controller do
   include ApiHelpers
 
   let(:viewing_user) { FactoryGirl.create(:user) }

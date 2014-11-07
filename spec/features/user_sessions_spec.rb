@@ -81,6 +81,6 @@ describe 'User sessions' do
     click_button 'Create User'
     fill_in :location, with: 'Chicago'
     click_button 'Next: Add Garden'
-    expect(page).to have_content("Your Gardens")
+    expect(page).to have_content('Your Gardens')
   end
 end

@@ -47,11 +47,6 @@ describe Api::GardensController, type: :controller do
       private_garden = FactoryGirl.create(:garden,
                                           user: @other_user,
                                           is_private: true)
-      public_garden = FactoryGirl.create(:garden,
-                                         user: @other_user)
-      private_garden = FactoryGirl.create(:garden,
-                                          user: @other_user,
-                                          is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
       expect(json['garden']['name']).to eq(public_garden.name)

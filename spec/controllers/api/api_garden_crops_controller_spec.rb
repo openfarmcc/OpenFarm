@@ -77,7 +77,7 @@ describe Api::GardenCropsController, type: :controller do
     end
     it 'should show garden crops for a specific garden' do
       garden = FactoryGirl.create(:garden, user: @user)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      FactoryGirl.create(:garden_crop, garden: garden)
 
       get :index, garden_id: garden.id
 
@@ -87,7 +87,7 @@ describe Api::GardenCropsController, type: :controller do
 
     it 'should not show garden crops for a private garden' do
       garden = FactoryGirl.create(:garden, is_private: true)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      FactoryGirl.create(:garden_crop, garden: garden)
 
       get :index, garden_id: garden.id
 

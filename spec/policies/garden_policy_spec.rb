@@ -5,7 +5,7 @@ describe GardenPolicy do
 
   let (:current_user) { FactoryGirl.create :user }
   let (:public_garden) { FactoryGirl.create :garden }
-  let (:private_garden) { FactoryGirl.create :garden, is_private: true}
+  let (:private_garden) { FactoryGirl.create :garden, is_private: true }
   let (:admin) { FactoryGirl.create :user, admin: true }
 
   permissions :show? do
@@ -47,10 +47,10 @@ describe GardenPolicy do
     it 'should only return public gardens in scope, unless they are users' do
       other_user = FactoryGirl.create :user
       Garden.create(user: other_user,
-                    name: "haha",
+                    name: 'haha',
                     is_private: false)
       Garden.create(user: current_user,
-                    name: "nono",
+                    name: 'nono',
                     is_private: true)
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
       expect(@p.length).to eq(2)

@@ -5,8 +5,8 @@ module Api
       # Visible based on the policy of the garden
       if Pundit.policy(current_user, garden).show?
         garden_crops = garden.garden_crops
-        render json: { garden_crops: garden_crops } 
-      else 
+        render json: { garden_crops: garden_crops }
+      else
         raise OpenfarmErrors::NotAuthorized
       end
     rescue Mongoid::Errors::DocumentNotFound

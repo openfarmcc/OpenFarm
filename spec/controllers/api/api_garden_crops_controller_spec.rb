@@ -13,7 +13,7 @@ describe Api::GardenCropsController, type: :controller do
       garden = FactoryGirl.create(:garden, user: @user)
       data = { quantity: rand(100),
                stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}", 
+               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
                guide_id: guide.id }
       post "/api/gardens/#{garden.id}/garden_crops/", data, format: :json
     end

@@ -1,6 +1,5 @@
 module Api
   class GardenCropsController < Api::Controller
-
     def index
       garden_crops = Garden.find(params[:garden_id]).garden_crops
       render json: garden_crops

@@ -56,7 +56,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
             if (success){
               // don't quite want to deal with splicing arrays
               // across different function calls
-              crop.hide = true;  
+              crop.hide = true;
             }
           };
           gardenService.deleteGardenCrop(garden,

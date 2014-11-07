@@ -6,11 +6,11 @@ class RequirementsController < ApplicationController
     #TODO: Assign a slug if none has been given. 
     
     if @requirement.save
-      redirect_to(controller: 'guides', 
+      redirect_to(controller: 'guides',
         action: 'edit', 
         id: @requirement.guide.id)
     else
-      redirect_to(controller: 'guides', 
+      redirect_to(controller: 'guides',
         action: 'edit', 
         id: @requirement.guide.id)
     end

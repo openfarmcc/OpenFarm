@@ -28,6 +28,7 @@ gem "pundit"
 
 group :development, :test do
   gem 'coveralls', require: false
+  gem 'quiet_assets'
   gem 'rubocop'
   gem 'better_errors'
   gem 'rspec-rails', '~> 2.14.0'

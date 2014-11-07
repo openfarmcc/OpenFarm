@@ -6,5 +6,10 @@ module Api
       user = User.find(params[:id])
       render json: user
     end
+
+    def index
+      users = Pundit.policy_scope(current_user, User)
+      render json: users
+    end
   end
 end

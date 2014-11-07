@@ -21,6 +21,13 @@ module Requirements
       requirement
     end
 
+    def validate_guide
+      @guide = Guide.find(guide_id)
+    rescue Mongoid::Errors::DocumentNotFound
+      msg = "Could not find a guide with id #{guide_id}."
+      add_error :guide, :guide_not_found, msg
+    end
+
     def validate_permissions
       if @guide && (@guide.user != user)
         msg = 'You cant create requirements for guides you did not create.'
@@ -35,13 +42,6 @@ module Requirements
       requirement.name           = name
       requirement.required       = required
       requirement.save
-    end
-
-    def validate_guide
-      @guide = Guide.find(guide_id)
-    rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a guide with id #{guide_id}."
-      add_error :guide, :guide_not_found, msg
     end
   end
 end

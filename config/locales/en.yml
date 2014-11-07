@@ -68,6 +68,8 @@ en:
             units_preference: "What units do you prefer"
             email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
             add_garden: "Next: Add Garden"
+        gardens:
+            your_gardens: "Your Gardens"
     crops:  
         name: "Name"
         binomial_name: "Binomial Name"

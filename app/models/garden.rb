@@ -3,11 +3,13 @@ class Garden
   include Mongoid::Paperclip
 
   belongs_to :user
-  # TODO: information about the plants in the garden: placement, dates planted, guides used, etc
+  validates_presence_of :user
+
+  embeds_many :garden_crops
 
   field :name
   field :description
-  validates_presence_of :user
+  field :is_private, type: Mongoid::Boolean, default: false
 
   field :location # users can have gardens in different locations
   field :type # outdoor, indoor, hydroponic, etc
@@ -15,4 +17,6 @@ class Garden
   field :soil_type # clay, high organic, etc
   field :ph # 0-14
   field :growing_practices, type: Array # organic, permaculutre, etc
+
+  scope :is_public, -> { where(is_private: true) }
 end

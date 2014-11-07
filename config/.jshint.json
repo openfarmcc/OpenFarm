@@ -16,6 +16,7 @@
     "$",
     "jQuery",
 
+    "console",
     "jasmine",
     "beforeEach",
     "describe",
@@ -24,11 +25,7 @@
 
     "angular",
     "inject",
-    "module",
-
-    "openFarmApp",
-    "google",
-    "console"
+    "module"
   ],
   "quotmark": true,
   "trailing": true,

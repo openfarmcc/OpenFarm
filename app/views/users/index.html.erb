@@ -1,0 +1,14 @@
+<div class="row users-list">
+  <div class="small-12 columns">
+    <h2><%= t '.users' %></h2>
+    <table>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to(user.display_name, {:action => 'show', :id => user.id}, :class=>'action show') %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

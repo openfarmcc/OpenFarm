@@ -1,17 +1,10 @@
-// var editGuidesApp = angular.module('editGuidesApp', [
-//   'mm.foundation',
-//   'ngS3upload',
-//   'ng-rails-csrf',
-//   'openFarmModule'
-//   ]);
-
 openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
   function editGuideCtrl($scope, $http, guideService) {
     // setting this to true temporarily because
     // other wise the ajax loader doesn't load
     $scope.saving = true;
 
-    $scope.guide_id = getIDFromURL("guides") || GUIDE_ID;
+    $scope.guideId = getIDFromURL("guides") || GUIDE_ID;
 
     $scope.alerts = [];
 
@@ -78,16 +71,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       if (success){
         $scope.guide = response;
         $scope.initGuide();
-      } else {
-        $scope.alerts.push({
-          msg: code + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
       }
     };
 
-    guideService.getGuide($scope.guide_id, $scope.setGuide);
+    guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
 
     $scope.setStatus = function(item){
       if (item.status){
@@ -104,6 +91,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         .success(function (response, object) {
           console.log("success", object);
           $scope.saving = false;
+          $scope.alerts.push({
+            msg: "Your guide has been updated!",
+            type: 'success'
+          });
         })
         .error(function (response, code) {
           angular.forEach(response, function(value, key){
@@ -115,7 +106,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
 
           $scope.saving = false;
         });
-      console.log('saving requirements');
       angular.forEach($scope.guide.requirements, function(item){
         console.log(item.name, item.status);
         if (item.status === undefined){
@@ -124,9 +114,9 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
           // status doesn't exist yet.
           if (item.active){
             var data = {
-              name: item.name,
-              required: item.value,
-              guide_id: $scope.guide._id
+              'name': item.name,
+              'required': item.value,
+              'guide_id': $scope.guide._id
             };
             $http.post('/api/requirements/', data)
               .success(function (response){
@@ -189,9 +179,9 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         // exist.
         if (item.instructions){
           var data = {
-            name: item.name,
-            instructions: item.instructions,
-            guide_id: $scope.guide._id
+            'name': item.name,
+            'instructions': item.instructions,
+            'guide_id': $scope.guide._id
           }
           $http.post('/api/stages/', data)
             .success(function (response){
@@ -224,15 +214,6 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
           });
       }
     });
-    };
-
-
-    if (!$scope.guide.requirements){
-      console.log('no requirements');
-    }
-    // TODO: figure this out for the sake of code non-repeat
-    $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
     };
 }]);
 

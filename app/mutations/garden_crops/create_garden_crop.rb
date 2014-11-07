@@ -16,7 +16,6 @@ module GardenCrops
 
     def garden_crop
       @garden_crop ||= GardenCrop.new
-      @garden_crop
     end
 
     def validate

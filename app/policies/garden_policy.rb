@@ -7,9 +7,13 @@ class GardenPolicy < ApplicationPolicy
   end
 
   def show?
-    (not @garden.is_private?) ||
-        @current_user == @garden.user ||
-        @current_user.admin?
+    if @current_user
+      (not @garden.is_private?) ||
+          @current_user == @garden.user ||
+          @current_user.admin
+    else
+      not @garden.is_private?
+    end
   end
 
   class Scope < Scope

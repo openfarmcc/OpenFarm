@@ -103,7 +103,6 @@ openFarmModule.factory('gardenService', ['$http',
 
     var addGardenCropToGarden = function(garden, guide, alerts, callback){
       var data = {
-        'garden_id': garden._id,
         'guide_id': guide._id
       };
       $http.post('/api/gardens/' + garden._id +'/garden_crops/', data)

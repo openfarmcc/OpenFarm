@@ -62,7 +62,7 @@ describe Api::RequirementsController, type: :controller do
     expect(response.status).to eq(422)
   end
 
-  it 'dissalows adding requirements to other peoples guides' do
+  it 'does not allow adding requirements to other peoples guides' do
     data = { name: 'sunlight',
              required: true,
              guide_id: FactoryGirl.create(:guide) }

@@ -4,16 +4,16 @@ module Api
 
     def show
       garden = Garden.find(params[:id])
-      if Pundit.policy!(current_user, garden)
-        render json: garden
+      if Pundit.policy(current_user, garden).show?
+        render json: { garden: garden }
       else
         raise OpenfarmErrors::NotAuthorized
       end
     end
 
-    def index
-      gardens = Pundit.policy_scope(current_user, Garden)
-      render json: gardens
-    end
+    # def index
+    #   gardens = Pundit.policy_scope(current_user, Garden)
+    #   render json: { gardens: gardens }
+    # end
   end
 end

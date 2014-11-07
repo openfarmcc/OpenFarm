@@ -27,6 +27,5 @@ class UsersController < ApplicationController
 
   def gardens
     @gardens = current_user.gardens
-    puts @gardens
   end
 end

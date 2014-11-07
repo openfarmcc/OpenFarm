@@ -23,7 +23,7 @@ module GardenCrops
     def validate_permissions
       if garden_crop.garden.user != user
         msg = 'You can only update crops that are in your gardens.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        add_error :garden, :not_authorized, msg
       end
     end
 

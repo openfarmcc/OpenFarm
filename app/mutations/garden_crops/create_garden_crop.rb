@@ -1,5 +1,7 @@
 module GardenCrops
   class CreateGardenCrop < Mutations::Command
+    attr_writer :garden_crop
+
     required do
       model :user
       string :garden_id
@@ -14,7 +16,6 @@ module GardenCrops
 
     def garden_crop
       @garden_crop ||= GardenCrop.new
-      puts "name" + @guide.name.to_s
       @garden_crop
     end
 
@@ -30,23 +31,25 @@ module GardenCrops
     end
 
     def validate_guide
-      @guide = Guide.find(guide_id)
+      if guide_id
+        @guide = Guide.find(guide_id)
+      end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = 'Could not find a guide with id #{guide_id}.'
+      msg = "Could not find a guide with id #{guide_id}."
       add_error :guide, :guide_not_found, msg
     end
 
     def validate_garden
       @garden = Garden.find(garden_id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = 'Could not find a garden with id #{garden_id}.'
-      add_error :guide, :garden_not_found, msg
+      msg = "Could not find a garden with id #{garden_id}."
+      add_error :garden, :garden_not_found, msg
     end
 
     def validate_permissions
       if @garden && (@garden.user != user)
         msg = 'You can\'t create garden crops for gardens you don\'t own.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        add_error :garden, :not_authorized, msg
       end
     end
 

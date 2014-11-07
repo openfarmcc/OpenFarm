@@ -14,16 +14,19 @@
 */
 
 .guide {
+  position: relative;
+
+  .box{
+    margin: 2rem inherit;
+    padding-top: 1rem;
+  }
+
   .empty{
     text-align: center;
     padding-bottom: 1rem;
     i{
       font-size: 1.5rem;
     }
-  }
-
-  .show-guide-app{
-    position: relative;
   }
 
   .canopy{
@@ -54,18 +57,16 @@
     margin: auto 0;
     width: 100%;
   }
-
   .title{
     h2{
       font-weight: 100;
       color: $secondary-color;
-      /*font-family: "Helvetica Neue";*/
       span{
         color: $of-green;
         font-weight: 300;
       }
     }
-    .edit-link{
+    .right{
       position: absolute;
       top: 1rem;
       right: 0;

@@ -11,39 +11,185 @@ var openFarmModule = angular.module('openFarmModule', [
 
 openFarmModule.factory('guideService', ['$http',
   function guideService($http) {
-
     // get the guide specified.
-    var getGuide = function(guide_id, callback){
+    var getGuide = function(guideId, alerts, callback){
       $http({
-        url: '/api/guides/' + guide_id,
-        method: "GET"
+        url: '/api/guides/' + guideId,
+        method: 'GET'
       }).success(function (response) {
         return callback (true, response.guide);
       }).error(function (response, code) {
-        return callback(false, response, code);
+        alerts.push({
+          msg: code + ' error. Could not retrieve data from server. ' +
+            'Please try again later.',
+          type: 'warning'
+        });
       });
     };
     return {
-      "getGuide": getGuide
+      'getGuide': getGuide
+    };
+}]);
+
+openFarmModule.factory('cropService', ['$http',
+  function cropService($http) {
+    // get the guide specified.
+    var getCrop = function(cropId, alerts, callback){
+      $http({
+        url: '/api/crops/' + cropId,
+        method: 'GET'
+      }).success(function (response) {
+        return callback (true, response.crop);
+      }).error(function (response, code) {
+        alerts.push({
+          msg: code + ' error. Could not retrieve data from server. ' +
+            'Please try again later.',
+          type: 'warning'
+        });
+      });
+    };
+    return {
+      'getCrop': getCrop
     };
 }]);
 
 openFarmModule.factory('userService', ['$http',
   function userService($http) {
-
     // get the guide specified.
-    var getUser = function(user_id, callback){
+    var getUser = function(userId, alerts, callback){
       $http({
-        url: '/api/users/' + user_id,
-        method: "GET"
+        url: '/api/users/' + userId,
+        method: 'GET'
       }).success(function (response) {
         return callback (true, response.user);
       }).error(function (response, code) {
+        alerts.push({
+          msg: response,
+          type: 'warning'
+        });
         return callback(false, response, code);
       });
     };
+
     return {
-      "getUser": getUser
+      'getUser': getUser,
+    };
+
+}]);
+
+openFarmModule.factory('gardenService', ['$http',
+  function gardenService($http) {
+    var saveGarden = function(garden, alerts, callback){
+      var url = '/api/gardens/' + garden._id;
+      var data = {
+        'description': garden.description || null,
+        'type': garden.type || null,
+        'location': garden.location || null,
+        'average_sun': garden.average_sun || null,
+        'ph': garden.ph || null,
+        'soil_type': garden.soil_type || null
+      };
+      $http.put(url, data)
+        .success(function (response, object) {
+          alerts.push({
+            'type': 'success',
+            'msg': 'Success!'
+          });
+          if (callback){
+            return callback(true, response, object);
+          }
+        })
+        .error(function (response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
+    var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
+      // TODO: this is on pause until there's a way to 
+      // actually add crops and guides to a garden.
+      var url = '/api/gardens/'+ garden._id +
+                '/garden_crops/' + gardenCrop._id;
+      $http.put(url, gardenCrop)
+        .success(function (response, object) {
+          alerts.push({
+            'type': 'success',
+            'msg': 'Success!'
+          });
+          if (callback){
+            return callback(true, response, object);
+          }
+        })
+        .error(function (response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
+
+    var addGardenCropToGarden = function(garden, guide, alerts, callback){
+      var data = {
+        'guide_id': guide._id
+      };
+      $http.post('/api/gardens/' + garden._id +'/garden_crops/', data)
+        .success(function(response, object){
+          alerts.push({
+            'type': 'success',
+            'msg': 'Success!'
+          });
+          if (callback){
+            return callback(true, response, object);  
+          }
+        })
+        .error(function(response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            // TODO: I need to make these consistent. What do these functions
+            // return?
+            return callback(false, response, code);
+          }
+        });
+    };
+
+    var deleteGardenCrop = function(garden, gardenCrop, alerts, callback){
+      var url = '/api/gardens/'+ garden._id +
+                '/garden_crops/' + gardenCrop._id;
+      $http.delete(url)
+        .success(function(response, object){
+          alerts.push({
+            'type': 'success',
+            'msg': 'Deleted crop',
+          });
+          if (callback){
+            return callback(true, response, object);  
+          }
+        })
+        .error(function(response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
+    return {
+      'saveGarden': saveGarden,
+      'saveGardenCrop': saveGardenCrop,
+      'addGardenCropToGarden': addGardenCropToGarden,
+      'deleteGardenCrop': deleteGardenCrop
     };
 }]);
 
@@ -86,7 +232,7 @@ openFarmModule.directive('location', [
                   $scope.addresses = addresses;
                  }
                  else {
-                    console.log("Geocoding failed: " + status);
+                    console.log('Geocoding failed: ' + status);
                  }
               });
             }
@@ -110,7 +256,31 @@ openFarmModule.directive('location', [
     };
 }]);
 
-
-
-
-
+openFarmModule.directive('alerts', ['$timeout',
+  function alerts($timeout) {
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      scope: true,
+      controller: ['$scope', '$element', '$attrs',
+        function ($scope, $element, $attrs) {
+          $scope.closeAlert = function(index) {
+            $scope.alerts.splice(index, 1);
+          };
+          $scope.$watch('alerts.length', function(){
+            if ($scope.alerts.length > 0){
+              $timeout(function(){
+                $scope.alerts = [];
+              }, 3000);
+            }
+          });
+      }],
+      template:
+        '<alert ng-cloak ' +
+          'class="ng-cloak columns large-6 centered radius float" ' +
+          'ng-repeat="alert in alerts" ' +
+          'type="alert.type" close="closeAlert($index)">' +
+            '<div class=""> {{alert.msg}} </div>' +
+        '</alert>'
+    };
+  }]);

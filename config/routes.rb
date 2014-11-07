@@ -6,6 +6,7 @@ OpenFarm::Application.routes.draw do
       registrations: "registrations"
     }
   devise_scope :users do
+    get 'users/gardens' => 'users#gardens'
     get 'users/finish' => 'users#finish'
     put 'users' => 'users#update'
   end
@@ -33,6 +34,13 @@ OpenFarm::Application.routes.draw do
     resources :crops, only: [:index, :show]
     resources :users, only: [:show]
     resources :guides, only: [:create, :show, :update]
+    resources :gardens, only: [:show, :update] do
+      resources :garden_crops, only: [:index,
+                                      :show,
+                                      :create,
+                                      :update,
+                                      :destroy]
+    end
     resources :requirement_options, only: [:index]
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]

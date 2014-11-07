@@ -4,7 +4,17 @@ module Api
 
     def show
       user = User.find(params[:id])
-      render json: user
+      if Pundit.policy(current_user, user).show?
+        render json: user
+      else
+        raise OpenfarmErrors::NotAuthorized
+      end
     end
+
+    # TODO: figure out how to make this work with nested
+    # def index
+    #   users = Pundit.policy_scope(current_user, User)
+    #   render json: { users: users }
+    # end
   end
 end

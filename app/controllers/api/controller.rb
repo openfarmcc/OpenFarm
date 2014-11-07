@@ -7,10 +7,10 @@ class Api::Controller < ActionController::Base
 
   before_action :authenticate_from_token!
 
-   rescue_from OpenfarmErrors::NotAuthorized do |exc|
-      json = { error: "Not Authorized. #{exc.message}" }
-      render json: json, status: 401
-    end
+  rescue_from OpenfarmErrors::NotAuthorized do |exc|
+    json = { error: "Not Authorized. #{exc.message}" }
+    render json: json, status: 401
+  end
 
   protected
 

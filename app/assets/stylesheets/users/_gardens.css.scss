@@ -1,0 +1,50 @@
+.garden{
+  .header{
+    border-bottom: 2px solid $of-dark;
+    margin: 2rem auto;
+    h2{
+      font-size: 1.4rem;
+    }
+
+    .edit{
+      text-align: right;
+      .button{
+        margin-bottom: .5rem;
+      }
+    }
+
+    i.fa-lock{
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      padding: .5rem;
+      vertical-align: middle;
+    }
+  }
+  .info{
+    margin-bottom: 1rem;
+  }
+  div.description{
+    margin-bottom: 1rem;
+  }
+
+  .edit-buttons{
+    margin-bottom: .5rem;
+    text-align: right;
+  }
+  .details{
+    td{
+      width: 50%;
+    }
+
+    td{
+      input, select{
+        margin-bottom: 0;
+      }
+    }
+
+    .ph{
+      width: 10%;
+      display: inline-block;
+    }
+  }
+}

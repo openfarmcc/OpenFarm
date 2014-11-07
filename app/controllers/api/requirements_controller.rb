@@ -24,11 +24,7 @@ module Api
     def destroy
       @outcome = Requirements::DestroyRequirement.run(params,
                                                      user: current_user)
-      if @outcome.success?
-        render nothing: true, status: :no_content
-      else
-        render json: @outcome.errors.message, status: :unprocessable_entity
-      end
+      respond_with_mutation(:no_content)
     end
   end
 end

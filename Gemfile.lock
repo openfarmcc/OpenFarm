@@ -211,6 +211,8 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
+    quiet_assets (1.0.3)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-attack (4.1.1)
       rack
@@ -373,6 +375,7 @@ DEPENDENCIES
   pry
   pry-nav
   pundit
+  quiet_assets
   rack-attack
   rack-cors
   rails (= 4.0.2)

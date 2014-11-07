@@ -26,8 +26,6 @@ module Gardens
 
     def set_params
       garden.user          = user
-      # TODO: validate that the stage name is one
-      # of stage options, or should we?
       garden.name           = name
       garden.location       = location if location
       garden.description    = description if description

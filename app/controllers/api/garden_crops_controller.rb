@@ -1,6 +1,5 @@
 module Api
   class GardenCropsController < Api::Controller
-    skip_before_action :authenticate_from_token!, only: [:index]
 
     def index
       garden_crops = Garden.find(params[:garden_id]).garden_crops

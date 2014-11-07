@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::RequirementsController, type: :controller do
-
   include ApiHelpers
 
   let!(:user) { sign_in(user = FactoryGirl.create(:user)) && user }

@@ -5,6 +5,7 @@ if Rails.env != 'production' # <= Prevent catastrophe
                              email: 'admin@admin.com',
                              password: 'admin123',
                              password_confirmation: 'admin123')
+  FactoryGirl.create(:garden, user: admin)
   FactoryGirl.create_list(:stage, 10)
   FactoryGirl.create_list(:stage_option, 10)
   FactoryGirl.create_list(:requirement_option, 10)

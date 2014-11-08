@@ -5,7 +5,7 @@ FactoryGirl.define do
     name             { "#{Faker::Commerce.color} #{Faker::Name.last_name}" }
     days_start       { rand(360) }
     days_end         { rand(360) }
-    instructions     { Faker::Lorem.sentences(2) }
+    instructions     { Faker::Lorem.paragraph }
     guide
   end
 end

@@ -45,9 +45,10 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     };
     
     if ($scope.userId){
-      userService.getUser($scope.userId, $scope.alerts, $scope.setCurrentUser);  
+      userService.getUser($scope.userId,
+                          $scope.alerts,
+                          $scope.setCurrentUser);
     }
-    
 
     guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
   }]);

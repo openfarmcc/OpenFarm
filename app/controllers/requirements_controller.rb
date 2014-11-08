@@ -1,6 +1,5 @@
 class RequirementsController < ApplicationController
   def create
-
     @requirement = Requirement.new(requirement_params)
 
     #TODO: Assign a slug if none has been given. 

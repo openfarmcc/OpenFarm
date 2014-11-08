@@ -6,6 +6,6 @@ FactoryGirl.define do
     description      { Faker::Lorem.sentence }
     type             { 'select' }
     # TODO: this could be much more sophisticated
-    options          { [Faker::Lorem.word, Faker::Lorem.word] }   
+    options          { [Faker::Lorem.word, Faker::Lorem.word] }
   end
 end

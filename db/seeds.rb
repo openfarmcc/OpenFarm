@@ -6,10 +6,11 @@ if Rails.env != 'production' # <= Prevent catastrophe
                              password: 'admin123',
                              password_confirmation: 'admin123')
   FactoryGirl.create(:garden, user: admin)
-  FactoryGirl.create_list(:stage, 10)
-  FactoryGirl.create_list(:stage_option, 10)
-  FactoryGirl.create_list(:requirement_option, 10)
-  FactoryGirl.create_list(:requirement, 10)
-  FactoryGirl.create_list(:requirement_option, 10)
+  FactoryGirl.create_list(:stage, 8,
+                          name: FactoryGirl.create(:stage_option).name)
+  FactoryGirl.create_list(:stage_option, 8)
+  FactoryGirl.create_list(:requirement_option_range, 4)
+  FactoryGirl.create_list(:requirement_option_select, 4)
+  FactoryGirl.create_list(:requirement, 8)
   Guide.all.each{ |gde| gde.update_attributes(user: admin) }
 end

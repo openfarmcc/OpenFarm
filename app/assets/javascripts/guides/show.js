@@ -6,7 +6,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
                          userService,
                          gardenService) {
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
-    $scope.userId = USER_ID || null;
+    $scope.userId = USER_ID || undefined;
     $scope.alerts = [];
 
     $scope.setUser = function(success, object){

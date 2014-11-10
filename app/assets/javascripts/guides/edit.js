@@ -18,21 +18,20 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       // get the missing requirements
       $http.get('/api/requirement_options/')
           .success(function(response, status){
-            angular.forEach(response.requirement_options, function(optional_r){
-              var req_exists = false;
-              angular.forEach($scope.guide.requirements, function(existing_r){
-                if (existing_r.name === optional_r.name){
-                  req_exists = true;
-                  existing_r.status = 'existing';
-                  existing_r.value = existing_r.required;
-                  existing_r.options = optional_r.options;
-                  existing_r.type = optional_r.type;
-
-                  existing_r.active = true;
+            angular.forEach(response.requirement_options, function(optionalReq){
+              var reqExists = false;
+              angular.forEach($scope.guide.requirements, function(existingReq){
+                if (existingReq.name === optionalReq.name){
+                  reqExists = true;
+                  existingReq.status = 'existing';
+                  existingReq.value = optionalReq.required;
+                  existingReq.options = optionalReq.options;
+                  existingReq.type = optionalReq.type;
+                  existingReq.active = true;
                 }
               });
-              if (!req_exists){
-                $scope.guide.requirements.push(optional_r);
+              if (!reqExists){
+                $scope.guide.requirements.push(optionalReq);
               }
             });
           })
@@ -45,17 +44,17 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
       // get the missing stages
       $http.get('/api/stage_options/')
         .success(function(response, status){
-          angular.forEach(response.stage_options, function(optional_s){
-            var stage_exists = false;
-            angular.forEach($scope.guide.stages, function(existing_s){
-              if (existing_s.name === optional_s.name){
-                stage_exists = true;
-                existing_s.order = optional_s.order;
-                existing_s.status = 'existing';
+          angular.forEach(response.stage_options, function(optionalStage){
+            var stageExists = false;
+            angular.forEach($scope.guide.stages, function(existingStage){
+              if (existingStage.name === optionalStage.name){
+                stageExists = true;
+                existingStage.order = optionalStage.order;
+                existingStage.status = 'existing';
               }
             });
-            if (!stage_exists){
-              $scope.guide.stages.push(optional_s);
+            if (!stageExists){
+              $scope.guide.stages.push(optionalStage);
             }
           });
         })
@@ -98,6 +97,7 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         })
         .error(function (response, code) {
           angular.forEach(response, function(value, key){
+            $scope.saving = false;
             $scope.alerts.push({
               msg: value,
               type: 'alert'
@@ -106,13 +106,17 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
 
           $scope.saving = false;
         });
+      
       angular.forEach($scope.guide.requirements, function(item){
         var data = {};
         if (item.status === undefined){
           // in the case where the status hasn't been
           // defined yet, it's a good bet that the
           // status doesn't exist yet.
+
+          // is it active?
           if (item.active){
+            console.log('newly active', item.value);
             data = {
               'name': item.name,
               'required': item.value,
@@ -122,9 +126,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
               .success(function (response){
                 // TODO: indicate that save happened
                 // successfully
-                item.status = 'edited';
+                item.status = 'saved';
               })
               .error(function (response, code){
+                item.status = 'error';
                 $scope.alerts.push({
                   msg: code + ' error. Could not create Requirement.',
                   type: 'warning'
@@ -140,10 +145,12 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
             };
             $http.put('/api/requirements/' + item._id + '/', data)
               .success(function (response){
+                item.status = 'saved';
                 // TODO: indicate that save happened
                 // successfully
               })
               .error(function (response, code){
+                item.status = 'error';
                 $scope.alerts.push({
                   msg: code + ' error. Could not update Requirement.',
                   type: 'warning'
@@ -170,8 +177,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
         // active anymore, we should probably
         // remove the requirement.
       });
+
       angular.forEach($scope.guide.stages, function(item){
         var data = {};
+
         if (item.status === undefined){
           // in the case where the status hasn't been
           // defined yet, it's a good bet that the
@@ -188,9 +197,10 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
               .success(function (response){
                 // TODO: indicate that save happened
                 // successfully.
-                item.status = 'edited';
+                item.status = 'saved';
               })
               .error(function (response, code){
+                item.status = 'error';
                 $scope.alerts.push({
                   msg: code + ' error. Could not create Stage.',
                   type: 'warning'
@@ -198,16 +208,19 @@ openFarmApp.controller('editGuideCtrl', ['$scope', '$http', 'guideService',
               });
           }
         } else if (item.status === 'edited'){
+          console.log('edited');
           data = {
             name: item.name,
             instructions: item.instructions
           };
           $http.put('/api/stages/' + item._id + '/', data)
             .success( function (response){
+              item.status = 'saved';
               // TODO: indicate that save happened
               // successfully.
             })
             .error(function (response, code){
+              item.status = 'error';
               $scope.alerts.push({
                 msg: code + ' error. Could not update Stage.',
                 type: 'warning'

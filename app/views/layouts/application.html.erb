@@ -12,8 +12,9 @@
 <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-    
+  
 	<%= render 'meta/global' %>
+  <%= render 'meta/touch' %>
 	<%= render 'meta/page' %>
 	<%= render 'meta/social_network' %>
 	
@@ -22,6 +23,7 @@
 
   	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
+
   	<title>
         <%= content_for?(:title) ? yield(:title) : t('application.site_title') %>
     </title>

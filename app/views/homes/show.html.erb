@@ -26,24 +26,23 @@
                     <%= t 'home.step_3' %>
                 </li>
             </ul>
-            <%= form_for :cropsearch, url: crop_search_via_post_path, method: 'post' do |f| %>
+            <form action="<%= crop_search_via_get_path %>" method="get" >
+            <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
                 <div class="row">
                     <div class="small-12 small-centered columns">
                         <div class="search-bar-container">
                             <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
                                 <div class="search-input-container">
-                                    <%= text_field_tag :q, nil, {class: 'search-input', name: 'cropsearch[q]',   placeholder: t('home.placeholder'),
-                                            maxlength: '120', autocomplete: 'off', 'ng-model'=>'query', 'ng-change'=>  'search()',
-                                            'typeahead'=>'crop.name for crop in crops', 'typeahead-wait-ms'=>'555', '  typeahead-min-length'=>'3'} %>
+                                    <input typeahead-min-length="3" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="555" typeahead="crop.name for crop in crops">
                                 </div>
                                 <div class="search-button-container">
-                                    <%= f.submit t('home.search'), data: { disable_with: "Searching..." }, class: 'search-button button postfix' %>
+                                    <input class="search-button button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <% end %>
+            </form>
         </div>
         <a href="#explore-community-favorites" id="explore-community-favorites" class="explore-community-favorites text-center">
             <h2><%= t('home.explore_community_favorites') %></h2>

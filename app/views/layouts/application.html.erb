@@ -12,12 +12,12 @@
 <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
-  
+
 	<%= render 'meta/global' %>
   <%= render 'meta/touch' %>
 	<%= render 'meta/page' %>
 	<%= render 'meta/social_network' %>
-	
+
     <!-- Uncomment to make IE8 render like IE7 -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
@@ -57,22 +57,20 @@
               <!-- Search box Section -->
               <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
               <% unless current_page?(root_path) or current_page?("/") %>
-                <%= form_for :cropsearch, url:
-                  crop_search_via_post_path, method: 'post' do |f| %>
+                <form action="<%= crop_search_via_get_path %>" method="get" >
                   <div class="left">
 
                     <div class="row collapse postfix-round">
 
                       <div class="small-4 columns">
-                        <%= f.text_field :q, id: :q, maxlength:"120", class: 'search', placeholder: t('home.placeholder') %>
-
+                        <input class="search" id="q" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text">
                       </div>
                       <div class="small-2 columns end">
-                        <%= f.submit t('home.search'), data: { disable_with: "Searching..." }, class: 'small button postfix' %>
+                        <input class="small button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                       </div>
                     </div>
                   </div>
-                <% end %>
+                </form>
               <% end %>
 
               <!-- Right Nav Section -->

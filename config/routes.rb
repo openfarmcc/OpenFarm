@@ -10,8 +10,6 @@ OpenFarm::Application.routes.draw do
     get 'users/finish' => 'users#finish'
     put 'users' => 'users#update'
   end
-  # Accept searches via POST and GET so that users can search with forms -or-
-  # shareable link.
 
   scope '(:locale)', locale: /en|nl/ do
     root to:'homes#show'

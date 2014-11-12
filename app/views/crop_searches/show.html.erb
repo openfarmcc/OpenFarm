@@ -1,20 +1,11 @@
-<div class="row">
-  <div class="crop-search small-12 columns">
-
-    <h1>Crops</h1>
-    <ul class="crop-results">
-    <% @crops.each do |crop| %>
-      <%= render partial: "crop_result", locals: {crop: crop} %>
-    <% end %>
-    </ul>
-
-    <h2>Growing Guides</h2>
+<div class="row wide-row">
+  <div class="crop-results small-6 columns">
+    <h2>Choose a crop</h2>
+    <%= render partial: "crop_results", object: @crops %>
+  </div>
+  <div class="guide-results small-6 columns">
+    <h2>Explore the guides</h2>
     <%= "no guides yet :(" if @guides.empty? %>
-    <ul class="guide-results">
-      <% @guides.each do |guide| %>
-        <%= render partial: "guide_result", locals: {guide: guide} %>
-      <% end %>
-    </ul>
-      
+    <%= render partial: "guide_results", object: @guides %>
   </div>
 </div>

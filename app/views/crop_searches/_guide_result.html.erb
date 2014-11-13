@@ -1,5 +1,5 @@
 <%= link_to guide do %>
-  <li class="search-result-guide">
+  <li class="search-result-guide <%= guide[:compatibility_label] %>">
     <div class="guide-info">
       <h3 class="guide-name"><%= guide.name %></h3>
       <p class="guide-author">by <%= guide.user.display_name %></p>

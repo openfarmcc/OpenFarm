@@ -1,16 +1,21 @@
 .search-result-crop {
   position: relative;
-  display: inline-block;
   background-color: #EEE;
-  width: 180px;
   height: 240px;
   padding: 0;
-  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  overflow: hidden;
 
   // Simple hover effect
+  @include single-transition(opacity, 0.2s, ease-out);
   opacity: 0.9;
   &:hover {
     opacity: 1;
+
+    .crop-info {
+      background-color: rgba(0,0,0,0.95);
+    }
   }
 
   .leaf-placeholder {
@@ -36,20 +41,37 @@
     background-position: center;
   }
 
-  .crop-name {
+  .crop-info {
+    $padding: 8px;
+
+    display: table;
+    width: 100%;
     position: absolute;
-    background-color: rgba(0,0,0,0.45);
+    padding: $padding ($padding+4px);
+    @include single-transition(background-color, 0.2s, ease-in);
+    background-color: rgba(0,0,0,0.65);
     z-index: 1;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    padding: 6px 12px;
 
-    h3 {
+    .crop-name {
+      display: table-cell;
+      width: 100%; /* take up as much width as possible */
       margin: 0;
       color: white;
       font-size: 1.2em;
       font-weight: 600;
+    }
+
+    .guide-count {
+      display: table-cell;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+      white-space: pre;
+      text-align: right;
+      padding-left: ($padding+4px);
     }
   }
 }

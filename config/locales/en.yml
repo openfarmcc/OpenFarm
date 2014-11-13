@@ -80,6 +80,10 @@ en:
         days_to_maturity: "Days to Maturity"
         row_spacing: "Row Spacing"
         height: "Height"
+        num_crops:
+            zero: "No crops"
+            one: "1 crop"
+            other: "%{count} crops"
     guides:
         index:
             guides: "Guides"
@@ -148,6 +152,10 @@ en:
         requirements: "Requirements"
         name: "Name"
         overview: "Overview"
+        num_guides:
+            zero: "No guides"
+            one: "1 guide"
+            other: "%{count} guides"
     stages:
         edit:
             successful_creation: "You've successfully created a stage."

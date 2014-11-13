@@ -9,6 +9,8 @@ module OpenFarm
     I18n.enforce_available_locales = false
     config.i18n.fallbacks = [:en]
     config.assets.initialize_on_precompile = false
+    # Precompile *all* assets, except those that start with underscore
+    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
       allow do
         origins '*'

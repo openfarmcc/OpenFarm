@@ -4,11 +4,36 @@
   margin-bottom: 12px;
   padding: 4px 10px;
   list-style: none;
-  border: 1px solid #CCCCCC;
-  border-radius: 2px;
+
+  background-color: white;
+  color: rgba(85,94,106,0.8);
+  margin: 0 0 30px 0;
+  padding: 26px;
+  position: relative;
+  @include border-radius(4px);
+  $compatibility-bar-height: 4px;
+  @include box-shadow(0 -$compatibility-bar-height 0 #e5eef1);
+  /* account for compatibility color bar, results in uncentered li! */
+  left: $compatibility-bar-height;
+
+  &.compatibility-low {
+    @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-low);
+  }
+
+  &.compatibility-med {
+   @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-med); 
+  }
+
+  &.compatibility-high {
+    @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-high);
+  }
 
   &:hover {
     background-color: #EEEEEE;
+  }
+
+  &:active {
+    background-color: #DDDDDD;
   }
 
   .guide-info {
@@ -31,13 +56,6 @@
     font-size: 0.9em;
     margin-left: 6px;
   }
-
-  // .guide-rating {
-  //   display: inline-block;
-  //   margin: 0;
-  //   margin-left: 20px;
-  //   color: #F1C232; // yellow from the mock-ups
-  // }
 
   .guide-description {
     display: block;

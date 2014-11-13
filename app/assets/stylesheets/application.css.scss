@@ -12,7 +12,7 @@
 
 // @import "foundation_and_overrides";
 /* Add imports of custom sass/scss files here */
-
+@import "compass";
 @import "presets";
 
 .display{
@@ -58,12 +58,19 @@
   right: 0;
 }
 
+/* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */
 .row.wide-row {
-  /* Roughly 1440px */
+  // TODO(@warpling): replace magic number
   max-width: 90rem;
 }
 
-// Apply this to a row that will vertically center a column
+/* Apply to columns that should have the same bottom padding as left/right */
+.columns.bottom-padding {
+  // TODO(@warpling): replace magic number
+  padding-bottom: .9375rem;
+}
+
+/* Apply this to a row that will vertically center a column */
 .row.row-table {
   display: table;
   table-layout: fixed;
@@ -74,7 +81,7 @@
   height: 100%;
 }
 
-// Apply this to the column that should be vertically centered
+/* Apply this to the column that should be vertically centered */
 .columns.column-middle {
   display: table-cell;
   vertical-align: middle;

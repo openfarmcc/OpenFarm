@@ -12,24 +12,29 @@
   position: relative;
   @include border-radius(4px);
   $compatibility-bar-height: 4px;
-  @include box-shadow(0 -$compatibility-bar-height 0 #e5eef1);
+  $compatibility-bar-color: #e5eef1;
+  @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-bar-color);
   /* account for compatibility color bar, results in uncentered li! */
   left: $compatibility-bar-height;
 
-  &.compatibility-low {
-    @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-low);
+  @mixin compatibility-color($selector, $color) {
+    &.#{$selector} {
+      @include box-shadow(0 -$compatibility-bar-height 0 $color);
+    }
   }
 
-  &.compatibility-med {
-   @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-med); 
-  }
+  @include compatibility-color('compatibility-low', $compatibility-low-color);
+  @include compatibility-color('compatibility-med', $compatibility-med-color);
+  @include compatibility-color('compatibility-high', $compatibility-high-color);
 
-  &.compatibility-high {
-    @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-high);
+  .compatibility-circle {
+    float: right;
+    margin-left: 12px;
   }
 
   &:hover {
     background-color: #EEEEEE;
+    $compatibility-bar-height: 40px;
   }
 
   &:active {
@@ -59,6 +64,8 @@
 
   .guide-description {
     display: block;
+    min-height: 1em;
+
     p {
       margin: 0;
       color: #666;

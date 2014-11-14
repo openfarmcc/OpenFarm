@@ -1,12 +1,12 @@
 <div class="crop-search-results row wide-row">
   <div class="crop-results-container small-6 columns">
     <h2 class="text-center">Choose a crop</h2>
-    <%= render partial: "crop_results", object: @crops %>
+    <%= render partial: 'crop_results', object: @crops %>
   </div>
   <div class="guide-results-container small-6 columns">
     <h2 class="text-center">Explore the guides</h2>
     <%= "no guides yet :(" if @guides.empty? %>
-    <%= render partial: "guide_results", object: @guides %>
+    <%= render partial: 'guide_results', object: @guides %>
     <button class="button expand">Create a guide!</button>
   </div>
 </div>

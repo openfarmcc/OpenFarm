@@ -21,7 +21,7 @@ class CropSearchesController < ApplicationController
     # @guides.each do |g|
     #   g[:compatibility_score] = rand(100);
     # end
-    
+
     # @guides.each do |g|
     #   if g[:compatibility_score].nil?
     #     g[:compatibility_label] = ''

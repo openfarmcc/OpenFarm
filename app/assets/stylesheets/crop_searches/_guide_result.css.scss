@@ -12,15 +12,20 @@
   position: relative;
   @include border-radius(4px);
   $compatibility-bar-height: 4px;
-  $compatibility-bar-color: #e5eef1;
-  @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-bar-color);
+  $compatibility-bar-default-color: #e5eef1;
+  @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-bar-default-color);
+  @include single-transition(all, 0.2s, ease-out);
   /* account for compatibility color bar, results in uncentered li! */
   left: $compatibility-bar-height;
 
   @mixin compatibility-color($selector, $color) {
     &.#{$selector} {
       @include box-shadow(0 -$compatibility-bar-height 0 $color);
-    }
+
+      // maintain our box-shadow color when we add the drop shadow
+      &:hover {
+        @include box-shadow(0 -$compatibility-bar-height 0 $color, 0 4px 10px rgba(0,0,0,0.15));
+      }    }
   }
 
   @include compatibility-color('compatibility-low', $compatibility-low-color);
@@ -33,8 +38,8 @@
   }
 
   &:hover {
-    background-color: #EEEEEE;
-    $compatibility-bar-height: 40px;
+    background-color: #F7F7F7;
+    @include transform(translateY(-2px));
   }
 
   &:active {

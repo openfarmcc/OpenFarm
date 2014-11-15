@@ -7,16 +7,16 @@
 
   .crop-results-container {
     height: 100%;
-    // overflow-y: scroll;
+    overflow-y: scroll;
   }
 
   .guide-results-container {
     height: 100%;
-    // overflow-y: scroll;
-    background-color: rgb(240, 243, 244);
+    overflow-y: scroll;
+    background-color: $openfarm-blue-grey;
     /* replace the typical 15px left/right padding
     to account for the compatibility score bar */
-    padding: inherit 15px inherit 1
+    padding: 0 15px 30px 15px;
   }
 }
 

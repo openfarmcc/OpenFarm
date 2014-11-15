@@ -1,12 +1,6 @@
 <%= link_to crop, class:"medium-12 large-6 columns bottom-padding" do %>
   <div class="search-result-crop">
-    <div class="crop-image" style="background-image: url('https://namethatplant.files.wordpress.com/2011/05/watermark_485.jpg')"></div>
-
-    <%# if crop.image.nil? %>
-      <!-- <i class="leaf-placeholder fa fa-leaf"></i> -->
-    <%# else %>
-      <!-- <div class="crop-image" style="background-image: url('<%= asset_path(crop.image) %>')"></div> -->
-    <%# end %>
+    <div class="crop-image" style="<%= if !crop.image.blank? then "background-image: url(#{crop.image})" end %>"></div>
     <div class="crop-info">
       <h3 class="crop-name"><%= crop.name %></h3>
       <!-- TODO(@warpling): pluralization/translation -->

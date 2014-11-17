@@ -288,6 +288,7 @@ video { display: block; }
   }
 }
 
+// TODO(@warpling): refactor this into it's own file
 .featured-crops {
   background-color: rgb(240, 245, 240);
   padding: 40px inherit 20px;
@@ -316,8 +317,6 @@ video { display: block; }
       }
 
       .crop-image {
-        // display: block;
-        // border: 1px solid #dce0e0;
         background-color: #f5f5f5;
         background-size: cover;
         background-position: center;

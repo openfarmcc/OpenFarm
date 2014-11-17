@@ -1,0 +1,6 @@
+<!-- TODO(@warpling): this is ugly, improve. -->
+<div class="compatibility-circle hover <%= score.nil? ? '' : ((score > 75) ? 'compatibility-high' : ((score > 50) ? 'compatibility-med' : 'compatibility-low')) %>">
+  <span class="score">
+    <%= if score then score else 'n/a' end %>
+  </span>
+</div>

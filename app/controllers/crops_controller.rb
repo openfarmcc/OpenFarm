@@ -11,6 +11,7 @@ class CropsController < ApplicationController
   
   def show
     @crop = Crop.find(params[:id])
+    @guides = @crop.guides
   end
   
   def create

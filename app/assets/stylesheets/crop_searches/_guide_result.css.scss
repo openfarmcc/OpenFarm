@@ -4,11 +4,46 @@
   margin-bottom: 12px;
   padding: 4px 10px;
   list-style: none;
-  border: 1px solid #CCCCCC;
-  border-radius: 2px;
+  background-color: white;
+  color: rgba(85,94,106,0.8);
+  margin: 0 0 30px 0;
+  padding: 26px;
+  position: relative;
+  @include border-radius(4px);
+
+  $compatibility-bar-height: 4px;
+  $compatibility-bar-default-color: #e5eef1;
+  @include box-shadow(0 -$compatibility-bar-height 0 $compatibility-bar-default-color);
+  @include single-transition(all, 0.2s, ease-out);
+  /* account for compatibility color bar, results in uncentered li! */
+  left: $compatibility-bar-height;
+
+  @mixin compatibility-color($selector, $color) {
+    &.#{$selector} {
+      @include box-shadow(0 -$compatibility-bar-height 0 $color);
+
+      // maintain our box-shadow color when we add the drop shadow
+      &:hover {
+        @include box-shadow(0 -$compatibility-bar-height 0 $color, 0 4px 10px rgba(0,0,0,0.2));
+      }    }
+  }
+
+  @include compatibility-color('compatibility-low', $compatibility-low-color);
+  @include compatibility-color('compatibility-med', $compatibility-med-color);
+  @include compatibility-color('compatibility-high', $compatibility-high-color);
+
+  .compatibility-circle {
+    float: right;
+    margin-left: 12px;
+  }
 
   &:hover {
-    background-color: #EEEEEE;
+    background-color: #F7F7F7;
+    @include transform(translateY(-2px));
+  }
+
+  &:active {
+    background-color: #DDDDDD;
   }
 
   .guide-info {
@@ -32,15 +67,10 @@
     margin-left: 6px;
   }
 
-  // .guide-rating {
-  //   display: inline-block;
-  //   margin: 0;
-  //   margin-left: 20px;
-  //   color: #F1C232; // yellow from the mock-ups
-  // }
-
   .guide-description {
     display: block;
+    min-height: 1em;
+
     p {
       margin: 0;
       color: #666;

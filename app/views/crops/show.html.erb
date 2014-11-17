@@ -1,46 +1,49 @@
-<div class="row">
-  <div class="small-12 columns">
-    <div class="row">
-      <div class="large-8 medium-10 small-12 small-centered columns">
-        <h1><%= @crop.name %></h1>
-        <table class="crop">
-            <tbody>
-            <tr>
-              <td><%= I18n.t('crops.binomial_name') %></td>
-              <td><%= @crop.binomial_name %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.description') %></td>
-              <td><%= @crop.description %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.sun_requirements') %></td>
-              <td><%= @crop.sun_requirements %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.sowing_method') %></td>
-              <td><%= @crop.sowing_method %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.spread') %></td>
-              <td><%= @crop.spread %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.days_to_maturity') %></td>
-              <td><%= @crop.days_to_maturity %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.row_spacing') %></td>
-              <td><%= @crop.row_spacing %></td>
-            </tr>
-            <tr>
-              <td><%= I18n.t('crops.height') %></td>
-              <td><%= @crop.height %></td>
-            </tr>
-            </tbody>
-          </table>
-      </div>
+<div class="crop-page row wide-row">
+  <div class="crop-info-container small-6 columns">
+    <div class="crop-hero" style="<%= if !@crop.image.blank? then "background-image: url(#{@crop.image})" end %>">
+      <h1 class="crop-name text-center"><%= @crop.name %></h1>
     </div>
+    <table class="crop">
+        <tbody>
+        <tr>
+          <td><%= I18n.t('crops.binomial_name') %></td>
+          <td><%= @crop.binomial_name %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.description') %></td>
+          <td><%= @crop.description %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.sun_requirements') %></td>
+          <td><%= @crop.sun_requirements %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.sowing_method') %></td>
+          <td><%= @crop.sowing_method %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.spread') %></td>
+          <td><%= @crop.spread %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.days_to_maturity') %></td>
+          <td><%= @crop.days_to_maturity %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.row_spacing') %></td>
+          <td><%= @crop.row_spacing %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.height') %></td>
+          <td><%= @crop.height %></td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+  <div class="guide-results-container small-6 columns">
+    <h2 class="text-center">Guides for this crop</h2>
+    <%= "no guides yet :(" if @guides.empty? %>
+    <%= render partial: '/guides/guide_list', object: @guides %>
+    <button class="button expand">Create a guide!</button>
   </div>
 </div>
-

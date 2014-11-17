@@ -17,6 +17,23 @@ class CropSearchesController < ApplicationController
     crop_ids = @crops.map { |crop| crop.id }
     @guides = Guide.search('*', where: {crop_id: crop_ids})
 
+    # For testing compatibility scores (REMOVE FOR PRODUCTION)
+    # @guides.each do |g|
+    #   g[:compatibility_score] = rand(100);
+    # end
+
+    # @guides.each do |g|
+    #   if g[:compatibility_score].nil?
+    #     g[:compatibility_label] = ''
+    #   elsif g[:compatibility_score] > 75
+    #     g[:compatibility_label] = 'compatibility-high'
+    #   elsif g[:compatibility_score] > 50
+    #     g[:compatibility_label] = 'compatibility-med'
+    #   else
+    #     g[:compatibility_label] = 'compatibility-low'
+    #   end
+    # end
+
     render :show
   end
 end

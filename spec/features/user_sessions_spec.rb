@@ -47,7 +47,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    expect(page).to have_content("Create a Guide")
+    expect(page).to have_content(I18n::t('guides.new.create_a_growing_guide'))
   end
 
   it 'should create a new garden for a newly registered user' do

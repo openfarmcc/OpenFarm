@@ -18,6 +18,7 @@ class Guide
   field :name
   field :location
   field :overview
+  field :practices, type: Array
 
   validates_presence_of :user, :crop, :name
 

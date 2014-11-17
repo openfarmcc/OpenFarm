@@ -6,16 +6,22 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.crop_not_found = false;
   $scope.addresses = [];
 
-  $scope.new_guide = {
+  $scope.newGuide = {
     name: '',
     crop: undefined,
-    overview: ''
+    overview: '',
+    practices: {
+      'organic': false,
+      'permaculture': false,
+      'conventional': false,
+      'hydroponic': false
+    }
   };
 
   if (getUrlVar("crop_id")){
     $http.get('/api/crops/' + getUrlVar("crop_id"))
       .success(function(r){
-        $scope.new_guide.crop = r.crop;
+        $scope.newGuide.crop = r.crop;
         $scope.query = r.crop.name;
       })
       .error(function(r, e){
@@ -61,9 +67,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
 
   //Gets fired when user selects dropdown.
   $scope.cropSelected = function ($item, $model, $label) {
-    $scope.new_guide.crop = $item;
+    $scope.newGuide.crop = $item;
     $scope.crop_not_found = false;
-    $scope.new_guide.crop.description = '';
+    $scope.newGuide.crop.description = '';
   };
 
   $scope.createCrop = function(){
@@ -79,12 +85,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.submitForm = function () {
+    console.log($scope.newGuide.practices);
+    var practices = [];
+    angular.forEach($scope.newGuide.practices, function(value, key){
+      if (value){
+        practices.push(key);
+      }
+    }, practices);
     var params = {
-      name: $scope.new_guide.name,
-      crop_id: $scope.new_guide.crop._id,
-      overview: $scope.new_guide.overview || null,
-      location: $scope.new_guide.location || null
+      name: $scope.newGuide.name,
+      crop_id: $scope.newGuide.crop._id,
+      overview: $scope.newGuide.overview || null,
+      location: $scope.newGuide.location || null,
+      practices: practices
     };
+    console.log(params);
     $http.post('/api/guides/', params)
       .success(function (r) {
         // console.log(r);

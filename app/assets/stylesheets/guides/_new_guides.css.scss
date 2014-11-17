@@ -1,0 +1,117 @@
+
+.new-guide {
+
+  .create-guide-steps{
+    text-align: center;
+    font-size: .8rem;
+    color: $of-dark;
+    margin-bottom: 1rem;
+
+    .step:first-child{
+      border-top-left-radius: $global-radius;
+      border-bottom-left-radius: $global-radius;
+    }
+
+    .step:nth-child(3){
+      border-top-right-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+    }
+
+    .step{
+      padding: .5rem 1rem;
+      border: 1px $secondary-color solid;
+    }
+
+    .step.active{
+      background-color: $of-dark;
+      border: 1px $of-dark solid;
+      color: white;
+    }
+
+    .preview{
+      border-radius: $global-radius;
+    }
+  }
+
+  section h1{
+    text-align: center;
+    font-size: 1.5rem;
+    margin: .5rem 0;
+  }
+
+  form.new-guide{
+    width: 100%;
+    display: inline-block;
+    margin: 1.5rem;
+
+    .practices .options label{
+      display: inline-block;
+    }
+
+    label input[type=checkbox]{
+      margin-bottom: 0;
+      opacity: 0;
+      width: 0;
+    }
+
+    label input[type=checkbox]:checked ~ span {
+      background-color: $of-dark;
+      color: white;
+    }
+
+    label span{
+      border: 0;
+      border-radius: 0;
+      font-size: .9rem;
+    }
+
+    label:first-child span{
+      border-top-left-radius: $global-radius;
+      border-bottom-left-radius: $global-radius;
+    }
+
+    button{
+      border: 0;
+      font-size: .9rem;
+      border-top-right-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+    }
+
+    .button-wrapper{
+      margin-top: 2rem;
+    }
+
+    .block{
+      height: 2rem;
+      display: block;
+    }
+
+    p{
+      font-size: .9rem;
+      color: #171717;
+      line-height: 1.5rem;
+      margin-bottom: .5rem;
+    }
+    input.button.small.secondary.left{
+      margin-left: .5rem;
+    }
+  }
+  .crop-image{
+    background: #fff;
+    width: 100%;
+    height: 124px;
+    border-radius: 2px;
+    border: 0px solid #979797;
+    -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    img.no-image{
+      transform: translate(-50%, -50%);
+      position: relative;
+      top: 50%;
+      left: 50%;
+    }
+  }
+}

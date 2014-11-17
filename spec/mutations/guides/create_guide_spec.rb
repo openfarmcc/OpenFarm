@@ -49,4 +49,11 @@ describe Guides::CreateGuide do
     expect(result).to be_a(Guide)
     expect(result.valid?).to be(true)
   end
+
+  it 'catches invalid practices' do
+    params[:practices] = ['string', 8, 'string']
+    results = cg.run(params)
+    message = results.errors.message_list.first
+    expect(message).to include('8 is not a valid practice.')
+  end
 end

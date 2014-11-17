@@ -14,6 +14,7 @@ module Guides
       string :overview
       string :featured_image
       string :location
+      array :practices
     end
 
     def guide
@@ -21,6 +22,7 @@ module Guides
     end
 
     def validate
+      validate_practices
       validate_crop
       validate_image_url
     end
@@ -37,9 +39,21 @@ module Guides
       guide.user           = user
       guide.overview       = overview if overview
       guide.location       = location if location
+      guide.practices      = practices if practices
       guide.save
       # TODO : Verify that we actually need to do this:
       set_featured_image_async
+    end
+
+    def validate_practices
+      if practices
+        practices.each do |p|
+          unless p.is_a? String
+            msg = "#{p} is not a valid practice."
+            add_error :practices, :invalid, msg
+          end
+        end
+      end
     end
 
     def validate_crop

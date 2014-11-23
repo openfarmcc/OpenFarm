@@ -24,7 +24,8 @@ OpenFarm::Application.configure do
     ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
                         'AbstractController::ActionNotFound',
                         'ActionController::RoutingError',
-                        'ActionController::InvalidAuthenticityToken']
+                        'ActionController::InvalidAuthenticityToken',
+                        'ActionView::MissingTemplate']
   config.action_mailer.default_url_options = { host: 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

@@ -40,8 +40,9 @@ class Guide
 
   def compatibility_score
     # Make our random scores consistent based on the first character of the crop name
-    srand(self.name[0].ord)
-    rand(100);
+    # srand(self.name[0].ord)
+    # rand(100);
+    nil
   end
 
   def compatibility_label

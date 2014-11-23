@@ -40,18 +40,17 @@ class Guide
 
   def compatibility_score
     # Make our random scores consistent based on the first character of the crop name
-    # srand(self.name[0].ord)
-    # rand(100);
+    # # srand(name[0].ord)
+    # # rand(100);
     nil
   end
 
   def compatibility_label
     # TODO:
-    score = self.compatibility_score
+    score = compatibility_score
 
-    if score.nil?
-      label = ''
-    elsif score > 75
+    label = ''
+    if score > 75
       label = 'high'
     elsif score > 50
       label = 'medium'

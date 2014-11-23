@@ -37,5 +37,27 @@ class Guide
   def search_data
     as_json only: [:name, :overview, :crop_id]
   end
+
+  def compatibility_score
+    # Make our random scores consistent based on the first character of the crop name
+    srand(self.name[0].ord)
+    rand(100);
+  end
+
+  def compatibility_label
+    # TODO:
+    score = self.compatibility_score
+
+    if score.nil?
+      label = ''
+    elsif score > 75
+      label = 'high'
+    elsif score > 50
+      label = 'medium'
+    else
+      label = 'low'
+    end
+  end
+
   slug :name
 end

@@ -6,7 +6,7 @@
   <div class="guide-results-container small-6 columns">
     <h2 class="text-center">Explore the guides</h2>
     <%= "no guides yet :(" if @guides.empty? %>
-    <%= render partial: 'guides/guide_list', object: @guides %>
+    <%= render partial: 'guides/guide_results_list', object: @guides %>
     <%= button_to "Create a guide!", new_guide_path, method:'get', class:"button expand" %>
   </div>
 </div>

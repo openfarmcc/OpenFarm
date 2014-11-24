@@ -13,6 +13,8 @@ $success-color: #74E29D;
 $warning-color: #f08a24;
 $info-color: #eecb91;
 
+$compatibility-circle-size: 50px;
+
 @mixin background-gradient($from, $to){
   background-image: -o-linear-gradient(-90deg, $from 0%, $to 100%);
   background-image: -moz-linear-gradient(-90deg, $from 0%, $to 100%);
@@ -92,7 +94,7 @@ $info-color: #eecb91;
   }
 }
 
-// Hack: this doesn't seem to be editable in 
+// Hack: this doesn't seem to be editable in
 // Foundation && Overrides.
 input, textarea{
   border-radius: 4px;
@@ -149,7 +151,7 @@ table{
 }
 
 /* Section accordion styling */
-.accordion > dd.accordion-navigation > a, 
+.accordion > dd.accordion-navigation > a,
 .accordion > dd.active > a,
 .accordion > dd.active > a.title-wrapper {
   display: block;
@@ -210,34 +212,34 @@ table{
 }
 
 .icon.of-water::before{
-  background: image-url('guide-icons/water.svg'); 
+  background: image-url('guide-icons/water.svg');
 }
 .icon.of-temperature::before{
-  background: image-url('guide-icons/temperature.svg'); 
+  background: image-url('guide-icons/temperature.svg');
 }
 .icon.of-ph::before{
-  background: image-url('guide-icons/ph.svg'); 
+  background: image-url('guide-icons/ph.svg');
 }
 .icon.of-soil::before{
-  background: image-url('guide-icons/soil.svg'); 
+  background: image-url('guide-icons/soil.svg');
 }
 .icon.of-sun-shade::before{
-  background: image-url('guide-icons/sun-shade.svg'); 
+  background: image-url('guide-icons/sun-shade.svg');
 }
 .icon.of-location::before{
-  background: image-url('guide-icons/location.svg'); 
+  background: image-url('guide-icons/location.svg');
 }
 .icon.of-practices::before{
-  background: image-url('guide-icons/practices.svg'); 
+  background: image-url('guide-icons/practices.svg');
 }
 .icon.of-time-commitment::before{
-  background: image-url('guide-icons/time-commitment.svg'); 
+  background: image-url('guide-icons/time-commitment.svg');
 }
 .icon.of-physical-ability::before{
-  background: image-url('guide-icons/physical-ability.svg'); 
+  background: image-url('guide-icons/physical-ability.svg');
 }
 .icon.of-time-of-year::before{
-  background: image-url('guide-icons/temperature.svg'); 
+  background: image-url('guide-icons/temperature.svg');
 }
 
 /*
@@ -259,7 +261,7 @@ table{
   }
   h2{
     font-size: 1.1rem;
-  } 
+  }
   h3{
     font-size: 1rem;
   }

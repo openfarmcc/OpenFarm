@@ -1,4 +1,5 @@
 .search-result-guide {
+  display: table;
   width: 100%;
   min-height: 40px;
   margin-bottom: 12px;
@@ -32,11 +33,6 @@
   @include compatibility-color('compatibility-med', $compatibility-med-color);
   @include compatibility-color('compatibility-high', $compatibility-high-color);
 
-  .compatibility-circle {
-    float: right;
-    margin-left: 12px;
-  }
-
   &:hover {
     background-color: #F7F7F7;
     @include transform(translateY(-2px));
@@ -47,33 +43,47 @@
   }
 
   .guide-info {
+    display: table-cell;
+  }
+
+  .compatibility-circle-container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .compatibility-circle {
+    display: block;
+    margin-left: 12px;
+  }
+
+  .guide-name-and-author {
     display: block;
     margin: 0;
-  }
 
-  .guide-name {
-    display: inline-block;
-    margin: 0;
-    font-size: 1.25em;
-    font-weight: 600;
-    color: #333;
-  }
-
-  .guide-author {
-    display: inline-block;
-    margin: 0;
-    color: #A9A9A9;
-    font-size: 0.9em;
-    margin-left: 6px;
-  }
-
-  .guide-description {
-    display: block;
-    min-height: 1em;
-
-    p {
+    .guide-name {
+      display: inline-block;
       margin: 0;
-      color: #666;
+      font-size: 1.25em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .guide-author {
+      display: inline-block;
+      margin: 0;
+      color: #A9A9A9;
+      font-size: 0.9em;
+      margin-left: 6px;
+    }
+
+    .guide-description {
+      display: block;
+      min-height: 1em;
+
+      p {
+        margin: 0;
+        color: #666;
+      }
     }
   }
 }

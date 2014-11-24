@@ -1,0 +1,16 @@
+<%= link_to guide do %>
+  <li class="search-result-guide <%= guide[:compatibility_label] %>">
+    <div class="guide-info">
+      <div class="guide-name-and-author">
+        <h3 class="guide-name"><%= guide.name %></h3>
+        <p class="guide-author">by <%= guide.user.display_name %></p>
+      </div>
+      <div class="guide-description">
+        <p><%= guide.overview %></p>
+      </div>
+    </div>
+    <div class="compatibility-circle-container">
+      <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
+    </div>
+  </li>
+<% end %>

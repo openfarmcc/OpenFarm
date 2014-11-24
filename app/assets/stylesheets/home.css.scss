@@ -255,6 +255,44 @@ video { display: block; }
     }
   }
 
+  .add-a-guide {
+    p {
+      opacity: 0.85;
+      font-weight: 600;
+      display: inline-block;
+      color: white;
+    }
+
+    a.create-guide-link {
+      position: relative;
+      display: inline-block;
+      box-sizing: content-box;
+      vertical-align: bottom;
+      color: white;
+      overflow: hidden;
+      padding: 0 2px;
+      @include transition(all 0.35s);
+
+      &:before {
+        position: absolute;
+        z-index: -1;
+        top: 0; left: 0; width: 100%; height:100%;
+        content: "";
+        background-color: $of-green;
+        @include transition(transform 0.25s ease-out);
+        @include transform(translateY(8px) scaleY(0.1));
+      }
+
+      &:hover:before {
+        @include transform(scaleY(1));
+      }
+
+      &:active:before {
+        background-color: darken($of-green, 10%);
+      }
+    }
+  }
+
   .explore-community-favorites {
     position: absolute;
     bottom: 0;
@@ -312,7 +350,7 @@ video { display: block; }
       }
 
       .blackness {
-        background-color: rgba(0,0,0,0.35);
+        background-color: rgba(0,0,0,0.45);
         opacity: 0.5;
       }
 

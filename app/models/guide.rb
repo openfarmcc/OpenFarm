@@ -49,13 +49,14 @@ class Guide
     # TODO:
     score = compatibility_score
 
-    label = ''
-    if score > 75
-      label = 'high'
+    if score.nil?
+      return ''
+    elsif score > 75
+      return 'high'
     elsif score > 50
-      label = 'medium'
+      return 'medium'
     else
-      label = 'low'
+      return 'low'
     end
   end
 

@@ -43,7 +43,7 @@
   <div class="guide-results-container small-6 columns">
     <h2 class="text-center">Guides for this crop</h2>
     <%= "no guides yet :(" if @guides.empty? %>
-    <%= render partial: '/guides/guide_list', object: @guides %>
+    <%= render partial: '/guides/results_list', object: @guides %>
     <button class="button expand">Create a guide!</button>
   </div>
 </div>

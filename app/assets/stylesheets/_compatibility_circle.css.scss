@@ -1,21 +1,20 @@
 .compatibility-circle {
-  $circle-size: 50px;
-  width: 50px;
-  height: 50px;
+  width: $compatibility-circle-size;
+  height: $compatibility-circle-size;
   border-radius: 999rem;
   font-size: 18px;
   font-weight: 600;
-  color: #CCC;
-  border: 2px solid #CCC;
-  line-height: $circle-size;
+  color: #DDD;
+  border: 2px solid #DDD;
+  line-height: $compatibility-circle-size;
   text-align: center;
   vertical-align: middle;
 
   .score {
     display: inline-block;
     vertical-align: middle;
-    line-height: normal;  
-    margin-top: -8px; // nudge up    
+    line-height: normal;
+    margin-top: -8px; // nudge up
   }
 
   @mixin compatibility-color ($selector, $color) {

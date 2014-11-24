@@ -1,0 +1,5 @@
+<ul class="guide-results">
+  <% @guides.each do |guide| %>
+    <%= render partial: "/guides/guide_result", locals: {guide: guide} %>
+  <% end %>
+</ul>

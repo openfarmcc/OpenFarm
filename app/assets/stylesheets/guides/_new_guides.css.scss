@@ -39,10 +39,9 @@
     margin: .5rem 0;
   }
 
-  form.new-guide{
+  form{
     width: 100%;
     display: inline-block;
-    margin: 1.5rem;
 
     .practices .options label{
       display: inline-block;
@@ -63,6 +62,8 @@
       border: 0;
       border-radius: 0;
       font-size: .9rem;
+      /* TODO: waiting on @warpling's inclusion of compass; */
+      /*@include transition(1s cubic-bezier(0, .5,.5,1));*/
     }
 
     label:first-child span{

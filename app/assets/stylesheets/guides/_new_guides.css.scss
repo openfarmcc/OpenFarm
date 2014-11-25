@@ -1,4 +1,26 @@
 
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
 .new-guide {
 
   .create-guide-steps{
@@ -100,13 +122,29 @@
   .crop-image{
     background: #fff;
     width: 100%;
-    height: 124px;
+    height: 200px;
     border-radius: 2px;
     border: 0px solid #979797;
     -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
     box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
     display: inline-block;
     margin-bottom: 1rem;
+    @include font-awesome-mixin();
+    
+    &:before{
+      content: "\f06c";
+      font-size: 4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.ng-invalid-uploading:before{
+      content: "\f110";
+      -webkit-animation: fa-spin 2s infinite linear;
+      animation: fa-spin 2s infinite linear;
+    }
 
     img.no-image{
       transform: translate(-50%, -50%);

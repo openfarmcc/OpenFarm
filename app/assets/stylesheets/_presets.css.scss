@@ -32,6 +32,12 @@ $compatibility-circle-size: 50px;
   }
 }
 
+@mixin font-awesome-mixin(){
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
 
 .full-cover {
   position: absolute;

@@ -190,7 +190,6 @@ angular.module('ngS3upload.directives', []).
             };
 
             var uploadFile = function () {
-              console.log('uploading file');
               var selectedFile = file[0].files[0];
               var filename = selectedFile.name;
               var ext = filename.split('.').pop();
@@ -216,7 +215,8 @@ angular.module('ngS3upload.directives', []).
                         guide = scope.$parent[attrs.s3Guide];
                       }
                       // TODO: Un-hardcode this.
-                      guide.featured_image = resp.responseXML.getElementsByTagName("Location")[0].innerHTML;
+                      guide.featured_image = resp.responseXML
+                        .getElementsByTagName('Location')[0].innerHTML;
                       ngModel.$setViewValue(s3Uri + key);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
@@ -225,7 +225,8 @@ angular.module('ngS3upload.directives', []).
                       alert("There was an error uploading your image. Developers: See JS console for details.");
                       console.log('Bad response from Amazon S3:');
                       console.lof(resp);
-                      scope.fileUrl = resp.responseXML.getElementsByTagName("Location")[0].innerHTML;
+                      scope.fileUrl = resp.responseXML
+                        .getElementsByTagName('Location')[0].innerHTML;
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', false);

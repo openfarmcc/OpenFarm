@@ -77,8 +77,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.nextStep = function(){
-    console.log($scope.s3upload);
-    console.log($scope.newGuide);
     $scope.step += 1;
   };
 
@@ -87,7 +85,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.submitForm = function () {
-    console.log($scope.newGuide.practices);
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value){
@@ -102,10 +99,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
-    console.log(params);
     $http.post('/api/guides/', params)
       .success(function (r) {
-        console.log(r);
+        // console.log(r);
         window.location.href = "/guides/" + r.guide._id + "/edit/";
       })
       .error(function (r) {

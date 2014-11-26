@@ -17,20 +17,20 @@
   <div class="row create-guide-steps">
     <div class="large-3 medium-3 small-3 columns step"
         ng-class="{ 'active' : step === 1 }">
-      <%= t('.the_basics') %>
+      1. <%= t('.the_basics') %>
     </div>
     <div class="large-3 medium-3 small-3 columns step"
         ng-class="{ 'active' : step === 2 }">
-      <%= t('.life_stages') %>
+      2. <%= t('.life_stages') %>
     </div>
     <div class="large-3 medium-3 small-3 columns step"
         ng-class="{ 'active' : step === 3 }">
-      <%= t('.final_touches') %>
+      3. <%= t('.final_touches') %>
     </div>
 
     <div class="large-2 medium-2 small-2 columns preview step"
-        ng-class="{ 'active' : step === 3 }">
-      <%= t('.preview_guide') %>
+        ng-class="{ 'active' : step === 4 }">
+      <span tooltip="preview coming soon"><%= t('.preview_guide') %></span>
     </div>
   </div>
 
@@ -149,14 +149,36 @@
           <input class="button small right"
             name="commit"
             type="submit"
-            value="{{ newGuide.crop ? '<%= t('.next_name_and_location') %>' : '<%= t('.choose_a_crop_to_continue') %>' }}"
+            value="{{ newGuide.crop ? '<%= t('.step_1.next_life_stages') %>' : '<%= t('.step_1.choose_a_crop_to_continue') %>' }}"
             ng-disabled="!newGuide.crop"
             ng-click="nextStep()"/>
         </div>
       </div>
     </form>
   </section>
+
   <section name="step-2" ng-show="step === 2">
+    <div class="button-wrapper row">
+        <div class="columns large-12">
+          <a class="button small secondary left"
+            name="back"
+            href="<%= root_path %>"
+            ng-click="cancel('<%= root_path %>')"><%= t('.cancel_and_go_to_home') %></a>
+          <input class="button small secondary left"
+            name="back"
+            type="submit"
+            value="<%= t('.back') %>"
+            ng-click="previousStep()">
+          <input class="button small right"
+            name="commit"
+            type="submit"
+            value="{{ newGuide.crop ? '<%= t('.step_2.next_final_touches') %>' : '<%= t('.step_2.choose_some_stages_to_continue') %>' }}"
+            ng-disabled="!newGuide.crop"
+            ng-click="nextStep()"/>
+        </div>
+      </div>
+  </section>
+  <section name="step-3" ng-show="step === 3">
     <h1 class="columns large-6">
       <%= t('.some_information') %>
     </h1>
@@ -184,17 +206,6 @@
                 ng-model="newGuide.location"
                 loading-text="<%= t('application.loading_locations') %>">
           </span>
-          <!-- <input type="text"
-                 ng-model="newGuide.location"
-                 placeholder="Ex: Hanoi, Portland, California"
-                 typeahead="address for address in addresses"
-                 ng-change="getLocation(newGuide.location)"
-                 typeahead-min-length="3"
-                 typeahead-loading="loadingLocations"
-                 typeahead-wait-ms="555"
-                 class="form-control"
-                 name="guide[location]">
-          <i ng-show="loadingLocations" class="fa fa-refresh"><%= t('application.loading_locations') %></i> -->
         </div>
       </div>
       <div class="button-wrapper row">
@@ -219,8 +230,6 @@
         </div>
       </div>
     </form>
-  </section>
-  <section >
   </section>
 </div>
 

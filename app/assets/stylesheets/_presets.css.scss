@@ -102,8 +102,8 @@ $compatibility-circle-size: 50px;
 
 // Hack: this doesn't seem to be editable in
 // Foundation && Overrides.
-input, textarea{
-  border-radius: 4px;
+input, textarea, input[type='submit']{
+  border-radius: 3px;
   margin-bottom: 0;
 }
 
@@ -119,13 +119,13 @@ small.error{
 .button{
   // For some reason the foundation styles don't
   // acknowledge the button radius set on line :365
-  border-radius: 4px;
   @include button-box-shadow();
 }
 
 .button{
   @include background-gradient(#A2BD6A, #83A544);
   border-radius: 3px;
+  -webkit-border-radius: 3px;
   transition: .2s background-image;
 }
 
@@ -133,7 +133,15 @@ small.error{
   @include background-gradient(#8FAB54, #7A9841);
 }
 
-.button[disabled=disabled].loading, .button[disabled].loading, .button[disabled].loading:hover{
+.button[disabled=disabled]:hover,
+.button[disabled],
+.button[disabled]:hover{
+  @include background-gradient(#8FAB54, #7A9841);
+}
+
+.button[disabled=disabled].loading,
+.button[disabled].loading,
+.button[disabled].loading:hover{
   background-image: url(ajax-loader-button-disabled.gif);
   background-position: 4px center;
   background-repeat: no-repeat;

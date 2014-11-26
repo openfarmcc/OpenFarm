@@ -127,10 +127,11 @@ en:
                 common_or_scientific: "Common or scientific names are okay"
                 which_practices: "Which practices will you be using?"
                 check_all_that_apply: "Check all that apply."
-
-
-            next_name_and_location: "Next: Name and location"
-            choose_a_crop_to_continue: "Choose a crop to continue"
+                next_life_stages: "Next: Life Stages"
+                choose_a_crop_to_continue: "Choose a crop to continue"
+            step_2:
+                next_final_touches: "Next: Final Touches"
+                choose_some_stages_to_continue: "Choose a crop to continue"
             enter_a_crop: "Enter a crop and it will be shown here"
             uh_oh: "Uh oh!"
             not_found: "We couldn't find that crop in our database."

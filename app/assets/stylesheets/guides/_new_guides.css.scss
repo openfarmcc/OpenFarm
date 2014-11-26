@@ -1,6 +1,6 @@
 // TODO: @simonv3, figure out where to put these:
 
-@-webkit-keyframes fa-spin {
+@-webkit-keyframes fa-spin-image-load {
   0% {
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
             transform: translate(-50%, -50%) rotate(0deg);
@@ -53,6 +53,7 @@
 
     .preview{
       border-radius: $global-radius;
+      opacity: .5;
     }
   }
 
@@ -143,8 +144,8 @@
 
     &.ng-invalid-uploading:before{
       content: "\f110";
-      -webkit-animation: fa-spin 2s infinite linear;
-      animation: fa-spin 2s infinite linear;
+      -webkit-animation: fa-spin-image-load 2s infinite linear;
+      animation: fa-spin-image-load 2s infinite linear;
     }
 
     img.no-image{

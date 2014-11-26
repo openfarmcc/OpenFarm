@@ -12,7 +12,7 @@
      class="new-guide large-8 medium-8 small-12 columns ng-cloak centered"
      ng-cloak>
 
-    <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+    <div alerts ng-model="alerts"></div>
 
   <div class="row create-guide-steps">
     <div class="large-3 medium-3 small-3 columns step"
@@ -158,6 +158,23 @@
   </section>
 
   <section name="step-2" ng-show="step === 2">
+
+    <div class="life-stages">
+      <div class="row">
+        <div class="columns large-12">
+          <h2><%= t('.step_2.choose_the_life_stages') %></h2>
+          <h3>
+            <%= t('.step_2.life_stages_description') %>
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        
+      </div>
+
+    </div>
+
+
     <div class="button-wrapper row">
         <div class="columns large-12">
           <a class="button small secondary left"

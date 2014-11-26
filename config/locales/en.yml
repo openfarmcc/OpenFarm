@@ -132,6 +132,8 @@ en:
             step_2:
                 next_final_touches: "Next: Final Touches"
                 choose_some_stages_to_continue: "Choose a crop to continue"
+                choose_the_life_stages: "Choose the Life Stages you want in your guide"
+                life_stages_description: "Life Stages are periods of the crop's life when the grower will complete actions specific to that period."
             enter_a_crop: "Enter a crop and it will be shown here"
             uh_oh: "Uh oh!"
             not_found: "We couldn't find that crop in our database."

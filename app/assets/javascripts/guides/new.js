@@ -2,9 +2,23 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   function newGuideCtrl($scope, $http) {
   $scope.alerts = [];
   $scope.crops = [];
-  $scope.step = 1;
+  $scope.step = 2;
   $scope.crop_not_found = false;
   $scope.addresses = [];
+  $scope.stages = [];
+
+  $http.get('/api/stage_options/')
+    .success(function(response, status){
+      $scope.stages = response.stage_options;
+      console.log($scope.stages);
+    })
+    .error(function(response, code){
+      $scope.alerts.push({
+        msg: code + ' error. We had trouble fetching all stage options.',
+        type: 'warning'
+      });
+    })
+
 
   $scope.newGuide = {
     name: '',
@@ -34,10 +48,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
 
     // $scope.default_crop = $location.search().crop_id;
   }
-
-  $scope.$watch('loadingCrops', function(){
-    // console.log($scope.loadingCrops);
-  });
 
   //Typeahead search for crops
   $scope.search = function () {

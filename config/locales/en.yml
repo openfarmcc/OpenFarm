@@ -32,6 +32,7 @@ en:
         log_in: "Log in"
         create_account: "Create an Account"
         loading_locations: "loading locations"
+        manage_gardens: "Manage your gardens"
     registrations:
         your_first_garden: "Your First Garden"
         need_password: "You need to supply your password to delete your account"

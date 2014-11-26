@@ -14,7 +14,13 @@
     opacity: 1;
 
     .crop-info {
-      @include background-image(linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)));
+      /* FIXME: Avoid compass gradient for some reason.
+         When using compass' background image function, 
+         linear gradients output an error: 
+         `Cannot determine the opposite position of: to`, our personal
+         method defined in presets doesn't have this issue.; */
+      @include background-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+      /*@include background-image(linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)));*/
     }
   }
 
@@ -38,7 +44,13 @@
     position: absolute;
     padding: ($padding+40px) ($padding+4px) $padding;
     @include single-transition(background, 0.2s, ease-in);
-    @include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));
+    /* FIXME: Avoid compass gradient for some reason.
+      When using compass' background image function, 
+      linear gradients output an error: 
+      `Cannot determine the opposite position of: to`, our personal
+      method defined in presets doesn't have this issue.; */
+    @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+    /*@include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));*/
     z-index: 1;
     bottom: 0;
     left: 0;

@@ -1,0 +1,61 @@
+@mixin background-gradient($from, $to){
+  background-image: -o-linear-gradient(to top, $from, $to);
+  background-image: -moz-linear-gradient(to top, $from, $to);
+  background-image: -ms-linear-gradient(to top, $from, $to);
+  background-image: linear-gradient(to top, $from, $to);
+}
+
+@mixin accordion-header-color($color){
+  & > a, & > a.title-wrapper{
+    background-color: $color;
+    transition: .5s;
+    &:hover{
+      background-color: $color + 20;
+    }
+  }
+}
+
+@mixin font-awesome-mixin(){
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
+
+.full-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */
+.row.wide-row {
+  // TODO(@warpling): replace magic number
+  max-width: 90rem;
+}
+
+/* Apply to columns that should have the same bottom padding as left/right */
+.columns.bottom-padding {
+  // TODO(@warpling): replace magic number
+  padding-bottom: .9375rem;
+}
+
+/* Apply this to a row that will vertically center a column */
+.row.row-table {
+  display: table;
+  table-layout: fixed;
+  width: 100%; // Tables will only be as big as they need to without this
+}
+
+.row.row-full-height {
+  height: 100%;
+}
+
+/* Apply this to the column that should be vertically centered */
+.columns.column-middle {
+  display: table-cell;
+  vertical-align: middle;
+  float: none;
+}

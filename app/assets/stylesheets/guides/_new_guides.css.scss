@@ -1,3 +1,26 @@
+// TODO: @simonv3, figure out where to put these:
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
 
 .new-guide {
 
@@ -39,10 +62,9 @@
     margin: .5rem 0;
   }
 
-  form.new-guide{
+  form{
     width: 100%;
     display: inline-block;
-    margin: 1.5rem;
 
     .practices .options label{
       display: inline-block;
@@ -63,6 +85,8 @@
       border: 0;
       border-radius: 0;
       font-size: .9rem;
+      /* TODO: waiting on @warpling's inclusion of compass; */
+      /*@include transition(1s cubic-bezier(0, .5,.5,1));*/
     }
 
     label:first-child span{
@@ -99,13 +123,29 @@
   .crop-image{
     background: #fff;
     width: 100%;
-    height: 124px;
+    height: 200px;
     border-radius: 2px;
     border: 0px solid #979797;
     -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
     box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
     display: inline-block;
     margin-bottom: 1rem;
+    @include font-awesome-mixin();
+    
+    &:before{
+      content: "\f06c";
+      font-size: 4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.ng-invalid-uploading:before{
+      content: "\f110";
+      -webkit-animation: fa-spin 2s infinite linear;
+      animation: fa-spin 2s infinite linear;
+    }
 
     img.no-image{
       transform: translate(-50%, -50%);

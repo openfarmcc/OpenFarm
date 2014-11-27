@@ -39,7 +39,7 @@
       <%= t('.step_1.lets_get_started') %>
     </h1>
     <form accept-charset="UTF-8"
-      class="new-guide new-guide-step-1"
+      class="new-guide-step-1"
       id="new-guide-step-1"
       method="post"
       >
@@ -83,16 +83,23 @@
         </div>
       </div>
       <div class="row">
-      <!-- TODO: Take a look at the upload script -->
-        <!-- <div class="columns large-4">
+        <div class="columns large-4">
           <label class="right"
-            for="guide_image_upload"><%= t('.step_1.choose_photo') %><br/>
+              for="guide_image_upload"><%= t('.step_1.choose_photo') %><br/>
             <small><%= t('.step_1.only_upload_what_you_own') %></small>
           </label>
         </div>
         <div class="columns large-8">
-          <input s3-upload/>
-        </div> -->
+          <div 
+            id="guide_image_upload"
+            name="guide_image_upload"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            s3-guide="newGuide"
+            ng-model="s3upload"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+          </div>
+        </div>
       </div>
       <div class="row practices">
         <div class="columns large-4">

@@ -85,7 +85,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.submitForm = function () {
-    console.log($scope.newGuide.practices);
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value){
@@ -97,9 +96,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
       location: $scope.newGuide.location || null,
+      featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
-    console.log(params);
     $http.post('/api/guides/', params)
       .success(function (r) {
         // console.log(r);

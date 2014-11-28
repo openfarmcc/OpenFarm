@@ -5,6 +5,7 @@ $of-green: #6aa84f;
 $of-red: #cc0000;
 $of-yellow: #f1c232;
 $of-dark: #4a4a4a;
+$of-light: #dedede;
 
 $primary-color: #c7a979; // #008CBA;
 $secondary-color: #e7e7e7;
@@ -123,7 +124,7 @@ small.error{
 }
 
 .button{
-  @include background-gradient(#A2BD6A, #83A544);
+  @include background-gradient(#83A544, #A2BD6A);
   border-radius: 3px;
   -webkit-border-radius: 3px;
   transition: .2s background-image;

@@ -116,6 +116,7 @@ en:
             create_a_growing_guide: "Create a Growing Guide"
             the_basics: "The Basics"
             life_stages: "Life Stages"
+            stage_details: "Stage Details"
             final_touches: "Final Touches"
             preview_guide: "Preview Guide"
             step_1:
@@ -131,10 +132,13 @@ en:
                 next_life_stages: "Next: Life Stages"
                 choose_a_crop_to_continue: "Choose a crop to continue"
             step_2:
-                next_final_touches: "Next: Final Touches"
                 choose_some_stages_to_continue: "Choose a crop to continue"
                 choose_the_life_stages: "Choose the Life Stages you want in your guide"
                 life_stages_description: "Life Stages are periods of the crop's life when the grower will complete actions specific to that period."
+                next_stage_details: "Next: Stage Details"
+            step_3:
+                next_final_touches: "Next: Final Touches"
+                fill_in_details: "Fill in the details for each life stage"
             enter_a_crop: "Enter a crop and it will be shown here"
             uh_oh: "Uh oh!"
             not_found: "We couldn't find that crop in our database."

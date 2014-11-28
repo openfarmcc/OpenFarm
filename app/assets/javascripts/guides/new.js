@@ -1,3 +1,15 @@
+openFarmApp.directive('ofLifestage', [
+  function ofLifestage(){
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      controller: ['$scope', '$element', '$attrs',
+       function ($scope, $element, $attrs){
+        console.log('controlling a life stage');
+      }]
+    };
+}]);
+
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   function newGuideCtrl($scope, $http) {
   $scope.alerts = [];
@@ -10,15 +22,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $http.get('/api/stage_options/')
     .success(function(response, status){
       $scope.stages = response.stage_options;
-      console.log($scope.stages);
+      $scope.newGuide.stages = $scope.stages
+        .map(function(item){
+          item.selected = false;
+          return item;
+        });
     })
     .error(function(response, code){
       $scope.alerts.push({
         msg: code + ' error. We had trouble fetching all stage options.',
         type: 'warning'
       });
-    })
-
+    });
 
   $scope.newGuide = {
     name: '',
@@ -87,6 +102,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.nextStep = function(){
+    console.log($scope.newGuide);
     $scope.step += 1;
   };
 

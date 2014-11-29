@@ -1,0 +1,17 @@
+<section name="step-3" ng-show="step === 3">
+  <h2 class="columns large-12">
+    <%= t('.fill_in_details') %>
+  </h2>
+
+  <form>
+    <div stage-buttons
+        cancel-url="<%= root_path %>"
+        cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+        back-text="<%= t('guides.new.back') %>"
+        disabled-text="<%= t('.next_final_touches') %>"
+        abled-text="<%= t('.fill_in_details') %>"
+        >
+    </div>
+  </form>
+  
+</section>

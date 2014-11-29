@@ -1,28 +1,29 @@
-// TODO: @simonv3, figure out where to put these:
-
-@-webkit-keyframes fa-spin-image-load {
-  0% {
-    -webkit-transform: translate(-50%, -50%) rotate(0deg);
-            transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    -webkit-transform: translate(-50%, -50%) rotate(359deg);
-            transform: translate(-50%, -50%) rotate(359deg);
-  }
-}
-
-@keyframes fa-spin {
-  0% {
-    -webkit-transform: translate(-50%, -50%) rotate(0deg);
-            transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    -webkit-transform: translate(-50%, -50%) rotate(359deg);
-            transform: translate(-50%, -50%) rotate(359deg);
-  }
-}
-
 .new-guide {
+
+  // TODO: @simonv3, figure out where to put these:
+
+  @-webkit-keyframes fa-spin-image-load {
+    0% {
+      -webkit-transform: translate(-50%, -50%) rotate(0deg);
+              transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      -webkit-transform: translate(-50%, -50%) rotate(359deg);
+              transform: translate(-50%, -50%) rotate(359deg);
+    }
+  }
+
+  @keyframes fa-spin {
+    0% {
+      -webkit-transform: translate(-50%, -50%) rotate(0deg);
+              transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      -webkit-transform: translate(-50%, -50%) rotate(359deg);
+              transform: translate(-50%, -50%) rotate(359deg);
+    }
+  }
+
 
   .create-guide-steps{
     text-align: center;
@@ -208,36 +209,38 @@
       border: 3px solid $of-green;
     }
   }
-}
 
-.stage-option{
-  background-repeat: no-repeat;
-  background-size: 150px;
-  &.Preparation{
-    background-image: url('stages/preparation_stage_200.png');
-  }
-  &.Sow{
-    background-image: url('stages/sow_stage_200.png');
-  }
-  &.Germination{
-    background-image: url('stages/germination_stage_200.png');
-  }
-  &.Seedling{
-    background-image: url('stages/seedling_stage_200.png');
-  }
-  &.Juvenile{
-    background-image: url('stages/juvenile_stage_200.png');
-  }
-  &.Adult{
-    background-image: url('stages/adult_stage_200.png');
-  }
-  &.Flowering{
-    background-image: url('stages/flowering_stage_200.png');
-  }
-  &.Fruit{
-    background-image: url('stages/fruit_stage_200.png');
-  }
-  &.Dormant{
-    background-image: url('stages/dormant_stage_200.png');
+  // For now these live in .new-guide, but they
+  // might be better suited somewhere else.
+  .stage-option{
+    background-repeat: no-repeat;
+    background-size: 150px;
+    &.Preparation{
+      background-image: url('stages/preparation_stage_200.png');
+    }
+    &.Sow{
+      background-image: url('stages/sow_stage_200.png');
+    }
+    &.Germination{
+      background-image: url('stages/germination_stage_200.png');
+    }
+    &.Seedling{
+      background-image: url('stages/seedling_stage_200.png');
+    }
+    &.Juvenile{
+      background-image: url('stages/juvenile_stage_200.png');
+    }
+    &.Adult{
+      background-image: url('stages/adult_stage_200.png');
+    }
+    &.Flowering{
+      background-image: url('stages/flowering_stage_200.png');
+    }
+    &.Fruit{
+      background-image: url('stages/fruit_stage_200.png');
+    }
+    &.Dormant{
+      background-image: url('stages/dormant_stage_200.png');
+    }
   }
 }

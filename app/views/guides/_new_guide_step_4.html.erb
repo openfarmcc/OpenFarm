@@ -1,0 +1,42 @@
+<section name="step-4" ng-show="step === 4">
+  <h1 class="columns large-6">
+    <%= t('.some_information') %>
+  </h1>
+  <form accept-charset="UTF-8"
+    class="new-guide new-guide-step-2"
+    id="new-guide-step-2"
+    method="post"
+    >
+    <div class="row">
+      <div class="columns large-6">
+        <p>
+          <%= t('.youre_growing_a') %>
+          <strong>{{ newGuide.crop.name }}</strong>.
+        </p>
+        <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
+        <input id="guide_name" name="guide[name]"
+          type="text"
+          ng-model="newGuide.name"
+          placeholder="<%= current_user.display_name %>'s {{ newGuide.crop.name }}"
+          >
+      </div>
+      <div class="columns large-6">
+        <label for="guide_name"><%= t('.where_are_you_growing_it') %></label>
+        <span location
+              ng-model="newGuide.location"
+              loading-text="<%= t('application.loading_locations') %>">
+        </span>
+      </div>
+    </div>
+    <div class="button-wrapper row">
+      <div stage-buttons
+            cancel-url="<%= root_path %>"
+            cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+            back-text="<%= t('guides.new.back') %>"
+            disabled-text="<%= t('.done') %>"
+            abled-text="<%= t('.call_your_guide_something') %>"
+            >
+        </div>
+    </div>
+  </form>
+</section>

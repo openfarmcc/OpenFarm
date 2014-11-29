@@ -72,6 +72,9 @@ $compatibility-high-color: #84C93F;
 }
 
 @import 'styles/foundation_and_overrides';
+@import 'styles/devise';
+@import 'styles/nav';
+@import 'styles/icons';
 @import 'styles/alerts';
 @import 'styles/crop_searches';
 @import 'styles/crops';

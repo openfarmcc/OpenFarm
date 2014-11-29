@@ -20,56 +20,6 @@ video { display: block; }
   }
 }
 
-// Special home nav style (hacks)
-.home-nav {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  right: 0;
-
-  .top-bar.expanded .title-area {
-    background-color: transparent;
-  }
-
-  nav {
-    background-color: transparent !important;
-
-    li {
-      background: transparent !important;
-
-      &.divider {
-        display: none;
-      }
-
-      a {
-        background: rgba(0,0,0,0.4) !important;
-        font-size: 0.8em;
-        color: white;
-        font-weight: 800;
-
-        // Special case
-        &#logout {
-          padding-right: 15px;
-        }
-
-        &:hover {
-          background-color: rgba(0,0,0,0.5) !important;
-        }
-      }
-
-      &.toggle-topbar.menu-icon a {
-        padding: 0 15px;
-      }
-    }
-
-    // nudge the right menu down and over
-    ul.right {
-      margin-top: 10px;
-    }
-  }
-}
-
 .video-background {
   position: absolute;
   overflow: hidden;
@@ -79,6 +29,8 @@ video { display: block; }
   right: 0;
   background: image-url('home_video_first_frame.jpeg') no-repeat center center;
   background-size: cover;
+  background-color: #243B21; // a dark green to match the video
+
   min-width: 100%; min-height: 100%;
   width: auto; height: auto; z-index: -100;
 

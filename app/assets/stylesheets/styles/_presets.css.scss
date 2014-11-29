@@ -1,3 +1,9 @@
+/*
+
+  Custom mixins
+
+*/
+
 @mixin background-gradient($from, $to){
   background-image: -o-linear-gradient(to top, $from, $to);
   background-image: -moz-linear-gradient(to top, $from, $to);
@@ -22,6 +28,38 @@
   display: inline-block;
 }
 
+@mixin button-box-shadow(){
+  -moz-box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
+}
+
+
+/*
+
+  Prevent Angular loading flicker
+
+*/
+
+.ng-cloak {
+    opacity: 0;
+}
+
+
+/*
+
+  Global Styles
+  (think long and hard before adding anything here!)
+
+*/
+
+table {
+  width: 100%;
+}
+
+textarea {
+  max-width: 100%
+}
+
 .full-cover {
   position: absolute;
   top: 0;
@@ -32,13 +70,13 @@
 
 /* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */
 .row.wide-row {
-  // TODO(@warpling): replace magic number
+  // TODO(warpling): replace magic number
   max-width: 90rem;
 }
 
 /* Apply to columns that should have the same bottom padding as left/right */
 .columns.bottom-padding {
-  // TODO(@warpling): replace magic number
+  // TODO(warpling): replace magic number
   padding-bottom: .9375rem;
 }
 
@@ -58,4 +96,42 @@
   display: table-cell;
   vertical-align: middle;
   float: none;
+}
+
+/*
+
+ site-wide button style
+
+*/
+
+.button {
+  // For some reason the foundation styles don't
+  // acknowledge the button radius set in the button-box-shadow mixin
+  border-radius: 4px;
+  @include button-box-shadow();
+  @include background-gradient(#A2BD6A, #83A544);
+  border-radius: 3px;
+  transition: .2s background-image;
+
+  &:hover {
+    @include background-gradient(#8FAB54, #7A9841);
+  }
+
+  &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover{
+    background-image: url(ajax-loader-button-disabled.gif);
+    background-position: 4px center;
+    background-repeat: no-repeat;
+  }
+
+  &.alert {
+    background-image: none;
+  }
+
+  &.secondary {
+    background-image: none;
+  }
+
+  &.success {
+    background-image: none;
+  }
 }

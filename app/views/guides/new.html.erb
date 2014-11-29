@@ -9,7 +9,7 @@
 <% end %>
 
 <div ng-controller="newGuideCtrl"
-     class="new-guide large-8 medium-8 small-12 columns ng-cloak centered"
+     class="guides new-guide large-8 medium-8 small-12 columns ng-cloak small-centered"
      ng-cloak>
 
     <alert ng-cloak class="ng-cloak" ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
@@ -90,7 +90,7 @@
           </label>
         </div>
         <div class="columns large-8">
-          <div 
+          <div
             id="guide_image_upload"
             name="guide_image_upload"
             s3-upload

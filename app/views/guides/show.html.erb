@@ -1,6 +1,6 @@
 <div ng-controller="showGuideCtrl"
      ng-cloak
-     class="guide">
+     class="guides">
 
     <div alerts ng-model="alerts"></div>
 
@@ -15,11 +15,11 @@
       </div>
     </div>
     <div class="row title">
-      <div class="columns large-10 centered">
+      <div class="columns large-10 large-centered">
         <div class="half">
           <h1> {{ guide.name }} </h1>
           <h2> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
-          
+
         </div>
         <div class="right">
           <% if @guide.owned_by?(current_user) %>
@@ -41,13 +41,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="columns large-10 centered">
+      <div class="columns large-10 large-centered">
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
     </div>
     <div class="row">
-    <div class="large-10 small-10 columns centered">
+    <div class="large-10 small-10 columns small-centered">
 
     <accordion close-others="false">
       <accordion-group is-open="stat.isopen" class="accordion-navigation statistics">
@@ -60,7 +60,7 @@
         <p class="section-text">
           <div class="box">
             <div class="row">
-              <div class="empty columns large-12 centered">
+              <div class="empty columns large-12 large-centered">
 
                  <i class="fa fa-bar-chart-o"></i><br/>
                   <%= t('.statistics.once_we_know_more') %>

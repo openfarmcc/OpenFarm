@@ -25,7 +25,7 @@
       </div>
       <div class="row">
         <div class="columns large-12">
-          You've selected <span ng-bind="newGuide.stagesActiveCount"></span> stages.
+          You've selected <span ng-bind="newGuide.selectedStages.length"></span> stages.
         </div>
       </div>
       <div stage-buttons
@@ -33,6 +33,7 @@
           cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
           back-text="<%= t('guides.new.back') %>"
           disabled-text="<%= t('.next_stage_details') %>"
+          abled-bool="newGuide.selectedStages.length > 0"
           abled-text="<%= t('.choose_some_stages_to_continue') %>"
           >
       </div>

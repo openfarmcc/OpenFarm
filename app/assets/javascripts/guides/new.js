@@ -1,30 +1,22 @@
-openFarmApp.directive('ofLifestage', [
-  function ofLifestage(){
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      controller: ['$scope', '$element', '$attrs',
-       function ($scope, $element, $attrs){
-        console.log('controlling a life stage');
-      }]
-    };
-}]);
-
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
     return {
       restrict: 'A',
       require: '?ngModel',
-      scope: true,
+      scope: {
+          abledBool: '&'
+      },
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){
-        // console.log($scope.)
         $scope.abledText = $attrs.abledText || 'Continue';
         $scope.disabledText = 
           $attrs.disabledText || 'You can\'t continue yet.';
         $scope.cancelText = $attrs.cancelText || 'Cancel.';
         $scope.cancelUrl = $attrs.cancelUrl || '/';
         $scope.backText = $attrs.backText || undefined;
+        
+        $scope.previousStep = $scope.$parent.previousStep;
+        $scope.nextStep = $scope.$parent.nextStep;
       }],
       template:
         '<div class="button-wrapper row">' + 
@@ -38,13 +30,14 @@ openFarmApp.directive('stageButtons', [
               ' name="back"' + 
               ' type="submit"' + 
               ' value="{{ backText }}"' + 
-              ' ng-click="previousStep()">' + 
+              ' ng-click="$parent.previousStep()">' + 
+              ' {{ abledBool }}' +
             '<input class="button small right"' + 
               ' name="commit"' + 
               ' type="submit"' + 
-              ' value="{{ newGuide.stagesActiveCount > 0 ? disabledText : abledText }}"' + 
-              ' ng-disabled="!(newGuide.stagesActiveCount > 0)"' + 
-              ' ng-click="nextStep()"/>' + 
+              ' value="{{ abledBool() ? disabledText : abledText }}"' + 
+              ' ng-disabled="!(abledBool())"' + 
+              ' ng-click="$parent.nextStep()"/>' + 
           '</div>' + 
         '</div>'
     };
@@ -63,7 +56,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     name: '',
     crop: undefined,
     overview: '',
-    stagesActiveCount: 0,
+    selectedStages: [],
     practices: {
       'organic': false,
       'permaculture': false,
@@ -90,14 +83,28 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
 
 
   $scope.$watch('newGuide.stages', function(){
-    $scope.newGuide.stagesActiveCount = 0;
+    $scope.newGuide.selectedStages = [];
     if ($scope.newGuide.stages){
       $scope.newGuide.stages
         .forEach(function(item){
-          $scope.newGuide.stagesActiveCount += item.selected ? 1 : 0;
-        });  
+          if (item.selected){
+            $scope.newGuide.selectedStages.push(item);
+          }
+        });
     }
   }, true);
+
+  $scope.$watch('step', function(afterValue, beforeValue){
+    if (afterValue === 3){
+      var selectedSet = false;
+      $scope.newGuide.selectedStages.forEach(function(stage){
+        if (stage.selected && !selectedSet){
+          stage.editing = true;
+          selectedSet = true;
+        }
+      });
+    }
+  });
 
   if (getUrlVar("crop_id")){
     $http.get('/api/crops/' + getUrlVar("crop_id"))
@@ -115,8 +122,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
 
     // $scope.default_crop = $location.search().crop_id;
   }
-
-
 
   //Typeahead search for crops
   $scope.search = function () {
@@ -156,12 +161,20 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $scope.nextStep = function(){
-    console.log($scope.newGuide);
     $scope.step += 1;
   };
 
   $scope.previousStep = function(){
     $scope.step -= 1;
+  };
+
+  $scope.editSelectedStage = function(stage){
+    $scope.newGuide.selectedStages.forEach(function(item){
+      item.editing = false;
+      if (stage === item){
+        item.editing = true;
+      }
+    });
   };
 
   $scope.submitForm = function () {

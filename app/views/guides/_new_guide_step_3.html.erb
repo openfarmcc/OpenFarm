@@ -4,6 +4,19 @@
   </h2>
 
   <form>
+
+    <ul class="chosen-stages">
+      <li class="chosen-stage" ng-repeat="stage in newGuide.selectedStages"
+          ng-class="{ 'editing' : stage.editing }"
+          ng-click="editSelectedStage(stage)">
+        <div class="bubble {{ stage.name }}">
+        </div>
+        <p>
+          {{ stage.name }}
+        </p>
+      </li> 
+    </ul>
+
     <div stage-buttons
         cancel-url="<%= root_path %>"
         cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"

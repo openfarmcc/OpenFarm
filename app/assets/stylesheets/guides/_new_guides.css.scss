@@ -212,12 +212,29 @@
 
   .chosen-stages{
     text-align: center;
-    margin: 2rem 0;
+    margin: 1rem 0 2rem;
 
     .chosen-stage{
       display: inline-block;
       width: 5rem;
       cursor: pointer;
+      position: relative;
+
+      &::before{
+        content: '';
+        border-bottom: 1px solid $of-light;
+        height: 0;
+        width: 100%;
+        display: inline-block;
+        margin-left: 2rem;
+        margin-bottom: -2.25rem;
+        z-index: 0;
+        position: relative;
+      }
+
+      &:last-child::before{
+        display: none;
+      }
 
       .bubble{
         width: 3.5rem;
@@ -228,9 +245,10 @@
         border: 2px solid $of-yellow;
         margin: 0 auto;
         transition: border-color .2s;
+        position: relative;
+        z-index: 1;
+
       }
-      
-      position: relative;
 
       &:last-child{
         margin-right: 0;

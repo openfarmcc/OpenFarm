@@ -92,6 +92,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
           }
         });
     }
+    $scope.newGuide.selectedStages.sort(function(a, b){
+      return a.order > b.order;
+    })
   }, true);
 
   $scope.$watch('step', function(afterValue, beforeValue){
@@ -101,6 +104,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
         if (stage.selected && !selectedSet){
           stage.editing = true;
           selectedSet = true;
+        } else {
+          stage.editing = false;
         }
       });
     }

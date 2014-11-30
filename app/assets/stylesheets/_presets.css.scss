@@ -156,6 +156,20 @@ table{
   width: 100%;
 }
 
+/*
+  Header fixer styles
+*/
+
+.header-search{
+  width: 40%;
+}
+
+@media only screen and (max-width: 40.062em){
+  .header-search{
+    width: 100%;
+  }
+}
+
 /* Section accordion styling */
 .accordion > dd.accordion-navigation > a,
 .accordion > dd.active > a,

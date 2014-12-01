@@ -1,7 +1,7 @@
 <div class="row">
-    
+
   <% if resource.errors.any? %>
-    <div class="alert-box alert radius columns small-6 centered" data-alert="">
+    <div class="alert-box alert radius columns small-6 small-centered" data-alert="">
       <% resource.errors.full_messages.each do |full_message| %>
         <%= full_message %>
       <% end %>
@@ -9,17 +9,17 @@
     </div>
   <% end %>
 
-  <div class="columns small-5 centered">
+  <div class="columns small-5 small-centered">
     <h2>Forgot your password?</h2>
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-      
+
       <%= f.label :email %>
       <%= f.email_field :email, :autofocus => true %>
 
       <%= f.submit "Send me reset password instructions", class:'small button'%>
       <br/>
       <br/>
-      
+
       <%= render "devise/shared/links" %>
     <% end %>
   </div>

@@ -1,0 +1,77 @@
+.top-bar {
+  input[type='submit']{
+    padding: 0;
+    line-height: 2.125;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  .header-search{
+    width: 40%;
+  }
+
+  @media only screen and (max-width: 40.062em){
+    .header-search{
+      width: 100%;
+    }
+  }
+
+  .search{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  // Special home nav style
+  // Confused by the backwards ampersand?
+  // http://thesassway.com/intermediate/referencing-parent-selectors-using-ampersand
+  .home-nav & {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    background-color: transparent !important;
+
+    li {
+      background: transparent !important;
+
+      &.divider {
+        display: none;
+      }
+
+      a {
+        background: rgba(0,0,0,0.4) !important;
+        font-size: 0.8em;
+        color: white;
+        font-weight: 800;
+
+        // Special case
+        &#logout {
+          padding-right: 15px;
+        }
+
+        &:hover {
+          background-color: rgba(0,0,0,0.5) !important;
+        }
+      }
+
+      &.toggle-topbar.menu-icon a {
+        padding: 0 15px;
+      }
+    }
+
+    // nudge the right menu down and over
+    ul.right {
+      margin-top: 10px;
+    }
+  }
+
+    &.expanded .title-area {
+      // I'm not sure why this was included.
+      // It seems to make the top nav not visible when
+      // the screen is small.
+      /*background-color: transparent;*/
+    }
+}

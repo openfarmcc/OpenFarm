@@ -55,23 +55,6 @@ $body-font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helveti
 // $opposite-direction: right;
 // $default-float: left;
 
-// We use these as default colors throughout
-$primary-color: #99B36C; // #008CBA;
-$secondary-color: #e7e7e7;
-$alert-color: #ff6666;
-$success-color: #74E29D;
-$warning-color: #f08a24;
-$info-color: #eecb91;
-
-// OpenFarm Colors
-$openfarm-green: #85CB2B;
-$openfarm-green-muted: #99B36C;
-$openfarm-blue-grey: #ECEFF0;
-
-$compatibility-low-color:  #B23A2C;
-$compatibility-med-color:  #FBAD2F;
-$compatibility-high-color: #84C93F;
-
 // We use these to make sure border radius matches unless we want it different.
 $global-radius: 3px;
 // $global-rounded: 1000px;
@@ -1161,8 +1144,8 @@ $tabs-content-padding: 0;
 // $has-tip-border-bottom: dotted 1px #ccc;
 // $has-tip-font-weight: $font-weight-bold;
 // $has-tip-font-color: #333;
-// $has-tip-border-bottom-hover: dotted 1px scale-color($primary-color, $lightness: -55%);
-// $has-tip-font-color-hover: $primary-color;
+$has-tip-border-bottom-hover: unset;//dotted 1px scale-color($primary-color, $lightness: -55%);
+$has-tip-font-color-hover: unset;//$primary-color;
 // $has-tip-cursor-type: help;
 
 // $tooltip-padding: rem-calc(12);

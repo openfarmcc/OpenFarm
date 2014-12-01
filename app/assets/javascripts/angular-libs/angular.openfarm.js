@@ -110,7 +110,7 @@ openFarmModule.factory('gardenService', ['$http',
         });
     };
     var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
-      // TODO: this is on pause until there's a way to 
+      // TODO: this is on pause until there's a way to
       // actually add crops and guides to a garden.
       var url = '/api/gardens/'+ garden._id +
                 '/garden_crops/' + gardenCrop._id;
@@ -146,7 +146,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(true, response, object);  
+            return callback(true, response, object);
           }
         })
         .error(function(response, code){
@@ -172,7 +172,7 @@ openFarmModule.factory('gardenService', ['$http',
             'msg': 'Deleted crop',
           });
           if (callback){
-            return callback(true, response, object);  
+            return callback(true, response, object);
           }
         })
         .error(function(response, code){
@@ -277,12 +277,10 @@ openFarmModule.directive('alerts', ['$timeout',
       }],
       template:
         '<alert ng-cloak ' +
-          'class="ng-cloak columns large-6 centered radius float" ' +
+          'class="ng-cloak columns large-6 large-centered radius float" ' +
           'ng-repeat="alert in alerts" ' +
           'type="alert.type" close="closeAlert($index)">' +
             '<div class=""> {{alert.msg}} </div>' +
         '</alert>'
     };
   }]);
-
-

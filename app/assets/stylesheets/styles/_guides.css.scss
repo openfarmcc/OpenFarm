@@ -7,13 +7,19 @@
   }
 }
 
-/* 
+.box{
+  border-radius: 2px;
+  background: rgba(198,159,96,0.04);
+  border: 1px solid rgba(0,0,0,0.25);
 
-  Show Guide
+  h1{
+    font-size: 2rem;
+  }
+}
 
-*/
+/* Styles for guides index, show, edit, new, etc */
 
-.guide {
+.guides {
   position: relative;
 
   .box{
@@ -85,14 +91,66 @@
 
     }
   }
+
+  /* Section accordion styling */
+  .accordion > dd.accordion-navigation > a,
+  .accordion > dd.active > a,
+  .accordion > dd.active > a.title-wrapper {
+    display: block;
+    padding: .2rem 1rem;
+
+    @include accordion-header-color($of-orange);
+
+    h2, h5 {
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .title{
+      font-size: 2rem;
+    }
+
+    .author {
+      margin-left: 20px;
+      display: inline-block;
+    }
+  }
+
+  .accordion dd > .content{
+    padding: 0 0.935rem;
+  }
 }
 
 /*
 
-  New Guide
+  Markdown corrections
 
 */
 
-@import "guides/_new_guides.css.scss";
+.markdown-help-text{
+  font-size: .8rem;
+  display: block;
+  margin-top: .25rem;
+  margin-bottom: 1rem;
+}
 
+.markdown{
+  h1{
+    font-size: 1.5rem;
+  }
+  h2{
+    font-size: 1.1rem;
+  }
+  h3{
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  h4, h5, h6{
+    font-size: .8rem;
+  }
+}
+
+
+@import "guides/_new_guides.css.scss";
 @import "guides/_edit_guides.css.scss";

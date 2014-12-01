@@ -1,12 +1,12 @@
 <div ng-controller="editGuideCtrl"
      ng-cloak
-     class="edit-guide-app">
+     class="guides edit-guide-app">
 
     <div alerts ng-model="alerts"></div>
-    
+
     <div class="row">
     <form accept-charset="UTF-8"
-      class="small-10 large-10 columns centered edit-overview"
+      class="small-10 large-10 columns small-centered edit-overview"
       name="editOverview"
       method="post"
       >
@@ -73,7 +73,7 @@
     </form>
     </div>
     <div class="row">
-    <div class="large-10 small-10 columns centered">
+    <div class="large-10 small-10 columns small-centered">
 
     <accordion close-others="false">
       <accordion-group
@@ -90,7 +90,7 @@
         <%= t('.impressions', count: @guide.impressions.count) %>
         </p>
       </accordion-group>
-      <accordion-group 
+      <accordion-group
         is-open="req.isopen"
         ng-init="req.isopen = true"
         class="accordion-navigation requirements">
@@ -143,7 +143,7 @@
             </div>
           </div>
           <div class="row requirements-results">
-            <div class="small-6 columns centered">
+            <div class="small-6 columns small-centered">
               <span ng-show="filtered_requirements.length > 0">
                 <%= t('.you_have_selected') %> <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
                 </span>

@@ -2,7 +2,6 @@ openFarmApp.directive('stageButtons', [
   function stageButtons(){
     return {
       restrict: 'A',
-      require: '?ngModel',
       scope: {
           abledBool: '&'
       },
@@ -14,9 +13,10 @@ openFarmApp.directive('stageButtons', [
         $scope.cancelText = $attrs.cancelText || 'Cancel.';
         $scope.cancelUrl = $attrs.cancelUrl || '/';
         $scope.backText = $attrs.backText || undefined;
-        
+
         $scope.previousStep = $scope.$parent.previousStep;
         $scope.nextStep = $scope.$parent.nextStep;
+
       }],
       template:
         '<div class="button-wrapper row">' + 
@@ -31,7 +31,6 @@ openFarmApp.directive('stageButtons', [
               ' type="submit"' + 
               ' value="{{ backText }}"' + 
               ' ng-click="$parent.previousStep()">' + 
-              ' {{ abledBool }}' +
             '<input class="button small right"' + 
               ' name="commit"' + 
               ' type="submit"' + 
@@ -57,12 +56,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     crop: undefined,
     overview: '',
     selectedStages: [],
-    practices: {
-      'organic': false,
-      'permaculture': false,
-      'conventional': false,
-      'hydroponic': false
-    }
+    practices: [
+      {slug: 'organic', label: 'Organic', selected: false},
+      {slug: 'permaculture', label: 'Permaculture', selected: false},
+      {slug: 'conventional', label: 'Conventional', selected: false},
+      {slug: 'hydroponic', label: 'Hydroponic', selected: false},
+      {slug: 'intensive', label: 'Intensive', selected: false}
+    ]
   };
 
   $http.get('/api/stage_options/')
@@ -71,6 +71,26 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       $scope.newGuide.stages = $scope.stages
         .map(function(item){
           item.selected = false;
+          item.where = [
+            {slug: 'outside', label: 'Outside', selected: false},
+            {slug: 'potted', label: 'Potted', selected: false},
+            {slug: 'greenhouse', label: 'Greenhouse', selected: false},
+            {slug: 'indoors', label: 'Indoors', selected: false}
+          ];
+          item.light = [
+            {slug: 'full_sun', label: 'Full Sun', selected: false},
+            {slug: 'partial_sun', label: 'Partial Sun', selected: false},
+            {slug: 'shaded', label: 'Shaded', selected: false},
+            {slug: 'darkness', label: 'Darkness', selected: false}
+          ];
+          item.soil = [
+            {slug: 'potting', label: 'Potting', selected: false},
+            {slug: 'loam', label: 'Loam', selected: false},
+            {slug: 'sandy_loam', label: 'Sandy Loam', selected: false},
+            {slug: 'clay_loam', label: 'Clay Loam', selected: false},
+            {slug: 'sand', label: 'Sand', selected: false},
+            {slug: 'clay', label: 'Clay', selected: false}
+          ];
           return item;
         });
     })
@@ -94,7 +114,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     }
     $scope.newGuide.selectedStages.sort(function(a, b){
       return a.order > b.order;
-    })
+    });
   }, true);
 
   $scope.$watch('step', function(afterValue, beforeValue){

@@ -73,35 +73,11 @@
         </label>
       </div>
       <div class="columns large-8 medium-8 options">
-        <label for="organic">
-          <input type="checkbox"
-                 id="organic"
-                 name="organic"
-                 ng-model="newGuide.practices.organic"/><span class="button tiny secondary">
-            Organic
-          </span>
-        </label><label for="permaculture">
-          <input type="checkbox"
-                 id="permaculture"
-                 name="permaculture secondary"
-                 ng-model="newGuide.practices.permaculture"/><span class="button tiny secondary">
-            Permaculture
-          </span>
-        </label><label for="conventional">
-          <input type="checkbox"
-                 id="conventional"
-                 name="conventional"
-                 ng-model="newGuide.practices.conventional"/><span class="button tiny secondary">
-            Conventional
-          </span>
-        </label><button data-dropdown="other" class="button tiny secondary" aria-controls="other" aria-expanded="false">Other</button>
-        <ul id="other" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1"
-          ng-init="practices">
-          <li ng-click="newGuide.practices.hydroponic = !newGuide.practices.hydroponic">
-            <a>
-            <i ng-show="newGuide.practices.hydroponic" class="fa fa-check"></i> Hydroponic</li>
-            </a>
-        </ul>
+        <div multi-checkbox-select
+             class="multi-choice"
+             options="newGuide.practices"
+             multi-checkbox-id="practices">
+        </div>
       </div>
     </div>
     <div stage-buttons

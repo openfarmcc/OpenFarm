@@ -256,6 +256,23 @@ openFarmModule.directive('location', [
     };
 }]);
 
+openFarmModule.directive('multiCheckboxSelect', [
+  function multiCheckboxSelect() {
+    var geocoder = new google.maps.Geocoder();
+    return {
+      restrict: 'A',
+      // require: '?ngModel',
+      scope: {
+        options: '='
+      },
+      controller: ['$scope', '$element', '$attrs',
+        function ($scope, $element, $attrs) {
+          $scope.multiCheckboxId = $attrs.multiCheckboxId;
+      }],
+      templateUrl: '/assets/templates/_multi_checkbox_select.html',
+    };
+}]);
+
 openFarmModule.directive('alerts', ['$timeout',
   function alerts($timeout) {
     return {

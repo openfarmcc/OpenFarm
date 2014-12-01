@@ -6,14 +6,14 @@
                 OpenFarm Style Guide
             </h1>
             <p>
-                Hey there! Interested in contributing to OpenFarm's style? We've put together the following to help save you some time and get you up and styling fast. Ready? Here we go!
+                Hey there! Interested in contributing to OpenFarm's style? We've put together the following to help save you some time and get you up and styling fast. Ready? Let's go!
             </p>
         </div>
     </div>
     <hr/>
     <div class="row">
         <div class="columns small-12">
-            <h2>Staying classy</h2>
+            <h2>Staying Classy</h2>
 
             <p>
                The styles in this guide are available to all OpenFarm pages by default. Consider these styles and those provided by <a href="http://foundation.zurb.com/docs/">Foundation</a> before inventing something new so that we can keep a consistent look and feel across OpenFarm. If there is something new you'd like or something you think could be better please bring it up on Slack (<a href="mailto:rory@openfarm.cc?subject=Joining Slack!">email Rory</a> to get added!) or <a href="https://github.com/FarmBot/OpenFarm/issues">raise a GitHub issue</a>.
@@ -29,14 +29,37 @@
             <h2>The CSS Itself</h2>
 
             <p>
-                When contributing to OpenFarm's front-end it's a good idea to use existing views and and partials as a template (we do our best to lead by example, but we're not perfect… yet). A couple things to note about our CSS structure:
-
+                When contributing to OpenFarm's front-end it's a good idea to use existing views and and partials as a template (we do our best to lead by example, but we're not perfect… yet).
+            </p>
+            <hr>
+            <h4>Where Should I Start?</h4>
+            <p>
                 Most stylesheets live in
-                <div class="code-block">
-                  OpenFarm/app/assets/stylesheets/styles
-              </div>
-              (the overarching <kbd>application.css</kbd> and <kbd>main.css.scss</kbd> files live in <kbd>stylesheets/</kbd> but you should only have to mess with these <strong>when you add a new partial to main</strong>!)
-
+            </p>
+            <div class="code-block">
+              OpenFarm/app/assets/stylesheets/styles
+            </div>
+            <p>
+                (the overarching <kbd>application.css</kbd> and <kbd>main.css.scss</kbd> files livin <kbd>stylesheets/</kbd> but you should only have to mess with these <strong>when you add a new partial to main</strong>!
+            </p>
+            <hr>
+            <h4>Partials and Scoping</h4>
+            <p>
+                All partials (for example <kbd>_crops.css.scss</kbd>, <kbd>_users.css.scss</kbd>) should contain one root selector that matches the partial name. For example <kbd>_crops.css.scss</kbd> should look something like this…
+            </p>
+            <div class="code-block">
+                .crops {<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;.your-selectors-here {...}<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;.more-awesome-selectors {...}<br/>
+                }<br/>
+            </div>
+            <p>
+                …this prevents scoping issues where someone's class in another partial could override yours without you realizing it! Scope your selectors and don't forget to then wrap applicable views in a div with the matching selector class!</p>
+            </p>
+            <hr>
+            <h4>Help! I Need a Global Selector!</h4>
+            <p>
+                If you think you need a global selector, take a moment, think hard, and consider going on a walk. Global selectors are rarely needed, but they are necessary sometimes! It's a good idea to bug the team when you need one, chances are it already exists in some form! Global selectors and variables go in <kbd>_presets.css.scss</kbd>.
             </p>
         </div>
     </div>
@@ -44,8 +67,9 @@
     <div class="row">
         <div class="small-12 columns">
             <h2>The Grid</h2>
-
-            Below is a row (styled so you can see it). They're used to create a max-width on a page. Every row must be filled with at least one column!
+            <p>
+                Below is a row (styled so you can see it). They're used to create a max-width on a page. Every row must be filled with at least one column!
+            </p>
             <div class="row display">
                 <div class="small-12 columns">
                      This text is contained in one full-width (<kbd>small-12</kbd>) column, contained in a row. Inspect and explore!
@@ -92,7 +116,7 @@
     </div>
     <div class="row">
         <div class="small-12 columns">
-            <h3>Small, large, what?</h3>
+            <h4>Small, large, what?</h4>
             If you've reached this point and are confused it probably means you should go check out <a href="http://foundation.zurb.com/docs/components/grid.html">Foundation's docs</a>. Go ahead and check it out, we'll wait :)
         </div>
     </div>

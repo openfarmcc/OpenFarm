@@ -1,0 +1,40 @@
+
+.icon::before{
+  content: ' ';
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.icon.of-water::before{
+  background: image-url('guide-icons/water.svg');
+}
+.icon.of-temperature::before{
+  background: image-url('guide-icons/temperature.svg');
+}
+.icon.of-ph::before{
+  background: image-url('guide-icons/ph.svg');
+}
+.icon.of-soil::before{
+  background: image-url('guide-icons/soil.svg');
+}
+.icon.of-sun-shade::before{
+  background: image-url('guide-icons/sun-shade.svg');
+}
+.icon.of-location::before{
+  background: image-url('guide-icons/location.svg');
+}
+.icon.of-practices::before{
+  background: image-url('guide-icons/practices.svg');
+}
+.icon.of-time-commitment::before{
+  background: image-url('guide-icons/time-commitment.svg');
+}
+.icon.of-physical-ability::before{
+  background: image-url('guide-icons/physical-ability.svg');
+}
+.icon.of-time-of-year::before{
+  background: image-url('guide-icons/temperature.svg');
+}

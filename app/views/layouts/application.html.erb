@@ -63,7 +63,7 @@
                               <li>
                                   <%= link_to t('application.create_guide'), new_guide_path %>
                                   <%= link_to t('application.user_settings'), edit_user_registration_path %>
-                                  <%= link_to t('application.manage_gardens'), controller: 'users', action: 'gardens' %>
+                                  <%= link_to t('application.manage_gardens'), users_gardens_path(current_user) %>
                               </li>
                           </ul>
                       </li>

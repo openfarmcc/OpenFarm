@@ -1,24 +1,52 @@
-textarea {
-  max-width: 100%
-}
+@import 'compass';
+@import 'styles/presets';
+@import 'font-awesome';
 
-.title-area{
-	img{
-		padding-left: 12px;
-	}
-}
+$of-orange: #e69138;
+$of-blue: #3c78d8;
+$of-purple: #674ea7;
+$of-green: #6aa84f;
+$of-red: #cc0000;
+$of-yellow: #f1c232;
+$of-dark: #4a4a4a;
 
-.panel {
-  margin-bottom: 20px;
-background-color: #FFF;
-border: 1px solid transparent;
-border-radius: 4px;
-border-color: #DDD;
-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-}
+$primary-color: #c7a979; // #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color: #ff6666;
+$success-color: #74E29D;
+$warning-color: #f08a24;
+$info-color: #eecb91;
 
-// @media #{$small-only} {
-//     input {
-//         font-size: 1em;
-//     }
-// }
+$compatibility-circle-size: 50px;
+
+// We use these as default colors throughout
+$primary-color: #99B36C; // #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color: #ff6666;
+$success-color: #74E29D;
+$warning-color: #f08a24;
+$info-color: #eecb91;
+
+// OpenFarm Colors
+$openfarm-green: #85CB2B;
+$openfarm-green-muted: #99B36C;
+$openfarm-blue-grey: #ECEFF0;
+
+$compatibility-low-color:  #B23A2C;
+$compatibility-med-color:  #FBAD2F;
+$compatibility-high-color: #84C93F;
+
+@import 'styles/foundation_and_overrides';
+@import 'styles/devise';
+@import 'styles/nav';
+@import 'styles/icons';
+@import 'styles/alerts';
+@import 'styles/crop_searches';
+@import 'styles/crops';
+@import 'styles/guides';
+@import 'styles/users';
+@import 'styles/compatibility_circle';
+// begin static page styles
+@import 'styles/pages/home';
+@import 'styles/pages/styles';
+

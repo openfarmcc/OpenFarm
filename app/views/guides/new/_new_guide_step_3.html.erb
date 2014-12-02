@@ -1,119 +1,122 @@
-<section name="step-3" ng-show="step === 3" class="stage-details"">
+<section name="step-3" ng-show="step === 3" class="stage-details">
   <h2 class="columns large-12">
     <%= t('.fill_in_details') %>
   </h2>
   <div ng-if="newGuide.selectedStages.length === 0">
     Please select some stages!
   </div>
-  <form ng-if="newGuide.selectedStages.length > 0">
+  <div ng-if="newGuide.selectedStages.length > 0">
 
-    <ul class="chosen-stages">
-      <li class="chosen-stage" ng-repeat="stage in newGuide.selectedStages | orderBy: 'order'"
-          ng-class="{ 'editing' : stage.editing }"
-          ng-click="editSelectedStage(stage)">
-        <div class="bubble {{ stage.name }}">
-        </div>
-        <p>
-          {{ stage.name }}
-        </p>
-      </li> 
-    </ul>
+    <%= render 'guides/new/stage_details/chosen_stages' %>
 
-    <section ng-repeat="stage in newGuide.selectedStages | orderBy: 'order'"
+    <form name="stageForm">
+
+    <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
+      ng-init="stageForms[$index] = stage.name"
       ng-if="stage.editing">
-      <h3>{{ stage.name }} <%= t('.stage_details') %></h3>
-      <div class="row where">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-            for="where_should_stage_happen">
-              <%= t('.where_does_this_stage_happen') %>
-              <br/>
-          </label>
-        </div>
-        <div class="columns large-8 medium-8">
-          <div multi-checkbox-select
-             class="multi-choice"
-             options="stage.where"
-             multi-checkbox-id="where">
+        <span ng-bind="stageForms[$index].$valid"></span>
+        <h3>{{ stage.name }} <%= t('.stage_details') %></h3>
+        <div class="row where">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+              for="where_should_stage_happen">
+                <%= t('.where_does_this_stage_happen') %>
+                <br/>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            <div multi-row-select
+               class="multi-choice"
+               options="stage.where"
+               multi-select-type="checkbox"
+               multi-select-id="where">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row soil">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-            for="what_type_of_soil">
-              <%= t('.what_type_of_soil') %>
-              <br/>
-              <small><%= t('.not_sure_about_soil_types_html') %></small>
-          </label>
-        </div>
-        <div class="columns large-8 medium-8">
-          <div multi-checkbox-select
-             class="multi-choice"
-             options="stage.soil"
-             multi-checkbox-id="soil">
+        <div class="row soil">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+              for="what_type_of_soil">
+                <%= t('.what_type_of_soil') %>
+                <br/>
+                <small><%= t('.not_sure_about_soil_types_html') %></small>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            <div multi-row-select
+               class="multi-choice"
+               options="stage.soil"
+               multi-select-type="checkbox"
+               multi-select-id="soil">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row light">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-            for="how_much_light">
-              <%= t('.how_much_light') %>
-              <br/>
-          </label>
-        </div>
-        <div class="columns large-8 medium-8">
-          <div multi-checkbox-select
-             class="multi-choice"
-             options="stage.light"
-             multi-checkbox-id="light">
+        <div class="row light">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+              for="how_much_light">
+                <%= t('.how_much_light') %>
+                <br/>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            <div multi-row-select
+               class="multi-choice"
+               options="stage.light"
+               multi-select-type="checkbox"
+               multi-select-id="light">
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="row image">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-              for="stage_image_upload"><%= t('application.choose_photo') %><br/>
-            <small><%= t('application.only_upload_what_you_own') %></small>
-          </label>
-        </div>
-        <div class="columns large-8 medium-8">
-          <div 
-            id="guide_image_upload"
-            name="guide_image_upload"
-            s3-upload
-            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-            s3-guide="newGuide"
-            ng-model="stage.image"
-            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        <div class="row image">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+                for="stage_image_upload"><%= t('application.choose_photo') %><br/>
+              <small><%= t('application.only_upload_what_you_own') %></small>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            <div 
+              id="stage-image-upload-{{$index}}"
+              name="stage-image-upload-{{$index}}"
+              s3-upload
+              bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+              s3-guide="newGuide"
+              s3-default="{{ stage.featured_image }}"
+              s3-stage="{{ $index }}"
+              ng-model="stage.s3upload"
+              s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row how-long">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-              for="how_long"><%= t('.how_long') %><br/>
-            <small><%= t('.do_not_sweat') %></small>
-          </label>
+        <!-- TODO -->
+        <!-- <div class="row how-long">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+                for="how_long"><%= t('.how_long') %><br/>
+              <small><%= t('.do_not_sweat') %></small>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            Coming Soon 
+          </div>
         </div>
-        <div class="columns large-8 medium-8">
-          Coming Soon <!-- TODO -->
-        </div>
-      </div>
-      <div class="row annual">
-        <div class="columns large-4 medium-4">
-          <label class="right"
-              for="repeat_annually"><%= t('.repeat_annually') %><br/>
-            <small><%= t('.not_sure_html') %></small>
-          </label>
-        </div>
-        <div class="columns large-8 medium-8">
-          Coming Soon <!-- TODO -->
-        </div>
-      </div>
+        <div class="row annual">
+          <div class="columns large-4 medium-4">
+            <label class="right"
+                for="repeat_annually"><%= t('.repeat_annually') %><br/>
+              <small><%= t('.not_sure_html') %></small>
+            </label>
+          </div>
+          <div class="columns large-8 medium-8">
+            Coming Soon
+          </div>
+        </div> -->
+      
     </section>
+    </form>
+
+    <%= render 'guides/new/stage_details/chosen_stages' %>
 
     <div stage-buttons
         cancel-url="<%= root_path %>"
@@ -123,6 +126,5 @@
         abled-text="<%= t('.fill_in_details') %>"
         >
     </div>
-  </form>
-  
+  </div>
 </section>

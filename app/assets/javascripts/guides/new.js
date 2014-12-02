@@ -50,6 +50,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.crop_not_found = false;
   $scope.addresses = [];
   $scope.stages = [];
+  $scope.hasEdited = [];
 
   $scope.newGuide = {
     name: '',
@@ -93,6 +94,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
           ];
           return item;
         });
+      
     })
     .error(function(response, code){
       $scope.alerts.push({
@@ -101,17 +103,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       });
     });
 
-
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
     if ($scope.newGuide.stages){
       $scope.newGuide.stages
-        .forEach(function(item){
+        .forEach(function(item, index){
           if (item.selected){
+            item.originalIndex = index;
             $scope.newGuide.selectedStages.push(item);
           }
         });
     }
+
     $scope.newGuide.selectedStages.sort(function(a, b){
       return a.order > b.order;
     });
@@ -120,12 +123,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.$watch('step', function(afterValue, beforeValue){
     if (afterValue === 3){
       var selectedSet = false;
-      $scope.newGuide.selectedStages.forEach(function(stage){
+      $scope.newGuide.selectedStages.forEach(function(stage, index){
         if (stage.selected && !selectedSet){
-          stage.editing = true;
+          // hacked hack is a hack
+          $scope.newGuide.stages[stage.originalIndex].editing = true;
           selectedSet = true;
         } else {
-          stage.editing = false;
+          $scope.newGuide.stages[stage.originalIndex].editing = false;
         }
       });
     }
@@ -144,8 +148,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
         });
         console.log(e);
       });
-
-    // $scope.default_crop = $location.search().crop_id;
   }
 
   //Typeahead search for crops
@@ -202,6 +204,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     });
   };
 
+  // The submit process.
+  // Get the practices and clean them up.
+  // Set up the parameters.
+  // Post! & forward if successful
+
   $scope.submitForm = function () {
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
@@ -219,8 +226,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     };
     $http.post('/api/guides/', params)
       .success(function (r) {
-        // console.log(r);
-        window.location.href = "/guides/" + r.guide._id + "/edit/";
+        console.log(r);
+        // window.location.href = "/guides/" + r.guide._id + "/edit/";
       })
       .error(function (r) {
         $scope.alerts.push({

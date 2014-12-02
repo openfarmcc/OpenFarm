@@ -1,29 +1,30 @@
+// You can't nest keyframes
+
+@-webkit-keyframes fa-spin-image-load {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+@keyframes fa-spin-image-load {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
 .new-guide {
 
   // TODO: @simonv3, figure out where to put these:
-
-  @-webkit-keyframes fa-spin-image-load {
-    0% {
-      -webkit-transform: translate(-50%, -50%) rotate(0deg);
-              transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      -webkit-transform: translate(-50%, -50%) rotate(359deg);
-              transform: translate(-50%, -50%) rotate(359deg);
-    }
-  }
-
-  @keyframes fa-spin {
-    0% {
-      -webkit-transform: translate(-50%, -50%) rotate(0deg);
-              transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      -webkit-transform: translate(-50%, -50%) rotate(359deg);
-              transform: translate(-50%, -50%) rotate(359deg);
-    }
-  }
-
 
   .create-guide-steps{
     text-align: center;
@@ -58,7 +59,7 @@
     }
   }
 
-  section {
+  &>section {
     margin-bottom: 4rem;
     h1, h2, h3{
       text-align: center;
@@ -82,13 +83,13 @@
       display: inline-block;
     }
 
-    label input[type=checkbox]{
+    label input[type=checkbox], label input[type=radio]{
       margin-bottom: 0;
       opacity: 0;
       width: 0;
     }
 
-    label input[type=checkbox]:checked ~ span {
+    label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
       background-color: $of-dark;
       color: white;
     }
@@ -153,6 +154,7 @@
       content: "\f06c";
       font-size: 4rem;
       position: absolute;
+      z-index: 0;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -182,6 +184,8 @@
     img{
       width: 100%;
       height: 100%;
+      z-index: 999;
+      position: relative;
     }
   }
 

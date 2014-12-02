@@ -1,28 +1,28 @@
 <label for="{{ options[0].slug }}">
-  <input type="checkbox"
+  <input type="{{ multiSelectType }}"
          id="{{ options[0].slug }}"
-         name="{{ options[0].slug }}"
+         name="{{ multiSelectType=='checkbox' ? options[0].slug : multiSelectId }}"
          ng-model="options[0].selected"/><span class="button tiny secondary">
     {{ options[0].label }}
   </span>
 </label><label for="{{ options[1].slug }}">
-  <input type="checkbox"
+  <input type="{{ multiSelectType }}"
          id="{{ options[1].slug }}"
-         name="{{ options[1].slug }}"
+         name="{{ multiSelectType=='checkbox' ? options[1].slug : multiSelectId }}"
          ng-model="options[1].selected"/><span class="button tiny secondary">
     {{ options[1].label }}
   </span>
 </label><label for="{{ options[2].slug }}">
-  <input type="checkbox"
+  <input type="{{ multiSelectType }}"
          id="{{ options[2].slug }}"
-         name="{{ options[2].slug }}"
+         name="{{ multiSelectType=='checkbox' ? options[2].slug : multiSelectId }}"
          ng-model="options[2].selected"/><span class="button tiny secondary">
     {{ options[2].label }}
   </span>
 </label><label for="{{ options[3].slug }}">
-  <input type="checkbox"
+  <input type="{{ multiSelectType }}"
          id="{{ options[3].slug }}"
-         name="{{ options[3].slug }}"
+         name="{{ multiSelectType=='checkbox' ? options[3].slug : multiSelectId }}"
          ng-model="options[3].selected"/><span class="button tiny secondary"
          ng-class="{ last : options.length <= 4}"
          >

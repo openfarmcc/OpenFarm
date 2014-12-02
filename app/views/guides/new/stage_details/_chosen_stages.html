@@ -1,0 +1,11 @@
+<ul class="chosen-stages">
+  <li class="chosen-stage" ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
+      ng-class="{ 'editing' : stage.editing }"
+      ng-click="editSelectedStage(stage)">
+    <div class="bubble {{ stage.name }}">
+    </div>
+    <p>
+      {{ stage.name }}
+    </p>
+  </li> 
+</ul>

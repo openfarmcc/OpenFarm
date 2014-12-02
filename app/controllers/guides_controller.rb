@@ -11,7 +11,6 @@ class GuidesController < ApplicationController
   end
 
   def new
-
     @guide = Guide.new
   end
 

@@ -256,18 +256,20 @@ openFarmModule.directive('location', [
     };
 }]);
 
-openFarmModule.directive('multiCheckboxSelect', [
-  function multiCheckboxSelect() {
-    var geocoder = new google.maps.Geocoder();
+openFarmModule.directive('multiRowSelect', [
+  function multiRowSelect() {
     return {
       restrict: 'A',
       // require: '?ngModel',
       scope: {
-        options: '='
+        options: '=',
+        
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
-          $scope.multiCheckboxId = $attrs.multiCheckboxId;
+          console.log($attrs.multiSelectType);
+          $scope.multiSelectType = $attrs.multiSelectType || 'checkbox';
+          $scope.multiSelectId = $attrs.multiSelectId;
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',
     };

@@ -16,7 +16,7 @@ describe Api::StagesController, type: :controller do
     guide = FactoryGirl.create(:guide, user: user)
     old_length = Stage.all.length
     data = { name: Faker::Lorem.word,
-             instructions: "#{Faker::Lorem.sentences(2)}",
+             soil: Faker::Lorem.words(2),
              guide_id: guide.id }
     post 'create', data, format: :json
     expect(response.status).to eq(201)
@@ -54,10 +54,10 @@ describe Api::StagesController, type: :controller do
   it 'should update a stage' do
     guide = FactoryGirl.create(:guide, user: user)
     stage = FactoryGirl.create(:stage, guide: guide)
-    put :update, id: stage.id, instructions: 'updated'
+    put :update, id: stage.id, name: 'updated'
     expect(response.status).to eq(200)
     stage.reload
-    expect(stage.instructions).to eq('updated')
+    expect(stage.name).to eq('updated')
   end
 
   it 'cant create a stage on someone elses guide' do

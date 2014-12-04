@@ -19,6 +19,18 @@ describe Guide do
   end
 
   it 'has not implemented a real compatibility label' do
+    guide = FactoryGirl.build(:guide)
+
+    guide.stub(:compatibility_score).and_return 80
+    expect(guide.compatibility_label).to eq('')
+
+    guide.stub(:compatibility_score).and_return 60
+    expect(guide.compatibility_label).to eq('')
+
+    guide.stub(:compatibility_score).and_return 20
+    expect(guide.compatibility_label).to eq('')
+
+    guide.stub(:compatibility_score).and_return nil
     expect(guide.compatibility_label).to eq('')
   end
 end

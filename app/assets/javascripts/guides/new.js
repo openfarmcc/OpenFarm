@@ -265,10 +265,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.submitForm = function () {
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
-      if (value){
-        practices.push(key);
+      console.log(value);
+      if (value.selected){
+        practices.push(value.slug);
       }
     }, practices);
+    console.log(practices);
     var params = {
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
@@ -277,17 +279,54 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
+    console.log('sending params', params );
     $http.post('/api/guides/', params)
       .success(function (r) {
-        console.log(r);
+        console.log("guide created", r);
+        console.log("sending stages");
         // window.location.href = "/guides/" + r.guide._id + "/edit/";
+        $scope.newGuide.stages.forEach(function(stage){
+          if (stage.selected){
+            stageParams = {
+              name: stage.name,
+              guide_id: r.guide._id,
+              length: stage.length || null,
+              where: stage.where.filter(function(s){ 
+                  return s.selected;
+                }).map(function(s){
+                  return s.label;
+                }) || null,
+              soil: stage.soil.filter(function(s){ 
+                  return s.selected;
+                }).map(function(s){
+                  return s.label;
+                }) || null,
+              light: stage.light.filter(function(s){ 
+                  return s.selected;
+                }).map(function(s){
+                  return s.label;
+                }) || null,
+            }
+            console.log(stageParams);
+            $http.post('/api/stages/', stageParams)
+              .success(function(r){
+                console.log('sent one stage');
+              })
+              .error(function(r){
+                $scope.alerts.push({
+                  msg: r.error,
+                  type: 'alert'
+                });
+                console.log(r);
+              })
+          }
+        });
       })
       .error(function (r) {
         $scope.alerts.push({
           msg: r.error,
           type: 'alert'
         });
-        console.log(r.error);
       });
   };
 

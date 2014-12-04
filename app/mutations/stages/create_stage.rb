@@ -4,12 +4,13 @@ module Stages
       model :user
       string :guide_id
       string :name
-      string :instructions
     end
 
     optional do
-      string :days_start
-      string :days_end
+      array :where
+      array :soil
+      array :light
+      string :length
     end
 
     def stage
@@ -38,10 +39,12 @@ module Stages
       # TODO: validate that the stage name is one
       # of stage options, or should we?
       stage.name           = name
-      stage.instructions   = instructions
-      stage.days_start     = days_start if days_start
-      stage.days_end       = days_end if days_end
+      stage.where          = where if where
+      stage.soil           = soil if soil
+      stage.light          = light if light
+      stage.length         = length if length
       stage.save
+
     end
 
     def validate_guide

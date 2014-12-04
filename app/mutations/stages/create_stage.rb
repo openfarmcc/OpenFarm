@@ -44,7 +44,6 @@ module Stages
       stage.light          = light if light
       stage.length         = length if length
       stage.save
-
     end
 
     def validate_guide

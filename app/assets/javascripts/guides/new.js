@@ -305,8 +305,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
                   return s.selected;
                 }).map(function(s){
                   return s.label;
-                }) || null,
-            }
+                }) || null
+            };
 
             $http.post('/api/stages/', stageParams)
               .success(function(r){
@@ -328,7 +328,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
               })
           }
         });
-      })
+      });
       .error(function (r) {
         $scope.alerts.push({
           msg: r.error,
@@ -343,4 +343,3 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     window.location.href = path || '/';
   };
 }]);
-

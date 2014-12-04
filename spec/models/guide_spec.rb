@@ -17,4 +17,8 @@ describe Guide do
     expect(guide.owned_by?(nil)).to eq(false)
     expect(guide.owned_by?(other_user)).to eq(false)
   end
+
+  it 'has not implemented a real compatibility label' do
+    expect(guide.compatibility_label).to eq('')
+  end
 end

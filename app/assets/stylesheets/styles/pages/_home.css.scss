@@ -59,6 +59,7 @@ video { display: block; }
 .hero {
   position: relative;
   max-width: initial;
+  min-height: 500px;
   height: inherit;
 
   .logo {

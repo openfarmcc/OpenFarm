@@ -6,14 +6,17 @@
     Please select some stages!
   </div>
   <div ng-if="newGuide.selectedStages.length > 0">
+  <form name="stagesForm">
 
     <%= render 'guides/new/stage_details/chosen_stages' %>
-
-    <form name="stageForm">
-
+  
     <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
       ng-init="stageForms[$index] = stage.name"
       ng-if="stage.editing">
+      <div ng-form="stageForm"
+           form-checker
+           form-id="stage.slug"
+           form-stage="stage">
         <span ng-bind="stageForms[$index].$valid"></span>
         <h3>{{ stage.name }} <%= t('.stage_details') %></h3>
         <div class="row where">
@@ -112,19 +115,20 @@
             Coming Soon
           </div>
         </div> -->
-      
+      </div><!-- ng-form -->
     </section>
-    </form>
+  
 
     <%= render 'guides/new/stage_details/chosen_stages' %>
-
     <div stage-buttons
         cancel-url="<%= root_path %>"
         cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
         back-text="<%= t('guides.new.back') %>"
         disabled-text="<%= t('.next_final_touches') %>"
+        abled-bool="stageThreeTracker"
         abled-text="<%= t('.fill_in_details') %>"
         >
     </div>
   </div>
+  </form>
 </section>

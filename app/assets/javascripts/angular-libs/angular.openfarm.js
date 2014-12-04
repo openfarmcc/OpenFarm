@@ -252,7 +252,8 @@ openFarmModule.directive('location', [
              'typeahead-wait-ms="555"'+
              'name="location">'+
              '<i ng-show="loadingLocations" '+
-               'class="fa fa-spinner fa-spin" ng-bind="loadingText"></i>',
+               'class="fa fa-spinner fa-spin"></i>'+
+              '<span ng-bind="loadingText"></span>',
     };
 }]);
 
@@ -260,14 +261,11 @@ openFarmModule.directive('multiRowSelect', [
   function multiRowSelect() {
     return {
       restrict: 'A',
-      // require: '?ngModel',
       scope: {
         options: '=',
-        
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
-          console.log($attrs.multiSelectType);
           $scope.multiSelectType = $attrs.multiSelectType || 'checkbox';
           $scope.multiSelectId = $attrs.multiSelectId;
       }],

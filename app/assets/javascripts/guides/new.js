@@ -1,9 +1,59 @@
+openFarmApp.directive('formChecker', function(){
+  return {
+    // scope: {
+    //   'formId': '=',
+    //   'formStage': '='
+    // },
+    require: '^form',
+    link: function(scope, element, attr){
+      // loop through each stage
+      var rootParent = scope.$parent.$parent.$parent;
+      
+      scope.$watch('$parent.stage', function(){
+        var allDone = [];
+        rootParent.stages.forEach(function(stage, i){
+          if (stage.selected){
+            stage.where.forEach(function(opt){
+              if (opt.selected){
+                stage.edited = true;
+              }
+            });
+            stage.light.forEach(function(opt){
+              if (opt.selected){
+                stage.edited = true;
+              }
+            });
+            stage.soil.forEach(function(opt){
+              if (opt.selected){
+                stage.edited = true;
+              }
+            });
+          
+            allDone.push(stage.edited ? true : false);
+          }
+        });
+        var tracker = true;
+        allDone.forEach(function(isDone){
+          if (!isDone){
+            tracker = false;
+          }
+        });
+
+        rootParent.stageThreeTracker = tracker;
+      }, true);
+      
+
+    }
+  };
+});
+
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
     return {
       restrict: 'A',
       scope: {
-          abledBool: '&'
+          abledBool: '&',
+          nextFunction: '='
       },
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){
@@ -15,8 +65,7 @@ openFarmApp.directive('stageButtons', [
         $scope.backText = $attrs.backText || undefined;
 
         $scope.previousStep = $scope.$parent.previousStep;
-        $scope.nextStep = $scope.$parent.nextStep;
-
+        $scope.nextStep = $scope.nextFunction || $scope.$parent.nextStep;
       }],
       template:
         '<div class="button-wrapper row">' + 
@@ -30,13 +79,13 @@ openFarmApp.directive('stageButtons', [
               ' name="back"' + 
               ' type="submit"' + 
               ' value="{{ backText }}"' + 
-              ' ng-click="$parent.previousStep()">' + 
+              ' ng-click="previousStep()">' + 
             '<input class="button small right"' + 
               ' name="commit"' + 
               ' type="submit"' + 
               ' value="{{ abledBool() ? disabledText : abledText }}"' + 
               ' ng-disabled="!(abledBool())"' + 
-              ' ng-click="$parent.nextStep()"/>' + 
+              ' ng-click="nextStep()"/>' + 
           '</div>' + 
         '</div>'
     };
@@ -46,7 +95,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   function newGuideCtrl($scope, $http) {
   $scope.alerts = [];
   $scope.crops = [];
-  $scope.step = 2;
+  $scope.step = 1;
   $scope.crop_not_found = false;
   $scope.addresses = [];
   $scope.stages = [];
@@ -102,6 +151,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
         type: 'warning'
       });
     });
+
+  $scope.$watch('stagesForm', function(){
+    console.log($scope.stagesForm);
+  });
 
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];

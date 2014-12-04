@@ -191,7 +191,7 @@ angular.module('ngS3upload.directives', []).
               if (attrs.s3Stage){
                 scope.filename = attrs.s3Default;
               } else {
-                scope.filename = ngModel.$viewValue;  
+                scope.filename = ngModel.$viewValue;
               }
             };
 
@@ -217,6 +217,7 @@ angular.module('ngS3upload.directives', []).
                     ).then(function (resp) {
 
                       var guide = scope.$parent.guide;
+                      var stage = null;
                       if (attrs.s3Guide){
                         guide = scope.$parent[attrs.s3Guide];
                       }
@@ -259,7 +260,7 @@ angular.module('ngS3upload.directives', []).
           }
         };
       },
-      templateUrl: '/assets/templates/_ngs3upload_input.html' 
+      templateUrl: '/assets/templates/_ngs3upload_input.html'
     };
   }]);
 })(window, document);

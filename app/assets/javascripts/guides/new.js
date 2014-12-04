@@ -8,10 +8,10 @@ openFarmApp.directive('formChecker', function(){
     link: function(scope, element, attr){
       // loop through each stage
       var rootParent = scope.$parent.$parent.$parent;
-      
+
       scope.$watch('$parent.stage', function(){
         var allDone = [];
-        rootParent.stages.forEach(function(stage, i){
+        rootParent.stages.forEach(function(stage){
           if (stage.selected){
             stage.where.forEach(function(opt){
               if (opt.selected){
@@ -28,7 +28,7 @@ openFarmApp.directive('formChecker', function(){
                 stage.edited = true;
               }
             });
-          
+
             allDone.push(stage.edited ? true : false);
           }
         });
@@ -41,7 +41,7 @@ openFarmApp.directive('formChecker', function(){
 
         rootParent.stageThreeTracker = tracker;
       }, true);
-      
+
 
     }
   };
@@ -58,7 +58,7 @@ openFarmApp.directive('stageButtons', [
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){
         $scope.abledText = $attrs.abledText || 'Continue';
-        $scope.disabledText = 
+        $scope.disabledText =
           $attrs.disabledText || 'You can\'t continue yet.';
         $scope.cancelText = $attrs.cancelText || 'Cancel.';
         $scope.cancelUrl = $attrs.cancelUrl || '/';
@@ -68,25 +68,25 @@ openFarmApp.directive('stageButtons', [
         $scope.nextStep = $scope.nextFunction || $scope.$parent.nextStep;
       }],
       template:
-        '<div class="button-wrapper row">' + 
-          '<div class="columns large-12">' + 
-            '<a class="button small secondary left"' + 
-              ' name="back"' + 
-              ' href="{{ cancelUrl }}"' + 
-              ' ng-click="cancel(cancelUrl)">{{ cancelText }}</a>' + 
-            '<input class="button small secondary left"' + 
+        '<div class="button-wrapper row">' +
+          '<div class="columns large-12">' +
+            '<a class="button small secondary left"' +
+              ' name="back"' +
+              ' href="{{ cancelUrl }}"' +
+              ' ng-click="cancel(cancelUrl)">{{ cancelText }}</a>' +
+            '<input class="button small secondary left"' +
               ' ng-if="backText"' +
-              ' name="back"' + 
-              ' type="submit"' + 
-              ' value="{{ backText }}"' + 
-              ' ng-click="previousStep()">' + 
-            '<input class="button small right"' + 
-              ' name="commit"' + 
-              ' type="submit"' + 
-              ' value="{{ abledBool() ? disabledText : abledText }}"' + 
-              ' ng-disabled="!(abledBool())"' + 
-              ' ng-click="nextStep()"/>' + 
-          '</div>' + 
+              ' name="back"' +
+              ' type="submit"' +
+              ' value="{{ backText }}"' +
+              ' ng-click="previousStep()">' +
+            '<input class="button small right"' +
+              ' name="commit"' +
+              ' type="submit"' +
+              ' value="{{ abledBool() ? disabledText : abledText }}"' +
+              ' ng-disabled="!(abledBool())"' +
+              ' ng-click="nextStep()"/>' +
+          '</div>' +
         '</div>'
     };
 }]);
@@ -116,7 +116,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   };
 
   $http.get('/api/stage_options/')
-    .success(function(response, status){
+    .success(function(response){
       $scope.stages = response.stage_options;
       $scope.newGuide.stages = $scope.stages
         .map(function(item){
@@ -143,7 +143,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
           ];
           return item;
         });
-      
+
     })
     .error(function(response, code){
       $scope.alerts.push({
@@ -173,10 +173,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     });
   }, true);
 
-  $scope.$watch('step', function(afterValue, beforeValue){
+  $scope.$watch('step', function(afterValue){
     if (afterValue === 3){
       var selectedSet = false;
-      $scope.newGuide.selectedStages.forEach(function(stage, index){
+      $scope.newGuide.selectedStages.forEach(function(stage){
         if (stage.selected && !selectedSet){
           // hacked hack is a hack
           $scope.newGuide.stages[stage.originalIndex].editing = true;
@@ -282,35 +282,42 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     console.log('sending params', params );
     $http.post('/api/guides/', params)
       .success(function (r) {
-        console.log("guide created", r);
-        console.log("sending stages");
+        var guide = r.guide;
         // window.location.href = "/guides/" + r.guide._id + "/edit/";
+        var sent = 0;
         $scope.newGuide.stages.forEach(function(stage){
           if (stage.selected){
-            stageParams = {
+            var stageParams = {
               name: stage.name,
-              guide_id: r.guide._id,
+              guide_id: guide._id,
               length: stage.length || null,
-              where: stage.where.filter(function(s){ 
+              where: stage.where.filter(function(s){
                   return s.selected;
                 }).map(function(s){
                   return s.label;
                 }) || null,
-              soil: stage.soil.filter(function(s){ 
+              soil: stage.soil.filter(function(s){
                   return s.selected;
                 }).map(function(s){
                   return s.label;
                 }) || null,
-              light: stage.light.filter(function(s){ 
+              light: stage.light.filter(function(s){
                   return s.selected;
                 }).map(function(s){
                   return s.label;
                 }) || null,
             }
-            console.log(stageParams);
+
             $http.post('/api/stages/', stageParams)
               .success(function(r){
-                console.log('sent one stage');
+                // TODO: Redirect the page when all stages
+                // are done.
+                sent++;
+                console.log('completed sending', sent);
+                if (sent === $scope.newGuide.selectedStages.length){
+                  window.location.href = "/guides/" + guide._id + "/edit/";
+                }
+                console.log('sent one stage', r);
               })
               .error(function(r){
                 $scope.alerts.push({

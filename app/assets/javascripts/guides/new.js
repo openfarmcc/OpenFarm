@@ -315,7 +315,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
                 sent++;
                 console.log('completed sending', sent);
                 if (sent === $scope.newGuide.selectedStages.length){
-                  window.location.href = "/guides/" + guide._id + "/edit/";
+                  window.location.href = '/guides/' + guide._id + '/edit/';
                 }
                 console.log('sent one stage', r);
               })
@@ -325,10 +325,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
                   type: 'alert'
                 });
                 console.log(r);
-              })
+              });
           }
         });
-      });
+      })
       .error(function (r) {
         $scope.alerts.push({
           msg: r.error,

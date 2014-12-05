@@ -46,18 +46,19 @@ class Guide
   end
 
   def compatibility_label
+    ''
     # TODO:
-    score = compatibility_score
+    # score = compatibility_score
 
-    if score.nil?
-      return ''
-    elsif score > 75
-      return 'high'
-    elsif score > 50
-      return 'medium'
-    else
-      return 'low'
-    end
+    # if score.nil?
+    #   return ''
+    # elsif score > 75
+    #   return 'high'
+    # elsif score > 50
+    #   return 'medium'
+    # else
+    #   return 'low'
+    # end
   end
 
   slug :name

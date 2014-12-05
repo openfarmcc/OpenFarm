@@ -44,6 +44,6 @@
     <h2 class="text-center">Guides for this crop</h2>
     <%= "no guides yet :(" if @guides.empty? %>
     <%= render partial: '/guides/guide_results_list', object: @guides %>
-    <button class="button expand">Create a guide!</button>
+    <%= button_to "Create a guide!", new_guide_path, method:'get', class:"button expand" %>
   </div>
 </div>

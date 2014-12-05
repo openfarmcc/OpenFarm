@@ -3,9 +3,11 @@ require 'spec_helper'
 describe Stages::CreateStage do
   let(:mutation) { Stages::CreateStage }
   let(:guide) { FactoryGirl.create(:guide) }
-  let(:params) { { user: guide.user,
-                   name: "#{Faker::Name.last_name}",
-                   guide_id: "#{guide._id}" } }
+  let(:params) do
+    { user: guide.user,
+      name: "#{Faker::Name.last_name}",
+      guide_id: "#{guide._id}" }
+  end
 
   it 'minimally requires a user and a guide to be true' do
     expect(mutation.run(params).success?).to be_true
@@ -25,7 +27,7 @@ describe Stages::CreateStage do
     image_params = params.merge(images: 'iWroteThisWrong.net/2haLt4J.jpg')
     results      = mutation.run(image_params)
     expect(results.success?).to be_false
-    expect(results.errors.message[:images]).to include("not a valid URL")
+    expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
 end

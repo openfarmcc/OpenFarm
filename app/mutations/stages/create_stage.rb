@@ -11,7 +11,7 @@ module Stages
       array :soil
       array :light
       integer :stage_length
-      array  :images, class: String, arrayize: true
+      array :images, class: String, arrayize: true
     end
 
     def stage
@@ -50,7 +50,7 @@ module Stages
       images && images.each do |url|
         unless url.valid_url?
           add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
-            "that it is a fully formed URL (including HTTP:// or HTTPS://)"
+            'that it is a fully formed URL (including HTTP:// or HTTPS://)'
         end
       end
     end

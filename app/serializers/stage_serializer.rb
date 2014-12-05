@@ -1,3 +1,4 @@
 class StageSerializer < ApplicationSerializer
-  attributes :_id, :guide, :name, :length, :soil, :where, :light
+  attributes :_id, :guide, :name, :stage_length, :soil, :environment,
+             :light, :pictures
 end

@@ -265,12 +265,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.submitForm = function () {
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
-      console.log(value);
       if (value.selected){
         practices.push(value.slug);
       }
     }, practices);
-    console.log(practices);
     var params = {
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
@@ -279,7 +277,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
-    console.log('sending params', params );
     $http.post('/api/guides/', params)
       .success(function (r) {
         var guide = r.guide;
@@ -287,11 +284,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
         var sent = 0;
         $scope.newGuide.stages.forEach(function(stage){
           if (stage.selected){
+            console.log(stage.featured_image);
             var stageParams = {
               name: stage.name,
+              images: [stage.featured_image],
               guide_id: guide._id,
-              length: stage.length || null,
-              where: stage.where.filter(function(s){
+              stage_length: stage.length || null,
+              environment: stage.where.filter(function(s){
                   return s.selected;
                 }).map(function(s){
                   return s.label;
@@ -315,7 +314,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
                 sent++;
                 console.log('completed sending', sent);
                 if (sent === $scope.newGuide.selectedStages.length){
-                  window.location.href = '/guides/' + guide._id + '/edit/';
+                  console.log('all have been sent');
+                  // window.location.href = '/guides/' + guide._id + '/edit/';
                 }
                 console.log('sent one stage', r);
               })

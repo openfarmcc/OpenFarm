@@ -9,7 +9,7 @@
   <form name="stagesForm">
 
     <%= render 'guides/new/stage_details/chosen_stages' %>
-  
+
     <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
       ng-init="stageForms[$index] = stage.name"
       ng-if="stage.editing">
@@ -71,9 +71,6 @@
             </div>
           </div>
         </div>
-        
-        <!-- TODO -->
-        <!-- 
         <div class="row image">
           <div class="columns large-4 medium-4">
             <label class="right"
@@ -82,7 +79,7 @@
             </label>
           </div>
           <div class="columns large-8 medium-8">
-            <div 
+            <div
               id="stage-image-upload-{{$index}}"
               name="stage-image-upload-{{$index}}"
               s3-upload
@@ -95,6 +92,9 @@
             </div>
           </div>
         </div>
+        <!-- TODO -->
+        <!--
+
         <div class="row how-long">
           <div class="columns large-4 medium-4">
             <label class="right"
@@ -103,7 +103,7 @@
             </label>
           </div>
           <div class="columns large-8 medium-8">
-            Coming Soon 
+            Coming Soon
           </div>
         </div>
         <div class="row annual">
@@ -119,7 +119,7 @@
         </div> -->
       </div><!-- ng-form -->
     </section>
-  
+
 
     <%= render 'guides/new/stage_details/chosen_stages' %>
     <div stage-buttons

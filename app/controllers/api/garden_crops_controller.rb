@@ -35,8 +35,7 @@ module Api
     end
 
     def update
-      garden_crop = Garden.find(params[:garden_id])
-          .garden_crops.find(params[:id])
+      garden_crop = Garden.find(params[:garden_id]).garden_crops.find(params[:id])
       @outcome = GardenCrops::UpdateGardenCrop.run(params,
                                                    user:        current_user,
                                                    garden_crop: garden_crop)

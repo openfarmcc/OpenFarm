@@ -20,7 +20,7 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_model_serializers (0.9.1)
+    active_model_serializers (0.9.0)
       activemodel (>= 3.2)
     activemodel (4.0.2)
       activesupport (= 4.0.2)
@@ -349,7 +349,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (= 0.9.0)
   aws-sdk (~> 1.55.0)
   bcrypt
   better_errors

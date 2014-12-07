@@ -20,7 +20,7 @@ class Guide
   field :overview
   field :practices, type: Array
 
-  validates [:user, :crop, :name], presence: true
+  validates :user, :crop, :name, presence: true
 
   has_mongoid_attached_file :featured_image,
                             default_url: '/assets/leaf-grey.png'

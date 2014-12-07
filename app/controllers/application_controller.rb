@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Allow certain fields for devise - needed in Rails 4.0+
-  before_filter :update_sanitized_params, if: :devise_controller?
+  before_action :update_sanitized_params, if: :devise_controller?
 
   before_action :set_locale
 
-  def default_url_options(options = {})
+  def default_url_options(_options = {})
     { locale: I18n.locale }
   end
 
@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
   # thereby comply with 'strong parameters'.
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) do |params|
-      params.permit *safe_user_attrs
+      params.permit(*safe_user_attrs)
     end
 
     devise_parameter_sanitizer.for(:account_update) do |params|
-      params.permit *(safe_user_attrs << :current_password)
+      params.permit(*(safe_user_attrs << :current_password))
     end
   end
 
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
       return current_user
     else
       flash[:notice] = 'I told you kids to get out of here!'
-      redirect_to '/' and return
+      redirect_to('/') && return
     end
   end
 

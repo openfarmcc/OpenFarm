@@ -41,7 +41,7 @@ module Gardens
       garden.average_sun    = average_sun if average_sun.present?
       garden.soil_type      = soil_type if soil_type.present?
       garden.ph             = ph if ph.present?
-      # todo growing practices
+      # TODO: growing practices
       garden.save
     end
   end

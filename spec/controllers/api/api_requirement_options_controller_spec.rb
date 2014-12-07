@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Api::RequirementOptionsController, type: :controller do
   include ApiHelpers
 
-  let(:user) {sign_in(user = FactoryGirl.create(:user)) && user }
+  let(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
   let(:requirement_option) { FactoryGirl.create(:requirement_option_range) }
   let(:requirement_option) { FactoryGirl.create(:requirement_option_select) }
-  
+
   before do
     FactoryGirl.create_list(:requirement_option_range, 4)
     FactoryGirl.create_list(:requirement_option_select, 2)

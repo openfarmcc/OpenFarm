@@ -17,7 +17,7 @@ module Requirements
     def authorize_user
       if @requirement && (@requirement.guide.user != user)
         msg = 'You can only destroy requirements that belong to your guides.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 

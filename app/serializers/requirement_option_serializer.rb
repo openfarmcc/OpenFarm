@@ -4,5 +4,4 @@ class RequirementOptionSerializer < ApplicationSerializer
   def options
     object.options.to_a
   end
-
 end

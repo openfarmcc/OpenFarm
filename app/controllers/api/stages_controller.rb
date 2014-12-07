@@ -16,7 +16,7 @@ module Api
       stage = Stage.find(params[:id])
       @outcome = Stages::UpdateStage.run(params,
                                          stage: stage,
-                                         user: current_user,)
+                                         user:  current_user)
       respond_with_mutation(:ok)
     end
   end

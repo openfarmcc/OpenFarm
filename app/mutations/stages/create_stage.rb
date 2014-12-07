@@ -29,7 +29,7 @@ module Stages
     def validate_permissions
       if @guide && (@guide.user != user)
         msg = 'You can only create stages for guides that belong to you.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 

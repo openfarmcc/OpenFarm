@@ -13,7 +13,7 @@ describe Api::RequirementsController, type: :controller do
   it 'creates requirements' do
     guide = FactoryGirl.create(:guide, user: user)
     old_length = Requirement.all.length
-    data = { name: Faker::Lorem.word,
+    data = { name:     Faker::Lorem.word,
              required: "#{Faker::Lorem.words(2)}",
              guide_id: guide.id }
     post :create, data, format: :json
@@ -32,7 +32,7 @@ describe Api::RequirementsController, type: :controller do
   end
 
   it 'should return an error when wrong info is passed to create' do
-    # FIXME reword this to better describe whats going on or make assertions on
+    # FIXME: reword this to better describe whats going on or make assertions on
     # the response body text.
     data = {
       required: "#{Faker::Lorem.sentences(2)}",
@@ -58,17 +58,17 @@ describe Api::RequirementsController, type: :controller do
 
   it 'should return a not found error if a guide is not found' do
     post :create, name: 'sunlight', required: true, guide_id: 1
-    expect(json["guide"]).to eq("Could not find a guide with id 1.")
+    expect(json['guide']).to eq('Could not find a guide with id 1.')
     expect(response.status).to eq(422)
   end
 
   it 'does not allow adding requirements to other peoples guides' do
-    data = { name: 'sunlight',
+    data = { name:     'sunlight',
              required: true,
              guide_id: FactoryGirl.create(:guide) }
     post :create, data
     expect(json['error']).to include(
-      "cant create requirements for guides you did not create")
+      'cant create requirements for guides you did not create')
     expect(response.status).to eq(401)
   end
 
@@ -93,14 +93,13 @@ describe Api::RequirementsController, type: :controller do
   it 'only destroys requirements owned by the user' do
     delete :destroy, id: FactoryGirl.create(:requirement)
     expect(json['error']).to include(
-      "can only destroy requirements that belong to your guides.")
+      'can only destroy requirements that belong to your guides.')
     expect(response.status).to eq(401)
   end
 
   it 'handles deletion of unknown requirements' do
     delete :destroy, id: 1
-    expect(json['requirement']).to eq("Could not find a requirement with id 1.")
+    expect(json['requirement']).to eq('Could not find a requirement with id 1.')
     expect(response.status).to eq(422)
   end
-
 end

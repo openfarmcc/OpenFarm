@@ -7,10 +7,10 @@ describe Api::TokensController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
 
   it 'creates a token' do
-    note """ Hit this API endpoint to generate an authentication token. Take the
+    note ''" Hit this API endpoint to generate an authentication token. Take the
     token that it returns and insert it as a request header like so:
      \`Authorization: Token token=YOUR_TOKEN_HERE\`
-    """
+    "''
     data = { email: user.email, password: user.password }
     post :create, data, format: :json
     expect(response.status).to eq(201)
@@ -45,8 +45,8 @@ describe Api::TokensController, type: :controller do
   end
 
   it 'deletes a token' do
-    note """You must be logged in to perform this action. No parameters are
-    required. This is a log out action, essentially."""
+    note ''"You must be logged in to perform this action. No parameters are
+    required. This is a log out action, essentially."''
     user = make_api_user
     expect(user.token).to be_a_kind_of(Token)
     delete :destroy

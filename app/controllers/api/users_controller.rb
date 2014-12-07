@@ -7,7 +7,7 @@ module Api
       if Pundit.policy(current_user, user).show?
         render json: user
       else
-        raise OpenfarmErrors::NotAuthorized
+        fail OpenfarmErrors::NotAuthorized
       end
     end
 

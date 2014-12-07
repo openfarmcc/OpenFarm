@@ -28,7 +28,7 @@ module Guides
     def validate_permissions
       if guide.user != user
         msg = 'You can only modify guides that you created.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 

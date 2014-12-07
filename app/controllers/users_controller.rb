@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   after_action :verify_authorized, except: [:index, :finish, :gardens]
 
   def update
@@ -9,8 +9,8 @@ class UsersController < ApplicationController
       user: current_user)
     if @outcome.errors
       flash[:alert] = @outcome.errors.message_list
-      redirect_to(controller: 'users', 
-        action: 'finish')
+      redirect_to(controller: 'users',
+                  action:     'finish')
     else
       redirect_to(controller: 'users', action: 'gardens')
     end

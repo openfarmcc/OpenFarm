@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::StagesController, type: :controller do
-
   include ApiHelpers
 
   let!(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
@@ -15,9 +14,9 @@ describe Api::StagesController, type: :controller do
   it 'creates stages' do
     guide = FactoryGirl.create(:guide, user: user)
     old_length = Stage.all.length
-    data = { name: Faker::Lorem.word,
+    data = { name:         Faker::Lorem.word,
              instructions: "#{Faker::Lorem.sentences(2)}",
-             guide_id: guide.id }
+             guide_id:     guide.id }
     post 'create', data, format: :json
     expect(response.status).to eq(201)
     new_length = Stage.all.length
@@ -25,11 +24,11 @@ describe Api::StagesController, type: :controller do
   end
 
   it 'should return an error when wrong info is passed to create' do
-    # FIXME what is this spec testing? Maybe you should do some assertions on
+    # FIXME: what is this spec testing? Maybe you should do some assertions on
     # the response message.
     data = {
       instructions: "#{Faker::Lorem.sentences(2)}",
-      guide_id: guide.id
+      guide_id:     guide.id
     }
     post 'create', data, format: :json
     expect(response.status).to eq(422)
@@ -37,10 +36,10 @@ describe Api::StagesController, type: :controller do
 
   it 'should return an error when a guide is not provided' do
     data = { instructions: "#{Faker::Lorem.sentences(2)}",
-             guide_id: 1,
-             name: 'hello' }
+             guide_id:     1,
+             name:         'hello' }
     post 'create', data, format: :json
-    expect(json['guide_id']).to eq("Could not find a guide with id 1.")
+    expect(json['guide_id']).to eq('Could not find a guide with id 1.')
     expect(response.status).to eq(422)
   end
 
@@ -62,11 +61,11 @@ describe Api::StagesController, type: :controller do
 
   it 'cant create a stage on someone elses guide' do
     data = { instructions: "#{Faker::Lorem.sentences(2)}",
-             guide_id: FactoryGirl.create(:guide).id,
-             name: 'hello' }
+             guide_id:     FactoryGirl.create(:guide).id,
+             name:         'hello' }
     post 'create', data, format: :json
     expect(json['error']).to include(
-      "You can only create stages for guides that belong to you.")
+      'You can only create stages for guides that belong to you.')
     expect(response.status).to eq(401)
   end
 

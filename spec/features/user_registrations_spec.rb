@@ -19,7 +19,7 @@ describe 'User registrations' do
     login_as user
     visit edit_user_registration_path(user)
     fill_in :user_current_password, with: user.password
-    fill_in :user_password, with: "bert1234"
+    fill_in :user_password, with: 'bert1234'
     click_button 'Update User'
     see('You updated your account successfully')
   end
@@ -42,7 +42,7 @@ describe 'User registrations' do
     login_as user
     visit edit_user_registration_path(user)
     fill_in :user_current_password, with: user.password
-    fill_in :user_password, with: "2short"
+    fill_in :user_password, with: '2short'
     click_button 'Update User'
     see('Password is too short')
   end

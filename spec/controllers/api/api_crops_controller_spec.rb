@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe Api::CropsController, :type => :controller do
+describe Api::CropsController, type: :controller do
 
   before do
     @beans = FactoryGirl.create(:crop, name: 'mung bean')

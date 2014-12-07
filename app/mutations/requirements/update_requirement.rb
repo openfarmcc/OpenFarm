@@ -23,7 +23,7 @@ module Requirements
     def validate_permissions
       if requirement.guide.user != user
         msg = 'You can only update requirements that belong to your guides.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 

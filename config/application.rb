@@ -22,10 +22,10 @@ module OpenFarm
       allow do
         origins '*'
         resource '/api/*',
-                 headers: :any,
-                 methods: [:get, :post, :delete, :put, :patch, :options, :head],
+                 headers:     :any,
+                 methods:     [:get, :post, :delete, :put, :patch, :options, :head],
                  credentials: false, # No cookies.
-                 max_age: 0
+                 max_age:     0
       end
     end
     config.middleware.use Rack::Attack

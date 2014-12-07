@@ -18,13 +18,13 @@ module GardenCrops
     def authorize_user
       if @garden_crop && (@garden_crop.garden.user != user)
         msg = 'You can only destroy garden crops that belong to your gardens.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 
     def find_garden_crop
-      @garden_crop = Garden.find(garden_id).
-          garden_crops.find(id)
+      @garden_crop = Garden.find(garden_id)
+          .garden_crops.find(id)
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a garden_crop with id #{id}."
       add_error :garden_crop, :garden_crop_not_found, msg

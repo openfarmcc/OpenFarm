@@ -30,7 +30,7 @@ describe Api::GardensController, type: :controller do
       public_garden = FactoryGirl.create(:garden,
                                          user: @other_user)
       private_garden = FactoryGirl.create(:garden,
-                                          user: @other_user,
+                                          user:       @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
@@ -45,7 +45,7 @@ describe Api::GardensController, type: :controller do
       public_garden = FactoryGirl.create(:garden,
                                          user: @other_user)
       private_garden = FactoryGirl.create(:garden,
-                                          user: @other_user,
+                                          user:       @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
@@ -58,7 +58,7 @@ describe Api::GardensController, type: :controller do
       public_garden = FactoryGirl.create(:garden,
                                          user: @other_user)
       private_garden = FactoryGirl.create(:garden,
-                                          user: @other_user,
+                                          user:       @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
@@ -71,7 +71,7 @@ describe Api::GardensController, type: :controller do
       public_garden = FactoryGirl.create(:garden,
                                          user: @viewing_user)
       private_garden = FactoryGirl.create(:garden,
-                                          user: @viewing_user,
+                                          user:       @viewing_user,
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
@@ -91,8 +91,8 @@ describe Api::GardensController, type: :controller do
     it 'should not allow editing of non-owned gardens' do
       garden = FactoryGirl.create(:garden)
       put :update,
-          id: garden.id,
-          name: 'updated',
+          id:     garden.id,
+          name:   'updated',
           format: :json
       expect(response.status).to eq(422)
     end
@@ -100,8 +100,8 @@ describe Api::GardensController, type: :controller do
     it 'should edit owned gardens' do
       garden = FactoryGirl.create(:garden, user: @viewing_user)
       put :update,
-          id: garden.id,
-          name: 'updated',
+          id:     garden.id,
+          name:   'updated',
           format: :json
       expect(response.status).to eq(200)
       expect(garden.reload.name).to eq('updated')

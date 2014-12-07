@@ -8,11 +8,11 @@ class GardenPolicy < ApplicationPolicy
 
   def show?
     if @current_user
-      (not @garden.is_private?) ||
+      (!@garden.is_private?) ||
           @current_user == @garden.user ||
           @current_user.admin
     else
-      not @garden.is_private?
+      !@garden.is_private?
     end
   end
 

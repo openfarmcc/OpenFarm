@@ -22,7 +22,7 @@ describe Guides::CreateGuide do
   end
 
   it 'validates invalid URLs' do
-    # TODO We need to get Travis CI to actually work with this test. ENV vars
+    # TODO: We need to get Travis CI to actually work with this test. ENV vars
     # are broke.
     pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     results = cg.run(params.merge(featured_image: 'not/absoloute.png'))

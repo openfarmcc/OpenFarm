@@ -12,10 +12,10 @@ describe Api::GardenCropsController, type: :controller do
     it 'should create garden crops' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden, user: @user)
-      data = { quantity: rand(100),
-               stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
-               guide_id: guide.id,
+      data = { quantity:  rand(100),
+               stage:     "#{Faker::Lorem.word}",
+               sowed:     "#{Faker::Date.between(2.days.ago, Date.today)}",
+               guide_id:  guide.id,
                garden_id: garden.id }
       old_length = garden.garden_crops.length
       post :create, data, format: :json
@@ -27,10 +27,10 @@ describe Api::GardenCropsController, type: :controller do
     it 'should not allow user to add garden crops to other user gardens' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden)
-      data = { quantity: rand(100),
-               stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
-               guide_id: guide.id,
+      data = { quantity:  rand(100),
+               stage:     "#{Faker::Lorem.word}",
+               sowed:     "#{Faker::Date.between(2.days.ago, Date.today)}",
+               guide_id:  guide.id,
                garden_id: garden.id }
       post :create, data, format: :json
       expect(response.status).to eq(422)
@@ -48,8 +48,8 @@ describe Api::GardenCropsController, type: :controller do
       garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
       delete :destroy,
              garden_id: garden_crop.garden.id,
-             id: garden_crop.id,
-             format: :json
+             id:        garden_crop.id,
+             format:    :json
       expect(garden.reload.garden_crops.length).to eq(0)
       expect(response.status).to eq(204)
     end
@@ -58,8 +58,8 @@ describe Api::GardenCropsController, type: :controller do
       garden_crop = FactoryGirl.create(:garden_crop)
       delete :destroy,
              garden_id: garden_crop.garden.id,
-             id: garden_crop.id,
-             format: :json
+             id:        garden_crop.id,
+             format:    :json
       expect(response.status).to eq(401)
     end
 
@@ -152,9 +152,9 @@ describe Api::GardenCropsController, type: :controller do
       garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
       put :update,
           garden_id: garden_crop.garden.id,
-          id: garden_crop.id,
-          stage: 'updated',
-          format: :json
+          id:        garden_crop.id,
+          stage:     'updated',
+          format:    :json
       expect(response.status).to eq(200)
       expect(garden_crop.reload.stage).to eq('updated')
     end
@@ -162,9 +162,9 @@ describe Api::GardenCropsController, type: :controller do
       garden_crop = FactoryGirl.create(:garden_crop)
       put :update,
           garden_id: garden_crop.garden.id,
-          id: garden_crop.id,
-          stage: 'updated',
-          format: :json
+          id:        garden_crop.id,
+          stage:     'updated',
+          format:    :json
       expect(response.status).to eq(401)
     end
   end

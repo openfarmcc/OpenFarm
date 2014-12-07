@@ -46,14 +46,12 @@ module Guides
     end
 
     def validate_practices
-      if practices
-        practices.each do |p|
-          unless p.is_a? String
-            msg = "#{p} is not a valid practice."
-            add_error :practices, :invalid, msg
-          end
+      practices.each do |p|
+        unless p.is_a? String
+          msg = "#{p} is not a valid practice."
+          add_error :practices, :invalid, msg
         end
-      end
+      end if practices
     end
 
     def validate_crop

@@ -25,7 +25,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'patron' # For searchKick
 gem 'searchkick'
-gem "pundit"
+gem 'pundit'
 
 group :development, :test do
   gem 'coveralls', require: false
@@ -56,12 +56,12 @@ group :production, :staging do
   gem 'rails_12factor'
 end
 
-#Used for static pages in /app/views/pages
+# Used for static pages in /app/views/pages
 gem 'high_voltage'
 gem 'devise'
 gem 'rails_admin'
 gem 'ng-rails-csrf'
 
 gem 'bson_ext'
-gem 'mongoid', :github => 'mongoid/mongoid'
-gem 'active_model_serializers'
+gem 'mongoid', github: 'mongoid/mongoid'
+gem 'active_model_serializers', '=0.9.0'

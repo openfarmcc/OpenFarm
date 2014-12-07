@@ -1,4 +1,4 @@
-if File.exists?('config/app_environment_variables.rb')
+if File.exist?('config/app_environment_variables.rb')
   load 'config/app_environment_variables.rb'
 else
   warning = 'You still need to set your ENV variables inside of'\

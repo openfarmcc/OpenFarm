@@ -11,18 +11,18 @@ class Token
       check_user
       check_token
       check_expiration
-      return user
+      user
     end
 
     def check_token
       unless Devise.secure_compare(user.token.secret, guess)
-        raise OpenfarmErrors::NotAuthorized, 'Invalid token or user email.'
+        fail OpenfarmErrors::NotAuthorized, 'Invalid token or user email.'
       end
     end
 
     def check_expiration
       if Date.today > user.token.expiration
-        raise OpenfarmErrors::NotAuthorized, 'Expired token.'
+        fail OpenfarmErrors::NotAuthorized, 'Expired token.'
       end
     end
 

@@ -31,7 +31,7 @@ module Requirements
     def validate_permissions
       if @guide && (@guide.user != user)
         msg = 'You cant create requirements for guides you did not create.'
-        raise OpenfarmErrors::NotAuthorized, msg
+        fail OpenfarmErrors::NotAuthorized, msg
       end
     end
 

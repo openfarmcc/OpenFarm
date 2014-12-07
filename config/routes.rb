@@ -1,10 +1,9 @@
 OpenFarm::Application.routes.draw do
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
-      registrations: "registrations"
-    }
+    registrations: 'registrations'
+  }
   devise_scope :users do
     get 'users/gardens' => 'users#gardens'
     get 'users/finish' => 'users#finish'
@@ -27,7 +26,7 @@ OpenFarm::Application.routes.draw do
 
   get 'announcements/hide', to: 'announcements#hide'
 
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api, defaults: { format: 'json' } do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops, only: [:index, :show]
     resources :users, only: [:show]
@@ -43,7 +42,7 @@ OpenFarm::Application.routes.draw do
     resources :stage_options, only: [:index]
     resources :stages, only: [:create, :show, :update]
     resources :requirements, only: [:create, :show, :update, :destroy]
-    # TODO Figure out why I can't use a singular resource route here.
+    # TODO: Figure out why I can't use a singular resource route here.
     post 'token', to: 'tokens#create'
     delete 'token', to: 'tokens#destroy'
   end

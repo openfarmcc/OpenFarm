@@ -8,9 +8,7 @@ class Rack::Attack
   ### Prevent Brute-Force Login Attacks ###
   # Throttle requests to /sign_in by IP address
   throttle('logins/ip', limit: 5, period: 20.seconds) do |req|
-    if req.path.include?('/sign_in') && req.post?
-      req.ip
-    end
+    req.ip if req.path.include?('/sign_in') && req.post?
   end
 end
 

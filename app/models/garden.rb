@@ -3,7 +3,7 @@ class Garden
   include Mongoid::Paperclip
 
   belongs_to :user
-  validates_presence_of :user
+  validates :user, presence: true
 
   embeds_many :garden_crops
 

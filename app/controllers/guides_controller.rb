@@ -17,8 +17,6 @@ class GuidesController < ApplicationController
   def edit
     @guide = Guide.find(params[:id])
 
-    if not @guide.user.id == current_user.id
-      redirect_to @guide
-    end
+    redirect_to @guide unless @guide.user.id == current_user.id
   end
 end

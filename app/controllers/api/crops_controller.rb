@@ -12,9 +12,7 @@ module Api
 
     def show
       crop = Crop.find(params[:id])
-      if crop
-        render json: crop
-      end
+      render json: crop if crop
     end
   end
 end

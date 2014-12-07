@@ -10,8 +10,8 @@ class Crop
   include Mongoid::History::Trackable
 
   is_impressionable counter_cache: true,
-                    column_name: :impressions,
-                    unique: :session_hash
+                    column_name:   :impressions,
+                    unique:        :session_hash
   field :impressions, default: 0
 
   has_many :guides
@@ -19,7 +19,7 @@ class Crop
 
   field :name
   field :common_names, type: Array
-  validates_presence_of :name
+  validates :name, presence: true
   field :binomial_name
   field :description
   field :image
@@ -40,7 +40,7 @@ class Crop
   slug :name
 
   # See https://github.com/aq1018/mongoid-history
-  track_history on: [:description, :image],
+  track_history on:             [:description, :image],
                 modifier_field: :modifier,
-                version_field: :version
+                version_field:  :version
 end

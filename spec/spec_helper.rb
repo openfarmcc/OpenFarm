@@ -1,5 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 require 'coveralls'
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
@@ -13,7 +13,7 @@ SimpleCov.start do
   add_filter 'config/initializers/backtrace_silencers.rb'
   add_filter 'spec/'
 end
-require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
@@ -33,7 +33,7 @@ Delayed::Worker.delay_jobs = false
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr'
   c.hook_into :webmock # or :fakeweb
-  c.default_cassette_options = { record: :new_episodes,
+  c.default_cassette_options = { record:            :new_episodes,
                                  match_requests_on: [:host, :method] }
   c.ignore_hosts '127.0.0.1', 'localhost', 'localhost:9200'
   # c.allow_http_connections_when_no_cassette = true
@@ -44,7 +44,7 @@ Paperclip.options[:log] = false
 
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 Mongoid.logger.level = 2
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
@@ -54,7 +54,7 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
   config.fail_fast = true
-  config.order = "random"
+  config.order = 'random'
   if ENV['DOCS'] == 'true'
     DocYoSelf.config do |c|
       c.template_file = 'spec/template.md.erb'

@@ -7,14 +7,14 @@ module Api
       if Pundit.policy(current_user, garden).show?
         render json: { garden: garden }
       else
-        raise OpenfarmErrors::NotAuthorized
+        fail OpenfarmErrors::NotAuthorized
       end
     end
 
     def update
       garden = Garden.find(params[:id])
       @outcome = Gardens::UpdateGarden.run(params,
-                                           user: current_user,
+                                           user:   current_user,
                                            garden: garden)
       respond_with_mutation(:ok)
     end

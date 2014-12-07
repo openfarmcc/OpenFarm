@@ -8,5 +8,5 @@ OpenFarm::Application.configure do
   config.active_support.deprecation = :log
   config.assets.debug = true
   config.quiet_assets = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end

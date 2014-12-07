@@ -16,16 +16,16 @@ OpenFarm::Application.configure do
                                           password:  ENV['MANDRILL_APIKEY'] }
 
   config.middleware.use ExceptionNotification::Rack,
-    email: {
-      email_prefix: '[OpenFarm Errors] ',
-      sender_address: %{"notifier" <notifier@openfarm.cc>},
-      exception_recipients: ENV['ALERTS'].to_s.split('|')
-    },
-    ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
-                        'AbstractController::ActionNotFound',
-                        'ActionController::RoutingError',
-                        'ActionController::InvalidAuthenticityToken',
-                        'ActionView::MissingTemplate']
+                        email:             {
+                          email_prefix:         '[OpenFarm Errors] ',
+                          sender_address:       %("notifier" <notifier@openfarm.cc>),
+                          exception_recipients: ENV['ALERTS'].to_s.split('|')
+                        },
+                        ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
+                                            'AbstractController::ActionNotFound',
+                                            'ActionController::RoutingError',
+                                            'ActionController::InvalidAuthenticityToken',
+                                            'ActionView::MissingTemplate']
   config.action_mailer.default_url_options = { host: 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

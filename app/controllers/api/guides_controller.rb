@@ -15,8 +15,8 @@ module Api
 
     def update
       @outcome = Guides::UpdateGuide.run(params,
-                                user: current_user,
-                                guide: Guide.find(params[:id]))
+                                         user:  current_user,
+                                         guide: Guide.find(params[:id]))
       respond_with_mutation(:ok)
     end
   end

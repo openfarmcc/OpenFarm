@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
   it 'should show the user their profile' do
     user = FactoryGirl.create(:user)
-    
+
     sign_in user
     get 'show', id: user.id
     expect(response).to render_template(:show)
@@ -27,7 +27,7 @@ describe UsersController do
 
   it 'should only show public users on index' do
     user = FactoryGirl.create(:user)
-    private_user = FactoryGirl.create(:user, is_private: true)
+    FactoryGirl.create(:user, is_private: true)   # private user
     public_user = FactoryGirl.create(:user)
     sign_in user
     get 'index'

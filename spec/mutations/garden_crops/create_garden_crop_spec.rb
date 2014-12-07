@@ -9,7 +9,7 @@ describe GardenCrops::CreateGardenCrop do
   let(:params) do
     { user:      user,
       garden_id: FactoryGirl.create(:garden, user: user).id.to_s,
-      stage:      "#{Faker::Lorem.word}",
+      stage:     "#{Faker::Lorem.word}",
       sowed:     "#{Faker::Date.between(2.days.ago, Date.today)}",
       quantity:  rand(100) }
   end

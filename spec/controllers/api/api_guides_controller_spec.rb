@@ -15,9 +15,9 @@ describe Api::GuidesController, type: :controller do
   it 'create guides' do
     sign_in FactoryGirl.create(:user)
     old_length = Guide.all.length
-    data = { name: 'brocolini in the desert',
+    data = { name:     'brocolini in the desert',
              overview: 'something exotic',
-             crop_id: FactoryGirl.create(:crop).id.to_s }
+             crop_id:  FactoryGirl.create(:crop).id.to_s }
     post 'create', data, format: :json
     expect(response.status).to eq(201)
 
@@ -29,10 +29,10 @@ describe Api::GuidesController, type: :controller do
 
   it 'uploads a featured_image' do
     pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
-    params = { name: 'Just 1 pixel.',
-               overview: 'A tiny pixel test image.',
+    params = { name:           'Just 1 pixel.',
+               overview:       'A tiny pixel test image.',
                featured_image: 'http://placehold.it/1x1.jpg',
-               crop_id: FactoryGirl.create(:crop).id.to_s }
+               crop_id:        FactoryGirl.create(:crop).id.to_s }
     sign_in FactoryGirl.create(:user)
     VCR.use_cassette('controllers/api/api_guides_controller_spec') do
       post 'create', params
@@ -48,7 +48,7 @@ describe Api::GuidesController, type: :controller do
   it 'create guide should return an error when wrong info is passed' do
     sign_in FactoryGirl.create(:user)
     data = { overview: 'A tiny pixel test image.',
-               crop_id: FactoryGirl.create(:crop).id.to_s }
+             crop_id:  FactoryGirl.create(:crop).id.to_s }
     post 'create', guide: data
     expect(response.status).to eq(422)
   end

@@ -36,18 +36,18 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    expect(page).to have_content("Welcome Rick")
+    expect(page).to have_content('Welcome Rick')
   end
 
   it 'should redirect the user to the page they were viewing after sign up' do
-    visit "/guides/new"
-    see ("You need to sign in or sign up before continuing.")
-    click_link "Sign up"
+    visit '/guides/new'
+    see('You need to sign in or sign up before continuing.')
+    click_link 'Sign up'
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    expect(page).to have_content(I18n::t('guides.new.create_a_growing_guide'))
+    expect(page).to have_content(I18n.t('guides.new.create_a_growing_guide'))
   end
 
   it 'should create a new garden for a newly registered user' do
@@ -58,7 +58,7 @@ describe 'User sessions' do
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
     usr = User.find_by(email: 'm@il.com')
-    expect(Garden.all.last.user).to eq (usr)
+    expect(Garden.all.last.user).to eq(usr)
   end
 
   it 'should show an error message if no location is defined', js: true do

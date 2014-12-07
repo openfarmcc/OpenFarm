@@ -1,6 +1,5 @@
 module Users
   class UpdateUser < Mutations::Command
-
     required do
       model :user
     end

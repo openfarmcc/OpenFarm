@@ -5,7 +5,9 @@ module Api
     def create
       @outcome = Guides::CreateGuide.run(params, user: current_user)
       respond_with_mutation(:created)
-      flash[:notice] = t('guides.edit.successful_creation')
+      unless @outcome.errors
+        flash[:notice] = t('guides.edit.successful_creation')
+      end
     end
 
     def show

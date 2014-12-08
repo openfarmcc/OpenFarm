@@ -1,0 +1,41 @@
+<section name="step-2" ng-show="step === 2">
+    <form class="life-stages">
+      <div class="row">
+        <div class="columns large-12 instructions">
+          <h2><%= t('.choose_the_life_stages') %></h2>
+          <h3>
+            <%= t('.life_stages_description') %>
+          </h3>
+        </div>
+      </div>
+
+      <div class="row">
+        
+        <div class="columns stage-wrapper"
+             ng-repeat="stage in newGuide.stages | orderBy : 'order' "
+             ng-class="{end: $last}">
+             <input name="{{ stage.name }}"
+                    id="{{ stage.name }}"
+                    type="checkbox"
+                    ng-model="stage.selected"/>
+             <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+               <p>{{ stage.name }}</p>
+             </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="columns large-12">
+          You've selected <span ng-bind="newGuide.selectedStages.length"></span> stages.
+        </div>
+      </div>
+      <div stage-buttons
+          cancel-url="<%= root_path %>"
+          cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+          back-text="<%= t('guides.new.back') %>"
+          disabled-text="<%= t('.next_stage_details') %>"
+          abled-bool="newGuide.selectedStages.length > 0"
+          abled-text="<%= t('.choose_some_stages_to_continue') %>"
+          >
+      </div>
+    </form>
+  </section>

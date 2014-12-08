@@ -3,9 +3,10 @@
 FactoryGirl.define do
   factory :stage do
     name             { "#{Faker::Name.last_name}" }
-    days_start       { rand(360) }
-    days_end         { rand(360) }
-    instructions     { Faker::Lorem.paragraph }
+    stage_length     { rand(360) }
+    soil             { [Faker::Lorem.word] }
+    environment      { [Faker::Lorem.word] }
+    light            { [Faker::Lorem.word] }
     guide
   end
 end

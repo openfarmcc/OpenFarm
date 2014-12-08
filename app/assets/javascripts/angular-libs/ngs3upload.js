@@ -186,7 +186,13 @@ angular.module('ngS3upload.directives', []).
               });
             // Update the scope with the view value
             ngModel.$render = function () {
-              scope.filename = ngModel.$viewValue;
+              // TODO: somebody please find a less hackish
+              // way to do this.
+              if (attrs.s3Stage){
+                scope.filename = attrs.s3Default;
+              } else {
+                scope.filename = ngModel.$viewValue;
+              }
             };
 
             var uploadFile = function () {
@@ -211,13 +217,21 @@ angular.module('ngS3upload.directives', []).
                     ).then(function (resp) {
 
                       var guide = scope.$parent.guide;
+                      var stage = null;
                       if (attrs.s3Guide){
                         guide = scope.$parent[attrs.s3Guide];
                       }
+                      if (attrs.s3Stage){
+                        stage = guide.selectedStages[attrs.s3Stage];
+                        stage.featured_image = resp.responseXML
+                          .getElementsByTagName('Location')[0].innerHTML;
+                      } else {
+                        guide.featured_image = resp.responseXML
+                          .getElementsByTagName('Location')[0].innerHTML;
+                      }
                       // TODO: Un-hardcode this.
-                      guide.featured_image = resp.responseXML
-                        .getElementsByTagName('Location')[0].innerHTML;
                       ngModel.$setViewValue(s3Uri + key);
+                      console.log(ngModel);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
@@ -246,36 +260,7 @@ angular.module('ngS3upload.directives', []).
           }
         };
       },
-      template: "<span class='crop-image'>"+
-                "<span ng-if='!filename && guide.featured_image.indexOf(\"leaf-grey\") === -1'>"+
-                "<div class='wrapper'>"+
-                "<img ng-src='{{ guide.featured_image  }}'/>"+
-                "</div>"+
-                "</span>"+
-                "<span ng-if='filename'>"+
-                "<div class='wrapper'>"+
-                // removed the link here, because it was interferring
-                // with the "dialog pop up for file loading" and the
-                // actual viewing the file, will have to figure out a
-                // different way to view a larger version of the file.
-                "<img ng-src='{{ filename  }}'/>"+
-                "</div>"+
-                "</span>"+
-                "<div ng-if='!filename && guide.featured_image.indexOf(\"leaf-grey\") > -1' class='wrapper' class='tooltip' data-tooltip title='Upload a picture for your guide'>"+
-                "<i class='leaf-placeholder fa fa-leaf'></i>"+
-                "<p class='to-upload'>Upload a picture</p>"+
-                "<p class='loading'>Loading...</p>"+
-                "</div>"+
-                "<input type='file' style='display: none'/>"+
-                "</span>"
-                // '<div class="upload-wrap">' +
-                //
-                //   '<a ng-href="{{ filename  }}" target="_blank" class="" ng-if="filename" > OK! (click for preview) </a>' +
-                // '<div class="progress progress-striped" ng-class="{active: uploading}" ng-show="attempt" style="margin-top: 10px">' +
-                // '<div class="bar" style="width: {{ progress }}%;" ng-class="barClass()"></div>' +
-                // '</div>' +
-                // '<input type="file" style="display: none"/>' +
-                // '</div>'
+      templateUrl: '/assets/templates/_ngs3upload_input.html'
     };
   }]);
 })(window, document);

@@ -252,7 +252,24 @@ openFarmModule.directive('location', [
              'typeahead-wait-ms="555"'+
              'name="location">'+
              '<i ng-show="loadingLocations" '+
-               'class="fa fa-refresh" ng-bind="loadingText"></i>',
+               'class="fa fa-spinner fa-spin"></i>'+
+              '<span ng-bind="loadingText"></span>',
+    };
+}]);
+
+openFarmModule.directive('multiRowSelect', [
+  function multiRowSelect() {
+    return {
+      restrict: 'A',
+      scope: {
+        options: '=',
+      },
+      controller: ['$scope', '$element', '$attrs',
+        function ($scope, $element, $attrs) {
+          $scope.multiSelectType = $attrs.multiSelectType || 'checkbox';
+          $scope.multiSelectId = $attrs.multiSelectId;
+      }],
+      templateUrl: '/assets/templates/_multi_checkbox_select.html',
     };
 }]);
 

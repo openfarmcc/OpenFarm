@@ -4,8 +4,9 @@ class Stage
   belongs_to :guide
 
   field :name, type: String
-  field :days_start, type: Integer
-  field :days_end, type: Integer
-  field :instructions, type: String
+  field :stage_length, type: Integer # Length in days
+  field :environment, type: Array
+  field :soil, type: Array
+  field :light, type: Array
 
 end

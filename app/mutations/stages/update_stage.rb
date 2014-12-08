@@ -9,9 +9,10 @@ module Stages
 
     optional do
       string :name
-      string :days_start
-      string :instructions
-      string :days_end
+      array :environment
+      array :soil
+      array :light
+      integer :stage_length
       array  :images, class: String, arrayize: true
     end
 
@@ -51,10 +52,11 @@ private
     def set_params
       # TODO: Should we wrap our request params in a hash and not keep them in a
       # root element? That way we could just update_attributes(stage_params)
-      stage.instructions = instructions if instructions.present?
-      stage.days_start   = days_start if days_start.present?
-      stage.days_end     = days_end if days_end.present?
-      stage.name         = name if name.present?
+      stage.name           = name
+      stage.environment    = environment if environment.present?
+      stage.soil           = soil if soil.present?
+      stage.light          = light if light.present?
+      stage.stage_length   = stage_length if stage_length.present?
       stage.save
     end
   end

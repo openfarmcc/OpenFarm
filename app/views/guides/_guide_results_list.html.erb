@@ -2,4 +2,5 @@
   <% @guides.each do |guide| %>
     <%= render partial: "/guides/guide_result", locals: {guide: guide} %>
   <% end %>
+  <%= button_to "Create a guide!", new_guide_path, method:'get', class:"button new-guide-button" %>
 </ul>

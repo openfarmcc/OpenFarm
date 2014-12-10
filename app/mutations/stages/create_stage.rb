@@ -1,5 +1,7 @@
 module Stages
   class CreateStage < Mutations::Command
+    include Stages::StagesConcern
+
     required do
       model :user
       string :guide_id
@@ -46,18 +48,18 @@ module Stages
       add_error :guide_id, :guide_not_found, msg
     end
 
-    def validate_images
-      images && images.each do |url|
-        unless url.valid_url?
-          add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
-            'that it is a fully formed URL (including HTTP:// or HTTPS://)'
-        end
-      end
-    end
+    # def validate_images
+    #   images && images.each do |url|
+    #     unless url.valid_url?
+    #       add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
+    #         'that it is a fully formed URL (including HTTP:// or HTTPS://)'
+    #     end
+    #   end
+    # end
 
-    def set_pictures
-      images && images.map { |url| Picture.from_url(url, stage) }
-    end
+    # def set_pictures
+    #   images && images.map { |url| Picture.from_url(url, stage) }
+    # end
 
     def set_params
       stage.guide          = @guide

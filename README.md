@@ -21,7 +21,7 @@ We're currently [trying out Slack](https://openfarm.slack.com/) for real-time di
 You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed before continuing. Once you have these prerequisites to get started with a local copy of the project, run:
 
 ```bash
-$ git clone https://github.com/FarmBot/OpenFarm.git
+$ git clone https://github.com/openfarmcc/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
 $ rake db:setup
@@ -30,7 +30,7 @@ $ rails s
 
 If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
 
-**If you had any problems** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/FarmBot/OpenFarm/wiki/Common-Issues).
+**If you had any problems** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/openfarmcc/OpenFarm/wiki/Common-Issues).
 
 #### Sensitive Information
 
@@ -52,7 +52,7 @@ Not sure where to help? Take a look at the issues thread. It is advisable to let
 
 ### FAQ
 
-Have a look at the [FAQ](https://github.com/FarmBot/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
+Have a look at the [FAQ](https://github.com/openfarmcc/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
 ### User Flow
 

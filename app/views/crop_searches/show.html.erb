@@ -5,7 +5,9 @@
   </div>
   <div class="guide-results-container small-6 columns">
     <h2 class="text-center">Explore the guides</h2>
-    <%= "no guides yet :(" if @guides.empty? %>
+    <% if @guides.empty? %>
+      <p class="no-results">Looks like there aren't any guides for these crops yet!<br/>Perhaps you could create one?</p>
+    <% end %>
     <%= render partial: 'guides/guide_results_list', object: @guides %>
   </div>
 </div>

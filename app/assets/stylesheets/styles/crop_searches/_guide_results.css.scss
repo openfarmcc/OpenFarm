@@ -1,6 +1,10 @@
 .guide-results {
   margin: 0;
 
+  .no-results {
+    text-align: center;
+  }
+
   .new-guide-button {
     width: 100%;
     min-height: 50px;

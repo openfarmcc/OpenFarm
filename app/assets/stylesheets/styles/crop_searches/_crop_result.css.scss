@@ -15,8 +15,8 @@
 
     .crop-info {
       /* FIXME: Avoid compass gradient for some reason.
-         When using compass' background image function, 
-         linear gradients output an error: 
+         When using compass' background image function,
+         linear gradients output an error:
          `Cannot determine the opposite position of: to`, our personal
          method defined in presets doesn't have this issue. see
          https://github.com/FarmBot/OpenFarm/issues/325 */
@@ -46,8 +46,8 @@
     padding: ($padding+40px) ($padding+4px) $padding;
     @include single-transition(background, 0.2s, ease-in);
     /* FIXME: Avoid compass gradient for some reason.
-      When using compass' background image function, 
-      linear gradients output an error: 
+      When using compass' background image function,
+      linear gradients output an error:
       `Cannot determine the opposite position of: to`, our personal
       method defined in presets doesn't have this issue. see:
       https://github.com/FarmBot/OpenFarm/issues/325; */
@@ -75,6 +75,34 @@
       white-space: pre;
       text-align: right;
       padding-left: ($padding+4px);
+    }
+  }
+
+  &.new-crop-button {
+    background-color: transparent;
+    border: 2px dashed #DDD;
+    border-radius: 20px;
+    font-size: 1.2em;
+    display: table;
+    width: 100%;
+
+    h3 {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      color: #DDD;
+    }
+
+    @include transition(all 0.15s ease-out);
+
+    &:hover {
+      border-style: solid;
+      background-color: rgba(0,0,0,0.05);
+    }
+
+    &:active {
+      background-color: rgba(0,0,0,0.1);
+      color: white;
     }
   }
 }

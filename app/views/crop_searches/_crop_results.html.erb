@@ -2,4 +2,9 @@
   <% @crops.each do |crop| %>
     <%= render partial: "crop_result", locals: {crop: crop} %>
   <% end %>
+  <%= link_to :new_crop, class:"medium-12 large-6 columns end bottom-padding" do %>
+    <div class="search-result-crop new-crop-button">
+      <h3 class="crop-name">Add Crop</h3>
+    </div>
+  <% end %>
 </row>

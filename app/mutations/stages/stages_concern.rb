@@ -1,5 +1,5 @@
 module Stages
-  # Place shared functionality between Guide mutations here to stay DRY.
+  # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
     def validate_images
       images && images.each do |url|

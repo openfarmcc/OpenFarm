@@ -114,7 +114,7 @@
 
     .button.last{
       border-top-right-radius: $global-radius;
-      border-bottom-right-radius: $global-radius; 
+      border-bottom-right-radius: $global-radius;
     }
 
     .block{
@@ -135,6 +135,10 @@
 
   .button-wrapper{
     margin-top: 2rem;
+
+    .loading-button{
+      margin: 1rem;
+    }
   }
 
   .crop-image{
@@ -149,7 +153,7 @@
     display: inline-block;
     margin-bottom: 1rem;
     @include font-awesome-mixin();
-    
+
     &:before{
       content: "\f06c";
       font-size: 4rem;
@@ -301,10 +305,10 @@
       &.editing p{
         opacity: 1;
       }
-      
+
     }
   }
-  
+
   .stage-details{
     section{
       .row{

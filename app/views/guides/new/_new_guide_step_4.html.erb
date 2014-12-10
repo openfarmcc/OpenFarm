@@ -30,13 +30,15 @@
     </div>
     <div class="button-wrapper row">
       <div stage-buttons
+            id="submitFormButton"
             cancel-url="<%= root_path %>"
             cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
             back-text="<%= t('guides.new.back') %>"
             next-function="submitForm"
-            abled-bool="newGuide.name"
-            disabled-text="<%= t('.done') %>"
-            abled-text="<%= t('.call_your_guide_something') %>"
+            abled-bool="newGuide.name && !newGuide.sending"
+            processing="newGuide.sending"
+            abled-text="<%= t('.done') %>"
+            disabled-text="<%= t('.call_your_guide_something') %>"
             >
         </div>
     </div>

@@ -2,3 +2,5 @@ language: ruby
 services:
 - mongodb
 - elasticsearch
+before_script:
+  - cp config/travis/secrets.yml config/secrets.yml

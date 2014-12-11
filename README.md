@@ -37,7 +37,7 @@ If all went well, you will have a seeded database and can use the account `admin
 
 #### Sensitive Information
 
-All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `app_environment_variables.rb` accordingly. See `example_app_environment_variables.rb` for an example.
+All secrets (such as S3 credentials) are stored in ENV variables. You will need to set `config/app_environment_variables.rb` accordingly. See `config/app_environment_variables.rb.example` for an example.
 
 #### Style Guides and formatting.
 

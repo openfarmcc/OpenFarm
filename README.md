@@ -5,19 +5,17 @@
 OpenFarm
 ========
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents including all of the necessary paramaters for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
 
-This project is closely related to the [FarmBot Project](http://go.farmbot.it) but also distinctly separate. OpenFarm is a standalone database that will simply provide data to other applications such as FarmBot.
-
-Other use cases: a mobile app for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", etc.
-
-### Community Discussion Group
-
-For discussing features, feature requests and ideas, and interfacing with our users at large (and contributors not on GitHub), please check out our public [Loom.io group](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group)
+Other use cases: a mobile app for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", smart garden sensors, automated farming machines.
 
 ### Core Contributor Group
 
-We're currently [trying out Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
+We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
+
+### Community Discussion Group
+
+For discussing features, feature requests and ideas, and interfacing with our users at large (and contributors not on GitHub), please check out our public [discussion forum](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group).
 
 ### Getting Started (Setup)
 
@@ -45,13 +43,15 @@ All secrets (such as S3 credentials) are stored in ENV variables. You will need 
  * When designing API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
  * Please write specs for your code. We use Rspec as our testing framework.
 
-### How to Contribute
+#### How to Contribute
 
  1. Fork this repo.
  2. Fix stuff, write features, unit tests(!).
  3. Send pull request to master.
 
-Not sure where to help? Take a look at the issues thread. It is advisable to let other know your intent to implement a feautre before starting, as it lets other contributors focus their efforts elsewhere.
+Not sure where to help? Take a look at the [Issue Tracker](https://github.com/openfarmcc/OpenFarm/issues). It is advisable to let others know your intent to implement a feautre before starting, as it lets other contributors focus their efforts elsewhere.
+
+Want to see the big picture? We have a [project roadmap](https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing) for that!
 
 ### FAQ
 
@@ -65,17 +65,19 @@ Have a look at the [FAQ](https://github.com/openfarmcc/OpenFarm/wiki/FAQ) for so
 
 ### Mockups
 
-To view the most recent mockups, click [here] (https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0)
+To view the most recent mockups, click [here](https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0).
 
 ### Contributors
 
-[https://github.com/FarmBot/OpenFarm/graphs/contributors](https://github.com/FarmBot/OpenFarm/graphs/contributors)
+We encourage everyone to contribute! From newbies to pros, to people who don't write software, to those with just a few ideas to share - we greatly appreciate everyone's input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
 
-### License
+Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub.
+
+### Software License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Farmbot Project, et. al. [(http://go.farmbot.it/)](http://go.farmbot.it/)
+Copyright (c) 2014 Farmbot Project, et. al. [(http://go.farmbot.it/)](http://go.farmbot.it/).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -85,4 +87,4 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ### Data License
 
-All data within the OpenFarm.cc database is in the [Public Domain (CC0)](creativecommons.org/publicdomain/zero/1.0/)
+All data within the OpenFarm.cc database is in the [Public Domain (CC0)](creativecommons.org/publicdomain/zero/1.0/).

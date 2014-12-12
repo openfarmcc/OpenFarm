@@ -1,5 +1,6 @@
 Devise.setup do |config|
   # Devise is really peculiar about how it is given its SECRET_KEY_BASE
+  # TODO: Fix this mess.
   if ["production", "staging"].include?(Rails.env)
     devise_acts_weird = ENV['SECRET_KEY_BASE']
   else

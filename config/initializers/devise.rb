@@ -1,5 +1,11 @@
 Devise.setup do |config|
-  config.secret_key = ENV['SECRET_KEY_BASE']
+  # Devise is really peculiar about how it is given its SECRET_KEY_BASE
+  if Rails.production?
+    devise_acts_weird = ENV['SECRET_KEY_BASE']
+  else
+    devise_acts_weird = ENV['SECRET_KEY_BASE']  || `rake secret`
+  end
+  config.secret_key = devise_acts_weird
   config.mailer_sender = 'team@openfarm.cc'
   require 'devise/orm/mongoid'
   config.case_insensitive_keys = [ :email ]

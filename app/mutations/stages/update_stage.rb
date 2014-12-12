@@ -2,6 +2,9 @@ module Stages
   # TODO Start new naming convention: Stages::Update
   class UpdateStage < Mutations::Command
     attr_reader :pictures
+
+    include Stages::StagesConcern
+
     required do
       model :user
       model :stage
@@ -27,26 +30,13 @@ module Stages
       stage
     end
 
-private
+    private
 
     def validate_permissions
       if stage.guide.user != user
         msg = 'You can only update stages that belong to your guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
-    end
-
-    def validate_images
-      images && images.each do |url|
-        unless url.valid_url?
-          add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
-            "that it is a fully formed URL (including HTTP:// or HTTPS://)"
-        end
-      end
-    end
-
-    def set_pictures
-      images && images.map { |url| Picture.from_url(url, stage) }
     end
 
     def set_params

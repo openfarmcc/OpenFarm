@@ -5,7 +5,7 @@
 OpenFarm
 ========
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents including all of the necessary paramaters for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents including all of the necessary paramaters for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. yolo.
 
 This project is closely related to the [FarmBot Project](http://go.farmbot.it) but also distinctly separate. OpenFarm is a standalone database that will simply provide data to other applications such as FarmBot.
 

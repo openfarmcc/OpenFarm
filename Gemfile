@@ -24,7 +24,7 @@ gem 'mongoid-history'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'patron' # For searchKick
-gem 'searchkick'
+gem 'searchkick', '~> 0.8.5'
 gem "pundit"
 
 group :development, :test do

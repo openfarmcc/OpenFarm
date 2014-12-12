@@ -10,7 +10,7 @@ Devise.setup do |config|
   require 'devise/orm/mongoid'
   config.case_insensitive_keys = [ :email ]
   config.strip_whitespace_keys = [ :email ]
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage  = [:http_auth]
   config.stretches = Rails.env.test? ? 1 : 10
   config.reconfirmable = true
   config.password_length = 8..128

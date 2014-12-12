@@ -30,7 +30,7 @@ module Stages
       stage
     end
 
-private
+    private
 
     def validate_permissions
       if stage.guide.user != user

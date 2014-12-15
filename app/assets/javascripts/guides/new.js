@@ -60,10 +60,11 @@ openFarmApp.directive('stageButtons', [
       },
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){
+        // Takes in attributes and set them to the appropriate
+        // variable on the local scope.
         $scope.$watch('processing', function(){
-          if ($scope.processing == true){
-            // $scope.abledBool = false;
-            $scope.disabledText = "This may take some time";
+          if ($scope.processing === true){
+            $scope.disabledText = 'This may take some time';
           }
         });
         $scope.abledText = $attrs.abledText || 'Continue';
@@ -90,6 +91,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.stages = [];
   $scope.hasEdited = [];
 
+  // What's a new guide.
   $scope.newGuide = {
     name: '',
     crop: undefined,
@@ -107,7 +109,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $http.get('/api/stage_options/')
     .success(function(response){
       $scope.stages = response.stage_options;
-      $scope.stages = $filter('orderBy')($scope.stages, 'order')
+      $scope.stages = $filter('orderBy')($scope.stages, 'order');
       $scope.newGuide.stages = $scope.stages
         .map(function(item){
           item.selected = false;
@@ -141,10 +143,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
     });
 
-  $scope.$watch('stagesForm', function(){
-    console.log($scope.stagesForm);
-  });
-
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
     var stages = $scope.newGuide.stages;
@@ -155,10 +153,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             item.originalIndex = index;
             if (lastSelectedIndex !== null){
               item.lastSelectedIndex = lastSelectedIndex;
-              stages[lastSelectedIndex].nextSelectedIndex = index
+              stages[lastSelectedIndex].nextSelectedIndex = index;
             }
-
-            console.log(index, item.lastSelectedIndex, item);
 
             $scope.newGuide.selectedStages.push(item);
             lastSelectedIndex = index;
@@ -248,7 +244,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   $scope.nextStage = function(index){
     $scope.editSelectedStage($scope.stages[index]);
-  }
+  };
 
   $scope.editSelectedStage = function(stage){
     $scope.newGuide.selectedStages.forEach(function(item){
@@ -288,7 +284,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         var sent = 0;
         $scope.newGuide.stages.forEach(function(stage){
           if (stage.selected){
-            console.log(stage.featured_image);
             var stageParams = {
               name: stage.name,
               images: [stage.featured_image],
@@ -315,9 +310,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               .success(function(r){
 
                 sent++;
-                console.log('sent one stage', r);
                 if (sent === $scope.newGuide.selectedStages.length){
-                  // console.log('all have been sent');
                   window.location.href = '/guides/' + guide._id + '/edit/';
                 }
               })
@@ -326,7 +319,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                   msg: r.error,
                   type: 'alert'
                 });
-                console.log(r);
               });
           }
         });

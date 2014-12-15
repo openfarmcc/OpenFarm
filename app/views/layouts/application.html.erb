@@ -87,18 +87,15 @@
               <% unless current_page?(root_path) or current_page?("/") %>
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
+                    <div class="row collapse postfix-round">
+                      <div class="small-8 columns">
+                        <input class="search" id="q" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text" value="<%= params[:q] %>">
 
-
-                      <div class="row collapse postfix-round">
-
-                        <div class="small-8 columns">
-                          <input class="search" id="q" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text">
-                        </div>
-                        <div class="small-4 columns end">
-                          <input class="small button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
-                        </div>
                       </div>
-
+                      <div class="small-4 columns end">
+                        <input class="small button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
+                      </div>
+                    </div>
                   </form>
                 </div>
               <% end %>

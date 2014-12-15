@@ -28,6 +28,8 @@ openFarmApp.directive('formChecker', function(){
                 stage.edited = true;
               }
             });
+            // Point the next step button to the next
+            // stage.
 
             allDone.push(stage.edited ? true : false);
           }
@@ -53,10 +55,18 @@ openFarmApp.directive('stageButtons', [
       restrict: 'A',
       scope: {
           abledBool: '&',
-          nextFunction: '='
+          nextFunction: '=',
+          processing: '='
       },
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){
+        // Takes in attributes and set them to the appropriate
+        // variable on the local scope.
+        $scope.$watch('processing', function(){
+          if ($scope.processing === true){
+            $scope.disabledText = 'This may take some time';
+          }
+        });
         $scope.abledText = $attrs.abledText || 'Continue';
         $scope.disabledText =
           $attrs.disabledText || 'You can\'t continue yet.';
@@ -67,32 +77,12 @@ openFarmApp.directive('stageButtons', [
         $scope.previousStep = $scope.$parent.previousStep;
         $scope.nextStep = $scope.nextFunction || $scope.$parent.nextStep;
       }],
-      template:
-        '<div class="button-wrapper row">' +
-          '<div class="columns large-12">' +
-            '<a class="button small secondary left"' +
-              ' name="back"' +
-              ' href="{{ cancelUrl }}"' +
-              ' ng-click="cancel(cancelUrl)">{{ cancelText }}</a>' +
-            '<input class="button small secondary left"' +
-              ' ng-if="backText"' +
-              ' name="back"' +
-              ' type="submit"' +
-              ' value="{{ backText }}"' +
-              ' ng-click="previousStep()">' +
-            '<input class="button small right"' +
-              ' name="commit"' +
-              ' type="submit"' +
-              ' value="{{ abledBool() ? disabledText : abledText }}"' +
-              ' ng-disabled="!(abledBool())"' +
-              ' ng-click="nextStep()"/>' +
-          '</div>' +
-        '</div>'
+      templateUrl: '/assets/templates/_stage_buttons.html'
     };
 }]);
 
-openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
-  function newGuideCtrl($scope, $http) {
+openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
+  function newGuideCtrl($scope, $http, $filter) {
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = 1;
@@ -101,6 +91,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $scope.stages = [];
   $scope.hasEdited = [];
 
+  // What's a new guide.
   $scope.newGuide = {
     name: '',
     crop: undefined,
@@ -118,6 +109,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
   $http.get('/api/stage_options/')
     .success(function(response){
       $scope.stages = response.stage_options;
+      $scope.stages = $filter('orderBy')($scope.stages, 'order');
       $scope.newGuide.stages = $scope.stages
         .map(function(item){
           item.selected = false;
@@ -143,7 +135,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
           ];
           return item;
         });
-
     })
     .error(function(response, code){
       $scope.alerts.push({
@@ -152,18 +143,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       });
     });
 
-  $scope.$watch('stagesForm', function(){
-    console.log($scope.stagesForm);
-  });
-
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
-    if ($scope.newGuide.stages){
-      $scope.newGuide.stages
-        .forEach(function(item, index){
+    var stages = $scope.newGuide.stages;
+    if (stages){
+      var lastSelectedIndex = null;
+      stages.forEach(function(item, index){
           if (item.selected){
             item.originalIndex = index;
+            if (lastSelectedIndex !== null){
+              item.lastSelectedIndex = lastSelectedIndex;
+              stages[lastSelectedIndex].nextSelectedIndex = index;
+            }
+
             $scope.newGuide.selectedStages.push(item);
+            lastSelectedIndex = index;
           }
         });
     }
@@ -248,6 +242,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     $scope.step -= 1;
   };
 
+  $scope.nextStage = function(index){
+    $scope.editSelectedStage($scope.stages[index]);
+  };
+
   $scope.editSelectedStage = function(stage){
     $scope.newGuide.selectedStages.forEach(function(item){
       item.editing = false;
@@ -257,12 +255,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
     });
   };
 
+
   // The submit process.
   // Get the practices and clean them up.
   // Set up the parameters.
   // Post! & forward if successful
 
   $scope.submitForm = function () {
+    $scope.newGuide.sending = true;
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
@@ -284,7 +284,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
         var sent = 0;
         $scope.newGuide.stages.forEach(function(stage){
           if (stage.selected){
-            console.log(stage.featured_image);
             var stageParams = {
               name: stage.name,
               images: [stage.featured_image],
@@ -309,22 +308,17 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
 
             $http.post('/api/stages/', stageParams)
               .success(function(r){
-                // TODO: Redirect the page when all stages
-                // are done.
+
                 sent++;
-                console.log('completed sending', sent);
                 if (sent === $scope.newGuide.selectedStages.length){
-                  console.log('all have been sent');
-                  // window.location.href = '/guides/' + guide._id + '/edit/';
+                  window.location.href = '/guides/' + guide._id + '/edit/';
                 }
-                console.log('sent one stage', r);
               })
               .error(function(r){
                 $scope.alerts.push({
                   msg: r.error,
                   type: 'alert'
                 });
-                console.log(r);
               });
           }
         });
@@ -337,7 +331,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http',
       });
   };
 
-  // Any function returning a promise object can be used to load values asynchronously
+  // Any function returning a promise object can be used to load
+  // values asynchronously
 
   $scope.cancel = function(path){
     window.location.href = path || '/';

@@ -1,0 +1,23 @@
+<div class="button-wrapper row">
+  <div class="columns large-12">
+    <a class="button small secondary left"
+        name="back"
+        href="{{ cancelUrl }}"
+        >{{ cancelText }}</a>
+    <input class="button small secondary left"
+        ng-if="backText"
+        name="back"
+        type="submit"
+        value="{{ backText }}"
+        ng-click="previousStep()">
+
+    <input class="button small right"
+        name="commit"
+        type="submit"
+        value="{{ abledBool() ? abledText : disabledText }}"
+        ng-disabled="!(abledBool())"
+        ng-click="nextStep()"/>
+    <i ng-if="processing"
+       class="fa fa-spinner fa-spin right loading-button"></i>
+  </div>
+</div>

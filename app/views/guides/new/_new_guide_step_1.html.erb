@@ -50,11 +50,11 @@
       <div class="columns large-4 medium-4">
         <label class="right"
             for="guide_image_upload"><%= t('.choose_photo') %><br/>
-          <small><%= t('.only_upload_what_you_own') %></small>
+          <small><%= t('application.only_upload_what_you_own') %></small>
         </label>
       </div>
       <div class="columns large-8 medium-8">
-        <div 
+        <div
           id="guide_image_upload"
           name="guide_image_upload"
           s3-upload
@@ -85,8 +85,8 @@
         cancel-url="<%= root_path %>"
         cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
         abled-bool="newGuide.crop"
-        disabled-text="<%= t('.next_life_stages') %>"
-        abled-text="<%= t('.choose_a_crop_to_continue') %>"
+        abled-text="<%= t('.next_life_stages') %>"
+        disabled-text="<%= t('.choose_a_crop_to_continue') %>"
         >
     </div>
   </form>

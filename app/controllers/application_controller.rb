@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
+  rescue_from Mongoid::Errors::DocumentNotFound, with: :record_not_found
   protect_from_forgery with: :exception
 
   # Allow certain fields for devise - needed in Rails 4.0+
@@ -47,6 +47,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def record_not_found
+    render file: "#{Rails.root}/public/404", formats: [:html], status: 404, layout: false
+  end
 
   def user_not_authorized
     flash[:alert] = "Woops, that's not a page!"

@@ -64,11 +64,12 @@
                                   <%= link_to t('application.create_guide'), new_guide_path %>
                                   <%= link_to t('application.user_settings'), edit_user_registration_path %>
                                   <%= link_to t('application.manage_gardens'), users_gardens_path(current_user) %>
+                                  <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
                               </li>
                           </ul>
                       </li>
                       <li class="has-form">
-                          <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
+
                       </li>
                   <% else %>
                       <li class="has-form">
@@ -86,7 +87,7 @@
               <% unless current_page?(root_path) or current_page?("/") %>
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
-                    
+
 
                       <div class="row collapse postfix-round">
 
@@ -97,12 +98,12 @@
                           <input class="small button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                         </div>
                       </div>
-                    
+
                   </form>
                 </div>
               <% end %>
 
-              
+
           </section>
       </nav>
     </div>

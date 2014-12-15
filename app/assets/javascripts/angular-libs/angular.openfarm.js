@@ -252,7 +252,7 @@ openFarmModule.directive('location', [
              'typeahead-wait-ms="555"'+
              'name="location">'+
              '<i ng-show="loadingLocations" '+
-               'class="fa fa-spinner fa-spin"></i>'+
+               'class="fa fa-spinner fa-spin"></i> '+
               '<span ng-bind="loadingText"></span>',
     };
 }]);

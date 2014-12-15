@@ -73,7 +73,7 @@ en:
             add_garden: "Next: Add Garden"
         gardens:
             your_gardens: "Your Gardens"
-    crops:  
+    crops:
         name: "Name"
         binomial_name: "Binomial Name"
         description: "Description"
@@ -101,7 +101,7 @@ en:
             using_markdown_is_okay_html: "Using <a href='http://daringfireball.net/projects/markdown/syntax'>markdown</a> is okay!"
             more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
             statistics: "Statistics"
-            impressions: 
+            impressions:
                 zero: "Your guide has had no views yet"
                 one: "Your guide has had one view!"
                 other: "Your guide has had %{count} views"
@@ -148,6 +148,8 @@ en:
                 next_stage_details: "Next: Stage Details"
             new_guide_step_3:
                 next_final_touches: "Next: Final Touches"
+                edit_next_stage: "Edit Next Stage"
+                finish_stage_to_continue: "Finish Stage To Continue"
                 fill_in_details: "Fill in the details for each life stage."
                 stage_details: "Stage Details"
                 where_does_this_stage_happen: "Where does this stage happen?"
@@ -163,14 +165,14 @@ en:
                 where_are_you_growing_it: "Where are you growing it"
                 youre_growing_a: "You’re growing a"
                 what_do_you_want_to_call_your_guide: "What do you want to call your guide?"
-                done: "Done"
+                done: "Done! Publish your Guide"
                 call_your_guide_something: "Call your guide something"
         show:
             guide_by: "Guide by"
             statistics:
                 title: "Statistics"
                 once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
-            requirements: 
+            requirements:
                 title: "Requirements"
                 the_small_details: "Requirements are the small details that make sure this crop grow successfully."
                 no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"

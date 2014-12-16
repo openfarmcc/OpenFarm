@@ -1,6 +1,6 @@
 <div class="crop-page row wide-row">
   <div class="crop-info-container small-6 columns">
-    <div class="crop-hero" style="<%= if !@crop.image.blank? then "background-image: url(#{@crop.image})" end %>">
+    <div class="crop-hero" style="<%= if !@crop.pictures[0].blank? then "background-image: url(#{@crop.image})" end %>">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
     </div>
     <table class="crop">
@@ -38,7 +38,7 @@
           <td><%= @crop.height %></td>
         </tr>
         </tbody>
-      </table>
+    </table>
   </div>
   <div class="guide-results-container small-6 columns">
     <h2 class="text-center">Guides for this crop</h2>

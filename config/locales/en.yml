@@ -27,7 +27,7 @@ en:
         greeting: "Hi, %{user}"
         skip: "Do This Later"
         create_guide: "Create guide"
-        user_settings: "User settings"
+        user_settings: "My account"
         log_out: "Log out"
         log_in: "Log in"
         create_account: "Create an Account"

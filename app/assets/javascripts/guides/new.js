@@ -44,7 +44,6 @@ openFarmApp.directive('formChecker', function(){
         rootParent.stageThreeTracker = tracker;
       }, true);
 
-
     }
   };
 });
@@ -97,6 +96,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     crop: undefined,
     overview: '',
     selectedStages: [],
+    exists: false,
+    stages: [],
     practices: [
       {slug: 'organic', label: 'Organic', selected: false},
       {slug: 'permaculture', label: 'Permaculture', selected: false},
@@ -106,42 +107,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     ]
   };
 
-  $http.get('/api/stage_options/')
-    .success(function(response){
-      $scope.stages = response.stage_options;
-      $scope.stages = $filter('orderBy')($scope.stages, 'order');
-      $scope.newGuide.stages = $scope.stages
-        .map(function(item){
-          item.selected = false;
-          item.where = [
-            {slug: 'outside', label: 'Outside', selected: false},
-            {slug: 'potted', label: 'Potted', selected: false},
-            {slug: 'greenhouse', label: 'Greenhouse', selected: false},
-            {slug: 'indoors', label: 'Indoors', selected: false}
-          ];
-          item.light = [
-            {slug: 'full_sun', label: 'Full Sun', selected: false},
-            {slug: 'partial_sun', label: 'Partial Sun', selected: false},
-            {slug: 'shaded', label: 'Shaded', selected: false},
-            {slug: 'darkness', label: 'Darkness', selected: false}
-          ];
-          item.soil = [
-            {slug: 'potting', label: 'Potting', selected: false},
-            {slug: 'loam', label: 'Loam', selected: false},
-            {slug: 'sandy_loam', label: 'Sandy Loam', selected: false},
-            {slug: 'clay_loam', label: 'Clay Loam', selected: false},
-            {slug: 'sand', label: 'Sand', selected: false},
-            {slug: 'clay', label: 'Clay', selected: false}
-          ];
-          return item;
-        });
-    })
-    .error(function(response, code){
-      $scope.alerts.push({
-        msg: code + ' error. We had trouble fetching all stage options.',
-        type: 'warning'
-      });
-    });
+
 
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
@@ -182,20 +148,119 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   });
 
-  if (getUrlVar("crop_id")){
-    $http.get('/api/crops/' + getUrlVar("crop_id"))
+  if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
+    $http.get('/api/guides/' + getIDFromURL('guides'))
       .success(function(r){
-        $scope.newGuide.crop = r.crop;
-        $scope.query = r.crop.name;
+        $scope.newGuide.exists = true;
+        $scope.newGuide._id = r.guide._id;
+        $scope.newGuide.featured_image = r.guide.featured_image;
+        $scope.s3upload = r.guide.featured_image;
+        $scope.newGuide.name = r.guide.name;
+
+        if (r.guide.practices){
+          $scope.newGuide.practices.forEach(function(d){
+            if (r.guide.practices.indexOf(d.slug) !== -1){
+              d.selected = true;
+            }
+          });
+        }
+
+        if (r.guide.stages){
+          r.guide.stages.forEach(function(d){
+            d.exists = true;
+            $scope.newGuide.stages.push(d);
+          });
+        }
+
+        getStages();
+
+        processCropID(r.guide.crop_id);
       })
       .error(function(r, e){
         $scope.alerts.push({
           msg: e,
           type: 'alert'
         });
-        console.log(e);
+        console.log(r, e);
       });
+  } else {
+    getStages();
   }
+
+  var getStages = function(){
+    $http.get('/api/stage_options/')
+      .success(function(response){
+        var stageWhere = ['Potted', 'Outside', 'Greenhouse', 'Indoors'];
+        var stageLight = ['Full Sun', 'Partial Sun', 'Shaded', 'Darkness'];
+        var stageSoil = ['Potting', 'Loam',
+                         'Sandy Loam', 'Clay Loam',
+                         'Sand', 'Clay'];
+        $scope.stages = response.stage_options;
+        $scope.stages = $filter('orderBy')($scope.stages, 'order');
+        // Trickery to make sure the existing stages don't get
+        // overwritten
+        $scope.stages.forEach(function(item){
+          item.selected = false;
+
+          // loop over the existing stages.
+          $scope.newGuide.stages.forEach(function(d){
+            if (d.name === item.name){
+              // And copy over the relevant stuff.
+              item.selected = true;
+              item.exists = true;
+              item._id = d._id;
+
+              item.where = $scope.buildStageDetails(stageWhere,
+                                                    d.environment || []);
+              item.light = $scope.buildStageDetails(stageLight,
+                                                    d.light || []);
+              item.soil = $scope.buildStageDetails(stageSoil,
+                                                   d.soil || []);
+            }
+          });
+          // TODO: The below probably needs to be broken out
+          // and made *way* more dynamic.
+          if (!item.where){
+            item.where = $scope.buildStageDetails(stageWhere, []);
+          }
+          if (!item.light){
+            item.light = $scope.buildStageDetails(stageLight, []);
+          }
+          if (!item.soil){
+            item.soil = $scope.buildStageDetails(stageSoil, []);
+          }
+          return item;
+        });
+
+        $scope.newGuide.stages = $scope.stages;
+      })
+      .error(function(response, code){
+        $scope.alerts.push({
+          msg: code + ' error. We had trouble fetching all stage options.',
+          type: 'warning'
+        });
+      });
+  };
+
+  var processCropID = function(crop_id) {
+    if (crop_id){
+      $http.get('/api/crops/' + crop_id)
+        .success(function(r){
+          // console.log(crop);
+          $scope.newGuide.crop = r.crop;
+          $scope.query = r.crop.name;
+        })
+        .error(function(r, e){
+          $scope.alerts.push({
+            msg: e,
+            type: 'alert'
+          });
+          console.log(r, e);
+        });
+    }
+  };
+
+  processCropID(getUrlVar('crop_id'));
 
   //Typeahead search for crops
   $scope.search = function () {
@@ -255,6 +320,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
   };
 
+  $scope.buildStageDetails = function(array, selectedArray){
+    var returnArray = [];
+    array.forEach(function(d){
+      var obj = {
+        slug: d.toLowerCase().replace(/ /g,'_').replace(/[^\w-]+/g,''),
+        label: d,
+        selected: selectedArray.indexOf(d) === -1 ? false : true,
+      };
+      returnArray.push(obj);
+    });
+    return returnArray;
+  };
 
   // The submit process.
   // Get the practices and clean them up.
@@ -277,59 +354,121 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
-    $http.post('/api/guides/', params)
-      .success(function (r) {
-        var guide = r.guide;
-        // window.location.href = "/guides/" + r.guide._id + "/edit/";
-        var sent = 0;
-        $scope.newGuide.stages.forEach(function(stage){
-          if (stage.selected){
-            var stageParams = {
-              name: stage.name,
-              images: [stage.featured_image],
-              guide_id: guide._id,
-              stage_length: stage.length || null,
-              environment: stage.where.filter(function(s){
-                  return s.selected;
-                }).map(function(s){
-                  return s.label;
-                }) || null,
-              soil: stage.soil.filter(function(s){
-                  return s.selected;
-                }).map(function(s){
-                  return s.label;
-                }) || null,
-              light: stage.light.filter(function(s){
-                  return s.selected;
-                }).map(function(s){
-                  return s.label;
-                }) || null
-            };
-
-            $http.post('/api/stages/', stageParams)
-              .success(function(r){
-
-                sent++;
-                if (sent === $scope.newGuide.selectedStages.length){
-                  window.location.href = '/guides/' + guide._id + '/edit/';
-                }
-              })
-              .error(function(r){
-                $scope.alerts.push({
-                  msg: r.error,
-                  type: 'alert'
-                });
-              });
-          }
+    if (params.featured_image === '/assets/leaf-grey.png'){
+      params.featured_image = null;
+    }
+    if ($scope.newGuide._id){
+      // In this case the guide already existed,
+      // so we need to put, not to post.
+      params._id = $scope.newGuide._id;
+      $http.put('/api/guides/' + params._id + '/', params)
+        .success(function(response, object){
+          $scope.sendStages(response);
+        })
+        .error(function(response, code){
+          console.log(response, code);
+          $scope.alerts.push({
+            msg: response.error,
+            type: 'alert'
+          });
         });
-      })
-      .error(function (r) {
-        $scope.alerts.push({
-          msg: r.error,
-          type: 'alert'
+    } else {
+      $http.post('/api/guides/', params)
+        .success(function (r) {
+          $scope.sendStages(r);
+        })
+        .error(function (r) {
+          $scope.alerts.push({
+            msg: r.error,
+            type: 'alert'
+          });
         });
-      });
+    }
   };
+
+  $scope.sendStages = function(r){
+    var guide = r.guide;
+    $scope.sent = 0;
+
+    $scope.newGuide.stages.forEach(function(stage){
+      var stageParams = {
+        name: stage.name,
+        images: [stage.featured_image],
+        guide_id: guide._id,
+        stage_length: stage.length || null,
+        environment: stage.where.filter(function(s){
+            return s.selected;
+          }).map(function(s){
+            return s.label;
+          }) || null,
+        soil: stage.soil.filter(function(s){
+            return s.selected;
+          }).map(function(s){
+            return s.label;
+          }) || null,
+        light: stage.light.filter(function(s){
+            return s.selected;
+          }).map(function(s){
+            return s.label;
+          }) || null
+      };
+      $scope
+
+      // Go through all the possible changes on
+      // each stage.
+      if (stage.selected && !stage.exists){
+        $http.post('/api/stages/', stageParams)
+          .success(function(r){
+            $scope.sent ++;
+            stage.sent = true;
+          })
+          .error(function(r){
+            $scope.alerts.push({
+              msg: r.error,
+              type: 'alert'
+            });
+          });
+      } else if (stage.selected && stage.exists){
+        $http.put('/api/stages/' + stage._id + '/', stageParams)
+          .success(function(r){
+            stage.sent = true;
+            $scope.sent ++;
+          })
+          .error(function(r){
+            $scope.alerts.push({
+              msg: r.error,
+              type: 'alert'
+            });
+          });
+      } else if (stage.exists){
+        $http.delete('/api/stages/' + stage._id + '/')
+          .success(function(r){
+            stage.sent = true;
+            $scope.sent ++;
+          })
+          .error(function(r){
+            $scope.alerts.push({
+              msg: r.error,
+              type: 'alert'
+            });
+          })
+        // TODO: delete the stage.
+      }
+    });
+  }
+
+  // Only redirect when everything is done processing.
+  $scope.$watch('newGuide.stages', function(d){
+    var updatedNum = 0;
+    $scope.newGuide.stages.forEach(function(stage){
+      if ((stage.selected || stage.exists) && stage.sent){
+        updatedNum++;
+      }
+    })
+    if (updatedNum === $scope.sent){
+      window.location.href = '/guides/' + $scope.newGuide._id + '/';
+    }
+  }, true);
 
   // Any function returning a promise object can be used to load
   // values asynchronously

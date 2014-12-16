@@ -77,4 +77,26 @@ describe Api::StagesController, type: :controller do
     expect(response.status).to eq(401)
     expect(response.body).to include('You can only update stages that belong to your guides.')
   end
+
+  it 'deletes stages' do
+    guide = FactoryGirl.create(:guide, user: user)
+    stage = FactoryGirl.create(:stage, guide: guide)
+    old_length = Stage.all.length
+    delete 'destroy', id: stage.id, format: :json
+    new_length = Stage.all.length
+    expect(new_length).to eq(old_length - 1)
+  end
+
+  it 'only destroys stages owned by the user' do
+    delete :destroy, id: FactoryGirl.create(:stage)
+    expect(json['error']).to include(
+      "can only destroy stages that belong to your guides.")
+    expect(response.status).to eq(401)
+  end
+
+  it 'handles deletion of unknown stages' do
+    delete :destroy, id: 1
+    expect(json['stage']).to eq("Could not find a stage with id 1.")
+    expect(response.status).to eq(422)
+  end
 end

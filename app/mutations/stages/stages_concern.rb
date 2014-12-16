@@ -2,6 +2,7 @@ module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
     def validate_images
+      puts images
       images && images.each do |url|
         unless url.valid_url?
           add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\

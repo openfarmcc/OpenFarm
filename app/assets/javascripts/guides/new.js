@@ -148,45 +148,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   });
 
-  if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
-    $http.get('/api/guides/' + getIDFromURL('guides'))
-      .success(function(r){
-        $scope.newGuide.exists = true;
-        $scope.newGuide._id = r.guide._id;
-        $scope.newGuide.featured_image = r.guide.featured_image;
-        $scope.s3upload = r.guide.featured_image;
-        $scope.newGuide.name = r.guide.name;
-
-        if (r.guide.practices){
-          $scope.newGuide.practices.forEach(function(d){
-            if (r.guide.practices.indexOf(d.slug) !== -1){
-              d.selected = true;
-            }
-          });
-        }
-
-        if (r.guide.stages){
-          r.guide.stages.forEach(function(d){
-            d.exists = true;
-            $scope.newGuide.stages.push(d);
-          });
-        }
-
-        getStages();
-
-        processCropID(r.guide.crop_id);
-      })
-      .error(function(r, e){
-        $scope.alerts.push({
-          msg: e,
-          type: 'alert'
-        });
-        console.log(r, e);
-      });
-  } else {
-    getStages();
-  }
-
   var getStages = function(){
     $http.get('/api/stage_options/')
       .success(function(response){
@@ -241,6 +202,45 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         });
       });
   };
+
+  if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
+    $http.get('/api/guides/' + getIDFromURL('guides'))
+      .success(function(r){
+        $scope.newGuide.exists = true;
+        $scope.newGuide._id = r.guide._id;
+        $scope.newGuide.featured_image = r.guide.featured_image;
+        $scope.s3upload = r.guide.featured_image;
+        $scope.newGuide.name = r.guide.name;
+
+        if (r.guide.practices){
+          $scope.newGuide.practices.forEach(function(d){
+            if (r.guide.practices.indexOf(d.slug) !== -1){
+              d.selected = true;
+            }
+          });
+        }
+
+        if (r.guide.stages){
+          r.guide.stages.forEach(function(d){
+            d.exists = true;
+            $scope.newGuide.stages.push(d);
+          });
+        }
+
+        getStages();
+
+        processCropID(r.guide.crop_id);
+      })
+      .error(function(r, e){
+        $scope.alerts.push({
+          msg: e,
+          type: 'alert'
+        });
+        console.log(r, e);
+      });
+  } else {
+    getStages();
+  }
 
   var processCropID = function(crop_id) {
     if (crop_id){
@@ -388,6 +388,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   $scope.sendStages = function(r){
     var guide = r.guide;
+    $scope.newGuide._id = r.guide._id;
     $scope.sent = 0;
 
     $scope.newGuide.stages.forEach(function(stage){
@@ -412,13 +413,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return s.label;
           }) || null
       };
-      $scope
 
       // Go through all the possible changes on
       // each stage.
       if (stage.selected && !stage.exists){
         $http.post('/api/stages/', stageParams)
           .success(function(r){
+
+            console.log('stage successfully set', r);
             $scope.sent ++;
             stage.sent = true;
           })
@@ -461,12 +463,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.$watch('newGuide.stages', function(d){
     var updatedNum = 0;
     $scope.newGuide.stages.forEach(function(stage){
-      if ((stage.selected || stage.exists) && stage.sent){
+      if (stage.selected || stage.exists){
         updatedNum++;
       }
     })
     if (updatedNum === $scope.sent){
-      window.location.href = '/guides/' + $scope.newGuide._id + '/';
+      console.log('would send now');
+      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   }, true);
 

@@ -24,7 +24,7 @@ module Stages
     def find_stage
       @stage = Stage.find(id)
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a requirement with id #{id}."
+      msg = "Could not find a stage with id #{id}."
       add_error :stage, :stage_not_found, msg
     end
   end

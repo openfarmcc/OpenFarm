@@ -458,7 +458,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   // Only redirect when everything is done processing.
-  $scope.$watch('newGuide.stages', function(d){
+  $scope.$watch('newGuide.stages', function(){
     var updatedNum = 0;
     $scope.newGuide.stages.forEach(function(stage){
       if (stage.selected || stage.exists){

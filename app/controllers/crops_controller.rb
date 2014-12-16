@@ -40,7 +40,6 @@ class CropsController < ApplicationController
       @crop.reload
       redirect_to(action: 'show', id: @crop.id)
     else
-      puts @outcome.errors.message
       @crop.reload
       render :edit
     end

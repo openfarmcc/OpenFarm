@@ -14,6 +14,10 @@ class CropPolicy < ApplicationPolicy
     end
   end
 
+  # We're making this admin-only for now
+  # Cause we need to figure out the process
+  # For this. There's a lot of UI that needs
+  # To be
   def edit?
     if @current_user
       @current_user.admin
@@ -22,22 +26,15 @@ class CropPolicy < ApplicationPolicy
     end
   end
 
-  class Scope < Scope
-    attr_reader :user, :scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
+  # class Scope < Scope
+  #   attr_reader :user, :scope
+  #   def initialize(user, scope)
+  #     @user = user
+  #     @scope = scope
+  #   end
 
-    # def resolve
-    #   if @user.admin?
-    #     @scope.all
-    #   else
-    #     @scope.or(
-    #       { is_private: false },
-    #       { user: @user }
-    #     )
-    #   end
-    # end
-  end
+  #   def resolve
+  #     @scope.all
+  #   end
+  # end
 end

@@ -46,6 +46,17 @@ describe CropsController, :type => :controller do
     response.should redirect_to root_path
   end
 
+  it 'should rerender the edit page if not all params are good' do
+    crop = FactoryGirl.create(:crop)
+    user = FactoryGirl.create(:user, admin: true)
+    sign_in user
+    initial_name = crop.name
+    put 'update',
+        id: crop.id,
+        crop: {name: ''}
+    expect(crop.reload.name).to eq(initial_name)
+  end
+
   it 'post successful updates to a crop' do
     crop = FactoryGirl.create(:crop)
     user = FactoryGirl.create(:user, admin: true)
@@ -55,6 +66,5 @@ describe CropsController, :type => :controller do
         crop: {name: 'Updated name'}
     expect(crop.reload.name).to eq('Updated name')
     expect(response.status).to eq(302)
-
   end
 end

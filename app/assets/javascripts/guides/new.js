@@ -431,8 +431,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             });
           });
       } else if (stage.selected && stage.exists){
+        console.log(stageParams.images);
         $http.put('/api/stages/' + stage._id + '/', stageParams)
           .success(function(r){
+            console.log(r);
             stage.sent = true;
             $scope.sent ++;
           })
@@ -468,8 +470,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     })
     if (updatedNum === $scope.sent){
-      console.log('would send now');
-      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
+      window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   }, true);
 

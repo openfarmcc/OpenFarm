@@ -21,7 +21,7 @@ module Crops
       integer :days_to_maturity
       integer :row_spacing
       integer :height
-      array  :images, class: String, arrayize: true
+      array :images, class: String, arrayize: true
     end
 
     def validate
@@ -38,7 +38,7 @@ module Crops
     private
 
     def validate_permissions
-      #TODO: This should call on the Pundit policy
+      # TODO: This should call on the Pundit policy
       true
     end
 

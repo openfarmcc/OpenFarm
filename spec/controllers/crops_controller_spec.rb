@@ -14,13 +14,13 @@ describe CropsController, :type => :controller do
 
   it 'Should render a show page' do
     crop = FactoryGirl.create(:crop)
-    get 'show', :id => crop.id
+    get 'show', id: crop.id
     expect(response).to render_template(:show)
   end
 
   it 'Should direct to create guide page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
-    post 'create', :crop => crop
+    post 'create', crop: crop
     expect(response.status).to eq(302)
     response.should redirect_to "/en/guides/new?crop_id=#{assigns(:crop).id}"
   end
@@ -28,7 +28,7 @@ describe CropsController, :type => :controller do
   it 'Should redirect back to form after unsuccessful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     crop[:name] = ""
-    post 'create', :crop => crop
+    post 'create', crop: crop
     expect(response).to render_template(:new)
   end
 
@@ -36,13 +36,13 @@ describe CropsController, :type => :controller do
     user = FactoryGirl.create(:user, admin: true)
     sign_in user
     crop = FactoryGirl.create(:crop)
-    get 'edit', :id => crop.id
+    get 'edit', id: crop.id
     expect(response).to render_template(:edit)
   end
 
   it 'should not render an edit page if the user is not admin' do
     crop = FactoryGirl.create(:crop)
-    get 'edit', :id => crop.id
+    get 'edit', id: crop.id
     response.should redirect_to root_path
   end
 
@@ -53,7 +53,7 @@ describe CropsController, :type => :controller do
     initial_name = crop.name
     put 'update',
         id: crop.id,
-        crop: {name: ''}
+        crop: { name: '' }
     expect(crop.reload.name).to eq(initial_name)
   end
 
@@ -63,7 +63,7 @@ describe CropsController, :type => :controller do
     sign_in user
     put 'update',
         id: crop.id,
-        crop: {name: 'Updated name'}
+        crop: { name: 'Updated name' }
     expect(crop.reload.name).to eq('Updated name')
     expect(response.status).to eq(302)
   end

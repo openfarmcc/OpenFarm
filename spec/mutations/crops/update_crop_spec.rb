@@ -12,7 +12,7 @@ describe Crops::UpdateCrop do
       id: "#{crop.id}",
       crop: crop,
       binomial_name: 'updated',
-      description: 'A random description'}
+      description: 'A random description' }
   end
 
   it 'requires fields' do
@@ -42,6 +42,6 @@ describe Crops::UpdateCrop do
     image_params = params.merge(images: 'iWroteThisWrong.net/2haLt4J.jpg')
     results = mutation.run(image_params)
     expect(results.success?).to be_false
-    expect(results.errors.message[:images]).to include("not a valid URL")
+    expect(results.errors.message[:images]).to include('not a valid URL')
   end
 end

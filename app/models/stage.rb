@@ -10,5 +10,4 @@ class Stage
   field :light, type: Array
 
   accepts_nested_attributes_for :pictures
-
 end

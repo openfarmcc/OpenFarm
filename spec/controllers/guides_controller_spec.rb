@@ -62,6 +62,6 @@ describe GuidesController do
 
   it 'shows a 404 on DocumentNotFound' do
     get 'show', id: '1'
-    response.should render_template(:file => "#{Rails.root}/public/404.html")
+    response.should render_template(file: "#{Rails.root}/public/404.html")
   end
 end

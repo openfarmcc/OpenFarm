@@ -362,7 +362,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // so we need to put, not to post.
       params._id = $scope.newGuide._id;
       $http.put('/api/guides/' + params._id + '/', params)
-        .success(function(response, object){
+        .success(function(response){
           $scope.sendStages(response);
         })
         .error(function(response, code){
@@ -418,9 +418,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // each stage.
       if (stage.selected && !stage.exists){
         $http.post('/api/stages/', stageParams)
-          .success(function(r){
-
-            console.log('stage successfully set', r);
+          .success(function(){
             $scope.sent ++;
             stage.sent = true;
           })
@@ -433,8 +431,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       } else if (stage.selected && stage.exists){
         console.log(stageParams.images);
         $http.put('/api/stages/' + stage._id + '/', stageParams)
-          .success(function(r){
-            console.log(r);
+          .success(function(){
             stage.sent = true;
             $scope.sent ++;
           })
@@ -446,7 +443,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           });
       } else if (stage.exists){
         $http.delete('/api/stages/' + stage._id + '/')
-          .success(function(r){
+          .success(function(){
             stage.sent = true;
             $scope.sent ++;
           })
@@ -455,11 +452,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               msg: r.error,
               type: 'alert'
             });
-          })
-        // TODO: delete the stage.
+          });
       }
     });
-  }
+  };
 
   // Only redirect when everything is done processing.
   $scope.$watch('newGuide.stages', function(d){
@@ -468,7 +464,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       if (stage.selected || stage.exists){
         updatedNum++;
       }
-    })
+    });
     if (updatedNum === $scope.sent){
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }

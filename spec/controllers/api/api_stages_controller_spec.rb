@@ -90,13 +90,13 @@ describe Api::StagesController, type: :controller do
   it 'only destroys stages owned by the user' do
     delete :destroy, id: FactoryGirl.create(:stage)
     expect(json['error']).to include(
-      "can only destroy stages that belong to your guides.")
+      'can only destroy stages that belong to your guides.')
     expect(response.status).to eq(401)
   end
 
   it 'handles deletion of unknown stages' do
     delete :destroy, id: 1
-    expect(json['stage']).to eq("Could not find a stage with id 1.")
+    expect(json['stage']).to eq('Could not find a stage with id 1.')
     expect(response.status).to eq(422)
   end
 end

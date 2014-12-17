@@ -161,6 +161,7 @@ en:
                 repeat_annually: "Does this stage repeat annually?"
                 not_sure_html: "Not sure? <a href='/pages/faq#repeat-annually' target='_blank'>Learn More</a>."
             new_guide_step_4:
+                give_an_overview: "Give a short overview of your guide."
                 some_information: "Some Information"
                 where_are_you_growing_it: "Where are you growing it"
                 youre_growing_a: "You’re growing a"

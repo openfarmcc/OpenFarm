@@ -33,10 +33,10 @@ module Crops
     end
 
     def execute
-      @existingCrop = Crop.find(id)
+      @existing_crop = Crop.find(id)
       set_pictures
-      @existingCrop.update(crop)
-      @existingCrop
+      @existing_crop.update(crop)
+      @existing_crop
     end
 
     private

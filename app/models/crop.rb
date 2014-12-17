@@ -22,7 +22,6 @@ class Crop
   validates_presence_of :name
   field :binomial_name
   field :description
-  field :image
   belongs_to :crop_data_source
   field :sun_requirements
   field :sowing_method
@@ -33,6 +32,9 @@ class Crop
 
   field :sowing_time, type: Hash
   field :harvest_time, type: Hash
+
+  embeds_many :pictures, cascade_callbacks: true, as: :photographic
+  accepts_nested_attributes_for :pictures
 
   def search_data
     as_json only: [:name, :common_names, :binomial_name, :description]

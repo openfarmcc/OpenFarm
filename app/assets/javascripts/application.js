@@ -17,6 +17,7 @@
 //= require foundation/mm-foundation-0.3.0.js
 //= require foundation/mm-foundation-tpls-0.3.0.js
 //= require_tree ./guides
+//= require_tree ./crops
 
 //TODO: Need a better folder structure
 $(function() {

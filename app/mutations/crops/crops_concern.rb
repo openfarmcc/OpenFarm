@@ -12,7 +12,7 @@ module Crops
     end
 
     def set_pictures
-      images && images.map { |url| Picture.from_url(url, @existingCrop) }
+      images && images.map { |url| Picture.from_url(url, @existing_crop) }
     end
   end
 end

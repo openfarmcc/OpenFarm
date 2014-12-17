@@ -32,6 +32,10 @@ class CropsController < ApplicationController
   def update
     @crop = Crop.find(params[:id])
     authorize @crop
+    # TODO: Hacky hack is hacky.
+    # Move the images in crop to be in images.
+    # It's too nested if in crops.
+    params[:images] = params[:crop][:images] ? [params[:crop][:images]] : []
     @outcome = Crops::UpdateCrop.run(params,
                                      crop: params[:crop],
                                      id: params[:id],

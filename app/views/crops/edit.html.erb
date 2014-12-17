@@ -1,4 +1,5 @@
-<div class="small-12 columns">
+<div class="small-12 columns crop-edit"
+    ng-controller="editCropCtrl">
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns">
       <h1>Add a new crop!</h1>
@@ -30,7 +31,16 @@
       <%= f.label :height, 'Height' %>
       <%= f.text_field :height %>
 
-      <%= f.submit 'Save Crop!', :class => 'button', :disable_with => 'Saving...' %>
+      <div
+          id="crop_image_upload"
+          name="crop[images]"
+          s3-upload
+          bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+          ng-model="s3upload"
+          s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+
+      <%= f.submit 'Save Crop!', class: 'button', disable_with: 'Saving...' %>
     <% end %>
     </div>
   </div>

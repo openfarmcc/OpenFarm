@@ -3,7 +3,6 @@
 class Crop
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
   include Mongoid::Slug
   searchkick
   # history tracking all Crop documents

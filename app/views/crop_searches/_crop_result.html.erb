@@ -1,6 +1,6 @@
 <%= link_to crop, class:"medium-12 large-6 columns bottom-padding" do %>
   <div class="search-result-crop">
-    <div class="crop-image" style="<%= if !crop.pictures[0].blank? then "background-image: url(#{crop.pictures[0]})" end %>"></div>
+    <div class="crop-image" style="<%= if !crop.pictures[0].blank? then "background-image: url(#{crop.pictures[0].attachment.url})" end %>"></div>
     <div class="crop-info">
       <h3 class="crop-name"><%= crop.name %></h3>
       <!-- TODO(@warpling): pluralization/translation -->

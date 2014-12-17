@@ -59,4 +59,9 @@ describe GuidesController do
     guide.reload
     expect(guide.impressions_field).to eq(1)
   end
+
+  it 'shows a 404 on DocumentNotFound' do
+    get 'show', id: '1'
+    response.should render_template(file: "#{Rails.root}/public/404.html")
+  end
 end

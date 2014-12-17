@@ -13,7 +13,7 @@ class Guide
   belongs_to :crop, counter_cache: true
   belongs_to :user
   has_many :stages
-  has_many :requirements
+  # has_many :requirements
 
   field :name
   field :location

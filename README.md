@@ -55,7 +55,7 @@ Want to see the big picture? We have a [project roadmap](https://docs.google.com
 
 ### FAQ
 
-Have a look at the [FAQ](https://github.com/openfarmcc/OpenFarm/wiki/FAQ) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
+Have a look at the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
 ### User Flow
 

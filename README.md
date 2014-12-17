@@ -26,7 +26,7 @@ $ git clone https://github.com/openfarmcc/OpenFarm.git
 $ cd OpenFarm
 $ bundle install
 $ rake db:setup
-$ echo "ENV['SECRET_KEY_BASE'] = $(rake secret)" >> config/app_environment_variables.rb
+$ echo "ENV['SECRET_KEY_BASE'] = '$(rake secret)'" >> config/app_environment_variables.rb
 $ rails s
 ```
 

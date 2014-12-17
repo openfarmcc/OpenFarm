@@ -19,5 +19,11 @@ module Api
                                          user: current_user,)
       respond_with_mutation(:ok)
     end
+
+    def destroy
+      @outcome = Stages::DestroyStage.run(params,
+                                          user: current_user)
+      respond_with_mutation(:no_content)
+    end
   end
 end

@@ -193,6 +193,9 @@ angular.module('ngS3upload.directives', []).
               } else {
                 scope.filename = ngModel.$viewValue;
               }
+              if (attrs.name){
+                scope.nameAttribute = attrs.name;
+              }
             };
 
             var uploadFile = function () {
@@ -218,27 +221,27 @@ angular.module('ngS3upload.directives', []).
 
                       var guide = scope.$parent.guide;
                       var stage = null;
+                      var location = resp.responseXML
+                          .getElementsByTagName('Location')[0].innerHTML;
                       if (attrs.s3Guide){
                         guide = scope.$parent[attrs.s3Guide];
                       }
                       if (attrs.s3Stage){
                         stage = guide.selectedStages[attrs.s3Stage];
-                        stage.featured_image = resp.responseXML
-                          .getElementsByTagName('Location')[0].innerHTML;
-                      } else {
-                        guide.featured_image = resp.responseXML
-                          .getElementsByTagName('Location')[0].innerHTML;
+                        stage.featured_image = location;
+                      } else if (guide){
+                        guide.featured_image = location;
                       }
                       // TODO: Un-hardcode this.
                       ngModel.$setViewValue(s3Uri + key);
-                      console.log(ngModel);
+                      console.log(ngModel.$viewValue);
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);
                     }, function (resp) {
                       alert("There was an error uploading your image. Developers: See JS console for details.");
                       console.log('Bad response from Amazon S3:');
-                      console.lof(resp);
+                      console.log(resp);
                       scope.fileUrl = resp.responseXML
                         .getElementsByTagName('Location')[0].innerHTML;
                       scope.filename = ngModel.$viewValue;

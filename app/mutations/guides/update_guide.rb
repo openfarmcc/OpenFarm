@@ -12,6 +12,7 @@ module Guides
       string :overview
       string :location
       string :name
+      array :practices
       string :featured_image
     end
 
@@ -25,6 +26,8 @@ module Guides
       guide
     end
 
+    private
+
     def validate_permissions
       if guide.user != user
         msg = 'You can only modify guides that you created.'
@@ -37,6 +40,7 @@ module Guides
       guide.overview       = overview if overview.present?
       guide.location       = location if location.present?
       guide.name           = name if name.present?
+      guide.practices      = practices if practices.present?
       guide.save
       set_featured_image_async
     end

@@ -27,7 +27,6 @@ describe Crops::UpdateCrop do
   end
 
   it 'updates a crop image via URL' do
-    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     VCR.use_cassette('mutations/crops/update_stage') do
       image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
       results = mutation.run(image_params)

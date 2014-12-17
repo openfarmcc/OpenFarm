@@ -28,7 +28,6 @@ describe Api::GuidesController, type: :controller do
   end
 
   it 'uploads a featured_image' do
-    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     params = { name: 'Just 1 pixel.',
                overview: 'A tiny pixel test image.',
                featured_image: 'http://placehold.it/1x1.jpg',

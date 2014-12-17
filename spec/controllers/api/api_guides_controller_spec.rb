@@ -41,8 +41,6 @@ describe Api::GuidesController, type: :controller do
     img_url = json['guide']['featured_image']
     expect(img_url).to include('.jpg')
     expect(img_url).to include('featured_images')
-    expect(img_url).to include('http://')
-    expect(img_url).to include('amazonaws.com')
   end
 
   it 'create guide should return an error when wrong info is passed' do

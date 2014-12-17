@@ -20,7 +20,6 @@ describe Stages::CreateStage do
       results      = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)
-      expect(pics.first.attachment.url.valid_url?).to be_true
     end
   end
 

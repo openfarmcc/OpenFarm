@@ -33,8 +33,6 @@ describe Guides::CreateGuide do
       results = cg.run(params.merge(optns))
     end
     expect(results.success?).to be_true
-    url = results.result.featured_image.url
-    expect(url).to include('http://s3.amazonaws.com/')
   end
 
   it 'catches bad crop IDs' do

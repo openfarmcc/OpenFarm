@@ -1,7 +1,9 @@
 module Crops
   # Place shared functionality between Stage mutations here to stay DRY.
   module CropsConcern
+
     def validate_images
+
       images && images.each do |url|
         unless url.valid_url?
           add_error :images,
@@ -12,7 +14,7 @@ module Crops
     end
 
     def set_pictures
-      images && images.map { |url| Picture.from_url(url, crop) }
+      images && images.map { |url| Picture.from_url(url, @existingCrop) }
     end
   end
 end

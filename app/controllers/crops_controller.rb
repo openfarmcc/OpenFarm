@@ -32,14 +32,15 @@ class CropsController < ApplicationController
   def update
     @crop = Crop.find(params[:id])
     authorize @crop
-    @outcome = Crops::UpdateCrop.run(params[:crop],
+    @outcome = Crops::UpdateCrop.run(params,
+                                     crop: params[:crop],
                                      id: params[:id],
-                                     crop: @crop,
                                      user: current_user)
     if @outcome.success?
       @crop.reload
       redirect_to(action: 'show', id: @crop.id)
     else
+      flash[:alert] = @outcome.errors.message_list
       @crop.reload
       render :edit
     end

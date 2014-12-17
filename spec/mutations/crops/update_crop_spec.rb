@@ -10,9 +10,8 @@ describe Crops::UpdateCrop do
   let(:params) do
     { user: user,
       id: "#{crop.id}",
-      crop: crop,
-      binomial_name: 'updated',
-      description: 'A random description' }
+      crop: { binomial_name: 'updated',
+              description: 'A random description' } }
   end
 
   it 'requires fields' do

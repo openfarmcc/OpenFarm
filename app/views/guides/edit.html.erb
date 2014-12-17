@@ -1,232 +1,33 @@
-<div ng-controller="editGuideCtrl"
-     ng-cloak
-     class="guides edit-guide-app">
+<% content_for(:start_js) do %>
+<%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+<% end %>
+
+<% content_for(:banner) do %>
+  <div class="bar-header">
+    <h1><%= t('.create_a_growing_guide') %></h1>
+  </div>
+<% end %>
+
+<div ng-controller="newGuideCtrl"
+     class="guides new-guide large-8 medium-8 small-12 columns ng-cloak small-centered"
+     ng-cloak>
 
     <div alerts ng-model="alerts"></div>
 
-    <div class="row">
-    <form accept-charset="UTF-8"
-      class="small-10 large-10 columns small-centered edit-overview"
-      name="editOverview"
-      method="post"
-      >
-      <div class="column large-10">
-        <h1 ng-click="editing_name = ! editing_name"
-            ng-show="!editing_name"
-            title="<%= t('.click_to_edit') %>"
-            ><span class="fa fa-edit"></span> {{ guide.name }} </h1>
-        <input ng-show="editing_name"
-               ng-model="guide.name"
-               type="text"
-               class="hidden-edit-field"
-               focus-me="editing_name"/>
-      </div>
-      <div class="column large-2">
-        <input type="button"
-             class="button small"
-             ng-click="saveGuide()"
-             ng-class="{ 'loading' : saving }"
-             data-disable-with="Saving..."
-             ng-disabled="saving"
-             value="<%= t('.save_guide') %>"/>
-      </div>
+  <%= render 'guides/new/new_guide_steps' %>
 
-      <div class="columns large-3">
-        <div s3-upload
-        bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-        ng-model="s3upload"
-        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-        </div>
-        <p>
-          <%= link_to(icon('eye') + " View Guide", {:action => 'show'}, :class=>'edit-link') %>
-        </p>
-      </div>
-      <div class="columns large-9">
-        <p>
-        </p>
-        <p>
-          <%= t('.more_details') %>
-        </p>
-        <label for="guide_overview">
-          <%= t('.overview') %>
-        </label>
-        <textarea id="guide_overview"
-                  name="overview"
-                  ng-model="guide.overview"
-                  rows="6"
-                  ng-maxlength="400"
-                  required>
-        </textarea>
-        <%# TODO Actually re-inforce this 400 character limit overview %>
-        <small class="error" ng-if="editOverview.overview.$error.maxlength">
-        <%= t('.can_not_be_longer_than_400_chars') %></small>
-        <small class="error" ng-if="editOverview.overview.$error.required">
-        <%= t('.you_should_add_an_overview') %></small>
-        <small class="markdown-help-text">
-          <%= t('.using_markdown_is_okay_html') %>
-        </small>
-        <p>
-          <%= t('.to_get_more_into_details_html') %>
-        </p>
-      </div>
+  <%= render 'guides/new/new_guide_step_1' %>
 
-    </form>
-    </div>
-    <div class="row">
-    <div class="large-10 small-10 columns small-centered">
+  <%= render 'guides/new/new_guide_step_2' %>
 
-    <accordion close-others="false">
-      <accordion-group
-        is-open="stat.isopen"
-        ng-init="stat.isopen = true"
-        class="accordion-navigation statistics">
-        <accordion-heading class="title-wrapper">
-          <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': stat.isopen, 'fa fa-chevron-right': !stat.isopen}"></i>
-            <%= t('.statistics') %>
-          </h2>
-        </accordion-heading>
-        <p class="section-text">
-        <%= t('.impressions', count: @guide.impressions.count) %>
-        </p>
-      </accordion-group>
-      <accordion-group
-        is-open="req.isopen"
-        ng-init="req.isopen = true"
-        class="accordion-navigation requirements">
-        <accordion-heading class="title-wrapper">
-          <h2 class="title">
-            <i ng-class="{'fa fa-chevron-down': req.isopen, 'fa fa-chevron-right': !req.isopen}"></i>
-            <%= t('.requirements') %>
-          </h2>
-        </accordion-heading>
-        <p class="section-text">
-          <%= t('.requirements_are_the_small_details') %>
-        </p>
-        <p>
-          <%= t('.if_you_do_not_know_everything_thats_okay') %>
-        </p>
-        <div class="box">
-          <div class="row">
-            <div class="small-12 columns actual-requirements">
-              <div class="requirement"
-                ng-class="{ active : r.active }"
-                ng-init="r.value = r.default_value"
-                ng-repeat="r in guide.requirements.slice(0, guide.requirements.length)">
-                  <div class="small-6 columns title"
-                    >
-                    <input type="checkbox" ng-model="r.active">
-                      {{ r.name }}:</div>
-                  <div class="small-6 columns choices">
-                    <select
-                      ng-if="r.type == 'select'"
-                      ng-model="r.value"
-                      ng-init=""
-                      ng-options="o for o in r.options"
-                      ng-change="r.active = true; setStatus(r);"
-                      >
-                      <option>Don't know</option>
-                      <option>Not Applicable</option>
-                    </select>
+  <%= render 'guides/new/new_guide_step_3' %>
 
-                    <span ng-if="r.type == 'range'">
-                    <input
-                      type="range"
-                      min="{{ r.options[0] }}"
-                      max="{{ r.options[1] }}"
-                      step="{{ r.options[2] }}"
-                      ng-change="r.active = true"
-                      ng-model="r.value"
-                           />{{ r.value }}</span>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="row requirements-results">
-            <div class="small-6 columns small-centered">
-              <span ng-show="filtered_requirements.length > 0">
-                <%= t('.you_have_selected') %> <br/> <span ng-repeat="r in (guide.requirements | filter: {active: !r.active }) as filtered_requirements"> {{r.name}}<span ng-if="!$last">,</span>
-                </span>
-              </span>
-              <span ng-show="filtered_requirements.length == 0"><%= t('.you_have_not_selected_anything') %></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
+  <%= render 'guides/new/new_guide_step_4' %>
 
-          <p class="section-text columns large-8">
-            <%= t('.if_you_are_happy_with_your_guide_so_far') %>
-          </p>
-          <span class="columns large-2">
-            <input type="button"
-                 class="button small"
-                 ng-class="{ 'loading' : saving }"
-                 ng-disabled="saving"
-                 ng-click="saveGuide()"
-                 value="<%= t('.save_guide') %>"/>
-          </span>
-        </div>
-      </accordion-group>
-
-      <accordion-group
-        is-open="stage.isopen"
-        ng-init="stage.isopen = true"
-        class="accordion-navigation">
-        <accordion-heading class="title-wrapper">
-          <h2 class="title" id="stages">
-            <i ng-class="{'fa fa-chevron-down': stage.isopen, 'fa fa-chevron-right': !stage.isopen}"></i>
-            <%= t('.stages') %>
-          </h2>
-
-        </accordion-heading>
-        <p class="section-text">
-          <%= t('.each_stage_of_growing_your_crop') %>
-        </p>
-        <p class="section-text">
-          <%= t('.if_you_do_not_know_everything_thats_okay') %>
-        </p>
-        <tabset class="tabs">
-
-          <tab ng-repeat="s in guide.stages | orderBy:'order'">
-            <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
-              <h3>{{ s.name }}</h3>
-            </tab-heading>
-            <div class="box">
-              <div class="row">
-                <div class="columns large-12 stage-description">
-                  <p>{{ s.description }}</p>
-                  <textarea placeholder="{{ s.default_value }}"
-                    ng-model="s.instructions"
-                    ng-change="setStatus(s)"
-                    rows="6">
-                  </textarea>
-                  <p class="markdown-help-text">          <%= t('.using_markdown_is_okay_html') %>
-
-                </div>
-              </div>
-            </div>
-          </tab>
-        </tabset>
-        <div class="row">
-
-          <p class="section-text columns large-8">
-            <%= t('.if_you_are_happy_with_your_guide_so_far') %>
-          </p>
-          <span class="columns large-2">
-            <input type="button"
-                 class="button small"
-                 ng-click="saveGuide()"
-                 ng-class="{ 'loading' : saving }"
-                 value="<%= t('.save_guide') %>"/>
-          </span>
-        </div>
-      </accordion-group>
-    </accordion>
-    </div>
-  </div>
 </div>
 
 <% content_for(:end_js) do %>
-  <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
-  <%= javascript_include_tag 'guides/edit' %>
+  <script>
+
+  </script>
 <% end %>

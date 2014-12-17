@@ -80,6 +80,7 @@ openFarmApp.directive('stageButtons', [
     };
 }]);
 
+// ToDo: move things to the angular.openfarm services in guides.
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   function newGuideCtrl($scope, $http, $filter) {
   $scope.alerts = [];

@@ -57,9 +57,9 @@ openFarmModule.factory('cropService', ['$http',
       .error(function (response, code) {
         console.log(response, code);
         var msg = '';
-        angular.forEach(response, function(value, key){
+        angular.forEach(response, function(value){
           msg += value;
-        })
+        });
         alerts.push({
           msg: msg,
           type: 'warning'

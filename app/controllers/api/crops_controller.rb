@@ -19,8 +19,8 @@ module Api
 
     def update
       @outcome = Crops::UpdateCrop.run(params,
-                                user: current_user,
-                                id: params[:id])
+                                       user: current_user,
+                                       id: params[:id])
       respond_with_mutation(:ok)
     end
   end

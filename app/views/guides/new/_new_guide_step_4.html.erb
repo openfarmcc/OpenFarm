@@ -8,24 +8,37 @@
     method="post"
     >
     <div class="row">
-      <div class="columns large-6">
-        <p>
-          <%= t('.youre_growing_a') %>
-          <strong>{{ newGuide.crop.name }}</strong>.
-        </p>
-        <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %></label>
+      <div class="columns large-4 medium-4">
+        <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %>
+        </label>
+      </div>
+      <div class="columns large-8 medium-8">
         <input id="guide_name" name="guide[name]"
           type="text"
           ng-model="newGuide.name"
           placeholder="<%= current_user.display_name %>'s {{ newGuide.crop.name }}"
           >
       </div>
-      <div class="columns large-6">
-        <label for="guide_name"><%= t('.where_are_you_growing_it') %></label>
-        <span location
+    </div>
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label for="location"><%= t('.where_are_you_growing_it') %></label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <span location name="location"
               ng-model="newGuide.location"
               loading-text="<%= t('application.loading_locations') %>">
         </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label for="location"><%= t('.give_an_overview') %></label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <textarea ng-model="newGuide.overview">
+        </textarea>
       </div>
     </div>
     <div class="button-wrapper row">

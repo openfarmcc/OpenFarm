@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe Api::CropsController, :type => :controller do
 
+  let(:user) { FactoryGirl.create(:user) }
+
   before do
     @beans = FactoryGirl.create(:crop, name: 'mung bean')
     FactoryGirl.create_list(:crop, 2)
@@ -27,5 +29,24 @@ describe Api::CropsController, :type => :controller do
     get 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
     expect(json['crop']['name']).to eq(crop.name)
+  end
+
+  it 'should update a crop' do
+    sign_in user
+    crop = FactoryGirl.create(:crop)
+    put :update, id: crop.id, crop: { description: 'Updated' }
+    expect(response.status).to eq(200)
+    crop.reload
+    expect(crop.description).to eq('Updated')
+  end
+
+  it 'should return an error when updating faulty information' do
+    sign_in user
+    crop = FactoryGirl.create(:crop)
+    put :update, id: crop.id, crop: { description: '' }
+    expect(response.status).to eq(422)
+    old_description = crop.description
+    crop.reload
+    expect(crop.description).to eq(old_description)
   end
 end

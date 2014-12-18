@@ -48,8 +48,27 @@ openFarmModule.factory('cropService', ['$http',
         });
       });
     };
+
+    var updateCrop = function(cropId, params, alerts, callback){
+      $http.put('/api/crops/' + cropId + '/', params)
+      .success(function (response) {
+        return callback (true, response.crop);
+      })
+      .error(function (response, code) {
+        console.log(response, code);
+        var msg = '';
+        angular.forEach(response, function(value){
+          msg += value;
+        });
+        alerts.push({
+          msg: msg,
+          type: 'warning'
+        });
+      });
+    };
     return {
-      'getCrop': getCrop
+      'getCrop': getCrop,
+      'updateCrop': updateCrop
     };
 }]);
 

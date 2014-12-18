@@ -54,7 +54,7 @@ describe Crops::UpdateCrop do
     pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     VCR.use_cassette('mutations/crops/update_stage') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' },
-                    { image_url: 'http://i.imgur.com/86gRfYH.gif' }]
+                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
       image_params = params.merge(images: image_hash)
       results = mutation.run(image_params)
       pics = results.result.pictures
@@ -93,7 +93,7 @@ describe Crops::UpdateCrop do
 
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg',
                       id: crop.pictures.first.id },
-                    { image_url: 'http://i.imgur.com/86gRfYH.gif' }]
+                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
 
       image_params[:images] = image_hash
 

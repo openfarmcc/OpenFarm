@@ -240,20 +240,7 @@ openFarmModule.directive('location', [
 
         $scope.addresses = [];
       }],
-      template: '<input type="text"'+
-             'ng-model="location"'+
-             'autocomplete="off"'+
-             'id="location"'+
-             'placeholder="Ex: Hanoi, Portland, California"'+
-             'typeahead="address for address in addresses"'+
-             'ng-change="getLocation(location)"'+
-             'typeahead-min-length="3"'+
-             'typeahead-loading="loadingLocations"'+
-             'typeahead-wait-ms="555"'+
-             'name="location">'+
-             '<i ng-show="loadingLocations" '+
-               'class="fa fa-spinner fa-spin"></i> '+
-              '<span ng-bind="loadingText"></span>',
+      templateUrl: '/assets/templates/_location.html',
     };
 }]);
 

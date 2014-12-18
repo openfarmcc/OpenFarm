@@ -79,30 +79,13 @@
   }
 
   &.new-crop-button {
-    background-color: transparent;
-    border: 2px dashed #DDD;
-    border-radius: 20px;
-    font-size: 1.2em;
-    display: table;
-    width: 100%;
+    @include add-new-button();
 
     h3 {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      color: #DDD;
-    }
 
-    @include transition(all 0.15s ease-out);
-
-    &:hover {
-      border-style: solid;
-      background-color: rgba(0,0,0,0.05);
-    }
-
-    &:active {
-      background-color: rgba(0,0,0,0.1);
-      color: white;
     }
   }
 }

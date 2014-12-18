@@ -1,5 +1,5 @@
 class PictureSerializer < ApplicationSerializer
-  attributes :image_url, :thumbnail_url
+  attributes :id, :image_url, :thumbnail_url
 
   def image_url
     object.attachment.url

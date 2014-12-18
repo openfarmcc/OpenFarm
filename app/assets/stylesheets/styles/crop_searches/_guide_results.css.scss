@@ -6,32 +6,17 @@
   }
 
   .new-guide-button {
+    @include add-new-button();
+    @include box-shadow(none);
+
     width: 100%;
     min-height: 50px;
     margin-bottom: 12px;
     margin: 0 0 30px 0;
     padding: 26px;
-    @include border-radius(4px);
-    @include box-shadow(none);
-    background: none;
-    background-color: transparent;
     position: relative;
-    border: 2px dashed #DDD;
     border-radius: 10px;
-    font-size: 1.2em;
     color: #CCC;
     font-size: 1em;
-    cursor: pointer;
-    @include transition(all 0.15s ease-out);
-
-    &:hover {
-      border-style: solid;
-      background-color: rgba(0,0,0,0.05);
-    }
-
-    &:active {
-      background-color: rgba(0,0,0,0.1);
-      color: white;
-    }
   }
 }

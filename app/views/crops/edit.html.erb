@@ -123,9 +123,12 @@
       </div>
       <div class="columns large-8 medium-8">
         <span ng-repeat="pic in editCrop.pictures"
-              class="thumbnails">
-          <img ng-src="{{ pic.thumbnail_url }}"
-               ng-click="removeImage()"
+              class="thumbnails"
+              ng-class="{ 'deleted' : pic.deleted }"
+              ng-init="pic.deleted = false"
+              ng-click="pic.deleted = !pic.deleted">
+          <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+
                ng-model="pic"/>
         </span>
         <div id="crop_image_upload"
@@ -133,6 +136,7 @@
             s3-upload
             bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
             ng-model="s3upload"
+            ng-change="handleNewImage()"
             s3-upload-object="s3upload"
             s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
         </div>

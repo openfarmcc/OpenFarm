@@ -10,11 +10,13 @@ module Crops
                       :changed_image, 'You can\'t change an existing image, '\
                       'delete it and upload an other image.'
           end
-        elsif not pic[:image_url].valid_url?
-          add_error :images,
-                    :invalid_url, "'#{pic[:image_url]}' is not a valid URL. "\
-                    'Ensure that it is a fully formed URL (including HTTP://'\
-                    ' or HTTPS://)'
+        else
+          unless pic[:image_url].valid_url?
+            add_error :images,
+                      :invalid_url, "'#{pic[:image_url]}' is not a valid URL. "\
+                      'Ensure that it is a fully formed URL (including HTTP://'\
+                      ' or HTTPS://)'
+          end
         end
       end
     end

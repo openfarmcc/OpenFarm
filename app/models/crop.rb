@@ -41,6 +41,7 @@ class Crop
   end
   slug :name
 
+
   # See https://github.com/aq1018/mongoid-history
   track_history on: [:description, :image],
                 modifier_field: :modifier,

@@ -1,6 +1,9 @@
 <div class="crop-search-results row wide-row">
   <div class="crop-results-container small-6 columns">
     <h2 class="text-center">Choose a crop</h2>
+    <% if @crops.empty? %>
+    <p class="no-results">There are no crops matching "<%= params[:q].to_s %>", would you like to <%= link_to "add this crop", new_crop_path %>?</p>
+    <% end %>
     <%= render partial: 'crop_results', object: @crops %>
   </div>
   <div class="guide-results-container small-6 columns">

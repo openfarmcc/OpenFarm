@@ -339,14 +339,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   // Post! & forward if successful
 
   $scope.submitForm = function () {
-    // $scope.newGuide.sending = true;
+    $scope.newGuide.sending = true;
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
         practices.push(value.slug);
       }
     }, practices);
-    console.log(practices);
+
     var params = {
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,

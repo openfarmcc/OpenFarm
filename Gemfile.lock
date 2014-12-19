@@ -144,7 +144,7 @@ GEM
     hashie (3.3.2)
     high_voltage (2.2.1)
     hike (1.2.3)
-    httpclient (2.5.1)
+    httpclient (2.5.3.3)
     i18n (0.6.11)
     impressionist (1.5.1)
       httpclient (~> 2.2)
@@ -368,7 +368,7 @@ DEPENDENCIES
   font-awesome-sass
   foundation-rails (~> 5.4.5)
   high_voltage
-  impressionist
+  impressionist (~> 1.5.0)
   jquery-rails
   launchy
   mongoid!

@@ -29,5 +29,9 @@ module OpenFarm
       end
     end
     config.middleware.use Rack::Attack
+    config.after_initialize do
+      Crop.reindex
+    end
   end
 end
+

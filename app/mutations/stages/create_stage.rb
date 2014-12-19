@@ -32,12 +32,10 @@ module Stages
     end
 
     def execute
-      set_pictures
-      # set_params
-      # stage
       @stage ||= Stage.new(stage)
       @stage.guide = @guide
       @stage.save
+      set_pictures
       @stage
     end
 
@@ -56,17 +54,5 @@ module Stages
         raise OpenfarmErrors::NotAuthorized, msg
       end
     end
-
-    # def set_params
-      # stage.guide          = @guide
-      # # TODO: validate that the stage name is one
-      # # of stage options, or should we?
-      # stage.name           = name
-      # stage.environment    = environment if environment
-      # stage.soil           = soil if soil
-      # stage.light          = light if light
-      # stage.stage_length   = stage_length if stage_length
-      # stage.save
-    # end
   end
 end

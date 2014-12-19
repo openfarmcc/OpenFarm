@@ -29,11 +29,11 @@ module Crops
 
     def validate
       validate_permissions
+      @existing_crop = Crop.find(id)
       validate_images
     end
 
     def execute
-      @existing_crop = Crop.find(id)
       set_pictures
       @existing_crop.update(crop)
       @existing_crop

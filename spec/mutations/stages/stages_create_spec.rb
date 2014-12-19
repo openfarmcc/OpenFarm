@@ -14,13 +14,11 @@ describe Stages::CreateStage do
   end
 
   it 'creates a stage image via URL' do
-    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     VCR.use_cassette('mutations/stages/update_stage') do
       image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
       results      = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)
-      expect(pics.first.attachment.url.valid_url?).to be_true
     end
   end
 

@@ -27,20 +27,79 @@ describe Crops::UpdateCrop do
   end
 
   it 'updates a crop image via URL' do
-    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
     VCR.use_cassette('mutations/crops/update_stage') do
-      image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
+      image_hash = {
+        image_url: 'http://i.imgur.com/2haLt4J.jpg'
+      }
+      image_params = params.merge(images: [ image_hash ])
       results = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)
-      expect(pics.first.attachment.url.valid_url?).to be_true
     end
   end
 
   it 'disallows phony URLs' do
-    image_params = params.merge(images: 'iWroteThisWrong.net/2haLt4J.jpg')
+    image_hash = {
+      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
+    }
+    image_params = params.merge(images: [ image_hash ])
     results = mutation.run(image_params)
     expect(results.success?).to be_false
     expect(results.errors.message[:images]).to include('not a valid URL')
+  end
+
+  it 'uploads multiple images' do
+    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
+    VCR.use_cassette('mutations/crops/update_stage') do
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' },
+                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
+      image_params = params.merge(images: image_hash)
+      results = mutation.run(image_params)
+      pics = results.result.pictures
+      expect(pics.count).to eq(2)
+      expect(pics.first.attachment.url.valid_url?).to be_true
+    end
+  end
+
+  it 'deletes images marked for deletion' do
+    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
+    VCR.use_cassette('mutations/crops/update_stage') do
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
+
+      image_params = params.merge(images: image_hash)
+      results = mutation.run(image_params)
+
+      image_hash = []
+
+      image_params[:images] = image_hash
+
+      results = mutation.run(image_params)
+      pics = results.result.pictures
+      expect(pics.count).to eq(0)
+    end
+  end
+
+  it 'leaves existing images as is' do
+    pending 'Bucket not set :(' unless ENV['S3_BUCKET_NAME'].present?
+    VCR.use_cassette('mutations/crops/update_stage') do
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
+
+      image_params = params.merge(images: image_hash)
+      results = mutation.run(image_params)
+
+      crop.reload
+
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg',
+                      id: crop.pictures.first.id },
+                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
+
+      image_params[:images] = image_hash
+
+      results = mutation.run(image_params)
+      pics = results.result.pictures
+      expect(pics.count).to eq(2)
+      expect(pics.first.attachment.url.valid_url?).to be_true
+      expect(pics[1].attachment.url.valid_url?).to be_true
+    end
   end
 end

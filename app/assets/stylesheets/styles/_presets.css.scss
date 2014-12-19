@@ -135,3 +135,27 @@ textarea {
     background-image: none;
   }
 }
+
+@mixin add-new-button(){
+  @include transition(all 0.15s ease-out);
+
+  background: none;
+  background-color: transparent;
+  border: 2px dashed #DDD;
+  border-radius: 20px;
+  font-size: 1.2em;
+  display: table;
+  width: 100%;
+  cursor: pointer;
+  color: #DDD;
+
+  &:hover {
+    border-style: solid;
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  &:active {
+    background-color: rgba(0,0,0,0.1);
+    color: white;
+  }
+}

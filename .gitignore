@@ -16,6 +16,9 @@
 /log/*.log
 /tmp
 
+# Ignore paperclip image uploads
+/public/system
+
 #Wtf??
 /coverage/*
 coverage/*

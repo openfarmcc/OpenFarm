@@ -30,7 +30,7 @@ module OpenFarm
     end
     config.middleware.use Rack::Attack
     config.after_initialize do
-      Crop.reindex
+      Crop.reindex unless Rails.env.test?
     end
   end
 end

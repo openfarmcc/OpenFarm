@@ -25,7 +25,7 @@ describe 'Crop search', type: :controller do
 
   it 'handles empty search results' do
     visit root_path
-    fill_in 'q', with: 'pear'
+    fill_in 'q', with: 'pokemon'
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'

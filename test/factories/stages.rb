@@ -7,6 +7,7 @@ FactoryGirl.define do
     soil             { [Faker::Lorem.word] }
     environment      { [Faker::Lorem.word] }
     light            { [Faker::Lorem.word] }
+    actions          { FactoryGirl.create(:action, 5) }
     guide
   end
 end

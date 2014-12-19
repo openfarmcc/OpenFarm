@@ -1,6 +1,7 @@
 class Stage
   include Mongoid::Document
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
+
   belongs_to :guide
 
   field :name, type: String
@@ -8,6 +9,8 @@ class Stage
   field :environment, type: Array
   field :soil, type: Array
   field :light, type: Array
+
+  embeds_many :stage_actions
 
   accepts_nested_attributes_for :pictures
 end

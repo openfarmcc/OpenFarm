@@ -82,7 +82,8 @@ openFarmApp.directive('stageButtons', [
 
 // ToDo: move things to the angular.openfarm services in guides.
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
-  function newGuideCtrl($scope, $http, $filter) {
+  'guideService', 'stageService',
+  function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = 1;
@@ -107,8 +108,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       {slug: 'intensive', label: 'Intensive', selected: false}
     ]
   };
-
-
 
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
@@ -340,13 +339,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   // Post! & forward if successful
 
   $scope.submitForm = function () {
-    $scope.newGuide.sending = true;
+    // $scope.newGuide.sending = true;
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
         practices.push(value.slug);
       }
     }, practices);
+    console.log(practices);
     var params = {
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
@@ -362,34 +362,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // In this case the guide already existed,
       // so we need to put, not to post.
       params._id = $scope.newGuide._id;
-      $http.put('/api/guides/' + params._id + '/', params)
-        .success(function(response){
-          $scope.sendStages(response);
-        })
-        .error(function(response, code){
-          console.log(response, code);
-          $scope.alerts.push({
-            msg: response.error,
-            type: 'alert'
-          });
-        });
+      guideService.updateGuide(params._id,
+                               params,
+                               $scope.alerts,
+                               $scope.sendStages);
     } else {
-      $http.post('/api/guides/', params)
-        .success(function (r) {
-          $scope.sendStages(r);
-        })
-        .error(function (r) {
-          $scope.alerts.push({
-            msg: r.error,
-            type: 'alert'
-          });
-        });
+      guideService.createGuide(params,
+                               $scope.alerts,
+                               $scope.sendStages);
     }
   };
 
-  $scope.sendStages = function(r){
-    var guide = r.guide;
-    $scope.newGuide._id = r.guide._id;
+  $scope.sendStages = function(success, guide){
+    $scope.newGuide._id = guide._id;
     $scope.sent = 0;
 
     $scope.newGuide.stages.forEach(function(stage){
@@ -418,42 +403,31 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // Go through all the possible changes on
       // each stage.
       if (stage.selected && !stage.exists){
-        $http.post('/api/stages/', stageParams)
-          .success(function(){
-            $scope.sent ++;
-            stage.sent = true;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        console.log(stageParams);
+        stageService.createStage(stageParams,
+                                 $scope.alerts,
+                                 function(success, stage){
+                                   console.log(stage)
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                 });
+
       } else if (stage.selected && stage.exists){
-        console.log(stageParams.images);
-        $http.put('/api/stages/' + stage._id + '/', stageParams)
-          .success(function(){
-            stage.sent = true;
-            $scope.sent ++;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        stageService.updateStage(stage._id,
+                                 stageParams,
+                                 $scope.alerts,
+                                 function(){
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                 });
+
       } else if (stage.exists){
-        $http.delete('/api/stages/' + stage._id + '/')
-          .success(function(){
-            stage.sent = true;
-            $scope.sent ++;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        stageService.deleteStage(stage._id,
+                                 $scope.alerts,
+                                 function(){
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                 });
       }
     });
   };

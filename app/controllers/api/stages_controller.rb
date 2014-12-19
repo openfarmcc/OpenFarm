@@ -3,6 +3,7 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
+      puts "PARAMS", params
       @outcome = Stages::CreateStage.run(params, user: current_user)
       respond_with_mutation(:created)
     end

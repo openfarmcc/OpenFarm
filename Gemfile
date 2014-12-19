@@ -44,6 +44,7 @@ group :test do
   gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'vcr'

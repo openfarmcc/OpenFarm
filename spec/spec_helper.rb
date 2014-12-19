@@ -25,6 +25,7 @@ require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: true)
+  Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
 end
 # =====
 Delayed::Worker.delay_jobs = false
@@ -52,6 +53,7 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+  config.fail_fast = true
   config.order = "random"
   if ENV['DOCS'] == 'true'
     DocYoSelf.config do |c|

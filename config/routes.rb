@@ -29,7 +29,7 @@ OpenFarm::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
-    resources :crops, only: [:index, :show]
+    resources :crops, only: [:index, :show, :update]
     resources :users, only: [:show]
     resources :guides, only: [:create, :show, :update]
     resources :gardens, only: [:show, :update] do

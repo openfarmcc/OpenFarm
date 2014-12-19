@@ -1,47 +1,153 @@
-<div class="small-12 columns crop-edit"
+<div class="crop-edit"
     ng-controller="editCropCtrl">
+
+  <div alerts ng-model="alerts"></div>
+
   <div class="row">
     <div class="large-8 medium-10 small-12 small-centered columns">
       <h1>Add a new crop!</h1>
-      <%= form_for @crop do |f| %>
-      <%= f.label :name, 'Crop Name' %>
-      <%= f.text_field :name %>
-
-      <%= f.label :binomial_name, 'Binomial Name' %>
-      <%= f.text_field :binomial_name %>
-
-      <%= f.label :description, 'Description' %>
-      <%= f.text_area :description %>
-
-      <%= f.label :sun_requirements, 'Sun Requirements' %>
-      <%= f.text_field :sun_requirements %>
-
-      <%= f.label :sowing_method, 'Sowing Method' %>
-      <%= f.text_field :sowing_method %>
-
-      <%= f.label :spread, 'Spread' %>
-      <%= f.text_field :spread %>
-
-      <%= f.label :days_to_maturity, 'Days to Maturity' %>
-      <%= f.text_field :days_to_maturity %>
-
-      <%= f.label :row_spacing, 'Row Spacing' %>
-      <%= f.text_field :row_spacing %>
-
-      <%= f.label :height, 'Height' %>
-      <%= f.text_field :height %>
-
-      <div
-          id="crop_image_upload"
-          name="crop[images]"
-          s3-upload
-          bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-          ng-model="s3upload"
-          s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-        </div>
-
-      <%= f.submit 'Save Crop!', class: 'button', disable_with: 'Saving...' %>
-    <% end %>
     </div>
   </div>
+  <form>
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="crop_name">Crop Name</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.name"
+               id="crop_name"
+               name="crop[name]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="binomial_name">Binomial Name</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.binomial_name"
+               id="crop_binomial_name"
+               name="crop[binomial_name]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="description">Description</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <textarea ng-model="editCrop.description"
+                  id="crop_description"
+                  name="crop[description]"
+                  ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="sun_requirements">Sun Requirements</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.sun_requirements"
+               id="crop_sun_requirements"
+               name="crop[sun_requirements]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="sowing_method">Sowing Method</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.sowing_method"
+               id="crop_sowing_method"
+               name="crop[sowing_method]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="spread">Spread</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.spread"
+               id="crop_spread"
+               name="crop[spread]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="days_to_maturity">Days to Maturity</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.days_to_maturity"
+               id="crop_days_to_maturity"
+               name="crop[days_to_maturity]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="row_spacing">Row Spacing</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.row_spacing"
+               id="crop_row_spacing"
+               name="crop[row_spacing]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label class="right" for="height">Height</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <input data-ng-model="editCrop.height"
+               id="crop_height"
+               name="crop[height]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-4 medium-4">
+        <label for="crop[images]" class="right">Manage images</label>
+      </div>
+      <div class="columns large-8 medium-8">
+        <span ng-repeat="pic in editCrop.pictures"
+              class="thumbnails">
+          <img ng-src="{{ pic.thumbnail_url }}"
+               ng-click="removeImage()"
+               ng-model="pic"/>
+        </span>
+        <div id="crop_image_upload"
+            name="crop[images]"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-object="s3upload"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-12 medium-12">
+        <input class="button small right"
+          name="commit"
+          type="submit"
+          value="Save the crop!"
+          ng-disabled="editCrop.sending"
+          ng-click="submitForm()"/>
+      </div>
+    </div>
+  </form>
 </div>

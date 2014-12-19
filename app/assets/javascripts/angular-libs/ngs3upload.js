@@ -177,7 +177,6 @@ angular.module('ngS3upload.directives', []).
               folder: ''
             }, opts);
             var bucket = scope.$eval(attrs.bucket);
-
             // Bind the button click event
             var button = angular.element(element.children()[0]),
               file = angular.element(element.find("input")[0]);
@@ -234,7 +233,12 @@ angular.module('ngS3upload.directives', []).
                       }
                       // TODO: Un-hardcode this.
                       ngModel.$setViewValue(s3Uri + key);
-                      console.log(ngModel.$viewValue);
+                      if (attrs.s3UploadObject){
+                        // TODO: make sure that guide and stage code mess from
+                        // above conform to this.
+                        var obj = attrs.s3UploadObject;
+                        scope.$parent[obj] = ngModel.$viewValue;
+                      }
                       scope.filename = ngModel.$viewValue;
                       ngModel.$setValidity('uploading', true);
                       ngModel.$setValidity('succeeded', true);

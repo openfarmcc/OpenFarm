@@ -48,8 +48,27 @@ openFarmModule.factory('cropService', ['$http',
         });
       });
     };
+
+    var updateCrop = function(cropId, params, alerts, callback){
+      $http.put('/api/crops/' + cropId + '/', params)
+      .success(function (response) {
+        return callback (true, response.crop);
+      })
+      .error(function (response, code) {
+        console.log(response, code);
+        var msg = '';
+        angular.forEach(response, function(value){
+          msg += value;
+        });
+        alerts.push({
+          msg: msg,
+          type: 'warning'
+        });
+      });
+    };
     return {
-      'getCrop': getCrop
+      'getCrop': getCrop,
+      'updateCrop': updateCrop
     };
 }]);
 
@@ -240,20 +259,7 @@ openFarmModule.directive('location', [
 
         $scope.addresses = [];
       }],
-      template: '<input type="text"'+
-             'ng-model="location"'+
-             'autocomplete="off"'+
-             'id="location"'+
-             'placeholder="Ex: Hanoi, Portland, California"'+
-             'typeahead="address for address in addresses"'+
-             'ng-change="getLocation(location)"'+
-             'typeahead-min-length="3"'+
-             'typeahead-loading="loadingLocations"'+
-             'typeahead-wait-ms="555"'+
-             'name="location">'+
-             '<i ng-show="loadingLocations" '+
-               'class="fa fa-spinner fa-spin"></i> '+
-              '<span ng-bind="loadingText"></span>',
+      templateUrl: '/assets/templates/_location.html',
     };
 }]);
 

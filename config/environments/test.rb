@@ -35,4 +35,9 @@ OpenFarm::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
   config.quiet_assets = true
+
+  Paperclip::Attachment.default_options.merge!(path: 'tmp/paperclip_junk/'\
+                                                     ':class/:attachment/:id.'\
+                                                     ':extension')
+
 end

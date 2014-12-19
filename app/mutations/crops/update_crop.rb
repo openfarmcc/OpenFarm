@@ -24,7 +24,7 @@ module Crops
     end
 
     optional do
-      array :images, class: String, arrayize: true
+      array :images, class: Hash, arrayize: true
     end
 
     def validate

@@ -5,6 +5,8 @@ class CropSearchesController < ApplicationController
     query = params[:q].to_s
     @crops = Crop.search(query,
                          limit: 25,
+                         partial: true,
+                         misspellings: {distance: 2},
                          fields: ['name^20',
                                   'common_names^10',
                                   'binomial_name^10',

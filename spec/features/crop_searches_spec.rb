@@ -42,6 +42,28 @@ describe 'Crop search', type: :controller do
     page.should_not have_content('no crops matching')
   end
 
+  it 'handles misspellings' do
+    visit root_path
+    FactoryGirl.create_list(:crop, 10)
+    FactoryGirl.create(:crop, name: 'radish')
+    Crop.searchkick_index.refresh
+    fill_in 'q', with: 'radis'
+    click_button 'Search'
+    expect(page).to have_content('radish')
+    page.should_not have_content('no crops matching')
+  end
+
+  it 'handles multiple words' do
+    visit root_path
+    FactoryGirl.create_list(:crop, 10)
+    FactoryGirl.create(:crop, name: 'radish')
+    Crop.searchkick_index.refresh
+    fill_in 'q', with: 'pear radish'
+    click_button 'Search'
+    expect(page).to have_content('radish')
+    page.should_not have_content('no crops matching')
+  end
+
   it 'has a top nav bar' do
     visit crop_search_via_get_path(cropsearch: { q: 'red' })
     fill_in 'q', with: crop.name

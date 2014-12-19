@@ -2,7 +2,7 @@
   <div class="featured-crop-container">
     <%= link_to crop do %>
     <div class="featured-crop">
-      <div class="crop-image full-cover" style="background-image:url(<%= crop.pictures[0] %>)"></div>
+      <div class="crop-image full-cover" style="<%= if !crop.pictures[0].blank? then "background-image: url(#{crop.pictures[0].attachment.url})" end %>"></div>
       <div class="blackness full-cover"></div>
       <div class="row row-table row-full-height">
         <div class="small-12 column-middle columns">

@@ -39,6 +39,11 @@ class Crop
   def search_data
     as_json only: [:name, :common_names, :binomial_name, :description]
   end
+
+  def main_image_path
+    pictures.first.attachment.url if pictures.present?
+  end
+
   slug :name
 
 

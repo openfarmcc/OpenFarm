@@ -41,9 +41,7 @@ class Crop
   end
 
   def main_image_path
-    if !self.pictures[0].blank?
-      self.pictures[0].attachment.url
-    end
+    pictures.first.attachment.url if pictures.present?
   end
 
   slug :name

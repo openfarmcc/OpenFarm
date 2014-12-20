@@ -5,7 +5,10 @@
 //= require ng-rails-csrf
 //= require ./libs/showdown
 //= require ./libs/moment.min
-//= require_tree ./angular-libs
+//= require ./angular-libs/angular.openfarm
+//= require ./angular-libs/angular.openfarm.guides
+//= require ./angular-libs/angular.openfarm.stages
+//= require ./angular-libs/ngs3upload
 //= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation
@@ -48,7 +51,7 @@ $(function() {
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
 
-// TODO: move these somewhere actually useful.
+// TODO: move these somewhere actually meaningful.
 
 var getUrlVar = function(key) {
   var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
@@ -58,6 +61,18 @@ var getUrlVar = function(key) {
 var getIDFromURL = function(key) {
   var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
   return result && unescape(result[1]) || "";
+};
+
+var pushToAlerts = function (response, code, alerts){
+  console.log(response, code);
+  var msg = '';
+  angular.forEach(response, function(value){
+    msg += value;
+  });
+  alerts.push({
+    msg: msg,
+    type: 'warning'
+  });
 };
 
 // Smooth anchor scrolling via Chris Coyier

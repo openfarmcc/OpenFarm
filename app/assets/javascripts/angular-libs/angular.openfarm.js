@@ -9,28 +9,6 @@ var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
 
-openFarmModule.factory('guideService', ['$http',
-  function guideService($http) {
-    // get the guide specified.
-    var getGuide = function(guideId, alerts, callback){
-      $http({
-        url: '/api/guides/' + guideId,
-        method: 'GET'
-      }).success(function (response) {
-        return callback (true, response.guide);
-      }).error(function (response, code) {
-        alerts.push({
-          msg: code + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
-      });
-    };
-    return {
-      'getGuide': getGuide
-    };
-}]);
-
 openFarmModule.factory('cropService', ['$http',
   function cropService($http) {
     // get the guide specified.

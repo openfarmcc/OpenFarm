@@ -5,19 +5,24 @@ module Stages
     required do
       model :user
       string :guide_id
-      string :name
+
+      hash :stage do
+        required do
+          string :name
+        end
+
+        optional do
+          array :environment
+          array :soil
+          array :light
+          integer :stage_length
+        end
+      end
     end
 
     optional do
-      array :environment
-      array :soil
-      array :light
-      integer :stage_length
+      array :actions, class: Hash, arrayize: true
       array :images, class: String, arrayize: true
-    end
-
-    def stage
-      @stage ||= Stage.new
     end
 
     def validate
@@ -27,19 +32,14 @@ module Stages
     end
 
     def execute
+      @stage ||= Stage.new(stage)
+      @stage.guide = @guide
+      @stage.save
       set_pictures
-      set_params
-      stage
+      @stage
     end
 
     private
-
-    def validate_permissions
-      if @guide && (@guide.user != user)
-        msg = 'You can only create stages for guides that belong to you.'
-        raise OpenfarmErrors::NotAuthorized, msg
-      end
-    end
 
     def validate_guide
       @guide = Guide.find(guide_id)
@@ -48,16 +48,11 @@ module Stages
       add_error :guide_id, :guide_not_found, msg
     end
 
-    def set_params
-      stage.guide          = @guide
-      # TODO: validate that the stage name is one
-      # of stage options, or should we?
-      stage.name           = name
-      stage.environment    = environment if environment
-      stage.soil           = soil if soil
-      stage.light          = light if light
-      stage.stage_length   = stage_length if stage_length
-      stage.save
+    def validate_permissions
+      if @guide && (@guide.user != user)
+        msg = 'You can only create stages for guides that belong to you.'
+        raise OpenfarmErrors::NotAuthorized, msg
+      end
     end
   end
 end

@@ -5,7 +5,7 @@ describe Stages::CreateStage do
   let(:guide) { FactoryGirl.create(:guide) }
   let(:params) do
     { user: guide.user,
-      name: "#{Faker::Name.last_name}",
+      stage: { name: "#{Faker::Name.last_name}" },
       guide_id: "#{guide._id}" }
   end
 
@@ -28,5 +28,4 @@ describe Stages::CreateStage do
     expect(results.success?).to be_false
     expect(results.errors.message[:images]).to include('not a valid URL')
   end
-
 end

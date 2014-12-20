@@ -11,7 +11,9 @@ module Stages
     end
 
     def set_pictures
-      images && images.map { |url| Picture.from_url(url, stage) }
+      images && images.map do |url|
+        Picture.from_url(url, @stage)
+      end
     end
   end
 end

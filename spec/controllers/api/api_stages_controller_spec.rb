@@ -15,8 +15,8 @@ describe Api::StagesController, type: :controller do
   it 'creates stages' do
     guide = FactoryGirl.create(:guide, user: user)
     old_length = Stage.all.length
-    data = { name: Faker::Lorem.word,
-             soil: Faker::Lorem.words(2),
+    data = { stage: { name: Faker::Lorem.word,
+                      soil: Faker::Lorem.words(2) },
              guide_id: guide.id }
     post 'create', data, format: :json
     expect(response.status).to eq(201)
@@ -36,9 +36,9 @@ describe Api::StagesController, type: :controller do
   end
 
   it 'should return an error when a guide is not provided' do
-    data = { instructions: "#{Faker::Lorem.sentences(2)}",
-             guide_id: 1,
-             name: 'hello' }
+    data = { stage: { instructions: "#{Faker::Lorem.sentences(2)}",
+                      name: 'hello' },
+             guide_id: 1 }
     post 'create', data, format: :json
     expect(json['guide_id']).to eq("Could not find a guide with id 1.")
     expect(response.status).to eq(422)
@@ -61,9 +61,9 @@ describe Api::StagesController, type: :controller do
   end
 
   it 'cant create a stage on someone elses guide' do
-    data = { instructions: "#{Faker::Lorem.sentences(2)}",
-             guide_id: FactoryGirl.create(:guide).id,
-             name: 'hello' }
+    data = { stage: { instructions: "#{Faker::Lorem.sentences(2)}",
+                      name: 'hello' },
+             guide_id: FactoryGirl.create(:guide).id }
     post 'create', data, format: :json
     expect(json['error']).to include(
       "You can only create stages for guides that belong to you.")
@@ -99,4 +99,16 @@ describe Api::StagesController, type: :controller do
     expect(json['stage']).to eq('Could not find a stage with id 1.')
     expect(response.status).to eq(422)
   end
+
+  it 'should add actions to stages'
+
+  it 'should remove actions from stages'
+
+  it 'should reject badly formed actions'
+
+  it 'should only add actions to stages that the user owns the guide of'
+
+  it 'should only remove actions from stages that the user owns the guide of'
+
+  it 'should only update actions to stages that the user owns the guide of'
 end

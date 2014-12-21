@@ -1,3 +1,6 @@
+Crop.reindex
+Guide.reindex
+
 OpenFarm::Application.configure do
   Delayed::Worker.delay_jobs = false
   config.cache_classes = false

@@ -13,10 +13,11 @@ module Api
     end
 
     def update
-      stage = Stage.find(params[:id])
-      @outcome = Stages::UpdateStage.run(params,
-                                         stage: stage,
-                                         user: current_user,)
+      # UpdateStage is being funny, issue reported here:
+      # https://github.com/cypriss/mutations/issues/85
+      @outcome = Stages::UpdateStage.run(attributes: params[:stage],
+                                         stage: Stage.find(params[:id]),
+                                         user: current_user)
       respond_with_mutation(:ok)
     end
 

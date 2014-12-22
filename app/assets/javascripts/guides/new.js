@@ -112,21 +112,25 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
     var stages = $scope.newGuide.stages;
+    console.log(stages);
+
     if (stages){
       var lastSelectedIndex = null;
       stages.forEach(function(item, index){
-          if (item.selected){
-            item.originalIndex = index;
-            if (lastSelectedIndex !== null){
-              item.lastSelectedIndex = lastSelectedIndex;
-              stages[lastSelectedIndex].nextSelectedIndex = index;
-            }
-
-            $scope.newGuide.selectedStages.push(item);
-            lastSelectedIndex = index;
+        item.nextSelectedIndex = undefined;
+        if (item.selected){
+          item.originalIndex = index;
+          if (lastSelectedIndex !== null){
+            item.lastSelectedIndex = lastSelectedIndex;
+            stages[lastSelectedIndex].nextSelectedIndex = index;
           }
-        });
+
+          $scope.newGuide.selectedStages.push(item);
+          lastSelectedIndex = index;
+        }
+      });
     }
+    console.log($scope.newGuide.selectedStages);
 
     $scope.newGuide.selectedStages.sort(function(a, b){
       return a.order > b.order;
@@ -407,9 +411,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         stageService.createStage(stageParams,
                                  $scope.alerts,
                                  function(success, stage){
-                                   console.log(stage)
                                    stage.sent = true;
                                    $scope.sent ++;
+                                   $scope.checkNumberUpdated();
                                  });
 
       } else if (stage.selected && stage.exists){
@@ -419,6 +423,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  function(){
                                    stage.sent = true;
                                    $scope.sent ++;
+                                   $scope.checkNumberUpdated();
                                  });
 
       } else if (stage.exists){
@@ -427,23 +432,25 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  function(){
                                    stage.sent = true;
                                    $scope.sent ++;
+                                   $scope.checkNumberUpdated();
                                  });
       }
     });
   };
 
   // Only redirect when everything is done processing.
-  $scope.$watch('newGuide.stages', function(){
+  $scope.checkNumberUpdated = function(){
     var updatedNum = 0;
     $scope.newGuide.stages.forEach(function(stage){
       if (stage.selected || stage.exists){
         updatedNum++;
       }
     });
+    console.log(updatedNum, $scope.sent);
     if (updatedNum === $scope.sent){
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
-  }, true);
+  };
 
   // Any function returning a promise object can be used to load
   // values asynchronously

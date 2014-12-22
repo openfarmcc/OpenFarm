@@ -54,7 +54,7 @@ describe Api::StagesController, type: :controller do
   it 'should update a stage' do
     guide = FactoryGirl.create(:guide, user: user)
     stage = FactoryGirl.create(:stage, guide: guide)
-    put :update, id: stage.id, name: 'updated'
+    put :update, id: stage.id, stage: { name: 'updated' }
     expect(response.status).to eq(200)
     stage.reload
     expect(stage.name).to eq('updated')
@@ -73,7 +73,7 @@ describe Api::StagesController, type: :controller do
   it 'should not update a stage on someone elses guide' do
     guide = FactoryGirl.create(:guide)
     stage = FactoryGirl.create(:stage, guide: guide)
-    put :update, id: stage.id, overview: 'updated'
+    put :update, id: stage.id, stage: { overview: 'updated' }
     expect(response.status).to eq(401)
     expect(response.body).to include('You can only update stages that belong to your guides.')
   end

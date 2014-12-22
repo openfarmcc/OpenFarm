@@ -5,9 +5,6 @@ class Crop
   include Mongoid::Timestamps
   include Mongoid::Slug
   searchkick
-  # history tracking all Crop documents
-  # note: tracking will not work until #track_history is invoked
-  include Mongoid::History::Trackable
 
   is_impressionable counter_cache: true,
                     column_name: :impressions,
@@ -45,10 +42,4 @@ class Crop
   end
 
   slug :name
-
-
-  # See https://github.com/aq1018/mongoid-history
-  track_history on: [:description, :image],
-                modifier_field: :modifier,
-                version_field: :version
 end

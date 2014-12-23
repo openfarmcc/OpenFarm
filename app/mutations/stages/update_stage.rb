@@ -25,6 +25,7 @@ module Stages
     end
 
     def execute
+      @stage = stage
       set_pictures
       set_params
       stage

@@ -7,5 +7,7 @@ class StageOption
   field :name
   field :order
 
+  embeds_many :stage_options
+
   slug :name
 end

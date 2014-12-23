@@ -3,5 +3,5 @@ class StageSerializer < ApplicationSerializer
              :light
 
   has_many :pictures
-  embeds_many :stage_actions
+  has_many :stage_actions
 end

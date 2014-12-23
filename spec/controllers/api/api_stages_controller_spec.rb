@@ -21,6 +21,8 @@ describe Api::StagesController, type: :controller do
     post 'create', data, format: :json
     expect(response.status).to eq(201)
     new_length = Stage.all.length
+    expect(json['stage']['name']).to eq(data[:stage][:name])
+    expect(json['stage']['soil']).to eq(data[:stage][:soil])
     expect(new_length).to eq(old_length + 1)
   end
 

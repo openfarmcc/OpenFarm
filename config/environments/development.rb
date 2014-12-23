@@ -1,5 +1,5 @@
-Crop.reindex
-Guide.reindex
+# Crop.reindex
+# Guide.reindex
 
 OpenFarm::Application.configure do
   Delayed::Worker.delay_jobs = false

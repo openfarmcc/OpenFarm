@@ -3,16 +3,15 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      @outcome = Stages::CreateStage.run(params, user: current_user)
+      @outcome = Stages::CreateStage.run(params,
+                                         user: current_user,
+                                         attributes: params[:stage])
       respond_with_mutation(:created)
     end
 
     def show
       stage = Stage.find(params[:id])
-      # If this isn't nested, there seems to be a problem
-      # with sometimes stages not being returned nested
-      # (as happens with other parts of the API)
-      render json: { stage: stage }
+      render json: stage
     end
 
     def update

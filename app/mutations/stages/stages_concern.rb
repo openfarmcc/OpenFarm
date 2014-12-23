@@ -39,9 +39,9 @@ module Stages
     def set_actions
       @stage.stage_actions.delete_all
       actions && actions.each do |action|
-        outcome = StageActions::CreateStageAction.run(user: user,
-                                                      action: action,
-                                                      id: "#{@stage.id}")
+        StageActions::CreateStageAction.run(user: user,
+                                            action: action,
+                                            id: "#{@stage.id}")
       end
     end
   end

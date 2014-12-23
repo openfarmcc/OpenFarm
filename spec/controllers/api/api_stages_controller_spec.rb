@@ -122,7 +122,7 @@ describe Api::StagesController, type: :controller do
              guide_id: guide._id }
     post 'create', data, format: :json
     expect(response.status).to eq(422)
-    expect(response.body).to include("provide a valid overview")
+    expect(response.body).to include('provide a valid overview')
   end
 
   it 'should only add actions to stages that the user owns the guide of'

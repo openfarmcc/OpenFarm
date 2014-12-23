@@ -8,7 +8,7 @@ describe Stages::UpdateStage do
   let(:params) do
     { user: stage.guide.user,
       stage: stage,
-      attributes: { } }
+      attributes: {} }
   end
 
   it 'requires fields' do
@@ -45,8 +45,8 @@ describe Stages::UpdateStage do
   end
 
   it 'allows a well formed stage actions array' do
-    actions = [ { name: "#{Faker::Lorem.word}",
-                  overview: "#{Faker::Lorem.paragraph}" }, ]
+    actions = [{ name: "#{Faker::Lorem.word}",
+                 overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_true
@@ -54,8 +54,8 @@ describe Stages::UpdateStage do
   end
 
   it 'disallows a badly formed stage actions array with bad overview' do
-    actions = [ { name: "#{Faker::Lorem.word}",
-                  description: "#{Faker::Lorem.paragraph}" }, ]
+    actions = [{ name: "#{Faker::Lorem.word}",
+                 description: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_false
@@ -63,8 +63,8 @@ describe Stages::UpdateStage do
   end
 
   it 'disallows a badly formed stage actions array with bad name' do
-    actions = [ { moon: "#{Faker::Lorem.word}",
-                  overview: "#{Faker::Lorem.paragraph}" }, ]
+    actions = [{ moon: "#{Faker::Lorem.word}",
+                 overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_false

@@ -8,7 +8,6 @@ OpenFarm::Application.configure do
   config.assets.compile = true
   config.assets.digest = true
   config.assets.version = '1.0'
-  config.force_ssl = true
   config.log_level = :info
   config.action_mailer.smtp_settings = {  address:   'smtp.mandrillapp.com',
                                           port:      587,

@@ -1,5 +1,3 @@
-Crop.reindex
-Guide.reindex
 
 OpenFarm::Application.configure do
   Delayed::Worker.delay_jobs = false
@@ -12,4 +10,8 @@ OpenFarm::Application.configure do
   config.assets.debug = true
   config.quiet_assets = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.after_initialize do
+    Crop.reindex
+    Guide.reindex
+  end
 end

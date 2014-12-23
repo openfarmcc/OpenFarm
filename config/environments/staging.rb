@@ -8,7 +8,6 @@ OpenFarm::Application.configure do
   config.assets.js_compressor = :uglifier
   config.assets.compile = true
   config.assets.digest = true
-  config.force_ssl = true
   config.assets.version = '1.0'
   config.log_level = :info
   config.action_mailer.smtp_settings = { address:   'smtp.mandrillapp.com',

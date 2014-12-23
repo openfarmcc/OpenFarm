@@ -21,7 +21,7 @@ class Picture
   end
 
   # Delayed_job is unable to work on non-persisted records, so we're forced
-  # to wrap the update_attributes method and handle it asyncronously
+  # to wrap the update_attributes method and handle it asynchronously
   def add_image(url)
     update_attributes(attachment: open(url))
   end

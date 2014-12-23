@@ -29,6 +29,7 @@ module Stages
       validate_guide
       validate_permissions
       validate_images
+      validate_actions
     end
 
     def execute
@@ -36,6 +37,9 @@ module Stages
       @stage.guide = @guide
       @stage.save
       set_pictures
+      set_actions
+
+      @stage.reload
       @stage
     end
 

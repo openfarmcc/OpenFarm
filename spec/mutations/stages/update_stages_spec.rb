@@ -21,7 +21,7 @@ describe Stages::UpdateStage do
     expect(mutation.run(params).success?).to be_true
   end
 
-  it 'updates a stage image via URL', focus: true do
+  it 'updates a stage image via URL' do
     VCR.use_cassette('mutations/stages/update_stage') do
       image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
       results = mutation.run(image_params)
@@ -36,5 +36,38 @@ describe Stages::UpdateStage do
     results = mutation.run(image_params)
     expect(results.success?).to be_false
     expect(results.errors.message[:images]).to include("not a valid URL")
+  end
+
+  it 'allows an empty stage actions array' do
+    actions_params = params.merge(actions: [])
+    results = mutation.run(actions_params)
+    expect(results.success?).to be_true
+  end
+
+  it 'allows a well formed stage actions array' do
+    actions = [ { name: "#{Faker::Lorem.word}",
+                  overview: "#{Faker::Lorem.paragraph}" }, ]
+    actions_params = params.merge(actions: actions)
+    results = mutation.run(actions_params)
+    expect(results.success?).to be_true
+    expect(results.result.stage_actions.length).to eq(1)
+  end
+
+  it 'disallows a badly formed stage actions array with bad overview' do
+    actions = [ { name: "#{Faker::Lorem.word}",
+                  description: "#{Faker::Lorem.paragraph}" }, ]
+    actions_params = params.merge(actions: actions)
+    results = mutation.run(actions_params)
+    expect(results.success?).to be_false
+    expect(results.errors.message[:actions]).to include('valid overview')
+  end
+
+  it 'disallows a badly formed stage actions array with bad name' do
+    actions = [ { moon: "#{Faker::Lorem.word}",
+                  overview: "#{Faker::Lorem.paragraph}" }, ]
+    actions_params = params.merge(actions: actions)
+    results = mutation.run(actions_params)
+    expect(results.success?).to be_false
+    expect(results.errors.message[:actions]).to include('valid name')
   end
 end

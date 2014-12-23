@@ -28,7 +28,7 @@ describe Api::StagesController, type: :controller do
     # FIXME what is this spec testing? Maybe you should do some assertions on
     # the response message.
     data = {
-      instructions: "#{Faker::Lorem.sentences(2)}",
+      instructions: "#{Faker::Lorem.paragraph}",
       guide_id: guide.id
     }
     post 'create', data, format: :json
@@ -100,11 +100,28 @@ describe Api::StagesController, type: :controller do
     expect(response.status).to eq(422)
   end
 
-  it 'should add actions to stages'
+  it 'should add actions in a stage creation event successfully' do
+    data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
+                      name: 'hello' },
+             actions: [{ name: "#{Faker::Lorem.word}",
+                         overview: "#{Faker::Lorem.paragraph}" }],
+             guide_id: guide._id }
+    post 'create', data, format: :json
+    expect(response.status).to eq(201)
+  end
 
   it 'should remove actions from stages'
 
-  it 'should reject badly formed actions'
+  it 'should reject badly formed actions' do
+    data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
+                      name: 'hello' },
+             actions: [{ name: "#{Faker::Lorem.word}",
+                         description: "#{Faker::Lorem.paragraph}" }],
+             guide_id: guide._id }
+    post 'create', data, format: :json
+    expect(response.status).to eq(422)
+    expect(response.body).to include("provide a valid overview")
+  end
 
   it 'should only add actions to stages that the user owns the guide of'
 

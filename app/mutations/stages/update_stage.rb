@@ -28,13 +28,14 @@ module Stages
       @stage = stage
       validate_permissions
       validate_images
+      validate_actions
     end
 
     def execute
-
       @stage.update(attributes)
       set_pictures
-      @stage
+      set_actions
+      @stage.reload
     end
 
     private

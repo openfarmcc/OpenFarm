@@ -9,7 +9,10 @@ module Api
 
     def show
       stage = Stage.find(params[:id])
-      render json: stage
+      # If this isn't nested, there seems to be a problem
+      # with sometimes stages not being returned nested
+      # (as happens with other parts of the API)
+      render json: { stage: stage }
     end
 
     def update

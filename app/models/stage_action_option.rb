@@ -1,4 +1,4 @@
-class ActionOption
+class StageActionOption
   include Mongoid::Document
   embedded_in :stage_option
 

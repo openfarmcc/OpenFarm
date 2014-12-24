@@ -1,10 +1,8 @@
-module Actions
-  class CreateAction < Mutations::Command
-    include Stages::StagesConcern
-
+module StageActions
+  class CreateStageAction < Mutations::Command
     required do
       model :user
-      string :stage
+      string :id
       hash :action do
         required do
           string :name
@@ -19,24 +17,24 @@ module Actions
     end
 
     def execute
-      @action ||= Action.new(action)
+      @stage.stage_actions.create(action)
     end
 
     private
 
+    def validate_stage
+      @stage = Stage.find(id)
+    rescue Mongoid::Errors::DocumentNotFound
+      msg = "Could not find a stage with id #{id}."
+      add_error :id, :stage_not_found, msg
+    end
+
     def validate_permissions
       if @stage && (@stage.guide.user != user)
-        msg = 'You can only create actions for stages that belong to your'\
+        msg = 'You can only create actions for stages that belong to your '\
               'guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
-    end
-
-    def validate_stage
-      @stage = Stage.find(stage_id)
-    rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a stage with id #{stage.id}."
-      add_error :stage_id, :stage_not_found, msg
     end
   end
 end

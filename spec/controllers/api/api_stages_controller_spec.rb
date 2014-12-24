@@ -21,6 +21,8 @@ describe Api::StagesController, type: :controller do
     post 'create', data, format: :json
     expect(response.status).to eq(201)
     new_length = Stage.all.length
+    expect(json['stage']['name']).to eq(data[:stage][:name])
+    expect(json['stage']['soil']).to eq(data[:stage][:soil])
     expect(new_length).to eq(old_length + 1)
   end
 
@@ -28,7 +30,7 @@ describe Api::StagesController, type: :controller do
     # FIXME what is this spec testing? Maybe you should do some assertions on
     # the response message.
     data = {
-      instructions: "#{Faker::Lorem.sentences(2)}",
+      instructions: "#{Faker::Lorem.paragraph}",
       guide_id: guide.id
     }
     post 'create', data, format: :json
@@ -54,7 +56,7 @@ describe Api::StagesController, type: :controller do
   it 'should update a stage' do
     guide = FactoryGirl.create(:guide, user: user)
     stage = FactoryGirl.create(:stage, guide: guide)
-    put :update, id: stage.id, name: 'updated'
+    put :update, id: stage.id, stage: { name: 'updated' }
     expect(response.status).to eq(200)
     stage.reload
     expect(stage.name).to eq('updated')
@@ -73,7 +75,7 @@ describe Api::StagesController, type: :controller do
   it 'should not update a stage on someone elses guide' do
     guide = FactoryGirl.create(:guide)
     stage = FactoryGirl.create(:stage, guide: guide)
-    put :update, id: stage.id, overview: 'updated'
+    put :update, id: stage.id, stage: { overview: 'updated' }
     expect(response.status).to eq(401)
     expect(response.body).to include('You can only update stages that belong to your guides.')
   end
@@ -100,11 +102,28 @@ describe Api::StagesController, type: :controller do
     expect(response.status).to eq(422)
   end
 
-  it 'should add actions to stages'
+  it 'should add actions in a stage creation event successfully' do
+    data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
+                      name: 'hello' },
+             actions: [{ name: "#{Faker::Lorem.word}",
+                         overview: "#{Faker::Lorem.paragraph}" }],
+             guide_id: guide._id }
+    post 'create', data, format: :json
+    expect(response.status).to eq(201)
+  end
 
   it 'should remove actions from stages'
 
-  it 'should reject badly formed actions'
+  it 'should reject badly formed actions' do
+    data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
+                      name: 'hello' },
+             actions: [{ name: "#{Faker::Lorem.word}",
+                         description: "#{Faker::Lorem.paragraph}" }],
+             guide_id: guide._id }
+    post 'create', data, format: :json
+    expect(response.status).to eq(422)
+    expect(response.body).to include('provide a valid overview')
+  end
 
   it 'should only add actions to stages that the user owns the guide of'
 

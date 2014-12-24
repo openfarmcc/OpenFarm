@@ -6,49 +6,46 @@ module Stages
     include Stages::StagesConcern
 
     required do
-      model :user
       model :stage
+      model :user
+      hash :attributes do
+        optional do
+          string :name
+          array :environment
+          array :soil
+          array :light
+          integer :stage_length
+        end
+      end
     end
 
     optional do
-      string :name
-      array :environment
-      array :soil
-      array :light
-      integer :stage_length
-      array  :images, class: String, arrayize: true
+      array :images, class: String, arrayize: true
+      array :actions, class: Hash, arrayize: true
     end
 
     def validate
+      @stage = stage
       validate_permissions
       validate_images
+      validate_actions
     end
 
     def execute
-      @stage = stage
+      @stage.update(attributes)
       set_pictures
-      set_params
-      stage
+      set_actions
+      @stage.reload
     end
 
     private
 
     def validate_permissions
-      if stage.guide.user != user
+      # @stage = Stage.find(id)
+      if @stage.guide.user != user
         msg = 'You can only update stages that belong to your guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
-    end
-
-    def set_params
-      # TODO: Should we wrap our request params in a hash and not keep them in a
-      # root element? That way we could just update_attributes(stage_params)
-      stage.name           = name
-      stage.environment    = environment if environment.present?
-      stage.soil           = soil if soil.present?
-      stage.light          = light if light.present?
-      stage.stage_length   = stage_length if stage_length.present?
-      stage.save
     end
   end
 end

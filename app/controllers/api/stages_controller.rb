@@ -3,7 +3,9 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-      @outcome = Stages::CreateStage.run(params, user: current_user)
+      @outcome = Stages::CreateStage.run(params,
+                                         user: current_user,
+                                         attributes: params[:stage])
       respond_with_mutation(:created)
     end
 
@@ -13,10 +15,11 @@ module Api
     end
 
     def update
-      stage = Stage.find(params[:id])
-      @outcome = Stages::UpdateStage.run(params,
-                                         stage: stage,
-                                         user: current_user,)
+      # UpdateStage is being funny, issue reported here:
+      # https://github.com/cypriss/mutations/issues/85
+      @outcome = Stages::UpdateStage.run(attributes: params[:stage],
+                                         stage: Stage.find(params[:id]),
+                                         user: current_user)
       respond_with_mutation(:ok)
     end
 

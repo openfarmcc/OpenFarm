@@ -28,7 +28,6 @@ class Guide
   validates_attachment :featured_image,
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
-  handle_asynchronously :featured_image=
 
   def owned_by?(current_user)
     !!(current_user && user == current_user)

@@ -11,6 +11,10 @@ module Guides
     end
 
     def set_featured_image_async
+      # TODO: Determine if this is actually getting ran in DJ. If not:
+      # -- move to the model level
+      # -- Pass in featured_image as a param.
+      # -- handle_asynchronously :this_guy_right_her
       if featured_image
         guide.update_attributes(featured_image: URI(featured_image))
       end

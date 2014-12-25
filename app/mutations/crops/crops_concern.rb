@@ -1,6 +1,8 @@
 module Crops
   # Place shared functionality between Stage mutations here to stay DRY.
   module CropsConcern
+    # Complexity of this method is way too high. Let's refactor some time.
+    #   - @RickCarlino
     def validate_images
       images && images.each do |pic|
         # If it's an existing picture with an ID.
@@ -11,9 +13,6 @@ module Crops
                       :changed_image, 'You can\'t change an existing image, '\
                       'delete it and upload an other image.'
           end
-        # Else it's new, so check that it's a valid URL.
-        # TODO @rickcarlino have a look at what this means
-        # for local paperclip dev.
         elsif !pic[:image_url].valid_url?
             add_error :images,
                       :invalid_url, "'#{pic[:image_url]}' is not a valid URL. "\

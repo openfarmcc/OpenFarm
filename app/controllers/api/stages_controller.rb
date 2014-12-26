@@ -6,6 +6,7 @@ module Api
       @outcome = Stages::CreateStage.run(params,
                                          user: current_user,
                                          attributes: params[:stage])
+      # binding.pry
       respond_with_mutation(:created)
     end
 

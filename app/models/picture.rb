@@ -14,16 +14,15 @@ class Picture
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
-  def self.from_url(url, parent)
-    pic = create(photographic: parent)
-    pic.add_image(url)
-    pic
-  end
+  # SEE: http://stackoverflow.com/a/23141483/1064917
+  class << self
+    def from_url(url, parent)
+      pic = self.new(photographic: parent)
+      pic.attachment = open(url)
+      pic.save!
+      pic
+    end
 
-  # Delayed_job is unable to work on non-persisted records, so we're forced
-  # to wrap the update_attributes method and handle it asynchronously
-  def add_image(url)
-    update_attributes(attachment: open(url))
+    handle_asynchronously :from_url
   end
-  handle_asynchronously :add_image
 end

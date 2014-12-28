@@ -17,7 +17,7 @@ class Picture
   # SEE: http://stackoverflow.com/a/23141483/1064917
   class << self
     def from_url(url, parent)
-      pic = self.new(photographic: parent)
+      pic = new(photographic: parent)
       pic.attachment = open(url)
       pic.save!
       pic

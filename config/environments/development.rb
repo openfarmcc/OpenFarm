@@ -1,5 +1,5 @@
 OpenFarm::Application.configure do
-  Delayed::Worker.delay_jobs = true
+  Delayed::Worker.delay_jobs = false
   config.cache_classes = false
   config.eager_load = false
   config.consider_all_requests_local       = true

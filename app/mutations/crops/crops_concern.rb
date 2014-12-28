@@ -35,7 +35,7 @@ module Crops
       # Get current picture IDs
       current_ids = @existing_crop.pictures.pluck(:id).map(&:to_s)
       # Get picture IDs provided in request
-      dont_delete = images.map{|p| p[:id]}.map(&:to_s).compact
+      dont_delete = images.map { |p| p[:id] }.map(&:to_s).compact
       # Find pictures IDs that exist, but were not provided
       do_delete   = current_ids - dont_delete
       # Delete pic IDs that were not provided in params.

@@ -35,13 +35,13 @@ module Stages
       @stage.update(attributes)
       set_pictures
       set_actions
+      @stage.save
       @stage.reload
     end
 
     private
 
     def validate_permissions
-      # @stage = Stage.find(id)
       if @stage.guide.user != user
         msg = 'You can only update stages that belong to your guides.'
         raise OpenfarmErrors::NotAuthorized, msg

@@ -21,22 +21,30 @@ module Crops
         end
       end
     end
-
+    # I think the complexity seen here and in validate_images might indicate its
+    # time to make crop pictures a nested resources.
     def set_pictures
-      existing_pics = []
-      images && images.map do |pic|
-        if pic[:id]
-          # Find the pictures with a given ID
-          existing_pics.push(@existing_crop.pictures.find(pic[:id])._id)
-        else
-          existing_pics.push(Picture.from_url(pic[:image_url],
-                                              @existing_crop)._id)
-        end
+      if images
+        maybe_delete images
+        maybe_create images
       end
-      @existing_crop.pictures.each do |pic|
-        unless existing_pics.include? pic[:id]
-          pic.remove()
-        end
+    end
+
+    # The amount of Ruby golf going on here is worrisome.
+    def maybe_delete(images)
+      # Get current picture IDs
+      current_ids = @existing_crop.pictures.pluck(:id).map(&:to_s)
+      # Get picture IDs provided in request
+      dont_delete = images.map{|p| p[:id]}.map(&:to_s).compact
+      # Find pictures IDs that exist, but were not provided
+      do_delete   = current_ids - dont_delete
+      # Delete pic IDs that were not provided in params.
+      @existing_crop.pictures.find(do_delete).map(&:destroy)
+    end
+
+    def maybe_create(images)
+      images.map do |pic|
+        Picture.from_url(pic[:image_url], @existing_crop) if !pic[:id].present?
       end
     end
   end

@@ -35,7 +35,7 @@ module Crops
 
     def execute
       set_pictures
-      @existing_crop.update(crop)
+      @existing_crop.update_attributes(crop)
       @existing_crop
     end
 

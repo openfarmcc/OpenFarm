@@ -39,6 +39,8 @@ module Stages
       set_pictures
       set_actions
 
+      # TODO: Why is this record being reloaded? Possible refactor target:
+      @stage.save
       @stage.reload
       @stage
     end

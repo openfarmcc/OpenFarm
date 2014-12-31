@@ -173,11 +173,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
               item.stage_length = d.stage_length;
               switch(true){
-                case (parseInt(d.stage_length) % 7 === 0):
+                case (parseInt(d.stage_length, 10) % 7 === 0):
                   item.stage_length = item.stage_length / 7;
                   item.length_type = 'weeks';
                   break;
-                case (parseInt(d.stage_length) % 30 === 0):
+                case (parseInt(d.stage_length, 10) % 30 === 0):
                   item.stage_length = item.stage_length / 30;
                   item.length_type = 'months';
                   break;

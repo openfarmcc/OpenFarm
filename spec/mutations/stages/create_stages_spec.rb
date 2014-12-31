@@ -6,7 +6,8 @@ describe Stages::CreateStage do
   let(:guide) { FactoryGirl.create(:guide) }
   let(:params) do
     { user: guide.user,
-      stage: { name: "#{Faker::Name.last_name}" },
+      stage: { name: "#{Faker::Name.last_name}",
+               order: 0 },
       guide_id: "#{guide._id}" }
   end
 

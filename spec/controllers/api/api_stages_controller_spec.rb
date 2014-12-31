@@ -16,6 +16,7 @@ describe Api::StagesController, type: :controller do
     guide = FactoryGirl.create(:guide, user: user)
     old_length = Stage.all.length
     data = { stage: { name: Faker::Lorem.word,
+                      order: 0,
                       soil: Faker::Lorem.words(2) },
              guide_id: guide.id }
     post 'create', data, format: :json
@@ -37,9 +38,10 @@ describe Api::StagesController, type: :controller do
     expect(response.status).to eq(422)
   end
 
-  it 'should return an error when a guide is not provided' do
+  it 'should return an error when a guide does not exist' do
     data = { stage: { instructions: "#{Faker::Lorem.sentences(2)}",
-                      name: 'hello' },
+                      name: 'hello',
+                      order: 0 },
              guide_id: 1 }
     post 'create', data, format: :json
     expect(json['guide_id']).to eq("Could not find a guide with id 1.")
@@ -64,7 +66,8 @@ describe Api::StagesController, type: :controller do
 
   it 'cant create a stage on someone elses guide' do
     data = { stage: { instructions: "#{Faker::Lorem.sentences(2)}",
-                      name: 'hello' },
+                      name: 'hello',
+                      order: 0 },
              guide_id: FactoryGirl.create(:guide).id }
     post 'create', data, format: :json
     expect(json['error']).to include(
@@ -104,7 +107,8 @@ describe Api::StagesController, type: :controller do
 
   it 'should add actions in a stage creation event successfully' do
     data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
-                      name: 'hello' },
+                      name: 'hello',
+                      order: 0 },
              actions: [{ name: "#{Faker::Lorem.word}",
                          overview: "#{Faker::Lorem.paragraph}" }],
              guide_id: guide._id }
@@ -116,7 +120,8 @@ describe Api::StagesController, type: :controller do
 
   it 'should reject badly formed actions' do
     data = { stage: { instructions: "#{Faker::Lorem.paragraph}",
-                      name: 'hello' },
+                      name: 'hello',
+                      order: 0 },
              actions: [{ name: "#{Faker::Lorem.word}",
                          description: "#{Faker::Lorem.paragraph}" }],
              guide_id: guide._id }

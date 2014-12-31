@@ -317,6 +317,37 @@
     }
   }
 
+  .actions{
+    border-top: 1px solid $of-light;
+    padding-top: 2rem;
+    margin-top: 1rem;
+
+    ul{
+      margin: 0;
+      list-style: none;
+      li{
+        padding: .25rem .5rem;
+        cursor: pointer;
+        transition: .5s;
+        opacity: .8;
+        margin: .25rem 0;
+        border-radius: $global-radius;
+      }
+
+      li:hover{
+        background: $of-green;
+        opacity: 1;
+        color: white;
+      }
+    }
+
+    .selected{
+      background: $of-green;
+      opacity: 1;
+      color: white;
+    }
+  }
+
   // For now these live in .new-guide, but they
   // might be better suited somewhere else.
   .stage-option, .chosen-stage > .bubble{

@@ -9,6 +9,7 @@ module Stages
       hash :stage do
         required do
           string :name
+          integer :order
         end
 
         optional do

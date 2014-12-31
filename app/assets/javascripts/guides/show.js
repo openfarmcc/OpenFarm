@@ -27,6 +27,16 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
         userService.getUser($scope.guide.user_id,
                             $scope.alerts,
                             $scope.setUser);
+
+        $scope.haveTimes = $scope.guide.stages
+          .sort(function(a, b){ return a.order > b.order; })
+          .filter(function(s, i){
+            return s.stage_length;
+          });
+
+        $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
+          return pV.stage_length + cV.stage_length;
+        });
       }
     };
 
@@ -43,7 +53,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
         $scope.alerts,
         callback);
     };
-    
+
     if ($scope.userId){
       userService.getUser($scope.userId,
                           $scope.alerts,

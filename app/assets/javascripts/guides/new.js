@@ -410,6 +410,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         name: stage.name,
         images: [stage.featured_image],
         guide_id: guide._id,
+        order: stage.order,
         stage_length: calcStageLength(stage.stage_length, stage.length_type),
         environment: stage.where.filter(function(s){
             return s.selected;

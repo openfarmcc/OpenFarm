@@ -1,5 +1,7 @@
-<accordion-group is-open="timeline.isopen"
- class="accordion-navigation timeline">
+<accordion-group
+  ng-init="timeline.isopen = true"
+  is-open="timeline.isopen"
+  class="accordion-navigation timeline">
   <accordion-heading class="title-wrapper">
     <h2 class="title">
       <i ng-class="{'fa fa-minus': timeline.isopen, 'fa fa-plus': !timeline.isopen}"></i>
@@ -8,13 +10,16 @@
   </accordion-heading>
   <p class="section-text">
     <div class="box">
-      <div class="row">
+      <div class="row" ng-if="haveTimes.length === 0">
         <div class="empty columns large-12 large-centered">
-
-           <i class="fa fa-clock-o"></i><br/>
-            <%= t('.not_supplied_timeline_info') %>
-         </div>
-       </div>
+          <i class="fa fa-clock-o"></i><br/>
+          <%= t('.not_supplied_timeline_info') %>
+        </div>
+      </div>
+      <div class="row" ng-if="haveTimes.length > 0">
+        <div class="timeline-box large-12 columns large-centered" timeline>
+        </div>
+      </div>
     </div>
 
   </p>

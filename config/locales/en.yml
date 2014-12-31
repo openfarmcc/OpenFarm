@@ -170,16 +170,19 @@ en:
                 call_your_guide_something: "Call your guide something"
         show:
             guide_by: "Guide by"
-            statistics:
+            show_guide_statistics:
                 title: "Statistics"
                 once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
-            requirements:
+            show_guide_requirements:
                 title: "Requirements"
                 the_small_details: "Requirements are the small details that make sure this crop grow successfully."
                 no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
-            stages:
+            show_guide_stages:
                 title: "Stages"
                 each_stage_with_details: "Each stage of growing this crop, with details"
+            show_guide_timeline:
+                title: "Timeline"
+                not_supplied_timeline_info: "The user hasn't supplied the necessary timeline info to properly calculate this."
         crop: "Crop"
         user: "User"
         stages: "Stages"

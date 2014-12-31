@@ -1,0 +1,42 @@
+<accordion-group
+  is-open="stage.isopen"
+  ng-init="stage.isopen = true"
+  class="accordion-navigation stages">
+  <accordion-heading class="title-wrapper">
+    <h2 class="title" id="stages">
+      <i ng-class="{'fa fa-minus': stage.isopen, 'fa fa-plus': !stage.isopen}"></i>
+      <%= t('.title') %>
+    </h2>
+
+  </accordion-heading>
+  <p class="section-text">
+    <%= t('.each_stage_with_details') %>
+  </p>
+  <div class="box"
+    ng-if="guide.stages.length === 0">
+    <div class="row">
+      <div class="small-12 columns empty">
+        <i class="fa fa-thumbs-down"></i>
+        <br/>
+        <%= t('.no_stages_yet') %>
+      </div>
+    </div>
+  </div>
+  <tabset class="tabs">
+
+    <tab ng-repeat="s in guide.stages | orderBy:'order'">
+      <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
+        <h3>{{ s.name }}</h3>
+      </tab-heading>
+      <div class="box">
+        <div class="row">
+          <div class="columns large-12 stage-description">
+            <img ng-src="{{ s.pictures[0].image_url }}"/>
+            <div class="markdown" markdown="s.instructions">
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</accordion-group>

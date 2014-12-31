@@ -386,7 +386,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  calcStageLength = function(length, length_type){
+  var calcStageLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
         case 'months':

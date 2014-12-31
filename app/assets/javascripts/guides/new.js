@@ -171,6 +171,20 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               item.exists = true;
               item._id = d._id;
 
+              item.stage_length = d.stage_length;
+              switch(true){
+                case (parseInt(d.stage_length) % 7 === 0):
+                  item.stage_length = item.stage_length / 7;
+                  item.length_type = 'weeks';
+                  break;
+                case (parseInt(d.stage_length) % 30 === 0):
+                  item.stage_length = item.stage_length / 30;
+                  item.length_type = 'months';
+                  break;
+                default:
+                  item.length_type = 'days';
+              }
+
               item.where = $scope.buildStageDetails(stageWhere,
                                                     d.environment || []);
               item.light = $scope.buildStageDetails(stageLight,
@@ -372,6 +386,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
+  calcStageLength = function(length, length_type){
+    if (length && length_type){
+      switch (length_type){
+        case 'months':
+        return length * 30;
+        case 'weeks':
+        return length * 7;
+        default:
+        return length;
+      }
+    } else {
+      return null;
+    }
+  };
+
   $scope.sendStages = function(success, guide){
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
@@ -381,7 +410,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         name: stage.name,
         images: [stage.featured_image],
         guide_id: guide._id,
-        stage_length: stage.length || null,
+        stage_length: calcStageLength(stage.stage_length, stage.length_type),
         environment: stage.where.filter(function(s){
             return s.selected;
           }).map(function(s){

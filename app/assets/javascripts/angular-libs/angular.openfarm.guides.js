@@ -51,11 +51,9 @@ openFarmModule.factory('guideService', ['$http',
 
 openFarmModule.directive('timeline', [
   function timeline(){
-    var calculateStartOfYear = function(m){
+    var calculateStartOfYear = function(){
       return moment('12 21', 'MM DD');
     };
-
-
 
     return {
       restrict: 'A',
@@ -64,7 +62,6 @@ openFarmModule.directive('timeline', [
         var maxWidth,
             yearLength,
             firstDay,
-            span,
             currentDay,
             day,
             today,

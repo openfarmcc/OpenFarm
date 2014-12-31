@@ -30,7 +30,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
         $scope.haveTimes = $scope.guide.stages
           .sort(function(a, b){ return a.order > b.order; })
-          .filter(function(s, i){
+          .filter(function(s){
             return s.stage_length;
           });
 

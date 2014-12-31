@@ -386,24 +386,26 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  var calcStageLength = function(length, length_type){
-    if (length && length_type){
-      switch (length_type){
-        case 'months':
-        return length * 30;
-        case 'weeks':
-        return length * 7;
-        default:
-        return length;
-      }
-    } else {
-      return null;
-    }
-  };
+
 
   $scope.sendStages = function(success, guide){
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
+
+    var calcStageLength = function(length, length_type){
+      if (length && length_type){
+        switch (length_type){
+          case 'months':
+          return length * 30;
+          case 'weeks':
+          return length * 7;
+          default:
+          return length;
+        }
+      } else {
+        return null;
+      }
+    };
 
     $scope.newGuide.stages.forEach(function(stage){
       var stageParams = {

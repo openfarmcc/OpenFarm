@@ -17,7 +17,7 @@ if Rails.env != 'production' # <= Prevent catastrophe
   prepare = FactoryGirl.create(:stage_action_option, name: 'Prepare Soil')
   amend = FactoryGirl.create(:stage_action_option, name: 'Amend Soil')
   fertilize = FactoryGirl.create(:stage_action_option,
-                                  name: 'Apply Fertilizer')
+                                 name: 'Apply Fertilizer')
   pesticide = FactoryGirl.create(:stage_action_option,
                                  name: 'Apply Pesticide')
   weeds = FactoryGirl.create(:stage_action_option, name: 'Remove Weeds')
@@ -38,31 +38,33 @@ if Rails.env != 'production' # <= Prevent catastrophe
   train = FactoryGirl.create(:stage_action_option, name: 'Train')
 
   prep = FactoryGirl.create(:stage_option, name: 'Preparation', order: 0)
-  prep.stage_action_options = [water, fertilize, prepare]
+  prep.stage_action_options = [water, fertilize, amend, prepare]
 
   germ = FactoryGirl.create(:stage_option, name: 'Germination', order: 1)
-  germ.stage_action_options = [mulch, water]
+  germ.stage_action_options = [mulch, water, stratify]
 
   sow = FactoryGirl.create(:stage_option, name: 'Sow', order: 2)
-  sow.stage_action_options = [weeds, fertilize, water]
+  sow.stage_action_options = [weeds, fertilize, water, sow]
 
   seed = FactoryGirl.create(:stage_option, name: 'Seedling', order: 3)
-  seed.stage_action_options = [weeds, fertilize, water]
+  seed.stage_action_options = [weeds, fertilize, water, thin]
 
   juve = FactoryGirl.create(:stage_option, name: 'Juvenile', order: 4)
-  juve.stage_action_options = [weeds, fertilize, water]
+  juve.stage_action_options = [weeds, fertilize, water, thin, biocontrol,
+                               pesticide, support, train]
 
   adult = FactoryGirl.create(:stage_option, name: 'Adult', order: 5)
-  adult.stage_action_options = [weeds, fertilize, graft, water]
+  adult.stage_action_options = [weeds, fertilize, graft, water, biocontrol,
+                                pesticide, support]
 
   flower = FactoryGirl.create(:stage_option, name: 'Flowering', order: 6)
   flower.stage_action_options = [weeds, fertilize, graft, pollinate, prune]
 
   fruit = FactoryGirl.create(:stage_option, name: 'Fruit', order: 7)
-  fruit.stage_action_options = [weeds, harvest, graft, pollinate, prune]
+  fruit.stage_action_options = [weeds, harvest, graft, pollinate, prune, scar]
 
   dormant = FactoryGirl.create(:stage_option, name: 'Dormant', order: 8)
-  dormant.stage_action_options = [prune]
+  dormant.stage_action_options = [prune, cover, tap]
 
   Guide.all.each{ |gde| gde.update_attributes(user: admin) }
 end

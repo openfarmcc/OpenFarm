@@ -184,7 +184,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                   if (existingSA.name === saOption.name){
                     saOption.overview = existingSA.overview;
                   }
-                })
+                });
               });
             }
           });

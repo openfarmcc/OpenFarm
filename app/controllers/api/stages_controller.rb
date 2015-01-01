@@ -19,6 +19,8 @@ module Api
       # UpdateStage is being funny, issue reported here:
       # https://github.com/cypriss/mutations/issues/85
       @outcome = Stages::UpdateStage.run(attributes: params[:stage],
+                                         actions: params[:actions],
+                                         images: params[:images],
                                          stage: Stage.find(params[:id]),
                                          user: current_user)
       respond_with_mutation(:ok)

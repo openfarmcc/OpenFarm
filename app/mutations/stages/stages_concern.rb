@@ -38,6 +38,7 @@ module Stages
 
     def set_actions
       @stage.stage_actions.delete_all
+
       actions && actions.each do |action|
         StageActions::CreateStageAction.run(user: user,
                                             action: action,

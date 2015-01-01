@@ -52,7 +52,7 @@ openFarmModule.factory('guideService', ['$http',
 openFarmModule.directive('timeline', [
   function timeline(){
     var calculateStartOfYear = function(){
-      return moment('12 21', 'MM DD');
+      return moment('12 21', 'MM DD').year(2015);
     };
 
     return {
@@ -80,36 +80,35 @@ openFarmModule.directive('timeline', [
         $scope.dayWidth = maxWidth/yearLength;
 
         // calculate year start time based on user preference/location
-        firstDay = calculateStartOfYear(moment());
-
+        firstDay = currentDay = calculateStartOfYear();
         for (var i = 0; i <= yearLength; i++) {
           // calculate if it's the start of the month
-          currentDay = moment(firstDay.add(1, 'days'));
+
           day = {
             currentDay: currentDay,
           };
           if (currentDay.date() === 1){
             day.first = true;
           }
-          if (currentDay.isSame(today, 'day') &&
-              currentDay.isSame(today, 'month')){
+          if (currentDay.date() === today.date() &&
+              currentDay.month() === today.month()){
             day.today = true;
             todayIndex = i;
           }
           $scope.days.push(day);
+          currentDay = moment(currentDay.add(1, 'days'));
         }
 
-        // Draw the lifetime
+        // Draw the lifetime at the right spot
         $('.plantLifetime').css('left', todayIndex * $scope.dayWidth);
         // Deal with the overflow
         daysRemainingInYear = yearLength - todayIndex;
         if (daysRemainingInYear < $scope.plantLifetime){
           $('.plantLifetime').width(daysRemainingInYear * $scope.dayWidth);
           remainderDays = $scope.plantLifetime - daysRemainingInYear;
-          console.log(remainderDays);
           $('.timelines')
             .append('<span class="plantLifetime overflow">');
-          console.log($('.plantLifetime.overflow').width(remainderDays));
+          $('.plantLifetime.overflow').width(remainderDays);
         } else {
           $('.plantLifetime').width($scope.plantLifetime * $scope.dayWidth);
         }

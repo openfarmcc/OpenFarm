@@ -163,6 +163,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.stages.forEach(function(item){
           item.selected = false;
 
+          item.length_type = 'days';
+
           // loop over the existing stages.
           $scope.newGuide.stages.forEach(function(d){
             if (d.name === item.name){
@@ -191,8 +193,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                                     d.light || []);
               item.soil = $scope.buildStageDetails(stageSoil,
                                                    d.soil || []);
+
+              // Find the existing stage actions and overwrite
+              item.stage_action_options.forEach(function(saOption){
+                d.stage_actions.forEach(function(existingSA){
+                  if (existingSA.name === saOption.name){
+                    saOption.overview = existingSA.overview;
+                  }
+                });
+              });
             }
           });
+
           // TODO: The below probably needs to be broken out
           // and made *way* more dynamic.
           if (!item.where){
@@ -426,11 +438,17 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return s.selected;
           }).map(function(s){
             return s.label;
+          }) || null,
+        actions: stage.stage_action_options.filter(function(s){
+            return s.overview;
+          }).map(function(s){
+            return { name: s.name, overview: s.overview };
           }) || null
       };
 
       // Go through all the possible changes on
       // each stage.
+
       if (stage.selected && !stage.exists){
         stageService.createStage(stageParams,
                                  $scope.alerts,
@@ -471,12 +489,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     });
     if (updatedNum === $scope.sent){
+      // $scope.newGuide.sending = false;
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
-
-  // Any function returning a promise object can be used to load
-  // values asynchronously
 
   $scope.cancel = function(path){
     window.location.href = path || '/';

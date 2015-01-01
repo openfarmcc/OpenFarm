@@ -36,6 +36,22 @@
             </div>
           </div>
         </div>
+
+        <div class="row actions"
+             ng-init="s.activeAction = s.stage_actions[0]">
+        <div class="columns large-3 medium-2">
+        <ul>
+          <li ng-repeat="action in s.stage_actions"
+              ng-click="s.activeAction = action"
+              ng-class="{ selected : s.activeAction._id == action._id }">
+              {{ action.name }}
+          </li>
+        </ul>
+        </div>
+        <div class="columns large-9">
+          <div id="action_content" ng-bind="s.activeAction.overview"></div>
+        </div>
+      </div>
       </div>
     </tab>
   </tabset>

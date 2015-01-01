@@ -5,7 +5,7 @@ openFarmModule.factory('stageService', ['$http',
     var createStage = function(params, alerts, callback){
       $http.post('/api/stages/', params)
       .success(function (response) {
-        console.log(response);
+        console.log('response:', response);
         return callback (true, response.stage);
       }).error(function (response, code) {
         pushToAlerts(response, code, alerts);

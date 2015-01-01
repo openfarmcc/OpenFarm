@@ -1,6 +1,6 @@
 <div ng-controller="showGuideCtrl"
      ng-cloak
-     class="guides">
+     class="show-guide guides">
 
     <div alerts ng-model="alerts"></div>
 
@@ -70,7 +70,7 @@
 
         </p>
       </accordion-group>
-      <accordion-group
+      <!-- <accordion-group
         ng-init="r.isopen = true"
         is-open="r.isopen"
         class="accordion-navigation requirements">
@@ -105,7 +105,7 @@
             </div>
           </div>
         </div>
-      </accordion-group>
+      </accordion-group> -->
 
       <accordion-group
         is-open="stage.isopen"
@@ -145,6 +145,22 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row actions"
+                   ng-init="s.activeAction = s.stage_actions[0]">
+              <div class="columns large-3 medium-2">
+              <ul>
+                <li ng-repeat="action in s.stage_actions"
+                    ng-click="s.activeAction = action"
+                    ng-class="{ selected : s.activeAction._id == action._id }">
+                    {{ action.name }}
+                </li>
+              </ul>
+              </div>
+              <div class="columns large-9">
+                <div id="action_content" ng-bind="s.activeAction.overview"></div>
+              </div>
+            </div>
             </div>
           </tab>
         </tabset>

@@ -11,14 +11,13 @@ $of-yellow: #f1c232;
 $of-dark: #4a4a4a;
 $of-light: #dedede;
 
+/*// Why are these defined twice?
 $primary-color: #c7a979; // #008CBA;
 $secondary-color: #e7e7e7;
 $alert-color: #ff6666;
 $success-color: #74E29D;
 $warning-color: #f08a24;
-$info-color: #eecb91;
-
-$compatibility-circle-size: 50px;
+$info-color: #eecb91;*/
 
 // We use these as default colors throughout
 $primary-color: #99B36C; // #008CBA;
@@ -32,6 +31,8 @@ $info-color: #eecb91;
 $openfarm-green: #85CB2B;
 $openfarm-green-muted: #99B36C;
 $openfarm-blue-grey: #ECEFF0;
+
+$compatibility-circle-size: 50px;
 
 $compatibility-low-color:  #B23A2C;
 $compatibility-med-color:  #FBAD2F;

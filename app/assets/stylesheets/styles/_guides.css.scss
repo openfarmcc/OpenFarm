@@ -105,11 +105,11 @@
 
     h2, h5 {
       display: inline-block;
-      font-weight: 600;
+      font-weight: 100;
     }
 
     .title{
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
 
     .author {
@@ -120,6 +120,33 @@
 
   .accordion dd > .content{
     padding: 0 0.935rem;
+  }
+
+  .actions{
+    ul{
+      margin: 0;
+      list-style: none;
+      li{
+        padding: .25rem .5rem;
+        cursor: pointer;
+        transition: .5s;
+        opacity: .8;
+        margin: .25rem 0;
+        border-radius: $global-radius;
+      }
+
+      li:hover{
+        background: $of-green;
+        opacity: 1;
+        color: white;
+      }
+    }
+
+    .selected{
+      background: $of-green;
+      opacity: 1;
+      color: white;
+    }
   }
 }
 
@@ -153,6 +180,15 @@
   }
 }
 
+.show-guide {
+  .stages{
+    h2{
+    }
+    h3{
+      font-size: 1rem;
+    }
+  }
+}
 
 @import "guides/_new_guides.css.scss";
 @import "guides/_edit_guides.css.scss";

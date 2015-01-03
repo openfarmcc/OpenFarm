@@ -10,6 +10,8 @@ class Stage
   field :soil, type: Array
   field :light, type: Array
 
+  field :order, type: Integer # Inherited from the stage_option
+
   embeds_many :stage_actions
 
   accepts_nested_attributes_for :pictures

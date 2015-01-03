@@ -92,9 +92,6 @@
             </div>
           </div>
         </div>
-        <!-- TODO -->
-        <!--
-
         <div class="row how-long">
           <div class="columns large-4 medium-4">
             <label class="right"
@@ -102,10 +99,21 @@
               <small><%= t('.do_not_sweat') %></small>
             </label>
           </div>
-          <div class="columns large-8 medium-8">
-            Coming Soon
+          <div class="columns large-2 medium-2">
+            <input ng-model="stage.stage_length"
+                   type="number"/>
+          </div><div class="columns large-2 medium-2 end">
+            <select ng-model="stage.length_type">
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months">Months</option>
+            </select>
           </div>
         </div>
+        <!-- TODO -->
+        <!--
+
+
         <div class="row annual">
           <div class="columns large-4 medium-4">
             <label class="right"

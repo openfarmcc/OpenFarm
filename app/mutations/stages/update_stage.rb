@@ -15,6 +15,7 @@ module Stages
           array :soil
           array :light
           integer :stage_length
+          integer :order
         end
       end
     end

@@ -29,7 +29,7 @@ describe 'Crop search', type: :controller do
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
-    expect(page).to have_content("no crops matching")
+    expect(page).to have_content("any crops matching")
   end
 
   it 'handles plurals' do

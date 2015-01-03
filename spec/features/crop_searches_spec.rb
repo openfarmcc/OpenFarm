@@ -11,7 +11,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: 'radish'
     click_button 'Search'
     expect(page).to have_content('radish')
-    page.should_not have_content('no crops matching')
+    page.should_not have_content("Sorry, we don't have any crops matching")
   end
 
   it 'handles empty searches' do
@@ -29,7 +29,7 @@ describe 'Crop search', type: :controller do
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
-    expect(page).to have_content("any crops matching")
+    expect(page).to have_content("Sorry, we don't have any crops matching")
   end
 
   it 'handles plurals' do
@@ -39,7 +39,7 @@ describe 'Crop search', type: :controller do
     Crop.searchkick_index.refresh
     click_button 'Search'
     expect(page).to have_content(crop.name)
-    page.should_not have_content('no crops matching')
+    page.should_not have_content("Sorry, we don't have any crops matching")
   end
 
   it 'handles misspellings' do
@@ -50,7 +50,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: 'radis'
     click_button 'Search'
     expect(page).to have_content('radish')
-    page.should_not have_content('no crops matching')
+    page.should_not have_content("Sorry, we don't have any crops matching")
   end
 
   it 'handles multiple words' do
@@ -61,7 +61,7 @@ describe 'Crop search', type: :controller do
     fill_in 'q', with: 'pear radish'
     click_button 'Search'
     expect(page).to have_content('radish')
-    page.should_not have_content('no crops matching')
+    page.should_not have_content("Sorry, we don't have any crops matching")
   end
 
   it 'has a top nav bar' do

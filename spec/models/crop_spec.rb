@@ -30,7 +30,8 @@ describe Crop do
     end
 
     it 'displays the main_image_path' do
-      expect(crop.main_image_path).to eq(nil)
+      expect(crop.main_image_path).to_not eq(nil)
+      # TODO: test for placeholder image?
       fancy_crop = FactoryGirl.create(:crop_picture).photographic
       expect(fancy_crop.main_image_path).to be_kind_of(String)
       expect(fancy_crop.main_image_path).to include("pictures/attachments")

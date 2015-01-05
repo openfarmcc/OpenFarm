@@ -91,6 +91,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.addresses = [];
   $scope.stages = [];
   $scope.hasEdited = [];
+  $scope.haveEditedStages = false;
 
   // What's a new guide.
   $scope.newGuide = {
@@ -232,6 +233,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
     $http.get('/api/guides/' + getIDFromURL('guides'))
       .success(function(r){
+        $scope.hasEditedStages = true;
         $scope.newGuide.exists = true;
         $scope.newGuide._id = r.guide._id;
         $scope.newGuide.featured_image = r.guide.featured_image;
@@ -324,7 +326,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     window.location.href = '/crops/new/?name=' + $scope.query;
   };
 
+  $scope.switchToStep = function(step){
+    $scope.step = step;
+  };
+
   $scope.nextStep = function(){
+    if ($scope.step === 3){
+      $scope.hasEditedStages = true;
+    }
     $scope.step += 1;
   };
 

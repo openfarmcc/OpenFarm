@@ -1,18 +1,26 @@
 <div class="row create-guide-steps">
   <div class="large-2 medium-3 small-12 columns step"
-      ng-class="{ 'active' : step === 1 }">
+      ng-class="{ 'active' : step === 1, 'clickable' : newGuide.crop }" ng-click="switchToStep(1)">
+      <i class="fa fa-check" ng-if="newGuide.crop"></i>
     1. <%= t('.the_basics') %>
   </div>
   <div class="large-2 medium-3 small-12 columns step"
-      ng-class="{ 'active' : step === 2 }">
+      ng-class="{ 'active' : step === 2, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0 }"
+      ng-click="switchToStep(2)">
+      <i class="fa fa-check"
+         ng-if="newGuide.selectedStages.length > 0"></i>
     2. <%= t('.life_stages') %>
   </div>
   <div class="large-2 medium-3 small-12 columns step"
-      ng-class="{ 'active' : step === 3 }">
+      ng-class="{ 'active' : step === 3, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0 && hasEditedStages }"
+      ng-click="switchToStep(3)">
+      <i class="fa fa-check" ng-if="hasEditedStages"></i>
     3. <%= t('.stage_details') %>
   </div>
   <div class="large-2 medium-3 small-12 columns step show-for-medium-up"
-      ng-class="{ 'active' : step === 4 }">
+      ng-class="{ 'active' : step === 4, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0 && hasEditedStages }"
+      ng-click="switchToStep(4)">
+      <i class="fa fa-check" ng-if="newGuide.name"></i>
     4. <%= t('.final_touches') %>
   </div>
 

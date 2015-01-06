@@ -2,10 +2,16 @@ module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
     def validate_images
-      images && images.each do |url|
-        unless url.valid_url?
-          add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
-            'that it is a fully formed URL (including HTTP:// or HTTPS://)'
+      images && images.each do |pic|
+        pic_id = "#{pic[:id]}" if pic[:id].present?
+        outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
+                                                   id: pic_id,
+                                                   pictures: stage.pictures)
+
+        unless outcome.success?
+          add_error :images,
+                    :bad_format,
+                    outcome.errors.message_list.to_sentence
         end
       end
     end
@@ -30,9 +36,15 @@ module Stages
       end
     end
 
-    def set_pictures
-      images && images.map do |url|
-        Picture.from_url(url, @stage)
+    def set_images
+      # puts "setting images"
+      # stage.pictures.each do |existing_picture|
+      #   puts "existing picture #{existing_picture}"
+      # end
+      images && images.each do |img|
+        puts img
+        Picture.from_url(img[:image_url],
+                         @stage)
       end
     end
 

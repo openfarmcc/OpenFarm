@@ -23,7 +23,7 @@ module Stages
 
     optional do
       array :actions, class: Hash, arrayize: true
-      array :images, class: String, arrayize: true
+      array :images, class: Hash, arrayize: true
     end
 
     def validate

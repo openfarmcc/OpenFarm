@@ -1,4 +1,5 @@
-<span class='crop-image'>
+<span class='click-to-upload-image'>
+    {{ filename}}
     <span ng-if='!filename && guide.featured_image.indexOf("leaf-grey") === -1'>
         <div class='wrapper'>
             <img ng-src='{{ guide.featured_image  }}'/>

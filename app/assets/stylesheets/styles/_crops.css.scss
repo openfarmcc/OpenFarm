@@ -10,8 +10,6 @@
       padding: 1.2em 1.8em;
     }
 
-
-
     tr > td:first-child {
       width: 25%;
       color: #717171;
@@ -81,7 +79,7 @@
 }
 
 .crop-edit {
-  .thumbnails{
+  /*.thumbnails{
     margin: 0 .5rem .5rem 0;
     display: inline-block;
     position: relative;
@@ -125,9 +123,9 @@
       width: 100px;
       height: 100px;
     }
-  }
+  }*/
 
-  .crop-image{
+  /*.click-to-upload-image{
     @include add-new-button();
     @include box-shadow(none);
     @include font-awesome-mixin();
@@ -137,7 +135,6 @@
     width: 100px;
     height: 100px;
     border-radius: 1em;
-    /*border: 2px dashed #979797;*/
     display: inline-block;
     margin-bottom: 1rem;
     position: relative;
@@ -153,10 +150,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-
-    /*&.ng-valid-succeeded:before{
-      content: '';
-    }*/
 
     &.ng-invalid-uploading:before{
       content: "\f110";
@@ -185,5 +178,5 @@
 
   input[type=submit]{
     margin: 1rem 0;
-  }
+  }*/
 }

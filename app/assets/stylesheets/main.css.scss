@@ -52,3 +52,6 @@ $compatibility-high-color: #84C93F;
 @import 'styles/pages/home';
 @import 'styles/pages/styles';
 
+// Import modular CSS
+@import "modules/**/**/*";
+@import "modules/**/**/**/*";

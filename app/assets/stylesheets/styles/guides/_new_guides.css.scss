@@ -31,6 +31,7 @@
     font-size: .8rem;
     color: $of-dark;
     margin-bottom: 1rem;
+    pointer-events: none;
 
     .step:first-child{
       border-top-left-radius: $global-radius;
@@ -56,6 +57,11 @@
     .preview{
       border-radius: $global-radius;
       opacity: .5;
+    }
+
+    .clickable{
+      cursor: pointer;
+      pointer-events: auto;
     }
   }
 

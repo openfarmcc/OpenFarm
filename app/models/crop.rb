@@ -38,7 +38,11 @@ class Crop
   end
 
   def main_image_path
-    pictures.first.attachment.url if pictures.present?
+    if pictures.present?
+      pictures.first.attachment.url
+    else
+      ActionController::Base.helpers.asset_path('baren_field.jpg')
+    end
   end
 
   slug :name

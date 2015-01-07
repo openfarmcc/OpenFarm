@@ -85,7 +85,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
   $scope.alerts = [];
   $scope.crops = [];
-  $scope.step = 2;
+  $scope.step = 1;
   $scope.crop_not_found = false;
   $scope.addresses = [];
   $scope.stages = [];
@@ -368,7 +368,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   // Post! & forward if successful
 
   $scope.submitForm = function () {
-    // $scope.newGuide.sending = true;
+    $scope.newGuide.sending = true;
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
@@ -451,7 +451,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         stageParams.images = stage.pictures.filter(function(p){
           return !p.deleted;
         });
-        console.log(stageParams.images);
       }
 
 
@@ -500,7 +499,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
     if (updatedNum === $scope.sent){
       $scope.newGuide.sending = false;
-      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
+      window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
 
@@ -514,16 +513,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
   };
 
-  // Keep track of the stage's s3upload object
-  // $scope.$watch('stageS3upload', function(){
-  //   if ($scope.stageS3upload){
-  //     $scope.currentStage.pictures.push({
-  //       new: true,
-  //       image_url: $scope.stageS3upload
-  //     });
-  //     // console.log($scope.stageS3upload);
-  //   }
-  // });
+  $scope.placeGuideUpload = function(image){
+    $scope.newGuide.featured_image = image;
+  };
 
   $scope.cancel = function(path){
     window.location.href = path || '/';

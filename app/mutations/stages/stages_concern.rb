@@ -17,11 +17,13 @@ module Stages
     end
 
     def validate_actions
+
       actions && actions.each do |action|
         # Can this validation somehow be done by the action
         # mutation without having to also run the execute method?
         # A: It Can't, we need a valid stage to do so
-        # And stage is nil at this point. If you're refactoring this
+        # And stage is nil at this point. There might be a way around this
+        # using some mutation settings. If you're refactoring this
         # feel free to remove this comment!
         if !action[:name] || !action[:name].is_a?(String)
 
@@ -37,12 +39,12 @@ module Stages
     end
 
     def set_images
-      # puts "setting images"
-      # stage.pictures.each do |existing_picture|
-      #   puts "existing picture #{existing_picture}"
-      # end
+      # Delete all pictures
+      # This is much simpler, less ping pong than what it was
+      # and probably okay for now. However, this only works when S3
+      # is enabled, because paperclip normally stores on system, not on URLs.
+      @stage.pictures.delete_all
       images && images.each do |img|
-        puts img
         Picture.from_url(img[:image_url],
                          @stage)
       end

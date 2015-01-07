@@ -37,7 +37,7 @@ module Stages
       @stage ||= Stage.new(stage)
       @stage.guide = @guide
       @stage.save
-      set_pictures
+      set_images
       set_actions
 
       # TODO: Why is this record being reloaded? Possible refactor target:

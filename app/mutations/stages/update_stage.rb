@@ -36,7 +36,6 @@ module Stages
       @stage.update(attributes)
       set_images
       set_actions
-      puts @stage.to_json
       @stage.save
       @stage.reload
     end

@@ -4,9 +4,10 @@ module Stages
     def validate_images
       images && images.each do |pic|
         pic_id = "#{pic[:id]}" if pic[:id].present?
+        pictures = @stage.pictures if @stage
         outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
                                                    id: pic_id,
-                                                   pictures: stage.pictures)
+                                                   pictures: pictures)
 
         unless outcome.success?
           add_error :images,
@@ -17,7 +18,6 @@ module Stages
     end
 
     def validate_actions
-
       actions && actions.each do |action|
         # Can this validation somehow be done by the action
         # mutation without having to also run the execute method?

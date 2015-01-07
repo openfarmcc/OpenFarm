@@ -15,7 +15,7 @@ module Pictures
     end
 
     def execute
-
+      # Still needs to be figured out.
     end
 
     def validate_picture

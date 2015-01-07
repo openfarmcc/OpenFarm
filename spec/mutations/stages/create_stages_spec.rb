@@ -22,8 +22,11 @@ describe Stages::CreateStage do
   end
 
   it 'creates a stage image via URL' do
-    VCR.use_cassette('mutations/stages/update_stage') do
-      image_params = params.merge(images: 'http://i.imgur.com/2haLt4J.jpg')
+    VCR.use_cassette('mutations/stages/create_stage') do
+      image_hash = {
+        image_url: 'http://i.imgur.com/2haLt4J.jpg'
+      }
+      image_params = params.merge(images: [ image_hash ])
       results = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)
@@ -31,10 +34,24 @@ describe Stages::CreateStage do
   end
 
   it 'disallows phony URLs' do
-    image_params = params.merge(images: 'iWroteThisWrong.net/2haLt4J.jpg')
+    image_hash = {
+      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
+    }
+    image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
     expect(results.success?).to be_false
     expect(results.errors.message[:images]).to include('not a valid URL')
+  end
+
+  it 'uploads multiple images' do
+    VCR.use_cassette('mutations/stages/create_stage') do
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' },
+                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
+      image_params = params.merge(images: image_hash)
+      results = mutation.run(image_params)
+      pics = results.result.pictures
+      expect(pics.count).to eq(2)
+    end
   end
 
   it 'allows an empty stage actions array' do

@@ -26,7 +26,7 @@ describe Stages::CreateStage do
       image_hash = {
         image_url: 'http://i.imgur.com/2haLt4J.jpg'
       }
-      image_params = params.merge(images: [ image_hash ])
+      image_params = params.merge(images: [image_hash])
       results = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)

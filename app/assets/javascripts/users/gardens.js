@@ -11,6 +11,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
     $scope.initCallback = function(success, user){
       $scope.currentUser = user;
       $scope.gardens = user.gardens;
+
+      if(getUrlVar('manage')){
+        $scope.gardens[0].editing = true;
+      }
+
       angular.forEach(user.gardens, function(garden){
         angular.forEach(garden.garden_crops, function(crop){
           var callback = function(success, response){
@@ -73,4 +78,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
         }
       });
     };
+
+    $scope.handleNewGardenImage = function(garden, image){
+      garden.pictures.push({
+        image_url: image,
+        new: true
+      })
+    }
 }]);

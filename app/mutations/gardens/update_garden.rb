@@ -3,25 +3,34 @@ module Gardens
     required do
       model :user
       model :garden
+
+      hash :attributes do
+        optional do
+          string :name
+          string :location
+          string :description
+          string :type
+          string :average_sun
+          string :soil_type
+          integer :ph
+        end
+      end
     end
 
     optional do
-      string :name
-      string :location
-      string :description
-      string :type
-      string :average_sun
-      string :soil_type
-      integer :ph
-      Array :growing_practices
+      array :images, class: Hash, arrayize: true
+      array :growing_practices
     end
 
     def validate
       validate_permissions
+      validate_images
     end
 
     def execute
-      set_valid_params
+      garden.update(attributes)
+      # todo growing practices
+      garden.save
       garden
     end
 
@@ -32,17 +41,20 @@ module Gardens
       end
     end
 
-    def set_valid_params
-      garden.user           = user
-      garden.name           = name if name.present?
-      garden.location       = location if location.present?
-      garden.description    = description if description.present?
-      garden.type           = type if type.present?
-      garden.average_sun    = average_sun if average_sun.present?
-      garden.soil_type      = soil_type if soil_type.present?
-      garden.ph             = ph if ph.present?
-      # todo growing practices
-      garden.save
+    def validate_images
+      images && images.each do |pic|
+        pic_id = "#{pic[:id]}" if pic[:id].present?
+        pictures = garden.pictures if garden
+        outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
+                                                   id: pic_id,
+                                                   pictures: pictures)
+
+        unless outcome.success?
+          add_error :images,
+                    :bad_format,
+                    outcome.errors.message_list.to_sentence
+        end
+      end
     end
   end
 end

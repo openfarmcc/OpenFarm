@@ -10,8 +10,26 @@
 
 <div class="garden" ng-repeat="garden in gardens" ng-cloak>
   <div class="row header">
+    <% if params[:manage] %>
+      <div class="columns large-6 large-centered">
+      <p>
+        We've created your first garden for you. Change its name and edit the details to better suit your style.
+      </p>
+      <p>
+        As you continue to use OpenFarm, you can store guides to it, update it it, and watch it grow.
+      </p>
+      <p>
+        Feel free to tweak it so that it suits your growing environment, upload some pictures, and then get <% link_to(root_path, 'exploring') %>.
+      </p>
+      <p>
+        And don't worry, you can come back to this at any time.
+      </p>
+      </div>
+    <% end %>
     <div class="columns large-9">
-      <h2 ng-bind="garden.name"></h2>
+        <span ng-bind="garden.name" ng-if="!garden.editing"></span>
+        <input type="text" ng-model="garden.name" ng-if="garden.editing"/>
+      </h2>
     </div>
     <div class="columns large-3 edit">
       <i class="fa fa-lock"></i>
@@ -24,10 +42,27 @@
     </div>
   </div>
   <div class="row info">
-    <div class="columns large-3">
-      <img src="http://placehold.it/350&text=garden+images+soon"/>
+    <div class="columns large-4">
+      <p>
+        What does your garden look like? Uploading a picture will let you keep track of it as your plants grow.
+      </p>
+      <span ng-repeat="pic in garden.pictures"
+            class="thumbnails"
+            ng-class="{ 'deleted' : pic.deleted }"
+            ng-init="pic.deleted = false"
+            ng-click="pic.deleted = !pic.deleted">
+        <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+
+             ng-model="pic"/>
+      </span>
+      <div s3-upload
+          bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+          ng-model="s3upload"
+          s3-upload-place-pic="handleNewGardenImage(garden, image)"
+          s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+      </div>
     </div>
-    <div class="columns large-9">
+    <div class="columns large-8">
       <div class="description markdown"
            markdown="garden.description"
            ng-if="!garden.editing">
@@ -44,8 +79,8 @@
             <span ng-bind="garden.type"
                   ng-if="!garden.editing">
             </span>
-           <%# TODO: This should probably be 
-               based on something stored in the 
+           <%# TODO: This should probably be
+               based on something stored in the
                backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.type">
@@ -62,8 +97,8 @@
             <span ng-bind="garden.average_sun"
                   ng-if="!garden.editing">
             </span>
-            <%# TODO: This should probably be 
-                based on something stored in the 
+            <%# TODO: This should probably be
+                based on something stored in the
                 backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.average_sun">
@@ -81,8 +116,8 @@
             <span ng-bind="garden.soil_type"
                   ng-if="!garden.editing">
             </span>
-            <%# TODO: This should probably be 
-                based on something stored in the 
+            <%# TODO: This should probably be
+                based on something stored in the
                 backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.soil_type">
@@ -109,7 +144,7 @@
                  />
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <th>
             Growing Practices
           </th>
@@ -118,7 +153,7 @@
                 ng-if="!garden.editing">
           </span>
           </td>
-        </tr>
+        </tr> -->
       </table>
     </div>
   </div>

@@ -1,6 +1,6 @@
 class GardenSerializer < ApplicationSerializer
-  attributes :_id, :location, :type, :average_sun, :soil_type, :ph,
-             :growing_practices, :is_private, :user
+  attributes :_id, :name, :description, :location, :type, :average_sun,
+             :soil_type, :ph, :growing_practices, :is_private, :user
   # inserting the 'has_one :user' means that a user gets inserted,
   # which has as result that this garden gets inserted, recursive etc.
   # 'stack level too deep', so. Maybe we need a 'ShortUserSerializer'? ToDo
@@ -18,4 +18,6 @@ class GardenSerializer < ApplicationSerializer
   # embed_namespace: :links
 
   # has_many :garden_crops
+
+  has_many :pictures
 end

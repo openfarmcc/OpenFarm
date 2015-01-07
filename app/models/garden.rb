@@ -18,5 +18,8 @@ class Garden
   field :ph # 0-14
   field :growing_practices, type: Array # organic, permaculutre, etc
 
+  embeds_many :pictures, cascade_callbacks: true, as: :photographic
+  accepts_nested_attributes_for :pictures
+
   scope :is_public, -> { where(is_private: true) }
 end

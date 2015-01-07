@@ -38,7 +38,7 @@ en:
     registrations:
         your_first_garden: "Your First Garden"
         need_password: "You need to supply your password to delete your account"
-        we_automatically_generated_this_garden: "We created this garden automatically to get you started. You can edit it to better suit your needs!"
+        generated_this_garden: "We created this garden automatically to get you started. You can edit it to better suit your needs!"
     users:
         create_your_openfarm_profile: "Create your OpenFarm Profile"
         community: "Community"

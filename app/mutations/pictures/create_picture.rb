@@ -1,6 +1,5 @@
 module Pictures
   class CreatePicture < Mutations::Command
-
     required do
       string :url
     end

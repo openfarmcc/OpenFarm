@@ -148,7 +148,6 @@ angular.module('ngS3upload.directives', []).
       replace: true,
       transclude: false,
       scope: {
-        // s3UploadObject: '=',
         s3UploadPlacePic: '&'
       },
       controller: ['$scope', '$element', '$attrs', '$transclude',
@@ -159,7 +158,9 @@ angular.module('ngS3upload.directives', []).
 
           $scope.barClass = function () {
             return {
-              "bar-success": $scope.attempt && !$scope.uploading && $scope.success
+              'bar-success': $scope.attempt &&
+                             !$scope.uploading &&
+                             $scope.success
             };
           };
         }],
@@ -212,7 +213,8 @@ angular.module('ngS3upload.directives', []).
                   .then(function (s3Options) {
                     ngModel.$setValidity('uploading', false);
                     var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
-                    var key = opts.folder + (new Date()).getTime() + '-' + S3Uploader.randomString(16) + "." + ext;
+                    var key = opts.folder + (new Date()).getTime() + '-' +
+                              S3Uploader.randomString(16) + '.' + ext;
                     S3Uploader.upload(scope,
                         s3Uri,
                         key,
@@ -223,35 +225,11 @@ angular.module('ngS3upload.directives', []).
                         s3Options.signature,
                         selectedFile
                       ).then(function (resp) {
-                        // console.log(ngModel)
-                        // var guide = scope.$parent.guide;
-                        // var stage = null;
-                        // var location = resp.responseXML
-                        //     .getElementsByTagName('Location')[0].innerHTML;
-                        // if (attrs.s3Guide){
-                        //   guide = scope.$parent[attrs.s3Guide];
-                        // }
-                        // if (attrs.s3Stage){
-                        //   stage = guide.selectedStages[attrs.s3Stage];
-                        //   stage.featured_image = location;
-                        // if (guide){
-                        //   guide.featured_image = location;
-                        // }
-                        // TODO: Un-hardcode this.
+
                         ngModel.$setViewValue(s3Uri + key);
-                        // console.log(s3Uri + key);
+
                         scope.s3UploadPlacePic({image: s3Uri + key});
-                        // if (attrs.s3UploadObject){
-                          // TODO: make crop and guide featured_image conform
-                          // to the function call above.
 
-                        //   var obj = attrs.s3UploadObject;
-
-                        //   scope.s3UploadObject = ngModel.$viewValue;
-                        //   scope.$parent[obj] = ngModel.$viewValue;
-                        // } else {
-                        //   scope.filename = ngModel.$viewValue;
-                        // }
                         ngModel.$setValidity('uploading', true);
                         ngModel.$setValidity('succeeded', true);
                       }, function (resp) {
@@ -267,7 +245,8 @@ angular.module('ngS3upload.directives', []).
                       });
 
                   }, function (error) {
-                    throw Error("Can't receive the needed options for S3 " + error);
+                    throw Error('Can\'t receive the needed options for S3 ' +
+                                error);
                   });
               });
             };

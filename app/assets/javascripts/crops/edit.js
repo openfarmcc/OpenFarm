@@ -45,16 +45,6 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
       $scope.editCrop.pictures.push({
         new: true,
         image_url: image
-      })
-    }
-
-    // $scope.$watch('s3upload', function(){
-    //   if ($scope.s3upload){
-    //     $scope.editCrop.pictures.push({
-    //       new: true,
-    //       image_url: $scope.s3upload
-    //     });
-    //     console.log($scope.s3upload);
-    //   }
-    // });
+      });
+    };
   }]);

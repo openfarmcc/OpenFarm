@@ -26,7 +26,7 @@ describe Stages::UpdateStage do
       image_hash = {
         image_url: 'http://i.imgur.com/2haLt4J.jpg'
       }
-      image_params = params.merge(images: [ image_hash ])
+      image_params = params.merge(images: [image_hash])
       results = mutation.run(image_params)
       pics = results.result.pictures
       expect(pics.count).to eq(1)
@@ -37,7 +37,7 @@ describe Stages::UpdateStage do
     image_hash = {
       image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
     }
-    image_params = params.merge(images: [ image_hash ])
+    image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
     expect(results.success?).to be_false
     expect(results.errors.message[:images]).to include('not a valid URL')
@@ -81,7 +81,7 @@ describe Stages::UpdateStage do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
 
       image_params = params.merge(images: image_hash)
-      results = mutation.run(image_params)
+      mutation.run(image_params)
 
       image_hash = []
 
@@ -98,7 +98,7 @@ describe Stages::UpdateStage do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
 
       image_params = params.merge(images: image_hash)
-      results = mutation.run(image_params)
+      mutation.run(image_params)
 
       stage.reload
 

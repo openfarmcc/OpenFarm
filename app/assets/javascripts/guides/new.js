@@ -453,7 +453,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         });
       }
 
-
       // Go through all the possible changes on
       // each stage.
 
@@ -470,7 +469,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         stageService.updateStage(stage._id,
                                  stageParams,
                                  $scope.alerts,
-                                 function(success, response){
+                                 function(){
                                    stage.sent = true;
                                    $scope.sent ++;
                                    $scope.checkNumberUpdated();

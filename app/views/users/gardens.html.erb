@@ -12,51 +12,41 @@
   <div class="row header">
     <% if params[:manage] %>
       <div class="columns large-6 large-centered">
-      <p>
-        We've created your first garden for you. Change its name and edit the details to better suit your style.
-      </p>
-      <p>
-        As you continue to use OpenFarm, you can store guides to it, update it it, and watch it grow.
-      </p>
-      <p>
-        Feel free to tweak it so that it suits your growing environment, upload some pictures, and then get <% link_to(root_path, 'exploring') %>.
-      </p>
-      <p>
-        And don't worry, you can come back to this at any time.
-      </p>
+        <%= t('.first_garden_html') %>
       </div>
     <% end %>
     <div class="columns large-9">
         <span ng-bind="garden.name" ng-if="!garden.editing"></span>
-        <input type="text" ng-model="garden.name" ng-if="garden.editing"/>
+        <label ng-if="garden.editing"><%= t('.garden_name') %></label><input type="text" ng-model="garden.name" ng-if="garden.editing"/>
       </h2>
     </div>
     <div class="columns large-3 edit">
       <i class="fa fa-lock"></i>
       <a class="button secondary tiny"
          ng-click="garden.editing = !garden.editing"
-         ng-show="!garden.editing"><i class="fa fa-edit"></i> Edit Garden</a>
+         ng-show="!garden.editing"><i class="fa fa-edit"></i> <%= t('.edit_garden') %></a>
       <a class="button secondary tiny"
          ng-click="garden.editing = !garden.editing; saveGarden(garden)"
-         ng-show="garden.editing"><i class="fa fa-save"></i> Save Garden</a>
+         ng-show="garden.editing"><i class="fa fa-save"></i> <%= t('.save_garden') %></a>
     </div>
   </div>
   <div class="row info">
     <div class="columns large-4">
-      <p>
-        What does your garden look like? Uploading a picture will let you keep track of it as your plants grow.
+      <p ng-if="garden.editing">
+        <%= t('.upload_picture') %>
       </p>
       <span ng-repeat="pic in garden.pictures"
             class="thumbnails"
             ng-class="{ 'deleted' : pic.deleted }"
+            ng-if="garden.editing || !pic.deleted"
             ng-init="pic.deleted = false"
             ng-click="pic.deleted = !pic.deleted">
         <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
-
              ng-model="pic"/>
       </span>
       <div s3-upload
           bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+          ng-if="garden.editing"
           ng-model="s3upload"
           s3-upload-place-pic="handleNewGardenImage(garden, image)"
           s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
@@ -73,7 +63,7 @@
       <table class="details">
         <tr>
           <th>
-            Garden Type
+            <%= t('.garden_type') %>
           </th>
           <td>
             <span ng-bind="garden.type"
@@ -84,14 +74,14 @@
                backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.type">
-              <option value="Outdoors">Outdoors</option>
-              <option value="Indoors">Indoors</option>
+              <option value="Outdoors"><%= t('.outdoors') %></option>
+              <option value="Indoors"><%= t('.indoors') %></option>
             </select>
           </td>
         </tr>
         <tr>
           <th>
-            Sunlight
+            <%= t('.sunlight') %>
           </th>
           <td>
             <span ng-bind="garden.average_sun"
@@ -102,15 +92,15 @@
                 backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.average_sun">
-              <option value="Full Sun">Full Sun</option>
-              <option value="Partial Sun">Partial Sun</option>
-              <option value="Full Shade">Full Shade</option>
+              <option value="Full Sun"><%= t('.full_sun') %></option>
+              <option value="Partial Sun"><%= t('.partial_sun') %></option>
+              <option value="Full Shade"><%= t('.full_shade') %></option>
             </select>
           </td>
         </tr>
         <tr>
           <th>
-            Soil Type
+            <%= t('.soil_type') %>
           </th>
           <td>
             <span ng-bind="garden.soil_type"
@@ -121,16 +111,16 @@
                 backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.soil_type">
-              <option value="Loam">Loam</option>
-              <option value="Clay">Clay</option>
-              <option value="Silt">Sandy</option>
-              <option value="Full Shade">Silty</option>
+              <option value="Loam"><%= t('.loam') %></option>
+              <option value="Clay"><%= t('.clay') %></option>
+              <option value="Sandy"><%= t('.sandy') %></option>
+              <option value="Silty"><%= t('.silty') %></option>
             </select>
           </td>
         </tr>
         <tr>
           <th>
-            pH
+            <%= t('.ph') %>
           </th>
           <td>
             <span ng-bind="garden.ph" class="ph">
@@ -165,12 +155,12 @@
          class="button secondary tiny"
          ng-init="garden.editing_crops = false"
          ng-click="garden.editing_crops = !garden.editing_crops"
-      ><i class="fa fa-edit"></i> Edit</a>
+      ><i class="fa fa-edit"></i> <%= t('.edit') %></a>
       <a type="button"
          ng-show="garden.editing_crops"
          class="button secondary tiny"
          ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);"
-      ><i class="fa fa-save"></i> Save Changes</a>
+      ><i class="fa fa-save"></i> <%= t('.save_changes') %></a>
       <input type="button" value="Delete" class="button alert tiny" ng-click="deleteSelected(garden)"/>
     </div>
   </div>
@@ -186,19 +176,19 @@
                  ng-disabled="garden.editing_crops"/>
         </td>
         <th>
-          Crop
+          <%= t('application.crop') %>
         </th>
         <th>
-          Guide
+          <%= t('application.guide') %>
         </th>
         <th>
-          Sowed
+          <%= t('.sowed') %>
         </th>
         <th>
-          Life Stage
+          <%= t('.life_stage') %>
         </th>
         <th>
-          Quantity
+          <%= t('.quantity') %>
         </th>
       </tr>
       <tr ng-repeat="crop in garden.garden_crops"
@@ -249,7 +239,7 @@
       </tr>
       <tr>
         <td colspan="6">
-          To add another plant to this garden, look for a guide you want to use!
+          <%= t('.add_crop') %>
         </td>
       </tr>
     </table>

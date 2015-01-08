@@ -17,7 +17,7 @@ class GardenSerializer < ApplicationSerializer
   # key: :garden_crops,
   # embed_namespace: :links
 
-  # has_many :garden_crops
+  has_many :garden_crops
 
   has_many :pictures
 end

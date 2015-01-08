@@ -26,8 +26,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
       };
 
       params.images = $scope.editCrop.pictures.filter(function(d){
-
-        if (!d.deleted){ return true; }
+        return !d.deleted;
       });
 
       var cropCallback = function(success, crop){

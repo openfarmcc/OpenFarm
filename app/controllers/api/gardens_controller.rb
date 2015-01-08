@@ -12,10 +12,9 @@ module Api
     end
 
     def update
-      garden = Garden.find(params[:id])
       @outcome = Gardens::UpdateGarden.run(params,
                                            user: current_user,
-                                           garden: garden)
+                                           id: params[:id])
       respond_with_mutation(:ok)
     end
 

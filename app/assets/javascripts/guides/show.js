@@ -8,6 +8,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
     $scope.alerts = [];
+    $scope.gardenCrop = {};
 
     $scope.setUser = function(success, object){
       if (success){
@@ -18,6 +19,15 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.setCurrentUser = function(success, object){
       if (success){
         $scope.currentUser = object;
+
+        $scope.currentUser.gardens.forEach(function(g){
+          g.garden_crops.forEach(function(gc){
+            if (gc.guide._id === $scope.guide._id){
+              g.added = true;
+              $scope.gardenCrop = gc;
+            }
+          });
+        });
       }
     };
 
@@ -40,18 +50,29 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
-    $scope.addToGarden = function(garden){
+    $scope.toggleGarden = function(garden){
       garden.adding = true;
-      var callback = function(success){
-        if (success){
-          garden.adding = false;
-          garden.added = true;
-        }
-      };
-      gardenService.addGardenCropToGarden(garden,
-        $scope.guide,
-        $scope.alerts,
-        callback);
+      if (!garden.added){
+        var callback = function(success){
+          if (success){
+            garden.adding = false;
+            garden.added = true;
+          }
+        };
+        gardenService.addGardenCropToGarden(garden,
+          $scope.guide,
+          $scope.alerts,
+          callback);
+      } else {
+        gardenService.deleteGardenCrop(garden,
+          $scope.gardenCrop,
+          $scope.alerts,
+          function(success){
+            garden.adding = false;
+            garden.added = false;
+          });
+      }
+
     };
 
     if ($scope.userId){

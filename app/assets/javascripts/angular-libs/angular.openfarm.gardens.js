@@ -3,12 +3,17 @@ openFarmModule.factory('gardenService', ['$http',
     var saveGarden = function(garden, alerts, callback){
       var url = '/api/gardens/' + garden._id;
       var data = {
-        'description': garden.description || null,
-        'type': garden.type || null,
-        'location': garden.location || null,
-        'average_sun': garden.average_sun || null,
-        'ph': garden.ph || null,
-        'soil_type': garden.soil_type || null
+        images: garden.pictures.filter(function(p){
+          return !p.deleted;
+        }),
+        garden: {
+          description: garden.description || null,
+          type: garden.type || null,
+          location: garden.location || null,
+          average_sun: garden.average_sun || null,
+          ph: garden.ph || null,
+          soil_type: garden.soil_type || null
+        }
       };
       $http.put(url, data)
         .success(function (response, object) {

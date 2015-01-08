@@ -7,6 +7,7 @@ module Pictures
     optional do
       string :id, empty: true
       array :pictures, class: Picture
+      # model :photographic, class: Object, nil: false
     end
 
     def validate

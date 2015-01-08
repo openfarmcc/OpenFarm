@@ -6,8 +6,8 @@ class RegistrationsController < Devise::RegistrationsController
       user: current_user,
       name: I18n.t('registrations.your_first_garden'),
       description: I18n.t('registrations.generated_this_garden'),
-      average_sun: "Full Sun",
-      type: "Outdoors",
+      average_sun: 'Full Sun',
+      type: 'Outdoors',
       soil_type: 'Loam'
     )
 

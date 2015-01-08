@@ -67,7 +67,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
         gardenService.deleteGardenCrop(garden,
           $scope.gardenCrop,
           $scope.alerts,
-          function(success){
+          function(){
             garden.adding = false;
             garden.added = false;
           });

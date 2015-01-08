@@ -1,5 +1,4 @@
 @import 'compass';
-@import 'styles/presets';
 @import 'font-awesome';
 
 $of-orange: #e69138;
@@ -37,6 +36,8 @@ $compatibility-circle-size: 50px;
 $compatibility-low-color:  #B23A2C;
 $compatibility-med-color:  #FBAD2F;
 $compatibility-high-color: #84C93F;
+
+@import 'styles/presets';
 
 @import 'styles/foundation_and_overrides';
 @import 'styles/devise';

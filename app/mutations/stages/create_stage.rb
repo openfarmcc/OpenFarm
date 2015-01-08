@@ -23,7 +23,7 @@ module Stages
 
     optional do
       array :actions, class: Hash, arrayize: true
-      array :images, class: String, arrayize: true
+      array :images, class: Hash, arrayize: true
     end
 
     def validate
@@ -37,7 +37,7 @@ module Stages
       @stage ||= Stage.new(stage)
       @stage.guide = @guide
       @stage.save
-      set_pictures
+      set_images
       set_actions
 
       # TODO: Why is this record being reloaded? Possible refactor target:

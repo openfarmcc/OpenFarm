@@ -55,6 +55,11 @@
         </label>
       </div>
       <div class="columns large-8 medium-8">
+        <span class="thumbnails"
+              ng-if="newGuide.featured_image && newGuide.featured_image.indexOf('leaf-grey') === -1">
+        <img ng-src="{{ newGuide.featured_image }}"
+             />
+        </span>
         <div
           id="guide_image_upload"
           name="guide_image_upload"
@@ -62,6 +67,7 @@
           bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
           s3-guide="newGuide"
           ng-model="s3upload"
+          s3-upload-place-pic="placeGuideUpload(image)"
           s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
         </div>
       </div>

@@ -23,6 +23,7 @@ module Crops
     end
     # I think the complexity seen here and in validate_images might indicate its
     # time to make crop pictures a nested resources.
+    # TODO refactor this to be the same as in stages_concern.
     def set_pictures
       if images
         maybe_delete images

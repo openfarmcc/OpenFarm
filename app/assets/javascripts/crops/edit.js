@@ -5,7 +5,6 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
     $scope.editCrop = {};
     var setCrop = function(success, crop){
       $scope.editCrop = crop;
-      console.log(crop);
     };
 
     cropService.getCrop(getIDFromURL('crops'), $scope.alerts, setCrop);
@@ -30,12 +29,10 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
 
         if (!d.deleted){ return true; }
       });
-      console.log(params.images);
 
       var cropCallback = function(success, crop){
         $scope.editCrop.sending = false;
         $scope.editCrop = crop;
-        console.log('successfully updated crop', crop);
       };
 
       cropService.updateCrop($scope.editCrop._id,
@@ -44,13 +41,10 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
                              cropCallback);
     };
 
-    $scope.$watch('s3upload', function(){
-      if ($scope.s3upload){
-        $scope.editCrop.pictures.push({
-          new: true,
-          image_url: $scope.s3upload
-        });
-        console.log($scope.s3upload);
-      }
-    });
+    $scope.placeCropUpload = function(image){
+      $scope.editCrop.pictures.push({
+        new: true,
+        image_url: image
+      });
+    };
   }]);

@@ -27,7 +27,7 @@ describe Crops::UpdateCrop do
   end
 
   it 'updates a crop image via URL' do
-    VCR.use_cassette('mutations/crops/update_stage') do
+    VCR.use_cassette('mutations/crops/update_crop') do
       image_hash = {
         image_url: 'http://i.imgur.com/2haLt4J.jpg'
       }
@@ -49,7 +49,7 @@ describe Crops::UpdateCrop do
   end
 
   it 'uploads multiple images' do
-    VCR.use_cassette('mutations/crops/update_stage') do
+    VCR.use_cassette('mutations/crops/update_crop') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' },
                     { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
       image_params = params.merge(images: image_hash)
@@ -60,7 +60,7 @@ describe Crops::UpdateCrop do
   end
 
   it 'deletes images marked for deletion' do
-    VCR.use_cassette('mutations/crops/update_stage') do
+    VCR.use_cassette('mutations/crops/update_crop') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
 
       image_params = params.merge(images: image_hash)
@@ -77,7 +77,7 @@ describe Crops::UpdateCrop do
   end
 
   it 'leaves existing images as is' do
-    VCR.use_cassette('mutations/crops/update_stage') do
+    VCR.use_cassette('mutations/crops/update_crop') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
 
       image_params = params.merge(images: image_hash)
@@ -97,8 +97,8 @@ describe Crops::UpdateCrop do
     end
   end
 
-  it 'leaves existing images as is' do
-    VCR.use_cassette('mutations/crops/update_stage') do
+  it 'does not edit existing images' do
+    VCR.use_cassette('mutations/crops/update_crop') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
 
       image_params = params.merge(images: image_hash)

@@ -80,7 +80,6 @@ openFarmApp.directive('stageButtons', [
     };
 }]);
 
-// ToDo: move things to the angular.openfarm services in guides.
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   'guideService', 'stageService',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
@@ -173,6 +172,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               item.selected = true;
               item.exists = true;
               item._id = d._id;
+              item.pictures = d.pictures;
 
               item.stage_length = d.stage_length;
               switch(true){
@@ -350,6 +350,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       item.editing = false;
       if (stage === item){
         item.editing = true;
+        $scope.currentStage = stage;
       }
     });
   };
@@ -425,11 +426,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.sendStages = function(success, guide){
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
-
     $scope.newGuide.stages.forEach(function(stage){
       var stageParams = {
         name: stage.name,
-        images: [stage.featured_image],
         guide_id: guide._id,
         order: stage.order,
         stage_length: calcStageLength(stage.stage_length, stage.length_type),
@@ -454,6 +453,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return { name: s.name, overview: s.overview };
           }) || null
       };
+      if (stage.pictures){
+        stageParams.images = stage.pictures.filter(function(p){
+          return !p.deleted;
+        });
+      }
 
       // Go through all the possible changes on
       // each stage.
@@ -486,6 +490,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                    $scope.checkNumberUpdated();
                                  });
       }
+
     });
   };
 
@@ -498,9 +503,23 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     });
     if (updatedNum === $scope.sent){
-      // $scope.newGuide.sending = false;
+      $scope.newGuide.sending = false;
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
+  };
+
+  $scope.placeStageUpload = function(stage, image){
+    if (!stage.pictures){
+      stage.pictures = [];
+    }
+    stage.pictures.push({
+      new: true,
+      image_url: image
+    });
+  };
+
+  $scope.placeGuideUpload = function(image){
+    $scope.newGuide.featured_image = image;
   };
 
   $scope.cancel = function(path){

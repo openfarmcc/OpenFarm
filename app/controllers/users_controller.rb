@@ -9,10 +9,10 @@ class UsersController < ApplicationController
       user: current_user)
     if @outcome.errors
       flash[:alert] = @outcome.errors.message_list
-      redirect_to(controller: 'users', 
+      redirect_to(controller: 'users',
         action: 'finish')
     else
-      redirect_to(controller: 'users', action: 'gardens')
+      redirect_to(controller: 'users', action: 'gardens', manage: true)
     end
   end
 

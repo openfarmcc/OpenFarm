@@ -11,6 +11,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
     $scope.initCallback = function(success, user){
       $scope.currentUser = user;
       $scope.gardens = user.gardens;
+
+      // if(getUrlVar('manage')){
+      //   $scope.gardens[0].editing = true;
+      // }
+
       angular.forEach(user.gardens, function(garden){
         angular.forEach(garden.garden_crops, function(crop){
           var callback = function(success, response){
@@ -58,12 +63,10 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
       angular.forEach(garden.garden_crops, function(crop){
         if (crop.selected && !crop.hide){
           var removeFromList = function(success){
-            console.log(success);
             if (success){
               // don't quite want to deal with splicing arrays
               // across different function calls
               crop.hide = true;
-              console.log(crop);
             }
           };
           gardenService.deleteGardenCrop(garden,
@@ -71,6 +74,13 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
                                          $scope.alerts,
                                          removeFromList);
         }
+      });
+    };
+
+    $scope.handleNewGardenImage = function(garden, image){
+      garden.pictures.push({
+        image_url: image,
+        new: true
       });
     };
 }]);

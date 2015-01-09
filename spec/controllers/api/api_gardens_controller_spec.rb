@@ -92,16 +92,22 @@ describe Api::GardensController, type: :controller do
       garden = FactoryGirl.create(:garden)
       put :update,
           id: garden.id,
-          name: 'updated',
+          garden: {
+            name: 'updated'
+          },
           format: :json
+
       expect(response.status).to eq(422)
+      expect(response.body).to include('only update gardens that belong to you')
     end
 
     it 'should edit owned gardens' do
       garden = FactoryGirl.create(:garden, user: @viewing_user)
       put :update,
           id: garden.id,
-          name: 'updated',
+          garden: {
+            name: 'updated'
+          },
           format: :json
       expect(response.status).to eq(200)
       expect(garden.reload.name).to eq('updated')

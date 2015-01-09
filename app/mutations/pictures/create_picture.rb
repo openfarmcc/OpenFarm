@@ -7,6 +7,10 @@ module Pictures
     optional do
       string :id, empty: true
       array :pictures, class: Picture
+      # model :photographic, class: Object, nil: false
+
+      # TODO Here's another alternative solution for refactoring, mutation's
+      # ducktype check https://github.com/cypriss/mutations/blob/master/lib/mutations/duck_filter.rb
     end
 
     def validate

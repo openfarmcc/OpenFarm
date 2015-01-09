@@ -1,0 +1,23 @@
+/* ==========================================================================
+   button
+   ========================================================================== */
+
+/**
+ * A mock button
+ * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+ */
+
+
+.mockbutton {
+  background-color: #99b36c;
+  border-color: #7d974e;
+  color: white;
+  font-size: 0.8125rem;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* button variation */
+.mockbutton--variation {
+  background-color: red;
+}

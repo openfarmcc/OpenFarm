@@ -1,0 +1,27 @@
+/* ==========================================================================
+   media
+   ========================================================================== */
+
+/**
+ * The holy media object
+ * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+ */
+
+.mockmedia, .mockmedia-body {
+  overflow: hidden;
+}
+
+.lt-ie7 .mockmedia, .lt-ie7 .mockmedia-body {
+  overflow: visible;
+  zoom: 1;
+}
+
+.mockmedia-img {
+  float: left;
+  margin-left: 0.5em;
+}
+
+.mockmedia-img--extend {
+  float: right;
+  margin-left: 0.5em;
+}

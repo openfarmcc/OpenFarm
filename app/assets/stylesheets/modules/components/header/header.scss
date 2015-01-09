@@ -1,0 +1,22 @@
+/* ==========================================================================
+   header
+   ========================================================================== */
+
+/**
+ * Header styling
+ */
+
+
+.mockheader {
+  width: 100%;
+}
+
+/* header modifier */
+.mockheader--variation {
+  outline: 1px solid red;
+}
+
+/* header element */
+.mockheader__search {
+  width: 50%
+}

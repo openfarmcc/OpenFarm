@@ -1,0 +1,16 @@
+/* ==========================================================================
+   textfield
+   ========================================================================== */
+
+/**
+ * Labels and inputs combined
+ * http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+ */
+
+.mocktextfield {
+  border: 1px solid red;
+}
+
+.mocktextfield__label {
+  display: block;
+}

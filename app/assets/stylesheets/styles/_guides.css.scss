@@ -1,20 +1,21 @@
 /* presets */
 
-.guides-list{
+.guides-list {
   margin-top: 2rem;
   list-style: none;
 
-  table{
+  table {
     width: 100%;
   }
 }
 
-.box{
+// TODO: Remove/refactor out generic selectors like this!
+.box {
   border-radius: 2px;
   background: rgba(198,159,96,0.04);
   border: 1px solid rgba(0,0,0,0.25);
 
-  h1{
+  h1 {
     font-size: 2rem;
   }
 }
@@ -24,7 +25,7 @@
 .guides {
   position: relative;
 
-  .box{
+  .box {
     margin: 2rem inherit;
   }
 
@@ -48,27 +49,48 @@
         margin: .25rem 0;
         border-radius: $global-radius;
       }
+    }
+  }
 
-      li:hover{
-        background: $of-green;
-        opacity: 1;
-        color: white;
+  .image-wrapper img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    margin: auto 0;
+    width: 100%;
+  }
+
+  .title {
+    h2 {
+      font-weight: 100;
+      color: $secondary-color;
+
+      span {
+        color: $of-green;
+        font-weight: 300;
       }
     }
 
-    .selected{
-      background: $of-green;
-      opacity: 1;
-      color: white;
+    .right {
+      position: absolute;
+      top: 1rem;
+      right: 0;
     }
   }
-}
 
-.show-guide{
-  margin-bottom: 6rem;
+  .actual-requirements {
+    ul {
+      list-style: none;
+    }
 
-  h2{
-    font-size: 1.4rem;
+    li {
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
   }
 
   .edit-link{

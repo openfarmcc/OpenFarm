@@ -33,6 +33,16 @@
   box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
 }
 
+@mixin manual-font-awesome($glyph) {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: $glyph;
+}
+
 
 /*
 
@@ -66,6 +76,35 @@ textarea {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/* Title bars that sit beneath the nav */
+.bar-header {
+  $height: 45px;
+
+  height: $height;
+  background: $of-green;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 3rem;
+
+  .title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: $height;
+    vertical-align: middle;
+    color: white;
+    text-align: center;
+  }
+}
+
+/* When we have multiple stacked headers, we'll remove their bottom margin and let the parent handle it */
+.multi-bar-header {
+  .bar-header {
+    margin-bottom: 0;
+  }
+  margin-bottom: 3rem;
 }
 
 /* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */

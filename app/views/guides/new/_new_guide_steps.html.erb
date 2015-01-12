@@ -1,3 +1,39 @@
+<div class="multi-bar-header">
+  <div class="bar-header">
+    <h1 class="title"><%= t('.create_a_growing_guide') %></h1>
+  </div>
+  <div class="bar-header guide-creation-nav">
+    <div class="container">
+      <div class="row">
+        <ul class="small-12 columns">
+          <li ng-class="{ 'active' : step === 1, 'clickable' : newGuide.crop, 'check' : newGuide.crop }">
+            <a href="#" ng-click="switchToStep(1)">
+              <%= t('.the_basics') %>
+            </a>
+          </li>
+          <li ng-class="{ 'active' : step === 2, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0, 'check' : newGuide.selectedStages.length > 0 }">
+            <a href="#" ng-click="switchToStep(2)">
+              <%= t('.life_stages') %>
+            </a>
+          </li>
+          <li ng-class="{ 'active' : step === 3, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0, 'check' : hasEditedStages }">
+            <a href="#" ng-click="switchToStep(3)">
+              <%= t('.stage_details') %>
+            </a>
+          </li>
+          <li>
+            <a ng-class="{ 'active' : step === 4, 'clickable' : newGuide.crop && newGuide.selectedStages.length > 0, 'check' : newGuide.name }" href="#" ng-click="switchToStep(4)">
+              <%= t('.final_touches') %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="row create-guide-steps">
   <div class="large-2 medium-3 small-12 columns step"
       ng-class="{ 'active' : step === 1, 'clickable' : newGuide.crop }" ng-click="switchToStep(1)">

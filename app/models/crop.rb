@@ -41,6 +41,17 @@ class Crop
     if pictures.present?
       pictures.first.attachment.url
     else
+      # WARNING! MVC VIOLATION AHEAD!!!! =======================================
+      # The fact that we are using polymorphic embedded documents means we would
+      # need to add an extra build step to populate S3 and then add conditional
+      # logic to figure out which class its embedded in to return the correct
+      # URL.
+
+      # If someone reading this has a better idea, I'd love to hear it. In the
+      # meantime, I'm willing to look the other way and violate MVC in favor of
+      # having less code to maintain. The current solution lets us keep the file
+      # in source control instead of expecting the developer to upload it to an
+      # S3 bucket when setting up new boxes.
       ActionController::Base.helpers.asset_path('baren_field.jpg')
     end
   end

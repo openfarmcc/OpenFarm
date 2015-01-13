@@ -2,6 +2,9 @@
   <div class="crop-info-container small-6 columns">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
+      <% if current_user && current_user.admin? %>
+        <%= link_to(icon('edit') + " Edit Crop", {action: 'edit'}, class: 'edit-link button secondary tiny') %>
+      <% end %>
     </div>
     <table class="crop">
         <tbody>

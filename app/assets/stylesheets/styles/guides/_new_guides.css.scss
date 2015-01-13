@@ -38,12 +38,28 @@
     li {
       position: relative;
       display: inline-block;
-      margin-left: 30px;
+    }
+
+    li a {
+      color: white;
+      font-size: 1.25em;
+      font-weight: 600;
+      vertical-align: middle;
+      color: rgba(255,255,255,0.7);
+      padding: 10px 10px 10px 35px;
+
+      &.disabled {
+        pointer-events: none;
+      }
+
+      &:hover {
+        color: rgba(255,255,255,0.9);
+      }
 
       &::before {
         position: absolute;
         top: 10px;
-        left: -15px;
+        left: 10px;
         $size: 12px;
         width: $size; height: $size;
         content: "";
@@ -57,9 +73,18 @@
         @include manual-font-awesome('\f00c');
         position: absolute;
         top: 4px;
-        left: -17px;
+        left: 8px;
         font-size: 22px;
         color: white;
+      }
+
+      &:active, &.active {
+        color: rgba(255,255,255,1);
+
+        // get rid of check
+        &::after {
+          display: none;
+        }
       }
 
       &.active::before {
@@ -72,8 +97,9 @@
       &:hover {
         // fill in dot
         &::before {
-          background: rgba(255,255,255,1.0);
+          background: white;
         }
+
         // get rid of check
         &::after {
           display: none;
@@ -81,30 +107,13 @@
       }
     }
 
-    li a {
-      color: white;
-      font-size: 1.25em;
-      font-weight: 600;
-      vertical-align: middle;
-      opacity: 0.7;
-      padding: 10px 10px 10px 8px;
-
-      &:hover {
-        opacity: 0.9;
-      }
-
-      &:active, &.active {
-        opacity: 1;
-      }
-    }
-
-    .arrow {
-      color: white;
-      font-size: 1.45em;
-      vertical-align: middle;
-      opacity: 0.5;
-      margin: auto 10px;
-    }
+    // .arrow {
+    //   color: white;
+    //   font-size: 1.45em;
+    //   vertical-align: middle;
+    //   opacity: 0.5;
+    //   margin: auto 10px;
+    // }
   }
 
   // TODO: @simonv3, figure out where to put these:
@@ -281,27 +290,28 @@
     }
   }
 
-  .instructions{
+  .instructions {
     margin: 1.5rem 0;
   }
 
-  .life-stages{
-    .stage-wrapper{
+  .life-stages {
+    .stage-wrapper {
       display: inline-block;
-      height: 137px;
-      width: 17%;
-      padding: 0;
+      overflow: hidden;
+      height: 142px;
+      // width: 17%;
+      // padding: 0;
       margin-bottom: 3%;
-      margin-right: 3%;
+      // margin-right: 3%;
     }
 
-    input[type="checkbox"]{
+    input[type="checkbox"] {
       display: none;
     }
 
-    .stage-option{
+    .stage-option {
       display: block;
-      border-radius: 10rem;
+      border-radius: 4px;
       padding: .25rem;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, .2);
       border: solid 1px #DFDFDF;
@@ -309,16 +319,21 @@
       height: 100%;
       transition: border .2s;
 
-      p{
-        bottom: 0;
+      &:hover {
+        border-color: #CCCCCC;
+      }
+
+      p {
         position: absolute;
-        background-color: white;
-        padding: .5rem 1rem;
-        margin-bottom: .25rem;
+        bottom: 0;
+        font-weight: 600;
+        background: rgba(255,255,255,0.95);
+        border-radius: 3px;
+        padding: 2px 10px;
       }
     }
 
-    input:checked + .stage-option{
+    input:checked + .stage-option {
       border: 3px solid $of-green;
     }
   }
@@ -415,7 +430,9 @@
   // might be better suited somewhere else.
   .stage-option, .chosen-stage > .bubble{
     background-repeat: no-repeat;
-    background-size: 150px;
+    background-size: cover;
+    background-position: center center;
+
     &.Preparation{
       background-image: url('stages/preparation_stage_200.png');
     }

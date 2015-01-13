@@ -88,13 +88,16 @@
         </div>
       </div>
     </div>
-    <div stage-buttons
-        cancel-url="<%= root_path %>"
-        cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
-        abled-bool="newGuide.crop"
-        abled-text="<%= t('.next_life_stages') %>"
-        disabled-text="<%= t('.choose_a_crop_to_continue') %>"
-        >
-    </div>
+    <div class="button-wrapper row">
+      <div class="columns large-12">
+        <div stage-buttons
+          cancel-url="<%= root_path %>"
+          cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+          abled-bool="newGuide.crop"
+          abled-text="<%= t('.next_life_stages') %>"
+          disabled-text="<%= t('.choose_a_crop_to_continue') %>">
+        </div>
+      </div>
+      </div>
   </form>
 </section>

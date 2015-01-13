@@ -13,7 +13,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
       $scope.editCrop.sending = true;
 
       var commonNames = $scope.editCrop.common_names;
-      if (typeof $scope.editCrop.common_names === "string"){
+      if (typeof $scope.editCrop.common_names === 'string'){
         commonNames = $scope.editCrop.common_names.split(/,+|\n+/)
                         .map(function(s){ return s.trim(); });
       }

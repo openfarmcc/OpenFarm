@@ -11,16 +11,13 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
 
     $scope.submitForm = function(){
       $scope.editCrop.sending = true;
-      var commonNames = [];
-      console.log(typeof $scope.editCrop.common_names);
+
+      var commonNames = $scope.editCrop.common_names;
       if (typeof $scope.editCrop.common_names === "string"){
         commonNames = $scope.editCrop.common_names.split(/,+|\n+/)
-                        .map(function(s){ return s.trim(); })
-                        .filter(function(s){ return s.length > 0; });
-      } else {
-        commonNames = $scope.editCrop.common_names
-                        .filter(function(s){ return s.length > 0; });
+                        .map(function(s){ return s.trim(); });
       }
+      commonNames = commonNames.filter(function(s){ return s.length > 0; });
 
       var params = {
         crop: {

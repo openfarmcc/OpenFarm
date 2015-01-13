@@ -66,16 +66,16 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             }
             if (b.percent < 0.5){
               switch (b.name){
-                case "Sun / Shade":
+                case 'Sun / Shade':
                   b.tooltip = 'Low because you have ' + averageSun;
                   break;
-                case "Location":
+                case 'Location':
                   b.tooltip = 'Low because your garden is ' + locationType;
                   break;
-                case "Soil Type":
+                case 'Soil Type':
                   b.tooltip = 'Low because you have ' + soilType + ' soil.';
                   break;
-                case "Practices":
+                case 'Practices':
                   b.tooltip = 'You don\'t follow these practices in any '+
                               'of your gardens';
                   break;
@@ -84,16 +84,16 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
             if (b.percent >= 0.5 && b.percent < 0.75){
               switch (b.name){
-                case "Sun / Shade":
+                case 'Sun / Shade':
                   b.tooltip = 'Medium because you have ' + averageSun;
                   break;
-                case "Location":
+                case 'Location':
                   b.tooltip = 'Medium because your garden is ' + locationType;
                   break;
-                case "Soil Type":
+                case 'Soil Type':
                   b.tooltip = 'Medium because you have ' + soilType + ' soil.';
                   break;
-                case "Practices":
+                case 'Practices':
                   b.tooltip = 'You follow some of these practices in '+
                               'your gardens';
                   break;
@@ -102,16 +102,16 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
             if (b.percent >= 0.75){
               switch (b.name){
-                case "Sun / Shade":
+                case 'Sun / Shade':
                   b.tooltip = 'High because you have ' + averageSun;
                   break;
-                case "Location":
+                case 'Location':
                   b.tooltip = 'High because your garden is ' + locationType;
                   break;
-                case "Soil Type":
+                case 'Soil Type':
                   b.tooltip = 'High because you have ' + soilType + ' soil.';
                   break;
-                case "Practices":
+                case 'Practices':
                   b.tooltip = 'You follow some of these practices in '+
                               'your gardens';
                   break;

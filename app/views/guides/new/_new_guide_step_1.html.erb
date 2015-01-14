@@ -4,15 +4,11 @@
     id="new-guide-step-1"
     method="post"
     >
+    <h1 class="instructions">
+      <%= t('.lets_get_started') %>
+    </h1>
     <div class="row">
-      <div class="columns small-12 instructions">
-        <h1>
-          <%= t('.lets_get_started') %>
-        </h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="left-half columns small-6">
+      <div class="left-half columns small-5">
         <div class="row">
           <div class="columns small-12">
             <label class="left"
@@ -52,6 +48,7 @@
               <span ng-bind="newGuide.crop.description"></span>
             </p>
           </div>
+          <hr/>
           <div class="columns small-12">
             <label class="left"
                 for="guide_image_upload"><%= t('.choose_photo') %><br/>
@@ -77,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div class="right-half columns small-6">
+      <div class="right-half columns small-7">
         <div class="row practices">
           <div class="columns small-12">
 

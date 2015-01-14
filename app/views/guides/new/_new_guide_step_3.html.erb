@@ -6,13 +6,9 @@
 
   <div ng-if="newGuide.selectedStages.length > 0">
     <form name="stagesForm">
-      <div class="row">
-        <div class="columns small-12 instructions">
-          <h2 class="columns large-12">
-            <%= t('.fill_in_details') %>
-          </h2>
-        </div>
-      </div>
+      <h2 class="instructions">
+        <%= t('.fill_in_details') %>
+      </h2>
 
       <%= render 'guides/new/stage_details/chosen_stages' %>
 

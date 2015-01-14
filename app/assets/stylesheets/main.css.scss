@@ -42,9 +42,8 @@ $compatibility-low-color-bg: rgba(178, 58, 44, 0.2);
 $compatibility-med-color-bg: rgba(251, 173, 47, 0.2);
 $compatibility-high-color-bg: rgba(132, 201, 63, 0.2);
 
-@import 'styles/presets';
-
 @import 'styles/foundation_and_overrides';
+@import 'styles/presets';
 @import 'styles/devise';
 @import 'styles/nav';
 @import 'styles/icons';

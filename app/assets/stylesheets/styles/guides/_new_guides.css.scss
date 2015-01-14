@@ -158,11 +158,14 @@
 
   section.step {
     margin-bottom: 4rem;
+
     h1 {
       font-size: 2rem;
+      margin-bottom: 0;
     }
     h2 {
       font-size: 1.4rem;
+      margin-bottom: 0;
     }
     h3 {
       font-size: 1.2rem;
@@ -236,6 +239,20 @@
     }
     input.button.small.secondary.left {
       margin-left: .5rem;
+    }
+
+    /* when a select dropdown is attached to the bottom of an input */
+    .vertical-input-select-group {
+      input {
+        margin-bottom: 0;
+      }
+      select {
+        height: 2rem;
+        margin-top: 0;
+        padding-top: 0.25rem;
+        border-bottom-left-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+      }
     }
   }
 
@@ -421,15 +438,11 @@
     }
   }
 
+  /* sections of step 3 */
   .stage-details {
-
-    .instructions {
-      text-align: center;
-    }
-
     section {
       .row {
-        margin-bottom: 1rem;
+        margin-bottom: 1.8rem;
       }
     }
   }

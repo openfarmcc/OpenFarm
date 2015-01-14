@@ -1,4 +1,4 @@
-<section name="step-3" class="step" ng-show="step === 3" class="stage-details">
+<section name="step-3" class="step stage-details" ng-show="step === 3">
 
   <div ng-if="newGuide.selectedStages.length === 0">
     Please select some stages!
@@ -13,9 +13,11 @@
     <!--  -->
 
     <form name="stagesForm">
-      <h2 class="instructions">
-        <%= t('.fill_in_details') %>
-      </h2>
+      <div class="instructions">
+        <h2 class="center">
+          <%= t('.fill_in_details') %>
+        </h2>
+      </div>
 
       <%= render 'guides/new/stage_details/chosen_stages' %>
 
@@ -27,137 +29,145 @@
              form-id="stage.slug"
              form-stage="stage">
           <span ng-bind="stageForms[$index].$valid"></span>
-          <h3>{{ stage.name }} <%= t('.stage_details') %></h3>
-          <div class="row where">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                for="where_should_stage_happen">
-                  <%= t('.where_does_this_stage_happen') %>
-                  <br/>
-              </label>
-            </div>
-            <div class="columns large-8 medium-8">
-              <div multi-row-select
-                 class="multi-choice"
-                 options="stage.where"
-                 multi-select-type="checkbox"
-                 multi-select-id="where">
+          <div class="instructions">
+            <h2>{{ stage.name }}</h2>
+            <h3><%= t('.what_should_people_know_about_this_stage') %></h3>
+          </div>
+          <div class="row">
+            <div class="left-half columns large-4">
+              <div class="row image">
+                <div class="columns small-12">
+                  <label class="left"
+                      for="stage_image_upload"><%= t('application.choose_photo') %><br/>
+                    <small><%= t('application.only_upload_what_you_own') %></small>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  <span ng-repeat="pic in stage.pictures"
+                    class="thumbnails"
+                    ng-class="{ 'deleted' : pic.deleted }"
+                    ng-init="pic.deleted = false"
+                    ng-click="pic.deleted = !pic.deleted">
+                    <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+                         ng-model="pic"/>
+                  </span>
+                  <div
+                    id="stage-image-upload-{{$index}}"
+                    name="stage-image-upload-{{$index}}"
+                    s3-upload
+                    bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+                    s3-upload-place-pic="placeStageUpload(stage, image)"
+                    ng-model="s3upload"
+                    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="row soil">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                for="what_type_of_soil">
-                  <%= t('.what_type_of_soil') %>
-                  <br/>
-                  <small><%= t('.not_sure_about_soil_types_html') %></small>
-              </label>
-            </div>
-            <div class="columns large-8 medium-8">
-              <div multi-row-select
-                 class="multi-choice"
-                 options="stage.soil"
-                 multi-select-type="checkbox"
-                 multi-select-id="soil">
+              <div class="row how-long">
+                <div class="columns small-12">
+                  <label class="left"
+                      for="how_long"><%= t('.how_long') %><br/>
+                    <small><%= t('.do_not_sweat') %></small>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  <div class="vertical-input-select-group">
+                    <input ng-model="stage.stage_length"
+                           type="number"/>
+                    <select ng-model="stage.length_type">
+                      <option value="days">Days</option>
+                      <option value="weeks">Weeks</option>
+                      <option value="months">Months</option>
+                    </select>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="row light">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                for="how_much_light">
-                  <%= t('.how_much_light') %>
-                  <br/>
-              </label>
-            </div>
-            <div class="columns large-8 medium-8">
-              <div multi-row-select
-                 class="multi-choice"
-                 options="stage.light"
-                 multi-select-type="checkbox"
-                 multi-select-id="light">
-              </div>
-            </div>
-          </div>
-          <div class="row image">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                  for="stage_image_upload"><%= t('application.choose_photo') %><br/>
-                <small><%= t('application.only_upload_what_you_own') %></small>
-              </label>
-            </div>
-            <div class="columns large-8 medium-8">
-              <span ng-repeat="pic in stage.pictures"
-                class="thumbnails"
-                ng-class="{ 'deleted' : pic.deleted }"
-                ng-init="pic.deleted = false"
-                ng-click="pic.deleted = !pic.deleted">
-                <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
-                     ng-model="pic"/>
-              </span>
-              <div
-                id="stage-image-upload-{{$index}}"
-                name="stage-image-upload-{{$index}}"
-                s3-upload
-                bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-                s3-upload-place-pic="placeStageUpload(stage, image)"
-                ng-model="s3upload"
-                s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-              </div>
-            </div>
-          </div>
-          <div class="row how-long">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                  for="how_long"><%= t('.how_long') %><br/>
-                <small><%= t('.do_not_sweat') %></small>
-              </label>
-            </div>
-            <div class="columns large-2 medium-2">
-              <input ng-model="stage.stage_length"
-                     type="number"/>
-            </div><div class="columns large-2 medium-2 end">
-              <select ng-model="stage.length_type">
-                <option value="days">Days</option>
-                <option value="weeks">Weeks</option>
-                <option value="months">Months</option>
-              </select>
-            </div>
-          </div>
-          <!-- TODO -->
-          <!--
+              <!-- TODO -->
+              <!--
 
 
-          <div class="row annual">
-            <div class="columns large-4 medium-4">
-              <label class="right"
-                  for="repeat_annually"><%= t('.repeat_annually') %><br/>
-                <small><%= t('.not_sure_html') %></small>
-              </label>
+              <div class="row annual">
+                <div class="columns small-12">
+                  <label class="right"
+                      for="repeat_annually"><%= t('.repeat_annually') %><br/>
+                    <small><%= t('.not_sure_html') %></small>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  Coming Soon
+                </div>
+              </div> -->
             </div>
-            <div class="columns large-8 medium-8">
-              Coming Soon
+            <div class="right-half columns large-7 large-offset-1">
+              <div class="row where">
+                <div class="columns small-12">
+                  <label class="left"
+                    for="where_should_stage_happen">
+                      <%= t('.where_does_this_stage_happen') %>
+                      <br/>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  <div multi-row-select
+                     class="multi-choice"
+                     options="stage.where"
+                     multi-select-type="checkbox"
+                     multi-select-id="where">
+                  </div>
+                </div>
+              </div>
+              <div class="row soil">
+                <div class="columns small-12">
+                  <label class="left"
+                    for="what_type_of_soil">
+                      <%= t('.what_type_of_soil') %>
+                      <br/>
+                      <small><%= t('.not_sure_about_soil_types_html') %></small>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  <div multi-row-select
+                     class="multi-choice"
+                     options="stage.soil"
+                     multi-select-type="checkbox"
+                     multi-select-id="soil">
+                  </div>
+                </div>
+              </div>
+              <div class="row light">
+                <div class="columns small-12">
+                  <label class="left"
+                    for="how_much_light">
+                      <%= t('.how_much_light') %>
+                      <br/>
+                  </label>
+                </div>
+                <div class="columns small-12">
+                  <div multi-row-select
+                     class="multi-choice"
+                     options="stage.light"
+                     multi-select-type="checkbox"
+                     multi-select-id="light">
+                  </div>
+                </div>
+              </div>
             </div>
-          </div> -->
+          </div>
+
+
 
           <div class="row actions"
                ng-init="stage.activeAction = stage.stage_action_options[0]">
-            <div class="columns large-3 medium-2">
+            <div class="columns large-3 medium-4">
               <ul>
 
                 <li ng-repeat="action in stage.stage_action_options"
                     ng-click="stage.activeAction = action"
-                    ng-class="{ selected : stage.activeAction._id == action._id }">
-                    <i class="fa fa-check"
-                      ng-if="action.overview"></i>
-                    <i class="fa fa-x"
-                      ng-if="!action.overview"></i>
+                    ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
                     {{ action.name }}
                 </li>
               </ul>
             </div>
-            <div class="columns large-9">
+            <div class="columns large-9 medium-8">
               <label id="description" for="action_content" ng-bind="stage.activeAction.description">
               </label>
                 <textarea id="action_content" ng-model="stage.activeAction.overview"></textarea>

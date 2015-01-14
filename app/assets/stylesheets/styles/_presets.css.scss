@@ -57,12 +57,16 @@
 
 */
 
-table {
-  width: 100%;
+small {
+  text-transform: initial;
 }
 
 textarea {
   max-width: 100%
+}
+
+.center {
+  text-align: center;
 }
 
 .full-cover {
@@ -146,6 +150,11 @@ textarea {
   @include background-gradient(#A2BD6A, #83A544);
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
+
+  &.tiny {
+    // Helps avoid keming readability problems
+    letter-spacing: 0.025rem;
+  }
 
   &:hover {
     @include background-gradient(#8FAB54, #7A9841);

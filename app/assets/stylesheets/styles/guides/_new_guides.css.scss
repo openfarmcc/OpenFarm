@@ -117,14 +117,14 @@
   }
 
   // TODO: @simonv3, figure out where to put these:
-  .create-guide-steps{
+  .create-guide-steps {
     text-align: center;
     font-size: .8rem;
     color: $of-dark;
     margin-bottom: 1rem;
     pointer-events: none;
 
-    .step:first-child{
+    .step:first-child {
       border-top-left-radius: $global-radius;
       border-bottom-left-radius: $global-radius;
     }
@@ -134,23 +134,23 @@
       border-bottom-right-radius: $global-radius;
     }
 
-    .step{
+    .step {
       padding: .5rem 1rem;
       border: 1px $secondary-color solid;
     }
 
-    .step.active{
+    .step.active {
       background-color: $of-dark;
       border: 1px $of-dark solid;
       color: white;
     }
 
-    .preview{
+    .preview {
       border-radius: $global-radius;
       opacity: .5;
     }
 
-    .clickable{
+    .clickable {
       cursor: pointer;
       pointer-events: auto;
     }
@@ -165,16 +165,16 @@
       font-size: 1.4rem;
     }
     h3 {
-      font-size: 1rem;
-      font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-size: 1.2rem;
+      font-family: $body-font-family;
     }
   }
 
-  form{
+  form {
     width: 100%;
     display: inline-block;
 
-    .multi-choice label{
+    .multi-choice label {
       display: inline-block;
     }
 
@@ -200,54 +200,54 @@
       }
     }
 
-    label span{
+    label span {
       border: 0;
       border-radius: 0;
       font-size: 1rem;
     }
 
-    label:first-child span{
+    label:first-child span {
       border-top-left-radius: $global-radius;
       border-bottom-left-radius: $global-radius;
     }
 
-    button{
+    button {
       border: 0;
       font-size: .9rem;
       border-top-right-radius: $global-radius;
       border-bottom-right-radius: $global-radius;
     }
 
-    .button.last{
+    .button.last {
       border-top-right-radius: $global-radius;
       border-bottom-right-radius: $global-radius;
     }
 
-    .block{
+    .block {
       height: 2rem;
       display: block;
     }
 
-    p{
+    p {
       font-size: .9rem;
       color: #171717;
       line-height: 1.5rem;
       margin-bottom: .5rem;
     }
-    input.button.small.secondary.left{
+    input.button.small.secondary.left {
       margin-left: .5rem;
     }
   }
 
-  .button-wrapper{
+  .button-wrapper {
     margin-top: 2rem;
 
-    .loading-button{
+    .loading-button {
       margin: 1rem;
     }
   }
 
-  .feature-image .click-to-upload-image{
+  .feature-image .click-to-upload-image {
     cursor: pointer;
     background: #fff;
     width: 100%;
@@ -260,7 +260,7 @@
     margin-bottom: 1rem;
     @include font-awesome-mixin();
 
-    &:before{
+    &:before {
       content: "\f06c";
       font-size: 4rem;
       position: absolute;
@@ -270,28 +270,28 @@
       transform: translate(-50%, -50%);
     }
 
-    &.ng-valid-succeeded:before{
+    &.ng-valid-succeeded:before {
       content: '';
     }
 
-    &.ng-invalid-uploading:before{
+    &.ng-invalid-uploading:before {
       content: "\f110";
       -webkit-animation: fa-spin-image-load 2s infinite linear;
       animation: fa-spin-image-load 2s infinite linear;
     }
 
-    .wrapper{
+    .wrapper {
       height: 100%;
     }
 
-    img.no-image{
+    img.no-image {
       transform: translate(-50%, -50%);
       position: relative;
       top: 50%;
       left: 50%;
     }
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       z-index: 999;
@@ -347,17 +347,17 @@
     }
   }
 
-  .chosen-stages{
+  .chosen-stages {
     text-align: center;
     margin: 1rem 0 2rem;
 
-    .chosen-stage{
+    .chosen-stage {
       display: inline-block;
       width: 5rem;
       cursor: pointer;
       position: relative;
 
-      &::before{
+      &::before {
         content: '';
         border-bottom: 2px solid $of-light;
         height: 0;
@@ -369,11 +369,11 @@
         position: relative;
       }
 
-      &:last-child::before{
+      &:last-child::before {
         display: none;
       }
 
-      .bubble{
+      .bubble {
         width: 3.5rem;
         height: 3.5rem;
         border-radius: 10rem;
@@ -385,7 +385,7 @@
         position: relative;
         z-index: 1;
 
-        &:before{
+        &:before {
           font-size: 2rem;
           position: relative;
           color: $of-green;
@@ -396,40 +396,45 @@
           background-color: rgba(255,255,255,.7);
           border-radius: 10rem;
         }
-        &.fa-check{
+        &.fa-check {
           border: 2px solid $of-green;
         }
       }
 
-      &:last-child{
+      &:last-child {
         margin-right: 0;
       }
-      &.editing .bubble{
+      &.editing .bubble {
         border-color: $of-green;
       }
-      p{
+      p {
         text-align: center;
         opacity: 0;
         transition: opacity .2s;
         width: 120px;
         margin-left: -20px;
       }
-      &.editing p{
+      &.editing p {
         opacity: 1;
       }
 
     }
   }
 
-  .stage-details{
-    section{
-      .row{
+  .stage-details {
+
+    .instructions {
+      text-align: center;
+    }
+
+    section {
+      .row {
         margin-bottom: 1rem;
       }
     }
   }
 
-  .actions{
+  .actions {
     border-top: 1px solid $of-light;
     padding-top: 2rem;
     margin-top: 1rem;
@@ -437,36 +442,36 @@
 
   // For now these live in .new-guide, but they
   // might be better suited somewhere else.
-  .stage-option, .chosen-stage > .bubble{
+  .stage-option, .chosen-stage > .bubble {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 
-    &.Preparation{
+    &.Preparation {
       background-image: url('stages/preparation_stage_200.png');
     }
-    &.Sow{
+    &.Sow {
       background-image: url('stages/sow_stage_200.png');
     }
-    &.Germination{
+    &.Germination {
       background-image: url('stages/germination_stage_200.png');
     }
-    &.Seedling{
+    &.Seedling {
       background-image: url('stages/seedling_stage_200.png');
     }
-    &.Juvenile{
+    &.Juvenile {
       background-image: url('stages/juvenile_stage_200.png');
     }
-    &.Adult{
+    &.Adult {
       background-image: url('stages/adult_stage_200.png');
     }
-    &.Flowering{
+    &.Flowering {
       background-image: url('stages/flowering_stage_200.png');
     }
-    &.Fruit{
+    &.Fruit {
       background-image: url('stages/fruit_stage_200.png');
     }
-    &.Dormant{
+    &.Dormant {
       background-image: url('stages/dormant_stage_200.png');
     }
   }

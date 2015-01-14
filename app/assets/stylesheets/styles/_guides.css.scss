@@ -27,32 +27,41 @@
 
   .box {
     margin: 2rem inherit;
+    padding-top: 1rem;
   }
 
-  .empty{
+  .stages .box {
+    margin-top: 0;
+  }
+
+  .empty {
     text-align: center;
     padding-bottom: 1rem;
-    i{
+    i {
       font-size: 1.5rem;
     }
   }
 
-  .actions{
-    ul{
-      margin: 0;
-      list-style: none;
-      li{
-        padding: .25rem .5rem;
-        cursor: pointer;
-        transition: .5s;
-        opacity: .8;
-        margin: .25rem 0;
-        border-radius: $global-radius;
-      }
-    }
+  .canopy {
+    height: 300px;
+    margin-bottom: 1rem;
   }
 
-  .image-wrapper img{
+  .image-wrapper {
+    /*background-image: url(leaf-grey-canopy.png);*/
+    background-position: top;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 300px;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-wrapper img {
     position: absolute;
     left: 0;
     right: 0;
@@ -122,7 +131,7 @@
       font-weight: 100;
     }
 
-    .title{
+    .title {
       font-size: 1.5rem;
     }
 
@@ -132,36 +141,27 @@
     }
   }
 
-  .accordion dd > .content{
+  .accordion dd > .content {
     padding: 0 0.935rem;
   }
 
-  .requirements{
-
-    .box{
-      border: 0px;
-    }
-    ul{
-      list-style: none;
+  .actions {
+    ul {
       margin: 0;
-      columns: 2;
-      -webkit-columns: 2;
-      -o-columns: 2;
-      -webkit-column-gap: 0px;
-    }
-
-    li{
-      display: inline-block;
-      width: 100%;
-      background-color: $compatibility-low-color-bg;
-      margin-bottom: -7px; /* I don't know why this is needed */
-      border: 1px solid white;
-      &.high{
-        background-color: $compatibility-high-color-bg;
+      list-style: none;
+      li {
+        padding: .25rem .5rem;
+        cursor: pointer;
+        transition: .5s;
+        opacity: .8;
+        margin: .25rem 0;
+        border-radius: $global-radius;
       }
 
-      &.medium{
-        background-color: $compatibility-med-color-bg;
+      li:hover {
+        background: $of-green;
+        opacity: 1;
+        color: white;
       }
     }
   }
@@ -183,39 +183,38 @@
       margin: 0;
     }
 
-    .row{
-      margin: 1rem 0;
-    }
-
-    .actions p, .actions li{
-      font-size: .9rem;
+    .selected {
+      background: $of-green;
+      opacity: 1;
+      color: white;
     }
   }
 
-  .timeline{
-    .box{
+.show-guide {
+  .timeline {
+    .box {
       padding-top: 0;
       height: 200px;
     }
-    .seasons{
+    .seasons {
       position: absolute;
       height: 200px;
-      .day{
+      .day {
         height: 198px;
         display: inline-block;
 
-        &.first{
+        &.first {
           background-color: $of-light;
         }
-        &:hover{
+        &:hover {
           background-color: rgba(0, 0, 0, .1);
         }
-        &.today{
+        &.today {
           background-color: $of-green;
           opacity: .8;
         }
       }
-      .month{
+      .month {
         position: absolute;
         bottom: 0px;
         padding: 4px 6px;
@@ -223,12 +222,12 @@
       }
     }
 
-    .timelines{
+    .timelines {
       z-index: 1;
       position: absolute;
       margin-top: 1rem;
 
-      .plantLifetime{
+      .plantLifetime {
         cursor: pointer;
         opacity: .8;
         text-align: center;
@@ -241,12 +240,12 @@
         background-color: $of-green;
         transition: opacity .2s;
 
-        &:hover{
+        &:hover {
           opacity: 1;
         }
       }
 
-      .overflow{
+      .overflow {
         position: absolute;
         left: 0;
         top: 0;
@@ -305,27 +304,37 @@
 
 */
 
-.markdown-help-text{
+.markdown-help-text {
   font-size: .8rem;
   display: block;
   margin-top: .25rem;
   margin-bottom: 1rem;
 }
 
-.markdown{
-  h1{
+.markdown {
+  h1 {
     font-size: 1.5rem;
   }
-  h2{
+  h2 {
     font-size: 1.1rem;
   }
-  h3{
+  h3 {
     font-size: 1rem;
     text-transform: uppercase;
   }
 
-  h4, h5, h6{
+  h4, h5, h6 {
     font-size: .8rem;
+  }
+}
+
+.show-guide {
+  .stages {
+    h2 {
+    }
+    h3 {
+      font-size: 1rem;
+    }
   }
 }
 

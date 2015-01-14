@@ -1,91 +1,99 @@
-<section name="step-1" ng-show="step === 1">
-  <h1>
-    <%= t('.lets_get_started') %>
-  </h1>
+<section name="step-1" class="step" ng-show="step === 1">
   <form accept-charset="UTF-8"
     class="new-guide-step-1"
     id="new-guide-step-1"
     method="post"
     >
     <div class="row">
-      <div class="columns large-4 medium-4">
-        <label class="right"
-          for="guide_crop_id"><%= t('.which_crop') %><br/>
-          <small><%= t('.common_or_scientific') %></small>
-          </label>
-      </div>
-      <div class="columns large-8 medium-8">
-        <input
-          id="crop_name"
-          type="text"
-          ng-model="query"
-          ng-change="search()"
-          typeahead-on-select='cropSelected($item, $model, $label)'
-          typeahead="crop.name for crop in crops"
-          typeahead-loading="loadingCrops"
-          typeahead-wait-ms="555"
-          typeahead-min-length="3"
-          class="form-control"
-          required/>
-        <span ng-show="loadingCrops" >
-        <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
-        </span>
-        <span ng-if="crop_not_found">
-          <p>
-            <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
-          </p>
-          <p>
-            <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
-          </p>
-        </span>
-             <p>
-          <strong ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
-        <em ng-bind="newGuide.crop.binomial_name"></em>
-      </p>
-      <p ng-show="newGuide.crop">
-        <span ng-bind="newGuide.crop.description"></span>
-      </p>
+      <div class="columns small-12 instructions">
+        <h1>
+          <%= t('.lets_get_started') %>
+        </h1>
       </div>
     </div>
     <div class="row">
-      <div class="columns large-4 medium-4">
-        <label class="right"
-            for="guide_image_upload"><%= t('.choose_photo') %><br/>
-          <small><%= t('application.only_upload_what_you_own') %></small>
-        </label>
-      </div>
-      <div class="columns large-8 medium-8">
-        <span class="thumbnails"
-              ng-if="newGuide.featured_image && newGuide.featured_image.indexOf('leaf-grey') === -1">
-        <img ng-src="{{ newGuide.featured_image }}"
-             />
-        </span>
-        <div
-          id="guide_image_upload"
-          name="guide_image_upload"
-          s3-upload
-          bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-          s3-guide="newGuide"
-          ng-model="s3upload"
-          s3-upload-place-pic="placeGuideUpload(image)"
-          s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+      <div class="left-half columns small-6">
+        <div class="row">
+          <div class="columns small-12">
+            <label class="left"
+              for="guide_crop_id"><%= t('.which_crop') %><br/>
+              <small><%= t('.common_or_scientific') %></small>
+              </label>
+          </div>
+          <div class="columns small-12">
+            <input
+              id="crop_name"
+              type="text"
+              ng-model="query"
+              ng-change="search()"
+              typeahead-on-select='cropSelected($item, $model, $label)'
+              typeahead="crop.name for crop in crops"
+              typeahead-loading="loadingCrops"
+              typeahead-wait-ms="555"
+              typeahead-min-length="3"
+              class="form-control"
+              required/>
+            <span ng-show="loadingCrops" >
+              <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
+            </span>
+            <span ng-if="crop_not_found">
+              <p>
+                <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
+              </p>
+              <p>
+                <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
+              </p>
+            </span>
+            <p>
+              <strong ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
+              <em ng-bind="newGuide.crop.binomial_name"></em>
+            </p>
+            <p ng-show="newGuide.crop">
+              <span ng-bind="newGuide.crop.description"></span>
+            </p>
+          </div>
+          <div class="columns small-12">
+            <label class="left"
+                for="guide_image_upload"><%= t('.choose_photo') %><br/>
+              <small><%= t('application.only_upload_what_you_own') %></small>
+            </label>
+          </div>
+          <div class="columns small-12">
+            <span class="thumbnails"
+                  ng-if="newGuide.featured_image && newGuide.featured_image.indexOf('leaf-grey') === -1">
+            <img ng-src="{{ newGuide.featured_image }}"
+                 />
+            </span>
+            <div
+              id="guide_image_upload"
+              name="guide_image_upload"
+              s3-upload
+              bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+              s3-guide="newGuide"
+              ng-model="s3upload"
+              s3-upload-place-pic="placeGuideUpload(image)"
+              s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row practices">
-      <div class="columns large-4 medium-4">
-        <label class="right"
-          for="guide_image_upload"><%= t('.which_practices') %><br/>
-          <small><%= t('.check_all_that_apply') %></small>
-        </label>
-      </div>
-      <div class="columns large-8 medium-8 options">
-        <div multi-row-select
-             class="multi-choice"
-             options="newGuide.practices"
-             multi-select-type="checkbox"
-             multi-select-id="practices">
-        </div>
+      <div class="right-half columns small-6">
+        <div class="row practices">
+          <div class="columns small-12">
+
+            <label class="left"
+              for="guide_image_upload"><%= t('.which_practices') %><br/>
+              <small><%= t('.check_all_that_apply') %></small>
+            </label>
+          </div>
+          <div class="columns small-12 options">
+            <div multi-row-select
+                 class="multi-choice"
+                 options="newGuide.practices"
+                 multi-select-type="checkbox"
+                 multi-select-id="practices">
+            </div>
+          </div>
       </div>
     </div>
     <div class="button-wrapper row">

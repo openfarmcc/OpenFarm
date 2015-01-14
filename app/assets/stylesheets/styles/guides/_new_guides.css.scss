@@ -156,17 +156,15 @@
     }
   }
 
-  &>section {
+  section.step {
     margin-bottom: 4rem;
-    h1, h2, h3{
-      text-align: center;
-      font-size: 1.5rem;
-      margin: .5rem 0;
+    h1 {
+      font-size: 1.8rem;
     }
-    h2{
+    h2 {
       font-size: 1.2rem;
     }
-    h3{
+    h3 {
       font-size: 1rem;
       font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     }
@@ -189,6 +187,17 @@
     label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
       background-color: $of-dark;
       color: white;
+    }
+
+    label {
+      font-size: 1rem;
+      line-height: 1.22rem;
+      margin-bottom: 0.5rem;
+
+      small {
+        font-size: 0.78rem;
+        color: #999999;
+      }
     }
 
     label span{
@@ -350,7 +359,7 @@
 
       &::before{
         content: '';
-        border-bottom: 1px solid $of-light;
+        border-bottom: 2px solid $of-light;
         height: 0;
         width: 100%;
         display: inline-block;

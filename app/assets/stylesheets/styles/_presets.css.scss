@@ -28,11 +28,6 @@
   display: inline-block;
 }
 
-@mixin button-box-shadow(){
-  -moz-box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
-  box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.08), 0px 4px 10px 0px rgba(0,0,0,0.10), inset 0px 1px 0px 1px rgba(255,255,255,0.1);
-}
-
 @mixin manual-font-awesome($glyph) {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -146,11 +141,11 @@ textarea {
 .button {
   // For some reason the foundation styles don't
   // acknowledge the button radius set in the button-box-shadow mixin
-  border-radius: 4px;
-  @include button-box-shadow();
+  font-weight: 600;
+  @include box-shadow(0px 4px 0px 0px rgba(0,0,0,0.10));
   @include background-gradient(#A2BD6A, #83A544);
-  border-radius: 3px;
-  transition: .2s background-image;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     @include background-gradient(#8FAB54, #7A9841);

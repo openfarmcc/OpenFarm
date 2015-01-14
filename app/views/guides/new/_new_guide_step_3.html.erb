@@ -5,6 +5,13 @@
   </div>
 
   <div ng-if="newGuide.selectedStages.length > 0">
+
+    <!-- TODO: Fix before deploy -->
+    <form name="sacrificial-form" style="background:red">
+      <!-- This clearly shouldn't be necessary but something on the page is consuming the first form element -->
+    </form>
+    <!--  -->
+
     <form name="stagesForm">
       <h2 class="instructions">
         <%= t('.fill_in_details') %>

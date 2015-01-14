@@ -74,8 +74,9 @@
                backend %>
             <select ng-if="garden.editing"
                     ng-model="garden.type">
-              <option value="Outdoors"><%= t('.outdoors') %></option>
-              <option value="Indoors"><%= t('.indoors') %></option>
+              <option value="Outside"><%= t('.outside') %></option>
+              <option value="Inside"><%= t('.inside') %></option>
+              <option value="Greenhouse"><%= t('.greenhouse') %></option>
             </select>
           </td>
         </tr>

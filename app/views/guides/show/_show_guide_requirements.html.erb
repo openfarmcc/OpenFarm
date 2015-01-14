@@ -1,4 +1,4 @@
-<!-- <accordion-group
+<accordion-group
     ng-init="r.isopen = true"
     is-open="r.isopen"
     class="accordion-navigation requirements">
@@ -13,25 +13,27 @@
   </p>
   <div class="box">
     <div class="row">
-      <div
-        ng-if="guide.requirements.length"class="small-12 columns actual-requirements">
+      <div ng-if="guide.basic_needs.length"
+           class="small-12 columns actual-requirements">
         <ul>
-
-          <li ng-repeat="r in guide.requirements" class="requirement">
+        <!-- , 'high' : b.percent >= .75, 'low' : b.percent < .5  -->
+        <li ng-repeat="b in guide.basic_needs" class="requirement"
+              ng-class="{ 'medium' : b.percent >= .5 && b.percent < .75, 'high': b.percent >= .75, 'low' : b.percent < .5 }"
+              ng-if="b.value"
+              tooltip="{{ b.tooltip }}"
+              >
             <span class="small-6 columns"
-              ng-bind="r.name + ':'"></span>
+              ng-bind="b.name + ':'"></span>
             <span class="small-6 columns"
-              ng-bind="r.required"></span>
-          </li>
-        </ul>
+              ng-bind="b.value"></span></li></ul>
       </div>
       <div class="small-12 columns empty"
-        ng-if="guide.requirements.length === 0">
+        ng-if="guide.basic_needs.length === 0">
         <i class="fa fa-thumbs-down"></i>
         <br/>
         <%= t('.no_requirements_yet') %>
       </div>
     </div>
   </div>
-  </accordion-group>
- -->
+</accordion-group>
+

@@ -4,16 +4,16 @@
   <div alerts ng-model="alerts"></div>
 
   <div class="row">
-    <div class="large-8 medium-10 small-12 small-centered columns">
-      <h1>Add a new crop!</h1>
+    <div class="small-8 medium-10 small-12 small-centered columns">
+      <h1>Edit <%= @crop.name %></h1>
     </div>
   </div>
   <form>
     <div class="row">
-      <div class="columns large-4 medium-4">
-        <label class="right" for="crop_name">Crop Name</label>
+      <div class="columns small-4 medium-4">
+        <label class="right" for="crop_name">OpenFarm Crop Name</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.name"
                id="crop_name"
                name="crop[name]"
@@ -22,10 +22,23 @@
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="crop_name">Common Names</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <small>Comma Separated or New Lines</small>
+        <textarea data-ng-model="editCrop.common_names"
+               id="common_names"
+               name="crop[common_names]"
+               type="text"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
         <label class="right" for="binomial_name">Binomial Name</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.binomial_name"
                id="crop_binomial_name"
                name="crop[binomial_name]"
@@ -34,10 +47,10 @@
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="description">Description</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <textarea ng-model="editCrop.description"
                   id="crop_description"
                   name="crop[description]"
@@ -46,22 +59,25 @@
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="sun_requirements">Sun Requirements</label>
       </div>
-      <div class="columns large-8 medium-8">
-        <input data-ng-model="editCrop.sun_requirements"
-               id="crop_sun_requirements"
-               name="crop[sun_requirements]"
-               type="text"/>
+      <div class="columns small-8 medium-8">
+            <select ng-model="editCrop.sun_requirements"
+                    id="crop_sun_requirements"
+                    name="crop[sun_requirements]">
+              <option value="Full Sun"><%= t('.full_sun') %></option>
+              <option value="Partial Sun"><%= t('.partial_sun') %></option>
+              <option value="Full Shade"><%= t('.full_shade') %></option>
+            </select>
       </div>
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="sowing_method">Sowing Method</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.sowing_method"
                id="crop_sowing_method"
                name="crop[sowing_method]"
@@ -70,10 +86,10 @@
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="spread">Spread</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.spread"
                id="crop_spread"
                name="crop[spread]"
@@ -82,46 +98,46 @@
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="days_to_maturity">Days to Maturity</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.days_to_maturity"
                id="crop_days_to_maturity"
                name="crop[days_to_maturity]"
-               type="text"/>
+               type="number"/>
       </div>
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="row_spacing">Row Spacing</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.row_spacing"
                id="crop_row_spacing"
                name="crop[row_spacing]"
-               type="text"/>
+               type="number"/>
       </div>
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label class="right" for="height">Height</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <input data-ng-model="editCrop.height"
                id="crop_height"
                name="crop[height]"
-               type="text"/>
+               type="number"/>
       </div>
     </div>
 
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns small-4 medium-4">
         <label for="crop[images]" class="right">Manage images</label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-8 medium-8">
         <span ng-repeat="pic in editCrop.pictures"
               class="thumbnails"
               ng-class="{ 'deleted' : pic.deleted }"

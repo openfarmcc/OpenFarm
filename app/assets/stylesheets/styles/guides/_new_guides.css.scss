@@ -33,6 +33,7 @@
       padding-top: 5px;
       text-align: center;
       list-style: none;
+      white-space: nowrap;
     }
 
     li {
@@ -177,58 +178,55 @@
     width: 100%;
     display: inline-block;
 
-    .multi-choice label {
-      display: inline-block;
+    .multi-choice {
+      label {
+        display: inline-block;
+      }
+
+      label input[type=checkbox], label input[type=radio]{
+        margin-bottom: 0;
+        opacity: 0;
+        width: 0;
+      }
+
+      label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
+        background-color: $of-dark;
+        color: white;
+      }
+
+      label {
+        span {
+          border-radius: 0;
+          border-right: 1px solid #CCC;
+        }
+
+        &:first-child span {
+          border-bottom-left-radius: $global-radius;
+          border-top-left-radius: $global-radius;
+        }
+      }
+
+      button.other {
+        border-radius: 0;
+        border-top-right-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+      }
     }
 
-    label input[type=checkbox], label input[type=radio]{
-      margin-bottom: 0;
-      opacity: 0;
-      width: 0;
-    }
-
-    label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
-      background-color: $of-dark;
-      color: white;
-    }
+    // .block {
+    //   height: 2rem;
+    //   display: block;
+    // }
 
     label {
       font-size: 1rem;
       line-height: 1.22rem;
       margin-bottom: 0.5rem;
-
-      small {
-        font-size: 0.78rem;
-        color: #999999;
-      }
     }
 
-    label span {
-      border: 0;
-      border-radius: 0;
-      font-size: 1rem;
-    }
-
-    label:first-child span {
-      border-top-left-radius: $global-radius;
-      border-bottom-left-radius: $global-radius;
-    }
-
-    button {
-      border: 0;
-      font-size: .9rem;
-      border-top-right-radius: $global-radius;
-      border-bottom-right-radius: $global-radius;
-    }
-
-    .button.last {
-      border-top-right-radius: $global-radius;
-      border-bottom-right-radius: $global-radius;
-    }
-
-    .block {
-      height: 2rem;
-      display: block;
+    small {
+      font-size: 78.88%;
+      color: #999999;
     }
 
     p {
@@ -237,6 +235,12 @@
       line-height: 1.5rem;
       margin-bottom: .5rem;
     }
+
+    // Overrides bug in Foundation-rails 5.4.5
+    input.button {
+      @include border-radius($global-radius);
+    }
+
     input.button.small.secondary.left {
       margin-left: .5rem;
     }
@@ -247,6 +251,7 @@
         margin-bottom: 0;
       }
       select {
+        background-color: $secondary-color;
         height: 2rem;
         margin-top: 0;
         padding-top: 0.25rem;
@@ -320,6 +325,38 @@
     margin: 1.5rem 0;
   }
 
+  /* Step 1 */
+  .getting-started {
+
+    .crop-name-and-description {
+      margin-bottom: 1.5rem;
+    }
+
+    .crop-name {
+      font-size: 1.8rem;
+      /* account for cancel button */
+
+      .common-name {
+        padding-right: 1.5rem;
+      }
+
+      .binominal-name {
+        color: #666;
+      }
+    }
+
+    .cancel-selection-btn {
+      color: $secondary-color;
+      font-size: 1.5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #FF3366;
+      }
+    }
+  }
+
+  /* Step 2 */
   .life-stages {
     .stage-wrapper {
       display: inline-block;
@@ -364,6 +401,16 @@
     }
   }
 
+  /* Step 3 */
+  .stage-details {
+    section {
+      .row {
+        margin-bottom: 1.8rem;
+      }
+    }
+  }
+
+  // TODO: Refactor out into component CSS
   .chosen-stages {
     text-align: center;
     margin: 1rem 0 2rem;
@@ -438,19 +485,16 @@
     }
   }
 
-  /* sections of step 3 */
-  .stage-details {
-    section {
-      .row {
-        margin-bottom: 1.8rem;
-      }
-    }
-  }
 
+  /* Part of Step 3 */
   .actions {
     border-top: 1px solid $of-light;
     padding-top: 2rem;
     margin-top: 1rem;
+
+    textarea {
+      min-height: 95px;
+    }
   }
 
   // For now these live in .new-guide, but they

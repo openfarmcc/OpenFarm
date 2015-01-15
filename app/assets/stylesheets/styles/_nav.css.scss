@@ -6,6 +6,7 @@
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+    @include box-shadow(none);
   }
 
   .header-search{

@@ -57,8 +57,8 @@
 
 */
 
-small {
-  text-transform: initial;
+p {
+  letter-spacing: 0.025rem;
 }
 
 textarea {
@@ -103,7 +103,7 @@ textarea {
   .bar-header {
     margin-bottom: 0;
   }
-  margin-bottom: 3rem;
+  margin-bottom: 1.8rem;
 }
 
 /* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */
@@ -143,12 +143,12 @@ textarea {
 */
 
 .button {
-  // For some reason the foundation styles don't
-  // acknowledge the button radius set in the button-box-shadow mixin
   font-weight: 600;
-  @include box-shadow(0px 4px 0px 0px rgba(0,0,0,0.10));
-  @include background-gradient(#A2BD6A, #83A544);
-  border-radius: 5px;
+  background: $of-green1;
+  @include box-shadow(0px 4px 0px 0px darken($of-green1, 10%));
+  /* We shouldn't need vendor prefixed border-radius, but because of a bug in foundation-rails we do.
+  At the time of writing our version is 5.4.5 (known to be fixed in 5.5.0) */
+  @include border-radius($global-radius);
   transition: all 0.2s ease-in-out;
 
   &.tiny {
@@ -157,7 +157,7 @@ textarea {
   }
 
   &:hover {
-    @include background-gradient(#8FAB54, #7A9841);
+    background: $of-green2;
   }
 
   &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover{
@@ -171,7 +171,8 @@ textarea {
   }
 
   &.secondary {
-    background-image: none;
+    background: $secondary-color;
+    @include box-shadow(0px 3px 0px 0px darken($secondary-color, 8%));
   }
 
   &.success {

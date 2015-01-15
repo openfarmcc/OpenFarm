@@ -188,9 +188,11 @@ en:
                 do_not_sweat: "Don’t sweat, this is just an estimation."
                 repeat_annually: "Does this stage repeat annually?"
                 not_sure_html: "Not sure? <a href='/pages/faq#repeat-annually' target='_blank'>Learn More</a>."
+                actions_header: "Make this guide your own!"
+                actions_instructions: "Fill out as many of these optional sections as you have tips, tricks, and instructions for."
             new_guide_step_4:
                 give_an_overview: "Give a short overview of your guide."
-                some_information: "Some Information"
+                almost_done: "Almost done!"
                 where_are_you_growing_it: "Where are you growing it"
                 youre_growing_a: "You’re growing a"
                 what_do_you_want_to_call_your_guide: "What do you want to call your guide?"

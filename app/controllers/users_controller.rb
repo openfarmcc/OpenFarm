@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to(controller: 'users',
         action: 'finish')
     else
-      redirect_to(controller: 'users',action: 'gardens', manage: true)
+      redirect_to(controller: 'users', action: 'gardens', manage: true)
     end
   end
 

@@ -23,12 +23,11 @@ class Crop
   field :sun_requirements
   field :sowing_method
   field :spread, type: Integer
-  field :days_to_maturity, type: Integer
+  # field :days_to_maturity, type: Integer
   field :row_spacing, type: Integer
   field :height, type: Integer
 
-  field :sowing_time, type: Hash
-  field :harvest_time, type: Hash
+  # embeds_many :crop_times
 
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures

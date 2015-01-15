@@ -5,14 +5,15 @@ class UsersController < ApplicationController
   def update
     authorize current_user
     @outcome = Users::UpdateUser.run(
-      params,
-      user: current_user)
+      user: params,
+      id: "#{current_user._id}")
+
     if @outcome.errors
       flash[:alert] = @outcome.errors.message_list
       redirect_to(controller: 'users',
         action: 'finish')
     else
-      redirect_to(controller: 'users', action: 'gardens', manage: true)
+      redirect_to(controller: 'users',action: 'gardens', manage: true)
     end
   end
 

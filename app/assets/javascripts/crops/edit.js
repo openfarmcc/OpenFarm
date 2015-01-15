@@ -28,7 +28,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
           sun_requirements: $scope.editCrop.sun_requirements || null,
           sowing_method: $scope.editCrop.sowing_method || null,
           spread: $scope.editCrop.spread || null,
-          days_to_maturity: $scope.editCrop.days_to_maturity || null,
+          // days_to_maturity: $scope.editCrop.days_to_maturity || null,
           row_spacing: $scope.editCrop.row_spacing || null,
           height: $scope.editCrop.height || null,
         }

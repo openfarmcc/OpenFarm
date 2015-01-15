@@ -394,42 +394,6 @@
     input:checked + .stage-option {
       border: 3px solid $of-green;
     }
-
-    // For now these live in .new-guide, but they
-    // might be better suited somewhere else.
-    .stage-option, .chosen-stage > .bubble {
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-
-      &.Preparation {
-        background-image: url('stages/preparation_stage_200.png');
-      }
-      &.Sow {
-        background-image: url('stages/sow_stage_200.png');
-      }
-      &.Germination {
-        background-image: url('stages/germination_stage_200.png');
-      }
-      &.Seedling {
-        background-image: url('stages/seedling_stage_200.png');
-      }
-      &.Juvenile {
-        background-image: url('stages/juvenile_stage_200.png');
-      }
-      &.Adult {
-        background-image: url('stages/adult_stage_200.png');
-      }
-      &.Flowering {
-        background-image: url('stages/flowering_stage_200.png');
-      }
-      &.Fruit {
-        background-image: url('stages/fruit_stage_200.png');
-      }
-      &.Dormant {
-        background-image: url('stages/dormant_stage_200.png');
-      }
-    }
   }
 
   /* Step 3 */
@@ -530,6 +494,43 @@
 
   /* Step 4 */
   .finishing-up {
+  }
+
+  // Note: these are shared by step 2 and 3
+  // For now these live in .new-guide, but they
+  // might be better suited somewhere else.
+  .stage-option, .chosen-stage > .bubble {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    &.Preparation {
+      background-image: url('stages/preparation_stage_200.png');
+    }
+    &.Sow {
+      background-image: url('stages/sow_stage_200.png');
+    }
+    &.Germination {
+      background-image: url('stages/germination_stage_200.png');
+    }
+    &.Seedling {
+      background-image: url('stages/seedling_stage_200.png');
+    }
+    &.Juvenile {
+      background-image: url('stages/juvenile_stage_200.png');
+    }
+    &.Adult {
+      background-image: url('stages/adult_stage_200.png');
+    }
+    &.Flowering {
+      background-image: url('stages/flowering_stage_200.png');
+    }
+    &.Fruit {
+      background-image: url('stages/fruit_stage_200.png');
+    }
+    &.Dormant {
+      background-image: url('stages/dormant_stage_200.png');
+    }
   }
 
 }

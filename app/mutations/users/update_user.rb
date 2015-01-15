@@ -2,20 +2,27 @@ module Users
   class UpdateUser < Mutations::Command
 
     required do
-      model :user
+      string :id
+      hash :user do
+        optional do
+          string :display_name
+          string :location
+          string :years_experience
+          string :mailing_list
+          string :units
+          string :is_private
+        end
+      end
     end
 
-    optional do
-      string :display_name
-      string :location
-      string :years_experience
-      string :mailing_list
-      string :units
-      string :is_private
-    end
+    # optional do
+
+    # end
 
     def execute
-      set_valid_params
+      @user = User.find(id)
+      @user.update_attributes(user)
+      # set_valid_params
     end
 
     def set_valid_params

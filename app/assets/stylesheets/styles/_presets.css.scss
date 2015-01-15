@@ -278,6 +278,7 @@ textarea {
   }
 
   &.ng-invalid-uploading:before{
+    // TODO: Make this use the built in fa-spin class
     content: "\f110";
     -webkit-animation: fa-spin-image-load 2s infinite linear;
     animation: fa-spin-image-load 2s infinite linear;

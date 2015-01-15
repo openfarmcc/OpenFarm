@@ -1,5 +1,4 @@
-// You can't nest keyframes
-
+// TODO: This should not be here. This makes me unhappy.
 @-webkit-keyframes fa-spin-image-load {
   0% {
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
@@ -174,6 +173,7 @@
     }
   }
 
+  /* General form elements used in guide creation */
   form {
     width: 100%;
     display: inline-block;
@@ -212,11 +212,6 @@
         border-bottom-right-radius: $global-radius;
       }
     }
-
-    // .block {
-    //   height: 2rem;
-    //   display: block;
-    // }
 
     label {
       font-size: 1rem;
@@ -399,6 +394,42 @@
     input:checked + .stage-option {
       border: 3px solid $of-green;
     }
+
+    // For now these live in .new-guide, but they
+    // might be better suited somewhere else.
+    .stage-option, .chosen-stage > .bubble {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+
+      &.Preparation {
+        background-image: url('stages/preparation_stage_200.png');
+      }
+      &.Sow {
+        background-image: url('stages/sow_stage_200.png');
+      }
+      &.Germination {
+        background-image: url('stages/germination_stage_200.png');
+      }
+      &.Seedling {
+        background-image: url('stages/seedling_stage_200.png');
+      }
+      &.Juvenile {
+        background-image: url('stages/juvenile_stage_200.png');
+      }
+      &.Adult {
+        background-image: url('stages/adult_stage_200.png');
+      }
+      &.Flowering {
+        background-image: url('stages/flowering_stage_200.png');
+      }
+      &.Fruit {
+        background-image: url('stages/fruit_stage_200.png');
+      }
+      &.Dormant {
+        background-image: url('stages/dormant_stage_200.png');
+      }
+    }
   }
 
   /* Step 3 */
@@ -408,128 +439,97 @@
         margin-bottom: 1.8rem;
       }
     }
-  }
 
-  // TODO: Refactor out into component CSS
-  .chosen-stages {
-    text-align: center;
-    margin: 1rem 0 2rem;
+    // TODO: Refactor out into component CSS
+    /* Current stage breadcrumb nav */
+    .chosen-stages {
+      text-align: center;
+      margin: 1rem 0 2rem;
 
-    .chosen-stage {
-      display: inline-block;
-      width: 5rem;
-      cursor: pointer;
-      position: relative;
-
-      &::before {
-        content: '';
-        border-bottom: 2px solid $of-light;
-        height: 0;
-        width: 100%;
+      .chosen-stage {
         display: inline-block;
-        margin-left: 2rem;
-        margin-bottom: -2.25rem;
-        z-index: 0;
+        width: 5rem;
+        cursor: pointer;
         position: relative;
-      }
 
-      &:last-child::before {
-        display: none;
-      }
-
-      .bubble {
-        width: 3.5rem;
-        height: 3.5rem;
-        border-radius: 10rem;
-        background-origin: padding-box;
-        background-size: 100%;
-        border: 2px solid $of-yellow;
-        margin: 0 auto;
-        transition: border-color .2s;
-        position: relative;
-        z-index: 1;
-
-        &:before {
-          font-size: 2rem;
-          position: relative;
-          color: $of-green;
+        &::before {
+          content: '';
+          border-bottom: 2px solid $of-light;
+          height: 0;
           width: 100%;
-          height: 100%;
-          display: block;
-          padding-top: .75rem;
-          background-color: rgba(255,255,255,.7);
+          display: inline-block;
+          margin-left: 2rem;
+          margin-bottom: -2.25rem;
+          z-index: 0;
+          position: relative;
+        }
+
+        &:last-child::before {
+          display: none;
+        }
+
+        .bubble {
+          width: 3.5rem;
+          height: 3.5rem;
           border-radius: 10rem;
+          background-origin: padding-box;
+          background-size: 100%;
+          border: 2px solid $of-yellow;
+          margin: 0 auto;
+          transition: border-color .2s;
+          position: relative;
+          z-index: 1;
+
+          &:before {
+            font-size: 2rem;
+            position: relative;
+            color: $of-green;
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding-top: .75rem;
+            background-color: rgba(255,255,255,.7);
+            border-radius: 10rem;
+          }
+          &.fa-check {
+            border: 2px solid $of-green;
+          }
         }
-        &.fa-check {
-          border: 2px solid $of-green;
+
+        &:last-child {
+          margin-right: 0;
         }
-      }
+        &.editing .bubble {
+          border-color: $of-green;
+        }
+        p {
+          text-align: center;
+          opacity: 0;
+          transition: opacity .2s;
+          width: 120px;
+          margin-left: -20px;
+        }
+        &.editing p {
+          opacity: 1;
+        }
 
-      &:last-child {
-        margin-right: 0;
       }
-      &.editing .bubble {
-        border-color: $of-green;
-      }
-      p {
-        text-align: center;
-        opacity: 0;
-        transition: opacity .2s;
-        width: 120px;
-        margin-left: -20px;
-      }
-      &.editing p {
-        opacity: 1;
-      }
+    }
 
+    /* each step has actions to fill out */
+    .actions {
+      border-top: 1px solid $of-light;
+      padding-top: 2rem;
+      margin-top: 1rem;
+
+      textarea {
+        min-height: 95px;
+      }
     }
   }
 
-
-  /* Part of Step 3 */
-  .actions {
-    border-top: 1px solid $of-light;
-    padding-top: 2rem;
-    margin-top: 1rem;
-
-    textarea {
-      min-height: 95px;
-    }
+  /* Step 4 */
+  .finishing-up {
   }
 
-  // For now these live in .new-guide, but they
-  // might be better suited somewhere else.
-  .stage-option, .chosen-stage > .bubble {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-
-    &.Preparation {
-      background-image: url('stages/preparation_stage_200.png');
-    }
-    &.Sow {
-      background-image: url('stages/sow_stage_200.png');
-    }
-    &.Germination {
-      background-image: url('stages/germination_stage_200.png');
-    }
-    &.Seedling {
-      background-image: url('stages/seedling_stage_200.png');
-    }
-    &.Juvenile {
-      background-image: url('stages/juvenile_stage_200.png');
-    }
-    &.Adult {
-      background-image: url('stages/adult_stage_200.png');
-    }
-    &.Flowering {
-      background-image: url('stages/flowering_stage_200.png');
-    }
-    &.Fruit {
-      background-image: url('stages/fruit_stage_200.png');
-    }
-    &.Dormant {
-      background-image: url('stages/dormant_stage_200.png');
-    }
-  }
 }

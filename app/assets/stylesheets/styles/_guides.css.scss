@@ -94,6 +94,16 @@
     border-top: rgb(148, 148, 148) 1px solid;
     background-color: transparent;
     transition: .5s background-color;
+
+    // angle icon
+    i.fa {
+      margin-right: 8px;
+      @include single-transition(transform, 0.2s, ease-out);
+
+      &.open {
+        @include transform(rotate(90deg));
+      }
+    }
   }
 
   /* Section accordion styling */

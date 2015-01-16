@@ -23,6 +23,8 @@
   <% if @user.new_record? %>
     <%= f.label :password, I18n.t('users.password') %>
     <%= f.password_field :password, autocomplete: "off" %>
+
+    <%= f.check_box :agree %><%= f.label :agree, I18n.t('users.tos_privacy') %>
   <% else %>
     <%= f.label :current_password, I18n.t('users.current_password') %>
     <%= f.password_field :current_password, autocomplete: "off" %>
@@ -31,6 +33,7 @@
     <%= f.password_field :password, autocomplete: "off" %>
 
     <%= f.check_box :is_private %><%= f.label :is_private, I18n.t('users.is_private') %>
+
     <br/>
   <% end %>
 

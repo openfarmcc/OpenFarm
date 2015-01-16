@@ -144,8 +144,8 @@ textarea {
 
 .button {
   font-weight: 600;
-  background: $of-green1;
-  @include box-shadow(0px 4px 0px 0px darken($of-green1, 10%));
+  background: $of-green;
+  @include box-shadow(0px 4px 0px 0px darken($of-green, 10%));
   /* We shouldn't need vendor prefixed border-radius, but because of a bug in foundation-rails we do.
   At the time of writing our version is 5.4.5 (known to be fixed in 5.5.0) */
   @include border-radius($global-radius);

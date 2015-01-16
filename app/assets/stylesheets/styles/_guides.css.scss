@@ -45,30 +45,9 @@
   .canopy {
     height: 300px;
     margin-bottom: 1rem;
-  }
-
-  .image-wrapper {
-    /*background-image: url(leaf-grey-canopy.png);*/
-    background-position: top;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 300px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .image-wrapper img {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -9999px;
-    bottom: -9999px;
-    margin: auto 0;
-    width: 100%;
+    /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
+    background-position: center 20%;
+    background-size: cover;
   }
 
   .title {
@@ -269,29 +248,30 @@
     margin-bottom: 1rem;
   }
 
-  .image-wrapper{
-    /*background-image: url(leaf-grey-canopy.png);*/
-    background-position: top;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 300px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
+  // .image-wrapper{
+  //   background-position: top;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   overflow: hidden;
+  //   height: 300px;
+  //   border-bottom: 1px solid rgb(51, 51, 51);
+  //   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 
-  .image-wrapper img{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -9999px;
-    bottom: -9999px;
-    margin: auto 0;
-    width: 100%;
-  }
+    // img{
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    //   top: -9999px;
+    //   bottom: -9999px;
+    //   margin: auto 0;
+    //   width: 100%;
+    // }
+  // }
+
+
   .title{
     h2{
       font-weight: 100;
@@ -301,7 +281,7 @@
         font-weight: 300;
       }
     }
-    .right{
+    .guide-controls {
       position: absolute;
       top: 1rem;
       right: 0;

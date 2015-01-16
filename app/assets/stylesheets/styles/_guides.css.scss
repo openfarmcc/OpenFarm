@@ -273,14 +273,16 @@
 
 
   .title{
-    h2{
-      font-weight: 100;
-      color: $secondary-color;
-      span{
-        color: $of-green;
-        font-weight: 300;
-      }
+
+    .guide-name {
+      text-transform: capitalize;
     }
+
+    .by-line {
+      font-size: 1rem;
+      color: #666666;
+    }
+
     .guide-controls {
       position: absolute;
       top: 1rem;

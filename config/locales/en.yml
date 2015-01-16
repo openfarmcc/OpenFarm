@@ -143,12 +143,10 @@ en:
             stages: "Stages"
             each_stage_of_growing_your_crop: "Each stage of growing your crop."
         new:
-            create_a_growing_guide: "Create a Growing Guide"
-            enter_a_crop: "Enter a crop and it will be shown here"
             cancel_and_go_to_home: "Cancel and go to home"
-            call_your_guide_something: "Call your guide something"
             back: "Back"
             new_guide_steps:
+                create_a_growing_guide: "Create a Growing Guide"
                 the_basics: "The Basics"
                 life_stages: "Life Stages"
                 stage_details: "Stage Details"

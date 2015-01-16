@@ -27,7 +27,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Create User'
-    see 'Please accept the terms and conditions.'
+    see 'Please accept the terms and conditions'
   end
 
   it 'logs out' do

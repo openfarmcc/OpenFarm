@@ -19,13 +19,13 @@
         <!-- , 'high' : b.percent >= .75, 'low' : b.percent < .5  -->
         <li ng-repeat="b in guide.basic_needs" class="requirement"
               ng-class="{ 'medium' : b.percent >= .5 && b.percent < .75, 'high': b.percent >= .75, 'low' : b.percent < .5 }"
-              ng-if="b.value"
+              ng-if="b.have && b.overlap"
               tooltip="{{ b.tooltip }}"
               >
             <span class="small-6 columns"
               ng-bind="b.name + ':'"></span>
             <span class="small-6 columns"
-              ng-bind="b.value"></span></li></ul>
+              ng-bind="b.need"></span></li></ul>
       </div>
       <div class="small-12 columns empty"
         ng-if="guide.basic_needs.length === 0">

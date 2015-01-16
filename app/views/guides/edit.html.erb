@@ -3,23 +3,16 @@
 <% end %>
 
 <% content_for(:banner) do %>
-  <div class="bar-header">
-    <h1 class="title"><%= t('.create_a_growing_guide') %></h1>
-    <div class="container">
-      <div class="small-12">
-      <p>test</p>
-      </div>
-    </div>
-  </div>
 <% end %>
 
 <div ng-controller="newGuideCtrl"
-     class="guides new-guide large-8 medium-8 small-12 columns ng-cloak small-centered"
-     ng-cloak>
-
-    <div alerts ng-model="alerts"></div>
+     class="guides new-guide" ng-cloak>
 
   <%= render 'guides/new/new_guide_steps' %>
+
+  <div class="large-8 medium-11 small-12 columns ng-cloak small-centered">
+
+    <div alerts ng-model="alerts"></div>
 
   <%= render 'guides/new/new_guide_step_1' %>
 

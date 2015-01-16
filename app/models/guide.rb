@@ -67,49 +67,47 @@ class Guide
       end
 
       if s.soil
-        puts "old #{overlap_s}"
-        overlap_s = overlap_s + s.soil.select { |s| s == user_soil }
-        puts "new #{overlap_s}"
+        overlap_s = overlap_s + s.soil.select { |soil| soil == user_soil }
         total_s = total_s + s.soil
       end
     end
 
     # We should probably store these in the backend
 
-    basic_needs = [
+    [
       {
         name: 'Sun / Shade',
         overlap: overlap_l,
         have: user_light,
         need: total_l,
         percent: !total_l.empty? ? overlap_l.size.to_f / total_l.size : 0
-      },{
+      }, {
         name: 'pH Range',
         have: user_ph
-      },{
+      }, {
         name: 'Temperature'
-      },{
+      }, {
         name: 'Soil Type',
         need: total_s,
         have: user_soil,
         overlap: overlap_s,
         percent: !total_s.empty? ? overlap_s.size.to_f / total_s.size : 0
-      },{
+      }, {
         name: 'Water Use'
-      },{
+      }, {
         name: 'Location',
         overlap: overlap_e,
         need: total_e,
         have: user_environment,
         percent: !total_e.empty? ? overlap_e.size.to_f / total_e.size : 0
-      },{
+      }, {
         name: 'Practices',
         value: practices
-      },{
+      }, {
         name: 'Time Commitment'
-      },{
+      }, {
         name: 'Physical Ability'
-      },{
+      }, {
         name: 'Time of Year'
       }
     ]

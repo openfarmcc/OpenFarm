@@ -38,13 +38,7 @@ class Guide
   end
 
   def basic_needs
-    user_environment = user.gardens.first.type
-    user_light = user.gardens.first.average_sun
-    user_ph = user.gardens.first.ph
-    user_soil = user.gardens.first.soil_type
-
-    # TODO: We are duplicating code in the JS
-    # controller here. Clean that one up.
+    # User needs to have a garden to have basic needs
 
     overlap_l = []
     overlap_e = []
@@ -53,22 +47,32 @@ class Guide
     total_e = []
     total_s = []
 
-    puts stages.to_json
-    stages.each do |s|
-      if s.light
-        overlap_l = overlap_l + s.light.select { |l| l == user_light }
-        total_l = total_l + s.light
-      end
+    if !user.gardens.empty?
+      user_environment = user.gardens.first.type
+      user_light = user.gardens.first.average_sun
+      user_ph = user.gardens.first.ph
+      user_soil = user.gardens.first.soil_type
 
-      if s.environment
-        new_array = s.environment.select { |e| e == user_environment }
-        overlap_e = overlap_e + new_array
-        total_e = total_e + s.environment
-      end
+      # TODO: We are duplicating code in the JS
+      # controller here. Clean that one up.
 
-      if s.soil
-        overlap_s = overlap_s + s.soil.select { |soil| soil == user_soil }
-        total_s = total_s + s.soil
+      puts stages.to_json
+      stages.each do |s|
+        if s.light
+          overlap_l = overlap_l + s.light.select { |l| l == user_light }
+          total_l = total_l + s.light
+        end
+
+        if s.environment
+          new_array = s.environment.select { |e| e == user_environment }
+          overlap_e = overlap_e + new_array
+          total_e = total_e + s.environment
+        end
+
+        if s.soil
+          overlap_s = overlap_s + s.soil.select { |soil| soil == user_soil }
+          total_s = total_s + s.soil
+        end
       end
     end
 

@@ -18,17 +18,17 @@ describe Guide do
     expect(guide.owned_by?(other_user)).to eq(false)
   end
 
-  it 'has not implemented a real compatibility label' do
+  it 'has implemented a real compatibility label' do
     guide = FactoryGirl.build(:guide)
 
     guide.stub(:compatibility_score).and_return 80
-    expect(guide.compatibility_label).to eq('')
+    expect(guide.compatibility_label).to eq('high')
 
     guide.stub(:compatibility_score).and_return 60
-    expect(guide.compatibility_label).to eq('')
+    expect(guide.compatibility_label).to eq('medium')
 
     guide.stub(:compatibility_score).and_return 20
-    expect(guide.compatibility_label).to eq('')
+    expect(guide.compatibility_label).to eq('low')
 
     guide.stub(:compatibility_score).and_return nil
     expect(guide.compatibility_label).to eq('')

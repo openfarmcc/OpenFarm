@@ -1,47 +1,21 @@
-<label for="{{ options[0].slug }}">
+<label for="{{ option.slug }}"
+  ng-repeat="option in options.slice(0, multiSelectOverflowCount)">
   <input type="{{ multiSelectType }}"
-         id="{{ options[0].slug }}"
-         name="{{ multiSelectType=='checkbox' ? options[0].slug : multiSelectId }}"
-         ng-model="options[0].selected"
-         ng-checked="options[0].selected"/><span class="button tiny secondary">
-    {{ options[0].label }}
+         id="{{ option.slug }}"
+         name="{{ multiSelectType=='checkbox' ? option.slug : multiSelectId }}"
+         ng-model="option.selected"
+         ng-checked="option.selected"/><span class="button tiny secondary">
+    {{ option.label }}
   </span>
-</label><label for="{{ options[1].slug }}">
-  <input type="{{ multiSelectType }}"
-         id="{{ options[1].slug }}"
-         name="{{ multiSelectType=='checkbox' ? options[1].slug : multiSelectId }}"
-         ng-model="options[1].selected"
-         ng-checked="options[1].selected"/><span class="button tiny secondary">
-    {{ options[1].label }}
-  </span>
-</label><label for="{{ options[2].slug }}">
-  <input type="{{ multiSelectType }}"
-         id="{{ options[2].slug }}"
-         name="{{ multiSelectType=='checkbox' ? options[2].slug : multiSelectId }}"
-         ng-model="options[2].selected"
-         ng-checked="options[2].selected"/><span class="button tiny secondary">
-    {{ options[2].label }}
-  </span>
-</label><label for="{{ options[3].slug }}">
-  <input type="{{ multiSelectType }}"
-         id="{{ options[3].slug }}"
-         name="{{ multiSelectType=='checkbox' ? options[3].slug : multiSelectId }}"
-         ng-model="options[3].selected"
-         ng-checked="options[3].selected"/><span class="button tiny secondary"
-         ng-class="{ last : options.length <= 4}"
-         >
-    {{ options[3].label }}
-  </span>
-
 </label><button dropdown-toggle="#other-{{multiCheckboxId}}"
                 class="button tiny secondary"
                 aria-controls="other"
                 aria-expanded="false"
-                ng-if="options.length > 4">Other</button>
+                ng-if="options.length > multiSelectOverflowCount">Other</button>
 <ul id="other-{{multiCheckboxId}}" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1"
-  ng-if="options.length > 4">
-  
-  <li ng-repeat="option in options.slice(4)"
+  ng-if="options.length > multiSelectOverflowCount">
+
+  <li ng-repeat="option in options.slice(multiSelectOverflowCount)"
   ng-click="option.selected = !option.selected">
     <a>
     <i ng-show="option.selected" class="fa fa-check"></i> {{ option.label }}</li>

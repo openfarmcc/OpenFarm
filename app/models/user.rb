@@ -24,6 +24,13 @@ class User
 
   field :display_name, type: String
   validates_presence_of :display_name
+
+  field :agree, type: Boolean
+  validates :agree, acceptance: { accept: true,
+                                  message: 'Please accept the terms and ' +
+                                           'conditions' },
+                    on: :create
+
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String

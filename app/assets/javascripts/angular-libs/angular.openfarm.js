@@ -94,6 +94,7 @@ openFarmModule.directive('multiRowSelect', [
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
           $scope.multiSelectType = $attrs.multiSelectType || 'checkbox';
+          $scope.multiSelectOverflowCount = $attrs.multiSelectOverflowCount || 3;
           $scope.multiSelectId = $attrs.multiSelectId;
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',

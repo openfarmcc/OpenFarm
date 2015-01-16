@@ -18,7 +18,7 @@ $of-light:  #dedede;
 /* Grays */
 $gray-bg:   #f9f9f9;
 
-/* Why are these defined twice? 
+/* Why are these defined twice?
 $primary-color:   #c7a979; // #008CBA;
 $secondary-color: #e7e7e7;
 $alert-color:     #ff6666;
@@ -44,6 +44,9 @@ $openfarm-blue-grey:   #eceff0;
 $compatibility-low-color:  #b23a2c;
 $compatibility-med-color:  #fbad2f;
 $compatibility-high-color: #84c93f;
+$compatibility-low-color-bg: rgba(178, 58, 44, 0.2);
+$compatibility-med-color-bg: rgba(251, 173, 47, 0.2);
+$compatibility-high-color-bg: rgba(132, 201, 63, 0.2);
 
 /* Ceci, n'est pas un couleur */
 $compatibility-circle-size: 50px;

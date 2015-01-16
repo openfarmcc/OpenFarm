@@ -44,6 +44,8 @@ $openfarm-blue-grey:   #eceff0;
 $compatibility-low-color:  #b23a2c;
 $compatibility-med-color:  #fbad2f;
 $compatibility-high-color: #84c93f;
+ /* Same color, just with transparency, there is probably a way
+    to calculate this programmatically */
 $compatibility-low-color-bg: rgba(178, 58, 44, 0.2);
 $compatibility-med-color-bg: rgba(251, 173, 47, 0.2);
 $compatibility-high-color-bg: rgba(132, 201, 63, 0.2);

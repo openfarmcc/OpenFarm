@@ -171,28 +171,38 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
         $scope.guide.basic_needs = [{
             'name': 'Sun / Shade',
+            'icon': 'sun-shade',
             'value': light
           },{
-            'name': 'pH Range'
+            'name': 'pH Range',
+            'icon': 'ph'
           },{
-            'name': 'Temperature'
+            'name': 'Temperature',
+            'icon': 'temperature'
           },{
             'name': 'Soil Type',
+            'icon': 'soil',
             'value': soil
           },{
-            'name': 'Water Use'
+            'name': 'Water Use',
+            'icon': 'water'
           },{
             'name': 'Location',
+            'icon': 'location',
             'value': environment
           },{
             'name': 'Practices',
+            'icon': 'practices',
             'value': $scope.guide.practices
           },{
-            'name': 'Time Commitment'
+            'name': 'Time Commitment',
+            'icon': 'time-commitment'
           },{
-            'name': 'Physical Ability'
+            'name': 'Physical Ability',
+            'icon': 'physical-ability'
           },{
-            'name': 'Time of Year'
+            'name': 'Time of Year',
+            'icon': 'time-of-year'
           }
         ];
       }

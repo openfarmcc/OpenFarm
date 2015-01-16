@@ -23,8 +23,12 @@
                   tooltip="{{ basicNeed.tooltip }}"
                   >
               <!-- TODO: icons -->
-              <td ng-bind="basicNeed.name + ':'"></td>
-              <td ng-bind="basicNeed.value"></td>
+              <td class="basic-need-name">
+                <p class="icon {{ 'of-' + basicNeed.icon }}"><span ng-bind="basicNeed.name"></span></p>
+              </td>
+              <td class="basic-need-value">
+                <p ng-bind="basicNeed.value"></p>
+              </td>
             </tr>
           </tbody>
         </table>

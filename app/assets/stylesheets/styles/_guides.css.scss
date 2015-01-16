@@ -182,15 +182,17 @@
 
 .show-guide {
   .timeline {
+    $height: 100px;
+
     .box {
       padding-top: 0;
-      height: 200px;
+      height: $height;
     }
     .seasons {
       position: absolute;
-      height: 200px;
+      height: $height;
       .day {
-        height: 198px;
+        height: $height - 2px;
         display: inline-block;
 
         &.first {

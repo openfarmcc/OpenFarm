@@ -173,6 +173,7 @@
     }
   }
 
+  /* Stages in completed guides */
   .stages{
     .image img{
       height: 170px;
@@ -180,20 +181,22 @@
       background-position: center;
       width: 100%;
     }
-    .box{
-      margin-top: 0;
-      padding-top: 0;
-    }
 
     h3{
       font-size: 1rem;
       margin: 0;
     }
 
-    .selected {
-      background: $of-green;
-      opacity: 1;
-      color: white;
+    /* Action labels in completed guides look different */
+    .actions li {
+      color: #333333;
+      border-color: #333333;
+
+      &.selected {
+        color: white;
+        background: $of-green;
+        border-color: $of-green;
+      }
     }
   }
 }

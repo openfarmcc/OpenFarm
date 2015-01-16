@@ -52,7 +52,7 @@ openFarmApp.directive('clearOn', function() {
    return function(scope, elem, attr) {
       scope.$on('clearOn', function(e, name) {
         if(name === attr.clearOn) {
-          elem[0].value = "";
+          elem[0].value = '';
         }
       });
    };
@@ -88,7 +88,7 @@ openFarmApp.factory('focus', function ($rootScope, $timeout) {
     $timeout(function (){
       $rootScope.$broadcast('focusOn', name);
     });
-  }
+  };
 });
 
 openFarmApp.directive('stageButtons', [

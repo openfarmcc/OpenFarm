@@ -37,7 +37,7 @@
           <% end %>
 
           <% if @guide.owned_by?(current_user) %>
-            <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
+            <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
           <% end %>
         </div>
       </div>

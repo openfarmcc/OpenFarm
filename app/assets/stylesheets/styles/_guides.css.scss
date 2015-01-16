@@ -90,6 +90,10 @@
     margin: 1rem auto;
   }
 
+  .content {
+    padding-bottom: 8rem;
+  }
+
   dd.accordion-navigation > a{
     border-top: rgb(148, 148, 148) 1px solid;
     background-color: transparent;
@@ -135,30 +139,11 @@
   }
 
   .actions {
-    ul {
-      margin: 0;
-      list-style: none;
+    border: 1px solid #CCCCCC;
 
-      li {
-        padding: .25rem .5rem;
-        cursor: pointer;
-        transition: 0.5s;
-        margin: .25rem 0;
-        color: #666666;
-        border: 2px solid $secondary-color;
-        border-radius: $global-radius;
-      }
-
-      li:hover, li.selected {
-        border-color: $of-green;
-        color: $of-green;
-      }
-
-      li.completed {
-        border-color: $of-green;
-        background: $of-green;
-        color: white;
-      }
+    .action {
+      padding: 10px 40px;
+      border-top: 2px solid #333333;
     }
   }
 

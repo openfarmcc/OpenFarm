@@ -29,11 +29,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
           });
         });
 
-        // TODO: All of this needs to be encapsulated in something
-        // Either it needs to happen through the API
-        // or it needs to happen in a service.
-
-
         $scope.guide.basic_needs.forEach(function(b){
           if (b.percent < 0.5){
             switch (b.name){
@@ -113,58 +108,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
         $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
           return pV + cV.stage_length;
         }, 0);
-
-        // var light = [];
-        // var environment = [];
-        // var soil = [];
-        // $scope.guide.stages.forEach(function(s){
-        //   s.light.forEach(function(l){
-        //     if (l && light.indexOf(l) === -1){
-        //       light.push(l);
-        //     }
-        //   });
-        //   s.environment.forEach(function(e){
-        //     if (e && environment.indexOf(e) === -1){
-        //       environment.push(e);
-        //     }
-        //   });
-        //   s.soil.forEach(function(s){
-        //     if (s && soil.indexOf(s) === -1){
-        //       soil.push(s);
-        //     }
-        //   });
-        // });
-
-        // // TODO: All of this needs to be encapsulated in something
-        // // Either it needs to happen on the API or it needs
-        // // to happen in a service.
-
-        // $scope.guide.basic_needs = [{
-        //     'name': 'Sun / Shade',
-        //     'value': light
-        //   },{
-        //     'name': 'pH Range'
-        //   },{
-        //     'name': 'Temperature'
-        //   },{
-        //     'name': 'Soil Type',
-        //     'value': soil
-        //   },{
-        //     'name': 'Water Use'
-        //   },{
-        //     'name': 'Location',
-        //     'value': environment
-        //   },{
-        //     'name': 'Practices',
-        //     'value': $scope.guide.practices
-        //   },{
-        //     'name': 'Time Commitment'
-        //   },{
-        //     'name': 'Physical Ability'
-        //   },{
-        //     'name': 'Time of Year'
-        //   }
-        // ];
       }
     };
 

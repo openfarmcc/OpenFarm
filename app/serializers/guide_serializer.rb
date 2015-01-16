@@ -1,7 +1,6 @@
 class GuideSerializer < ApplicationSerializer
-  attributes :_id, :crop_id, :user_id, # :stages,
-             :name, :overview, :featured_image, :location,
-             :practices, :compatibility_score, :basic_needs
+  attributes :_id, :crop_id, :user_id, :name, :overview, :featured_image,
+             :location, :practices, :compatibility_score, :basic_needs
 
   has_many :stages
 

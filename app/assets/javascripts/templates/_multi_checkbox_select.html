@@ -8,10 +8,10 @@
     {{ option.label }}
   </span>
 </label><button dropdown-toggle="#other-{{multiCheckboxId}}"
-                class="button tiny secondary"
+                class="other button tiny secondary"
                 aria-controls="other"
                 aria-expanded="false"
-                ng-if="options.length > multiSelectOverflowCount">Other</button>
+                ng-if="options.length > multiSelectOverflowCount"><i class="fa fa-caret-down"></i> Other</button>
 <ul id="other-{{multiCheckboxId}}" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1"
   ng-if="options.length > multiSelectOverflowCount">
 

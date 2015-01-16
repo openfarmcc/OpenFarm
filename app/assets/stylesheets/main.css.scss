@@ -1,11 +1,8 @@
 @import 'compass';
 @import 'font-awesome';
-
-@import 'styles/variables';
-
-@import 'styles/presets';
-
+@import 'styles/variables'; // colors
 @import 'styles/foundation_and_overrides';
+@import 'styles/presets';
 @import 'styles/devise';
 @import 'styles/nav';
 @import 'styles/icons';

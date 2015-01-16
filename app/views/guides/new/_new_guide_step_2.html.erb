@@ -1,16 +1,13 @@
-<section name="step-2" ng-show="step === 2">
+<section name="step-2" class="step" ng-show="step === 2">
     <form class="life-stages">
-      <div class="row">
-        <div class="columns large-12 instructions">
-          <h2><%= t('.choose_the_life_stages') %></h2>
-          <h3>
-            <%= t('.life_stages_description') %>
-          </h3>
-        </div>
+      <div class="instructions">
+        <h2><%= t('.choose_the_life_stages') %></h2>
+        <h3>
+          <%= t('.life_stages_description') %>
+        </h3>
       </div>
-
       <div class="row">
-        <div class="columns stage-wrapper"
+        <div class="columns large-3 medium-4 small-6 stage-wrapper"
              ng-repeat="stage in newGuide.stages | orderBy : 'order' "
              ng-class="{end: $last}">
              <input name="{{ stage.name }}"
@@ -22,19 +19,22 @@
              </label>
         </div>
       </div>
-      <div class="row">
-        <div class="columns large-12">
-          You've selected <span ng-bind="newGuide.selectedStages.length"></span> stages.
+      <div class="button-wrapper row">
+        <div class="columns small-12">
+          <p class="right">
+            You've selected <strong><span ng-bind="newGuide.selectedStages.length"></span> stages</strong>.
+          </p>
+        </div>
+        <div class="columns small-12">
+          <div stage-buttons
+              cancel-url="<%= root_path %>"
+              cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+              back-text="<%= t('guides.new.back') %>"
+              abled-text="<%= t('.next_stage_details') %>"
+              abled-bool="newGuide.selectedStages.length > 0"
+              disabled-text="<%= t('.choose_some_stages_to_continue') %>"
+              >
+          </div>
         </div>
       </div>
-      <div stage-buttons
-          cancel-url="<%= root_path %>"
-          cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
-          back-text="<%= t('guides.new.back') %>"
-          abled-text="<%= t('.next_stage_details') %>"
-          abled-bool="newGuide.selectedStages.length > 0"
-          disabled-text="<%= t('.choose_some_stages_to_continue') %>"
-          >
-      </div>
-    </form>
   </section>

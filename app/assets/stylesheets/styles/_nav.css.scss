@@ -6,10 +6,11 @@
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+    @include box-shadow(none);
   }
 
   .header-search{
-    width: 40%;
+    max-width: 400px;
   }
 
   @media only screen and (max-width: 40.062em){

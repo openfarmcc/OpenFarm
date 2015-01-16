@@ -137,7 +137,7 @@ $h6-font-size: 1rem;
 // $subheader-bottom-margin: .5rem;
 
 // A general <small> styling
-$small-font-size: 75%;
+$small-font-size: 78.8%;
 // $small-font-color: scale-color($header-font-color, $lightness: 35%);
 
 // We use these to style paragraphs
@@ -504,7 +504,7 @@ $button-disabled-opacity: 0.7;
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
 // $form-label-font-color: scale-color(#000, $lightness: 30%);
-// $form-label-small-transform: capitalize;
+$form-label-small-transform: initial;
 /*$form-label-bottom-margin: 0;*/
 // $input-font-family: inherit;
 // $input-font-color: rgba(0,0,0,0.75);

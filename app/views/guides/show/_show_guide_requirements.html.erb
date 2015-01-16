@@ -14,19 +14,22 @@
   <div class="box">
     <div class="row">
       <div ng-if="guide.basic_needs.length"
-           class="small-12 columns actual-requirements">
-        <ul>
-        <!-- , 'high' : b.percent >= .75, 'low' : b.percent < .5  -->
-        <li ng-repeat="b in guide.basic_needs" class="requirement"
-              ng-class="{ 'medium' : b.percent >= .5 && b.percent < .75, 'high': b.percent >= .75, 'low' : b.percent < .5 }"
-              ng-if="b.value"
-              tooltip="{{ b.tooltip }}"
-              >
-            <span class="small-6 columns"
-              ng-bind="b.name + ':'"></span>
-            <span class="small-6 columns"
-              ng-bind="b.value"></span></li></ul>
+           class="columns small-12 actual-requirements">
+        <table>
+          <tbody>
+            <tr ng-repeat="basicNeed in guide.basic_needs" class="requirement"
+                  ng-class="{ 'medium' : basicNeed.percent >= .5 && basicNeed.percent < .75, 'high': basicNeed.percent >= .75, 'low' : basicNeed.percent < .5 }"
+                  ng-if="basicNeed.value"
+                  tooltip="{{ basicNeed.tooltip }}"
+                  >
+              <!-- TODO: icons -->
+              <td ng-bind="basicNeed.name + ':'"></td>
+              <td ng-bind="basicNeed.value"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
       <div class="small-12 columns empty"
         ng-if="guide.basic_needs.length === 0">
         <i class="fa fa-thumbs-down"></i>

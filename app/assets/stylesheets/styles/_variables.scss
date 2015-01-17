@@ -36,11 +36,10 @@ $openfarm-blue-grey:   #eceff0;
 $compatibility-low-color:  #b23a2c;
 $compatibility-med-color:  #fbad2f;
 $compatibility-high-color: #84c93f;
- /* Same color, just with transparency, there is probably a way
-    to calculate this programmatically */
-$compatibility-low-color-bg: rgba(178, 58, 44, 0.2);
-$compatibility-med-color-bg: rgba(251, 173, 47, 0.2);
-$compatibility-high-color-bg: rgba(132, 201, 63, 0.2);
+ /* Same color, just lighter (adjusted to appear perceptually equally lighter) */
+$compatibility-low-color-bg:  lighten($compatibility-low-color, 45%);
+$compatibility-med-color-bg:  lighten($compatibility-med-color, 35%);
+$compatibility-high-color-bg: lighten($compatibility-high-color, 40%);
 
 /* Ceci, n'est pas un couleur */
 $compatibility-circle-size: 50px;

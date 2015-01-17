@@ -45,30 +45,9 @@
   .canopy {
     height: 300px;
     margin-bottom: 1rem;
-  }
-
-  .image-wrapper {
-    /*background-image: url(leaf-grey-canopy.png);*/
-    background-position: top;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 300px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .image-wrapper img {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -9999px;
-    bottom: -9999px;
-    margin: auto 0;
-    width: 100%;
+    /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
+    background-position: center 20%;
+    background-size: cover;
   }
 
   .title {
@@ -111,10 +90,24 @@
     margin: 1rem auto;
   }
 
+  .content {
+    padding-bottom: 8rem;
+  }
+
   dd.accordion-navigation > a{
     border-top: rgb(148, 148, 148) 1px solid;
     background-color: transparent;
     transition: .5s background-color;
+
+    // angle icon
+    i.fa {
+      margin-right: 8px;
+      @include single-transition(transform, 0.2s, ease-out);
+
+      &.open {
+        @include transform(rotate(90deg));
+      }
+    }
   }
 
   /* Section accordion styling */
@@ -146,30 +139,11 @@
   }
 
   .actions {
-    ul {
-      margin: 0;
-      list-style: none;
+    border: 1px solid #CCCCCC;
 
-      li {
-        padding: .25rem .5rem;
-        cursor: pointer;
-        transition: 0.5s;
-        margin: .25rem 0;
-        color: #666666;
-        border: 2px solid $secondary-color;
-        border-radius: $global-radius;
-      }
-
-      li:hover, li.selected {
-        border-color: $of-green;
-        color: $of-green;
-      }
-
-      li.completed {
-        border-color: $of-green;
-        background: $of-green;
-        color: white;
-      }
+    .action {
+      padding: 10px 40px;
+      border-top: 2px solid #333333;
     }
   }
 
@@ -202,16 +176,41 @@
 }
 
 .show-guide {
+
+  .canopy{
+    height: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .title{
+    .guide-name {
+      text-transform: capitalize;
+    }
+
+    .by-line {
+      font-size: 1rem;
+      color: #666666;
+    }
+
+    .guide-controls {
+      position: absolute;
+      top: 1rem;
+      right: 0;
+    }
+  }
+
   .timeline {
+    $height: 100px;
+
     .box {
       padding-top: 0;
-      height: 200px;
+      height: $height;
     }
     .seasons {
       position: absolute;
-      height: 200px;
+      height: $height;
       .day {
-        height: 198px;
+        height: $height - 2px;
         display: inline-block;
 
         &.first {
@@ -264,49 +263,76 @@
     }
   }
 
-  .canopy{
-    height: 300px;
-    margin-bottom: 1rem;
-  }
+  .requirements {
+    .box {
+      padding: 0;
 
-  .image-wrapper{
-    /*background-image: url(leaf-grey-canopy.png);*/
-    background-position: top;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 300px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
+      table {
+        width: 100%;
+        height: 100%;
+        margin: 0;
 
-  .image-wrapper img{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -9999px;
-    bottom: -9999px;
-    margin: auto 0;
-    width: 100%;
-  }
-  .title{
-    h2{
-      font-weight: 100;
-      color: $secondary-color;
-      span{
-        color: $of-green;
-        font-weight: 300;
+        tr {
+
+          &.low {
+            background: $compatibility-low-color-bg;
+          }
+
+          &.medium {
+            background: $compatibility-med-color-bg;
+          }
+
+          &.high {
+            background: $compatibility-high-color-bg;
+          }
+
+          td {
+            padding: 16px;
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .basic-need-name {
+          span {
+            padding-left: 10px;
+            font-weight: 600;
+          }
+        }
+
+        .icon {
+          margin-right: 8px;
+        }
       }
     }
-    .right{
-      position: absolute;
-      top: 1rem;
-      right: 0;
-    }
   }
+
+
+  // .image-wrapper{
+  //   background-position: top;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   overflow: hidden;
+  //   height: 300px;
+  //   border-bottom: 1px solid rgb(51, 51, 51);
+  //   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+
+    // img{
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    //   top: -9999px;
+    //   bottom: -9999px;
+    //   margin: auto 0;
+    //   width: 100%;
+    // }
+  // }
+
 }
 
 /*

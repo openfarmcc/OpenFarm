@@ -42,41 +42,28 @@ class Guide
   def basic_needs
     if !user.gardens.empty?
       # We should probably store these in the DB
-      basic_needs = [{
-          name: 'Sun / Shade',
-          overlap: [],
-          total: [],
-          percent: 0,
-          user: user.gardens.first.average_sun
-        }, {
-          name: 'Location',
-          overlap: [],
-          total: [],
-          percent: 0,
-          user: user.gardens.first.type
-        }, {
-          name: 'Soil Type',
-          overlap: [],
-          total: [],
-          percent: 0,
-          user: user.gardens.first.soil_type
-        }  # , {
-        #   name: 'pH Range',
-        # }, {
-        #   name: 'Temperature'
-        # }, {
-        #   name: 'Water Use'
-        # }, {
-        #   name: 'Practices',
-        #   value: practices
-        # }, {
-        #   name: 'Time Commitment'
-        # }, {
-        #   name: 'Physical Ability'
-        # }, {
-        #   name: 'Time of Year'
-        # }
-      ]
+      basic_needs = [{ name: 'Sun / Shade',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.average_sun
+                     }, {
+                       name: 'Location',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.type
+                     }, {
+                       name: 'Soil Type',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.soil_type
+                     }]
+
+      # Still have to implement:
+      # pH Range, Temperature, Water Use, Practices,
+      # Time Commitment, Physical Ability, Time of Year
 
       find_overlap_in basic_needs
     end
@@ -117,13 +104,13 @@ class Guide
     stages.each do |stage|
       basic_needs.each do |need|
         # This is bad structure
-        if need[:name] == "Sun / Shade"
+        if need[:name] == 'Sun / Shade'
           build_overlap_and_total need, stage.light
         end
-        if need[:name] == "Location"
+        if need[:name] == 'Location'
           build_overlap_and_total need, stage.environment
         end
-        if need[:name] == "Soil Type"
+        if need[:name] == 'Soil Type'
           build_overlap_and_total need, stage.soil
         end
       end

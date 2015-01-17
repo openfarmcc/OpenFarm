@@ -33,4 +33,43 @@ describe Guide do
     guide.stub(:compatibility_score).and_return nil
     expect(guide.compatibility_label).to eq('')
   end
+
+  it 'creates a basic_needs array if a user has a garden' do
+    user = FactoryGirl.build(:user)
+    garden = FactoryGirl.build(:garden,
+                         user: user,
+                         soil_type: 'Loam',
+                         type: 'Outside',
+                         average_sun: 'Partial Sun')
+    guide = Guide.new(user: user)
+    stage = Stage.new(guide: guide,
+                      environment: ['Outside'],
+                      soil: ['Clay'],
+                      light: ['Partial Sun'])
+    expect(guide.compatibility_score.round).to eq(67)
+  end
+
+  it 'returns 0 percent if there are no basic_needs for a guide' do
+    user = FactoryGirl.build(:user)
+    garden = FactoryGirl.build(:garden,
+                         user: user,
+                         soil_type: 'Loam',
+                         type: 'Outside',
+                         average_sun: 'Partial Sun')
+    guide = Guide.new(user: user)
+    stage = Stage.new(guide: guide,
+                      environment: [],
+                      soil: [],
+                      light: [])
+    expect(guide.compatibility_score.round).to eq(0)
+  end
+
+  it 'returns nil from basic_needs if a user has no garden' do
+    guide = FactoryGirl.build(:guide)
+    stage = Stage.new(guide: guide,
+                      environment: ['Outside'],
+                      soil: ['Clay'],
+                      light: ['Partial Sun'])
+    expect(guide.compatibility_score).to eq(nil)
+  end
 end

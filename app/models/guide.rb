@@ -29,6 +29,8 @@ class Guide
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
+  slug :name
+
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
@@ -38,92 +40,57 @@ class Guide
   end
 
   def basic_needs
-    # User needs to have a garden to have basic needs
-
-    overlap_l = []
-    overlap_e = []
-    overlap_s = []
-    total_l = []
-    total_e = []
-    total_s = []
-
     if !user.gardens.empty?
-      user_environment = user.gardens.first.type
-      user_light = user.gardens.first.average_sun
-      user_ph = user.gardens.first.ph
-      user_soil = user.gardens.first.soil_type
+      # We should probably store these in the DB
+      basic_needs = [{
+          name: 'Sun / Shade',
+          overlap: [],
+          total: [],
+          percent: 0,
+          user: user.gardens.first.average_sun
+        }, {
+          name: 'Location',
+          overlap: [],
+          total: [],
+          percent: 0,
+          user: user.gardens.first.type
+        }, {
+          name: 'Soil Type',
+          overlap: [],
+          total: [],
+          percent: 0,
+          user: user.gardens.first.soil_type
+        }  # , {
+        #   name: 'pH Range',
+        # }, {
+        #   name: 'Temperature'
+        # }, {
+        #   name: 'Water Use'
+        # }, {
+        #   name: 'Practices',
+        #   value: practices
+        # }, {
+        #   name: 'Time Commitment'
+        # }, {
+        #   name: 'Physical Ability'
+        # }, {
+        #   name: 'Time of Year'
+        # }
+      ]
 
-      # TODO: We are duplicating code in the JS
-      # controller here. Clean that one up.
-
-      puts stages.to_json
-      stages.each do |s|
-        if s.light
-          overlap_l = overlap_l + s.light.select { |l| l == user_light }
-          total_l = total_l + s.light
-        end
-
-        if s.environment
-          new_array = s.environment.select { |e| e == user_environment }
-          overlap_e = overlap_e + new_array
-          total_e = total_e + s.environment
-        end
-
-        if s.soil
-          overlap_s = overlap_s + s.soil.select { |soil| soil == user_soil }
-          total_s = total_s + s.soil
-        end
-      end
+      find_overlap_in basic_needs
     end
-
-    # We should probably store these in the backend
-
-    [
-      {
-        name: 'Sun / Shade',
-        overlap: overlap_l,
-        have: user_light,
-        need: total_l,
-        percent: !total_l.empty? ? overlap_l.size.to_f / total_l.size : 0
-      }, {
-        name: 'pH Range',
-        have: user_ph
-      }, {
-        name: 'Temperature'
-      }, {
-        name: 'Soil Type',
-        need: total_s,
-        have: user_soil,
-        overlap: overlap_s,
-        percent: !total_s.empty? ? overlap_s.size.to_f / total_s.size : 0
-      }, {
-        name: 'Water Use'
-      }, {
-        name: 'Location',
-        overlap: overlap_e,
-        need: total_e,
-        have: user_environment,
-        percent: !total_e.empty? ? overlap_e.size.to_f / total_e.size : 0
-      }, {
-        name: 'Practices',
-        value: practices
-      }, {
-        name: 'Time Commitment'
-      }, {
-        name: 'Physical Ability'
-      }, {
-        name: 'Time of Year'
-      }
-    ]
   end
 
   def compatibility_score
-    count = 0
-    sum = basic_needs.inject(0) do |memo, n|
-      count += 1
-      n[:percent] ? memo + n[:percent] : memo
+    if !user.gardens.empty?
+      count = 0
+      sum = basic_needs.inject(0) do |memo, n|
+        count += 1
+        n[:percent] ? memo + n[:percent] : memo
+      end
+      (sum.to_f / count * 100).round
     end
-    sum.to_f / count
   end
 
   def compatibility_label
@@ -140,5 +107,46 @@ class Guide
     end
   end
 
-  slug :name
+  private
+
+  # For each stage, find the overlapping needs,
+  # and then calculate the percentage overlap of each need
+  # ToDO this can be cleaned up, probably significantly
+  # by externalizing the basic_need structure.
+  def find_overlap_in(basic_needs)
+    stages.each do |stage|
+      basic_needs.each do |need|
+        # This is bad structure
+        if need[:name] == "Sun / Shade"
+          build_overlap_and_total need, stage.light
+        end
+        if need[:name] == "Location"
+          build_overlap_and_total need, stage.environment
+        end
+        if need[:name] == "Soil Type"
+          build_overlap_and_total need, stage.soil
+        end
+      end
+    end
+
+    calculate_percents basic_needs
+  end
+
+  def calculate_percents(basic_needs)
+    basic_needs.each do |need|
+      if need[:total] && !need[:total].empty?
+        need[:percent] = need[:overlap].size.to_f / need[:total].size
+      else
+        need[:percent] = 0
+      end
+    end
+  end
+
+  def build_overlap_and_total(need_hash, stage_req)
+    if stage_req
+      new_array = stage_req.select { |req| req == need_hash[:user] }
+      need_hash[:overlap] += new_array
+      need_hash[:total] = need_hash[:total] + stage_req
+    end
+  end
 end

@@ -10,7 +10,7 @@ class Garden
   field :description
   field :is_private, type: Mongoid::Boolean, default: false
 
-  field :location # users can have gardens in different locations
+  field :location # users can have gardens in different locations (geographic)
   field :type # outdoor, indoor, hydroponic, etc
   field :average_sun # full, partial, etc
   field :soil_type # clay, high organic, etc

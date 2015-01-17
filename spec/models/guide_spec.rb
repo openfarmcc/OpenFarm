@@ -46,7 +46,7 @@ describe Guide do
               environment: ['Outside'],
               soil: ['Clay'],
               light: ['Partial Sun'])
-    expect(guide.compatibility_score.round).to eq(67)
+    expect(guide.compatibility_score.round).to eq(50)
   end
 
   it 'returns 0 percent if there are no basic_needs for a guide' do

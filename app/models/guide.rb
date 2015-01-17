@@ -144,7 +144,7 @@ class Guide
       else
         need[:percent] = 0
       end
-      # Compress the total array now that we don't need it's length anymore
+      # Compress the total array now that we don't need it's length
       need[:total].uniq!
     end
   end

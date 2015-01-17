@@ -203,8 +203,8 @@ en:
                 title: "Statistics"
                 once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
             show_guide_requirements:
-                title: "Requirements"
-                the_small_details: "Requirements are the small details that make sure this crop grow successfully."
+                title: "Basic Needs"
+                the_small_details: "Basic needs are the small details that make sure this crop grow successfully."
                 no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
             show_guide_stages:
                 title: "Stages"

@@ -43,22 +43,32 @@ class Guide
     if !user.gardens.empty?
       # We should probably store these in the DB
       basic_needs = [{ name: 'Sun / Shade',
+                       slug: 'sun-shade',
                        overlap: [],
                        total: [],
                        percent: 0,
                        user: user.gardens.first.average_sun
                      }, {
                        name: 'Location',
+                       slug: 'location',
                        overlap: [],
                        total: [],
                        percent: 0,
                        user: user.gardens.first.type
                      }, {
                        name: 'Soil Type',
+                       slug: 'soil',
                        overlap: [],
                        total: [],
                        percent: 0,
                        user: user.gardens.first.soil_type
+                     }, {
+                       name: 'Practices',
+                       slug: 'practices',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.growing_practices
                      }]
 
       # Still have to implement:
@@ -119,6 +129,14 @@ class Guide
     calculate_percents basic_needs
   end
 
+  def build_overlap_and_total(need_hash, stage_req)
+    if stage_req
+      new_array = stage_req.select { |req| req == need_hash[:user] }
+      need_hash[:overlap] += new_array
+      need_hash[:total] = need_hash[:total] + stage_req
+    end
+  end
+
   def calculate_percents(basic_needs)
     basic_needs.each do |need|
       if need[:total] && !need[:total].empty?
@@ -126,14 +144,8 @@ class Guide
       else
         need[:percent] = 0
       end
-    end
-  end
-
-  def build_overlap_and_total(need_hash, stage_req)
-    if stage_req
-      new_array = stage_req.select { |req| req == need_hash[:user] }
-      need_hash[:overlap] += new_array
-      need_hash[:total] = need_hash[:total] + stage_req
+      # Compress the total array now that we don't need it's length anymore
+      need[:total].uniq!
     end
   end
 end

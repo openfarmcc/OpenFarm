@@ -29,6 +29,8 @@ class Guide
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
+  slug :name
+
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
@@ -37,28 +39,113 @@ class Guide
     as_json only: [:name, :overview, :crop_id]
   end
 
+  def basic_needs
+    if !user.gardens.empty?
+      # We should probably store these in the DB
+      basic_needs = [{ name: 'Sun / Shade',
+                       slug: 'sun-shade',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.average_sun
+                     }, {
+                       name: 'Location',
+                       slug: 'location',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.type
+                     }, {
+                       name: 'Soil Type',
+                       slug: 'soil',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.soil_type
+                     }, {
+                       name: 'Practices',
+                       slug: 'practices',
+                       overlap: [],
+                       total: [],
+                       percent: 0,
+                       user: user.gardens.first.growing_practices
+                     }]
+
+      # Still have to implement:
+      # pH Range, Temperature, Water Use, Practices,
+      # Time Commitment, Physical Ability, Time of Year
+
+      find_overlap_in basic_needs
+    end
+  end
+
   def compatibility_score
-    # Make our random scores consistent based on the first character of the crop name
-    # srand(name[0].ord)
-    # rand(100);
-    nil
+    if !user.gardens.empty?
+      count = 0
+      sum = basic_needs.inject(0) do |memo, n|
+        count += 1
+        n[:percent] ? memo + n[:percent] : memo
+      end
+      (sum.to_f / count * 100).round
+    end
   end
 
   def compatibility_label
-    ''
-    # TODO:
-    # score = compatibility_score
+    score = compatibility_score
 
-    # if score.nil?
-    #   return ''
-    # elsif score > 75
-    #   return 'high'
-    # elsif score > 50
-    #   return 'medium'
-    # else
-    #   return 'low'
-    # end
+    if score.nil?
+      return ''
+    elsif score > 75
+      return 'high'
+    elsif score > 50
+      return 'medium'
+    else
+      return 'low'
+    end
   end
 
-  slug :name
+  private
+
+  # For each stage, find the overlapping needs,
+  # and then calculate the percentage overlap of each need
+  # ToDO this can be cleaned up, probably significantly
+  # by externalizing the basic_need structure.
+  def find_overlap_in(basic_needs)
+    stages.each do |stage|
+      basic_needs.each do |need|
+        # This is bad structure
+        if need[:name] == 'Sun / Shade'
+          build_overlap_and_total need, stage.light
+        end
+        if need[:name] == 'Location'
+          build_overlap_and_total need, stage.environment
+        end
+        if need[:name] == 'Soil Type'
+          build_overlap_and_total need, stage.soil
+        end
+      end
+    end
+
+    calculate_percents basic_needs
+  end
+
+  def build_overlap_and_total(need_hash, stage_req)
+    if stage_req
+      new_array = stage_req.select { |req| req == need_hash[:user] }
+      need_hash[:overlap] += new_array
+      need_hash[:total] = need_hash[:total] + stage_req
+    end
+  end
+
+  def calculate_percents(basic_needs)
+    basic_needs.each do |need|
+      if need[:total] && !need[:total].empty?
+        need[:percent] = need[:overlap].size.to_f / need[:total].size
+      else
+        need[:percent] = 0
+      end
+      # Compress the total array now that we don't need it's length
+      need[:total].uniq!
+    end
+  end
 end

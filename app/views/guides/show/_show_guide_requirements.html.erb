@@ -19,15 +19,16 @@
           <tbody>
             <tr ng-repeat="basicNeed in guide.basic_needs" class="requirement"
                   ng-class="{ 'medium' : basicNeed.percent >= .5 && basicNeed.percent < .75, 'high': basicNeed.percent >= .75, 'low' : basicNeed.percent < .5 }"
-                  ng-if="basicNeed.value"
+                  ng-if="basicNeed.total && basicNeed.overlap"
                   tooltip="{{ basicNeed.tooltip }}"
                   >
+
               <!-- TODO: icons -->
               <td class="basic-need-name">
-                <p class="icon {{ 'of-' + basicNeed.icon }}"><span ng-bind="basicNeed.name"></span></p>
+                <p class="icon {{ 'of-' + basicNeed.slug }}"><span ng-bind="basicNeed.name"></span></p>
               </td>
               <td class="basic-need-value">
-                <p ng-bind="basicNeed.value"></p>
+                <p ng-bind="basicNeed.total"></p>
               </td>
             </tr>
           </tbody>

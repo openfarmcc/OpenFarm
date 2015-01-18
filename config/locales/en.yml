@@ -23,7 +23,8 @@ en:
     application:
         site_description: "Learn to farm or garden with community created guides"
         keywords: "gardening, farming, seeds, planting, growing, community, instructions, how-to"
-        site_title: "OpenFarm - You Can Grow Anything"
+        site_title: "OpenFarm"
+        site_byline: "You Can Grow Anything"
         greeting: "Hi, %{user}"
         skip: "Do This Later"
         create_guide: "Create guide"
@@ -115,6 +116,17 @@ en:
             zero: "No crops"
             one: "1 crop"
             other: "%{count} crops"
+    crop_searches:
+      show:
+        choose_a_crop: "Choose a crop"
+        no_crops: "Sorry, we don't have any crops matching"
+        title: "Search"
+        would_you_like_to: "Would you like to"
+        add_this_crop: "add this crop"
+        explore_the_guides: "Explore the guides"
+        no_guides: "Looks like there aren't any guides for these crops yet."
+        perhaps_you_could: "Perhaps you could"
+        create_one: "create one"
     guides:
         index:
             guides: "Guides"

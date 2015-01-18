@@ -33,7 +33,8 @@ class Crop
   accepts_nested_attributes_for :pictures
 
   def search_data
-    as_json only: [:name, :common_names, :binomial_name, :description]
+    as_json only: [:name, :common_names, :binomial_name, :description,
+                   :guides_count]
   end
 
   def main_image_path

@@ -24,7 +24,8 @@
   	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
 
   	<title>
-        <%= content_for?(:title) ? yield(:title) : t('application.site_title') %>
+        <%= t('application.site_title') %>
+        <%= content_for?(:title) ? yield(:title) : ' - ' + t('application.site_byline') %>
     </title>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>

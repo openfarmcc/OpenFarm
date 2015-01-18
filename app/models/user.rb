@@ -1,6 +1,5 @@
 class User
   include Mongoid::Document
-
   has_many :guides
   has_many :gardens
   has_one :token, dependent: :delete
@@ -43,5 +42,6 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable
+         # , :omniauthable
 end

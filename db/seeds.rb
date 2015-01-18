@@ -9,8 +9,18 @@ if Rails.env != 'production' # <= Prevent catastrophe
   FactoryGirl.create(:garden, user: admin)
 
   # Creating some common test crops
-  FactoryGirl.create(:crop, name: 'Tomato')
-  FactoryGirl.create(:crop, name: 'Cherry')
+  tomato = FactoryGirl.create(:crop, name: 'Tomato')
+  cherry = FactoryGirl.create(:crop, name: 'Cherry')
+  FactoryGirl.create(:crop, name: 'Grass')
+  FactoryGirl.create(:crop, name: 'Tomato Fern')
+  banana = FactoryGirl.create(:crop, name: 'Banana')
+  FactoryGirl.create(:crop, name: 'Water Lily')
+
+  # Creating some guides for those crops
+  FactoryGirl.create(:guide, user: admin, crop: tomato)
+  FactoryGirl.create(:guide, user: admin, crop: cherry)
+  FactoryGirl.create(:guide, crop: cherry)
+  FactoryGirl.create(:guide, crop: banana)
 
   water = FactoryGirl.create(:stage_action_option, name: 'Water')
   mulch = FactoryGirl.create(:stage_action_option, name: 'Apply Mulch')

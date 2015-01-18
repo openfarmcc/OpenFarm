@@ -10,9 +10,11 @@ class CropSearchesController < ApplicationController
                          fields: ['name^20',
                                   'common_names^10',
                                   'binomial_name^10',
-                                  'description'])
+                                  'description'],
+                         boost_by: [:guides_count]
+                         )
     if query.empty?
-      @crops = Crop.search('*', limit: 25)
+      @crops = Crop.search('*', limit: 25, boost_by: [:guides_count])
     end
 
     # Use the crop results to look-up guides

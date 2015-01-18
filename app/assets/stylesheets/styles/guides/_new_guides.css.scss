@@ -357,10 +357,7 @@
       display: inline-block;
       overflow: hidden;
       height: 142px;
-      // width: 17%;
-      // padding: 0;
       margin-bottom: 3%;
-      // margin-right: 3%;
     }
 
     input[type="checkbox"] {
@@ -504,32 +501,35 @@
     background-size: cover;
     background-position: center center;
 
+    background-image: url('stages/other_sm.png');
+
+
     &.Preparation {
-      background-image: url('stages/preparation_stage_200.png');
+      background-image: url('stages/prep_sm.png');
     }
     &.Sow {
-      background-image: url('stages/sow_stage_200.png');
+      background-image: url('stages/sow_sm.png');
     }
     &.Germination {
-      background-image: url('stages/germination_stage_200.png');
+      background-image: url('stages/germination_sm.png');
     }
     &.Seedling {
-      background-image: url('stages/seedling_stage_200.png');
+      background-image: url('stages/sprouting_sm.png');
     }
     &.Juvenile {
-      background-image: url('stages/juvenile_stage_200.png');
+      background-image: url('stages/juvenile_sm.png');
     }
     &.Adult {
-      background-image: url('stages/adult_stage_200.png');
+      background-image: url('stages/adult_sm.png');
     }
     &.Flowering {
-      background-image: url('stages/flowering_stage_200.png');
+      background-image: url('stages/flowering_sm.png');
     }
     &.Fruit {
-      background-image: url('stages/fruit_stage_200.png');
+      background-image: url('stages/fruiting_sm.png');
     }
     &.Dormant {
-      background-image: url('stages/dormant_stage_200.png');
+      background-image: url('stages/dormant_sm.png');
     }
   }
 

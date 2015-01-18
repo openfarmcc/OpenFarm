@@ -5,31 +5,28 @@
       <%= form_for @crop do |f| %>
       <%= f.label :name, 'Crop Name' %>
       <%= f.text_field :name %>
-      
+
       <%= f.label :binomial_name, 'Binomial Name' %>
       <%= f.text_field :binomial_name %>
-      
+
       <%= f.label :description, 'Description' %>
       <%= f.text_area :description %>
-      
+
       <%= f.label :sun_requirements, 'Sun Requirements' %>
       <%= f.text_field :sun_requirements %>
-      
+
       <%= f.label :sowing_method, 'Sowing Method' %>
       <%= f.text_field :sowing_method %>
-      
+
       <%= f.label :spread, 'Spread' %>
       <%= f.text_field :spread %>
-      
-      <%= f.label :days_to_maturity, 'Days to Maturity' %>
-      <%= f.text_field :days_to_maturity %>
-      
+
       <%= f.label :row_spacing, 'Row Spacing' %>
       <%= f.text_field :row_spacing %>
-      
+
       <%= f.label :height, 'Height' %>
       <%= f.text_field :height %>
-      
+
       <%= f.submit 'Save Crop and Start Creating Guide!', :class => 'button', :disable_with => 'Saving...' %>
     <% end %>
     </div>

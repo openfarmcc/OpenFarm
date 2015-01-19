@@ -3,9 +3,9 @@ openFarmModule.factory('gardenService', ['$http',
     var saveGarden = function(garden, alerts, callback){
       var url = '/api/gardens/' + garden._id;
       var data = {
-        images: garden.pictures.filter(function(p){
+        images: garden.pictures ? garden.pictures.filter(function(p){
           return !p.deleted;
-        }),
+        }) : [],
         garden: {
           description: garden.description || null,
           type: garden.type || null,
@@ -16,6 +16,44 @@ openFarmModule.factory('gardenService', ['$http',
         }
       };
       $http.put(url, data)
+        .success(function (response, object) {
+          alerts.push({
+            'type': 'success',
+            'msg': 'Success!'
+          });
+          if (callback){
+            return callback(true, response, object);
+          }
+        })
+        .error(function (response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
+
+    var createGarden = function(garden, alerts, callback){
+      var url = '/api/gardens';
+      console.log(garden);
+      var data = {
+        images: garden.pictures ? garden.pictures.filter(function(p){
+          return !p.deleted;
+        }) : [],
+        name: garden.name,
+        garden: {
+          description: garden.description || null,
+          type: garden.type || null,
+          location: garden.location || null,
+          average_sun: garden.average_sun || null,
+          ph: garden.ph || null,
+          soil_type: garden.soil_type || null
+        }
+      };
+      $http.post(url, data)
         .success(function (response, object) {
           alerts.push({
             'type': 'success',
@@ -113,6 +151,7 @@ openFarmModule.factory('gardenService', ['$http',
     };
     return {
       'saveGarden': saveGarden,
+      'createGarden': createGarden,
       'saveGardenCrop': saveGardenCrop,
       'addGardenCropToGarden': addGardenCropToGarden,
       'deleteGardenCrop': deleteGardenCrop

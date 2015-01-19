@@ -82,6 +82,23 @@ describe Api::GardensController, type: :controller do
     end
   end
 
+  describe 'create' do
+    before do
+      @viewing_user = FactoryGirl.create :user
+      sign_in @viewing_user
+    end
+
+    it 'should create a garden' do
+      post :create,
+        name: 'New Garden',
+        format: :json
+      expect(response.status).to eq(201)
+      expect(Garden.all.first.name).to eq('New Garden')
+    end
+
+    it 'should prevent non-logged in users from creating a garden'
+  end
+
   describe 'update' do
     before do
       @viewing_user = FactoryGirl.create :user

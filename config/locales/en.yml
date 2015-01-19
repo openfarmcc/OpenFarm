@@ -42,6 +42,7 @@ en:
         your_first_garden: "Your First Garden"
         need_password: "You need to supply your password to delete your account"
         generated_this_garden: "We created this garden automatically to get you started. You can edit it to better suit your needs!"
+        first_garden: "This is your first garden. You can edit it to better suit your needs!"
     users:
         create_your_openfarm_profile: "Create your OpenFarm Profile"
         community: "Community"
@@ -76,7 +77,10 @@ en:
             email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
             add_garden: "Next: Add Garden"
         gardens:
+            successful_creation: "Successfully created your first garden"
             your_gardens: "Your Gardens"
+            create_your_first_garden: "You don't have a garden yet, create it!"
+            call_your_garden: "What do you want to call your garden?"
             garden_name: "Name your garden:"
             first_garden_html: "<p>We've created your first garden for you - change its name and edit the details to better suit your style. </p> <p> As you continue to use OpenFarm, you can store guides to it, update it, and watch it grow. </p> <p> Feel free to tweak it so that it suits your growing environment, upload some pictures, and then <a href='/'>get exploring</a>. </p> <p> And don't worry, you can come back to this at any time.</p>"
             edit_garden: "Edit Garden"

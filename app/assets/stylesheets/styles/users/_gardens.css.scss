@@ -1,50 +1,57 @@
-.garden{
+.garden {
   .header{
     border-bottom: 2px solid $of-dark;
     margin: 2rem auto;
-    h2{
+    h2 {
       font-size: 1.4rem;
     }
 
-    .edit{
+    .edit {
       text-align: right;
-      .button{
+      .button {
         margin-bottom: .5rem;
       }
     }
 
-    i.fa-lock{
+    i.fa-lock {
       font-size: 1.5rem;
       margin-right: 1rem;
       padding: .5rem;
       vertical-align: middle;
     }
   }
-  .info{
+  .info {
     margin-bottom: 1rem;
   }
-  div.description{
+  div.description {
     margin-bottom: 1rem;
   }
 
-  .edit-buttons{
+  .edit-buttons {
     margin-bottom: .5rem;
     text-align: right;
   }
-  .details{
-    td{
+  .details {
+    width: 100%;
+
+    td {
       width: 50%;
     }
 
-    td{
-      input, select{
+    td {
+      input, select {
         margin-bottom: 0;
       }
     }
 
-    .ph{
+    .ph {
       width: 10%;
       display: inline-block;
+    }
+  }
+  .crops {
+    table {
+      width: 100%;
     }
   }
 }

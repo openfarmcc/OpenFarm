@@ -90,8 +90,8 @@ describe Api::GardensController, type: :controller do
 
     it 'should create a garden' do
       post :create,
-        name: 'New Garden',
-        format: :json
+           name: 'New Garden',
+           format: :json
       expect(response.status).to eq(201)
       expect(Garden.all.first.name).to eq('New Garden')
     end

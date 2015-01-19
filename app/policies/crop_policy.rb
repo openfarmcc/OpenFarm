@@ -6,6 +6,22 @@ class CropPolicy < ApplicationPolicy
     @crop = crop
   end
 
+  def new?
+    if @current_user
+      true
+    else
+      false
+    end
+  end
+
+  def create?
+    if @current_user
+      true
+    else
+      false
+    end
+  end
+
   def update?
     if @current_user
       @current_user.admin

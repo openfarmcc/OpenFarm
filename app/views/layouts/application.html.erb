@@ -37,7 +37,8 @@
   </head>
 
   <body>
-    <div class="wrapper">
+
+
     <div class="<%= if (current_page?(root_path) or current_page?("/")) then 'home-nav' else 'fixed' end %>">
       <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
@@ -109,7 +110,8 @@
       </nav>
     </div>
 
-    <%= yield(:banner) %>
+    <div class="wrapper">
+
     <% if current_page?(root_path) or current_page?("/") %>
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
       <div class="home-alert-wrapper">
@@ -143,7 +145,6 @@
       </div>
     <% end %>
     <%= yield %>
-      <div class="push"></div><!-- All about the sticky footer -->
     </div><!-- Close .wrapper -->
     <%= render 'shared/footer' %>
     <%# Controller specific end JS %>

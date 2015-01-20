@@ -57,7 +57,9 @@ en:
       create: "Create"
       share_your_knowledge_with_guide_creation: "Share your knowledge with guide creation."
       email_address: "Email Address"
-      tos_privacy: "I agree to the Terms of Service and the Privacy Policy"
+      tos_privacy_html: |
+          I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
+          <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
       display_name: "Username:"
       password: "New Password:"

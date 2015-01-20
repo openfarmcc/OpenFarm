@@ -28,7 +28,7 @@
       <div class="columns small-8 medium-8">
         <small>Comma Separated or New Lines</small>
         <textarea data-ng-model="editCrop.common_names"
-               id="common_names"
+               id="crop_common_names"
                name="crop[common_names]"
                type="text"></textarea>
       </div>
@@ -162,7 +162,7 @@
         <input class="button small right"
           name="commit"
           type="submit"
-          value="Save the crop!"
+          value="<%= t('.save_crop') %>"
           ng-disabled="editCrop.sending"
           ng-click="submitForm()"/>
       </div>

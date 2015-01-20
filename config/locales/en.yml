@@ -123,6 +123,8 @@ en:
       other: "%{count} crops"
     new:
       save_crop: "Save Crop and Create Guide"
+    edit:
+      save_crop: "Save Crop"
   crop_searches:
     show:
       choose_a_crop: "Choose a crop"

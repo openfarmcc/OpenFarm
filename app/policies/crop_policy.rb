@@ -24,7 +24,7 @@ class CropPolicy < ApplicationPolicy
 
   def update?
     if @current_user
-      @current_user.admin
+      true
     else
       false
     end
@@ -36,7 +36,7 @@ class CropPolicy < ApplicationPolicy
   # To be
   def edit?
     if @current_user
-      @current_user.admin
+      true
     else
       false
     end

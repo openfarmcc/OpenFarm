@@ -4,7 +4,7 @@ openFarmModule.factory('guideService', ['$http',
     var pushToAlerts = function (response, code, alerts){
       console.log(response, code);
       var msg = '';
-      angular.forEach(response, function(value){
+    angular.forEach(response, function(value){
         msg += value;
       });
       alerts.push({

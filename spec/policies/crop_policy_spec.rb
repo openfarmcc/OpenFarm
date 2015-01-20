@@ -11,8 +11,8 @@ describe CropPolicy do
     it 'grants admin to update a crop' do
       expect(CropPolicy).to permit(admin, crop)
     end
-    it 'denies other users to update a crop' do
-      expect(CropPolicy).not_to permit(current_user, crop)
+    it 'grants users to update a crop' do
+      expect(CropPolicy).to permit(current_user, crop)
     end
     it 'denies anonymous users to update a crop' do
       expect(CropPolicy).not_to permit(nil, crop)

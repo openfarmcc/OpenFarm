@@ -13,15 +13,6 @@ describe 'Crop pages', type: :controller do
   # TODO: How do we test this?
   it 'uploads pictures'
 
-  it 'fills in the edit page for a crop' do
-    visit "/crops/#{crop._id}/edit"
-    expect(page).to have_content('radish')
-    fill_in :crop_common_names, with: 'Radish, Red Thing\n, New'
-    click_button 'Save Crop'
-    expect(page).to have_content('Radish,Red Thing,New')
-    expect(crop.reload.common_names.length).to eq(3)
-  end
-
   it 'shows create page for a crop' do
     login_as user
     visit '/crops/new'

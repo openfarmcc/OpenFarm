@@ -1,5 +1,5 @@
 <div class="crop-page row wide-row">
-  <div class="crop-info-container small-6 columns">
+  <div class="crop-info-container columns medium-6 small-12">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
       <% if current_user %>
@@ -45,7 +45,7 @@
         </tbody>
     </table>
   </div>
-  <div class="guide-results-container small-6 columns">
+  <div class="guide-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= @guides.empty? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
 
     <% if @guides.empty? %>

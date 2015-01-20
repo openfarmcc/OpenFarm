@@ -48,7 +48,7 @@
                     ng-class="{ 'deleted' : pic.deleted }"
                     ng-init="pic.deleted = false"
                     ng-click="pic.deleted = !pic.deleted">
-                    <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+                    <img style="background-image:url({{ pic.thumbnail_url || pic.image_url }})"
                          ng-model="pic"/>
                   </span>
                   <div
@@ -104,6 +104,7 @@
                     for="where_should_stage_happen">
                       <%= t('.where_does_this_stage_happen') %>
                       <br/>
+                      <small><%= t('.choose_more_than_one') %></small>
                   </label>
                 </div>
                 <div class="columns small-12">

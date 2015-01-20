@@ -67,7 +67,7 @@
           <div class="columns small-12">
             <span class="thumbnails"
                   ng-if="newGuide.featured_image && newGuide.featured_image.indexOf('leaf-grey') === -1">
-            <img ng-src="{{ newGuide.featured_image }}"
+            <img style="background-image:url({{ newGuide.featured_image }})"
                  />
             </span>
             <div

@@ -203,6 +203,7 @@ en:
               stage_details: "Stage Details"
               what_should_people_know_about_this_stage: "What should people know about this stage?"
               where_does_this_stage_happen: "Where does this stage happen?"
+              choose_more_than_one: "You can choose more than one."
               what_type_of_soil: "What type of soil should be used?"
               not_sure_about_soil_types_html: "Not sure about soil types? <a target='_blank' href='/pages/faq/#soil-types'>Learn more</a>"
               how_much_light: "How much light should be in this area?"

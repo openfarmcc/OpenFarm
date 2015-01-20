@@ -48,7 +48,7 @@
                     ng-class="{ 'deleted' : pic.deleted }"
                     ng-init="pic.deleted = false"
                     ng-click="pic.deleted = !pic.deleted">
-                    <img style="background-image:url({{ pic.thumbnail_url || pic.image_url }})"
+                    <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
                          ng-model="pic"/>
                   </span>
                   <div

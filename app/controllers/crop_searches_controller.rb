@@ -20,7 +20,7 @@ class CropSearchesController < ApplicationController
     # Use the crop results to look-up guides
     crop_ids = @crops.map { |crop| crop.id }
     @guides = Guide.search('*',
-                           where: {crop_id: crop_ids})
+                           where: { crop_id: crop_ids })
 
     render :show
   end

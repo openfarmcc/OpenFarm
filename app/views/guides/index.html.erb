@@ -7,6 +7,14 @@
           <td>
             <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %>
           </td>
+          <td>
+            <%= link_to(guide.crop.name, { controller: 'crops',
+              action: 'show',
+              id: guide.crop.id }, class: 'action show') %>
+          </td>
+          <td>
+            <%= link_to(icon('edit'), {:action => 'edit', :id => guide.id}, :class=>'action show') %>
+          </td>
         </tr>
       <% end %>
     </table>

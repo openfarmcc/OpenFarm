@@ -156,6 +156,10 @@ textarea {
     letter-spacing: 0.025rem;
   }
 
+  &.no-shadow {
+    @include box-shadow(none);
+  }
+
   &:hover {
     background: $of-green2;
   }

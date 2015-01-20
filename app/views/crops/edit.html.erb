@@ -28,7 +28,7 @@
       <div class="columns small-8 medium-8">
         <small>Comma Separated or New Lines</small>
         <textarea data-ng-model="editCrop.common_names"
-               id="common_names"
+               id="crop_common_names"
                name="crop[common_names]"
                type="text"></textarea>
       </div>
@@ -143,7 +143,7 @@
               ng-class="{ 'deleted' : pic.deleted }"
               ng-init="pic.deleted = false"
               ng-click="pic.deleted = !pic.deleted">
-          <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+          <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" width="100"
                ng-model="pic"/>
         </span>
         <div id="crop_image_upload"
@@ -157,12 +157,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="columns large-12 medium-12">
+    <div class="row form-buttons">
+      <div class="columns small-12 medium-12">
         <input class="button small right"
           name="commit"
           type="submit"
-          value="Save the crop!"
+          value="<%= t('.save_crop') %>"
           ng-disabled="editCrop.sending"
           ng-click="submitForm()"/>
       </div>

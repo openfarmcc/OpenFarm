@@ -1,6 +1,13 @@
 .crop-page {
   height: 100%;
 
+  .edit-link {
+    margin: 1em;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+  }
+
   table.crop {
     width: 100%;
     border-collapse: collapse;
@@ -29,8 +36,8 @@
       }
       img{
         height: 100px;
-        width: 100px;
-      }
+/*        width: 100px;
+*/      }
     }
   }
 

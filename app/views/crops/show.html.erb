@@ -2,7 +2,7 @@
   <div class="crop-info-container small-6 columns">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
-      <% if current_user && current_user.admin? %>
+      <% if current_user %>
         <%= link_to(icon('edit') + " Edit Crop", {action: 'edit'}, class: 'edit-link button secondary tiny') %>
       <% end %>
     </div>
@@ -10,7 +10,7 @@
         <tbody>
         <tr>
           <td colspan="2"><% @crop.pictures.each do |pic, index| %>
-            <img src="<%= pic.attachment.url(:small) %>" title="<%= @crop.name %> Picture <%= index %>"/>
+            <img src="<%= pic.attachment.url(:small) %>"/>
           <% end %>
           </td>
         </tr>

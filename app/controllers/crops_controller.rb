@@ -1,5 +1,5 @@
 class CropsController < ApplicationController
-  after_action :verify_authorized, except: [:index, :new, :show, :create]
+  after_action :verify_authorized, except: [:index, :show]
   def index
     @crops = Crop.all
     redirect_to(controller: 'crop_searches', action: 'search')
@@ -7,6 +7,7 @@ class CropsController < ApplicationController
 
   def new
     @crop = Crop.new(name: params[:name])
+    authorize @crop
   end
 
   def show
@@ -17,6 +18,7 @@ class CropsController < ApplicationController
 
   def create
     @crop = Crop.new(crops_params)
+    authorize @crop
     if @crop.save
       redirect_to(controller: 'guides', action: 'new',
                   crop_id: @crop.id)

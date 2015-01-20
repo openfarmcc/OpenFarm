@@ -196,8 +196,6 @@ video { display: block; }
       // TODO: get rid of need for !important :(
       border-top-right-radius: 999rem !important;
       border-bottom-right-radius: 999rem !important;
-      /* overwrite the .button class */
-      box-shadow: none;
 
       &:hover {
         background-color: rgba(106, 168, 79, 1);

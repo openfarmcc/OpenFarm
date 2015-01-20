@@ -31,3 +31,4 @@ module OpenFarm
     config.middleware.use Rack::Attack
   end
 end
+

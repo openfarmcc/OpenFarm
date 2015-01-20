@@ -11,6 +11,7 @@ class CropsController < ApplicationController
 
   def show
     @crop = Crop.find(params[:id])
+    impressionist(@crop, '', unique: [:session_hash])
     @guides = @crop.guides
   end
 

@@ -1,5 +1,4 @@
-// You can't nest keyframes
-
+// TODO: This should not be here. This makes me unhappy.
 @-webkit-keyframes fa-spin-image-load {
   0% {
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
@@ -24,15 +23,108 @@
 
 .new-guide {
 
-  // TODO: @simonv3, figure out where to put these:
+  .guide-creation-nav {
+    $guide-nav-color: #5E9546;
+    background: $guide-nav-color;
 
-  .create-guide-steps{
+    /* the ul containing the links */
+    ul {
+      padding-top: 5px;
+      text-align: center;
+      list-style: none;
+      white-space: nowrap;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+    }
+
+    li a {
+      color: white;
+      font-size: 1.25em;
+      font-weight: 600;
+      vertical-align: middle;
+      color: rgba(255,255,255,0.7);
+      padding: 10px 10px 10px 35px;
+
+      &.disabled {
+        pointer-events: none;
+      }
+
+      &:hover {
+        color: rgba(255,255,255,0.9);
+      }
+
+      &::before {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        $size: 12px;
+        width: $size; height: $size;
+        content: "";
+        @include box-shadow(
+            0 0 0 2px $guide-nav-color,
+            0 0 0 4px #D9E9D2);
+        border-radius: 50%;
+      }
+
+      &.check::after {
+        @include manual-font-awesome('\f00c');
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        font-size: 22px;
+        color: white;
+      }
+
+      &:active, &.active {
+        color: rgba(255,255,255,1);
+
+        // get rid of check
+        &::after {
+          display: none;
+        }
+      }
+
+      &.active::before {
+        background: #D9E9D2;
+        @include box-shadow(
+            0 0 0 2px $guide-nav-color,
+            0 0 0 4px #D9E9D2);
+      }
+
+      &:hover {
+        // fill in dot
+        &::before {
+          background: white;
+        }
+
+        // get rid of check
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    // .arrow {
+    //   color: white;
+    //   font-size: 1.45em;
+    //   vertical-align: middle;
+    //   opacity: 0.5;
+    //   margin: auto 10px;
+    // }
+  }
+
+  // TODO: @simonv3, figure out where to put these:
+  .create-guide-steps {
     text-align: center;
     font-size: .8rem;
     color: $of-dark;
     margin-bottom: 1rem;
+    pointer-events: none;
 
-    .step:first-child{
+    .step:first-child {
       border-top-left-radius: $global-radius;
       border-bottom-left-radius: $global-radius;
     }
@@ -42,106 +134,137 @@
       border-bottom-right-radius: $global-radius;
     }
 
-    .step{
+    .step {
       padding: .5rem 1rem;
       border: 1px $secondary-color solid;
     }
 
-    .step.active{
+    .step.active {
       background-color: $of-dark;
       border: 1px $of-dark solid;
       color: white;
     }
 
-    .preview{
+    .preview {
       border-radius: $global-radius;
       opacity: .5;
     }
+
+    .clickable {
+      cursor: pointer;
+      pointer-events: auto;
+    }
   }
 
-  &>section {
+  section.step {
     margin-bottom: 4rem;
-    h1, h2, h3{
-      text-align: center;
-      font-size: 1.5rem;
-      margin: .5rem 0;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0;
     }
-    h2{
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0;
+    }
+    h3 {
       font-size: 1.2rem;
-    }
-    h3{
-      font-size: 1rem;
-      font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: $body-font-family;
     }
   }
 
-  form{
+  /* General form elements used in guide creation */
+  form {
     width: 100%;
     display: inline-block;
 
-    .multi-choice label{
-      display: inline-block;
+    .multi-choice {
+      label {
+        display: inline-block;
+      }
+
+      label input[type=checkbox], label input[type=radio]{
+        margin-bottom: 0;
+        opacity: 0;
+        width: 0;
+      }
+
+      label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
+        background-color: $of-dark;
+        color: white;
+      }
+
+      label {
+        span {
+          border-radius: 0;
+          border-right: 1px solid #CCC;
+        }
+
+        &:first-child span {
+          border-bottom-left-radius: $global-radius;
+          border-top-left-radius: $global-radius;
+        }
+      }
+
+      button.other {
+        border-radius: 0;
+        border-top-right-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+      }
     }
 
-    label input[type=checkbox], label input[type=radio]{
-      margin-bottom: 0;
-      opacity: 0;
-      width: 0;
-    }
-
-    label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
-      background-color: $of-dark;
-      color: white;
-    }
-
-    label span{
-      border: 0;
-      border-radius: 0;
+    label {
       font-size: 1rem;
+      line-height: 1.22rem;
+      margin-bottom: 0.5rem;
     }
 
-    label:first-child span{
-      border-top-left-radius: $global-radius;
-      border-bottom-left-radius: $global-radius;
+    small {
+      font-size: 78.88%;
+      color: #999999;
     }
 
-    button{
-      border: 0;
-      font-size: .9rem;
-      border-top-right-radius: $global-radius;
-      border-bottom-right-radius: $global-radius;
-    }
-
-    .button.last{
-      border-top-right-radius: $global-radius;
-      border-bottom-right-radius: $global-radius;
-    }
-
-    .block{
-      height: 2rem;
-      display: block;
-    }
-
-    p{
+    p {
       font-size: .9rem;
       color: #171717;
       line-height: 1.5rem;
       margin-bottom: .5rem;
     }
-    input.button.small.secondary.left{
+
+    // Overrides bug in Foundation-rails 5.4.5
+    input.button {
+      @include border-radius($global-radius);
+    }
+
+    input.button.small.secondary.left {
       margin-left: .5rem;
+    }
+
+    /* when a select dropdown is attached to the bottom of an input */
+    .vertical-input-select-group {
+      input {
+        margin-bottom: 0;
+      }
+      select {
+        background-color: $secondary-color;
+        height: 2rem;
+        margin-top: 0;
+        padding-top: 0.25rem;
+        border-bottom-left-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+      }
     }
   }
 
-  .button-wrapper{
+  .button-wrapper {
     margin-top: 2rem;
 
-    .loading-button{
+    .loading-button {
       margin: 1rem;
     }
   }
 
-  .crop-image{
+  .feature-image .click-to-upload-image {
     cursor: pointer;
     background: #fff;
     width: 100%;
@@ -154,7 +277,7 @@
     margin-bottom: 1rem;
     @include font-awesome-mixin();
 
-    &:before{
+    &:before {
       content: "\f06c";
       font-size: 4rem;
       position: absolute;
@@ -164,28 +287,28 @@
       transform: translate(-50%, -50%);
     }
 
-    &.ng-valid-succeeded:before{
+    &.ng-valid-succeeded:before {
       content: '';
     }
 
-    &.ng-invalid-uploading:before{
+    &.ng-invalid-uploading:before {
       content: "\f110";
       -webkit-animation: fa-spin-image-load 2s infinite linear;
       animation: fa-spin-image-load 2s infinite linear;
     }
 
-    .wrapper{
+    .wrapper {
       height: 100%;
     }
 
-    img.no-image{
+    img.no-image {
       transform: translate(-50%, -50%);
       position: relative;
       top: 50%;
       left: 50%;
     }
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       z-index: 999;
@@ -193,27 +316,57 @@
     }
   }
 
-  .instructions{
+  .instructions {
     margin: 1.5rem 0;
   }
 
-  .life-stages{
-    .stage-wrapper{
-      display: inline-block;
-      height: 137px;
-      width: 17%;
-      padding: 0;
-      margin-bottom: 3%;
-      margin-right: 3%;
+  /* Step 1 */
+  .getting-started {
+
+    .crop-name-and-description {
+      margin-bottom: 1.5rem;
     }
 
-    input[type="checkbox"]{
+    .crop-name {
+      font-size: 1.8rem;
+      /* account for cancel button */
+
+      .common-name {
+        padding-right: 1.5rem;
+      }
+
+      .binominal-name {
+        color: #666;
+      }
+    }
+
+    .cancel-selection-btn {
+      color: $secondary-color;
+      font-size: 1.5rem;
+      cursor: pointer;
+
+      &:hover {
+        color: #FF3366;
+      }
+    }
+  }
+
+  /* Step 2 */
+  .life-stages {
+    .stage-wrapper {
+      display: inline-block;
+      overflow: hidden;
+      height: 142px;
+      margin-bottom: 3%;
+    }
+
+    input[type="checkbox"] {
       display: none;
     }
 
-    .stage-option{
+    .stage-option {
       display: block;
-      border-radius: 10rem;
+      border-radius: 4px;
       padding: .25rem;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, .2);
       border: solid 1px #DFDFDF;
@@ -221,133 +374,163 @@
       height: 100%;
       transition: border .2s;
 
-      p{
-        bottom: 0;
+      &:hover {
+        border-color: #CCCCCC;
+      }
+
+      p {
         position: absolute;
-        background-color: white;
-        padding: .5rem 1rem;
-        margin-bottom: .25rem;
+        bottom: 0;
+        font-weight: 600;
+        background: rgba(255,255,255,0.95);
+        border-radius: 3px;
+        padding: 2px 10px;
       }
     }
 
-    input:checked + .stage-option{
+    input:checked + .stage-option {
       border: 3px solid $of-green;
     }
   }
 
-  .chosen-stages{
-    text-align: center;
-    margin: 1rem 0 2rem;
+  /* Step 3 */
+  .stage-details {
+    section {
+      .row {
+        margin-bottom: 1.8rem;
+      }
+    }
 
-    .chosen-stage{
-      display: inline-block;
-      width: 5rem;
-      cursor: pointer;
-      position: relative;
+    // TODO: Refactor out into component CSS
+    /* Current stage breadcrumb nav */
+    .chosen-stages {
+      text-align: center;
+      margin: 1rem 0 2rem;
 
-      &::before{
-        content: '';
-        border-bottom: 1px solid $of-light;
-        height: 0;
-        width: 100%;
+      .chosen-stage {
         display: inline-block;
-        margin-left: 2rem;
-        margin-bottom: -2.25rem;
-        z-index: 0;
+        width: 5rem;
+        cursor: pointer;
         position: relative;
-      }
 
-      &:last-child::before{
-        display: none;
-      }
-
-      .bubble{
-        width: 3.5rem;
-        height: 3.5rem;
-        border-radius: 10rem;
-        background-origin: padding-box;
-        background-size: 100%;
-        border: 2px solid $of-yellow;
-        margin: 0 auto;
-        transition: border-color .2s;
-        position: relative;
-        z-index: 1;
-
-        &:before{
-          font-size: 2rem;
-          position: relative;
-          color: $of-green;
+        &::before {
+          content: '';
+          border-bottom: 2px solid $of-light;
+          height: 0;
           width: 100%;
-          height: 100%;
-          display: block;
-          padding-top: .75rem;
-          background-color: rgba(255,255,255,.7);
+          display: inline-block;
+          margin-left: 2rem;
+          margin-bottom: -2.25rem;
+          z-index: 0;
+          position: relative;
+        }
+
+        &:last-child::before {
+          display: none;
+        }
+
+        .bubble {
+          width: 3.5rem;
+          height: 3.5rem;
           border-radius: 10rem;
-        }
-        &.fa-check{
-          border: 2px solid $of-green;
-        }
-      }
+          background-origin: padding-box;
+          background-size: 100%;
+          border: 2px solid $of-yellow;
+          margin: 0 auto;
+          transition: border-color .2s;
+          position: relative;
+          z-index: 1;
 
-      &:last-child{
-        margin-right: 0;
-      }
-      &.editing .bubble{
-        border-color: $of-green;
-      }
-      p{
-        text-align: center;
-        opacity: 0;
-        transition: opacity .2s;
-        width: 120px;
-        margin-left: -20px;
-      }
-      &.editing p{
-        opacity: 1;
-      }
+          &:before {
+            font-size: 2rem;
+            position: relative;
+            color: $of-green;
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding-top: .75rem;
+            background-color: rgba(255,255,255,.7);
+            border-radius: 10rem;
+          }
+          &.fa-check {
+            border: 2px solid $of-green;
+          }
+        }
 
+        &:last-child {
+          margin-right: 0;
+        }
+        &.editing .bubble {
+          border-color: $of-green;
+        }
+        p {
+          text-align: center;
+          opacity: 0;
+          transition: opacity .2s;
+          width: 120px;
+          margin-left: -20px;
+        }
+        &.editing p {
+          opacity: 1;
+        }
+
+      }
+    }
+
+    /* each step has actions to fill out */
+    .actions {
+      border-top: 1px solid $of-light;
+      padding-top: 2rem;
+      margin-top: 1rem;
+
+      textarea {
+        min-height: 95px;
+      }
     }
   }
 
-  .stage-details{
-    section{
-      .row{
-        margin-bottom: 1rem;
-      }
-    }
+  /* Step 4 */
+  .finishing-up {
   }
 
+  // Note: these are shared by step 2 and 3
   // For now these live in .new-guide, but they
   // might be better suited somewhere else.
-  .stage-option, .chosen-stage > .bubble{
+  .stage-option, .chosen-stage > .bubble {
     background-repeat: no-repeat;
-    background-size: 150px;
-    &.Preparation{
-      background-image: url('stages/preparation_stage_200.png');
+    background-size: cover;
+    background-position: center center;
+
+    background-image: url('stages/other_sm.png');
+
+
+    &.Preparation {
+      background-image: url('stages/prep_sm.png');
     }
-    &.Sow{
-      background-image: url('stages/sow_stage_200.png');
+    &.Sow {
+      background-image: url('stages/sow_sm.png');
     }
-    &.Germination{
-      background-image: url('stages/germination_stage_200.png');
+    &.Germination {
+      background-image: url('stages/germination_sm.png');
     }
-    &.Seedling{
-      background-image: url('stages/seedling_stage_200.png');
+    &.Seedling {
+      background-image: url('stages/sprouting_sm.png');
     }
-    &.Juvenile{
-      background-image: url('stages/juvenile_stage_200.png');
+    &.Juvenile {
+      background-image: url('stages/juvenile_sm.png');
     }
-    &.Adult{
-      background-image: url('stages/adult_stage_200.png');
+    &.Adult {
+      background-image: url('stages/adult_sm.png');
     }
-    &.Flowering{
-      background-image: url('stages/flowering_stage_200.png');
+    &.Flowering {
+      background-image: url('stages/flowering_sm.png');
     }
-    &.Fruit{
-      background-image: url('stages/fruit_stage_200.png');
+    &.Fruit {
+      background-image: url('stages/fruiting_sm.png');
     }
-    &.Dormant{
-      background-image: url('stages/dormant_stage_200.png');
+    &.Dormant {
+      background-image: url('stages/dormant_sm.png');
     }
   }
+
 }

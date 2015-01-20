@@ -28,5 +28,13 @@ describe Crop do
       Crop.searchkick_index.refresh
       expect(Crop.search('Brassicaceae family').first).to eq(crop)
     end
+
+    it 'displays the main_image_path' do
+      expect(crop.main_image_path).to_not eq(nil)
+      # TODO: test for placeholder image?
+      fancy_crop = FactoryGirl.create(:crop_picture).photographic
+      expect(fancy_crop.main_image_path).to be_kind_of(String)
+      expect(fancy_crop.main_image_path).to include("pictures/attachments")
+    end
   end
 end

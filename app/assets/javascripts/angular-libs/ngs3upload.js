@@ -147,18 +147,23 @@ angular.module('ngS3upload.directives', []).
       require: '?ngModel',
       replace: true,
       transclude: false,
-      scope: true,
-      controller: ['$scope', '$element', '$attrs', '$transclude', function ($scope, $element, $attrs, $transclude) {
-        $scope.attempt = false;
-        $scope.success = false;
-        $scope.uploading = false;
+      scope: {
+        s3UploadPlacePic: '&'
+      },
+      controller: ['$scope', '$element', '$attrs', '$transclude',
+        function ($scope, $element, $attrs, $transclude) {
+          $scope.attempt = false;
+          $scope.success = false;
+          $scope.uploading = false;
 
-        $scope.barClass = function () {
-          return {
-            "bar-success": $scope.attempt && !$scope.uploading && $scope.success
+          $scope.barClass = function () {
+            return {
+              'bar-success': $scope.attempt &&
+                             !$scope.uploading &&
+                             $scope.success
+            };
           };
-        };
-      }],
+        }],
       compile: function (element, attr, linker) {
         return {
           pre: function ($scope, $element, $attr) {
@@ -177,13 +182,13 @@ angular.module('ngS3upload.directives', []).
               folder: ''
             }, opts);
             var bucket = scope.$eval(attrs.bucket);
-
             // Bind the button click event
             var button = angular.element(element.children()[0]),
               file = angular.element(element.find("input")[0]);
               element.bind('click', function (e) {
                file[0].click();
               });
+
             // Update the scope with the view value
             ngModel.$render = function () {
               // TODO: somebody please find a less hackish
@@ -204,54 +209,45 @@ angular.module('ngS3upload.directives', []).
               var ext = filename.split('.').pop();
 
               scope.$apply(function () {
-                S3Uploader.getUploadOptions(opts.getOptionsUri).then(function (s3Options) {
-                  ngModel.$setValidity('uploading', false);
-                  var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
-                  var key = opts.folder + (new Date()).getTime() + '-' + S3Uploader.randomString(16) + "." + ext;
-                  S3Uploader.upload(scope,
-                      s3Uri,
-                      key,
-                      opts.acl,
-                      selectedFile.type,
-                      s3Options.key,
-                      s3Options.policy,
-                      s3Options.signature,
-                      selectedFile
-                    ).then(function (resp) {
+                S3Uploader.getUploadOptions(opts.getOptionsUri)
+                  .then(function (s3Options) {
+                    ngModel.$setValidity('uploading', false);
+                    var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
+                    var key = opts.folder + (new Date()).getTime() + '-' +
+                              S3Uploader.randomString(16) + '.' + ext;
+                    S3Uploader.upload(scope,
+                        s3Uri,
+                        key,
+                        opts.acl,
+                        selectedFile.type,
+                        s3Options.key,
+                        s3Options.policy,
+                        s3Options.signature,
+                        selectedFile
+                      ).then(function (resp) {
 
-                      var guide = scope.$parent.guide;
-                      var stage = null;
-                      var location = resp.responseXML
+                        ngModel.$setViewValue(s3Uri + key);
+
+                        scope.s3UploadPlacePic({image: s3Uri + key});
+
+                        ngModel.$setValidity('uploading', true);
+                        ngModel.$setValidity('succeeded', true);
+                      }, function (resp) {
+                        alert('There was an error uploading your image. ' +
+                              'Developers: See JS console for details.');
+                        console.log('Bad response from Amazon S3:');
+                        console.log(resp);
+                        scope.fileUrl = resp.responseXML
                           .getElementsByTagName('Location')[0].innerHTML;
-                      if (attrs.s3Guide){
-                        guide = scope.$parent[attrs.s3Guide];
-                      }
-                      if (attrs.s3Stage){
-                        stage = guide.selectedStages[attrs.s3Stage];
-                        stage.featured_image = location;
-                      } else if (guide){
-                        guide.featured_image = location;
-                      }
-                      // TODO: Un-hardcode this.
-                      ngModel.$setViewValue(s3Uri + key);
-                      console.log(ngModel.$viewValue);
-                      scope.filename = ngModel.$viewValue;
-                      ngModel.$setValidity('uploading', true);
-                      ngModel.$setValidity('succeeded', true);
-                    }, function (resp) {
-                      alert("There was an error uploading your image. Developers: See JS console for details.");
-                      console.log('Bad response from Amazon S3:');
-                      console.log(resp);
-                      scope.fileUrl = resp.responseXML
-                        .getElementsByTagName('Location')[0].innerHTML;
-                      scope.filename = ngModel.$viewValue;
-                      ngModel.$setValidity('uploading', true);
-                      ngModel.$setValidity('succeeded', false);
-                    });
+                        scope.filename = ngModel.$viewValue;
+                        ngModel.$setValidity('uploading', true);
+                        ngModel.$setValidity('succeeded', false);
+                      });
 
-                }, function (error) {
-                  throw Error("Can't receive the needed options for S3 " + error);
-                });
+                  }, function (error) {
+                    throw Error('Can\'t receive the needed options for S3 ' +
+                                error);
+                  });
               });
             };
 

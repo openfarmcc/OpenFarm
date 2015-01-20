@@ -1,6 +1,5 @@
 class Garden
   include Mongoid::Document
-  include Mongoid::Paperclip
 
   belongs_to :user
   validates_presence_of :user
@@ -11,12 +10,15 @@ class Garden
   field :description
   field :is_private, type: Mongoid::Boolean, default: false
 
-  field :location # users can have gardens in different locations
+  field :location # users can have gardens in different locations (geographic)
   field :type # outdoor, indoor, hydroponic, etc
   field :average_sun # full, partial, etc
   field :soil_type # clay, high organic, etc
   field :ph # 0-14
   field :growing_practices, type: Array # organic, permaculutre, etc
+
+  embeds_many :pictures, cascade_callbacks: true, as: :photographic
+  accepts_nested_attributes_for :pictures
 
   scope :is_public, -> { where(is_private: true) }
 end

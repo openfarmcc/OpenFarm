@@ -20,6 +20,18 @@
     tr > td:nth-child(2) {
       font-size: 1em;
     }
+
+    tr:first-child{
+      td{
+        width: 100%;
+        padding: .5em;
+        text-align: left;
+      }
+      img{
+        height: 100px;
+        width: 100px;
+      }
+    }
   }
 
   .crop-info-container {
@@ -67,56 +79,4 @@
 }
 
 .crop-edit {
-  .crop-image{
-    cursor: pointer;
-    background: #fff;
-    width: 100%;
-    height: 200px;
-    border-radius: 2px;
-    border: 0px solid #979797;
-    -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
-    box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
-    display: inline-block;
-    margin-bottom: 1rem;
-    position: relative;
-    @include font-awesome-mixin();
-
-    &:before{
-      content: "\f06c";
-      font-size: 4rem;
-      position: absolute;
-      z-index: 0;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.ng-valid-succeeded:before{
-      content: '';
-    }
-
-    &.ng-invalid-uploading:before{
-      content: "\f110";
-      -webkit-animation: fa-spin-image-load 2s infinite linear;
-      animation: fa-spin-image-load 2s infinite linear;
-    }
-
-    .wrapper{
-      height: 100%;
-    }
-
-    img.no-image{
-      transform: translate(-50%, -50%);
-      position: relative;
-      top: 50%;
-      left: 50%;
-    }
-
-    img{
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-      position: relative;
-    }
-  }
 }

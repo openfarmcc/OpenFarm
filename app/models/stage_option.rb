@@ -7,5 +7,7 @@ class StageOption
   field :name
   field :order
 
+  has_and_belongs_to_many :stage_action_options
+
   slug :name
 end

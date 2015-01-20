@@ -24,18 +24,18 @@ module Crops
     end
 
     optional do
-      array :images, class: String, arrayize: true
+      array :images, class: Hash, arrayize: true
     end
 
     def validate
       validate_permissions
+      @existing_crop = Crop.find(id)
       validate_images
     end
 
     def execute
-      @existing_crop = Crop.find(id)
       set_pictures
-      @existing_crop.update(crop)
+      @existing_crop.update_attributes(crop)
       @existing_crop
     end
 

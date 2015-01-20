@@ -1,0 +1,21 @@
+<accordion-group is-open="stat.isopen"
+ class="accordion-navigation statistics">
+  <accordion-heading class="title-wrapper">
+    <h2 class="title">
+      <i ng-class="{'fa fa-angle-right': true, 'open': stat.isopen}"></i>
+      <%= t('.title') %>
+    </h2>
+  </accordion-heading>
+  <p class="section-text">
+    <div class="box">
+      <div class="row">
+        <div class="empty columns large-12 large-centered">
+
+           <i class="fa fa-bar-chart-o"></i><br/>
+            <%= t('.once_we_know_more') %>
+         </div>
+       </div>
+    </div>
+
+  </p>
+</accordion-group>

@@ -1,0 +1,15 @@
+<div class="seasons">
+  <span ng-repeat="day in days"
+    class="day"
+    style="width: {{ dayWidth }}px;"
+    ng-class="{ first : day.first, today: day.today }">
+    <span ng-if="day.first" class="month">
+      {{ day.currentDay.format('MMM') }}
+    </span>
+  </span>
+</div>
+<div class="timelines">
+  <div class="plantLifetime">
+    Plant's Lifetime
+  </div>
+</div>

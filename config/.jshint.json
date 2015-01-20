@@ -15,7 +15,10 @@
   "predef": [
     "$",
     "jQuery",
+    "moment",
+
     "openFarmApp",
+    "openFarmModule",
     "USER_ID",
     "GUIDE_ID",
 

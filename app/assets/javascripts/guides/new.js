@@ -48,6 +48,49 @@ openFarmApp.directive('formChecker', function(){
   };
 });
 
+openFarmApp.directive('clearOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('clearOn', function(e, name) {
+        if(name === attr.clearOn) {
+          elem[0].value = '';
+        }
+      });
+   };
+});
+
+// TODO: Does this belong here?
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+});
+
+// TODO: Does this belong here?
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('autoFocus', function($timeout) {
+    return {
+        restrict: 'AC',
+        link: function(_scope, _element) {
+            $timeout(function(){
+                _element[0].focus();
+            }, 0);
+        }
+    };
+});
+
+openFarmApp.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  };
+});
+
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
     return {
@@ -81,7 +124,8 @@ openFarmApp.directive('stageButtons', [
 }]);
 
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
-  function newGuideCtrl($scope, $http, $filter) {
+  'guideService', 'stageService',
+  function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = 1;
@@ -89,6 +133,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.addresses = [];
   $scope.stages = [];
   $scope.hasEdited = [];
+  $scope.haveEditedStages = false;
 
   // What's a new guide.
   $scope.newGuide = {
@@ -99,15 +144,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     exists: false,
     stages: [],
     practices: [
-      {slug: 'organic', label: 'Organic', selected: false},
+      {slug: 'organic',      label: 'Organic',      selected: false},
       {slug: 'permaculture', label: 'Permaculture', selected: false},
+      {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
       {slug: 'conventional', label: 'Conventional', selected: false},
-      {slug: 'hydroponic', label: 'Hydroponic', selected: false},
-      {slug: 'intensive', label: 'Intensive', selected: false}
+      {slug: 'intensive',    label: 'Intensive',    selected: false}
     ]
   };
-
-
 
   $scope.$watch('newGuide.stages', function(){
     $scope.newGuide.selectedStages = [];
@@ -115,19 +158,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if (stages){
       var lastSelectedIndex = null;
       stages.forEach(function(item, index){
-          if (item.selected){
-            item.originalIndex = index;
-            if (lastSelectedIndex !== null){
-              item.lastSelectedIndex = lastSelectedIndex;
-              stages[lastSelectedIndex].nextSelectedIndex = index;
-            }
-
-            $scope.newGuide.selectedStages.push(item);
-            lastSelectedIndex = index;
+        item.nextSelectedIndex = undefined;
+        if (item.selected){
+          item.originalIndex = index;
+          if (lastSelectedIndex !== null){
+            item.lastSelectedIndex = lastSelectedIndex;
+            stages[lastSelectedIndex].nextSelectedIndex = index;
           }
-        });
-    }
 
+          $scope.newGuide.selectedStages.push(item);
+          lastSelectedIndex = index;
+        }
+      });
+    }
     $scope.newGuide.selectedStages.sort(function(a, b){
       return a.order > b.order;
     });
@@ -163,6 +206,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.stages.forEach(function(item){
           item.selected = false;
 
+          item.length_type = 'days';
+
           // loop over the existing stages.
           $scope.newGuide.stages.forEach(function(d){
             if (d.name === item.name){
@@ -170,6 +215,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               item.selected = true;
               item.exists = true;
               item._id = d._id;
+              item.pictures = d.pictures;
+
+              item.stage_length = d.stage_length;
+              switch(true){
+                case (parseInt(d.stage_length, 10) % 7 === 0):
+                  item.stage_length = item.stage_length / 7;
+                  item.length_type = 'weeks';
+                  break;
+                case (parseInt(d.stage_length, 10) % 30 === 0):
+                  item.stage_length = item.stage_length / 30;
+                  item.length_type = 'months';
+                  break;
+                default:
+                  item.length_type = 'days';
+              }
 
               item.where = $scope.buildStageDetails(stageWhere,
                                                     d.environment || []);
@@ -177,8 +237,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                                     d.light || []);
               item.soil = $scope.buildStageDetails(stageSoil,
                                                    d.soil || []);
+
+              // Find the existing stage actions and overwrite
+              item.stage_action_options.forEach(function(saOption){
+                d.stage_actions.forEach(function(existingSA){
+                  if (existingSA.name === saOption.name){
+                    saOption.overview = existingSA.overview;
+                  }
+                });
+              });
             }
           });
+
           // TODO: The below probably needs to be broken out
           // and made *way* more dynamic.
           if (!item.where){
@@ -206,6 +276,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
     $http.get('/api/guides/' + getIDFromURL('guides'))
       .success(function(r){
+        $scope.hasEditedStages = true;
         $scope.newGuide.exists = true;
         $scope.newGuide._id = r.guide._id;
         $scope.newGuide.featured_image = r.guide.featured_image;
@@ -246,7 +317,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if (crop_id){
       $http.get('/api/crops/' + crop_id)
         .success(function(r){
-          // console.log(crop);
           $scope.newGuide.crop = r.crop;
           $scope.query = r.crop.name;
         })
@@ -295,11 +365,27 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.newGuide.crop.description = '';
   };
 
+  //Gets fired when user resets their selection.
+  $scope.clearCropSelection = function ($item, $model, $label) {
+    $scope.newGuide.crop = null;
+    $scope.crop_not_found = false;
+    console.log($scope);
+
+    focus('cropSelectionCanceled');
+  };
+
   $scope.createCrop = function(){
     window.location.href = '/crops/new/?name=' + $scope.query;
   };
 
+  $scope.switchToStep = function(step){
+    $scope.step = step;
+  };
+
   $scope.nextStep = function(){
+    if ($scope.step === 3){
+      $scope.hasEditedStages = true;
+    }
     $scope.step += 1;
   };
 
@@ -316,6 +402,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       item.editing = false;
       if (stage === item){
         item.editing = true;
+        $scope.currentStage = stage;
       }
     });
   };
@@ -346,6 +433,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         practices.push(value.slug);
       }
     }, practices);
+
     var params = {
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
@@ -361,42 +449,41 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // In this case the guide already existed,
       // so we need to put, not to post.
       params._id = $scope.newGuide._id;
-      $http.put('/api/guides/' + params._id + '/', params)
-        .success(function(response){
-          $scope.sendStages(response);
-        })
-        .error(function(response, code){
-          console.log(response, code);
-          $scope.alerts.push({
-            msg: response.error,
-            type: 'alert'
-          });
-        });
+      guideService.updateGuide(params._id,
+                               params,
+                               $scope.alerts,
+                               $scope.sendStages);
     } else {
-      $http.post('/api/guides/', params)
-        .success(function (r) {
-          $scope.sendStages(r);
-        })
-        .error(function (r) {
-          $scope.alerts.push({
-            msg: r.error,
-            type: 'alert'
-          });
-        });
+      guideService.createGuide(params,
+                               $scope.alerts,
+                               $scope.sendStages);
     }
   };
 
-  $scope.sendStages = function(r){
-    var guide = r.guide;
-    $scope.newGuide._id = r.guide._id;
-    $scope.sent = 0;
+  var calcStageLength = function(length, length_type){
+    if (length && length_type){
+      switch (length_type){
+        case 'months':
+        return length * 30;
+        case 'weeks':
+        return length * 7;
+        default:
+        return length;
+      }
+    } else {
+      return null;
+    }
+  };
 
+  $scope.sendStages = function(success, guide){
+    $scope.newGuide._id = guide._id;
+    $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
       var stageParams = {
         name: stage.name,
-        images: [stage.featured_image],
         guide_id: guide._id,
-        stage_length: stage.length || null,
+        order: stage.order,
+        stage_length: calcStageLength(stage.stage_length, stage.length_type),
         environment: stage.where.filter(function(s){
             return s.selected;
           }).map(function(s){
@@ -411,54 +498,56 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return s.selected;
           }).map(function(s){
             return s.label;
+          }) || null,
+        actions: stage.stage_action_options.filter(function(s){
+            return s.overview;
+          }).map(function(s){
+            return { name: s.name, overview: s.overview };
           }) || null
       };
+      if (stage.pictures){
+        stageParams.images = stage.pictures.filter(function(p){
+          return !p.deleted;
+        });
+      }
 
       // Go through all the possible changes on
       // each stage.
+
       if (stage.selected && !stage.exists){
-        $http.post('/api/stages/', stageParams)
-          .success(function(){
-            $scope.sent ++;
-            stage.sent = true;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        stageService.createStage(stageParams,
+                                 $scope.alerts,
+                                 function(success, stage){
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                   $scope.checkNumberUpdated();
+                                 });
+
       } else if (stage.selected && stage.exists){
-        console.log(stageParams.images);
-        $http.put('/api/stages/' + stage._id + '/', stageParams)
-          .success(function(){
-            stage.sent = true;
-            $scope.sent ++;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        stageService.updateStage(stage._id,
+                                 stageParams,
+                                 $scope.alerts,
+                                 function(){
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                   $scope.checkNumberUpdated();
+                                 });
+
       } else if (stage.exists){
-        $http.delete('/api/stages/' + stage._id + '/')
-          .success(function(){
-            stage.sent = true;
-            $scope.sent ++;
-          })
-          .error(function(r){
-            $scope.alerts.push({
-              msg: r.error,
-              type: 'alert'
-            });
-          });
+        stageService.deleteStage(stage._id,
+                                 $scope.alerts,
+                                 function(){
+                                   stage.sent = true;
+                                   $scope.sent ++;
+                                   $scope.checkNumberUpdated();
+                                 });
       }
+
     });
   };
 
   // Only redirect when everything is done processing.
-  $scope.$watch('newGuide.stages', function(){
+  $scope.checkNumberUpdated = function(){
     var updatedNum = 0;
     $scope.newGuide.stages.forEach(function(stage){
       if (stage.selected || stage.exists){
@@ -466,12 +555,24 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     });
     if (updatedNum === $scope.sent){
+      $scope.newGuide.sending = false;
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
-  }, true);
+  };
 
-  // Any function returning a promise object can be used to load
-  // values asynchronously
+  $scope.placeStageUpload = function(stage, image){
+    if (!stage.pictures){
+      stage.pictures = [];
+    }
+    stage.pictures.push({
+      new: true,
+      image_url: image
+    });
+  };
+
+  $scope.placeGuideUpload = function(image){
+    $scope.newGuide.featured_image = image;
+  };
 
   $scope.cancel = function(path){
     window.location.href = path || '/';

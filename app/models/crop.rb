@@ -5,14 +5,11 @@ class Crop
   include Mongoid::Timestamps
   include Mongoid::Slug
   searchkick
-  # history tracking all Crop documents
-  # note: tracking will not work until #track_history is invoked
-  include Mongoid::History::Trackable
 
   is_impressionable counter_cache: true,
-                    column_name: :impressions,
+                    column_name: :impressions_field,
                     unique: :session_hash
-  field :impressions, default: 0
+  field :impressions_field, default: 0
 
   has_many :guides
   field :guides_count, type: Fixnum, default: 0
@@ -26,23 +23,38 @@ class Crop
   field :sun_requirements
   field :sowing_method
   field :spread, type: Integer
-  field :days_to_maturity, type: Integer
+  # field :days_to_maturity, type: Integer
   field :row_spacing, type: Integer
   field :height, type: Integer
 
-  field :sowing_time, type: Hash
-  field :harvest_time, type: Hash
+  # embeds_many :crop_times
 
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures
 
   def search_data
-    as_json only: [:name, :common_names, :binomial_name, :description]
+    as_json only: [:name, :common_names, :binomial_name, :description,
+                   :guides_count]
   end
-  slug :name
 
-  # See https://github.com/aq1018/mongoid-history
-  track_history on: [:description, :image],
-                modifier_field: :modifier,
-                version_field: :version
+  def main_image_path
+    if pictures.present?
+      pictures.first.attachment.url
+    else
+      # WARNING! MVC VIOLATION AHEAD!!!! =======================================
+      # The fact that we are using polymorphic embedded documents means we would
+      # need to add an extra build step to populate S3 and then add conditional
+      # logic to figure out which class its embedded in to return the correct
+      # URL.
+
+      # If someone reading this has a better idea, I'd love to hear it. In the
+      # meantime, I'm willing to look the other way and violate MVC in favor of
+      # having less code to maintain. The current solution lets us keep the file
+      # in source control instead of expecting the developer to upload it to an
+      # S3 bucket when setting up new boxes.
+      ActionController::Base.helpers.asset_path('baren_field.jpg')
+    end
+  end
+
+  slug :name
 end

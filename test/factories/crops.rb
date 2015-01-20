@@ -8,7 +8,6 @@ FactoryGirl.define do
     sun_requirements { ['full', 'shade'].sample }
     sowing_method    { ['container', 'direct'].sample }
     spread           { rand(10) + rand(10) + 1 }
-    days_to_maturity { rand(40) + rand(40) + 1 }
     row_spacing      { rand(10) + rand(10) + 1 }
     height           { rand(10) + rand(10) + 1 }
     trait :radish do

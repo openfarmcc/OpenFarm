@@ -1,20 +1,22 @@
-<section name="step-1" ng-show="step === 1">
-  <h1>
-    <%= t('.lets_get_started') %>
-  </h1>
+<section name="step-1" class="step" ng-show="step === 1">
   <form accept-charset="UTF-8"
-    class="new-guide-step-1"
+    class="getting-started"
     id="new-guide-step-1"
     method="post"
     >
+    <div class="instructions">
+      <h1>
+        <%= t('.lets_get_started') %>
+      </h1>
+    </div>
     <div class="row">
-      <div class="columns large-4 medium-4">
-        <label class="right"
+      <div class="columns small-12" ng-show="!newGuide.crop">
+        <label class="left"
           for="guide_crop_id"><%= t('.which_crop') %><br/>
           <small><%= t('.common_or_scientific') %></small>
-          </label>
+        </label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns small-12" ng-show="!newGuide.crop">
         <input
           id="crop_name"
           type="text"
@@ -23,11 +25,15 @@
           typeahead-on-select='cropSelected($item, $model, $label)'
           typeahead="crop.name for crop in crops"
           typeahead-loading="loadingCrops"
-          typeahead-wait-ms="555"
+          typeahead-wait-ms="350"
           typeahead-min-length="3"
-          class="form-control"/>
+          auto-focus
+          clear-on="cropSelectionCanceled"
+          focus-on="cropSelectionCanceled"
+          class="form-control"
+          required/>
         <span ng-show="loadingCrops" >
-        <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
+          <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
         </span>
         <span ng-if="crop_not_found">
           <p>
@@ -37,57 +43,76 @@
             <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
           </p>
         </span>
-             <p>
-          <strong ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
-        <em ng-bind="newGuide.crop.binomial_name"></em>
-      </p>
-      <p ng-show="newGuide.crop">
-        <span ng-bind="newGuide.crop.description"></span>
-      </p>
       </div>
-    </div>
-    <div class="row">
-      <div class="columns large-4 medium-4">
-        <label class="right"
-            for="guide_image_upload"><%= t('.choose_photo') %><br/>
-          <small><%= t('application.only_upload_what_you_own') %></small>
-        </label>
+      <div class="crop-name-and-description center columns small-12" ng-cloak ng-if="newGuide.crop.name" >
+        <p class="crop-name">
+          <i class="cancel-selection-btn fa fa-times-circle-o" ng-click="clearCropSelection()"></i>
+          <strong class="common-name" ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
+          <br/>
+          <small><em class="binomial-name" ng-bind="newGuide.crop.binomial_name"></em></small>
+        </p>
+        <p class="center" ng-show="newGuide.crop">
+          <span ng-bind="newGuide.crop.description"></span>
+        </p>
       </div>
-      <div class="columns large-8 medium-8">
-        <div
-          id="guide_image_upload"
-          name="guide_image_upload"
-          s3-upload
-          bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-          s3-guide="newGuide"
-          ng-model="s3upload"
-          s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+      <hr/>
+      <div class="left-half columns small-5">
+        <div class="row">
+          <div class="columns small-12">
+            <label class="left"
+                for="guide_image_upload"><%= t('.choose_photo') %><br/>
+              <small><%= t('application.only_upload_what_you_own') %></small>
+            </label>
+          </div>
+          <div class="columns small-12">
+            <span class="thumbnails"
+                  ng-if="newGuide.featured_image && newGuide.featured_image.indexOf('leaf-grey') === -1">
+            <img ng-src="{{ newGuide.featured_image }}"
+                 />
+            </span>
+            <div
+              id="guide_image_upload"
+              name="guide_image_upload"
+              s3-upload
+              bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+              s3-guide="newGuide"
+              ng-model="s3upload"
+              s3-upload-place-pic="placeGuideUpload(image)"
+              s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-half columns small-7">
+        <div class="row practices">
+          <div class="columns small-12">
+            <label class="left"
+              for="guide_image_upload"><%= t('.which_practices') %><br/>
+              <small><%= t('.check_all_that_apply') %></small>
+            </label>
+          </div>
+          <div class="columns small-12 options">
+            <div multi-row-select
+                 class="multi-choice"
+                 options="newGuide.practices"
+                 multi-select-overflow-count="3"
+                 multi-select-type="checkbox"
+                 multi-select-id="practices">
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row practices">
-      <div class="columns large-4 medium-4">
-        <label class="right"
-          for="guide_image_upload"><%= t('.which_practices') %><br/>
-          <small><%= t('.check_all_that_apply') %></small>
-        </label>
-      </div>
-      <div class="columns large-8 medium-8 options">
-        <div multi-row-select
-             class="multi-choice"
-             options="newGuide.practices"
-             multi-select-type="checkbox"
-             multi-select-id="practices">
+    <div class="button-wrapper row">
+      <div class="columns small-12">
+        <div stage-buttons
+          cancel-url="<%= root_path %>"
+          cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+          abled-bool="newGuide.crop"
+          abled-text="<%= t('.next_life_stages') %>"
+          disabled-text="<%= t('.choose_a_crop_to_continue') %>">
         </div>
       </div>
-    </div>
-    <div stage-buttons
-        cancel-url="<%= root_path %>"
-        cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
-        abled-bool="newGuide.crop"
-        abled-text="<%= t('.next_life_stages') %>"
-        disabled-text="<%= t('.choose_a_crop_to_continue') %>"
-        >
     </div>
   </form>
 </section>

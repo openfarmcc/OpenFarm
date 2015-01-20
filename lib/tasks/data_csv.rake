@@ -12,28 +12,41 @@ class CsvHttpImport
   def initialize(url)
     @uri     = URI(url)
     @request = Net::HTTP::Get.new uri
-    @source  = CropDataSource.find_or_create_by(source_name: "ITIS")
+    @source  = CropDataSource.find_or_create_by(source_name: "RORY")
   end
 
   def run
     Net::HTTP.start(uri.host, uri.port) do |http|
       http.request request do |response|
-        response.read_body{|r| parse(r)}
+        response.read_body { |r| parse(r) }
       end
     end
     puts 'Done'
   end
 
   def parse(response)
-    rows = response.split("\n").map(&:parse_csv).select{|r| r.length == 5}
-    rows.map{|r| handle_row(r) }
+    seriously_dude?(response).map{|r| handle_row(r) }
+  end
+
+  # "CSV is one hell of a drug."
+  #   -- Benjamin Franklin
+  def seriously_dude?(response)
+    response.split("\n").map do |row|
+      begin
+        row.parse_csv.map(&:downcase!).compact
+      rescue
+        nil
+      end
+    end.select{|r| r.present? && (r.length > 1)}.uniq
   end
 
   def handle_row(row)
-    return if row[0] == 'tsn'
-    crop = Crop.find_or_create_by(name: row[-1],
-                                  binomial_name: row[1, 2].join(' '),
-                                  common_names: Array(row[-1]),
+    binomial_name = row[0]
+    all_names     = row[1].split(',')
+    common_name   = all_names.first
+    crop = Crop.find_or_create_by(name: common_name,
+                                  binomial_name: binomial_name,
+                                  common_names: all_names,
                                   crop_data_source: source)
     print '.'
   rescue => e

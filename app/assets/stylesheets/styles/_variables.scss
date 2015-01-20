@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* Colors
+   ========================================================================== */
+
+/* OpenFarm core colors */
+$of-orange: #e69138;
+$of-blue:   #3c78d8;
+$of-purple: #674ea7;
+$of-green:  #6aa84f;
+$of-green2: #5E9546;
+$of-blue-grey: #ECEFF0;
+$of-red:    #cc0000;
+$of-yellow: #f1c232;
+$of-dark:   #4a4a4a;
+$of-light:  #dedede;
+
+/* Grays */
+$gray-bg:   #f9f9f9;
+
+// We use these as default colors throughout
+$primary-color:   #99B36C; // #008CBA;
+$secondary-color: #e7e7e7;
+$alert-color:     #ff6666;
+$success-color:   #74E29D;
+$warning-color:   #f08a24;
+$info-color:      #eecb91;
+
+// OpenFarm Colors
+$openfarm-green:       #85cb2b;
+$openfarm-green-muted: #99b36c;
+$openfarm-blue-grey:   #eceff0;
+
+$compatibility-low-color:  #b23a2c;
+$compatibility-med-color:  #fbad2f;
+$compatibility-high-color: #84c93f;
+ /* Same color, just lighter (adjusted to appear perceptually equally lighter) */
+$compatibility-low-color-bg:  lighten($compatibility-low-color, 45%);
+$compatibility-med-color-bg:  lighten($compatibility-med-color, 35%);
+$compatibility-high-color-bg: lighten($compatibility-high-color, 40%);
+
+/* Ceci, n'est pas un couleur */
+$compatibility-circle-size: 50px;

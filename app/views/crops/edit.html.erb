@@ -143,7 +143,7 @@
               ng-class="{ 'deleted' : pic.deleted }"
               ng-init="pic.deleted = false"
               ng-click="pic.deleted = !pic.deleted">
-          <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
+          <img style="background-image:url({{ pic.thumbnail_url || pic.image_url }})"
                ng-model="pic"/>
         </span>
         <div id="crop_image_upload"
@@ -157,8 +157,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="columns large-12 medium-12">
+    <div class="row form-buttons">
+      <div class="columns small-12 medium-12">
         <input class="button small right"
           name="commit"
           type="submit"

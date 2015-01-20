@@ -1,6 +1,5 @@
 class User
   include Mongoid::Document
-
   has_many :guides
   has_many :gardens
   has_one :token, dependent: :delete
@@ -24,6 +23,13 @@ class User
 
   field :display_name, type: String
   validates_presence_of :display_name
+
+  field :agree, type: Boolean
+  validates :agree, acceptance: { accept: true,
+                                  message: 'Please accept the terms and ' +
+                                           'conditions' },
+                    on: :create
+
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String
@@ -36,5 +42,6 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable
+         # , :omniauthable
 end

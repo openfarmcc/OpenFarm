@@ -5,37 +5,42 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
     $scope.editCrop = {};
     var setCrop = function(success, crop){
       $scope.editCrop = crop;
-      console.log(crop);
     };
 
     cropService.getCrop(getIDFromURL('crops'), $scope.alerts, setCrop);
 
     $scope.submitForm = function(){
       $scope.editCrop.sending = true;
+
+      var commonNames = $scope.editCrop.common_names;
+      if (typeof $scope.editCrop.common_names === 'string'){
+        commonNames = $scope.editCrop.common_names.split(/,+|\n+/)
+                        .map(function(s){ return s.trim(); });
+      }
+      commonNames = commonNames.filter(function(s){ return s.length > 0; });
+
       var params = {
         crop: {
+          common_names: commonNames,
           name: $scope.editCrop.name,
           description: $scope.editCrop.description || null,
           binomial_name: $scope.editCrop.binomial_name || null,
           sun_requirements: $scope.editCrop.sun_requirements || null,
           sowing_method: $scope.editCrop.sowing_method || null,
           spread: $scope.editCrop.spread || null,
-          days_to_maturity: $scope.editCrop.days_to_maturity || null,
+          // days_to_maturity: $scope.editCrop.days_to_maturity || null,
           row_spacing: $scope.editCrop.row_spacing || null,
           height: $scope.editCrop.height || null,
         }
       };
 
       params.images = $scope.editCrop.pictures.filter(function(d){
-
-        if (!d.deleted){ return true; }
+        return !d.deleted;
       });
-      console.log(params.images);
 
       var cropCallback = function(success, crop){
         $scope.editCrop.sending = false;
         $scope.editCrop = crop;
-        console.log('successfully updated crop', crop);
       };
 
       cropService.updateCrop($scope.editCrop._id,
@@ -44,13 +49,10 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
                              cropCallback);
     };
 
-    $scope.$watch('s3upload', function(){
-      if ($scope.s3upload){
-        $scope.editCrop.pictures.push({
-          new: true,
-          image_url: $scope.s3upload
-        });
-        console.log($scope.s3upload);
-      }
-    });
+    $scope.placeCropUpload = function(image){
+      $scope.editCrop.pictures.push({
+        new: true,
+        image_url: image
+      });
+    };
   }]);

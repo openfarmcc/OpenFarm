@@ -4,7 +4,7 @@
   class="accordion-navigation stages">
   <accordion-heading class="title-wrapper">
     <h2 class="title" id="stages">
-      <i ng-class="{'fa fa-minus': stage.isopen, 'fa fa-plus': !stage.isopen}"></i>
+      <i ng-class="{'fa fa-angle-right': true, 'open': stage.isopen}"></i>
       <%= t('.title') %>
     </h2>
 
@@ -24,34 +24,17 @@
   </div>
   <tabset class="tabs">
 
-    <tab ng-repeat="s in guide.stages | orderBy:'order'">
-      <tab-heading href="#instructions-{{ s.slug }}" class="tab-heading">
-        <h3>{{ s.name }}</h3>
+    <tab ng-repeat="stage in guide.stages | orderBy:'order'">
+      <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
+        <h3>{{ stage.name }}</h3>
       </tab-heading>
-      <div class="box">
+      <div class="actions columns small-12">
         <div class="row">
-          <div class="columns large-12 stage-description">
-            <img ng-src="{{ s.pictures[0].image_url }}"/>
-            <div class="markdown" markdown="s.instructions">
-            </div>
+          <div class="action columns small-12" ng-repeat="action in stage.stage_actions">
+            <h3 ng-bind="action.name"></h3>
+            <p ng-bind="action.overview"></p>
           </div>
         </div>
-
-        <div class="row actions"
-             ng-init="s.activeAction = s.stage_actions[0]">
-        <div class="columns large-3 medium-2">
-        <ul>
-          <li ng-repeat="action in s.stage_actions"
-              ng-click="s.activeAction = action"
-              ng-class="{ selected : s.activeAction._id == action._id }">
-              {{ action.name }}
-          </li>
-        </ul>
-        </div>
-        <div class="columns large-9">
-          <div id="action_content" ng-bind="s.activeAction.overview"></div>
-        </div>
-      </div>
       </div>
     </tab>
   </tabset>

@@ -5,32 +5,29 @@
       <%= form_for @crop do |f| %>
       <%= f.label :name, 'Crop Name' %>
       <%= f.text_field :name %>
-      
-      <%= f.label :binomial_name, 'Binomial Name' %>
+
+      <%= f.label :binomial_name, t('crops.binomial_name') %>
       <%= f.text_field :binomial_name %>
-      
-      <%= f.label :description, 'Description' %>
+
+      <%= f.label :description, t('crops.description') %>
       <%= f.text_area :description %>
-      
-      <%= f.label :sun_requirements, 'Sun Requirements' %>
+
+      <%= f.label :sun_requirements, t('crops.sun_requirements') %>
       <%= f.text_field :sun_requirements %>
-      
-      <%= f.label :sowing_method, 'Sowing Method' %>
+
+      <%= f.label :sowing_method, t('crops.sowing_method') %>
       <%= f.text_field :sowing_method %>
-      
-      <%= f.label :spread, 'Spread' %>
+
+      <%= f.label :spread, t('crops.spread') %>
       <%= f.text_field :spread %>
-      
-      <%= f.label :days_to_maturity, 'Days to Maturity' %>
-      <%= f.text_field :days_to_maturity %>
-      
-      <%= f.label :row_spacing, 'Row Spacing' %>
+
+      <%= f.label :row_spacing, t('crops.row_spacing') %>
       <%= f.text_field :row_spacing %>
-      
-      <%= f.label :height, 'Height' %>
+
+      <%= f.label :height, t('crops.height') %>
       <%= f.text_field :height %>
-      
-      <%= f.submit 'Save Crop and Start Creating Guide!', :class => 'button', :disable_with => 'Saving...' %>
+
+      <%= f.submit t('.save_crop'), :class => 'button', data: { disable_with: 'Saving...' } %>
     <% end %>
     </div>
   </div>

@@ -7,7 +7,9 @@
 //= require ./libs/moment.min
 //= require ./angular-libs/angular.openfarm
 //= require ./angular-libs/angular.openfarm.guides
+//= require ./angular-libs/angular.openfarm.gardens
 //= require ./angular-libs/angular.openfarm.stages
+//= require ./angular-libs/angular.openfarm.crops
 //= require ./angular-libs/ngs3upload
 //= require foundation
 //= require foundation/custom.modernizr

@@ -7,9 +7,9 @@ class Crop
   searchkick
 
   is_impressionable counter_cache: true,
-                    column_name: :impressions,
+                    column_name: :impressions_field,
                     unique: :session_hash
-  field :impressions, default: 0
+  field :impressions_field, default: 0
 
   has_many :guides
   field :guides_count, type: Fixnum, default: 0
@@ -23,18 +23,19 @@ class Crop
   field :sun_requirements
   field :sowing_method
   field :spread, type: Integer
-  field :days_to_maturity, type: Integer
+  field :growing_degree_days, type: Integer
+  field :minimum_temperature, type: Integer # In Celcius
   field :row_spacing, type: Integer
   field :height, type: Integer
 
-  field :sowing_time, type: Hash
-  field :harvest_time, type: Hash
+  # embeds_many :crop_times
 
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures
 
   def search_data
-    as_json only: [:name, :common_names, :binomial_name, :description]
+    as_json only: [:name, :common_names, :binomial_name, :description,
+                   :guides_count]
   end
 
   def main_image_path

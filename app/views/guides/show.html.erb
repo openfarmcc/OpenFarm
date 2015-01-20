@@ -4,32 +4,30 @@
 
     <div alerts ng-model="alerts"></div>
 
-    <div class="canopy">
-      <div class="image-wrapper">
-        <img ng-src="/assets/leaf-grey-canopy.png"
-          ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
-          ng-attr-alt="{{ guide.name }}"/>
-        <img ng-src="{{ guide.featured_image }}"
-          ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
-          ng-attr-alt="{{ guide.name }}"/>
-      </div>
+    <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
+    <div class="canopy"
+         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+         ng-attr-alt="{{ guide.name }}"
+         style="background-image: url(<%= image_path("baren_field.jpg") %>)">
     </div>
+    <div class="canopy"
+         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+         ng-attr-alt="{{ guide.name }}"
+         style="background-image: url({{ guide.featured_image }})" %>">
+    </div>
+
     <div class="row title">
       <div class="columns large-10 large-centered">
-        <div class="half">
-          <h1> {{ guide.name }} </h1>
-          <h2> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
-
+        <div class="">
+          <h1 class="guide-name">{{ guide.name }}</h1>
+          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
         </div>
-        <div class="right">
-          <% if @guide.owned_by?(current_user) %>
-            <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'edit-link') %>
-          <% end %>
+        <div class="guide-controls">
           <% if current_user %>
             <button href="#" data-dropdown="addToGarden" aria-controls="addToGarden" aria-expanded="false" class="button tiny secondary dropdown add-to-garden">Add To Garden</button><br>
             <ul id="addToGarden" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
               <li ng-repeat="garden in currentUser.gardens">
-                <a ng-click="addToGarden(garden)">
+                <a ng-click="toggleGarden(garden)">
                   <i class="fa fa-spin fa-spinner" ng-show="garden.adding"></i>
                   <i class="fa fa-check" ng-show="garden.added"></i>
                   {{ garden.name }}
@@ -37,27 +35,30 @@
               </li>
             </ul>
           <% end %>
+
+          <% if @guide.owned_by?(current_user) %>
+            <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
+          <% end %>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row overview">
       <div class="columns large-10 large-centered">
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row content">
     <div class="large-10 small-10 columns small-centered">
     <accordion close-others="false">
 
     <%= render 'guides/show/show_guide_timeline' %>
 
-    <%= render 'guides/show/show_guide_statistics' %>
+    <%#= render 'guides/show/show_guide_statistics' %>
 
     <%= render 'guides/show/show_guide_requirements' %>
 
     <%= render 'guides/show/show_guide_stages' %>
-
 
     </div>
   </div>

@@ -2,10 +2,17 @@ module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
     def validate_images
-      images && images.each do |url|
-        unless url.valid_url?
-          add_error :images, :invalid_url, "#{url} is not a valid URL. Ensure "\
-            'that it is a fully formed URL (including HTTP:// or HTTPS://)'
+      images && images.each do |pic|
+        pic_id = "#{pic[:id]}" if pic[:id].present?
+        pictures = @stage.pictures if @stage
+        outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
+                                                   id: pic_id,
+                                                   pictures: pictures)
+
+        unless outcome.success?
+          add_error :images,
+                    :bad_format,
+                    outcome.errors.message_list.to_sentence
         end
       end
     end
@@ -15,7 +22,8 @@ module Stages
         # Can this validation somehow be done by the action
         # mutation without having to also run the execute method?
         # A: It Can't, we need a valid stage to do so
-        # And stage is nil at this point. If you're refactoring this
+        # And stage is nil at this point. There might be a way around this
+        # using some mutation settings. If you're refactoring this
         # feel free to remove this comment!
         if !action[:name] || !action[:name].is_a?(String)
 
@@ -30,9 +38,15 @@ module Stages
       end
     end
 
-    def set_pictures
-      images && images.map do |url|
-        Picture.from_url(url, @stage)
+    def set_images
+      # Delete all pictures
+      # This is much simpler, less ping pong than what it was
+      # and probably okay for now. However, this only works when S3
+      # is enabled, because paperclip normally stores on system, not on URLs.
+      @stage.pictures.delete_all
+      images && images.each do |img|
+        Picture.from_url(img[:image_url],
+                         @stage)
       end
     end
 

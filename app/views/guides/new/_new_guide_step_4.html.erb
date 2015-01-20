@@ -1,9 +1,11 @@
-<section name="step-4" ng-show="step === 4">
-  <h1 class="columns large-6">
-    <%= t('.some_information') %>
-  </h1>
+<section name="step-4" class="step" ng-show="step === 4">
+  <div class="instructions">
+    <h1>
+      <%= t('.almost_done') %>
+    </h1>
+  </div>
   <form accept-charset="UTF-8"
-    class="new-guide new-guide-step-2"
+    class="finishing-up"
     id="new-guide-step-2"
     method="post"
     >
@@ -42,18 +44,18 @@
       </div>
     </div>
     <div class="button-wrapper row">
-      <div stage-buttons
-           id="submitFormButton"
-           cancel-url="<%= root_path %>"
-           cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
-           back-text="<%= t('guides.new.back') %>"
-           next-function="submitForm"
-           abled-bool="newGuide.name && !newGuide.sending"
-           processing="newGuide.sending"
-           abled-text="<%= t('.done') %>"
-           disabled-text="<%= t('.call_your_guide_something') %>"
-            >
+      <div class="columns small-12">
+        <div stage-buttons  id="submitFormButton"
+             cancel-url="<%= root_path %>"
+             cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
+             back-text="<%= t('guides.new.back') %>"
+             next-function="submitForm"
+             abled-bool="newGuide.name && !newGuide.sending"
+             processing="newGuide.sending"
+             abled-text="<%= t('.done') %>"
+             disabled-text="<%= t('.call_your_guide_something') %>">
         </div>
+      </div>
     </div>
   </form>
 </section>

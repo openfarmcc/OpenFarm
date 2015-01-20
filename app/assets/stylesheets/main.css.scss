@@ -1,44 +1,8 @@
 @import 'compass';
-@import 'styles/presets';
 @import 'font-awesome';
-
-$of-orange: #e69138;
-$of-blue: #3c78d8;
-$of-purple: #674ea7;
-$of-green: #6aa84f;
-$of-red: #cc0000;
-$of-yellow: #f1c232;
-$of-dark: #4a4a4a;
-$of-light: #dedede;
-
-/*// Why are these defined twice?
-$primary-color: #c7a979; // #008CBA;
-$secondary-color: #e7e7e7;
-$alert-color: #ff6666;
-$success-color: #74E29D;
-$warning-color: #f08a24;
-$info-color: #eecb91;*/
-
-// We use these as default colors throughout
-$primary-color: #99B36C; // #008CBA;
-$secondary-color: #e7e7e7;
-$alert-color: #ff6666;
-$success-color: #74E29D;
-$warning-color: #f08a24;
-$info-color: #eecb91;
-
-// OpenFarm Colors
-$openfarm-green: #85CB2B;
-$openfarm-green-muted: #99B36C;
-$openfarm-blue-grey: #ECEFF0;
-
-$compatibility-circle-size: 50px;
-
-$compatibility-low-color:  #B23A2C;
-$compatibility-med-color:  #FBAD2F;
-$compatibility-high-color: #84C93F;
-
+@import 'styles/variables'; // colors
 @import 'styles/foundation_and_overrides';
+@import 'styles/presets';
 @import 'styles/devise';
 @import 'styles/nav';
 @import 'styles/icons';
@@ -51,4 +15,3 @@ $compatibility-high-color: #84C93F;
 // begin static page styles
 @import 'styles/pages/home';
 @import 'styles/pages/styles';
-

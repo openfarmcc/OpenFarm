@@ -21,7 +21,7 @@ module Stages
     end
 
     optional do
-      array :images, class: String, arrayize: true
+      array :images, class: Hash, arrayize: true
       array :actions, class: Hash, arrayize: true
     end
 
@@ -34,7 +34,7 @@ module Stages
 
     def execute
       @stage.update(attributes)
-      set_pictures
+      set_images
       set_actions
       @stage.save
       @stage.reload

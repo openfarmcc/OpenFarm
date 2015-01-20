@@ -48,6 +48,49 @@ openFarmApp.directive('formChecker', function(){
   };
 });
 
+openFarmApp.directive('clearOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('clearOn', function(e, name) {
+        if(name === attr.clearOn) {
+          elem[0].value = '';
+        }
+      });
+   };
+});
+
+// TODO: Does this belong here?
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+});
+
+// TODO: Does this belong here?
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('autoFocus', function($timeout) {
+    return {
+        restrict: 'AC',
+        link: function(_scope, _element) {
+            $timeout(function(){
+                _element[0].focus();
+            }, 0);
+        }
+    };
+});
+
+openFarmApp.factory('focus', function ($rootScope, $timeout) {
+  return function(name) {
+    $timeout(function (){
+      $rootScope.$broadcast('focusOn', name);
+    });
+  };
+});
+
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
     return {
@@ -80,7 +123,6 @@ openFarmApp.directive('stageButtons', [
     };
 }]);
 
-// ToDo: move things to the angular.openfarm services in guides.
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   'guideService', 'stageService',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
@@ -102,11 +144,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     exists: false,
     stages: [],
     practices: [
-      {slug: 'organic', label: 'Organic', selected: false},
+      {slug: 'organic',      label: 'Organic',      selected: false},
       {slug: 'permaculture', label: 'Permaculture', selected: false},
+      {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
       {slug: 'conventional', label: 'Conventional', selected: false},
-      {slug: 'hydroponic', label: 'Hydroponic', selected: false},
-      {slug: 'intensive', label: 'Intensive', selected: false}
+      {slug: 'intensive',    label: 'Intensive',    selected: false}
     ]
   };
 
@@ -173,6 +215,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               item.selected = true;
               item.exists = true;
               item._id = d._id;
+              item.pictures = d.pictures;
 
               item.stage_length = d.stage_length;
               switch(true){
@@ -322,6 +365,15 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.newGuide.crop.description = '';
   };
 
+  //Gets fired when user resets their selection.
+  $scope.clearCropSelection = function ($item, $model, $label) {
+    $scope.newGuide.crop = null;
+    $scope.crop_not_found = false;
+    console.log($scope);
+
+    focus('cropSelectionCanceled');
+  };
+
   $scope.createCrop = function(){
     window.location.href = '/crops/new/?name=' + $scope.query;
   };
@@ -350,6 +402,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       item.editing = false;
       if (stage === item){
         item.editing = true;
+        $scope.currentStage = stage;
       }
     });
   };
@@ -425,11 +478,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.sendStages = function(success, guide){
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
-
     $scope.newGuide.stages.forEach(function(stage){
       var stageParams = {
         name: stage.name,
-        images: [stage.featured_image],
         guide_id: guide._id,
         order: stage.order,
         stage_length: calcStageLength(stage.stage_length, stage.length_type),
@@ -454,6 +505,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return { name: s.name, overview: s.overview };
           }) || null
       };
+      if (stage.pictures){
+        stageParams.images = stage.pictures.filter(function(p){
+          return !p.deleted;
+        });
+      }
 
       // Go through all the possible changes on
       // each stage.
@@ -486,6 +542,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                    $scope.checkNumberUpdated();
                                  });
       }
+
     });
   };
 
@@ -498,9 +555,23 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     });
     if (updatedNum === $scope.sent){
-      // $scope.newGuide.sending = false;
+      $scope.newGuide.sending = false;
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
+  };
+
+  $scope.placeStageUpload = function(stage, image){
+    if (!stage.pictures){
+      stage.pictures = [];
+    }
+    stage.pictures.push({
+      new: true,
+      image_url: image
+    });
+  };
+
+  $scope.placeGuideUpload = function(image){
+    $scope.newGuide.featured_image = image;
   };
 
   $scope.cancel = function(path){

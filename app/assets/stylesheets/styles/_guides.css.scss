@@ -1,20 +1,21 @@
 /* presets */
 
-.guides-list{
+.guides-list {
   margin-top: 2rem;
   list-style: none;
 
-  table{
+  table {
     width: 100%;
   }
 }
 
-.box{
+// TODO: Remove/refactor out generic selectors like this!
+.box {
   border-radius: 2px;
   background: rgba(198,159,96,0.04);
   border: 1px solid rgba(0,0,0,0.25);
 
-  h1{
+  h1 {
     font-size: 2rem;
   }
 }
@@ -24,73 +25,88 @@
 .guides {
   position: relative;
 
-  .box{
+  .box {
     margin: 2rem inherit;
     padding-top: 1rem;
   }
 
-  .stages .box{
+  .stages .box {
     margin-top: 0;
   }
 
-  .empty{
+  .empty {
     text-align: center;
     padding-bottom: 1rem;
-    i{
+    i {
       font-size: 1.5rem;
     }
   }
 
-  .canopy{
+  .canopy {
     height: 300px;
     margin-bottom: 1rem;
+    /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
+    background-position: center 20%;
+    background-size: cover;
   }
 
-  .image-wrapper{
-    /*background-image: url(leaf-grey-canopy.png);*/
-    background-position: top;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    height: 300px;
-    border-bottom: 1px solid rgb(51, 51, 51);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .image-wrapper img{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -9999px;
-    bottom: -9999px;
-    margin: auto 0;
-    width: 100%;
-  }
-  .title{
-    h2{
+  .title {
+    h2 {
       font-weight: 100;
       color: $secondary-color;
-      span{
+
+      span {
         color: $of-green;
         font-weight: 300;
       }
     }
-    .right{
+
+    .right {
       position: absolute;
       top: 1rem;
       right: 0;
     }
   }
 
-  .actual-requirements{
-    ul{
+  .actual-requirements {
+    ul {
       list-style: none;
     }
-    li{
 
+    li {
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  .edit-link{
+    float: right;
+    margin-top: .9rem;
+  }
+
+  .overview{
+    margin: 1rem auto;
+  }
+
+  .content {
+    padding-bottom: 8rem;
+  }
+
+  dd.accordion-navigation > a{
+    border-top: rgb(148, 148, 148) 1px solid;
+    background-color: transparent;
+    transition: .5s background-color;
+
+    // angle icon
+    i.fa {
+      margin-right: 8px;
+      @include single-transition(transform, 0.2s, ease-out);
+
+      &.open {
+        @include transform(rotate(90deg));
+      }
     }
   }
 
@@ -108,7 +124,7 @@
       font-weight: 100;
     }
 
-    .title{
+    .title {
       font-size: 1.5rem;
     }
 
@@ -118,63 +134,97 @@
     }
   }
 
-  .accordion dd > .content{
+  .accordion dd > .content {
     padding: 0 0.935rem;
   }
 
-  .actions{
-    ul{
-      margin: 0;
-      list-style: none;
-      li{
-        padding: .25rem .5rem;
-        cursor: pointer;
-        transition: .5s;
-        opacity: .8;
-        margin: .25rem 0;
-        border-radius: $global-radius;
-      }
+  .actions {
+    border: 1px solid #CCCCCC;
 
-      li:hover{
-        background: $of-green;
-        opacity: 1;
-        color: white;
-      }
+    .action {
+      padding: 10px 40px;
+      border-top: 2px solid #333333;
+    }
+  }
+
+  /* Stages in completed guides */
+  .stages{
+    .image img{
+      height: 170px;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
     }
 
-    .selected{
-      background: $of-green;
-      opacity: 1;
-      color: white;
+    h3{
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Action labels in completed guides look different */
+    .actions li {
+      color: #333333;
+      border-color: #333333;
+
+      &.selected {
+        color: white;
+        background: $of-green;
+        border-color: $of-green;
+      }
     }
   }
 }
 
-.show-guide{
-  .timeline{
-    .box{
-      padding-top: 0;
-      height: 200px;
+.show-guide {
+
+  .canopy{
+    height: 300px;
+    margin-bottom: 1rem;
+  }
+
+  .title{
+    .guide-name {
+      text-transform: capitalize;
     }
-    .seasons{
+
+    .by-line {
+      font-size: 1rem;
+      color: #666666;
+    }
+
+    .guide-controls {
       position: absolute;
-      height: 200px;
-      .day{
-        height: 198px;
+      top: 1rem;
+      right: 0;
+    }
+  }
+
+  .timeline {
+    $height: 100px;
+
+    .box {
+      padding-top: 0;
+      height: $height;
+    }
+    .seasons {
+      position: absolute;
+      height: $height;
+      .day {
+        height: $height - 2px;
         display: inline-block;
 
-        &.first{
+        &.first {
           background-color: $of-light;
         }
-        &:hover{
+        &:hover {
           background-color: rgba(0, 0, 0, .1);
         }
-        &.today{
+        &.today {
           background-color: $of-green;
           opacity: .8;
         }
       }
-      .month{
+      .month {
         position: absolute;
         bottom: 0px;
         padding: 4px 6px;
@@ -182,12 +232,12 @@
       }
     }
 
-    .timelines{
+    .timelines {
       z-index: 1;
       position: absolute;
       margin-top: 1rem;
 
-      .plantLifetime{
+      .plantLifetime {
         cursor: pointer;
         opacity: .8;
         text-align: center;
@@ -200,18 +250,89 @@
         background-color: $of-green;
         transition: opacity .2s;
 
-        &:hover{
+        &:hover {
           opacity: 1;
         }
       }
 
-      .overflow{
+      .overflow {
         position: absolute;
         left: 0;
         top: 0;
       }
     }
   }
+
+  .requirements {
+    .box {
+      padding: 0;
+
+      table {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+
+        tr {
+
+          &.low {
+            background: $compatibility-low-color-bg;
+          }
+
+          &.medium {
+            background: $compatibility-med-color-bg;
+          }
+
+          &.high {
+            background: $compatibility-high-color-bg;
+          }
+
+          td {
+            padding: 16px;
+          }
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .basic-need-name {
+          span {
+            padding-left: 10px;
+            font-weight: 600;
+          }
+        }
+
+        .icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+
+  // .image-wrapper{
+  //   background-position: top;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   overflow: hidden;
+  //   height: 300px;
+  //   border-bottom: 1px solid rgb(51, 51, 51);
+  //   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+
+    // img{
+    //   position: absolute;
+    //   left: 0;
+    //   right: 0;
+    //   top: -9999px;
+    //   bottom: -9999px;
+    //   margin: auto 0;
+    //   width: 100%;
+    // }
+  // }
+
 }
 
 /*
@@ -220,37 +341,27 @@
 
 */
 
-.markdown-help-text{
+.markdown-help-text {
   font-size: .8rem;
   display: block;
   margin-top: .25rem;
   margin-bottom: 1rem;
 }
 
-.markdown{
-  h1{
+.markdown {
+  h1 {
     font-size: 1.5rem;
   }
-  h2{
+  h2 {
     font-size: 1.1rem;
   }
-  h3{
+  h3 {
     font-size: 1rem;
     text-transform: uppercase;
   }
 
-  h4, h5, h6{
+  h4, h5, h6 {
     font-size: .8rem;
-  }
-}
-
-.show-guide {
-  .stages{
-    h2{
-    }
-    h3{
-      font-size: 1rem;
-    }
   }
 }
 

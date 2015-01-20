@@ -1,3 +1,15 @@
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+
 .top-bar {
   input[type='submit']{
     padding: 0;
@@ -75,4 +87,38 @@
       // the screen is small.
       /*background-color: transparent;*/
     }
+}
+
+.footer, .push {
+  height: 100px; /* '.push' must be the same height as 'footer' */
+}
+
+.footer {
+  background-color: #333333;
+  padding: 40px 20px;
+
+  h1, h2, h3, h4, h5, p {
+    color: white;
+  }
+}
+
+.links {
+  text-align: center;
+
+  li {
+    display: block;
+    margin: 0 10px;
+  }
+
+  a.hero-link {
+    color: white;
+    padding: 3px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: #666;
+      border-radius: 3px;
+    }
+  }
 }

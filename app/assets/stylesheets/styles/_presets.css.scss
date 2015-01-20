@@ -220,9 +220,6 @@ textarea {
   display: inline-block;
   position: relative;
   cursor: pointer;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;;
   transition: .2s opacity, .2s background-color;
 
   &:before {
@@ -261,6 +258,9 @@ textarea {
   img{
     width: 100px;
     height: 100px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 

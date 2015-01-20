@@ -10,7 +10,7 @@
         <tbody>
         <tr>
           <td colspan="2"><% @crop.pictures.each do |pic, index| %>
-            <img src="<%= pic.attachment.url(:small) %>" title="<%= @crop.name %> Picture <%= index %>"/>
+            <img style="background-image:url(<%= pic.attachment.url(:small) %>)"/>
           <% end %>
           </td>
         </tr>

@@ -57,11 +57,15 @@ openFarmModule.directive('location', [
     return {
       restrict: 'A',
       require: '?ngModel',
-      scope: true,
+      scope: { ngModel:'=' },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
           $scope.loadingText = $attrs.loadingText;
+
+          $scope.location = $scope.ngModel;
+
           $scope.getLocation = function(val) {
+            $scope.ngModel = val;
             if (geocoder) {
               geocoder.geocode({ 'address': val }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -76,6 +80,9 @@ openFarmModule.directive('location', [
                  }
               });
             }
+          $scope.setLocation = function(val){
+            $scope.ngModel = $scope.location;
+          };
         };
 
         $scope.addresses = [];

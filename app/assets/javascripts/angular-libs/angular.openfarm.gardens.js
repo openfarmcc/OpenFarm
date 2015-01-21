@@ -54,13 +54,13 @@ openFarmModule.factory('gardenService', ['$http',
         }
       };
       $http.post(url, data)
-        .success(function (response, object) {
+        .success(function (object, status) {
           alerts.push({
             'type': 'success',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(true, response, object);
+            return callback(true, object.garden, status);
           }
         })
         .error(function (response, code){
@@ -73,6 +73,7 @@ openFarmModule.factory('gardenService', ['$http',
           }
         });
     };
+
     var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
       // TODO: this is on pause until there's a way to
       // actually add crops and guides to a garden.

@@ -7,17 +7,7 @@
     </h1>
   </div>
   <div alerts ng-model="alerts"></div>
-  <div class="add-garden row"
-       ng-if="currentUser.gardens.length === 0">
-    <div class="columns small-6 small-centered">
-      <p>
-        <%= t('.create_your_first_garden') %>
-      </p>
-      <label><%= t('.call_your_garden') %></label>
-      <input type="text" ng-model="newGarden.name"/>
-      <input type="button" class="button" value="Create Your First Garden" ng-click="createGarden(newGarden);"/>
-    </div>
-  </div>
+
 
   <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak>
     <div class="row header">
@@ -257,6 +247,23 @@
         </table>
       </div>
     </div>
+  </div>
+
+  <div class="add-garden row">
+    <hr/>
+    <div class="columns small-6"
+         ng-class="{ 'small-centered' : currentUser.gardens.length === 0 }">
+      <p ng-if="currentUser.gardens.length === 0">
+        <%= t('.create_your_first_garden') %>
+      </p>
+      <p ng-if="currentUser.gardens.length > 0">
+        <%= t('.create_a_new_garden') %>
+      </p>
+      <label><%= t('.call_your_garden') %></label>
+      <input type="text" ng-model="newGarden.name"/>
+      <input type="button" class="button" value="Create Your First Garden" ng-click="createGarden(newGarden);"/>
+    </div>
+  </div>
 </div>
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user._id}';" %>

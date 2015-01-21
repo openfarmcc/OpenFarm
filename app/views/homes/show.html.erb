@@ -1,5 +1,8 @@
-<%= javascript_include_tag "home" %>
-<%= javascript_include_tag "search" %>
+<% content_for (:start_js) do %>
+  <%= javascript_include_tag "home" %>
+  <%= javascript_include_tag "search" %>
+<% end %>
+
 <div class="hero">
     <div class="video-background">
         <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">

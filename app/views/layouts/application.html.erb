@@ -32,12 +32,11 @@
     <%= stylesheet_link_tag "application" %>
     <%= csrf_meta_tags %>
     <%# Controller specific start JS %>
-    <%= yield(:start_js) %>
     <%= javascript_include_tag "application" %>
+    <%= yield(:start_js) %>
   </head>
 
   <body>
-
 
     <div class="<%= if (current_page?(root_path) or current_page?("/")) then 'home-nav' else 'fixed' end %>">
       <nav class="top-bar" data-topbar role="navigation">
@@ -110,17 +109,16 @@
       </nav>
     </div>
 
-    <div class="wrapper">
-
     <% if current_page?(root_path) or current_page?("/") %>
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else %>
       <div class="home-alert-wrapper">
-    <% Announcement.current(session[:announcement_hide_time]).each do |item| %>
-        <div data-alert class="alert-box warning radius columns large-4 small-centered">
-          <%= item.message %>
-          <%= link_to('&times;'.html_safe, 'announcements/hide', class: 'close', remote: true) %>
-        </div>
-    <% end %>
+      <% Announcement.current(session[:announcement_hide_time]).each do |item| %>
+          <div data-alert class="alert-box warning radius columns large-4 small-centered">
+            <%= item.message %>
+            <%= link_to('&times;'.html_safe, 'announcements/hide', class: 'close', remote: true) %>
+          </div>
+      <% end %>
+      <%# The closing tag for this div is after the break %>
     <% end %>
     <% if notice %>
         <div data-alert class="alert-box success radius columns large-4 small-centered">
@@ -145,8 +143,8 @@
       </div>
     <% end %>
     <%= yield %>
-    </div><!-- Close .wrapper -->
-    <%= render 'shared/footer' %>
+
+    <%# <%= render 'shared/footer' %>
     <%# Controller specific end JS %>
     <%= yield(:end_js) %>
 

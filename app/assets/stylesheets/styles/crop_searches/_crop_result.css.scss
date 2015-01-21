@@ -85,7 +85,12 @@
       display: table-cell;
       vertical-align: middle;
       text-align: center;
+    }
 
+    @media #{$small-only} {
+      & {
+        height: 100px;
+      }
     }
   }
 }

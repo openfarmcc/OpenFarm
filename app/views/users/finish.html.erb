@@ -2,14 +2,11 @@
 <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
 <% end %>
 
-<% content_for(:banner) do %>
+<div class="finish"
+  ng-controller="finishCtrl">
   <div class="bar-header">
     <h1 class="title"><%= t('.welcome', user: current_user.display_name) %></h1>
   </div>
-<% end %>
-
-<div class="finish"
-  ng-controller="finishCtrl">
   <div class="row title">
     <div class="large-12 columns">
       <h2><%= t('.openfarm_works_best_when') %></h2>

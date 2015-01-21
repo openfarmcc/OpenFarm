@@ -22,6 +22,7 @@ module Guides
     end
 
     def validate
+      puts location
       validate_practices
       validate_crop
       validate_image_url

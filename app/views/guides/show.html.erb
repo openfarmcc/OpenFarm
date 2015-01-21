@@ -18,10 +18,6 @@
 
     <div class="row title">
       <div class="columns large-10 large-centered">
-        <div class="">
-          <h1 class="guide-name">{{ guide.name }}</h1>
-          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
-        </div>
         <div class="guide-controls">
           <% if current_user %>
             <button href="#" data-dropdown="addToGarden" aria-controls="addToGarden" aria-expanded="false" class="button tiny secondary dropdown add-to-garden">Add To Garden</button><br>
@@ -39,6 +35,10 @@
           <% if @guide.owned_by?(current_user) %>
             <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
           <% end %>
+        </div>
+        <div>
+          <h1 class="guide-name">{{ guide.name }}</h1>
+          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
         </div>
       </div>
     </div>

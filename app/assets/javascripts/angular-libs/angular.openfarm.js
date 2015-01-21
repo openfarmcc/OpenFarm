@@ -80,7 +80,7 @@ openFarmModule.directive('location', [
                  }
               });
             }
-          $scope.setLocation = function(val){
+          $scope.setLocation = function(){
             $scope.ngModel = $scope.location;
           };
         };

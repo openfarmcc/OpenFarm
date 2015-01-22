@@ -18,7 +18,6 @@ module Api
         params,
         user: current_user
       )
-      puts @outcome.to_json
       respond_with_mutation(:created)
     end
 

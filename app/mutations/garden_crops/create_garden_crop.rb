@@ -10,6 +10,7 @@ module GardenCrops
     optional do
       string :quantity
       string :guide_id
+      string :crop_id
       string :stage
       string :sowed
     end
@@ -20,6 +21,7 @@ module GardenCrops
 
     def validate
       validate_guide
+      validate_crop
       validate_garden
       validate_permissions
     end
@@ -36,6 +38,15 @@ module GardenCrops
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a guide with id #{guide_id}."
       add_error :guide, :guide_not_found, msg
+    end
+
+    def validate_crop
+      if crop_id
+        @crop = Crop.find(crop_id)
+      end
+    rescue Mongoid::Errors::DocumentNotFound
+      msg = "Could not find a crop with id #{crop_id}."
+      add_error :crop, :crop_not_found, msg
     end
 
     def validate_garden
@@ -55,6 +66,7 @@ module GardenCrops
     def set_params
       garden_crop.garden      = @garden
       garden_crop.guide       = @guide if @guide.present?
+      garden_crop.crop        = @crop if @crop.present?
       garden_crop.quantity    = quantity if quantity.present?
       garden_crop.stage       = stage if stage.present?
       garden_crop.sowed       = sowed if stage.present?

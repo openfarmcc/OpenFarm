@@ -18,6 +18,7 @@ module Api
         params,
         user: current_user
       )
+      puts @outcome.to_json
       respond_with_mutation(:created)
     end
 
@@ -47,11 +48,6 @@ module Api
       @outcome = GardenCrops::DestroyGardenCrop.run(params,
                                                     user: current_user)
       respond_with_mutation(:no_content)
-      # if @outcome.success?
-      #   render nothing: true, status: :no_content
-      # else
-      #   render json: @outcome.errors.message, status: :unprocessable_entity
-      # end
     end
   end
 end

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'openfarm_errors'
 
 describe Gardens::DestroyGarden do
   let(:mutation) { Gardens::DestroyGarden }
@@ -24,7 +25,5 @@ describe Gardens::DestroyGarden do
                                                    " with id #{params[:id]}.")
   end
 
-  # We can't test for mutations that include the openfarm error
-  # because it's defined outside of the scope of the standalone
-  # mutation?
+  # Test for things that use openfarm_errors
 end

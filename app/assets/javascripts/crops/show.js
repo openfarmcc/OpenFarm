@@ -11,7 +11,6 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     $scope.userId = USER_ID || undefined;
 
     $scope.setCurrentUser = function(success, object){
-      console.log(object);
       if (success){
         $scope.currentUser = object;
 
@@ -42,7 +41,7 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     $scope.toggleGarden = function(garden){
       garden.adding = true;
       if (!garden.added){
-        var callback = function(success, object, response){
+        var callback = function(success){
           if (success){
             garden.adding = false;
             garden.added = true;

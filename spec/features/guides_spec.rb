@@ -17,9 +17,10 @@ describe 'Guides' do
     expect(page).to have_content('Lets Get Started!')
     # Capybarra doesn't search the value of disabled buttons???
     commit_button = page.find('input[name="commit"]')
-    expect(commit_button["value"]).to have_content('Choose a crop to continue')
+    expect(commit_button['value']).to have_content('Choose a crop to continue')
     fill_in :crop_name, with: crop.name
     wait_for_ajax
+    # TODO: @simonv3 add this crop and then test.
     # This might be a legit failure:
     # Says: "Uh oh! We couldn’t find that crop in our database."
     # Maybe something else is going on here?

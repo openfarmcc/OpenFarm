@@ -34,6 +34,7 @@ openFarmModule.factory('guideService', ['$http',
     };
 
     var updateGuide = function(guideId, params, alerts, callback){
+      console.log(params);
       $http.put('/api/guides/' + guideId + '/', params)
       .success(function (response) {
         return callback (true, response.guide);

@@ -41,11 +41,11 @@ en:
   registrations:
     your_first_garden: "Your First Garden"
     need_password: |
-        "You need to supply your password to delete your account"
+      You need to supply your password to delete your account
     generated_this_garden: |
-        "We created this garden automatically to get
-        you started. You can edit it to better suit
-        your needs!"
+      We created this garden automatically to get
+      you started. You can edit it to better suit
+      your needs!
   users:
       create_your_openfarm_profile: "Create your OpenFarm Profile"
       community: "Community"
@@ -86,9 +86,20 @@ en:
       gardens:
           your_gardens: "Your Gardens"
           garden_name: "Name your garden:"
-          first_garden_html: "<p>We've created your first garden for you - change its name and edit the details to better suit your style. </p> <p> As you continue to use OpenFarm, you can store guides to it, update it, and watch it grow. </p> <p> Feel free to tweak it so that it suits your growing environment, upload some pictures, and then <a href='/'>get exploring</a>. </p> <p> And don't worry, you can come back to this at any time.</p>"
+          call_your_garden: "Call your garden something, anything!"
+          first_garden_html: |
+            <p>We've created your first garden for you - change its name and
+            edit the details to better suit your style. </p> <p> As you
+            continue to use OpenFarm, you can store guides to it, update it,
+            and watch it grow. </p> <p> Feel free to tweak it so that it suits
+            your growing environment, upload some pictures, and then
+            <a href='/'>get exploring</a>. </p> <p> And don't worry, you can
+            come back to this at any time.</p>
+          create_a_new_garden: |
+            If you've got more gardens, add another one!
           edit_garden: "Edit Garden"
           save_garden: "Save Garden"
+          destroy_garden: "Destroy Garden"
           upload_picture: "What does your garden look like? Uploading a picture will let you keep track of it as your plants grow."
           garden_type: "Garden Type"
           outside: "Outside"
@@ -140,7 +151,7 @@ en:
       create_one: "create one"
   guides:
       index:
-          guides: "Guides"
+          your_guides: "Your Guides"
       edit:
           edit_title: "Edit Your Guide"
           click_to_edit: "Click to edit"

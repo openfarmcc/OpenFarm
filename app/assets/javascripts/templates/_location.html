@@ -6,6 +6,7 @@
         typeahead="address for address in addresses"
         ng-change="getLocation(location)"
         typeahead-min-length="3"
+        typeahead-on-select="setLocation()"
         typeahead-loading="loadingLocations"
         typeahead-wait-ms="555"
         name="location">

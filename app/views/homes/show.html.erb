@@ -1,5 +1,8 @@
-<%= javascript_include_tag "home" %>
-<%= javascript_include_tag "search" %>
+<% content_for (:start_js) do %>
+  <%= javascript_include_tag "home" %>
+  <%= javascript_include_tag "search" %>
+<% end %>
+
 <div class="hero">
     <div class="video-background">
         <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
@@ -59,32 +62,6 @@
 </div>
 <div class="featured-crops">
     <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
-</div>
-<div class="footer">
-        <ul class="links">
-        <li>
-        <%= link_to('Mailing List', page_path('mailing-list'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-
-        <%= link_to('Style Guide', page_path('styles'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Privacy',page_path('privacy'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Terms of Use',page_path('tos'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Blog', 'http://blog.openfarm.cc', :class=>'hero-link') %>
-        </li>
-        <li>
-            <%= link_to('Code of Conduct',page_path('code_of_conduct'), :class=>'hero-link') %>
-        </li>
-        <li>
-            <%= link_to('About',page_path('about'), :class=>'hero-link' ) %>
-        </li>
-        </ul>
 </div>
 <% content_for(:end_js) do %>
     <%= javascript_include_tag "home" %>

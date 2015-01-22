@@ -59,9 +59,9 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
 
     $scope.destroyGarden = function(index, garden){
       // TODO: This needs to be made translatable.
-      var answer = confirm("Permanently delete garden " + garden.name +
-                           "? All crops stored in your garden will be " +
-                           "destroyed as well.");
+      var answer = confirm('Permanently delete garden ' + garden.name +
+                           '? All crops stored in your garden will be ' +
+                           'destroyed as well.');
       var removeFromGardens = function(){
         // Don't want to deal with splicing arrays,
         // And also, this allows for 'undo' functionality in the future.

@@ -54,13 +54,13 @@ openFarmModule.factory('gardenService', ['$http',
         }
       };
       $http.post(url, data)
-        .success(function (response, object) {
+        .success(function (object, status) {
           alerts.push({
             'type': 'success',
             'msg': 'Success!'
           });
           if (callback){
-            return callback(true, response, object);
+            return callback(true, object.garden, status);
           }
         })
         .error(function (response, code){
@@ -73,6 +73,7 @@ openFarmModule.factory('gardenService', ['$http',
           }
         });
     };
+
     var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
       // TODO: this is on pause until there's a way to
       // actually add crops and guides to a garden.
@@ -149,9 +150,33 @@ openFarmModule.factory('gardenService', ['$http',
           }
         });
     };
+
+    var deleteGarden = function(garden, alerts, callback){
+      var url = '/api/gardens/' + garden._id;
+      $http.delete(url)
+        .success(function(response, object){
+          alerts.push({
+            'type': 'success',
+            'msg': 'Deleted garden',
+          });
+          if (callback){
+            return callback(true, response, object);
+          }
+        })
+        .error(function(response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
     return {
       'saveGarden': saveGarden,
       'createGarden': createGarden,
+      'deleteGarden': deleteGarden,
       'saveGardenCrop': saveGardenCrop,
       'addGardenCropToGarden': addGardenCropToGarden,
       'deleteGardenCrop': deleteGardenCrop

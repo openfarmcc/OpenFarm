@@ -99,6 +99,7 @@ en:
             If you've got more gardens, add another one!
           edit_garden: "Edit Garden"
           save_garden: "Save Garden"
+          destroy_garden: "Destroy Garden"
           upload_picture: "What does your garden look like? Uploading a picture will let you keep track of it as your plants grow."
           garden_type: "Garden Type"
           outside: "Outside"

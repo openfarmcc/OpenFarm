@@ -8,8 +8,7 @@
   </div>
   <div alerts ng-model="alerts"></div>
 
-
-  <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak>
+  <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak ng-show="!garden.hide">
     <div class="row header">
       <% if params[:manage] %>
         <div class="columns large-6 large-centered">
@@ -30,6 +29,9 @@
         <a class="button secondary tiny"
            ng-click="garden.editing = !garden.editing; saveGarden(garden)"
            ng-show="garden.editing"><i class="fa fa-save"></i> <%= t('.save_garden') %></a>
+        <a class="button secondary tiny"
+           ng-click="destroyGarden($index, garden)"
+           ng-show="garden.editing"><i class="fa fa-trash"></i> <%= t('.destroy_garden') %></a>
       </div>
     </div>
     <div class="row info">

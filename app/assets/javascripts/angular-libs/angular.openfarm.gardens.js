@@ -150,9 +150,33 @@ openFarmModule.factory('gardenService', ['$http',
           }
         });
     };
+
+    var deleteGarden = function(garden, alerts, callback){
+      var url = '/api/gardens/' + garden._id;
+      $http.delete(url)
+        .success(function(response, object){
+          alerts.push({
+            'type': 'success',
+            'msg': 'Deleted garden',
+          });
+          if (callback){
+            return callback(true, response, object);
+          }
+        })
+        .error(function(response, code){
+          alerts.push({
+            'type': 'alert',
+            'msg': response
+          });
+          if (callback){
+            return callback(false, response, code);
+          }
+        });
+    };
     return {
       'saveGarden': saveGarden,
       'createGarden': createGarden,
+      'deleteGarden': deleteGarden,
       'saveGardenCrop': saveGardenCrop,
       'addGardenCropToGarden': addGardenCropToGarden,
       'deleteGardenCrop': deleteGardenCrop

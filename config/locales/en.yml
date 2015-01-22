@@ -38,6 +38,18 @@ en:
     choose_photo: "Upload a photo"
     crop: "Crop"
     guide: "Guide"
+  measurements:
+    cm: "cm"
+    centimeters:
+      zero: "centimeters"
+      one: "centimeter"
+      other: "centimeters"
+    in: "in"
+    inch:
+      zero: "inches"
+      one: "inch"
+      other: "inches"
+    inch_symbol: '\"'
   registrations:
     your_first_garden: "Your First Garden"
     need_password: |

@@ -20,8 +20,8 @@ describe Gardens::DestroyGarden do
     params[:id] = 1
     outcome = mutation.run(params)
     expect(outcome.success?).to be_false
-    expect(outcome.errors.message_list)
-      .to include("Could not find a garden with id #{params[:id]}.")
+    expect(outcome.errors.message_list).to include('Could not find a garden' +
+                                                   " with id #{params[:id]}.")
   end
 
   # We can't test for mutations that include the openfarm error

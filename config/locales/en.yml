@@ -151,7 +151,7 @@ en:
       create_one: "create one"
   guides:
       index:
-          your_guides: "Your Guides"
+          my_guides: "My Guides"
       edit:
           edit_title: "Edit Your Guide"
           click_to_edit: "Click to edit"

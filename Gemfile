@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.2.0'
 
 gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
 

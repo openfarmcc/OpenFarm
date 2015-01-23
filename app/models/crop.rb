@@ -23,7 +23,8 @@ class Crop
   field :sun_requirements
   field :sowing_method
   field :spread, type: Integer
-  # field :days_to_maturity, type: Integer
+  field :growing_degree_days, type: Integer
+  field :minimum_temperature, type: Integer # In Celcius
   field :row_spacing, type: Integer
   field :height, type: Integer
 

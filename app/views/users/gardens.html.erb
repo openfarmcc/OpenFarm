@@ -7,19 +7,8 @@
     </h1>
   </div>
   <div alerts ng-model="alerts"></div>
-  <div class="add-garden row"
-       ng-if="currentUser.gardens.length === 0">
-    <div class="columns small-6 small-centered">
-      <p>
-        <%= t('.create_your_first_garden') %>
-      </p>
-      <label><%= t('.call_your_garden') %></label>
-      <input type="text" ng-model="newGarden.name"/>
-      <input type="button" class="button" value="Create Your First Garden" ng-click="createGarden(newGarden);"/>
-    </div>
-  </div>
 
-  <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak>
+  <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak ng-show="!garden.hide">
     <div class="row header">
       <% if params[:manage] %>
         <div class="columns large-6 large-centered">
@@ -40,6 +29,9 @@
         <a class="button secondary tiny"
            ng-click="garden.editing = !garden.editing; saveGarden(garden)"
            ng-show="garden.editing"><i class="fa fa-save"></i> <%= t('.save_garden') %></a>
+        <a class="button secondary tiny"
+           ng-click="destroyGarden($index, garden)"
+           ng-show="garden.editing"><i class="fa fa-trash"></i> <%= t('.destroy_garden') %></a>
       </div>
     </div>
     <div class="row info">
@@ -215,7 +207,7 @@
                      />
             </td>
             <td>
-              <span ng-bind="crop.guide.crop.name">
+              <span ng-bind="crop.crop.name || crop.guide.crop.name">
               </span>
             </td>
             <td>
@@ -257,6 +249,23 @@
         </table>
       </div>
     </div>
+  </div>
+
+  <div class="add-garden row">
+    <hr/>
+    <div class="columns small-6"
+         ng-class="{ 'small-centered' : currentUser.gardens.length === 0 }">
+      <p ng-if="currentUser.gardens.length === 0">
+        <%= t('.create_your_first_garden') %>
+      </p>
+      <p ng-if="currentUser.gardens.length > 0">
+        <%= t('.create_a_new_garden') %>
+      </p>
+      <label><%= t('.call_your_garden') %></label>
+      <input type="text" ng-model="newGarden.name"/>
+      <input type="button" class="button" value="Create Your First Garden" ng-click="createGarden(newGarden);"/>
+    </div>
+  </div>
 </div>
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user._id}';" %>

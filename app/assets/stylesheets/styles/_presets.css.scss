@@ -138,11 +138,11 @@ textarea {
 
 /*
 
- site-wide button style
+ Site-wide button style.
 
 */
 
-.button {
+.button, input[type=submit] {
   font-weight: 600;
   background: $of-green;
   @include box-shadow(0px 4px 0px 0px darken($of-green, 10%));
@@ -154,6 +154,10 @@ textarea {
   &.tiny {
     // Helps avoid keming readability problems
     letter-spacing: 0.025rem;
+  }
+
+  &.no-shadow {
+    @include box-shadow(none);
   }
 
   &:hover {
@@ -180,7 +184,18 @@ textarea {
   }
 }
 
-@mixin add-new-button(){
+/*
+
+  This is the default style for the "Save", "Accept" "Change" styles
+  present across the site.
+
+*/
+
+.form-buttons {
+  margin-bottom: 1rem;
+}
+
+@mixin add-new-button() {
   @include transition(all 0.15s ease-out);
 
   background: none;
@@ -204,14 +219,14 @@ textarea {
   }
 }
 
-.thumbnails{
+.thumbnails {
   margin: 0 .5rem .5rem 0;
   display: inline-block;
   position: relative;
   cursor: pointer;
   transition: .2s opacity, .2s background-color;
 
-  &:before{
+  &:before {
     content: '\f1f8';
     font-family: 'FontAwesome';
     position: absolute;
@@ -225,15 +240,15 @@ textarea {
     transition: .2s opacity;
   };
 
-  &:hover{
+  &:hover {
     opacity: .7;
   }
 
-  &:hover:before{
+  &:hover:before {
     opacity: 1;
   }
 
-  &.deleted{
+  &.deleted {
     background-color: $alert-color;
 
     img{
@@ -246,7 +261,9 @@ textarea {
 
   img{
     width: 100px;
-    height: 100px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 

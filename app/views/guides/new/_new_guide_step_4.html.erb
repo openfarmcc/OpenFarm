@@ -18,6 +18,7 @@
         <input id="guide_name" name="guide[name]"
           type="text"
           ng-model="newGuide.name"
+
           placeholder="<%= current_user.display_name %>'s {{ newGuide.crop.name }}"
           >
       </div>
@@ -27,8 +28,8 @@
         <label for="location"><%= t('.where_are_you_growing_it') %></label>
       </div>
       <div class="columns large-8 medium-8">
-        <span location name="location"
-              ng-model="newGuide.location"
+        <span ng-model="newGuide.location"
+              location name="location"
               loading-text="<%= t('application.loading_locations') %>">
         </span>
       </div>

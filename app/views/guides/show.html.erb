@@ -18,27 +18,18 @@
 
     <div class="row title">
       <div class="columns large-10 large-centered">
-        <div class="">
-          <h1 class="guide-name">{{ guide.name }}</h1>
-          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
-        </div>
         <div class="guide-controls">
           <% if current_user %>
-            <button href="#" data-dropdown="addToGarden" aria-controls="addToGarden" aria-expanded="false" class="button tiny secondary dropdown add-to-garden">Add To Garden</button><br>
-            <ul id="addToGarden" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
-              <li ng-repeat="garden in currentUser.gardens">
-                <a ng-click="toggleGarden(garden)">
-                  <i class="fa fa-spin fa-spinner" ng-show="garden.adding"></i>
-                  <i class="fa fa-check" ng-show="garden.added"></i>
-                  {{ garden.name }}
-                </a>
-              </li>
-            </ul>
+            <%= render 'gardens/add_to_gardens.html' %>
           <% end %>
 
           <% if @guide.owned_by?(current_user) %>
             <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
           <% end %>
+        </div>
+        <div>
+          <h1 class="guide-name">{{ guide.name }}</h1>
+          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
         </div>
       </div>
     </div>

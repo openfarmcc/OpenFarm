@@ -1,16 +1,19 @@
-<div class="crop-page row wide-row">
-  <div class="crop-info-container small-6 columns">
+<div class="crop-page row wide-row"
+     ng-controller="showCropCtrl"
+     ng-cloak>
+  <div class="crop-info-container columns medium-6 small-12">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
-      <% if current_user && current_user.admin? %>
+      <% if current_user %>
         <%= link_to(icon('edit') + " Edit Crop", {action: 'edit'}, class: 'edit-link button secondary tiny') %>
+          <%= render 'gardens/add_to_gardens.html' %>
       <% end %>
     </div>
     <table class="crop">
         <tbody>
         <tr>
           <td colspan="2"><% @crop.pictures.each do |pic, index| %>
-            <img src="<%= pic.attachment.url(:small) %>" title="<%= @crop.name %> Picture <%= index %>"/>
+            <img src="<%= pic.attachment.url(:small) %>"/>
           <% end %>
           </td>
         </tr>
@@ -45,7 +48,7 @@
         </tbody>
     </table>
   </div>
-  <div class="guide-results-container small-6 columns">
+  <div class="guide-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= @guides.empty? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
 
     <% if @guides.empty? %>
@@ -54,3 +57,7 @@
     <%= render partial: '/guides/guide_results_list', object: @guides %>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+<% end %>

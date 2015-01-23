@@ -34,5 +34,11 @@ module Api
     #   gardens = Pundit.policy_scope(current_user, Garden)
     #   render json: { gardens: gardens }
     # end
+
+    def destroy
+      @outcome = Gardens::DestroyGarden.run(params,
+                                            user: current_user)
+      respond_with_mutation(:no_content)
+    end
   end
 end

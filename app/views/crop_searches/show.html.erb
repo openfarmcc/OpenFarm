@@ -3,14 +3,14 @@
 <% end %>
 
 <div class="crop-search-results row wide-row">
-  <div class="crop-results-container small-6 columns">
+  <div class="crop-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= t('.choose_a_crop') %></h2>
     <% if @crops.empty? %>
     <p class="no-results, text-center"><%= t('.no_crops') %> "<%= params[:q].to_s %>."<br/><%= t('.would_you_like_to') %> <%= link_to t('.add_this_crop'), new_crop_path %>?</p>
     <% end %>
     <%= render partial: 'crop_results', object: @crops %>
   </div>
-  <div class="guide-results-container small-6 columns">
+  <div class="guide-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= t('.explore_the_guides') %></h2>
     <% if @guides.empty? %>
 

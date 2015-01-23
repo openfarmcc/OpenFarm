@@ -1,5 +1,8 @@
-<%= javascript_include_tag "home" %>
-<%= javascript_include_tag "search" %>
+<% content_for (:start_js) do %>
+  <%= javascript_include_tag "home" %>
+  <%= javascript_include_tag "search" %>
+<% end %>
+
 <div class="hero">
     <div class="video-background">
         <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
@@ -36,7 +39,7 @@
                                     <input typeahead-min-length="3" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="555" typeahead="crop.name for crop in crops">
                                 </div>
                                 <div class="search-button-container">
-                                    <input class="search-button button postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
+                                    <input class="search-button button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                                 </div>
                             </div>
                         </div>
@@ -59,32 +62,6 @@
 </div>
 <div class="featured-crops">
     <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
-</div>
-<div class="footer">
-        <ul class="links">
-        <li>
-        <%= link_to('Mailing List', page_path('mailing-list'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-
-        <%= link_to('Style Guide', page_path('styles'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Privacy',page_path('privacy'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Terms of Use',page_path('tos'), :class=>'hero-link' ) %>
-        </li>
-        <li>
-            <%= link_to('Blog', 'http://blog.openfarm.cc', :class=>'hero-link') %>
-        </li>
-        <li>
-            <%= link_to('Code of Conduct',page_path('code_of_conduct'), :class=>'hero-link') %>
-        </li>
-        <li>
-            <%= link_to('About',page_path('about'), :class=>'hero-link' ) %>
-        </li>
-        </ul>
 </div>
 <% content_for(:end_js) do %>
     <%= javascript_include_tag "home" %>

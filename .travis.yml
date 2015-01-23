@@ -1,4 +1,8 @@
 language: ruby
+before_install:
+  - gem install bundler
+rvm:
+  - 2.2.0
 services:
 - mongodb
 - elasticsearch

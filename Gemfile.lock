@@ -116,7 +116,7 @@ GEM
       faraday
       multi_json
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.4)
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
@@ -358,6 +358,7 @@ DEPENDENCIES
   delayed_job_mongoid
   devise
   doc_yo_self
+  eventmachine (>= 1.0.4)
   exception_notification
   factory_girl_rails
   faker

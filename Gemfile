@@ -24,14 +24,14 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'patron' # For searchKick
 gem 'searchkick', '~> 0.8.5'
-gem "pundit"
+gem 'pundit'
+gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 
 group :development, :test do
   gem 'coveralls', require: false
   gem 'quiet_assets'
-  gem 'rubocop'
   gem 'better_errors'
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
@@ -40,16 +40,20 @@ group :development, :test do
 end
 
 group :test do
+  gem 'test-unit'
   gem 'doc_yo_self'
   gem 'capybara'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '~> 1.3.0'
   gem 'vcr'
   gem 'webmock'
 end
 
+group :development do
+  gem 'rubocop'
+end
 group :production, :staging do
   gem 'thin'
   gem 'exception_notification'

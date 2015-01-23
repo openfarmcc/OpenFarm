@@ -31,7 +31,7 @@ describe GuidesController do
     sign_in user
     get 'edit', id: guide.id
     # TODO This is wrong. Should be `redirect_to guides_path(guide)`.
-    response.should redirect_to "/en/guides/#{guide.slug}"
+    expect(response).to redirect_to "/en/guides/#{guide.slug}"
     expect(response.status).to eq(302)
   end
 
@@ -70,6 +70,6 @@ describe GuidesController do
 
   it 'shows a 404 on DocumentNotFound' do
     get 'show', id: '1'
-    response.should render_template(file: "#{Rails.root}/public/404.html")
+    expect(response).to render_template(file: "#{Rails.root}/public/404.html")
   end
 end

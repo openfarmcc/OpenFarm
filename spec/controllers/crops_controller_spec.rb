@@ -12,7 +12,7 @@ describe CropsController, :type => :controller do
 
   it 'Should redirect to crop_searches' do
     get 'index'
-    response.should redirect_to controller: 'crop_searches', action: 'search'
+    expect(response).to redirect_to controller: 'crop_searches', action: 'search'
     expect(response.status).to eq(302)
   end
 
@@ -29,7 +29,8 @@ describe CropsController, :type => :controller do
     sign_in user
     post 'create', crop: crop
     expect(response.status).to eq(302)
-    response.should redirect_to "/en/guides/new?crop_id=#{assigns(:crop).id}"
+    expect(response).to redirect_to(
+      "/en/guides/new?crop_id=#{assigns(:crop).id}")
   end
 
   it 'Should redirect back to form after unsuccessful crop creation' do

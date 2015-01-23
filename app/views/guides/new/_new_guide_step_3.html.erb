@@ -170,7 +170,6 @@
             </div>
             <div class="columns large-3 medium-4">
               <ul>
-
                 <li ng-repeat="action in stage.stage_action_options"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
@@ -179,8 +178,8 @@
               </ul>
             </div>
             <div class="columns large-9 medium-8">
-              <label id="description" for="action_content" ng-bind="stage.activeAction.description">
-              </label>
+              <!--<label id="description" for="action_content" ng-bind="stage.activeAction.description">
+              </label>-->
                 <textarea id="action_content" ng-model="stage.activeAction.overview"></textarea>
             </div>
           </div>

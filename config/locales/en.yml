@@ -21,23 +21,35 @@
 
 en:
   application:
-      site_description: "Learn to farm or garden with community created guides"
-      keywords: "gardening, farming, seeds, planting, growing, community, instructions, how-to"
-      site_title: "OpenFarm"
-      site_byline: "You Can Grow Anything"
-      greeting: "Hi, %{user}"
-      skip: "Do This Later"
-      create_guide: "Create guide"
-      user_settings: "My account"
-      log_out: "Log out"
-      log_in: "Log in"
-      create_account: "Create an Account"
-      loading_locations: "loading locations"
-      manage_gardens: "Manage your gardens"
-      only_upload_what_you_own: "Only upload a photo you own"
-      choose_photo: "Upload a photo"
-      crop: "Crop"
-      guide: "Guide"
+    site_description: "Learn to farm or garden with community created guides"
+    keywords: "gardening, farming, seeds, planting, growing, community, instructions, how-to"
+    site_title: "OpenFarm"
+    site_byline: "You Can Grow Anything"
+    greeting: "Hi, %{user}"
+    skip: "Do This Later"
+    create_guide: "Create guide"
+    user_settings: "My account"
+    log_out: "Log out"
+    log_in: "Log in"
+    create_account: "Create an Account"
+    loading_locations: "loading locations"
+    manage_gardens: "Manage your gardens"
+    only_upload_what_you_own: "Only upload a photo you own"
+    choose_photo: "Upload a photo"
+    crop: "Crop"
+    guide: "Guide"
+  measurements:
+    cm: "cm"
+    centimeters:
+      zero: "centimeters"
+      one: "centimeter"
+      other: "centimeters"
+    in: "in"
+    inch:
+      zero: "inches"
+      one: "inch"
+      other: "inches"
+    inch_symbol: '\"'
   registrations:
     your_first_garden: "Your First Garden"
     need_password: |

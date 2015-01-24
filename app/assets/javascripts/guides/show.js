@@ -22,7 +22,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
         $scope.currentUser.gardens.forEach(function(g){
           g.garden_crops.forEach(function(gc){
-            if (gc.guide._id === $scope.guide._id){
+            if (gc.guide && gc.guide._id === $scope.guide._id){
               g.added = true;
               $scope.gardenCrop = gc;
             }
@@ -84,7 +84,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             }
           }
         });
-        console.log($scope.guide.basic_needs);
       }
     };
 
@@ -111,6 +110,10 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
+    // TODO: this can be cleaned up. It's duplicated in
+    // crops/show.js. Either create a directive or put
+    // it in the gardenService.
+
     $scope.toggleGarden = function(garden){
       garden.adding = true;
       if (!garden.added){
@@ -121,6 +124,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
           }
         };
         gardenService.addGardenCropToGarden(garden,
+          'guide',
           $scope.guide,
           $scope.alerts,
           callback);
@@ -133,7 +137,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             garden.added = false;
           });
       }
-
     };
 
     guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);

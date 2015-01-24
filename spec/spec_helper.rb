@@ -14,6 +14,9 @@ SimpleCov.start do
   add_filter 'spec/'
 end
 require File.expand_path("../../config/environment", __FILE__)
+# SEE: https://github.com/rails/rails/issues/18572
+require 'test/unit/assertions'
+# =====
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'

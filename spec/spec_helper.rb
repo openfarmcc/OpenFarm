@@ -18,7 +18,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'test/unit/assertions'
 # =====
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'vcr'
@@ -51,8 +50,11 @@ Capybara.javascript_driver = :poltergeist
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
+  config.include Rails.application.routes.url_helpers
   config.include Devise::TestHelpers, type: :controller
   config.include ApiHelpers, type: :controller
+  config.include Capybara::DSL
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.

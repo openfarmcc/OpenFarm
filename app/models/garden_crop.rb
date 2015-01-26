@@ -5,5 +5,5 @@ class GardenCrop
   embeds_one :crop, class_name: 'Crop', inverse_of: nil
   field :quantity, type: Integer, default: 0
   field :stage, type: String, default: 'Planted'
-  field :sowed, type: DateTime, default: -> { Date.today }
+  field :sowed, type: Date, default: -> { Date.today }
 end

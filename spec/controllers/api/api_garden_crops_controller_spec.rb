@@ -17,6 +17,7 @@ describe Api::GardenCropsController, type: :controller do
                sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
                guide_id: guide.id,
                garden_id: garden.id }
+
       old_length = garden.garden_crops.length
       post :create, data, format: :json
       new_length = garden.reload.garden_crops.length

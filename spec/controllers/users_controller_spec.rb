@@ -22,7 +22,7 @@ describe UsersController do
     private_user = FactoryGirl.create(:user, is_private: true)
     sign_in user
     get 'show', id: private_user.id
-    expect(response).to redirect_to root_path
+    expect(response).to redirect_to root_path(locale: 'en')
   end
 
   it 'should only show public users on index' do

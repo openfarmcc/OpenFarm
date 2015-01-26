@@ -12,7 +12,7 @@ module GardenCrops
       string :guide_id
       string :crop_id
       string :stage
-      string :sowed
+      date :sowed
     end
 
     def garden_crop

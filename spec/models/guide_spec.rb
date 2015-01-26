@@ -21,16 +21,16 @@ describe Guide do
   it 'has implemented a real compatibility label' do
     guide = FactoryGirl.build(:guide)
 
-    guide.stub(:compatibility_score).and_return 80
+    allow(guide).to receive(:compatibility_score).and_return(80)
     expect(guide.compatibility_label).to eq('high')
 
-    guide.stub(:compatibility_score).and_return 60
+    allow(guide).to receive(:compatibility_score).and_return(60)
     expect(guide.compatibility_label).to eq('medium')
 
-    guide.stub(:compatibility_score).and_return 20
+    allow(guide).to receive(:compatibility_score).and_return(20)
     expect(guide.compatibility_label).to eq('low')
 
-    guide.stub(:compatibility_score).and_return nil
+    allow(guide).to receive(:compatibility_score).and_return(nil)
     expect(guide.compatibility_label).to eq('')
   end
 

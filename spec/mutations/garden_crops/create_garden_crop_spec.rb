@@ -38,6 +38,13 @@ describe GardenCrops::CreateGardenCrop do
     expect(message).to include('Could not find a guide with id wrong.')
   end
 
+  it 'catches bad crop IDs' do
+    params[:crop_id] = 'wrong'
+    results = cgc.run(params)
+    message = results.errors.message_list.first
+    expect(message).to include('Could not find a crop with id wrong.')
+  end
+
   it 'catches creating gardens not owned by user' do
     params[:garden_id] = FactoryGirl.create(:garden).id.to_s
     results = cgc.run(params)

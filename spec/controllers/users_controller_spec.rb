@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
   it 'should show the user their profile' do
     user = FactoryGirl.create(:user)
-    
+
     sign_in user
     get 'show', id: user.id
     expect(response).to render_template(:show)
@@ -22,7 +22,7 @@ describe UsersController do
     private_user = FactoryGirl.create(:user, is_private: true)
     sign_in user
     get 'show', id: private_user.id
-    response.should redirect_to root_path
+    expect(response).to redirect_to root_path(locale: 'en')
   end
 
   it 'should only show public users on index' do

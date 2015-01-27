@@ -13,7 +13,7 @@ describe StageActions::CreateStageAction do
 
   it 'minimally runs the mutation' do
     results = mutation.run(params)
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
   end
 
   it 'disallows making actions for stages that are not a users' do
@@ -25,7 +25,7 @@ describe StageActions::CreateStageAction do
   it 'disallows making actions for stages that do not exist' do
     params[:id] = '1'
     results = mutation.run(params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message_list).to include('Could not find a stage '\
                                                    'with id 1.')
   end

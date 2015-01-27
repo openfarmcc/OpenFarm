@@ -8,7 +8,7 @@ module GardenCrops
     optional do
       string :quantity
       string :stage
-      string :sowed
+      date :sowed
     end
 
     def validate

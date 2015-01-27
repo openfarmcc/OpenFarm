@@ -67,5 +67,5 @@ gem 'rails_admin'
 gem 'ng-rails-csrf'
 
 gem 'bson_ext'
-gem 'mongoid', :github => 'mongoid/mongoid'
+gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.1'
 gem 'active_model_serializers'

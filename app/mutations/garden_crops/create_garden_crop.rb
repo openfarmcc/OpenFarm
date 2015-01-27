@@ -69,7 +69,7 @@ module GardenCrops
       garden_crop.crop        = @crop if @crop.present?
       garden_crop.quantity    = quantity if quantity.present?
       garden_crop.stage       = stage if stage.present?
-      garden_crop.sowed       = sowed if stage.present?
+      garden_crop.sowed       = sowed if sowed.present?
       garden_crop.save
     end
   end

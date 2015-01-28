@@ -16,7 +16,6 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
 
         $scope.currentUser.gardens.forEach(function(garden){
           garden.garden_crops.forEach(function(gardenCrop){
-            console.log(gardenCrop);
             if (gardenCrop.crop && gardenCrop.crop._id === $scope.crop._id){
               garden.added = true;
               $scope.gardenCrop = gardenCrop;
@@ -27,7 +26,6 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     };
 
     $scope.setCrop = function(success, crop){
-      console.log('setting crop');
       userService.getUser($scope.userId,
                           $scope.alerts,
                           $scope.setCurrentUser);

@@ -4,6 +4,7 @@ FactoryGirl.define do
   factory :guide do
     name             { "#{Faker::Commerce.color} #{Faker::Name.last_name}" }
     overview         { Faker::Lorem.sentence }
+    impressions_field { rand(100) }
     crop
     user
     trait :radish do

@@ -33,9 +33,9 @@ class Guide
 
   slug :name
 
-  before_save :calculate_completeness_score
+  after_save :calculate_completeness_score
   # Maybe Popularity Score should be updated more frequently?
-  before_save :calculate_popularity_score
+  after_save :calculate_popularity_score
 
   def owned_by?(current_user)
     !!(current_user && user == current_user)

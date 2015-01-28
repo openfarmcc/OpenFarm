@@ -110,7 +110,7 @@ class Guide
     end
   end
 
-protected
+  protected
 
   # TODO: Fairly simplistic. This should be expanded to somehow take into
   # consideration stages and selected practices
@@ -132,14 +132,14 @@ protected
   # this one stacks up. It should probably also take into consideration
   # How many gardens this thing is in.
   def calculate_popularity_score
-    top_guides = Guide.all.sort_by{|guide| guide[:impressions_field]}.reverse
+    top_guides = Guide.all.sort_by{ |g| g[:impressions_field] }.reverse
     top_guide = top_guides.first
     normalized = impressions_field.to_f / top_guide.impressions_field
 
     write_attributes(popularity_score: normalized)
   end
 
-private
+  private
 
   # For each stage, find the overlapping needs,
   # and then calculate the percentage overlap of each need

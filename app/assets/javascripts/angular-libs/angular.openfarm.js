@@ -62,9 +62,12 @@ openFarmModule.directive('location', [
         function ($scope, $element, $attrs) {
           $scope.loadingText = $attrs.loadingText;
 
-          $scope.location = $scope.ngModel;
+          $scope.$watch('ngModel', function(){
+            $scope.location = $scope.ngModel;
+          });
 
           $scope.getLocation = function(val) {
+            console.log('getting location');
             $scope.ngModel = val;
             if (geocoder) {
               geocoder.geocode({ 'address': val }, function (results, status) {
@@ -137,3 +140,36 @@ openFarmModule.directive('alerts', ['$timeout',
         '</alert>'
     };
   }]);
+
+openFarmApp.directive('clearOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('clearOn', function(e, name) {
+        if(name === attr.clearOn) {
+          elem[0].value = '';
+        }
+      });
+   };
+});
+
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('focusOn', function() {
+   return function(scope, elem, attr) {
+      scope.$on('focusOn', function(e, name) {
+        if(name === attr.focusOn) {
+          elem[0].focus();
+        }
+      });
+   };
+});
+
+// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
+openFarmApp.directive('autoFocus', function($timeout) {
+    return {
+        restrict: 'AC',
+        link: function(_scope, _element) {
+            $timeout(function(){
+                _element[0].focus();
+            }, 0);
+        }
+    };
+});

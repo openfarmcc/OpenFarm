@@ -282,6 +282,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.featured_image = r.guide.featured_image;
         $scope.s3upload = r.guide.featured_image;
         $scope.newGuide.name = r.guide.name;
+        $scope.newGuide.location = r.guide.location;
+        $scope.newGuide.overview = r.guide.overview;
 
         if (r.guide.practices){
           $scope.newGuide.practices.forEach(function(d){
@@ -426,6 +428,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   // Post! & forward if successful
 
   $scope.submitForm = function () {
+    console.log($scope.newGuide);
     $scope.newGuide.sending = true;
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){

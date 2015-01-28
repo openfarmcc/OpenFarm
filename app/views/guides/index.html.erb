@@ -1,11 +1,19 @@
 <div class="guides row guides-list">
   <div class="small-12 columns">
-    <h2><%= t '.guides' %></h2>
+    <h2><%= t '.my_guides' %></h2>
     <table>
       <% @guides.each do |guide| %>
         <tr>
           <td>
             <%= link_to(guide.name, {:action => 'show', :id => guide.id}, :class=>'action show') %>
+          </td>
+          <td>
+            <%= link_to(guide.crop.name, { controller: 'crops',
+              action: 'show',
+              id: guide.crop.id }, class: 'action show') %>
+          </td>
+          <td>
+            <%= link_to(icon('edit'), {:action => 'edit', :id => guide.id}, :class=>'action show') %>
           </td>
         </tr>
       <% end %>

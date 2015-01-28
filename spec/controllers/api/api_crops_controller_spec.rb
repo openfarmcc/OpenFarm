@@ -40,6 +40,16 @@ describe Api::CropsController, :type => :controller do
     expect(crop.description).to eq('Updated')
   end
 
+  it 'tests whether common names get added as an array', js: true do
+    crop = FactoryGirl.create(:crop)
+    sign_in user
+    put :update,
+        id: crop.id,
+        crop: { common_names: ['Radish', 'Red Thing', 'New'] }
+    expect(response.status).to eq(200)
+    expect(crop.reload.common_names.length).to eq(3)
+  end
+
   it 'should return an error when updating faulty information' do
     sign_in user
     crop = FactoryGirl.create(:crop)

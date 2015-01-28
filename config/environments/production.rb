@@ -34,8 +34,10 @@ OpenFarm::Application.configure do
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
   options = { storage: :s3,
+              s3_protocol: :https,
               path: '/:rails_env/media/:class/:attachment/:id.:extension',
               s3_credentials: { bucket: ENV['S3_BUCKET_NAME'],
+                                s3_protocol: :https,
                                 access_key_id: ENV['SERVER_S3_ACCESS_KEY'],
                                 secret_access_key: ENV['SERVER_S3_SECRET_KEY'] } }
 

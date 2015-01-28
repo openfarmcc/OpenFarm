@@ -18,7 +18,7 @@ describe Gardens::UpdateGarden do
   end
 
   it 'minimally requires a user and a garden' do
-    expect(mutation.run(params).success?).to be_true
+    expect(mutation.run(params).success?).to be_truthy
   end
 
   it 'updates a garden image via URL' do
@@ -39,7 +39,7 @@ describe Gardens::UpdateGarden do
     }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
@@ -76,7 +76,7 @@ describe Gardens::UpdateGarden do
       image_params[:images] = image_hash
 
       results = mutation.run(image_params)
-      expect(results.success?).to be_false
+      expect(results.success?).to be_falsey
       expect(results.errors.message[:images]).to include('existing image')
     end
   end

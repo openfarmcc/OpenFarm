@@ -29,7 +29,7 @@ describe Guides::CreateGuide do
     VCR.use_cassette('mutations/guides/create_guide.rb') do
       results = cg.run(params.merge(optns))
     end
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
   end
 
   it 'catches bad crop IDs' do

@@ -20,7 +20,7 @@ describe Gardens::DestroyGarden do
   it 'checks that a garden with the required id exists' do
     params[:id] = 1
     outcome = mutation.run(params)
-    expect(outcome.success?).to be_false
+    expect(outcome.success?).to be_falsey
     expect(outcome.errors.message_list).to include('Could not find a garden' +
                                                    " with id #{params[:id]}.")
   end

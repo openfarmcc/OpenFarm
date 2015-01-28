@@ -55,7 +55,6 @@ group :development do
   gem 'rubocop'
 end
 group :production, :staging do
-  gem 'eventmachine', '>= 1.0.4'
   gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor'

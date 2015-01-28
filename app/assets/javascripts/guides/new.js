@@ -48,41 +48,6 @@ openFarmApp.directive('formChecker', function(){
   };
 });
 
-openFarmApp.directive('clearOn', function() {
-   return function(scope, elem, attr) {
-      scope.$on('clearOn', function(e, name) {
-        if(name === attr.clearOn) {
-          elem[0].value = '';
-        }
-      });
-   };
-});
-
-// TODO: Does this belong here?
-// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
-openFarmApp.directive('focusOn', function() {
-   return function(scope, elem, attr) {
-      scope.$on('focusOn', function(e, name) {
-        if(name === attr.focusOn) {
-          elem[0].focus();
-        }
-      });
-   };
-});
-
-// TODO: Does this belong here?
-// Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
-openFarmApp.directive('autoFocus', function($timeout) {
-    return {
-        restrict: 'AC',
-        link: function(_scope, _element) {
-            $timeout(function(){
-                _element[0].focus();
-            }, 0);
-        }
-    };
-});
-
 openFarmApp.factory('focus', function ($rootScope, $timeout) {
   return function(name) {
     $timeout(function (){
@@ -282,6 +247,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.featured_image = r.guide.featured_image;
         $scope.s3upload = r.guide.featured_image;
         $scope.newGuide.name = r.guide.name;
+        console.log(r.guide.location);
         $scope.newGuide.location = r.guide.location;
         $scope.newGuide.overview = r.guide.overview;
 

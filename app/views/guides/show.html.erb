@@ -1,3 +1,7 @@
+<%= content_for(:author) do %><%= current_user.display_name %><% end %>
+<%= content_for(:description) do %><%= @guide.overview %><% end %>
+<%= content_for(:keywords) do %><%= @guide.practices.join(', ') %>, <%= @guide.crop.name %><% end %>
+
 <div ng-controller="showGuideCtrl"
      ng-cloak
      class="guides show-guide">

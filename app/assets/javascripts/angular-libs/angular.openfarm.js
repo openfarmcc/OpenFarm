@@ -67,7 +67,6 @@ openFarmModule.directive('location', [
           });
 
           $scope.getLocation = function(val) {
-            console.log('getting location');
             $scope.ngModel = val;
             if (geocoder) {
               geocoder.geocode({ 'address': val }, function (results, status) {

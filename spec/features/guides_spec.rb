@@ -6,7 +6,13 @@ describe 'Guides' do
   let (:crop) { FactoryGirl.create(:crop, name: 'radish') }
   let (:user) { FactoryGirl.create(:user) }
 
-  it 'shows individual guides', js: true do
+  it 'shows individual guides when logged in', js: true do
+    login_as user
+    visit guide_path(id: guide._id)
+    expect(page).to have_content('Test Guide')
+  end
+
+  it 'shows individual guides when not logged in', js: true do
     visit guide_path(id: guide._id)
     expect(page).to have_content('Test Guide')
   end

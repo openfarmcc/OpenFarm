@@ -119,7 +119,7 @@ class Guide
     counted = 0.0
     fields.keys.each do |key|
       total += 1
-      if read_attribute(key)
+      if self[key]
         counted += 1
       end
     end

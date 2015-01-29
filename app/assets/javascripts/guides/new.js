@@ -540,7 +540,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.placeGuideUpload = function(image){
+    console.log('placing guide upload');
     $scope.newGuide.featured_image = image;
+    console.log($scope.newGuide.featured_image);
   };
 
   $scope.cancel = function(path){

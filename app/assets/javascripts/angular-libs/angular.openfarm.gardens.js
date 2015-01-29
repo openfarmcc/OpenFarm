@@ -38,7 +38,6 @@ openFarmModule.factory('gardenService', ['$http',
 
     var createGarden = function(garden, alerts, callback){
       var url = '/api/gardens';
-      console.log(garden);
       var data = {
         images: garden.pictures ? garden.pictures.filter(function(p){
           return !p.deleted;

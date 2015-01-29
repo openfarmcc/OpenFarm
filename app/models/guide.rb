@@ -19,6 +19,8 @@ class Guide
   field :location
   field :overview
   field :practices, type: Array
+  field :completeness_score, default: 0
+  field :popularity_score, default: 0
 
   validates_presence_of :user, :crop, :name
 
@@ -30,6 +32,10 @@ class Guide
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   slug :name
+
+  after_save :calculate_completeness_score
+  # Maybe Popularity Score should be updated more frequently?
+  after_save :calculate_popularity_score
 
   def owned_by?(current_user)
     !!(current_user && user == current_user)
@@ -102,6 +108,35 @@ class Guide
     else
       return 'low'
     end
+  end
+
+  protected
+
+  # TODO: Fairly simplistic. This should be expanded to somehow take into
+  # consideration stages and selected practices
+  def calculate_completeness_score
+    total = 0.0
+    counted = 0.0
+    fields.keys.each do |key|
+      total += 1
+      if self[key]
+        counted += 1
+      end
+    end
+
+    write_attributes(completeness_score: counted / total)
+  end
+
+  # TODO: Fairly simplistic. Should probably be normalized properly.
+  # Right now normalization is based on the highest impressions, and how
+  # this one stacks up. It should probably also take into consideration
+  # How many gardens this thing is in.
+  def calculate_popularity_score
+    top_guides = Guide.all.sort_by { |g| g[:impressions_field] }.reverse
+    top_guide = top_guides.first
+    normalized = impressions_field.to_f / top_guide.impressions_field
+
+    write_attributes(popularity_score: normalized)
   end
 
   private

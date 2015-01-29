@@ -72,4 +72,36 @@ describe Guide do
               light: ['Partial Sun'])
     expect(guide.compatibility_score).to eq(nil)
   end
+
+  it 'sets the completeness score' do
+    guide = FactoryGirl.create(:guide)
+    expect(guide.completeness_score).not_to eq(0)
+  end
+
+  it 'sets the popularity score' do
+    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide)
+    guide = FactoryGirl.create(:guide)
+    expect(guide.popularity_score).not_to eq(0)
+  end
+
+  it 'updates the completeness score' do
+    guide = FactoryGirl.create(:guide)
+    existing_score = guide.completeness_score
+    guide.practices = ['test practice']
+    guide.save
+    expect(guide.completeness_score).not_to eq(0)
+    expect(guide.completeness_score).not_to eq(existing_score)
+  end
+
+  it 'updates the popularity score' do
+    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide)
+    guide = FactoryGirl.create(:guide)
+    existing_score = guide.popularity_score
+    guide.impressions_field = 20
+    guide.save
+    expect(guide.popularity_score).not_to eq(0)
+    expect(guide.popularity_score).not_to eq(existing_score)
+  end
 end

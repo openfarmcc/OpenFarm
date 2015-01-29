@@ -148,7 +148,8 @@ angular.module('ngS3upload.directives', []).
       replace: true,
       transclude: false,
       scope: {
-        s3UploadPlacePic: '&'
+        s3UploadPlacePic: '&',
+        s3UploadExistingPictures: '=',
       },
       controller: ['$scope', '$element', '$attrs', '$transclude',
         function ($scope, $element, $attrs, $transclude) {
@@ -189,6 +190,17 @@ angular.module('ngS3upload.directives', []).
                file[0].click();
               });
 
+            scope.$watch('s3UploadExistingPictures', function(){
+              var objType = Object.prototype.toString.call(
+                scope.s3UploadExistingPictures
+              );
+              if(objType === '[object Array]') {
+                scope.hasOnePicture = false;
+              } else {
+                scope.hasOnePicture = true;
+              }
+            });
+
             // Update the scope with the view value
             ngModel.$render = function () {
               // TODO: somebody please find a less hackish
@@ -211,6 +223,7 @@ angular.module('ngS3upload.directives', []).
               scope.$apply(function () {
                 S3Uploader.getUploadOptions(opts.getOptionsUri)
                   .then(function (s3Options) {
+                    console.log(ngModel);
                     ngModel.$setValidity('uploading', false);
                     var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
                     var key = opts.folder + (new Date()).getTime() + '-' +

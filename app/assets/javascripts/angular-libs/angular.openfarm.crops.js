@@ -21,8 +21,7 @@ openFarmModule.factory('cropService', ['$http',
       .success(function (response) {
         return callback (true, response.crop);
       })
-      .error(function (response, code) {
-        console.log(response, code);
+      .error(function (response) {
         var msg = '';
         angular.forEach(response, function(value){
           msg += value;

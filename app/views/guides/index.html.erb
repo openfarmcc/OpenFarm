@@ -1,6 +1,6 @@
 <div class="guides row guides-list">
   <div class="small-12 columns">
-    <h2><%= t '.my_guides' %></h2>
+    <h2><%= t('.my_guides') %></h2>
     <table>
       <% @guides.each do |guide| %>
         <tr>
@@ -18,5 +18,12 @@
         </tr>
       <% end %>
     </table>
+    <% if @guides.count == 0 %>
+      <div class="loading-content">
+        <%= t('.no_guides_yet') %>
+      </div>
+    <% end %>
+    <%= link_to t('.create_a_guide'), { controller: 'guides', action: 'new', crop_id: @crop ? @crop.id : '' },
+    class:"button new-guide-button" %>
   </div>
 </div>

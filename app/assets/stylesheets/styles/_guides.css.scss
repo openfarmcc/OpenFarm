@@ -9,6 +9,22 @@
   }
 }
 
+
+
+.new-guide-button{
+  @include add-new-button();
+  @include box-shadow(none);
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 12px;
+  margin: 0 0 30px 0;
+  padding: 26px;
+  position: relative;
+  border-radius: 10px;
+  color: #CCC;
+  font-size: 1em;
+}
+
 // TODO: Remove/refactor out generic selectors like this!
 .box {
   border-radius: 2px;

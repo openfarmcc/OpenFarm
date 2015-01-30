@@ -167,6 +167,10 @@ en:
   guides:
       index:
           my_guides: "My Guides"
+          create_a_guide: "Create a guide!"
+          no_guides_yet: |
+            You don't have any guides yet. Share your knowledge by creating
+            one!
       edit:
           edit_title: "Edit Your Guide"
           click_to_edit: "Click to edit"

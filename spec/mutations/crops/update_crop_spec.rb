@@ -44,7 +44,7 @@ describe Crops::UpdateCrop do
     }
     image_params = params.merge(images: [ image_hash ])
     results = mutation.run(image_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
@@ -113,7 +113,7 @@ describe Crops::UpdateCrop do
       image_params[:images] = image_hash
 
       results = mutation.run(image_params)
-      expect(results.success?).to be_false
+      expect(results.success?).to be_falsey
       expect(results.errors.message[:images]).to include('existing image')
     end
   end

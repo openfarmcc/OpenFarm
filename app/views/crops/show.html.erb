@@ -1,9 +1,15 @@
-<div class="crop-page row wide-row">
+<%= content_for(:description) do %><%= @crop.description %><% end %>
+<%= content_for(:keywords) do %><% if @crop.common_names %><%= @crop.common_names.join(', ') %><% end %>, <%= @crop.name %>, <%= @crop.binomial_name %><% end %>
+
+<div class="crop-page row wide-row"
+     ng-controller="showCropCtrl"
+     ng-cloak>
   <div class="crop-info-container columns medium-6 small-12">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
       <% if current_user %>
         <%= link_to(icon('edit') + " Edit Crop", {action: 'edit'}, class: 'edit-link button secondary tiny') %>
+          <%= render 'gardens/add_to_gardens.html' %>
       <% end %>
     </div>
     <table class="crop">
@@ -32,16 +38,23 @@
         </tr>
         <tr>
           <td><%= I18n.t('crops.spread') %></td>
-          <td><%= @crop.spread %></td>
+          <td>
+            <%= @crop.spread %>
+            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.spread) %></small>
+          </td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.row_spacing') %></td>
-          <td><%= @crop.row_spacing %></td>
-        </tr>
+          <td>
+            <%= @crop.row_spacing %>
+            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.row_spacing) %></small>
+          </td>        </tr>
         <tr>
           <td><%= I18n.t('crops.height') %></td>
-          <td><%= @crop.height %></td>
-        </tr>
+          <td>
+            <%= @crop.height %>
+            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.height) %></small>
+          </td>        </tr>
         </tbody>
     </table>
   </div>
@@ -54,3 +67,7 @@
     <%= render partial: '/guides/guide_results_list', object: @guides %>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+<% end %>

@@ -21,16 +21,16 @@ describe Guide do
   it 'has implemented a real compatibility label' do
     guide = FactoryGirl.build(:guide)
 
-    guide.stub(:compatibility_score).and_return 80
+    allow(guide).to receive(:compatibility_score).and_return(80)
     expect(guide.compatibility_label).to eq('high')
 
-    guide.stub(:compatibility_score).and_return 60
+    allow(guide).to receive(:compatibility_score).and_return(60)
     expect(guide.compatibility_label).to eq('medium')
 
-    guide.stub(:compatibility_score).and_return 20
+    allow(guide).to receive(:compatibility_score).and_return(20)
     expect(guide.compatibility_label).to eq('low')
 
-    guide.stub(:compatibility_score).and_return nil
+    allow(guide).to receive(:compatibility_score).and_return(nil)
     expect(guide.compatibility_label).to eq('')
   end
 
@@ -71,5 +71,37 @@ describe Guide do
               soil: ['Clay'],
               light: ['Partial Sun'])
     expect(guide.compatibility_score).to eq(nil)
+  end
+
+  it 'sets the completeness score' do
+    guide = FactoryGirl.create(:guide)
+    expect(guide.completeness_score).not_to eq(0)
+  end
+
+  it 'sets the popularity score' do
+    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide)
+    guide = FactoryGirl.create(:guide)
+    expect(guide.popularity_score).not_to eq(0)
+  end
+
+  it 'updates the completeness score' do
+    guide = FactoryGirl.create(:guide)
+    existing_score = guide.completeness_score
+    guide.practices = ['test practice']
+    guide.save
+    expect(guide.completeness_score).not_to eq(0)
+    expect(guide.completeness_score).not_to eq(existing_score)
+  end
+
+  it 'updates the popularity score' do
+    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide)
+    guide = FactoryGirl.create(:guide)
+    existing_score = guide.popularity_score
+    guide.impressions_field = 20
+    guide.save
+    expect(guide.popularity_score).not_to eq(0)
+    expect(guide.popularity_score).not_to eq(existing_score)
   end
 end

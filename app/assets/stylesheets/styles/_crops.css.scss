@@ -3,6 +3,12 @@
 
   .edit-link {
     margin: 1em;
+    bottom: 4em;
+    position: absolute;
+    right: 0;
+  }
+  .add-to-garden {
+    margin: 1em;
     bottom: 0;
     position: absolute;
     right: 0;
@@ -36,8 +42,11 @@
       }
       img{
         height: 100px;
-/*        width: 100px;
-*/      }
+      }
+    }
+
+    .measurement-unit {
+      color: #666666;
     }
   }
 

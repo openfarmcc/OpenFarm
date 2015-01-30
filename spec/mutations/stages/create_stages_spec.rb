@@ -12,7 +12,7 @@ describe Stages::CreateStage do
   end
 
   it 'minimally requires a user and a guide to be true' do
-    expect(mutation.run(params).success?).to be_true
+    expect(mutation.run(params).success?).to be_truthy
   end
 
   it 'disallows making stages for guides that are not a users' do
@@ -39,7 +39,7 @@ describe Stages::CreateStage do
     }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
@@ -57,7 +57,7 @@ describe Stages::CreateStage do
   it 'allows an empty stage actions array' do
     actions_params = params.merge(actions: [])
     results = mutation.run(actions_params)
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
   end
 
   it 'allows a well formed stage actions array' do
@@ -65,7 +65,7 @@ describe Stages::CreateStage do
                  overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
     expect(results.result.stage_actions.length).to eq(1)
   end
 
@@ -74,7 +74,7 @@ describe Stages::CreateStage do
                  description: "#{Faker::Lorem.paragraph}" },]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:actions]).to include('valid overview')
   end
 end

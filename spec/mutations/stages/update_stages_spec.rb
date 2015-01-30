@@ -18,7 +18,7 @@ describe Stages::UpdateStage do
   end
 
   it 'minimally requires a user and a stage' do
-    expect(mutation.run(params).success?).to be_true
+    expect(mutation.run(params).success?).to be_truthy
   end
 
   it 'updates a stage image via URL' do
@@ -39,14 +39,14 @@ describe Stages::UpdateStage do
     }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
   it 'allows an empty stage actions array' do
     actions_params = params.merge(actions: [])
     results = mutation.run(actions_params)
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
   end
 
   it 'allows a well formed stage actions array' do
@@ -54,7 +54,7 @@ describe Stages::UpdateStage do
                  overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
-    expect(results.success?).to be_true
+    expect(results.success?).to be_truthy
     expect(results.result.stage_actions.length).to eq(1)
   end
 
@@ -63,7 +63,7 @@ describe Stages::UpdateStage do
                  description: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:actions]).to include('valid overview')
   end
 
@@ -72,7 +72,7 @@ describe Stages::UpdateStage do
                  overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
-    expect(results.success?).to be_false
+    expect(results.success?).to be_falsey
     expect(results.errors.message[:actions]).to include('valid name')
   end
 
@@ -109,7 +109,7 @@ describe Stages::UpdateStage do
       image_params[:images] = image_hash
 
       results = mutation.run(image_params)
-      expect(results.success?).to be_false
+      expect(results.success?).to be_falsey
       expect(results.errors.message[:images]).to include('existing image')
     end
   end

@@ -1,4 +1,22 @@
-<span class='click-to-upload-image'>
+<span class="s3-upload-input">
+  <span ng-if="!hasOnePicture">
+    <span ng-repeat="pic in s3UploadExistingPictures"
+          class="thumbnails"
+          ng-class="{ 'deleted' : pic.deleted }"
+          ng-init="pic.deleted = false"
+          ng-click="pic.deleted = !pic.deleted">
+      <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" width="100"
+           ng-model="pic"/>
+    </span>
+  </span>
+
+  <span class="thumbnails"
+        ng-if="s3UploadExistingPictures && s3UploadExistingPictures.indexOf('leaf-grey') === -1 && hasOnePicture">
+    <img ng-src="{{ s3UploadExistingPictures }}"
+       />
+  </span>
+  <span class='click-to-upload-image'>
     <input type='file' style='display: none'/>
     <input type='field' style='display: none' name='{{ nameAttribute }}' value='{{ filename }}'/>
+  </span>
 </span>

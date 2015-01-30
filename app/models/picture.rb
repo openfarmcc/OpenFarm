@@ -10,7 +10,7 @@ class Picture
               large:  ['500x500>', :jpg] },
     convert_options: { all: '-background transparent -flatten +matte',
                        small: '-gravity center -extent 100x100' }
-  validates_attachment_size :attachment, in: 1.byte..2.megabytes
+  validates_attachment_size :attachment, in: 1.byte..25.megabytes
   validates_attachment :attachment,
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }

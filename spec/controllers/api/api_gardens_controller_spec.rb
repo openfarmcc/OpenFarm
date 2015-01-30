@@ -130,4 +130,33 @@ describe Api::GardensController, type: :controller do
       expect(garden.reload.name).to eq('updated')
     end
   end
+
+  describe 'destroy' do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it 'deletes gardens' do
+      garden = FactoryGirl.create(:garden, user: user)
+      sign_in user
+      old_length = Garden.all.length
+      delete :destroy, id: garden.id, format: :json
+      new_length = Garden.all.length
+      expect(new_length).to eq(old_length - 1)
+    end
+
+    it 'returns an error when a garden does not exist' do
+      sign_in user
+      delete :destroy, id: 1, format: :json
+      expect(json['stage']).to include(
+        'Could not find a garden with id')
+      expect(response.status).to eq(422)
+    end
+
+    it 'only destroys gardens owned by the user' do
+      sign_in user
+      delete :destroy, id: FactoryGirl.create(:garden)
+      expect(json['error']).to include(
+        'can only destroy gardens that belong to you.')
+      expect(response.status).to eq(401)
+    end
+  end
 end

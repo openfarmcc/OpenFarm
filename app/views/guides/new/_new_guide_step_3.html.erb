@@ -43,22 +43,12 @@
                   </label>
                 </div>
                 <div class="columns small-12">
-                  <span ng-repeat="pic in stage.pictures"
-                    class="thumbnails"
-                    ng-class="{ 'deleted' : pic.deleted }"
-                    ng-init="pic.deleted = false"
-                    ng-click="pic.deleted = !pic.deleted">
-                    <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
-                         ng-model="pic"/>
-                  </span>
-                  <div
-                    id="stage-image-upload-{{$index}}"
-                    name="stage-image-upload-{{$index}}"
-                    s3-upload
-                    bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-                    s3-upload-place-pic="placeStageUpload(stage, image)"
-                    ng-model="s3upload"
-                    s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+                  <div s3-upload
+                      bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+                      ng-model="s3upload"
+                      s3-upload-existing-pictures="stage.pictures"
+                      s3-upload-place-pic="placeStageUpload(stage, image)"
+                      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
                   </div>
                 </div>
               </div>
@@ -170,7 +160,6 @@
             </div>
             <div class="columns large-3 medium-4">
               <ul>
-
                 <li ng-repeat="action in stage.stage_action_options"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">

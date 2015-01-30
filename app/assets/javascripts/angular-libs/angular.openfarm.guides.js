@@ -2,7 +2,6 @@ openFarmModule.factory('guideService', ['$http',
   function guideService($http) {
     // A regularly used pushToAlerts method
     var pushToAlerts = function (response, code, alerts){
-      console.log(response, code);
       var msg = '';
     angular.forEach(response, function(value){
         msg += value;
@@ -34,7 +33,6 @@ openFarmModule.factory('guideService', ['$http',
     };
 
     var updateGuide = function(guideId, params, alerts, callback){
-      console.log(params);
       $http.put('/api/guides/' + guideId + '/', params)
       .success(function (response) {
         return callback (true, response.guide);

@@ -267,6 +267,10 @@ textarea {
   }
 }
 
+/**
+ * A class that covers all the s3 upload buttons.
+ */
+
 .s3-upload-input{
   .click-to-upload-image{
     @include add-new-button();
@@ -320,4 +324,19 @@ textarea {
     -webkit-animation: fa-spin-image-load 2s infinite linear;
     animation: fa-spin-image-load 2s infinite linear;
   }
+}
+
+/**
+ * A class that can be applied to divs that indicate that something is
+ * still loading.
+ */
+
+.loading-content{
+  background-color: whitesmoke;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: inset 0px 3px 0 rgb(239, 239, 239);
+  border: 1px solid rgb(239, 239, 239);
+  color: rgb(187, 187, 187);
 }

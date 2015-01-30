@@ -15,11 +15,17 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
       $scope.gardens = user.gardens;
 
       angular.forEach(user.gardens, function(garden){
-        angular.forEach(garden.garden_crops, function(crop){
+        angular.forEach(garden.garden_crops, function(garden_crop){
           var callback = function(success, response){
-            crop.guide.crop = response;
+            garden_crop.guide.crop = response;
           };
-          cropService.getCrop(crop.guide.crop_id, $scope.alerts, callback);
+          // We only need to fetch the crop if the garden_crop doesn't already
+          // have a crop associated with it.
+          if (garden_crop.guide){
+            cropService.getCrop(garden_crop.guide.crop_id,
+                                $scope.alerts,
+                                callback);
+          }
         });
       });
     };

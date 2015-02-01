@@ -20,7 +20,7 @@ module Api
            { 'acl' => 'public-read' },
            { success_action_status: '201' },
            ['starts-with', '$Content-Type', ''],
-           ['content-length-range', 1, 2 * 1024 * 1024]
+           ['content-length-range', 1, 25.megabytes]
          ]}.to_json).gsub(/\n/, '')
     end
 

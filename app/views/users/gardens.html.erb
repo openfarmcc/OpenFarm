@@ -1,5 +1,3 @@
-
-
 <div class="gardens" ng-controller="gardenCtrl" ng-cloak>
   <div class="bar-header">
     <h1 class="title">
@@ -7,7 +5,11 @@
     </h1>
   </div>
   <div alerts ng-model="alerts"></div>
-
+  <div ng-if="!currentUser" class="row">
+    <div class="columns small-6 small-centered loading-content">
+      <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_your_gardens') %>
+    </div>
+  </div>
   <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak ng-show="!garden.hide">
     <div class="row header">
       <% if params[:manage] %>
@@ -263,7 +265,11 @@
       </p>
       <label><%= t('.call_your_garden') %></label>
       <input type="text" ng-model="newGarden.name"/>
-      <input type="button" class="button" value="Create Your First Garden" ng-click="createGarden(newGarden);"/>
+      <input type="button"
+             class="button"
+             ng-cloak
+             value="{{ currentUser.gardens.length === 0 ? '<%= t('.create_your_first_garden') %>' : '<%= t('.create_another_garden') %>' }}"
+             ng-click="createGarden(newGarden);"/>
     </div>
   </div>
 </div>

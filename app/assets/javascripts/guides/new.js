@@ -98,25 +98,25 @@ openFarmApp.directive('lifetimeChangeLeft', [
           var diffX = -1;
           var lengthChangeHandler = function(event){
             var x = event.pageX - $element.parent().parent().offset().left;
-            var oldLeftX = parseInt($element.parent().css('left'));
+            var oldLeftX = parseInt($element.parent().css('left'), 10);
 
             if (diffX === -1){
               diffX = x - oldLeftX;
             }
             // Set the new left value
             $element.parent().css('left', x - diffX);
-            var newLeftX = parseInt($element.parent().css('left'));
+            var newLeftX = parseInt($element.parent().css('left'), 10);
 
             console.log(oldLeftX - newLeftX);
             // But we also need to set the new length.
-            var previousWidth = parseInt($element.parent().css('width'));
+            var previousWidth = parseInt($element.parent().css('width'), 10);
             // The new width will be the previous width minus
             // the difference in length.
             var newWidth = previousWidth + oldLeftX - newLeftX;
 
             $element.parent().css('width', newWidth);
           };
-          $element.on('mousedown', function(e){
+          $element.on('mousedown', function(){
             $(document).bind('mousemove.lifetime', lengthChangeHandler);
           });
           $(document).on('mouseup', function(){
@@ -127,6 +127,8 @@ openFarmApp.directive('lifetimeChangeLeft', [
     };
   }]);
 
+
+// TODO this directive can be wrapped up in the above.
 openFarmApp.directive('lifetimeChangeRight', [
   function lifetimeChangeRight(){
     return {
@@ -137,29 +139,15 @@ openFarmApp.directive('lifetimeChangeRight', [
           var diffX = -1;
           var lengthChangeHandler = function(event){
             var x = event.pageX - $element.parent().parent().offset().left;
-            var oldRightX = parseInt($element.parent().css('width'));
-
-            console.log(x)
+            var oldRightX = parseInt($element.parent().css('width'), 10);
 
             if (diffX === -1){
               diffX = x - oldRightX;
             }
-
-            console.log(diffX);
-            // Set the new left value
+            // Set the new width value
             $element.parent().css('width', x - diffX);
-            // var newLeftX = parseInt($element.parent().css('left'));
-
-            // console.log(oldLeftX - newLeftX);
-            // // But we also need to set the new length.
-            // var previousWidth = parseInt($element.parent().css('width'));
-            // // The new width will be the previous width minus
-            // // the difference in length.
-            // var newWidth = previousWidth + oldLeftX - newLeftX;
-
-            // $element.parent().css('width', newWidth);
           };
-          $element.on('mousedown', function(e){
+          $element.on('mousedown', function(){
             $(document).bind('mousemove.lifetime', lengthChangeHandler);
           });
           $(document).on('mouseup', function(){

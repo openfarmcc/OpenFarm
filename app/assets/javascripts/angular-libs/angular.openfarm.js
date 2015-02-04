@@ -2,7 +2,9 @@ var openFarmApp = angular.module('openFarmApp', [
   'mm.foundation',
   'ng-rails-csrf',
   'ngS3upload',
+  'ngDragDrop',
   'openFarmModule'
+
 ]);
 
 var openFarmModule = angular.module('openFarmModule', [

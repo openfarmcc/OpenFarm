@@ -9,8 +9,6 @@
   }
 }
 
-
-
 .new-guide-button{
   @include add-new-button();
   @include box-shadow(none);
@@ -191,6 +189,11 @@
   }
 }
 
+
+@import "guides/components/timeline";
+
+
+
 .show-guide {
 
   .canopy{
@@ -211,70 +214,6 @@
     .guide-controls {
       float: right;
       text-align: right;
-    }
-  }
-
-  .timeline {
-    $height: 100px;
-
-    .box {
-      padding-top: 0;
-      height: $height;
-    }
-    .seasons {
-      position: absolute;
-      height: $height;
-      .day {
-        height: $height - 2px;
-        display: inline-block;
-
-        &.first {
-          background-color: $of-light;
-        }
-        &:hover {
-          background-color: rgba(0, 0, 0, .1);
-        }
-        &.today {
-          background-color: $of-green;
-          opacity: .8;
-        }
-      }
-      .month {
-        position: absolute;
-        bottom: 0px;
-        padding: 4px 6px;
-        color: $of-light;
-      }
-    }
-
-    .timelines {
-      z-index: 1;
-      position: absolute;
-      margin-top: 1rem;
-
-      .plantLifetime {
-        cursor: pointer;
-        opacity: .8;
-        text-align: center;
-        color: white;
-        font-size: .8rem;
-        padding-top: .1rem;
-        height: 1.5rem;
-        position: relative;
-        border-radius: $global-radius;
-        background-color: $of-green;
-        transition: opacity .2s;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      .overflow {
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
     }
   }
 

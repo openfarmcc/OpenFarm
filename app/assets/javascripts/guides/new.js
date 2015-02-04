@@ -88,6 +88,109 @@ openFarmApp.directive('stageButtons', [
     };
 }]);
 
+openFarmApp.directive('lifetimeChangeLeft', [
+  function lifetimeChangeLeft(){
+    return {
+      restrict: 'A',
+      scope: true,
+      controller: ['$scope', '$element',
+        function($scope, $element){
+          var diffX = -1;
+          var lengthChangeHandler = function(event){
+            var x = event.pageX - $element.parent().parent().offset().left;
+            var oldLeftX = parseInt($element.parent().css('left'));
+
+            if (diffX === -1){
+              diffX = x - oldLeftX;
+            }
+            // Set the new left value
+            $element.parent().css('left', x - diffX);
+            var newLeftX = parseInt($element.parent().css('left'));
+
+            console.log(oldLeftX - newLeftX);
+            // But we also need to set the new length.
+            var previousWidth = parseInt($element.parent().css('width'));
+            // The new width will be the previous width minus
+            // the difference in length.
+            var newWidth = previousWidth + oldLeftX - newLeftX;
+
+            $element.parent().css('width', newWidth);
+          };
+          $element.on('mousedown', function(e){
+            $(document).bind('mousemove.lifetime', lengthChangeHandler);
+          });
+          $(document).on('mouseup', function(){
+            diffX = -1;
+            $(document).unbind('mousemove.lifetime', lengthChangeHandler);
+          });
+        }]
+    };
+  }]);
+
+openFarmApp.directive('lifetimeChangeRight', [
+  function lifetimeChangeRight(){
+    return {
+      restrict: 'A',
+      scope: true,
+      controller: ['$scope', '$element',
+        function($scope, $element){
+          var diffX = -1;
+          var lengthChangeHandler = function(event){
+            var x = event.pageX - $element.parent().parent().offset().left;
+            var oldRightX = parseInt($element.parent().css('width'));
+
+            console.log(x)
+
+            if (diffX === -1){
+              diffX = x - oldRightX;
+            }
+
+            console.log(diffX);
+            // Set the new left value
+            $element.parent().css('width', x - diffX);
+            // var newLeftX = parseInt($element.parent().css('left'));
+
+            // console.log(oldLeftX - newLeftX);
+            // // But we also need to set the new length.
+            // var previousWidth = parseInt($element.parent().css('width'));
+            // // The new width will be the previous width minus
+            // // the difference in length.
+            // var newWidth = previousWidth + oldLeftX - newLeftX;
+
+            // $element.parent().css('width', newWidth);
+          };
+          $element.on('mousedown', function(e){
+            $(document).bind('mousemove.lifetime', lengthChangeHandler);
+          });
+          $(document).on('mouseup', function(){
+            diffX = -1;
+            $(document).unbind('mousemove.lifetime', lengthChangeHandler);
+          });
+        }]
+    };
+  }]);
+
+openFarmApp.directive('createTimeline', ['guideService',
+  function createTimeline(guideService){
+    return {
+      restrict: 'A',
+      scope: true,
+      require: 'timeline',
+      controller: ['$scope', '$element',
+        function($scope, $element){
+          $scope.plantLifetime = 200;
+          $scope.creating = true;
+          guideService.drawTimeline($scope.plantLifetime,
+                                    function(days, dayWidth){
+                                      $scope.days = days;
+                                      $scope.dayWidth = dayWidth;
+                                    });
+
+        }],
+      templateUrl: '/assets/templates/_timeline.html'
+    };
+  }]);
+
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   'guideService', 'stageService',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
@@ -99,6 +202,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.stages = [];
   $scope.hasEdited = [];
   $scope.haveEditedStages = false;
+
+  $scope.start_time_options = ['January', 'February',
+                               'March', 'April', 'May',
+                               'June', 'July', 'August',
+                               'September', 'October',
+                               'November', 'December'];
 
   // What's a new guide.
   $scope.newGuide = {
@@ -114,7 +223,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
       {slug: 'conventional', label: 'Conventional', selected: false},
       {slug: 'intensive',    label: 'Intensive',    selected: false}
-    ]
+    ],
+    how_long: 0,
+    how_long_type: 'days',
+    start_time: moment().format('MMMM')
   };
 
   $scope.$watch('newGuide.stages', function(){
@@ -247,7 +359,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.featured_image = r.guide.featured_image;
         $scope.s3upload = r.guide.featured_image;
         $scope.newGuide.name = r.guide.name;
-        console.log(r.guide.location);
         $scope.newGuide.location = r.guide.location;
         $scope.newGuide.overview = r.guide.overview;
 
@@ -394,8 +505,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   // Post! & forward if successful
 
   $scope.submitForm = function () {
-    console.log($scope.newGuide);
     $scope.newGuide.sending = true;
+    console.log('how long');
+
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
@@ -403,7 +515,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     }, practices);
 
+    var start_time_index = $scope.start_time_options
+                              .indexOf($scope.newGuide.start_time);
+
     var params = {
+      start_time: calcTimeLength(start_time_index + 1, 'month'),
+      how_long: calcTimeLength($scope.newGuide.how_long,
+                               $scope.newGuide.how_long_type),
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
@@ -429,7 +547,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  var calcStageLength = function(length, length_type){
+  var calcTimeLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
         case 'months':
@@ -452,7 +570,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         name: stage.name,
         guide_id: guide._id,
         order: stage.order,
-        stage_length: calcStageLength(stage.stage_length, stage.length_type),
+        stage_length: calcTimeLength(stage.stage_length, stage.length_type),
         environment: stage.where.filter(function(s){
             return s.selected;
           }).map(function(s){

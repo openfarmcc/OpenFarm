@@ -41,78 +41,84 @@ openFarmModule.factory('guideService', ['$http',
         pushToAlerts(response, code, alerts);
       });
     };
-    return {
-      'getGuide': getGuide,
-      'createGuide': createGuide,
-      'updateGuide': updateGuide
-    };
-}]);
 
-openFarmModule.directive('timeline', [
-  function timeline(){
     var calculateStartOfYear = function(){
       return moment('12 21', 'MM DD').year(2015);
     };
 
+    var drawTimeline = function(plantLifetime, callback){
+      var maxWidth,
+          yearLength,
+          firstDay,
+          currentDay,
+          day,
+          today,
+          todayIndex,
+          daysRemainingInYear,
+          remainderDays,
+          days,
+          dayWidth;
+
+      days = [];
+      dayWidth = 0;
+      today = moment();
+
+      maxWidth = $('.timeline-box').width();
+      // The domain is maxWidth
+      // The range is 364 days in a year
+      yearLength = moment.duration(1, 'year').asDays();
+      dayWidth = maxWidth/yearLength;
+
+      // calculate year start time based on user preference/location
+      firstDay = currentDay = calculateStartOfYear();
+      for (var i = 0; i <= yearLength; i++) {
+        // calculate if it's the start of the month
+
+        day = {
+          currentDay: currentDay,
+        };
+        if (currentDay.date() === 1){
+          day.first = true;
+        }
+        if (currentDay.date() === today.date() &&
+            currentDay.month() === today.month()){
+          day.today = true;
+          todayIndex = i;
+        }
+        days.push(day);
+        currentDay = moment(currentDay.add(1, 'days'));
+      }
+
+      // Draw the lifetime at the right spot
+      $('.plantLifetime').css('left', todayIndex * dayWidth);
+      // Deal with the overflow
+      daysRemainingInYear = yearLength - todayIndex;
+      if (daysRemainingInYear < plantLifetime){
+        $('.plantLifetime').width(daysRemainingInYear * dayWidth);
+        remainderDays = plantLifetime - daysRemainingInYear;
+        $('.timelines')
+          .append('<span class="plantLifetime overflow">');
+        $('.plantLifetime.overflow').width(remainderDays);
+      } else {
+        $('.plantLifetime').width(plantLifetime * dayWidth);
+      }
+      return callback(days, dayWidth);
+    };
+    return {
+      'getGuide': getGuide,
+      'createGuide': createGuide,
+      'updateGuide': updateGuide,
+      'drawTimeline': drawTimeline
+    };
+}]);
+
+openFarmModule.directive('timeline', ['guideService',
+  function timeline(guideService){
     return {
       restrict: 'A',
       scope: true,
       controller: ['$scope', function($scope){
-        var maxWidth,
-            yearLength,
-            firstDay,
-            currentDay,
-            day,
-            today,
-            todayIndex,
-            daysRemainingInYear,
-            remainderDays;
-
-        $scope.days = [];
-        $scope.dayWidth = 0;
-        today = moment();
-
-        maxWidth = $('.timeline-box').width();
-        // The domain is maxWidth
-        // The range is 364 days in a year
-        yearLength = moment.duration(1, 'year').asDays();
-        $scope.dayWidth = maxWidth/yearLength;
-
-        // calculate year start time based on user preference/location
-        firstDay = currentDay = calculateStartOfYear();
-        for (var i = 0; i <= yearLength; i++) {
-          // calculate if it's the start of the month
-
-          day = {
-            currentDay: currentDay,
-          };
-          if (currentDay.date() === 1){
-            day.first = true;
-          }
-          if (currentDay.date() === today.date() &&
-              currentDay.month() === today.month()){
-            day.today = true;
-            todayIndex = i;
-          }
-          $scope.days.push(day);
-          currentDay = moment(currentDay.add(1, 'days'));
-        }
-
-        // Draw the lifetime at the right spot
-        $('.plantLifetime').css('left', todayIndex * $scope.dayWidth);
-        // Deal with the overflow
-        daysRemainingInYear = yearLength - todayIndex;
-        if (daysRemainingInYear < $scope.plantLifetime){
-          $('.plantLifetime').width(daysRemainingInYear * $scope.dayWidth);
-          remainderDays = $scope.plantLifetime - daysRemainingInYear;
-          $('.timelines')
-            .append('<span class="plantLifetime overflow">');
-          $('.plantLifetime.overflow').width(remainderDays);
-        } else {
-          $('.plantLifetime').width($scope.plantLifetime * $scope.dayWidth);
-        }
-
-
+        guideService.drawTimeline();
       }],
       templateUrl: '/assets/templates/_timeline.html'
     };

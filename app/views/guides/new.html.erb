@@ -19,3 +19,10 @@
     <%= render 'guides/new/new_guide_step_4' %>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js' %>
+
+  <%= javascript_include_tag 'angular/angular-dragdrop.min.js' %>
+<% end %>
+

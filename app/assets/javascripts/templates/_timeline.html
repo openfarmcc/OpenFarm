@@ -1,4 +1,5 @@
-<div class="seasons">
+<div class="seasons"
+     ng-class="{ creating: creating }">
   <span ng-repeat="day in days"
     class="day"
     style="width: {{ dayWidth }}px;"
@@ -8,8 +9,25 @@
     </span>
   </span>
 </div>
-<div class="timelines">
-  <div class="plantLifetime">
-    Plant's Lifetime
+<div class="timelines"
+     ng-class="{ creating: creating }"
+     data-drop="true"
+     jqyoui-droppable
+     data-jqyoui-options>
+  <div class="plantLifetime lifetime"
+       data-drag="true"
+       jqyoui-draggable="{animate:true}"
+       data-jqyoui-options="{axis: 'x',containment: 'parent',cancel:'.drag-left,.drag-right'}">
+       <span class="drag-left"
+             lifetime-change-left></span>
+       <span ng-if="creating">
+        Drag to set plant lifetime
+       </span>
+       <span ng-if="!creating">
+        Plant's Lifetime
+       </span>
+       <span class="drag-right"
+             lifetime-change-right></span>
+
   </div>
 </div>

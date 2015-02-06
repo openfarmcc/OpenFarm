@@ -3,46 +3,60 @@ module Guides
     include Guides::GuidesConcern
 
     required do
-      string :id
       model :user
       model :guide
+      hash :attributes do
+        optional do
+          string :overview
+          string :location
+          string :name
+          array :practices
+          string :featured_image
+          hash :time_span
+        end
+      end
     end
 
     optional do
-      string :overview
-      string :location
-      string :name
-      array :practices
-      string :featured_image
+      # There has to be a better way to do this.
+      hash :time_span do
+        optional do
+          string :start_event
+          string :start_event_format
+          string :start_offset
+          string :start_offset_amount
+          string :length
+          string :length_units
+          string :end_event
+          string :end_event_format
+          string :end_offset_units
+          string :end_offset_amount
+        end
+      end
     end
 
     def validate
+      @guide = guide
+      validate_time_span
       validate_permissions
       validate_image_url
     end
 
     def execute
-      set_valid_params
-      guide
+      set_featured_image_async
+      @guide.update(attributes)
+      set_time_span
+      @guide.save
+      @guide
     end
 
     private
 
     def validate_permissions
-      if guide.user != user
+      if @guide.user != user
         msg = 'You can only modify guides that you created.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
-    end
-
-    def set_valid_params
-      # TODO: Probably a DRYer way of doing this.
-      guide.overview       = overview if overview.present?
-      guide.location       = location if location.present?
-      guide.name           = name if name.present?
-      guide.practices      = practices if practices.present?
-      guide.save
-      set_featured_image_async
     end
   end
 end

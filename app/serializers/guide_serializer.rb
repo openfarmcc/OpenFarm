@@ -4,6 +4,7 @@ class GuideSerializer < ApplicationSerializer
              :completeness_score, :popularity_score
 
   has_many :stages
+  has_one :time_span
 
   def featured_image
     object.featured_image.url

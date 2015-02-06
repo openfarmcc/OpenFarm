@@ -201,7 +201,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
   $scope.alerts = [];
   $scope.crops = [];
-  $scope.step = 4;
+  $scope.step = 1;
   $scope.crop_not_found = false;
   $scope.addresses = [];
   $scope.stages = [];
@@ -272,6 +272,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
     }
   });
+
+  $scope.$watch('alerts.length', function(){
+    $scope.newGuide.sending = false;
+  })
 
   $scope.updateTimeSpan = function(newGuide){
 
@@ -370,6 +374,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.name = r.guide.name;
         $scope.newGuide.location = r.guide.location;
         $scope.newGuide.overview = r.guide.overview;
+        var defaultTimeSpan = $scope.newGuide.time_span;
+        $scope.newGuide.time_span = r.guide.time_span || defaultTimeSpan;
 
         if (r.guide.practices){
           $scope.newGuide.practices.forEach(function(d){
@@ -519,7 +525,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }, practices);
 
     var params = {
-      time_span: buildTimeSpanObject(),
+      time_span: $scope.newGuide.time_span,
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
@@ -543,6 +549,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if ($scope.newGuide._id){
       // In this case the guide already existed,
       // so we need to put, not to post.
+      // TODO: refactor the $scope.alerts thing
+      // so that it cancels things if things go wrong
       params._id = $scope.newGuide._id;
       guideService.updateGuide(params._id,
                                params,
@@ -571,6 +579,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
+    console.log(guide);
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
@@ -651,7 +660,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
     if (updatedNum === $scope.sent){
       $scope.newGuide.sending = false;
-      window.location.href = '/guides/' + $scope.newGuide._id + '/';
+
+      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
 
@@ -666,9 +676,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.placeGuideUpload = function(image){
-    console.log('placing guide upload');
     $scope.newGuide.featured_image = image;
-    console.log($scope.newGuide.featured_image);
   };
 
   $scope.cancel = function(path){

@@ -76,9 +76,8 @@ openFarmModule.factory('guideService', ['$http',
           day,
           today,
           todayIndex,
-          daysRemainingInYear,
-          remainderDays,
-          days;
+          days,
+          scale;
 
       days = [];
       today = moment();

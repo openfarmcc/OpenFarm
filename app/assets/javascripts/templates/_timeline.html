@@ -16,8 +16,9 @@
      data-jqyoui-options>
   <div class="plantLifetime lifetime"
        data-drag="true"
-       jqyoui-draggable="{animate:true}"
-       data-jqyoui-options="{axis: 'x',containment: 'parent', grid: [dayWidth * 7, 20], cancel:'.drag-left,.drag-right'}">
+       jqyoui-draggable="{animate:true, onStop:updateTimeSpanLength(newGuide)}"
+       data-jqyoui-options="{axis: 'x',containment: 'parent', grid: [dayWidth * 7, 20], cancel:'.drag-left,.drag-right'}"
+       >
        <span class="drag-left"
              lifetime-change="left"></span>
        <span ng-if="creating">

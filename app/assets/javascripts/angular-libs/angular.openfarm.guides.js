@@ -70,7 +70,7 @@ openFarmModule.factory('guideService', ['$http',
       return scale;
     };
 
-    var drawTimeline = function(plantLifetime, callback){
+    var drawTimeline = function(timespan, callback){
       var firstDay,
           currentDay,
           day,
@@ -104,7 +104,7 @@ openFarmModule.factory('guideService', ['$http',
       }
 
       // Draw the lifetime at the right spot
-      $('.plantLifetime').css('left', 0);
+      $('.plantLifetime').css('left', timespan.start_event);
       // // Deal with the overflow
       // daysRemainingInYear = yearLength - todayIndex;
       // if (daysRemainingInYear < plantLifetime){
@@ -114,7 +114,7 @@ openFarmModule.factory('guideService', ['$http',
       //     .append('<span class="plantLifetime overflow">');
       //   $('.plantLifetime.overflow').width(remainderDays);
       // } else {
-        $('.plantLifetime').width(plantLifetime * scale.step);
+        $('.plantLifetime').width(timespan.length * scale.step);
       // }
       return callback(days, scale.step, scale);
     };

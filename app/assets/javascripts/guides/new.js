@@ -129,8 +129,8 @@ openFarmApp.directive('lifetimeChange', [
             var newWidth;
 
             if (diffX === -1){
-              diffX = calculateDifference(x, direction === 'left' ? oldLeftX : oldRightX );
-
+              var offset = (direction === 'left' ? oldLeftX : oldRightX);
+              diffX = calculateDifference(x, offset);
             }
             // Calculate new things based on direction;
             if (direction === 'left'){
@@ -173,15 +173,19 @@ openFarmApp.directive('createTimeline', ['guideService',
   function createTimeline(guideService){
     return {
       restrict: 'A',
-      scope: true,
+      scope: {
+        days: '&',
+        dayWidth: '&',
+        calendarScale: '&',
+        timespan: '=createTimeline'
+      },
       require: 'timeline',
       controller: ['$scope', '$element',
         function($scope, $element){
-          $scope.plantLifetime = 200;
+          $scope.timespan.length = 200;
           $scope.creating = true;
-          guideService.drawTimeline($scope.plantLifetime,
+          guideService.drawTimeline($scope.timespan,
                                     function(days, dayWidth, scale){
-                                      // console.log(weeks, weekWidth);
                                       $scope.days = days;
                                       $scope.dayWidth = dayWidth;
                                       $scope.calendarScale = scale;
@@ -204,18 +208,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.hasEdited = [];
   $scope.haveEditedStages = false;
 
-  $scope.start_time_options = ['January', 'February',
-                               'March', 'April', 'May',
-                               'June', 'July', 'August',
-                               'September', 'October',
-                               'November', 'December'];
-
   // What's a new guide.
   $scope.newGuide = {
     name: '',
     crop: undefined,
     overview: '',
     selectedStages: [],
+    time_span: {
+      'length': 200,
+      'length_units':'weeks',
+      'start_event': 21,
+      'start_event_format':'%W'
+    },
     exists: false,
     stages: [],
     practices: [
@@ -268,6 +272,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
     }
   });
+
+  $scope.updateTimeSpan = function(newGuide){
+
+  };
 
   var getStages = function(){
     $http.get('/api/stage_options/')
@@ -500,14 +508,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     return returnArray;
   };
 
-  // The submit process.
-  // Get the practices and clean them up.
-  // Set up the parameters.
-  // Post! & forward if successful
-
-  $scope.submitForm = function () {
-    $scope.newGuide.sending = true;
-    console.log('how long');
+  var buildParametersFromScope = function(){
+    // Gather things in the scope and put them in parameters.
 
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
@@ -516,13 +518,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     }, practices);
 
-    var start_time_index = $scope.start_time_options
-                              .indexOf($scope.newGuide.start_time);
-
     var params = {
-      start_time: calcTimeLength(start_time_index + 1, 'month'),
-      how_long: calcTimeLength($scope.newGuide.how_long,
-                               $scope.newGuide.how_long_type),
+      time_span: buildTimeSpanObject(),
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
@@ -530,9 +527,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
+
     if (params.featured_image === '/assets/leaf-grey.png'){
       params.featured_image = null;
     }
+
+    return params;
+  };
+
+  $scope.submitForm = function () {
+    $scope.newGuide.sending = true;
+
+    var params = buildParametersFromScope();
+
     if ($scope.newGuide._id){
       // In this case the guide already existed,
       // so we need to put, not to post.

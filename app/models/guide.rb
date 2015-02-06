@@ -13,7 +13,8 @@ class Guide
   belongs_to :crop, counter_cache: true
   belongs_to :user
   has_many :stages
-  # has_many :requirements
+
+  embeds_one :time_span, cascade_callbacks: true, as: :timed
 
   field :name
   field :location

@@ -14,8 +14,15 @@
   background-color: $of-light + hsl(0, 0, 10%);
   z-index: 0;
 
-  &::-moz-selection { background: transparent; }
-  /*&::selection*/
+  &::-moz-selection,
+  &::selection {
+    background: transparent;
+  }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   .seasons {
     z-index: 1;

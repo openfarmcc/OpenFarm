@@ -17,9 +17,9 @@
   <div class="plantLifetime lifetime"
        data-drag="true"
        jqyoui-draggable="{animate:true}"
-       data-jqyoui-options="{axis: 'x',containment: 'parent',cancel:'.drag-left,.drag-right'}">
+       data-jqyoui-options="{axis: 'x',containment: 'parent', grid: [dayWidth * 7, 20], cancel:'.drag-left,.drag-right'}">
        <span class="drag-left"
-             lifetime-change-left></span>
+             lifetime-change="left"></span>
        <span ng-if="creating">
         Drag to set plant lifetime
        </span>
@@ -27,7 +27,7 @@
         Plant's Lifetime
        </span>
        <span class="drag-right"
-             lifetime-change-right></span>
+             lifetime-change="right"></span>
 
   </div>
 </div>

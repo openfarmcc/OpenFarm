@@ -64,7 +64,7 @@
                               <li>
                                   <%= link_to t('application.create_guide'), new_guide_path %>
 
-                                  <%= link_to t('guides.my_guides'), guides_path %>
+                                  <%= link_to t('guides.index.my_guides'), guides_path %>
 
                                   <%= link_to t('application.user_settings'), edit_user_registration_path %>
                                   <%= link_to t('application.manage_gardens'), users_gardens_path(current_user) %>
@@ -143,6 +143,11 @@
       </div>
     <% end %>
     <%= yield %>
+
+
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js' %>
+
+    <%= javascript_include_tag 'angular/angular-dragdrop.min.js' %>
 
     <%# <%= render 'shared/footer' %>
     <%# Controller specific end JS %>

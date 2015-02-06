@@ -4,8 +4,9 @@ var openFarmApp = angular.module('openFarmApp', [
   'ngS3upload',
   'ngDragDrop',
   'openFarmModule'
-
 ]);
+
+
 
 var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'

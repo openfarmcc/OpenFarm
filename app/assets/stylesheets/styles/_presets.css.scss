@@ -38,6 +38,13 @@
   content: $glyph;
 }
 
+@mixin grey-inset(){
+  background-color: whitesmoke;
+  border-radius: 3px;
+  box-shadow: inset 0px 3px 0 rgb(239, 239, 239);
+  border: 1px solid rgb(239, 239, 239);
+}
+
 
 /*
 
@@ -332,12 +339,9 @@ textarea {
  */
 
 .loading-content{
-  background-color: whitesmoke;
+  @include grey-inset();
   text-align: center;
   padding: 2rem;
-  border-radius: 3px;
-  box-shadow: inset 0px 3px 0 rgb(239, 239, 239);
-  border: 1px solid rgb(239, 239, 239);
   color: rgb(187, 187, 187);
   margin-bottom: 1rem;
 }

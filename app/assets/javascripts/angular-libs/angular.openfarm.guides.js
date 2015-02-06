@@ -43,35 +43,50 @@ openFarmModule.factory('guideService', ['$http',
     };
 
     var calculateStartOfYear = function(){
-      return moment('12 21', 'MM DD').year(2015);
+      // calculate year start time based on user preference/location
+      return moment('01 01', 'MM DD');
+    };
+
+    var scaleSeasonsToDays = function(){
+      // The domain is maxWidth of the seasons div. Probably could
+      // be more flexible.
+      // The range is # days in a year
+
+      var maxWidth;
+
+      maxWidth = $('.seasons').width();
+
+      var scale = {
+        'range': maxWidth,
+        'domain': moment.duration(1, 'year').asDays(),
+      };
+
+      scale.convertPositionToWeek = function(position){
+        var self = this;
+        return Math.floor((position/self.step / 7));
+      };
+
+      scale.step = scale.range / scale.domain;
+      return scale;
     };
 
     var drawTimeline = function(plantLifetime, callback){
-      var maxWidth,
-          yearLength,
-          firstDay,
+      var firstDay,
           currentDay,
           day,
           today,
           todayIndex,
           daysRemainingInYear,
           remainderDays,
-          days,
-          dayWidth;
+          days;
 
       days = [];
-      dayWidth = 0;
       today = moment();
 
-      maxWidth = $('.timeline-box').width();
-      // The domain is maxWidth
-      // The range is 364 days in a year
-      yearLength = moment.duration(1, 'year').asDays();
-      dayWidth = maxWidth/yearLength;
+      scale = scaleSeasonsToDays();
 
-      // calculate year start time based on user preference/location
       firstDay = currentDay = calculateStartOfYear();
-      for (var i = 0; i <= yearLength; i++) {
+      for (var i = 0; i <= scale.domain; i++) {
         // calculate if it's the start of the month
 
         day = {
@@ -90,19 +105,19 @@ openFarmModule.factory('guideService', ['$http',
       }
 
       // Draw the lifetime at the right spot
-      $('.plantLifetime').css('left', todayIndex * dayWidth);
-      // Deal with the overflow
-      daysRemainingInYear = yearLength - todayIndex;
-      if (daysRemainingInYear < plantLifetime){
-        $('.plantLifetime').width(daysRemainingInYear * dayWidth);
-        remainderDays = plantLifetime - daysRemainingInYear;
-        $('.timelines')
-          .append('<span class="plantLifetime overflow">');
-        $('.plantLifetime.overflow').width(remainderDays);
-      } else {
-        $('.plantLifetime').width(plantLifetime * dayWidth);
-      }
-      return callback(days, dayWidth);
+      $('.plantLifetime').css('left', 0);
+      // // Deal with the overflow
+      // daysRemainingInYear = yearLength - todayIndex;
+      // if (daysRemainingInYear < plantLifetime){
+      //   $('.plantLifetime').width(daysRemainingInYear * dayWidth);
+      //   remainderDays = plantLifetime - daysRemainingInYear;
+      //   $('.timelines')
+      //     .append('<span class="plantLifetime overflow">');
+      //   $('.plantLifetime.overflow').width(remainderDays);
+      // } else {
+        $('.plantLifetime').width(plantLifetime * scale.step);
+      // }
+      return callback(days, scale.step, scale);
     };
     return {
       'getGuide': getGuide,

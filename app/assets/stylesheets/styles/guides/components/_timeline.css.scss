@@ -5,20 +5,20 @@
  */
 
 .timeline-box {
-  user-select: none;
+  @include grey-inset();
   $height: 100px;
 
-  height: $height;
+  height: 100%;
   padding: .5rem;
 
-  .box {
-    padding-top: 0;
-    height: $height;
-  }
+  background-color: $of-light + hsl(0, 0, 10%);
+  z-index: 0;
+
+  &::-moz-selection { background: transparent; }
+  /*&::selection*/
 
   .seasons {
-    /*position: absolute;*/
-    /*width: 100%;*/
+    z-index: 1;
     height: $height;
 
     .day {
@@ -46,7 +46,7 @@
   }
 
   .timelines {
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     top: 0;
     margin-top: 1rem;

@@ -29,5 +29,5 @@ class TimeSpan
 
   # This is a way of sanely keeping a check on what functionality
   # we support at the moment. Weeks is what support for now.
-  validates :length_units, inclusion: { in: [ 'weeks' ] }
+  validates :length_units, inclusion: { in: ['weeks'] }
 end

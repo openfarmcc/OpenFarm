@@ -3,7 +3,6 @@ module Api
     skip_before_action :authenticate_from_token!, only: [:index, :show]
 
     def create
-
       # TODO: something went wrong here, this can be cleaned up.
       @outcome = Guides::CreateGuide.run(crop_id: params[:crop_id],
                                          name: params[:name],
@@ -23,9 +22,9 @@ module Api
 
     def update
       @outcome = Guides::UpdateGuide.run(attributes: params,
-                                time_span: params[:time_span],
-                                user: current_user,
-                                guide: Guide.find(params[:id]))
+                                         time_span: params[:time_span],
+                                         user: current_user,
+                                         guide: Guide.find(params[:id]))
       respond_with_mutation(:ok)
     end
   end

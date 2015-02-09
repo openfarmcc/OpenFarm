@@ -281,12 +281,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   });
 
   $scope.$watch('newGuide.time_span', function(){
-    console.log($scope.newGuide.time_span);
+    // console.log($scope.newGuide.time_span);
   });
-
-  $scope.updateTimeSpan = function(newGuide){
-
-  };
 
   var getStages = function(){
     $http.get('/api/stage_options/')
@@ -470,7 +466,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.clearCropSelection = function ($item, $model, $label) {
     $scope.newGuide.crop = null;
     $scope.crop_not_found = false;
-    console.log($scope);
 
     focus('cropSelectionCanceled');
   };
@@ -526,8 +521,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
     angular.forEach($scope.newGuide.time_span, function(val, key){
       $scope.newGuide.time_span[key] = val || undefined;
-      console.log($scope.newGuide.time_span[key]);
-    })
+    });
 
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
@@ -592,7 +586,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
-    console.log(guide);
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){

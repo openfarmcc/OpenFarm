@@ -38,6 +38,8 @@ class Guide
   # Maybe Popularity Score should be updated more frequently?
   after_save :calculate_popularity_score
 
+  accepts_nested_attributes_for :time_span
+
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end

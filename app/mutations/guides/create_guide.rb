@@ -51,9 +51,9 @@ module Guides
       @guide ||= Guide.new(attributes)
       @guide.user = user
       @guide.crop = @crop
-      @guide.save
       set_time_span
       set_featured_image_async
+      @guide.save
       @guide
     end
 

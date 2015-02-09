@@ -114,7 +114,10 @@ openFarmModule.factory('guideService', ['$http',
       //     .append('<span class="plantLifetime overflow">');
       //   $('.plantLifetime.overflow').width(remainderDays);
       // } else {
-        $('.plantLifetime').width(timespan.length * scale.step);
+
+        // This has a * 7 multiplier because we're assuming weeks.
+        $('.plantLifetime')
+          .width(parseInt(timespan.length, 10) * scale.step * 7);
       // }
       return callback(days, scale.step, scale);
     };

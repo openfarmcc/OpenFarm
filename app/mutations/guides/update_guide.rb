@@ -43,9 +43,9 @@ module Guides
     end
 
     def execute
-      set_featured_image_async
       @guide.update(attributes)
       set_time_span
+      set_featured_image_async
       @guide.save
       @guide
     end

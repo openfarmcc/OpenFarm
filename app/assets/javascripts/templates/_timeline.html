@@ -19,7 +19,10 @@
        jqyoui-draggable="{animate:true, onStop:updateTimeSpanLength(newGuide)}"
        data-jqyoui-options="{axis: 'x',containment: 'parent', grid: [dayWidth * 7, 20], cancel:'.drag-left,.drag-right'}"
        >
+
        <span class="drag-left"
+             timespan="timespan"
+             calendar-scale="calendarScale"
              lifetime-change="left"></span>
        <span ng-if="creating">
         Drag to set plant lifetime
@@ -28,7 +31,10 @@
         Plant's Lifetime
        </span>
        <span class="drag-right"
-             lifetime-change="right"></span>
+             lifetime-change="right"
+             calendar-scale="calendarScale"
+             timespan="timespan"
+             ></span>
 
   </div>
 </div>

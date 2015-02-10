@@ -7,7 +7,7 @@ module Api
       @outcome = Guides::CreateGuide.run(crop_id: params[:crop_id],
                                          name: params[:name],
                                          attributes: params,
-                                         time_span: params[:time_span],
+                                         # time_span: params[:time_span],
                                          user: current_user)
       respond_with_mutation(:created)
       unless @outcome.errors
@@ -22,7 +22,7 @@ module Api
 
     def update
       @outcome = Guides::UpdateGuide.run(attributes: params,
-                                         time_span: params[:time_span],
+                                         # time_span: params[:time_span],
                                          user: current_user,
                                          guide: Guide.find(params[:id]))
       respond_with_mutation(:ok)

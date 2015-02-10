@@ -61,4 +61,19 @@ describe Guides::CreateGuide do
     message = results.errors.message_list.first
     expect(message).to include('8 is not a valid practice.')
   end
+
+  it 'creates an associated timespan object' do
+    params[:attributes][:time_span] = {
+      start_event: 20,
+      start_event_format: '%W',
+      length: 24,
+      length_units: 'weeks'
+    }
+    results = cg.run(params)
+    expect(results.success?).to be_truthy
+    expect(results.result[:time_span]['length_units']).to include('weeks')
+    expect(results.result[:time_span]['start_event']).to eq('20')
+    expect(results.result[:time_span]['length']).to eq('24')
+    expect(results.result[:time_span]['start_event_format']).to include('%W')
+  end
 end

@@ -18,25 +18,21 @@ module Guides
           string :featured_image
           string :location
           array :practices
-          hash :time_span
-        end
-      end
-    end
-
-    optional do
-      # There has to be a better way to do this.
-      hash :time_span do
-        optional do
-          string :start_event
-          string :start_event_format
-          string :start_offset
-          string :start_offset_amount
-          string :length
-          string :length_units
-          string :end_event
-          string :end_event_format
-          string :end_offset_units
-          string :end_offset_amount
+          # There has to be a better way to do this.
+          hash :time_span do
+            optional do
+              string :start_event
+              string :start_event_format
+              string :start_offset
+              string :start_offset_amount
+              string :length
+              string :length_units
+              string :end_event
+              string :end_event_format
+              string :end_offset_units
+              string :end_offset_amount
+            end
+          end
         end
       end
     end

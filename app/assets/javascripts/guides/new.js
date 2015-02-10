@@ -203,8 +203,8 @@ openFarmApp.directive('createTimeline', ['guideService',
         timespan: '=createTimeline'
       },
       require: 'timeline',
-      controller: ['$scope', '$element',
-        function($scope, $element){
+      controller: ['$scope',
+        function($scope){
           $scope.creating = true;
 
           guideService.drawTimeline($scope.timespan,

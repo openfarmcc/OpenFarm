@@ -62,7 +62,7 @@ openFarmModule.factory('guideService', ['$http',
       };
 
       scale.convertPositionToWeek = function(position){
-        intPosition = parseInt(position, 10);
+        var intPosition = parseInt(position, 10);
         var self = this;
         return Math.floor((intPosition/self.step / 7));
       };

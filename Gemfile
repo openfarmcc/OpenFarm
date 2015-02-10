@@ -32,6 +32,8 @@ gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-ui'
+  gem 'rails-assets-angular'
   gem 'rails-assets-angular-dragdrop'
 end
 

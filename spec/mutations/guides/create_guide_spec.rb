@@ -7,9 +7,9 @@ describe Guides::CreateGuide do
     { user:    FactoryGirl.create(:user),
       crop_id: FactoryGirl.create(:crop).id.to_s,
       id:      FactoryGirl.create(:guide).id.to_s,
-      attributes: {
-        name:    'hi.',
-        } }
+      attributes: { name:    'hi.',
+                  }
+    }
   end
 
   it 'requires fields' do

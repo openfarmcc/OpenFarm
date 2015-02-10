@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require angular/angular
 //= require angular/angular-sanitize
+//= require angular-dragdrop
 //= require ng-rails-csrf
 //= require ./libs/showdown
 //= require ./libs/moment.min

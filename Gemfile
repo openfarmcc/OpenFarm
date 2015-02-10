@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
+gem 'bundler', '>= 1.7.0'
+
 gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
@@ -26,6 +28,12 @@ gem 'patron' # For searchKick
 gem 'searchkick', '~> 0.8.5'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
+
+# Asset management using bower
+# https://rails-assets.org/
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular-dragdrop'
+end
 
 group :development, :test do
   gem 'coveralls', require: false

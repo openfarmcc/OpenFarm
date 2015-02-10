@@ -62,8 +62,15 @@ openFarmModule.factory('guideService', ['$http',
       };
 
       scale.convertPositionToWeek = function(position){
+        intPosition = parseInt(position, 10);
         var self = this;
-        return Math.floor((position/self.step / 7));
+        return Math.floor((intPosition/self.step / 7));
+      };
+
+      scale.convertWeekToPosition = function(week){
+        var intWeek = parseInt(week, 10);
+        var self = this;
+        return self.step * 7 * (intWeek);
       };
 
       scale.step = scale.range / scale.domain;
@@ -104,7 +111,8 @@ openFarmModule.factory('guideService', ['$http',
       }
 
       // Draw the lifetime at the right spot
-      $('.plantLifetime').css('left', timespan.start_event);
+      $('.plantLifetime')
+        .css('left', scale.convertWeekToPosition(timespan.start_event));
       // // Deal with the overflow
       // daysRemainingInYear = yearLength - todayIndex;
       // if (daysRemainingInYear < plantLifetime){
@@ -117,7 +125,14 @@ openFarmModule.factory('guideService', ['$http',
 
         // This has a * 7 multiplier because we're assuming weeks.
         $('.plantLifetime')
-          .width(parseInt(timespan.length, 10) * scale.step * 7);
+          .width(scale.convertWeekToPosition(timespan.length));
+
+        $('.plantLifetime').on('mouseup', function(){
+          var left = $(this).css('left');
+          var scaled = scale.convertPositionToWeek(left);
+          timespan
+            .set_start_event(scaled);
+        });
       // }
       return callback(days, scale.step, scale);
     };

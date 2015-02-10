@@ -14,9 +14,10 @@
      data-drop="true"
      jqyoui-droppable
      data-jqyoui-options>
+     {{ updateTimeSpan() }}
   <div class="plantLifetime lifetime"
        data-drag="true"
-       jqyoui-draggable="{animate:true, onStop:updateTimeSpanLength(newGuide)}"
+       jqyoui-draggable="{animate:true, onStop: updateTimeSpan}"
        data-jqyoui-options="{axis: 'x',containment: 'parent', grid: [dayWidth * 7, 20], cancel:'.drag-left,.drag-right'}"
        >
 

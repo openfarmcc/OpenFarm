@@ -501,7 +501,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.createCrop = function(){
-    window.location.href = '/crops/new/?name=' + $scope.query;
+    window.location.href = '/crops/new/?source=guide&name=' + $scope.query;
   };
 
   $scope.switchToStep = function(step){

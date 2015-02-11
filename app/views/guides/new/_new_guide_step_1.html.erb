@@ -40,7 +40,9 @@
             <strong><%= t('.uh_oh') %></strong> <%= t('.not_found') %>
           </p>
           <p>
-            <%= t('.you_will_have_to') %> <a ng-click="createCrop()"><%= t('.add_one') %></a>.
+            <%= t('.you_will_have_to') %>
+            <!-- <%= link_to(t('.add_one'), controller: 'crops', action: 'new', name: '{{query}}')%> -->
+            <a ng-click="createCrop()"><%= t('.add_one') %></a>.
           </p>
         </span>
       </div>

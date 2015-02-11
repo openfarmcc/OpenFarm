@@ -27,7 +27,7 @@
       <%= f.label :height, t('crops.height') %>
       <%= f.text_field :height %>
 
-      <%= f.submit t('.save_crop'), :class => 'button', data: { disable_with: 'Saving...' } %>
+      <%= f.submit params[:source] == 'guide' ? t('.save_crop_and_create_guide') : t('.save_crop'), :class => 'button', data: { disable_with: 'Saving...' } %>
     <% end %>
     </div>
   </div>

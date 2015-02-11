@@ -89,7 +89,7 @@ openFarmModule.factory('guideService', ['$http',
       days = [];
       today = moment();
 
-      var scale = scaleSeasonsToDays();
+      scale = scaleSeasonsToDays();
 
       firstDay = currentDay = calculateStartOfYear();
       for (var i = 0; i <= scale.domain; i++) {

@@ -7,10 +7,10 @@
 @import 'styles/components/nav';
 @import 'styles/ui/icons';
 @import 'styles/alerts';
-@import 'styles/components/crop_searches/*';
-@import 'styles/components/crops/*';
-@import 'styles/components/guides/*';
-@import 'styles/components/users/*';
+@import 'styles/components/crop_searches/**/*';
+@import 'styles/components/crops/**/*';
+@import 'styles/components/guides/**/*';
+@import 'styles/components/users/**/*';
 @import 'styles/ui/compatibility_circle';
 // begin static page styles
 @import 'styles/components/pages/home';

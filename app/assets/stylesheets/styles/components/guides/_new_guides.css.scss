@@ -178,41 +178,6 @@
     width: 100%;
     display: inline-block;
 
-    .multi-choice {
-      label {
-        display: inline-block;
-      }
-
-      label input[type=checkbox], label input[type=radio]{
-        margin-bottom: 0;
-        opacity: 0;
-        width: 0;
-      }
-
-      label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
-        background-color: $of-dark;
-        color: white;
-      }
-
-      label {
-        span {
-          border-radius: 0;
-          border-right: 1px solid #CCC;
-        }
-
-        &:first-child span {
-          border-bottom-left-radius: $global-radius;
-          border-top-left-radius: $global-radius;
-        }
-      }
-
-      button.other {
-        border-radius: 0;
-        border-top-right-radius: $global-radius;
-        border-bottom-right-radius: $global-radius;
-      }
-    }
-
     label {
       font-size: 1rem;
       line-height: 1.22rem;

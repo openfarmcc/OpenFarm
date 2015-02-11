@@ -38,7 +38,7 @@ describe CropsController, :type => :controller do
     crop = FactoryGirl.attributes_for(:crop)
     user = FactoryGirl.create(:user)
     sign_in user
-    crop.update({source: 'guide'})
+    crop.update(source: 'guide')
     post 'create', crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to(

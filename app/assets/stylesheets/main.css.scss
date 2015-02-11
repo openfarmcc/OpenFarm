@@ -5,13 +5,13 @@
 @import 'styles/presets';
 @import 'styles/devise';
 @import 'styles/components/nav';
-@import 'styles/icons';
+@import 'styles/ui/icons';
 @import 'styles/alerts';
-@import 'styles/crop_searches';
-@import 'styles/crops';
-@import 'styles/guides';
-@import 'styles/users';
-@import 'styles/compatibility_circle';
+@import 'styles/components/crop_searches/*';
+@import 'styles/components/crops/*';
+@import 'styles/components/guides/*';
+@import 'styles/components/users/*';
+@import 'styles/ui/compatibility_circle';
 // begin static page styles
-@import 'styles/pages/home';
-@import 'styles/pages/styles';
+@import 'styles/components/pages/home';
+@import 'styles/components/pages/styles';

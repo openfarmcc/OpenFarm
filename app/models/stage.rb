@@ -2,6 +2,8 @@ class Stage
   include Mongoid::Document
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
 
+  embeds_one :time_span, cascade_callbacks: true, as: :timed
+
   belongs_to :guide
 
   field :name, type: String

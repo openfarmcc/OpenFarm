@@ -13,7 +13,8 @@ class Guide
   belongs_to :crop, counter_cache: true
   belongs_to :user
   has_many :stages
-  # has_many :requirements
+
+  embeds_one :time_span, cascade_callbacks: true, as: :timed
 
   field :name
   field :location
@@ -36,6 +37,8 @@ class Guide
   after_save :calculate_completeness_score
   # Maybe Popularity Score should be updated more frequently?
   after_save :calculate_popularity_score
+
+  accepts_nested_attributes_for :time_span
 
   def owned_by?(current_user)
     !!(current_user && user == current_user)

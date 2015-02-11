@@ -218,6 +218,10 @@ en:
               common_or_scientific: "Common or scientific names are okay"
               which_practices: "Which practices will you be using?"
               check_all_that_apply: "Check all that apply."
+              how_long_does_the_plant_live: |
+                How long does the plant live?
+              when_should_you_start_growing_the_plant: |
+                When should you start growing the plant?
               next_life_stages: "Next: Life Stages"
               choose_a_crop_to_continue: "Choose a crop to continue"
           new_guide_step_2:

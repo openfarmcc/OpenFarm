@@ -88,6 +88,137 @@ openFarmApp.directive('stageButtons', [
     };
 }]);
 
+openFarmApp.directive('lifetimeChange', [
+  function lifetimeChange(){
+    return {
+      restrict: 'A',
+      scope: {
+        timespan: '=timespan',
+        calendarScale: '='
+      },
+      controller: ['$scope', '$element', '$attrs',
+        function($scope, $element, $attrs){
+          var diffX = -1;
+
+          var calculateDifference = function(x, offset){
+            // calculates the offset to maintain the difference between
+            // where the user clicked and where they're dragging to.
+            return x - offset;
+          };
+
+          var jumpToWeekStarts = function(position, scale){
+            // Makes sure that the newPosition jumps to the relevant week.
+            var weekWidth = scale.step * 7;
+            return scale.convertPositionToWeek(position) * weekWidth;
+          };
+
+          var dictateLength = function(x, diffX, scale, leftOffset){
+            // A function that constrains the length based on days of the year
+            var newPosition = x - diffX;
+
+            leftOffset = leftOffset || 0;
+
+            if (newPosition >= 0 && newPosition <= scale.range - leftOffset){
+              return jumpToWeekStarts(newPosition, scale);
+            }
+            if (newPosition < 0){
+              return 0;
+            }
+            if (newPosition > scale.range - leftOffset){
+              return scale.range - leftOffset;
+            }
+          };
+
+          var lengthChangeHandler = function(e){
+            var element = e.data.element;
+            var scale = e.data.scale;
+            var direction = e.data.direction;
+            var x = e.pageX - element.parent().parent().offset().left;
+            var oldLeftX = parseInt(element.parent().css('left'), 10) || 0;
+            var oldRightX = parseInt(element.parent().css('width'), 10);
+            var newWidth = oldRightX;
+
+            if (diffX === -1){
+              var offset = (direction === 'left' ? oldLeftX : oldRightX);
+              diffX = calculateDifference(x, offset);
+            }
+            // Calculate new things based on direction;
+            if (direction === 'left'){
+
+              var newLeft = dictateLength(x, diffX, scale);
+
+              element.parent().css('left', newLeft);
+
+              // This needs to be made more functional
+              $scope
+                .timespan
+                .set_start_event(scale.convertPositionToWeek(newLeft));
+
+              var newLeftX = parseInt(element.parent().css('left'), 10);
+
+
+              // But we also need to set the new length.
+              var previousWidth = parseInt(element.parent().css('width'), 10);
+              // The new width will be the previous width minus
+              // the difference in length.
+              newWidth = previousWidth + oldLeftX - newLeftX;
+
+            } else {
+              newWidth = dictateLength(x, diffX, scale, oldLeftX);
+            }
+
+            element.parent().css('width', newWidth);
+
+            // this needs to be made more functional
+
+            $scope
+              .timespan
+              .set_length(scale.convertPositionToWeek(newWidth));
+          };
+
+          $element.on('mousedown', function(){
+            $(document).bind('mousemove.lifetime',
+              {
+                'direction': $attrs.lifetimeChange,
+                'element': $element,
+                'scale': $scope.calendarScale,
+                'timespan': $scope.timespan
+              },
+              lengthChangeHandler);
+          });
+
+
+          $(document).on('mouseup', function(){
+            $(document).unbind('mousemove.lifetime', lengthChangeHandler);
+          });
+        }]
+    };
+  }]);
+
+openFarmApp.directive('createTimeline', ['guideService',
+  function createTimeline(guideService){
+    return {
+      restrict: 'A',
+      scope: {
+        timespan: '=createTimeline'
+      },
+      require: 'timeline',
+      controller: ['$scope',
+        function($scope){
+          $scope.creating = true;
+
+          guideService.drawTimeline($scope.timespan,
+                                    function(days, dayWidth, scale){
+                                      $scope.days = days;
+                                      $scope.dayWidth = dayWidth;
+                                      $scope.calendarScale = scale;
+                                    });
+
+        }],
+      templateUrl: '/assets/templates/_timeline.html'
+    };
+  }]);
+
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   'guideService', 'stageService',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
@@ -106,6 +237,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     crop: undefined,
     overview: '',
     selectedStages: [],
+    time_span: {
+      'length': 24,
+      'length_units':'weeks',
+      'start_event': 21,
+      'start_event_format':'%W',
+      set_start_event: function(val){
+        this.start_event = val;
+      },
+      set_length: function(val){
+        this.length = val;
+      }
+    },
     exists: false,
     stages: [],
     practices: [
@@ -114,7 +257,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
       {slug: 'conventional', label: 'Conventional', selected: false},
       {slug: 'intensive',    label: 'Intensive',    selected: false}
-    ]
+    ],
+    how_long: 0,
+    how_long_type: 'days',
+    start_time: moment().format('MMMM')
   };
 
   $scope.$watch('newGuide.stages', function(){
@@ -154,6 +300,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         }
       });
     }
+  });
+
+  $scope.$watch('alerts.length', function(){
+    $scope.newGuide.sending = false;
   });
 
   var getStages = function(){
@@ -247,9 +397,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.featured_image = r.guide.featured_image;
         $scope.s3upload = r.guide.featured_image;
         $scope.newGuide.name = r.guide.name;
-        console.log(r.guide.location);
         $scope.newGuide.location = r.guide.location;
         $scope.newGuide.overview = r.guide.overview;
+
+        var transferTimeSpan = function(defaultTS, remoteTS){
+          var newTimeSpan = remoteTS || defaultTS;
+          newTimeSpan.set_length = defaultTS.set_length;
+          newTimeSpan.set_start_event = defaultTS.set_start_event;
+          return newTimeSpan;
+        };
+
+        $scope.newGuide.time_span = transferTimeSpan($scope.newGuide.time_span,
+                                                     r.guide.time_span);
 
         if (r.guide.practices){
           $scope.newGuide.practices.forEach(function(d){
@@ -337,7 +496,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.clearCropSelection = function ($item, $model, $label) {
     $scope.newGuide.crop = null;
     $scope.crop_not_found = false;
-    console.log($scope);
 
     focus('cropSelectionCanceled');
   };
@@ -388,14 +546,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     return returnArray;
   };
 
-  // The submit process.
-  // Get the practices and clean them up.
-  // Set up the parameters.
-  // Post! & forward if successful
+  var buildParametersFromScope = function(){
+    // Gather things in the scope and put them in parameters.
 
-  $scope.submitForm = function () {
-    console.log($scope.newGuide);
-    $scope.newGuide.sending = true;
+    angular.forEach($scope.newGuide.time_span, function(val, key){
+      $scope.newGuide.time_span[key] = val || undefined;
+    });
+
     var practices = [];
     angular.forEach($scope.newGuide.practices, function(value, key){
       if (value.selected){
@@ -404,6 +561,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }, practices);
 
     var params = {
+      time_span: $scope.newGuide.time_span,
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
@@ -411,12 +569,24 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       featured_image: $scope.newGuide.featured_image || null,
       practices: practices
     };
+
     if (params.featured_image === '/assets/leaf-grey.png'){
       params.featured_image = null;
     }
+
+    return params;
+  };
+
+  $scope.submitForm = function () {
+    $scope.newGuide.sending = true;
+
+    var params = buildParametersFromScope();
+
     if ($scope.newGuide._id){
       // In this case the guide already existed,
       // so we need to put, not to post.
+      // TODO: refactor the $scope.alerts thing
+      // so that it cancels things if things go wrong
       params._id = $scope.newGuide._id;
       guideService.updateGuide(params._id,
                                params,
@@ -429,7 +599,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  var calcStageLength = function(length, length_type){
+  var calcTimeLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
         case 'months':
@@ -452,7 +622,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         name: stage.name,
         guide_id: guide._id,
         order: stage.order,
-        stage_length: calcStageLength(stage.stage_length, stage.length_type),
+        stage_length: calcTimeLength(stage.stage_length, stage.length_type),
         environment: stage.where.filter(function(s){
             return s.selected;
           }).map(function(s){
@@ -540,9 +710,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.placeGuideUpload = function(image){
-    console.log('placing guide upload');
     $scope.newGuide.featured_image = image;
-    console.log($scope.newGuide.featured_image);
   };
 
   $scope.cancel = function(path){

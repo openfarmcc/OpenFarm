@@ -64,7 +64,7 @@
                               <li>
                                   <%= link_to t('application.create_guide'), new_guide_path %>
 
-                                  <%= link_to t('guides.my_guides'), guides_path %>
+                                  <%= link_to t('guides.index.my_guides'), guides_path %>
 
                                   <%= link_to t('application.user_settings'), edit_user_registration_path %>
                                   <%= link_to t('application.manage_gardens'), users_gardens_path(current_user) %>
@@ -147,6 +147,5 @@
     <%# <%= render 'shared/footer' %>
     <%# Controller specific end JS %>
     <%= yield(:end_js) %>
-
   </body>
 </html>

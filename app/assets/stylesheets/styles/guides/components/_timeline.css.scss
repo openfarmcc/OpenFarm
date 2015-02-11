@@ -1,0 +1,114 @@
+/*
+ * The timeline style that is used both on the show and on the edit/new
+ * pages
+ * The new styles are differentiated by a create tag.
+ */
+
+.timeline-box {
+  @include grey-inset();
+  $height: 100px;
+
+  height: 100%;
+  padding: .5rem;
+
+  background-color: $of-light + hsl(0, 0, 10%);
+  z-index: 0;
+
+  &::-moz-selection,
+  &::selection {
+    background: transparent;
+  }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .seasons {
+    z-index: 1;
+    height: $height;
+
+    .day {
+      height: $height - 2px;
+      display: inline-block;
+
+      &.first {
+        background-color: $of-light;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, .1);
+      }
+      &.today {
+        background-color: $of-green;
+        opacity: .8;
+      }
+    }
+    .month {
+      position: absolute;
+      bottom: 0px;
+      padding: 4px 6px;
+      color: $of-light;
+      user-select: none;
+    }
+  }
+
+  .timelines {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    margin-top: 1rem;
+    width: 100%;
+
+    .overflow {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+.plantLifetime {
+  cursor: pointer;
+  opacity: .8;
+  text-align: center;
+  color: white;
+  font-size: .8rem;
+  padding-top: .1rem;
+  height: 1.5rem;
+  position: relative;
+  border-radius: $global-radius;
+  background-color: $of-green;
+  transition: opacity .2s;
+
+  .creating & {
+    height: 2rem;
+    border: dashed 2px $of-green;
+    background-color: rgba(106, 168, 79, 0.44);
+    color: #111;
+  }
+
+  & .drag-left, & .drag-right {
+    width: 2rem;
+    height: 100%;
+    display: inline-block;
+    background-color: $of-green;
+    top: 0;
+    position: absolute;
+    border-radius: $global-radius;
+    cursor: ew-resize;
+  }
+
+  & .drag-left {
+    left: 0;
+    cursor: w-resize;
+  }
+
+  & .drag-right {
+    right: 0;
+    cursor: e-resize;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

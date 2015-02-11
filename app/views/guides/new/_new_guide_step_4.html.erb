@@ -1,4 +1,4 @@
-<section name="step-4" class="step" ng-show="step === 4">
+<section name="step-4" class="step" ng-if="step === 4">
   <div class="instructions">
     <h1>
       <%= t('.almost_done') %>
@@ -42,6 +42,12 @@
       <div class="columns large-8 medium-8">
         <textarea ng-model="newGuide.overview">
         </textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="timeline-box large-12 columns large-centered"
+           create-timeline="newGuide.time_span"
+           >
       </div>
     </div>
     <div class="button-wrapper row">

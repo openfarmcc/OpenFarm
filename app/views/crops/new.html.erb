@@ -1,6 +1,6 @@
-<div class="small-12 columns">
+<div class="small-12 columns new-crop">
   <div class="row">
-    <div class="large-8 medium-10 small-12 small-centered columns">
+    <div class="medium-8 small-12 small-centered columns">
       <h1>Add a new crop!</h1>
       <%= form_for @crop do |f| %>
       <%= f.label :name, 'Crop Name' %>
@@ -27,7 +27,9 @@
       <%= f.label :height, t('crops.height') %>
       <%= f.text_field :height %>
 
-      <%= f.submit t('.save_crop'), :class => 'button', data: { disable_with: 'Saving...' } %>
+      <%= f.hidden_field 'source', value: params[:source] %>
+
+      <%= f.submit params[:source] == 'guide' ? t('.save_crop_and_create_guide') : t('.save_crop'), :class => 'button', data: { disable_with: 'Saving...' } %>
     <% end %>
     </div>
   </div>

@@ -23,10 +23,22 @@ describe CropsController, :type => :controller do
     expect(response.status).to eq(200)
   end
 
-  it 'Should direct to create guide page after successful crop creation' do
+  it 'Should direct to view crop page after successful crop creation' do
     crop = FactoryGirl.attributes_for(:crop)
     user = FactoryGirl.create(:user)
     sign_in user
+    post 'create', crop: crop
+    expect(response.status).to eq(302)
+    expect(response).to redirect_to(controller: 'crops',
+                                    action: 'show',
+                                    id: assigns(:crop).id)
+  end
+
+  it 'should redirect to create guide page when source is guide page' do
+    crop = FactoryGirl.attributes_for(:crop)
+    user = FactoryGirl.create(:user)
+    sign_in user
+    crop.update({source: 'guide'})
     post 'create', crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to(

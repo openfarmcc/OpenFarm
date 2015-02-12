@@ -6,8 +6,6 @@ var openFarmApp = angular.module('openFarmApp', [
   'openFarmModule'
 ]);
 
-
-
 var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
@@ -109,6 +107,17 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectOverflowCount = $attrs
             .multiSelectOverflowCount || 3;
           $scope.multiSelectId = $attrs.multiSelectId;
+
+          $scope.$watch('options', function(){
+            $scope.othered = $scope.options
+              .reduce(function(returned, current, index){
+                if (index > $scope.multiSelectOverflowCount){
+                  return returned || current.selected;
+                } else {
+                  return false;
+                }
+              });
+          }, true);
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',
     };

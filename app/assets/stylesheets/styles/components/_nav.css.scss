@@ -18,11 +18,16 @@ html, body {
 
   .header-search{
     max-width: 400px;
+    width: 47%;
   }
 
-  @media only screen and (max-width: 40.062em){
+  @media #{$small-only}{
+
+    // This is a bit hacky.
     .header-search{
       width: 100%;
+      margin-top: -2rem;
+      margin-left: 1rem;
     }
   }
 

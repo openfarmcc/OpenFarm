@@ -150,7 +150,8 @@ en:
       one: "1 crop"
       other: "%{count} crops"
     new:
-      save_crop: "Save Crop and Create Guide"
+      save_crop: "Save Crop Information"
+      save_crop_and_create_guide: "Save Crop Information and Create Guide"
     edit:
       save_crop: "Save Crop"
   crop_searches:

@@ -19,9 +19,12 @@ class CropsController < ApplicationController
   def create
     @crop = Crop.new(crops_params)
     authorize @crop
-    if @crop.save
+    if @crop.save && params[:crop][:source] == 'guide'
       redirect_to(controller: 'guides', action: 'new',
                   crop_id: @crop.id)
+    elsif @crop.save
+      redirect_to(controller: 'crops', action: 'show',
+                  id: @crop.id)
     else
       render :new
     end

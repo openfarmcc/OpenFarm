@@ -21,4 +21,12 @@ class GuidesController < ApplicationController
       redirect_to @guide
     end
   end
+
+  def destroy
+    @guide = current_user.guides.find(params[:id])
+
+    @guide.destroy
+
+    redirect_to guides_path
+  end
 end

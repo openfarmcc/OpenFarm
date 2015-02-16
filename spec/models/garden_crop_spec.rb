@@ -12,4 +12,10 @@ describe GardenCrop do
     expect(gc.garden.id).to eq(garden.id)
     expect(gc.persisted?).to eq(true)
   end
+
+  it 'reindexes guides' do
+    expect(Guide).to receive(:reindex)
+
+    FactoryGirl.create(:garden, user: FactoryGirl.create(:user))
+  end
 end

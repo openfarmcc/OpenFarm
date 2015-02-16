@@ -24,6 +24,8 @@ GEM
       rack-test (~> 0.6.2)
     active_model_serializers (0.9.3)
       activemodel (>= 3.2)
+    activejob_backport (0.0.3)
+      activesupport (>= 4.0.0)
     activemodel (4.0.2)
       activesupport (= 4.0.2)
       builder (~> 3.1.0)
@@ -239,8 +241,8 @@ GEM
       rails-assets-angular (~> 1.0)
       rails-assets-jquery-ui
     rails-assets-jquery (2.1.3)
-    rails-assets-jquery-ui (1.11.2)
-      rails-assets-jquery (>= 1.6)
+    rails-assets-jquery-ui (1.11.3)
+      rails-assets-jquery (>= 1.7)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -363,6 +365,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activejob_backport
   aws-sdk (~> 1.55.0)
   bcrypt
   better_errors

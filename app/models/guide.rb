@@ -2,7 +2,19 @@ class Guide
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
-  searchkick
+  searchkick callbacks: :async, merge_mappings: true, mappings: {
+    guide: {
+      properties: {
+        compatibilities: {
+          type: 'nested',
+          properties: {
+            user_id: { type: 'string' },
+            score: { type: 'integer' }
+          }
+        }
+      }
+    }
+  }
 
   is_impressionable counter_cache: true,
                     column_name: :impressions_field,
@@ -45,7 +57,26 @@ class Guide
   end
 
   def search_data
-    as_json only: [:name, :overview, :crop_id]
+    {
+      name: name,
+      overview: overview,
+      crop_id: crop_id,
+      compatibilities: compatibilities
+    }
+  end
+
+  def compatibilities
+    return @compatibilities if defined?(@compatibilities)
+
+    @compatibilities = []
+
+    User.each do |user|
+      @compatibilities << {
+        user_id: user.id.to_s, score: compatibility_score(user).to_i
+      }
+    end
+
+    @compatibilities
   end
 
   def basic_needs(current_user)

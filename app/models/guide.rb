@@ -48,59 +48,63 @@ class Guide
     as_json only: [:name, :overview, :crop_id]
   end
 
-  def basic_needs
-    if !user.gardens.empty?
-      # We should probably store these in the DB
-      basic_needs = [{ name: 'Sun / Shade',
-                       slug: 'sun-shade',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.average_sun
-                     }, {
-                       name: 'Location',
-                       slug: 'location',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.type
-                     }, {
-                       name: 'Soil Type',
-                       slug: 'soil',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.soil_type
-                     }, {
-                       name: 'Practices',
-                       slug: 'practices',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.growing_practices
-                     }]
+  def basic_needs(current_user)
+    return nil unless current_user
+    return nil if current_user.gardens.empty?
 
-      # Still have to implement:
-      # pH Range, Temperature, Water Use, Practices,
-      # Time Commitment, Physical Ability, Time of Year
+    # We should probably store these in the DB
+    basic_needs = [{ name: 'Sun / Shade',
+                     slug: 'sun-shade',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.average_sun
+                   }, {
+                     name: 'Location',
+                     slug: 'location',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.type
+                   }, {
+                     name: 'Soil Type',
+                     slug: 'soil',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.soil_type
+                   }, {
+                     name: 'Practices',
+                     slug: 'practices',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.growing_practices
+                   }]
 
-      find_overlap_in basic_needs
-    end
+    # Still have to implement:
+    # pH Range, Temperature, Water Use, Practices,
+    # Time Commitment, Physical Ability, Time of Year
+
+    find_overlap_in basic_needs
   end
 
-  def compatibility_score
-    if !user.gardens.empty?
-      count = 0
-      sum = basic_needs.inject(0) do |memo, n|
-        count += 1
-        n[:percent] ? memo + n[:percent] : memo
-      end
-      (sum.to_f / count * 100).round
+  def compatibility_score(current_user)
+    return nil unless current_user
+    return nil if current_user.gardens.empty?
+
+    count = 0
+
+    sum = basic_needs(current_user).inject(0) do |memo, n|
+      count += 1
+      n[:percent] ? memo + n[:percent] : memo
     end
+
+    (sum.to_f / count * 100).round
   end
 
-  def compatibility_label
-    score = compatibility_score
+  def compatibility_label(current_user)
+    score = compatibility_score(current_user)
 
     if score.nil?
       return ''

@@ -5,8 +5,8 @@ describe 'Announcements' do
 
   it 'shows announcements if they are within the current date span' do
     Announcement.create(message: 'Test Announcement',
-                        starts_at: Date.today.prev_day,
-                        ends_at: Date.today.next_day)
+                        starts_at: Time.zone.now.to_date.prev_day,
+                        ends_at: Time.zone.now.to_date.next_day)
     visit root_path
     expect(page).to have_content('Test Announcement')
   end
@@ -20,8 +20,8 @@ describe 'Announcements' do
 
   it 'shows announcements that have been updated since the hide time' do
     announcement = Announcement.create(message: 'Test Announcement',
-                        starts_at: Date.today.prev_day,
-                        ends_at: Date.today.next_day)
+                        starts_at: Time.zone.now.to_date.prev_day,
+                        ends_at: Time.zone.now.to_date.next_day)
     visit root_path
     click_link '×'
     visit root_path

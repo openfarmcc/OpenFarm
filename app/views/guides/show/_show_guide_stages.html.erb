@@ -25,30 +25,29 @@
       </tab-heading>
       <div class="columns small-12">
         <div class="row actions">
-          <div class="action-photos columns small-6 medium-4">
-            <div class="canopy"
-              ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
-              ng-attr-alt="{{ guide.name }}"
-              style="background-image: url(<%= image_path("baren_field.jpg") %>)">
-            </div>
-            <div class="canopy"
-              ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
-              ng-attr-alt="{{ guide.name }}"
-              style="background-image: url({{ guide.featured_image }})">
-            </div>
+
+          <!-- This is hacked from the Guide creation flow. It should be rebuilt
+            as a normal image, but I don't know how to do that and have it
+            change with the selected stage. Also, if the stage has photos, it
+            should display those (the graphic should only be a placeholder). I
+            imagine that when the user clicks through the Stage Actions, the
+            image displayed would corresponding to that Action (once we have
+            Action images of course ;p) -->
+
+          <div class="columns small-6 medium-4 action-photos stage-wrapper"
+            ng-class="{end: $last}">
+            <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+            </label>
           </div>
-          <div class="actions columns small-6 medium-8">
-            <div class="row">
-              <div class="columns small-12 action-content">
-                <h4 class="action-name">{{ stage.name }} Overview</h4>
-                <p class="action-description"></p>
-              </div>
-              <div class="columns small-12 action-content"
-                ng-repeat="action in stage.stage_actions">
-                <h4 class="action-name" ng-bind="action.name"></h4>
-                <p class="action-description" ng-bind="action.overview"></p>
-              </div>
-            </div>
+
+          <div class="columns small-6 medium-8 action-content">
+            <h4 class="action-name">{{ stage.name }} Overview</h4>
+            <p class="action-description"></p>
+          </div>
+          <div class="columns small-6 medium-8 action-content"
+            ng-repeat="action in stage.stage_actions">
+            <h4 class="action-name" ng-bind="action.name"></h4>
+            <p class="action-description" ng-bind="action.overview"></p>
           </div>
         </div>
       </div>

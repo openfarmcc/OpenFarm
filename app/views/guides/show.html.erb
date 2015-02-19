@@ -33,14 +33,14 @@
         <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
 
         <div class="canopy"
-         ng-if="stage.featured_image.indexOf('leaf-grey') > -1"
-         ng-attr-alt="{{ stage.name }}"
+         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+         ng-attr-alt="{{ guide.name }}"
          style="background-image: url(<%= image_path("baren_field.jpg") %>)">
         </div>
         <div class="canopy"
-         ng-if="stage.featured_image.indexOf('leaf-grey') === -1"
-         ng-attr-alt="{{ stage.name }}"
-         style="background-image: url({{ stage.icon }})">
+         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+         ng-attr-alt="{{ guide.name }}"
+         style="background-image: url({{ guide.featured_image }})">
         </div>
 
       </div>

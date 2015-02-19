@@ -191,6 +191,61 @@
   /* Stages in completed guides */
   .stages {
 
+    /* This is shared with guide creation steps, and should be DRYed up */
+
+    .stage-wrapper {
+      display: inline-block;
+      overflow: hidden;
+      height: 300px;
+      margin-bottom: 3%;
+    }
+
+    .stage-option {
+      display: block;
+      border-radius: 4px;
+      padding: .25rem;
+      border: solid 1px #DFDFDF;
+      width: 100%;
+      height: 100%;
+    }
+
+    .stage-option, .chosen-stage > .bubble {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+
+      background-image: url('stages/other_sm.png');
+
+
+      &.Preparation {
+        background-image: url('stages/prep_sm.png');
+      }
+      &.Sow {
+        background-image: url('stages/sow_sm.png');
+      }
+      &.Germination {
+        background-image: url('stages/germination_sm.png');
+      }
+      &.Seedling {
+        background-image: url('stages/sprouting_sm.png');
+      }
+      &.Juvenile {
+        background-image: url('stages/juvenile_sm.png');
+      }
+      &.Adult {
+        background-image: url('stages/adult_sm.png');
+      }
+      &.Flowering {
+        background-image: url('stages/flowering_sm.png');
+      }
+      &.Fruit {
+        background-image: url('stages/fruiting_sm.png');
+      }
+      &.Dormant {
+        background-image: url('stages/dormant_sm.png');
+      }
+    }
+
     .action-content {
       margin-top: 1rem;
     }
@@ -220,7 +275,7 @@
     }
 
     .tabs-content {
-      background-color: white;
+      background-color: #f6f6f6;
     }
 
     .tabs dd > a {

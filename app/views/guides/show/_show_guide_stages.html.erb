@@ -7,11 +7,7 @@
       <%= t('.title') %>
       <i class="right" ng-class="{'fa fa-angle-down': true, 'open': stage.isopen}"></i>
     </h2>
-
   </accordion-heading>
-  <p class="section-text">
-    <%= t('.each_stage_with_details') %>
-  </p>
   <div class="box"
     ng-if="guide.stages.length === 0">
     <div class="row">

@@ -266,7 +266,7 @@ en:
               the_small_details: "Basic needs are the small details that make sure this crop grow successfully."
               no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
           show_guide_stages:
-              title: "Stages"
+              title: "Life Stages"
               each_stage_with_details: "Each stage of growing this crop, with details"
           show_guide_timeline:
               title: "Timeline"

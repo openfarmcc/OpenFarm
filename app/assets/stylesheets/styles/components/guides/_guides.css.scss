@@ -38,9 +38,10 @@
 
 .guides {
   position: relative;
+  background-color: #f6f6f6;
 
   .guide-header {
-    margin-top: 20px;
+    padding-top: 20px;
     border-bottom: rgb(148, 148, 148) 3px solid;
   }
 
@@ -86,8 +87,8 @@
 
     .right {
       position: absolute;
-      top: 1rem;
-      right: 0;
+      top: 3rem;
+      right: 2.5rem;
     }
   }
 
@@ -136,7 +137,6 @@
 
     // angle icon
     i.fa {
-      margin-right: 30px;
       opacity: 0;
       @include single-transition(transform, 0.2s, ease-out);
 
@@ -162,11 +162,13 @@
 
     h2, h5 {
       display: inline-block;
-      font-weight: 100;
+      font-weight: 600;
+      color: #333;
+      margin: 0.3rem 0;
     }
 
     .title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
 
     .author {
@@ -177,15 +179,17 @@
 
   .accordion dd > .content {
     padding: 0;
-    margin-bottom: 50px;
+  }
+
+  .accordion dd.accordion-navigation {
+    margin-top: 2rem;
   }
 
   .actions {
-    border: 1px solid #CCCCCC;
 
     .action {
       padding: 10px 40px;
-      border-top: 2px solid #333333;
+      border-top: 2px solid rgb(148, 148, 148);
     }
   }
 
@@ -201,6 +205,24 @@
     h3{
       font-size: 1rem;
       margin: 0;
+    }
+
+    .tabs {
+      background-color: #efefef;
+    }
+
+    .tabs-content {
+      background-color: white;
+    }
+
+    .tabs dd > a {
+      padding: 0.75rem 1.5rem;
+    }
+
+    .tabs > dd.active > a,
+    .tabs > dd.active > a > tab-heading > h3 {
+      background-color: #4a4a4a;
+      color: white;
     }
 
     /* Action labels in completed guides look different */

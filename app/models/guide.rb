@@ -56,28 +56,32 @@ class Guide
                        overlap: [],
                        total: [],
                        percent: 0,
-                       user: user.gardens.first.average_sun
+                       user: user.gardens.first.average_sun,
+                       garden: user.gardens.first.name
                      }, {
                        name: 'Location',
                        slug: 'location',
                        overlap: [],
                        total: [],
                        percent: 0,
-                       user: user.gardens.first.type
+                       user: user.gardens.first.type,
+                       garden: user.gardens.first.name
                      }, {
                        name: 'Soil Type',
                        slug: 'soil',
                        overlap: [],
                        total: [],
                        percent: 0,
-                       user: user.gardens.first.soil_type
+                       user: user.gardens.first.soil_type,
+                       garden: user.gardens.first.name
                      }, {
                        name: 'Practices',
                        slug: 'practices',
                        overlap: [],
                        total: [],
                        percent: 0,
-                       user: user.gardens.first.growing_practices
+                       user: user.gardens.first.growing_practices,
+                       garden: user.gardens.first.name
                      }]
 
       # Still have to implement:

@@ -29,10 +29,11 @@
              form-id="stage.slug"
              form-stage="stage">
           <span ng-bind="stageForms[$index].$valid"></span>
-          <div class="instructions">
-            <h2>{{ stage.name }}</h2>
+          <div class="instructions text-center">
+            <h2>{{ stage.name }} Stage Overview</h2>
             <h3><%= t('.what_should_people_know_about_this_stage') %></h3>
           </div>
+          <hr/>
           <div class="row">
             <div class="left-half columns large-4">
               <div class="row image">
@@ -148,15 +149,16 @@
           <div class="row actions"
                ng-init="stage.activeAction = stage.stage_action_options[0]">
             <div class="columns small-12">
-              <div class="instructions">
+              <div class="instructions text-center">
                 <h2>
-                  <%= t('.actions_header') %>
+                  {{ stage.name }} <%= t('.actions_header') %>
                 </h2>
                 <h3>
                   <%= t('.actions_instructions') %>
                 </h3>
               </div>
             </div>
+            <hr/>
             <div class="columns large-3 medium-4">
               <ul>
                 <li ng-repeat="action in stage.stage_action_options"

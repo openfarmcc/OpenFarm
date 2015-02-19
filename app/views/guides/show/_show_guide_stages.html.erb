@@ -23,9 +23,19 @@
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>
       </tab-heading>
-      <div class="actions columns small-12">
-        <div class="row">
+      <div class="columns small-12">
+        <div class="row actions">
           <div class="action-photos columns small-6 medium-4">
+            <div class="canopy"
+              ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+              ng-attr-alt="{{ guide.name }}"
+              style="background-image: url(<%= image_path("baren_field.jpg") %>)">
+            </div>
+            <div class="canopy"
+              ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+              ng-attr-alt="{{ guide.name }}"
+              style="background-image: url({{ guide.featured_image }})">
+            </div>
           </div>
           <div class="actions columns small-6 medium-8">
             <div class="row">

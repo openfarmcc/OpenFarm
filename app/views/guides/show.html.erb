@@ -12,7 +12,7 @@
       <div class="small-12 columns">
         <div>
           <h1 class="guide-name">{{ guide.name }}</h1>
-          <h2 class="by-line"><%= t('.guide_by') %> {{ guide.user.display_name }}</h2>
+          <h2 class="guide-author"><%= t('.guide_by') %> {{ guide.user.display_name }}</h2>
         </div>
         <div class="guide-controls">
           <% if @guide.owned_by?(current_user) %>
@@ -33,14 +33,14 @@
         <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
 
         <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
-         ng-attr-alt="{{ guide.name }}"
+         ng-if="stage.featured_image.indexOf('leaf-grey') > -1"
+         ng-attr-alt="{{ stage.name }}"
          style="background-image: url(<%= image_path("baren_field.jpg") %>)">
         </div>
         <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
-         ng-attr-alt="{{ guide.name }}"
-         style="background-image: url({{ guide.featured_image }})">
+         ng-if="stage.featured_image.indexOf('leaf-grey') === -1"
+         ng-attr-alt="{{ stage.name }}"
+         style="background-image: url({{ stage.icon }})">
         </div>
 
       </div>

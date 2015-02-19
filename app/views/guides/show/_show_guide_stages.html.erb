@@ -19,16 +19,26 @@
     </div>
   </div>
   <tabset class="tabs">
-
     <tab ng-repeat="stage in guide.stages | orderBy:'order'">
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>
       </tab-heading>
       <div class="actions columns small-12">
         <div class="row">
-          <div class="action columns small-12" ng-repeat="action in stage.stage_actions">
-            <h3 ng-bind="action.name"></h3>
-            <p ng-bind="action.overview"></p>
+          <div class="action-photos columns small-6 medium-4">
+          </div>
+          <div class="actions columns small-6 medium-8">
+            <div class="row">
+              <div class="columns small-12 action-content">
+                <h4 class="action-name">{{ stage.name }} Overview</h4>
+                <p class="action-description"></p>
+              </div>
+              <div class="columns small-12 action-content"
+                ng-repeat="action in stage.stage_actions">
+                <h4 class="action-name" ng-bind="action.name"></h4>
+                <p class="action-description" ng-bind="action.overview"></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

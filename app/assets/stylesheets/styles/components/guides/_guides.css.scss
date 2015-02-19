@@ -50,12 +50,7 @@
   }
 
   .box {
-    margin: 2rem inherit;
     padding-top: 1rem;
-  }
-
-  .stages .box {
-    margin-top: 0;
   }
 
   .empty {
@@ -188,21 +183,34 @@
   .actions {
 
     .action {
-      padding: 10px 40px;
-      border-top: 2px solid rgb(148, 148, 148);
+      padding: 1.5rem;
+      border-top: 1px solid rgb(148, 148, 148);
     }
   }
 
   /* Stages in completed guides */
-  .stages{
-    .image img{
+  .stages {
+
+    .action-content {
+      margin-top: 1rem;
+    }
+
+    .action-content {
+      border-bottom: #CDCDCD 2px solid;
+    }
+
+    .action-content:last-child {
+      border-bottom: none;
+    }
+
+    .image img {
       height: 170px;
       background-size: cover;
       background-position: center;
       width: 100%;
     }
 
-    h3{
+    h3 {
       font-size: 1rem;
       margin: 0;
     }

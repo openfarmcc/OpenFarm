@@ -39,6 +39,15 @@
 .guides {
   position: relative;
 
+  .guide-header {
+    margin-top: 20px;
+    border-bottom: rgb(148, 148, 148) 3px solid;
+  }
+
+  .guide-name {
+    float: left;
+  }
+
   .box {
     margin: 2rem inherit;
     padding-top: 1rem;
@@ -83,6 +92,23 @@
   }
 
   .actual-requirements {
+    table {
+      border-spacing: 0px;
+      border-collapse: collapse;
+
+      tr {
+        border-bottom: #CDCDCD 2px solid;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td:nth-child(1) {
+        border-right: #CDCDCD 2px solid;
+      }
+    }
+
     ul {
       list-style: none;
     }
@@ -95,11 +121,6 @@
     }
   }
 
-  .edit-link{
-    float: right;
-    margin-top: .9rem;
-  }
-
   .overview{
     margin: 1rem auto;
   }
@@ -109,19 +130,25 @@
   }
 
   dd.accordion-navigation > a{
-    border-top: rgb(148, 148, 148) 1px solid;
+    border-bottom: rgb(148, 148, 148) 3px solid;
     background-color: transparent;
-    transition: .5s background-color;
+    transition: .2s background-color;
 
     // angle icon
     i.fa {
-      margin-right: 8px;
+      margin-right: 30px;
+      opacity: 0;
       @include single-transition(transform, 0.2s, ease-out);
 
       &.open {
-        @include transform(rotate(90deg));
+        @include transform(rotate(180deg));
       }
     }
+  }
+
+  /* Show Arrow on Hover */
+  .accordion > .accordion-navigation > a:hover i.fa{
+    opacity: 100;
   }
 
   /* Section accordion styling */
@@ -149,7 +176,8 @@
   }
 
   .accordion dd > .content {
-    padding: 0 0.935rem;
+    padding: 0;
+    margin-bottom: 50px;
   }
 
   .actions {
@@ -197,64 +225,75 @@
     margin-bottom: 1rem;
   }
 
-  .title{
-    .guide-name {
-      text-transform: capitalize;
-    }
+  .guide-controls {
+    float: right;
+    margin-top: 18px;
+  }
 
-    .by-line {
-      font-size: 1rem;
-      color: #666666;
-    }
+  .edit-link{
+    float: right;
+    margin-left: 20px;
+  }
 
-    .guide-controls {
-      float: right;
-      text-align: right;
-    }
+  .guide-name {
+    text-transform: capitalize;
+  }
+
+  .by-line {
+    font-size: 1rem;
+    color: #666666;
+    float: left;
+    margin-top: 30px;
+    margin-left: 20px;
+  }
+
+  .compatibility-circle-container {
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
   }
 
   .requirements {
-    .box {
-      padding: 0;
+    padding: 0;
 
-      table {
-        width: 100%;
-        height: 100%;
+    table {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border: none;
+
+      tr {
+
+        &.low {
+          background: $compatibility-low-color-bg;
+        }
+
+        &.medium {
+          background: $compatibility-med-color-bg;
+        }
+
+        &.high {
+          background: $compatibility-high-color-bg;
+        }
+
+        td {
+          padding: 16px;
+        }
+      }
+
+      p {
         margin: 0;
+      }
 
-        tr {
-
-          &.low {
-            background: $compatibility-low-color-bg;
-          }
-
-          &.medium {
-            background: $compatibility-med-color-bg;
-          }
-
-          &.high {
-            background: $compatibility-high-color-bg;
-          }
-
-          td {
-            padding: 16px;
-          }
+      .basic-need-name {
+        span {
+          padding-left: 10px;
+          font-weight: 600;
         }
+      }
 
-        p {
-          margin: 0;
-        }
-
-        .basic-need-name {
-          span {
-            padding-left: 10px;
-            font-weight: 600;
-          }
-        }
-
-        .icon {
-          margin-right: 8px;
-        }
+      .icon {
+        margin-right: 8px;
       }
     }
   }

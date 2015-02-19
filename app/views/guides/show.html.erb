@@ -8,52 +8,60 @@
 
     <div alerts ng-model="alerts"></div>
 
-    <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
-    <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
-         ng-attr-alt="{{ guide.name }}"
-         style="background-image: url(<%= image_path("baren_field.jpg") %>)">
-    </div>
-    <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
-         ng-attr-alt="{{ guide.name }}"
-         style="background-image: url({{ guide.featured_image }})">
-    </div>
-
-    <div class="row title">
-      <div class="columns large-10 large-centered">
+    <div class="row row wide-row guide-header">
+      <div class="small-12 columns">
+        <div>
+          <h1 class="guide-name">{{ guide.name }}</h1>
+          <h2 class="by-line"><%= t('.guide_by') %> {{ guide.user.display_name }}</h2>
+        </div>
         <div class="guide-controls">
-          <% if current_user %>
-            <%= render 'gardens/add_to_gardens.html' %>
-          <% end %>
-
           <% if @guide.owned_by?(current_user) %>
             <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
           <% end %>
+          <% if current_user %>
+            <%= render 'gardens/add_to_gardens.html' %>
+          <% end %>
         </div>
-        <div>
-          <h1 class="guide-name">{{ guide.name }}</h1>
-          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
+        <div class="compatibility-circle-container">
+          <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
         </div>
       </div>
     </div>
-    <div class="row overview">
-      <div class="columns large-10 large-centered">
+    <div class="row row wide-row overview">
+      <div class="columns small-6 medium-4">
+
+        <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
+
+        <div class="canopy"
+         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+         ng-attr-alt="{{ guide.name }}"
+         style="background-image: url(<%= image_path("baren_field.jpg") %>)">
+        </div>
+        <div class="canopy"
+         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+         ng-attr-alt="{{ guide.name }}"
+         style="background-image: url({{ guide.featured_image }})">
+        </div>
+
+      </div>
+      <div class="columns small-12 medium-8">
+        <h4 class="title" id="overview">
+          <%= t('.overview') %>
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
     </div>
-    <div class="row content">
-    <div class="large-10 small-10 columns small-centered">
+    <div class="row row wide-row content">
+    <div class="small-12 columns">
     <accordion close-others="false">
-
-    <%= render 'guides/show/show_guide_timeline' %>
-
-    <%#= render 'guides/show/show_guide_statistics' %>
 
     <%= render 'guides/show/show_guide_requirements' %>
 
+    <%= render 'guides/show/show_guide_timeline' %>
+
     <%= render 'guides/show/show_guide_stages' %>
+
+    <%#= render 'guides/show/show_guide_statistics' %>
 
     </div>
   </div>

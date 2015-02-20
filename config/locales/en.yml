@@ -257,7 +257,7 @@ en:
               call_your_guide_something: "Call your guide something"
       show:
           guide_by: "Guide by"
-          compatibility_based_on: "Based on"
+          compatibility_based_on: "Based on your growing practices and"
           show_guide_statistics:
               title: "Statistics"
               once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."

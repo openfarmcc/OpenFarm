@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="row wide-row overview">
-      <div class="columns small-12 medium-5">
+      <div class="columns small-12 large-5">
 
         <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
 
@@ -41,27 +41,22 @@
         </div>
 
       </div>
-      <div class="columns small-8 medium-4">
+      <div class="columns small-8 large-5">
         <h4 class="title" id="overview">
           <%= t('.overview') %>
         </h4>
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
-      <div class="small-4 medium-3 large-2 columns">
+      <div class="small-4 large-2 columns">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>
-        <div class="compatibility-circle-container">
+        <div class="compatibility-circle-container"
+          ng-repeat="garden in currentUser.gardens"
+          tooltip="<%= t('.compatibility_based_on') %> &quot;{{ garden.name }}&quot;">
           <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
         </div>
-        <p class="compatible-garden text-center">
-          <em><%= t('.compatibility_based_on') %>
-            <span ng-repeat="garden in currentUser.gardens">
-            "{{ garden.name }}"
-            </span>
-          </em>
-        </p>
       </div>
     </div>
     <div class="row wide-row content">

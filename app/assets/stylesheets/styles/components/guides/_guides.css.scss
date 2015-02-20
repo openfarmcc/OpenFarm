@@ -133,8 +133,8 @@
 
   .actual-requirements {
     table {
-      border-spacing: 0px;
       border-collapse: collapse;
+      border-spacing: 0;
 
       tr {
         border-bottom: #cdcdcd 2px solid;
@@ -166,8 +166,8 @@
   }
 
   dd.accordion-navigation > a{
-    border-bottom: rgb(148, 148, 148) 3px solid;
     background-color: transparent;
+    border-bottom: rgb(148, 148, 148) 3px solid;
     transition: 0.2s background-color;
 
     // angle icon

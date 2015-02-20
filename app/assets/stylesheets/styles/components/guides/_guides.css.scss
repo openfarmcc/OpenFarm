@@ -287,6 +287,8 @@
       }
     }
 
+    /* End need DRYing */
+
     .action-content {
       margin-top: 1rem;
     }
@@ -327,6 +329,17 @@
     .tabs > dd.active > a > tab-heading > h3 {
       background-color: #4a4a4a;
       color: white;
+    }
+
+    /* Allow horizontal scrolling of Life Stage tabs */
+    dl.tabs {
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    .tabs dd {
+      display: inline-block;
+      float: none;
     }
 
     /* Action labels in completed guides look different */

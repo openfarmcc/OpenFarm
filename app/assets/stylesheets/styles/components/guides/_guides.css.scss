@@ -196,9 +196,9 @@
     @include accordion-header-color($of-orange);
 
     h2, h5 {
+      color: #333;
       display: inline-block;
       font-weight: 600;
-      color: #333;
       margin: 0.3rem 0;
     }
 
@@ -207,8 +207,8 @@
     }
 
     .author {
-      margin-left: 20px;
       display: inline-block;
+      margin-left: 20px;
     }
   }
 
@@ -224,8 +224,8 @@
     margin-top: 1rem;
 
     .action {
-      padding: 1.5rem;
       border-top: 1px solid rgb(148, 148, 148);
+      padding: 1.5rem;
     }
   }
 
@@ -236,25 +236,25 @@
 
     .stage-wrapper {
       display: inline-block;
-      overflow: hidden;
       height: 300px;
       margin-bottom: 3%;
+      overflow: hidden;
     }
 
     .stage-option {
-      display: block;
-      border-radius: 4px;
-      padding: .25rem;
       border: solid 1px #dfdfdf;
-      width: 100%;
+      border-radius: 4px;
+      display: block;
       height: 100%;
+      padding: .25rem;
+      width: 100%;
     }
 
     .stage-option, .chosen-stage > .bubble {
+      background-image: url('stages/other_sm.png');
+      background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center center;
-      background-image: url('stages/other_sm.png');
 
 
       &.Preparation {
@@ -297,8 +297,8 @@
     // End need DRYing
 
     .action-content {
-      margin-top: 1rem;
       border-bottom: #cdcdcd 2px solid;
+      margin-top: 1rem;
     }
 
     .action-content:last-child {
@@ -306,9 +306,9 @@
     }
 
     .image img {
-      height: 170px;
-      background-size: cover;
       background-position: center;
+      background-size: cover;
+      height: 170px;
       width: 100%;
     }
 
@@ -365,10 +365,10 @@
   background-color: #f6f6f6;
 
   .compatibility-circle-container {
-    margin-top: 1rem;
     margin-bottom: 1rem;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
     width: 50px;
   }
 
@@ -376,10 +376,10 @@
     padding: 0;
 
     table {
-      width: 100%;
+      border: none;
       height: 100%;
       margin: 0;
-      border: none;
+      width: 100%;
 
       tr {
 
@@ -406,8 +406,8 @@
 
       .basic-need-name {
         span {
-          padding-left: 10px;
           font-weight: 600;
+          padding-left: 10px;
         }
       }
 
@@ -450,10 +450,10 @@
 */
 
 .markdown-help-text {
-  font-size: .8rem;
   display: block;
-  margin-top: .25rem;
+  font-size: .8rem;
   margin-bottom: 1rem;
+  margin-top: .25rem;
 }
 
 .markdown {

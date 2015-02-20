@@ -73,15 +73,15 @@
     }
 
     .guide-name {
-      color: white;
-      position: absolute;
+      @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
       bottom: -408px;
+      color: #ffffff;
       left: 0px;
+      padding-bottom: 10px;
+      padding-top: 50px;
+      position: absolute;
       text-align: center;
       width: 100%;
-      padding-top: 50px;
-      padding-bottom: 10px;
-      @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
     }
   }
 
@@ -172,8 +172,8 @@
 
     // angle icon
     i.fa {
-      opacity: 0;
       @include single-transition(transform, 0.2s, ease-out);
+      opacity: 0;
 
       &.open {
         @include transform(rotate(180deg));
@@ -181,7 +181,7 @@
     }
   }
 
-  /* Show Arrow on Hover */
+  // Show Arrow on Hover
   .accordion > .accordion-navigation > a:hover i.fa{
     opacity: 100;
   }
@@ -232,7 +232,7 @@
   /* Stages in completed guides */
   .stages {
 
-    /* This is shared with guide creation steps, and should be DRYed up */
+    // This is shared with guide creation steps, and should be DRYed up
 
     .stage-wrapper {
       display: inline-block;
@@ -254,40 +254,47 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
-
       background-image: url('stages/other_sm.png');
 
 
       &.Preparation {
         background-image: url('stages/prep_sm.png');
       }
+
       &.Sow {
         background-image: url('stages/sow_sm.png');
       }
+
       &.Germination {
         background-image: url('stages/germination_sm.png');
       }
+
       &.Seedling {
         background-image: url('stages/sprouting_sm.png');
       }
+
       &.Juvenile {
         background-image: url('stages/juvenile_sm.png');
       }
+
       &.Adult {
         background-image: url('stages/adult_sm.png');
       }
+
       &.Flowering {
         background-image: url('stages/flowering_sm.png');
       }
+
       &.Fruit {
         background-image: url('stages/fruiting_sm.png');
       }
+
       &.Dormant {
         background-image: url('stages/dormant_sm.png');
       }
     }
 
-    /* End need DRYing */
+    // End need DRYing
 
     .action-content {
       margin-top: 1rem;
@@ -328,10 +335,10 @@
     .tabs > dd.active > a,
     .tabs > dd.active > a > tab-heading > h3 {
       background-color: #4a4a4a;
-      color: white;
+      color: #ffffff;
     }
 
-    /* Allow horizontal scrolling of Life Stage tabs */
+    // Allow horizontal scrolling of Life Stage tabs
     dl.tabs {
       overflow: auto;
       white-space: nowrap;
@@ -342,7 +349,7 @@
       float: none;
     }
 
-    /* Action labels in completed guides look different */
+    // Action labels in completed guides look different
     .actions li {
       color: #333333;
       border-color: #333333;
@@ -355,7 +362,6 @@
     }
   }
 }
-
 
 .show-guide {
 

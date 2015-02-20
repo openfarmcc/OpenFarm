@@ -67,7 +67,8 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
                   break;
                 case 'Practices':
                   b.tooltip = 'Medium compatibility with "' + b.garden +
-                  '" because you follow ' + b.user + ' and other practices there';
+                  '" because you follow ' + b.user + ' and other
+                   practices there';
                   break;
               }
             }

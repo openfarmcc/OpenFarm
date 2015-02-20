@@ -191,7 +191,7 @@
   .accordion > dd.active > a,
   .accordion > dd.active > a.title-wrapper {
     display: block;
-    padding: .2rem 1rem;
+    padding: 0.2rem 1rem;
 
     @include accordion-header-color($of-orange);
 
@@ -246,7 +246,7 @@
       border-radius: 4px;
       display: block;
       height: 100%;
-      padding: .25rem;
+      padding: 0.25rem;
       width: 100%;
     }
 
@@ -451,9 +451,9 @@
 
 .markdown-help-text {
   display: block;
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
-  margin-top: .25rem;
+  margin-top: 0.25rem;
 }
 
 .markdown {
@@ -469,6 +469,6 @@
   }
 
   h4, h5, h6 {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }

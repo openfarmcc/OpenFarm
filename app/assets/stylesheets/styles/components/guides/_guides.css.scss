@@ -107,10 +107,10 @@
   }
 
   .canopy {
-    height: 400px;
     /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
     background-position: center 20%;
     background-size: cover;
+    height: 400px;
   }
 
   .title {
@@ -126,8 +126,8 @@
 
     .right {
       position: absolute;
-      top: 3rem;
       right: 2.5rem;
+      top: 3rem;
     }
   }
 

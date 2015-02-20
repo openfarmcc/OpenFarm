@@ -43,7 +43,7 @@
     padding-top: 20px;
 
     .canopy{
-    margin-top: 20px;
+      margin-top: 20px;
     }
 
     .guide-controls{
@@ -137,7 +137,7 @@
       border-collapse: collapse;
 
       tr {
-        border-bottom: #CDCDCD 2px solid;
+        border-bottom: #cdcdcd 2px solid;
       }
 
       tr:last-child {
@@ -145,7 +145,7 @@
       }
 
       td:nth-child(1) {
-        border-right: #CDCDCD 2px solid;
+        border-right: #cdcdcd 2px solid;
       }
     }
 
@@ -168,7 +168,7 @@
   dd.accordion-navigation > a{
     border-bottom: rgb(148, 148, 148) 3px solid;
     background-color: transparent;
-    transition: .2s background-color;
+    transition: 0.2s background-color;
 
     // angle icon
     i.fa {
@@ -245,7 +245,7 @@
       display: block;
       border-radius: 4px;
       padding: .25rem;
-      border: solid 1px #DFDFDF;
+      border: solid 1px #dfdfdf;
       width: 100%;
       height: 100%;
     }
@@ -298,10 +298,7 @@
 
     .action-content {
       margin-top: 1rem;
-    }
-
-    .action-content {
-      border-bottom: #CDCDCD 2px solid;
+      border-bottom: #cdcdcd 2px solid;
     }
 
     .action-content:last-child {

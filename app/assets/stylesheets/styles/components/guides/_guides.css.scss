@@ -39,13 +39,59 @@
 .guides {
   position: relative;
 
-  .guide-header {
+  .large-guide {
     padding-top: 20px;
-    border-bottom: rgb(148, 148, 148) 3px solid;
+
+    .canopy{
+    margin-top: 20px;
+    }
+
+    .guide-controls{
+      margin-right: 0px;
+    }
+
+    .header {
+      border-bottom: rgb(148, 148, 148) 3px solid;
+    }
+
+    .guide-name {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .guide-author {
+      font-size: 1rem;
+      color: #666666;
+      float: left;
+      margin-top: 30px;
+    }
   }
 
-  .guide-name {
-    float: left;
+  .small-guide {
+    .canopy {
+      height: 400px;
+    }
+
+    .guide-name {
+      color: white;
+      position: absolute;
+      bottom: -408px;
+      left: 0px;
+      text-align: center;
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 10px;
+      @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+    }
+  }
+
+  .guide-controls {
+    margin: 1rem;
+    float: right;
+  }
+
+  .margin-top {
+    margin-top: 0.7rem;
   }
 
   .box {
@@ -61,8 +107,7 @@
   }
 
   .canopy {
-    height: 300px;
-    margin-bottom: 1rem;
+    height: 400px;
     /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
     background-position: center 20%;
     background-size: cover;
@@ -114,10 +159,6 @@
     h2 {
       font-size: 1.4rem;
     }
-  }
-
-  .overview{
-    margin: 1rem auto;
   }
 
   .content {
@@ -306,34 +347,6 @@
 .show-guide {
 
   background-color: #f6f6f6;
-
-  .canopy{
-    height: 300px;
-    margin-bottom: 1rem;
-  }
-
-  .guide-controls {
-    float: right;
-    margin-top: 18px;
-    margin-bottom: 15px;
-  }
-
-  .edit-link{
-    float: right;
-    margin-left: 20px;
-  }
-
-  .guide-name {
-    text-transform: capitalize;
-    margin-right: 20px;
-  }
-
-  .guide-author {
-    font-size: 1rem;
-    color: #666666;
-    float: left;
-    margin-top: 30px;
-  }
 
   .compatibility-circle-container {
     margin-top: 1rem;

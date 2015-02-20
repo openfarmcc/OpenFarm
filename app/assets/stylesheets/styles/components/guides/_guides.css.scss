@@ -335,9 +335,11 @@
   }
 
   .compatibility-circle-container {
-    margin-top: 10px;
-    margin-right: 20px;
-    float: right;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50px;
   }
 
   .requirements {

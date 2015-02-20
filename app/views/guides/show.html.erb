@@ -8,7 +8,7 @@
 
     <div alerts ng-model="alerts"></div>
 
-    <div class="row row wide-row guide-header">
+    <div class="row wide-row guide-header">
       <div class="small-12 columns">
         <div>
           <h1 class="guide-name">{{ guide.name }}</h1>
@@ -22,13 +22,10 @@
             <%= render 'gardens/add_to_gardens.html' %>
           <% end %>
         </div>
-        <div class="compatibility-circle-container">
-          <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
-        </div>
       </div>
     </div>
-    <div class="row row wide-row overview">
-      <div class="columns small-6 medium-4">
+    <div class="row wide-row overview">
+      <div class="columns small-12 medium-5">
 
         <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
 
@@ -44,14 +41,30 @@
         </div>
 
       </div>
-      <div class="columns small-12 medium-8">
+      <div class="columns small-8 medium-4">
         <h4 class="title" id="overview">
           <%= t('.overview') %>
+        </h4>
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
+      <div class="small-4 medium-3 large-2 columns">
+        <h4 class="title text-center" id="compatibility">
+          <%= t('.compatibility') %>
+        </h4>
+        <div class="compatibility-circle-container">
+          <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
+        </div>
+        <p class="compatible-garden text-center">
+          <em><%= t('.compatibility_based_on') %>
+            <span ng-repeat="garden in currentUser.gardens">
+            "{{ garden.name }}"
+            </span>
+          </em>
+        </p>
+      </div>
     </div>
-    <div class="row row wide-row content">
+    <div class="row wide-row content">
     <div class="small-12 columns">
     <accordion close-others="false">
 

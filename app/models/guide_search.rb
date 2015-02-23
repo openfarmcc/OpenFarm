@@ -47,9 +47,9 @@ class GuideSearch
     Guide.search(query, where: filter, order: order)
   end
 
-  def method_missing(meth, *args)
+  def method_missing(meth, *args, &block)
     if results.respond_to?(meth)
-      results.send(meth, *args)
+      results.send(meth, *args, &block)
     else
       super
     end

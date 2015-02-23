@@ -23,9 +23,8 @@ class GuidesController < ApplicationController
   end
 
   def destroy
-    @guide = current_user.guides.find(params[:id])
-
-    @guide.destroy
+    @outcome = Guides::DestroyGuide.run(params,
+                                        user: current_user)
 
     redirect_to guides_path
   end

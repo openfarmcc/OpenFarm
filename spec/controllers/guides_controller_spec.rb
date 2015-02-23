@@ -81,9 +81,10 @@ describe GuidesController do
     user = FactoryGirl.create(:user)
     guide = FactoryGirl.create(:guide)
     sign_in user
-    delete 'destroy', id: guide.id
 
-    expect(response.status).to eq(404)
+    expect do
+      delete 'destroy', id: guide.id
+    end.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
 
   it 'shows a 404 on DocumentNotFound' do

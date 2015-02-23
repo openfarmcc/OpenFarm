@@ -256,6 +256,8 @@ en:
               done: "Done! Publish your Guide"
               call_your_guide_something: "Call your guide something"
       show:
+          edit_guide: " Edit Guide"
+          delete_guide: " Delete Guide"
           guide_by: "Guide by"
           compatibility_based_on: "Based on"
           show_guide_statistics:

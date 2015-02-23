@@ -31,7 +31,7 @@ OpenFarm::Application.routes.draw do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops, only: [:index, :show, :update]
     resources :users, only: [:show]
-    resources :guides, only: [:create, :show, :update]
+    resources :guides, only: [:create, :show, :update, :destroy]
     resources :gardens, only: [:create, :show, :update, :destroy] do
       resources :garden_crops, only: [:index,
                                       :show,

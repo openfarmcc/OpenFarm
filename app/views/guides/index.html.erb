@@ -15,6 +15,9 @@
           <td>
             <%= link_to(icon('edit'), {:action => 'edit', :id => guide.id}, :class=>'action show') %>
           </td>
+          <td>
+            <%= link_to(icon('trash'), guide_path(guide), :method => 'delete', :class=>'action show') %>
+          </td>
         </tr>
       <% end %>
     </table>

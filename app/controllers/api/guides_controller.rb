@@ -27,5 +27,11 @@ module Api
                                          guide: Guide.find(params[:id]))
       respond_with_mutation(:ok)
     end
+
+    def destroy
+      @outcome = Guides::DestroyGuide.run(params,
+                                          user: current_user)
+      respond_with_mutation(:no_content)
+    end
   end
 end

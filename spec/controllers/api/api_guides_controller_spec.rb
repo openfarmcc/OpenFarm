@@ -45,7 +45,7 @@ describe Api::GuidesController, type: :controller do
   it 'create guide should return an error when wrong info is passed' do
     sign_in FactoryGirl.create(:user)
     data = { overview: 'A tiny pixel test image.',
-               crop_id: FactoryGirl.create(:crop).id.to_s }
+             crop_id: FactoryGirl.create(:crop).id.to_s }
     post 'create', guide: data
     expect(response.status).to eq(422)
   end
@@ -72,6 +72,33 @@ describe Api::GuidesController, type: :controller do
     put :update, id: guide.id, overview: 'updated'
     expect(response.status).to eq(401)
     expect(response.body).to include('only modify guides that you created')
+  end
+
+  describe 'destroy' do
+    it 'deletes guides' do
+      garden = FactoryGirl.create(:guide, user: user)
+      sign_in user
+      old_length = Guide.all.length
+      delete :destroy, id: garden.id, format: :json
+      new_length = Guide.all.length
+      expect(new_length).to eq(old_length - 1)
+    end
+
+    it 'returns an error when a guide does not exist' do
+      sign_in user
+      delete :destroy, id: 1, format: :json
+      expect(json['stage']).to include(
+        'Could not find a guide with id')
+      expect(response.status).to eq(422)
+    end
+
+    it 'only destroys guides owned by the user' do
+      sign_in user
+      delete :destroy, id: FactoryGirl.create(:guide)
+      expect(json['error']).to include(
+        'can only destroy guides that belong to you.')
+      expect(response.status).to eq(401)
+    end
   end
 
   it 'validates URL paramters' do

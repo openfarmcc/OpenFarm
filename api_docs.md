@@ -213,6 +213,9 @@
 ```
 
 
+# DELETE /api/guides/5452268f736d61b45d530000
+
+
 
 # GET /api/requirement_options
 

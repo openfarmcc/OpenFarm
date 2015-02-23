@@ -1,9 +1,11 @@
-<accordion-group is-open="stat.isopen"
- class="accordion-navigation statistics">
+<accordion-group
+  ng-init="stat.isopen = true"
+  is-open="stat.isopen"
+  class="accordion-navigation statistics">
   <accordion-heading class="title-wrapper">
-    <h2 class="title">
-      <i ng-class="{'fa fa-angle-right': true, 'open': stat.isopen}"></i>
+    <h2 class="title" id="statistics">
       <%= t('.title') %>
+      <i class="right" ng-class="{'fa fa-angle-down': true, 'open': stat.isopen}"></i>
     </h2>
   </accordion-heading>
   <p class="section-text">

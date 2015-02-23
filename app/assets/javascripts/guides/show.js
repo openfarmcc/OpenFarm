@@ -33,17 +33,20 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             if (b.percent < 0.5){
               switch (b.name){
                 case 'Sun / Shade':
-                  b.tooltip = 'Low because you have ' + b.user;
+                  b.tooltip = 'Low compatibility with "' + b.garden +
+                  '" because it gets ' + b.user;
                   break;
                 case 'Location':
-                  b.tooltip = 'Low because your garden is ' + b.user;
+                  b.tooltip = 'Low compatibility with "' + b.garden +
+                  '" because it is ' + b.user;
                   break;
                 case 'Soil Type':
-                  b.tooltip = 'Low because you have ' + b.user + ' soil.';
+                  b.tooltip = 'Low compatibility with "' + b.garden +
+                  '" because it has ' + b.user + ' soil';
                   break;
                 case 'Practices':
-                  b.tooltip = 'You don\'t follow these practices in any '+
-                              'of your gardens';
+                  b.tooltip = 'Low compatibility with "' + b.garden +
+                  '" because you don\'t follow ' + b.user + ' practices there';
                   break;
               }
             }
@@ -51,17 +54,21 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             if (b.percent >= 0.5 && b.percent < 0.75){
               switch (b.name){
                 case 'Sun / Shade':
-                  b.tooltip = 'Medium because you have ' + b.user;
+                  b.tooltip = 'Medium compatibility with "' + b.garden +
+                  '" because it gets ' + b.user;
                   break;
                 case 'Location':
-                  b.tooltip = 'Medium because your garden is ' + b.user;
+                  b.tooltip = 'Medium compatibility with "' + b.garden +
+                  '" because it is ' + b.user;
                   break;
                 case 'Soil Type':
-                  b.tooltip = 'Medium because you have ' + b.user + ' soil.';
+                  b.tooltip = 'Medium compatibility with "' + b.garden +
+                  '" because it has ' + b.user + ' soil';
                   break;
                 case 'Practices':
-                  b.tooltip = 'You follow some of these practices in '+
-                              'your gardens';
+                  b.tooltip = 'Medium compatibility with "' + b.garden +
+                  '" because you follow ' + b.user +
+                  ' and other practices there';
                   break;
               }
             }
@@ -69,17 +76,20 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
             if (b.percent >= 0.75){
               switch (b.name){
                 case 'Sun / Shade':
-                  b.tooltip = 'High because you have ' + b.user;
+                  b.tooltip = 'High compatibility with "' + b.garden +
+                  '" because it gets ' + b.user;
                   break;
                 case 'Location':
-                  b.tooltip = 'High because your garden is ' + b.user;
+                  b.tooltip = 'High compatibility with "' + b.garden +
+                  '" because it is ' + b.user;
                   break;
                 case 'Soil Type':
-                  b.tooltip = 'High because you have ' + b.user + ' soil.';
+                  b.tooltip = 'High compatibility with "' + b.garden +
+                  '" because it has ' + b.user + ' soil';
                   break;
                 case 'Practices':
-                  b.tooltip = 'You follow some of these practices in '+
-                              'your gardens';
+                  b.tooltip = 'High compatibility with "' + b.garden +
+                  '" because you follow only ' + b.user + ' practices there';
                   break;
               }
             }

@@ -1475,8 +1475,8 @@ angular.module( 'mm.foundation.tooltip', [ 'mm.foundation.position', 'mm.foundat
   // The default options tooltip and popover.
   var defaultOptions = {
     placement: 'top',
-    animation: true,
-    popupDelay: 0
+    animation: false,
+    popupDelay: 500
   };
 
   // Default hide triggers for each show trigger

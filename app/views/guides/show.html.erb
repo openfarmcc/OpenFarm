@@ -8,52 +8,126 @@
 
     <div alerts ng-model="alerts"></div>
 
-    <!-- TODO: we should to stop storing leaf-grey in guides and handle this logic in a better way -->
-    <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
-         ng-attr-alt="{{ guide.name }}"
-         style="background-image: url(<%= image_path("baren_field.jpg") %>)">
-    </div>
-    <div class="canopy"
-         ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
-         ng-attr-alt="{{ guide.name }}"
-         style="background-image: url({{ guide.featured_image }})">
-    </div>
+    <!-- These two 'Tops of Guides' for different screen sizes are pretty similar
+    and it may be possible/worth DRYing it up. I'm not sure. I imagine that as the
+    site gets more complex, it is easier to develop fairly separated HTML in order
+    to have more freedom in rearranging elements, and an easier time styling.
+    Open to feedback! :) -->
 
-    <div class="row title">
-      <div class="columns large-10 large-centered">
-        <div class="guide-controls">
-          <% if current_user %>
-            <%= render 'gardens/add_to_gardens.html' %>
-          <% end %>
-
-          <% if @guide.owned_by?(current_user) %>
-            <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
-          <% end %>
-        </div>
-        <div>
+    <!-- Top of Guide for large screens -->
+    <div class="row wide-row large-guide show-for-large-up">
+      <div class="large-12 columns">
+        <div class="large-12 columns header">
           <h1 class="guide-name">{{ guide.name }}</h1>
-          <h2 class="by-line"> <%= t('.guide_by') %> <span>{{ guide.user.display_name }}</span></h2>
+          <h2 class="guide-author"><%= t('.guide_by') %> {{ guide.user.display_name }}</h2>
+          <div class="guide-controls">
+            <% if @guide.owned_by?(current_user) %>
+              <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row overview">
-      <div class="columns large-10 large-centered">
+      <div class="columns large-5">
+
+        <!-- TODO: we should to stop storing leaf-grey in guides and handle this
+        logic in a better way -->
+        <div class="canopy"
+          ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+          ng-attr-alt="{{ guide.name }}"
+          style="background-image: url(<%= image_path("baren_field.jpg") %>)">
+
+        </div>
+        <div class="canopy"
+          ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+          ng-attr-alt="{{ guide.name }}"
+          style="background-image: url({{ guide.featured_image }})">
+        </div>
+      </div>
+      <div class="columns large-5 margin-top">
+        <h4 class="title" id="overview">
+          <%= t('.overview') %>
+        </h4>
         <div class="markdown" markdown="guide.overview">
         </div>
       </div>
+      <div class="columns large-2 margin-top">
+        <h4 class="title text-center" id="compatibility">
+          <%= t('.compatibility') %>
+        </h4>
+        <div class="compatibility-circle-container"
+          ng-repeat="garden in currentUser.gardens"
+          tooltip="<%= t('.compatibility_based_on') %> &quot;{{ garden.name }}&quot;">
+          <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
+        </div>
+        <div class="add-to-garden center">
+          <% if current_user %>
+            <%= render 'gardens/add_to_gardens.html' %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="row content">
-    <div class="large-10 small-10 columns small-centered">
+
+    <!-- Top of Guide for small screens -->
+    <div class="row wide-row small-guide show-for-medium-down">
+
+      <!-- TODO: we should to stop storing leaf-grey in guides and handle this
+      logic in a better way -->
+      <div class="canopy"
+        ng-if="guide.featured_image.indexOf('leaf-grey') > -1"
+        ng-attr-alt="{{ guide.name }}"
+        style="background-image: url(<%= image_path("baren_field.jpg") %>)">
+        <div class="large-12 columns">
+          <h1 class="guide-name">{{ guide.name }}</h1>
+        </div>
+        <div class="guide-controls">
+          <% if @guide.owned_by?(current_user) %>
+          <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'},
+            :class=>'button tiny secondary edit-link') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="canopy"
+        ng-if="guide.featured_image.indexOf('leaf-grey') === -1"
+        ng-attr-alt="{{ guide.name }}"
+        style="background-image: url({{ guide.featured_image }})">
+      </div>
+
+      <div class="columns small-8 margin-top">
+        <h4 class="title" id="overview">
+          <%= t('.overview') %>
+        </h4>
+        <div class="markdown" markdown="guide.overview">
+        </div>
+      </div>
+      <div class="columns small-4 margin-top">
+        <h4 class="title text-center" id="compatibility">
+          <%= t('.compatibility') %>
+        </h4>
+        <div class="compatibility-circle-container"
+          ng-repeat="garden in currentUser.gardens"
+          tooltip="<%= t('.compatibility_based_on') %> &quot;{{ garden.name }}&quot;">
+          <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
+        </div>
+        <div class="add-to-garden center">
+          <% if current_user %>
+            <%= render 'gardens/add_to_gardens.html' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row wide-row content">
+    <div class="small-12 columns">
     <accordion close-others="false">
-
-    <%= render 'guides/show/show_guide_timeline' %>
-
-    <%#= render 'guides/show/show_guide_statistics' %>
 
     <%= render 'guides/show/show_guide_requirements' %>
 
+    <%= render 'guides/show/show_guide_timeline' %>
+
     <%= render 'guides/show/show_guide_stages' %>
+
+    <%#= render 'guides/show/show_guide_statistics' %>
 
     </div>
   </div>

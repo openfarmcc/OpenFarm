@@ -26,7 +26,7 @@ class Guide
   validates_presence_of :user, :crop, :name
 
   has_mongoid_attached_file :featured_image,
-                            default_url: '/assets/leaf-grey.png'
+                            default_url: '/assets/baren_field.jpg'
   validates_attachment_size :featured_image, in: 1.byte..25.megabytes
   validates_attachment :featured_image,
                        content_type: { content_type:

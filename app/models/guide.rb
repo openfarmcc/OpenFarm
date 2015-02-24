@@ -2,7 +2,19 @@ class Guide
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
-  searchkick
+  searchkick callbacks: :async, merge_mappings: true, mappings: {
+    guide: {
+      properties: {
+        compatibilities: {
+          type: 'nested',
+          properties: {
+            user_id: { type: 'string' },
+            score: { type: 'integer' }
+          }
+        }
+      }
+    }
+  }
 
   is_impressionable counter_cache: true,
                     column_name: :impressions_field,
@@ -45,66 +57,89 @@ class Guide
   end
 
   def search_data
-    as_json only: [:name, :overview, :crop_id]
+    {
+      name: name,
+      overview: overview,
+      crop_id: crop_id,
+      compatibilities: compatibilities
+    }
   end
 
-  def basic_needs
-    if !user.gardens.empty?
-      # We should probably store these in the DB
-      basic_needs = [{ name: 'Sun / Shade',
-                       slug: 'sun-shade',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.average_sun,
-                       garden: user.gardens.first.name
-                     }, {
-                       name: 'Location',
-                       slug: 'location',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.type,
-                       garden: user.gardens.first.name
-                     }, {
-                       name: 'Soil Type',
-                       slug: 'soil',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.soil_type,
-                       garden: user.gardens.first.name
-                     }, {
-                       name: 'Practices',
-                       slug: 'practices',
-                       overlap: [],
-                       total: [],
-                       percent: 0,
-                       user: user.gardens.first.growing_practices,
-                       garden: user.gardens.first.name
-                     }]
+  def compatibilities
+    return @compatibilities if defined?(@compatibilities)
 
-      # Still have to implement:
-      # pH Range, Temperature, Water Use, Practices,
-      # Time Commitment, Physical Ability, Time of Year
+    @compatibilities = []
 
-      find_overlap_in basic_needs
+    User.each do |user|
+      @compatibilities << {
+        user_id: user.id.to_s, score: compatibility_score(user).to_i
+      }
     end
+
+    @compatibilities
   end
 
-  def compatibility_score
-    if !user.gardens.empty?
-      count = 0
-      sum = basic_needs.inject(0) do |memo, n|
-        count += 1
-        n[:percent] ? memo + n[:percent] : memo
-      end
-      (sum.to_f / count * 100).round
+  def basic_needs(current_user)
+    return nil unless current_user
+    return nil if current_user.gardens.empty?
+
+    # We should probably store these in the DB
+    basic_needs = [{ name: 'Sun / Shade',
+                     slug: 'sun-shade',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.average_sun,
+                     garden: current_user.gardens.first.name
+                   }, {
+                     name: 'Location',
+                     slug: 'location',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.type,
+                     garden: current_user.gardens.first.name
+                   }, {
+                     name: 'Soil Type',
+                     slug: 'soil',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.soil_type,
+                     garden: current_user.gardens.first.name
+                   }, {
+                     name: 'Practices',
+                     slug: 'practices',
+                     overlap: [],
+                     total: [],
+                     percent: 0,
+                     user: current_user.gardens.first.growing_practices,
+                     garden: current_user.gardens.first.name
+                   }]
+
+    # Still have to implement:
+    # pH Range, Temperature, Water Use, Practices,
+    # Time Commitment, Physical Ability, Time of Year
+
+    find_overlap_in basic_needs
+  end
+
+  def compatibility_score(current_user)
+    return nil unless current_user
+    return nil if current_user.gardens.empty?
+
+    count = 0
+
+    sum = basic_needs(current_user).inject(0) do |memo, n|
+      count += 1
+      n[:percent] ? memo + n[:percent] : memo
     end
+
+    (sum.to_f / count * 100).round
   end
 
-  def compatibility_label
-    score = compatibility_score
+  def compatibility_label(current_user)
+    score = compatibility_score(current_user)
 
     if score.nil?
       return ''

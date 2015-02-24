@@ -12,15 +12,12 @@ class CropSearchesController < ApplicationController
                                   'binomial_name^10',
                                   'description'],
                          boost_by: [:guides_count]
-                         )
+                        )
     if query.empty?
       @crops = Crop.search('*', limit: 25, boost_by: [:guides_count])
     end
 
-    # Use the crop results to look-up guides
-    crop_ids = @crops.map { |crop| crop.id }
-    @guides = Guide.search('*',
-                           where: { crop_id: crop_ids })
+    @guides = GuideSearch.search('*').for_crops(@crops).with_user(current_user)
 
     render :show
   end

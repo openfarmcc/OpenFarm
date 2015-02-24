@@ -1,5 +1,5 @@
-<div class="compatibility-circle hover <%= guide.compatibility_label %>">
+<div class="compatibility-circle hover <%= guide.compatibility_label(current_user) %>">
   <span class="score">
-    <%= if (score = guide.compatibility_score) then score.round(0) else 'n/a' end %>
+    <%= if (score = guide.compatibility_score(current_user)) then score.round(0) else 'n/a' end %>
   </span>
 </div>

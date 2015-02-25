@@ -36,6 +36,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ui'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-dragdrop'
+  gem 'rails-assets-angular-foundation'
 end
 
 group :development, :test do

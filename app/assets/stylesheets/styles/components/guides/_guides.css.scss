@@ -9,7 +9,7 @@
   }
 }
 
-.new-guide-button{
+.new-guide-button {
   @include add-new-button();
   @include box-shadow(none);
   width: 100%;
@@ -42,11 +42,11 @@
   .large-guide {
     padding-top: 20px;
 
-    .canopy{
+    .canopy {
       margin-top: 20px;
     }
 
-    .guide-controls{
+    .guide-controls {
       margin-right: 0px;
     }
 
@@ -161,20 +161,20 @@
     }
   }
 
-  .edit-link{
+  .edit-link {
     float: right;
     margin-top: .9rem;
     margin-left: .9rem;
   }
 
-  .overview{
+  .overview {
     margin: 1rem auto;
   }
   .content {
     padding-bottom: 8rem;
   }
 
-  dd.accordion-navigation > a{
+  dd.accordion-navigation > a {
     background-color: transparent;
     border-bottom: rgb(148, 148, 148) 3px solid;
     transition: 0.2s background-color;

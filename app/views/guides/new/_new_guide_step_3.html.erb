@@ -166,15 +166,8 @@
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
                     {{ action.name }}
                 </li>
-                <li>
-                  <a href="#actions-modal">Add Action</a>
-                  <div id="actions-modal" class="actions-modal">
-                    <div class="small-12 columns small-centered">
-                      <i href="#close-modal" title="Close" class="fa fa-times-circle close-modal"></i>
-                      <h2 class="center">Add Actions</h2>
-                      <p>List of available actions</p>
-                    </div>
-                  </div>
+                <li ng-click="openAddActionModal()">
+                  <a>Add Action</a>
                 </li>
               </ul>
             </div>

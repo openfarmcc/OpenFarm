@@ -220,8 +220,9 @@ openFarmApp.directive('createTimeline', ['guideService',
   }]);
 
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
-  'guideService', 'stageService',
-  function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
+  'guideService', 'stageService', '$modal',
+  function newGuideCtrl($scope, $http, $filter, guideService, stageService,
+                        $modal) {
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = 1;
@@ -532,6 +533,30 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     });
   };
+
+  $scope.openAddActionModal = function(){
+    // http://pineconellc.github.io/angular-foundation/#modal
+    var modalInstance = $modal.open({
+      templateUrl: '/assets/templates/_add_action_modal.html',
+      controller: ['$scope', '$modalInstance',
+      function ($scope, $modalInstance) {
+        $scope.ok = function () {
+          $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+          $modalInstance.dismiss('cancel');
+        };
+      }],
+      keyboard: false,
+      resolve: {}
+    });
+
+    modalInstance.result.then(function () {
+    }, function () {
+      console.info('Modal dismissed at: ' + new Date());
+    });
+  }
 
   $scope.buildStageDetails = function(array, selectedArray){
     var returnArray = [];

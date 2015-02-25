@@ -83,11 +83,12 @@ en:
       delete_account_message: |
           We're sorry that you want to leave OpenFarm. Note: Deleting your
           account will permanently delete all of your user profile and garden
-          data. Your Guides will not be deleted, though the by-line will be
-          changed to 'inactive member' to protect your privacy. You will no
-          longer be able to edit or delete your Guides after deleting your
-          account. If you do not want your guides on OpenFarm any longer, you
-          must manually delete them before you delete your account.
+          data and you will no longer be able to access it. Your Guides will not
+          be deleted, though the by-line will no longer show your username in
+          order to protect your privacy. You will no longer be able to edit or
+          delete your Guides after deleting your account. If you do not want
+          your Guides on OpenFarm any longer, you must manually delete them
+          before you delete your account.
       password_confirmation: "Confirm Password"
       location: "Location"
       years_experience: "Years Experience"

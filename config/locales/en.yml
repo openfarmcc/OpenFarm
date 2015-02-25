@@ -73,17 +73,26 @@ en:
           I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
           <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
+      account_information: "Account information"
       display_name: "Username:"
       password: "New Password:"
-      current_password: |
-          "Current Password (we need your current password
-          to confirm your changes)"
+      current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
+      update: "Update account"
+      delete_account: "Delete account"
+      delete_account_message: |
+          We're sorry that you want to leave OpenFarm. Note: Deleting your
+          account will permanently delete all of your user profile and garden
+          data. Your Guides will not be deleted, though the by-line will be
+          changed to 'inactive member' to protect your privacy. You will no
+          longer be able to edit or delete your Guides after deleting your
+          account. If you do not want your guides on OpenFarm any longer, you
+          must manually delete them before you delete your account.
       password_confirmation: "Confirm Password"
       location: "Location"
       years_experience: "Years Experience"
       mailing_list: "Get (occassional) updates about OpenFarm via email"
-      delete: "Permanently delete your account."
+      delete: "Permanently delete your account"
       finish:
           welcome: "Welcome %{user}!"
           openfarm_works_best_when: "OpenFarm works best when we know the following:"

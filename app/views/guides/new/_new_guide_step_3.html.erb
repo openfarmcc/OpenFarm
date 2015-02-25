@@ -166,9 +166,11 @@
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
                     {{ action.name }}
                 </li>
-                <li ng-click="openAddActionModal()">
-                  <a>Add Action</a>
-                </li>
+                  <a class="button expand"
+                      ng-click="openAddActionModal()"
+                      name="add-action"
+                      ><%= t('.add_actions') %>
+                  </a>
               </ul>
             </div>
             <div class="columns large-9 medium-8">

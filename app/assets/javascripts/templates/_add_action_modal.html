@@ -1,4 +1,23 @@
-<h3>Add an Action!</h3>
-<p>List of available actions</p>
+<h3 class="center">Add Actions</h3>
+<hr/>
+<div class="small-12 medium-6 large-4 columns">
+  <!-- Why does this not work? Is it because this is a template not part
+  of the document that is calling it, and that document contains the current
+  stage data? -->
+  <li ng-repeat="action in stage.stage_action_options">
+      {{ action.name }}
+  </li>
+  Actions
+</div>
+<!-- How would one ng-repeat the actions into multiple columns? Oh, damn...
+It would look weird at the medium screen when the third column wraps under
+the first... Halp -->
+<div class="small-12 medium-6 large-4 columns">
+  so... many...
+</div>
+<div class="small-12 medium-6 large-4 columns">
+  actions!
+</div>
+<hr/>
 <button class="button" ng-click="ok()">Done</button>
 <a class="fa fa-times-circle close-modal" ng-click="cancel()"></a>

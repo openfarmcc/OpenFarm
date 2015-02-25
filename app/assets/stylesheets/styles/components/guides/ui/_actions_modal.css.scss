@@ -1,13 +1,13 @@
 .actions-modal {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
+  /*position: fixed;*/
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  /*top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background: rgba(0,0,0,0.5);
   z-index: 99999;
-  opacity:0;
+  opacity:0;*/
   -webkit-transition: opacity 200ms ease-in;
   -moz-transition: opacity 200ms ease-in;
   transition: opacity 200ms ease-in;
@@ -20,9 +20,9 @@
 }
 
 .actions-modal > div {
-  width: 600px;
-  position: relative;
-  margin: 20% auto;
+  /*width: 600px;*/
+  /*position: relative;*/
+  /*margin: 20% auto;*/
   padding: 1rem;
   border-radius: 5px;
   background: #f1f1f1;

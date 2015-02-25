@@ -78,7 +78,8 @@ en:
       password: "New Password:"
       current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
-      update: "Update account"
+      create_account: "Create account"
+      update_account: "Update account"
       delete_account: "Delete account"
       delete_account_message: |
           We're sorry that you want to leave OpenFarm. Note: Deleting your
@@ -93,7 +94,7 @@ en:
       location: "Location"
       years_experience: "Years Experience"
       mailing_list: "Get (occassional) updates about OpenFarm via email"
-      delete: "Permanently delete your account"
+      delete: "Permanently delete account"
       finish:
           welcome: "Welcome %{user}!"
           openfarm_works_best_when: "OpenFarm works best when we know the following:"

@@ -77,17 +77,17 @@
 
   /****
   *
-  * $REQUIREMENTS
+  * $BASIC NEEDS
   *
   ****/
 
-  .requirements{
-    .actual-requirements{
+  .basic-needs{
+    .actual-basic-needs{
       @include columns(2);
     }
   }
 
-  .requirement{
+  .basic-need{
     border-radius: 3px;
     background: #EFF1F4;
     border: 1px solid #E7E8EB;
@@ -141,7 +141,7 @@
     }
   }
 
-  .row.requirements-results{
+  .row.basic-needs-results{
     text-align: center;
     margin-top: 1rem;
   }
@@ -173,7 +173,7 @@
 
   */
   @media only screen and (max-width: 40.063em){
-    .requirements .actual-requirements{
+    .basic-needs .actual-basic-needs{
       @include columns(1);
     }
   }

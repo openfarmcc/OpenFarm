@@ -201,8 +201,8 @@ en:
               other: "Your guide has had %{count} views"
           save_guide: "Save Guide"
           if_you_are_happy_with_your_guide_so_far: "If you’re happy with your guide so far, save it!"
-          requirements: "Requirements"
-          requirements_are_the_small_details: "Requirements are the small details that make sure this crop grows successfully."
+          basic_needs: "Basic Needs"
+          basic_needs_are_the_small_details: "Basic Needs are the small details that make sure this crop grows successfully."
           if_you_do_not_know_everything_thats_okay: "If you don’t know everything, or it’s not applicable, that’s okay."
           you_have_selected: "You’ve selected: "
           you_have_not_selected_anything: "You haven’t selected anything yet."
@@ -275,10 +275,10 @@ en:
           show_guide_statistics:
               title: "Statistics"
               once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
-          show_guide_requirements:
+          show_guide_basic_needs:
               title: "Basic Needs"
-              the_small_details: "Basic needs are the small details that make sure this crop grow successfully."
-              no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
+              the_small_details: "Basic Needs are the small details that make sure this crop grow successfully."
+              no_basic_needs_yet: "The person who made this guide hasn’t added any Basic Needs yet!"
           show_guide_stages:
               title: "Life Stages"
               each_stage_with_details: "Each stage of growing this crop, with details"
@@ -288,7 +288,7 @@ en:
       crop: "Crop"
       user: "User"
       stages: "Stages"
-      requirements: "Requirements"
+      basic_needs: "Basic Needs"
       name: "Name"
       overview: "Overview"
       num_guides:

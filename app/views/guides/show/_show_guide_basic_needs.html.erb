@@ -1,7 +1,7 @@
 <accordion-group
   ng-init="r.isopen = true"
   is-open="r.isopen"
-  class="accordion-navigation requirements">
+  class="accordion-navigation basic-needs">
   <accordion-heading class="title-wrapper">
     <h2 class="title" id="basic-needs">
       <%= t('.title') %>
@@ -10,10 +10,10 @@
   </accordion-heading>
   <div class="row">
     <div ng-if="guide.basic_needs.length"
-         class="columns small-12 actual-requirements">
+         class="columns small-12 actual-basic-needs">
       <table>
         <tbody>
-          <tr ng-repeat="basicNeed in guide.basic_needs" class="requirement"
+          <tr ng-repeat="basicNeed in guide.basic_needs" class="basic-need"
               ng-class="{ 'medium' : basicNeed.percent >= .5 && basicNeed.percent < .75, 'high': basicNeed.percent >= .75, 'low' : basicNeed.percent < .5 }"
               ng-if="basicNeed.total && basicNeed.overlap"
               tooltip="{{ basicNeed.tooltip }}"
@@ -35,7 +35,7 @@
       ng-if="guide.basic_needs.length === 0">
       <i class="fa fa-thumbs-down"></i>
       <br/>
-      <%= t('.no_requirements_yet') %>
+      <%= t('.no_basic_needs_yet') %>
     </div>
   </div>
 

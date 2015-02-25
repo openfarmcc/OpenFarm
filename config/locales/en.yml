@@ -28,7 +28,7 @@ en:
     greeting: "Hi, %{user}"
     skip: "Do This Later"
     create_guide: "Create Guide"
-    user_settings: "My Account"
+    user_settings: "Account Settings"
     log_out: "Log out"
     log_in: "Log in"
     create_account: "Create an Account"
@@ -109,17 +109,18 @@ en:
           loading_gardens: "Loading Your Gardens"
           your_gardens: "Your Gardens"
           garden_name: "Name your garden:"
-          call_your_garden: "Call your garden something, anything!"
+          call_your_garden: "Give your new garden a name"
           first_garden_html: |
-            <p>We've created your first garden for you - change its name and
-            edit the details to better suit your style. </p> <p> As you
-            continue to use OpenFarm, you can store guides to it, update it,
-            and watch it grow. </p> <p> Feel free to tweak it so that it suits
-            your growing environment, upload some pictures, and then
-            <a href='/'>get exploring</a>. </p> <p> And don't worry, you can
-            come back to this at any time.</p>
+            <p>OpenFarm allows you to have virtual gardens which can help you
+            keep track of what you are planting in real life. </p>
+            We've created your first virtual garden for you. Go ahead and change
+            its name and edit the details to better match you. </p> <p> As you
+            continue to use OpenFarm, add your favorite Guides and Crops
+            to your garden. We'll keep track of their progress for you. </p>
+            <p> Come back to this page at anytime from the menu in the top right
+            of the site! </p>
           create_a_new_garden: |
-            If you've got more gardens, add another one!
+            Add a new Garden
           edit_garden: "Edit Garden"
           save_garden: "Save Garden"
           destroy_garden: "Destroy Garden"
@@ -144,8 +145,8 @@ en:
           life_stage: "Life Stage"
           quantity: "Quantity"
           add_crop: "To add another crop to this garden, explore the guides"
-          create_your_first_garden: "Create your first garden."
-          create_another_garden: "Create another garden."
+          create_your_first_garden: "Create your first garden"
+          create_another_garden: "Create new garden"
   crops:
     name: "Name"
     binomial_name: "Binomial Name"

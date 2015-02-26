@@ -257,12 +257,12 @@
     <hr/>
     <div class="columns small-6"
          ng-class="{ 'small-centered' : currentUser.gardens.length === 0 }">
-      <p ng-if="currentUser.gardens.length === 0">
+      <h4 ng-if="currentUser.gardens.length === 0">
         <%= t('.create_your_first_garden') %>
-      </p>
-      <p ng-if="currentUser.gardens.length > 0">
+      </h4>
+      <h4 ng-if="currentUser.gardens.length > 0">
         <%= t('.create_a_new_garden') %>
-      </p>
+      </h4>
       <label><%= t('.call_your_garden') %></label>
       <input type="text" ng-model="newGarden.name"/>
       <input type="button"

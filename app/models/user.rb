@@ -26,8 +26,8 @@ class User
 
   field :agree, type: Boolean
   validates :agree, acceptance: { accept: true,
-                                  message: 'Please accept the terms and ' +
-                                           'conditions' },
+                                  message: 'to the Terms of Service and ' +
+                                           'Privacy Policy' },
                     on: :create
 
   field :location, type: String

@@ -11,7 +11,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     see 'Welcome! You have signed up successfully.'
     usr = User.find_by(email: 'm@il.com')
     expect(usr.display_name).to eq('Rick')
@@ -26,8 +26,8 @@ describe 'User sessions' do
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    click_button 'Create User'
-    see 'Please accept the terms and conditions'
+    click_button 'Create account'
+    see 'Agree to the Terms of Service and Privacy Policy'
   end
 
   it 'logs out' do
@@ -48,7 +48,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     expect(page).to have_content("Welcome Rick")
   end
 
@@ -60,7 +60,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     expect(page).to have_content(I18n::t('guides.new.new_guide_steps.create_a_growing_guide'))
   end
 
@@ -71,7 +71,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     usr = User.find_by(email: 'm@il.com')
     expect(Garden.all.last.user).to eq (usr)
   end
@@ -83,7 +83,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     click_button 'Next: Add Garden'
     expect(page).to have_content("Location can't be blank")
   end
@@ -95,7 +95,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create User'
+    click_button 'Create account'
     fill_in :location, with: 'Chicago'
     click_button 'Next: Add Garden'
     expect(page).to have_content('Your Gardens')

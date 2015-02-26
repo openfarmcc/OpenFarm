@@ -28,7 +28,7 @@ en:
     greeting: "Hi, %{user}"
     skip: "Do This Later"
     create_guide: "Create Guide"
-    user_settings: "My Account"
+    user_settings: "Account Settings"
     log_out: "Log out"
     log_in: "Log in"
     create_account: "Create an Account"
@@ -73,17 +73,28 @@ en:
           I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
           <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
+      account_information: "Account information"
       display_name: "Username:"
       password: "New Password:"
-      current_password: |
-          "Current Password (we need your current password
-          to confirm your changes)"
+      current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
+      create_account: "Create account"
+      update_account: "Update account"
+      delete_account: "Delete account"
+      delete_account_message: |
+          We're sorry that you want to leave OpenFarm. Note: Deleting your
+          account will permanently delete all of your user profile and garden
+          data and you will no longer be able to access it. Your Guides will not
+          be deleted, though the by-line will no longer show your username in
+          order to protect your privacy. You will no longer be able to edit or
+          delete your Guides after deleting your account. If you do not want
+          your Guides on OpenFarm any longer, you must manually delete them
+          before you delete your account.
       password_confirmation: "Confirm Password"
       location: "Location"
       years_experience: "Years Experience"
       mailing_list: "Get (occassional) updates about OpenFarm via email"
-      delete: "Permanently delete your account."
+      delete: "Permanently delete account"
       finish:
           welcome: "Welcome %{user}!"
           openfarm_works_best_when: "OpenFarm works best when we know the following:"
@@ -99,17 +110,18 @@ en:
           loading_gardens: "Loading Your Gardens"
           your_gardens: "Your Gardens"
           garden_name: "Name your garden:"
-          call_your_garden: "Call your garden something, anything!"
+          call_your_garden: "Give your new garden a name"
           first_garden_html: |
-            <p>We've created your first garden for you - change its name and
-            edit the details to better suit your style. </p> <p> As you
-            continue to use OpenFarm, you can store guides to it, update it,
-            and watch it grow. </p> <p> Feel free to tweak it so that it suits
-            your growing environment, upload some pictures, and then
-            <a href='/'>get exploring</a>. </p> <p> And don't worry, you can
-            come back to this at any time.</p>
+            <p>OpenFarm allows you to have virtual gardens which can help you
+            keep track of what you are planting in real life. </p>
+            We've created your first virtual garden for you. Go ahead and change
+            its name and edit the details to better match you. </p> <p> As you
+            continue to use OpenFarm, add your favorite Guides and Crops
+            to your garden. We'll keep track of their progress for you. </p>
+            <p> Come back to this page at anytime from the menu in the top right
+            of the site! </p>
           create_a_new_garden: |
-            If you've got more gardens, add another one!
+            Add a new Garden
           edit_garden: "Edit Garden"
           save_garden: "Save Garden"
           destroy_garden: "Destroy Garden"
@@ -134,8 +146,8 @@ en:
           life_stage: "Life Stage"
           quantity: "Quantity"
           add_crop: "To add another crop to this garden, explore the guides"
-          create_your_first_garden: "Create your first garden."
-          create_another_garden: "Create another garden."
+          create_your_first_garden: "Create your first garden"
+          create_another_garden: "Create new garden"
   crops:
     name: "Name"
     binomial_name: "Binomial Name"
@@ -189,8 +201,8 @@ en:
               other: "Your guide has had %{count} views"
           save_guide: "Save Guide"
           if_you_are_happy_with_your_guide_so_far: "If you’re happy with your guide so far, save it!"
-          requirements: "Requirements"
-          requirements_are_the_small_details: "Requirements are the small details that make sure this crop grows successfully."
+          basic_needs: "Basic Needs"
+          basic_needs_are_the_small_details: "Basic Needs are the small details that make sure this crop grows successfully."
           if_you_do_not_know_everything_thats_okay: "If you don’t know everything, or it’s not applicable, that’s okay."
           you_have_selected: "You’ve selected: "
           you_have_not_selected_anything: "You haven’t selected anything yet."
@@ -263,10 +275,10 @@ en:
           show_guide_statistics:
               title: "Statistics"
               once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
-          show_guide_requirements:
+          show_guide_basic_needs:
               title: "Basic Needs"
-              the_small_details: "Basic needs are the small details that make sure this crop grow successfully."
-              no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
+              the_small_details: "Basic Needs are the small details that make sure this crop grow successfully."
+              no_basic_needs_yet: "The person who made this guide hasn’t added any Basic Needs yet!"
           show_guide_stages:
               title: "Life Stages"
               each_stage_with_details: "Each stage of growing this crop, with details"
@@ -276,7 +288,7 @@ en:
       crop: "Crop"
       user: "User"
       stages: "Stages"
-      requirements: "Requirements"
+      basic_needs: "Basic Needs"
       name: "Name"
       overview: "Overview"
       num_guides:

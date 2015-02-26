@@ -52,7 +52,7 @@ nl:
         crop: "Gewas"
         user: "Gebruiker"
         stages: "Stadia"
-        requirements: "Behoeftes"
+        basic_needs: "Behoeftes"
         name: "Naam"
         overview: "Overzicht"
     home:

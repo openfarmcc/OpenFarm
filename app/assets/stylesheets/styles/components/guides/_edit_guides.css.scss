@@ -1,33 +1,33 @@
 .edit-guide-app {
   margin: 2rem 0 4rem;
 
-  small.error{
+  small.error {
     margin-bottom: 0;
   }
 
-  h1{
+  h1 {
     cursor: pointer;
   }
 
-  h1.has-tip, h1.has-tip:hover{
+  h1.has-tip, h1.has-tip:hover {
     border-bottom: none;
     color: inherit;
   }
 
-  .crop-image{
+  .crop-image {
     cursor: pointer;
     color: $secondary-color;
 
-    &.ng-invalid-uploading{
+    &.ng-invalid-uploading {
       p.loading{
         display: block;
       }
-      p.to-upload{
+      p.to-upload {
         display: none;
       }
     }
 
-    .wrapper{
+    .wrapper {
       height: 100%;
       position: relative;
       overflow: hidden;
@@ -47,7 +47,7 @@
       text-align: center;
       width: 100%;
     }
-    .loading{
+    .loading {
       display: none;
     }
     a{
@@ -60,34 +60,34 @@
 
 
 
-  input[type=text].hidden-edit-field{
+  input[type=text].hidden-edit-field {
     font-size: 2rem;
     height: 3.5rem;
   }
 
-  p.section-text{
+  p.section-text {
     margin-top: 1rem;
   }
 
 
-  .edit-guide-app .box, .show-guide-app .box{
+  .edit-guide-app .box, .show-guide-app .box {
     padding: 1.5rem 0;
     margin-top: 0;
   }
 
   /****
   *
-  * $REQUIREMENTS
+  * $BASIC NEEDS
   *
   ****/
 
-  .requirements{
-    .actual-requirements{
+  .basic-needs {
+    .actual-basic-needs {
       @include columns(2);
     }
   }
 
-  .requirement{
+  .basic-need {
     border-radius: 3px;
     background: #EFF1F4;
     border: 1px solid #E7E8EB;
@@ -98,7 +98,7 @@
     opacity: .5;
     /*transition: .2s;*/
 
-    &.active{
+    &.active {
       background-color: scale-color($of-green, $lightness: 35%);
       /*background-color: $of-green;*/
       opacity: 1;
@@ -108,30 +108,30 @@
       }
     }
 
-    .title{
+    .title {
       margin: 0;
       font-size: .9rem;
       margin-top: .5rem;
     }
 
-    &:hover{
+    &:hover {
       opacity: .7;
     }
 
-    input[type=range]{
+    input[type=range] {
       width: 66%;
       margin: .7rem 1rem 0 0;
     }
 
-    input[type=checkbox]{
+    input[type=checkbox] {
       margin: 0 .2rem .8rem -.5rem
     }
 
-    .columns{
+    .columns {
       /*padding: .5rem inherit;*/
     }
 
-    .choices select{
+    .choices select {
       display: inline-block;
       /*width: 35%;*/
       background-color: inherit;
@@ -141,7 +141,7 @@
     }
   }
 
-  .row.requirements-results{
+  .row.basic-needs-results {
     text-align: center;
     margin-top: 1rem;
   }
@@ -153,16 +153,16 @@
   ****/
 
 
-  .tabs{
-    dd a{
+  .tabs {
+    dd a {
       /*padding: .5rem 1rem;*/
     }
-    h3{
+    h3 {
       font-size: .8rem;
     }
   }
 
-  .stage-description{
+  .stage-description {
     padding: 0 2rem;
   }
 
@@ -172,8 +172,8 @@
   $SIZES
 
   */
-  @media only screen and (max-width: 40.063em){
-    .requirements .actual-requirements{
+  @media only screen and (max-width: 40.063em) {
+    .basic-needs .actual-basic-needs {
       @include columns(1);
     }
   }

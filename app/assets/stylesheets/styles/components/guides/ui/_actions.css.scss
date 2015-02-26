@@ -15,7 +15,12 @@
       border-radius: $global-radius;
     }
 
-    li:hover, li.selected {
+    li:hover{
+      border-color: lighten($of-green, 20%);
+      color: lighten($of-green, 20%);
+    }
+
+    li.selected {
       border-color: $of-green;
       color: $of-green;
     }

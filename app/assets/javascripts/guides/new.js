@@ -548,8 +548,23 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         controller: ['$scope', '$modalInstance', 'stage', 'actionOptions',
           function ($scope, $modalInstance, stage, actionOptions) {
             $scope.actionOptions = actionOptions;
+            $scope.existingActions = stage.stage_action_options;
+
+            $scope.actionOptions.forEach(function(action){
+              $scope.existingActions.forEach(function(existingAction){
+                if (existingAction.name === action.name){
+                  action.overview = existingAction.overview;
+                  action.selected = true;
+                }
+              });
+            });
+
             $scope.ok = function () {
-              $modalInstance.close();
+              var selectedActions = $scope.actionOptions
+                                      .filter(function(action){
+                                        return action.selected;
+                                      });
+              $modalInstance.close(selectedActions);
             };
 
             $scope.cancel = function () {
@@ -568,7 +583,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
 
       modalInstance.result.then(function (selectedActions) {
-        console.log("add actions to the stage here");
+
+        stage.stage_action_options = selectedActions;
+        stage.activeAction = selectedActions[0];
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });

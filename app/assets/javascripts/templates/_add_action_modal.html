@@ -1,13 +1,16 @@
-<h3 class="center">Add Actions</h3>
-<hr/>
-<div class="actions">
-  <h2>Jek</h2>
-  <ul>
-    <li class="action" ng-repeat="action in actionOptions">
-      {{ action.name }}
-    </li>
-  </ul>
+<div class="actions-modal">
+  <h3 class="center">Add Actions</h3>
+  <hr/>
+  <div class="actions">
+    <h2>All</h2>
+    <ul>
+      <li class="action" ng-repeat="action in actionOptions" ng-class="{ selected: action.selected}"
+      ng-click="action.selected = !action.selected">
+        {{ action.name }}
+      </li>
+    </ul>
+  </div>
+  <hr/>
+  <button class="button" ng-click="ok()">Done</button>
+  <a class="fa fa-times-circle close-modal" ng-click="cancel()"></a>
 </div>
-<hr/>
-<button class="button" ng-click="ok()">Done</button>
-<a class="fa fa-times-circle close-modal" ng-click="cancel()"></a>

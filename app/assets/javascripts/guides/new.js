@@ -534,29 +534,46 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
   };
 
-  $scope.openAddActionModal = function(){
-    // http://pineconellc.github.io/angular-foundation/#modal
-    var modalInstance = $modal.open({
-      templateUrl: '/assets/templates/_add_action_modal.html',
-      controller: ['$scope', '$modalInstance',
-      function ($scope, $modalInstance) {
-        $scope.ok = function () {
-          $modalInstance.close();
-        };
+  $scope.openAddActionModal = function(stage){
+    var actionOptions = [];
+    $http({
+      url: '/api/stage_action_options',
+      method: 'GET'
+    }).success(function (response) {
+      actionOptions = response.stage_action_options;
 
-        $scope.cancel = function () {
-          $modalInstance.dismiss('cancel');
-        };
-      }],
-      keyboard: false,
-      resolve: {}
-    });
+      // http://pineconellc.github.io/angular-foundation/#modal
+      var modalInstance = $modal.open({
+        templateUrl: '/assets/templates/_add_action_modal.html',
+        controller: ['$scope', '$modalInstance', 'stage', 'actionOptions',
+          function ($scope, $modalInstance, stage, actionOptions) {
+            $scope.actionOptions = actionOptions;
+            $scope.ok = function () {
+              $modalInstance.close();
+            };
 
-    modalInstance.result.then(function () {
-    }, function () {
-      console.info('Modal dismissed at: ' + new Date());
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          }],
+        keyboard: false,
+        resolve: {
+          stage: function(){
+            return stage;
+          },
+          actionOptions: function(){
+            return actionOptions;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedActions) {
+        console.log("add actions to the stage here");
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
     });
-  }
+  };
 
   $scope.buildStageDetails = function(array, selectedArray){
     var returnArray = [];

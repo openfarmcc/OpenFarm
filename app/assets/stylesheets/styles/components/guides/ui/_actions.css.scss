@@ -1,0 +1,36 @@
+/* each step has actions to fill out */
+.actions {
+
+   ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: .25rem .5rem;
+      cursor: pointer;
+      transition: 0.5s;
+      margin: .25rem 0;
+      color: #666666;
+      border: 2px solid $secondary-color;
+      border-radius: $global-radius;
+    }
+
+    li:hover, li.selected {
+      border-color: $of-green;
+      color: $of-green;
+    }
+
+    li.completed {
+      border-color: $of-green;
+      background: $of-green;
+      color: white;
+    }
+  }
+
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+
+  textarea {
+    min-height: 95px;
+  }
+}

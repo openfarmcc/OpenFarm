@@ -1,6 +1,8 @@
 # Contributing
 
-First off, before contributing anything, sign our [Contributor License Agreement](https://www.clahub.com/agreements/openfarmcc/OpenFarm).
+By no means does contributing to OpenFarm imply contributing in a programmer capacity. We love talking to farmers, user experience designers, community organizers, graphic designers, content writers, everyone! Send Rory an e-mail at [rory@openfarm.cc](mailto:rory@openfarm.cc).
+
+If you're keen on contributing code, sign our [Contributor License Agreement](https://www.clahub.com/agreements/openfarmcc/OpenFarm).
 
 ## Then!
 

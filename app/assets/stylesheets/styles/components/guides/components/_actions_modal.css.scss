@@ -1,9 +1,11 @@
+/* Styles for the actions modal */
+
 .actions-modal {
   -webkit-transition: opacity 200ms ease-in;
   -moz-transition: opacity 200ms ease-in;
   transition: opacity 200ms ease-in;
 
-  .actions ul li{
+  .actions li {
     width: 31.5%;
     display: inline-block;
     vertical-align: top;
@@ -12,17 +14,17 @@
 }
 
 .actions-modal:target {
-  opacity:1;
+  opacity: 1;
 }
 
 .actions-modal > div {
   padding: 1rem;
   border-radius: 5px;
-  background: #f1f1f1;
+  background: $gray-bg;
 }
 
 .close-modal {
-  color: #ff6666;
+  color: $of-red;
   font-size: 1.4rem;
   position: absolute;
   right: 1rem;
@@ -30,4 +32,4 @@
   text-decoration: none;
 }
 
-.close-modal:hover { color: #ff1f1f; }
+.close-modal:hover { color: $gray-bg; }

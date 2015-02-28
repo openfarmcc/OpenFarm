@@ -260,7 +260,7 @@ en:
               not_sure_html: "Not sure? <a href='/pages/faq#repeat-annually' target='_blank'>Learn More</a>."
               actions_header: "Actions"
               actions_instructions: "What Actions do you recommend others to take during this stage?"
-              add_actions: "Add Actions"
+              manage_actions: "Manage Actions"
           new_guide_step_4:
               give_an_overview: "Give a short overview of your guide."
               almost_done: "Almost done!"

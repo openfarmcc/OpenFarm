@@ -3,6 +3,7 @@ var openFarmApp = angular.module('openFarmApp', [
   'ng-rails-csrf',
   'ngS3upload',
   'ngDragDrop',
+  'ui.sortable',
   'openFarmModule'
 ]);
 

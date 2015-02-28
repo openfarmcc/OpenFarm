@@ -699,8 +699,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }) || null,
         actions: stage.stage_action_options.filter(function(s){
             return s.overview;
-          }).map(function(s){
-            return { name: s.name, overview: s.overview };
+          }).map(function(s, index){
+            console.log(s, index);
+            return { name: s.name,
+                     overview: s.overview,
+                     time: s.time,
+                     order: index };
           }) || null
       };
       if (stage.pictures){

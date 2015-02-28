@@ -8,7 +8,7 @@
     li {
       padding: .25rem .5rem;
       cursor: pointer;
-      transition: 0.5s;
+      transition: color 0.5s, border-color 0.5s;
       margin: .25rem 0;
       color: #666666;
       border: 2px solid $secondary-color;

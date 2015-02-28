@@ -160,16 +160,16 @@
             </div>
             <hr/>
             <div class="columns large-3 medium-4">
-              <ul>
+              <ul ui-sortable ng-model="stage.stage_action_options">
                 <li ng-repeat="action in stage.stage_action_options"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
-                    {{ action.name }}
+                    <i class="fa fa-arrows-v"></i> {{ $index+1 }}. {{ action.name }}
                 </li>
                 <li class="expand"
                     ng-click="openAddActionModal(stage)"
                     name="add-action"
-                    ><i class="fa fa-plus"></i> <%= t('.add_actions') %>
+                    ><i class="fa fa-plus"></i> <%= t('.manage_actions') %>
                 </li>
               </ul>
             </div>

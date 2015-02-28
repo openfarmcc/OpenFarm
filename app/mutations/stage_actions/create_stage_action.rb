@@ -8,6 +8,10 @@ module StageActions
           string :name
           string :overview
         end
+        optional do
+          integer :order
+          string :time
+        end
       end
     end
 

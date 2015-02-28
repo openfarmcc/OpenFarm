@@ -323,11 +323,29 @@
 
   /* Step 2 */
   .life-stages {
+    .all-stages-wrapper {
+      margin-left: auto;
+      margin-right: auto;
+      @media #{$small-only} {
+        width: 360px;
+      }
+      @media #{$medium-only} {
+        width: 540px;
+      }
+      @media #{$large-only} {
+        width: 720px;
+      }
+      @media #{$xlarge-up} {
+        width: 900px;
+      }
+    }
+
     .stage-wrapper {
       display: inline-block;
       overflow: hidden;
-      height: 142px;
       margin-bottom: 3%;
+      height: 150px;
+      width: 180px;
     }
 
     input[type="checkbox"] {
@@ -340,6 +358,7 @@
       padding: .25rem;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, .2);
       border: solid 1px #DFDFDF;
+      border-radius: 150px;
       width: 100%;
       height: 100%;
       transition: border .2s;

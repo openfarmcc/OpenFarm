@@ -1,9 +1,19 @@
-/* Styles for the actions modal */
+// Styles for the actions modal
 
 .actions-modal {
   -webkit-transition: opacity 200ms ease-in;
   -moz-transition: opacity 200ms ease-in;
   transition: opacity 200ms ease-in;
+
+  & > div {
+    padding: 1rem;
+    border-radius: 5px;
+    background: $gray-bg;
+  }
+
+  &:target {
+    opacity: 1;
+  }
 
   .actions li {
     width: 31.5%;
@@ -13,16 +23,6 @@
   }
 }
 
-.actions-modal:target {
-  opacity: 1;
-}
-
-.actions-modal > div {
-  padding: 1rem;
-  border-radius: 5px;
-  background: $gray-bg;
-}
-
 .close-modal {
   color: $of-red;
   font-size: 1.4rem;
@@ -30,6 +30,7 @@
   right: 1rem;
   top: 1rem;
   text-decoration: none;
+
+  &:hover { color: $gray-bg; }
 }
 
-.close-modal:hover { color: $gray-bg; }

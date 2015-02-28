@@ -19,7 +19,6 @@
         <input id="guide_name" name="guide[name]"
           type="text"
           ng-model="newGuide.name"
-
           placeholder="<%= current_user.display_name %>'s {{ newGuide.crop.name }}"
           >
       </div>
@@ -47,8 +46,7 @@
     </div>
     <div class="row">
       <div class="timeline-box large-12 columns large-centered"
-           create-timeline="newGuide.time_span"
-           >
+           create-timeline="newGuide.time_span">
       </div>
     </div>
     <div class="button-wrapper row">

@@ -661,6 +661,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   var calcTimeLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
+        case 'minutes':
+        return length;
+        case 'hours':
+        return length * 60;
+        case 'action_days': // A special case of days,
+        // for actions we're measuring in minutes, not days;
+        return length * 60 * 24;
         case 'months':
         return length * 30;
         case 'weeks':
@@ -699,11 +706,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }) || null,
         actions: stage.stage_action_options.filter(function(s){
             return s.overview;
-          }).map(function(s, index){
-            console.log(s, index);
-            return { name: s.name,
-                     overview: s.overview,
-                     time: s.time,
+          }).map(function(action, index){
+            return { name: action.name,
+                     overview: action.overview,
+                     time: calcTimeLength(action.time, action.length_type),
                      order: index };
           }) || null
       };

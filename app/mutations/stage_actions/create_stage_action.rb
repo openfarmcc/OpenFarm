@@ -10,7 +10,7 @@ module StageActions
         end
         optional do
           integer :order
-          string :time
+          integer :time
         end
       end
     end

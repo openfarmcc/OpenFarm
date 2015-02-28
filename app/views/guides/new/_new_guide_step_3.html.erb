@@ -162,6 +162,7 @@
             <div class="columns large-3 medium-4">
               <ul ui-sortable ng-model="stage.stage_action_options">
                 <li ng-repeat="action in stage.stage_action_options"
+                    ng-init="action.length_type = 'minutes'"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
                     <i class="fa fa-arrows-v"></i> {{ $index+1 }}. {{ action.name }}
@@ -173,11 +174,28 @@
                 </li>
               </ul>
             </div>
-            <div class="columns large-9 medium-8">
+            <div class="columns large-9 small-8">
               <label id="description" for="action_content" ng-bind="stage.activeAction.description">
               </label>
                 <textarea id="action_content" ng-model="stage.activeAction.overview"></textarea>
             </div>
+            <div class="columns small-8 large-9">
+                  <label class="left"
+                      for="how_long"><%= t('.how_long_action') %><br/>
+                    <small><%= t('.do_not_sweat') %></small>
+                  </label>
+                </div>
+                <div class="columns small-8">
+                  <div class="vertical-input-select-group">
+                    <input ng-model="stage.activeAction.time"
+                           type="number"/>
+                    <select ng-model="stage.activeAction.length_type">
+                      <option value="minutes">Minutes</option>
+                      <option value="hours">Hours</option>
+                      <option value="action_days">Days</option>
+                    </select>
+                  </div>
+                </div>
           </div>
         </div><!-- ng-form -->
         <div class="button-wrapper row">

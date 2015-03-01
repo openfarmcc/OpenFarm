@@ -1,11 +1,11 @@
 // Styles for the actions modal
 
-.actions-modal {
-  -webkit-transition: opacity 200ms ease-in;
-  -moz-transition: opacity 200ms ease-in;
-  transition: opacity 200ms ease-in;
+@import "compass/css3/transition";
 
-  & > div {
+.actions-modal {
+  @include transition(opacity 200ms ease-in);
+
+  > div {
     padding: 1rem;
     border-radius: 5px;
     background: $gray-bg;
@@ -30,7 +30,8 @@
   right: 1rem;
   top: 1rem;
   text-decoration: none;
+  @include transition(color 200ms ease-in);
 
-  &:hover { color: $gray-bg; }
+  &:hover { color: darken($of-red, 10%); }
 }
 

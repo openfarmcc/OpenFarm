@@ -15,7 +15,11 @@ class Guide
       }
     }
   }
-
+  # The below seems to have made no difference, but it's based on:
+  # https://github.com/ankane/searchkick#stay-synced
+  # and the recommendations here:
+  # https://github.com/ankane/searchkick/issues/373#issuecomment-71967887
+  # Though it can probably be tweaked further.
   scope :search_import, -> { includes(:user) }
 
   is_impressionable counter_cache: true,

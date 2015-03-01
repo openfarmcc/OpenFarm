@@ -4,4 +4,6 @@ class StageAction
 
   field :name
   field :overview
+  field :time
+  field :order
 end

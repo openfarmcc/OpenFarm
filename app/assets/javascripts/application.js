@@ -4,6 +4,8 @@
 //= require jquery-ui
 //= require angular/angular-sanitize
 //= require angular-dragdrop
+//= require angular-ui-sortable
+//= require angular-foundation
 //= require ng-rails-csrf
 //= require ./libs/showdown
 //= require ./libs/moment.min
@@ -21,8 +23,6 @@
 //= require foundation/foundation.dropdown
 //= require foundation/foundation.tooltip
 //= require foundation/foundation.topbar
-//= require foundation/mm-foundation-0.3.0.js
-//= require foundation/mm-foundation-tpls-0.3.0.js
 //= require_tree ./guides
 //= require_tree ./crops
 

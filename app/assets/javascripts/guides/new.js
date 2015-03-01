@@ -220,8 +220,9 @@ openFarmApp.directive('createTimeline', ['guideService',
   }]);
 
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
-  'guideService', 'stageService',
-  function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
+  'guideService', 'stageService', '$modal',
+  function newGuideCtrl($scope, $http, $filter, guideService, stageService,
+                        $modal) {
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = 1;
@@ -533,6 +534,64 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
   };
 
+  $scope.openAddActionModal = function(stage){
+    var actionOptions = [];
+    $http({
+      url: '/api/stage_action_options',
+      method: 'GET'
+    }).success(function (response) {
+      actionOptions = response.stage_action_options;
+
+      // http://pineconellc.github.io/angular-foundation/#modal
+      var modalInstance = $modal.open({
+        templateUrl: '/assets/templates/_add_action_modal.html',
+        controller: ['$scope', '$modalInstance', 'stage', 'actionOptions',
+          function ($scope, $modalInstance, stage, actionOptions) {
+            $scope.actionOptions = actionOptions;
+            $scope.existingActions = stage.stage_action_options;
+
+            $scope.actionOptions.forEach(function(action){
+              $scope.existingActions.forEach(function(existingAction){
+                if (existingAction.name === action.name){
+                  action.overview = existingAction.overview;
+                  action.selected = true;
+                }
+              });
+            });
+
+            $scope.ok = function () {
+              var selectedActions = $scope.actionOptions
+                                      .filter(function(action){
+                                        return action.selected;
+                                      });
+              $modalInstance.close(selectedActions);
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          }],
+        keyboard: false,
+        resolve: {
+          stage: function(){
+            return stage;
+          },
+          actionOptions: function(){
+            return actionOptions;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedActions) {
+
+        stage.stage_action_options = selectedActions;
+        stage.activeAction = selectedActions[0];
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+    });
+  };
+
   $scope.buildStageDetails = function(array, selectedArray){
     var returnArray = [];
     array.forEach(function(d){
@@ -602,6 +661,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   var calcTimeLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
+        case 'minutes':
+        return length;
+        case 'hours':
+        return length * 60;
+        case 'action_days': // A special case of days,
+        // for actions we're measuring in minutes, not days;
+        return length * 60 * 24;
         case 'months':
         return length * 30;
         case 'weeks':
@@ -640,8 +706,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }) || null,
         actions: stage.stage_action_options.filter(function(s){
             return s.overview;
-          }).map(function(s){
-            return { name: s.name, overview: s.overview };
+          }).map(function(action, index){
+            return { name: action.name,
+                     overview: action.overview,
+                     time: calcTimeLength(action.time, action.length_type),
+                     order: index };
           }) || null
       };
       if (stage.pictures){

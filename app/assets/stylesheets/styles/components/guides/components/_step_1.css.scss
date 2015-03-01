@@ -1,0 +1,30 @@
+/* Step 1 */
+.getting-started {
+
+  .crop-name-and-description {
+    margin-bottom: 1.5rem;
+  }
+
+  .crop-name {
+    font-size: 1.8rem;
+    /* account for cancel button */
+
+    .common-name {
+      padding-right: 1.5rem;
+    }
+
+    .binominal-name {
+      color: #666;
+    }
+  }
+
+  .cancel-selection-btn {
+    color: $secondary-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #FF3366;
+    }
+  }
+}

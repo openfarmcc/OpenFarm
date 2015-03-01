@@ -14,7 +14,7 @@ linters:
   DebugStatement:
     enabled: true
   DeclarationOrder:
-    enabled: true
+    enabled: false
   DuplicateProperty:
     enabled: true
   ElsePlacement:
@@ -63,7 +63,7 @@ linters:
   PlaceholderInExtend:
     enabled: false
   PropertySortOrder:
-    enabled: true
+    enabled: false
     ignore_unspecified: false
     severity: warning
   PropertySpelling:

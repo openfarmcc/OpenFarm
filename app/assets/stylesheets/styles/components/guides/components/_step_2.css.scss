@@ -1,0 +1,41 @@
+/* Step 2 */
+.life-stages {
+  .stage-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    height: 142px;
+    margin-bottom: 3%;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .stage-option {
+    display: block;
+    border-radius: 4px;
+    padding: .25rem;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, .2);
+    border: solid 1px #DFDFDF;
+    width: 100%;
+    height: 100%;
+    transition: border .2s;
+
+    &:hover {
+      border-color: #CCCCCC;
+    }
+
+    p {
+      position: absolute;
+      bottom: 0;
+      font-weight: 600;
+      background: rgba(255,255,255,0.95);
+      border-radius: 3px;
+      padding: 2px 10px;
+    }
+  }
+
+  input:checked + .stage-option {
+    border: 3px solid $of-green;
+  }
+}

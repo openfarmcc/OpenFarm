@@ -14,7 +14,9 @@ describe GardenCrop do
   end
 
   it 'reindexes guides' do
-    expect(Guide).to receive(:reindex)
+    FactoryGirl.create(:guide)
+
+    expect_any_instance_of(Guide).to receive(:reindex_async)
 
     FactoryGirl.create(:garden, user: FactoryGirl.create(:user))
   end

@@ -5,12 +5,6 @@
 .actions-modal {
   @include transition(opacity 200ms ease-in);
 
-  > div {
-    padding: 1rem;
-    border-radius: 5px;
-    background: $gray-bg;
-  }
-
   &:target {
     opacity: 1;
   }
@@ -20,6 +14,7 @@
     display: inline-block;
     vertical-align: top;
     margin-left: 1.5%;
+    @media #{$small-only} { width: 48.5%; }
   }
 }
 

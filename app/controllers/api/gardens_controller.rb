@@ -8,7 +8,7 @@ module Api
         user: current_user,
         description: I18n.t('registrations.generated_this_garden'),
         average_sun: 'Full Sun',
-        type: 'Outdoors',
+        type: 'Outside',
         soil_type: 'Loam'
       )
       respond_with_mutation(:created)

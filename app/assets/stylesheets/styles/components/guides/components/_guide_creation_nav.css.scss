@@ -1,12 +1,17 @@
 .guide-creation-nav {
   $guide-nav-color: #5E9546;
   background: $guide-nav-color;
+  overflow-x: auto;
+  overflow-y: hidden;
 
   // the ul containing the links
   ul {
-    padding-top: 5px;
-    text-align: center;
     list-style: none;
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
     white-space: nowrap;
   }
 

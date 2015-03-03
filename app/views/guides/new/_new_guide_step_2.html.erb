@@ -7,16 +7,18 @@
         </h3>
       </div>
       <div class="row">
-        <div class="columns large-3 medium-4 small-6 stage-wrapper"
-             ng-repeat="stage in newGuide.stages | orderBy : 'order' "
-             ng-class="{end: $last}">
-             <input name="{{ stage.name }}"
-                    id="{{ stage.name }}"
-                    type="checkbox"
-                    ng-model="stage.selected"/>
-             <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
-               <p>{{ stage.name }}</p>
-             </label>
+        <div class="all-stages-wrapper">
+          <div class="columns large-3 medium-4 small-6 stage-wrapper"
+               ng-repeat="stage in newGuide.stages | orderBy : 'order' "
+               ng-class="{end: $last}">
+               <input name="{{ stage.name }}"
+                      id="{{ stage.name }}"
+                      type="checkbox"
+                      ng-model="stage.selected"/>
+               <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+                 <p>{{ stage.name }}</p>
+               </label>
+          </div>
         </div>
       </div>
       <div class="button-wrapper row">

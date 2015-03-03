@@ -1,0 +1,47 @@
+/* General form elements used in guide creation */
+.new-guide form {
+  width: 100%;
+  display: inline-block;
+
+  label {
+    font-size: 1rem;
+    line-height: 1.22rem;
+    margin-bottom: 0.5rem;
+  }
+
+  small {
+    font-size: 78.88%;
+    color: #999999;
+  }
+
+  p {
+    font-size: .9rem;
+    color: #171717;
+    line-height: 1.5rem;
+    margin-bottom: .5rem;
+  }
+
+  // Overrides bug in Foundation-rails 5.4.5
+  input.button {
+    @include border-radius($global-radius);
+  }
+
+  input.button.small.secondary.left {
+    margin-left: .5rem;
+  }
+
+  /* when a select dropdown is attached to the bottom of an input */
+  .vertical-input-select-group {
+    input {
+      margin-bottom: 0;
+    }
+    select {
+      background-color: $secondary-color;
+      height: 2rem;
+      margin-top: 0;
+      padding-top: 0.25rem;
+      border-bottom-left-radius: $global-radius;
+      border-bottom-right-radius: $global-radius;
+    }
+  }
+}

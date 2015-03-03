@@ -69,6 +69,20 @@ describe Stages::CreateStage do
     expect(results.result.stage_actions.length).to eq(1)
   end
 
+  it 'allows a well formed stage actions array with order' do
+    actions = [{ name: "#{Faker::Lorem.word}",
+                 overview: "#{Faker::Lorem.paragraph}",
+                 order: 1 },
+               { name: "#{Faker::Lorem.word}",
+                 overview: "#{Faker::Lorem.paragraph}",
+                 order: 2 }]
+    actions_params = params.merge(actions: actions)
+    results = mutation.run(actions_params)
+    expect(results.result.stage_actions[0][:order]).to eq(1)
+    expect(results.success?).to be_truthy
+    expect(results.result.stage_actions.length).to eq(2)
+  end
+
   it 'disallows a badly formed stage actions array' do
     actions = [{ name: "#{Faker::Lorem.word}",
                  description: "#{Faker::Lorem.paragraph}" },]

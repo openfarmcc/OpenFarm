@@ -41,6 +41,7 @@ OpenFarm::Application.routes.draw do
     end
     resources :requirement_options, only: [:index]
     resources :stage_options, only: [:index]
+    resources :stage_action_options, only: [:index]
     resources :stages, only: [:create, :show, :update, :destroy]
     resources :requirements, only: [:create, :show, :update, :destroy]
     # TODO Figure out why I can't use a singular resource route here.

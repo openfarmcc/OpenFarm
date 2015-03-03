@@ -4,6 +4,7 @@
 //= require jquery-ui
 //= require angular/angular-sanitize
 //= require angular-dragdrop
+//= require angular-ui-sortable
 //= require angular-foundation
 //= require ng-rails-csrf
 //= require ./libs/showdown

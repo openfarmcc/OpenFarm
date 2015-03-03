@@ -22,6 +22,7 @@
 }
 
 .new-guide {
+<<<<<<< HEAD
 
   .guide-creation-nav {
     $guide-nav-color: #5E9546;
@@ -161,6 +162,8 @@
     }
   }
 
+=======
+>>>>>>> master
   section.step {
     margin-bottom: 4rem;
 
@@ -175,54 +178,6 @@
     h3 {
       font-size: 1.2rem;
       font-family: $body-font-family;
-    }
-  }
-
-  /* General form elements used in guide creation */
-  form {
-    width: 100%;
-    display: inline-block;
-
-    label {
-      font-size: 1rem;
-      line-height: 1.22rem;
-      margin-bottom: 0.5rem;
-    }
-
-    small {
-      font-size: 78.88%;
-      color: #999999;
-    }
-
-    p {
-      font-size: .9rem;
-      color: #171717;
-      line-height: 1.5rem;
-      margin-bottom: .5rem;
-    }
-
-    // Overrides bug in Foundation-rails 5.4.5
-    input.button {
-      @include border-radius($global-radius);
-    }
-
-    input.button.small.secondary.left {
-      margin-left: .5rem;
-    }
-
-    /* when a select dropdown is attached to the bottom of an input */
-    .vertical-input-select-group {
-      input {
-        margin-bottom: 0;
-      }
-      select {
-        background-color: $secondary-color;
-        height: 2rem;
-        margin-top: 0;
-        padding-top: 0.25rem;
-        border-bottom-left-radius: $global-radius;
-        border-bottom-right-radius: $global-radius;
-      }
     }
   }
 
@@ -290,6 +245,7 @@
     margin: 1.5rem 0;
   }
 
+<<<<<<< HEAD
   /* Step 1 */
   .getting-started {
 
@@ -507,6 +463,8 @@
   .finishing-up {
   }
 
+=======
+>>>>>>> master
   // Note: these are shared by step 2 and 3
   // For now these live in .new-guide, but they
   // might be better suited somewhere else.
@@ -546,5 +504,4 @@
       background-image: url('stages/dormant_sm.png');
     }
   }
-
 }

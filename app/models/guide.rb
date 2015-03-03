@@ -76,7 +76,7 @@ class Guide
 
     @compatibilities = []
 
-    User.each do |user|
+    User.includes(:gardens).each do |user|
       @compatibilities << {
         user_id: user.id.to_s, score: compatibility_score(user).to_i
       }

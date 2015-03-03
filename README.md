@@ -11,7 +11,7 @@ Other use cases: a mobile app for home gardeners, Google providing "One Box" ans
 
 ### Core Contributor Group
 
-We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
+We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is enter your email into [this form](http://goo.gl/forms/ZqBdmN2nu2) or [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
 
 ### Community Discussion Group
 

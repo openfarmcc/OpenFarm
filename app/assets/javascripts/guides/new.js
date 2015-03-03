@@ -312,9 +312,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       .success(function(response){
         var stageWhere = ['Potted', 'Outside', 'Greenhouse', 'Indoors'];
         var stageLight = ['Full Sun', 'Partial Sun', 'Shaded', 'Darkness'];
-        var stageSoil = ['Potting', 'Loam',
-                         'Sandy Loam', 'Clay Loam',
-                         'Sand', 'Clay'];
+        var stageSoil = ['Potting', 'Loam', 'Clay', 'Clay Loam', 'Loamy Sand',
+                         'Sandy Clay', 'Sandy Loam', 'Sandy Clay Loam',
+                         'Sand', 'Silty Clay', 'Silty Clay Loam',
+                         'Silt Loam', 'Silt'];
         $scope.stages = response.stage_options;
         $scope.stages = $filter('orderBy')($scope.stages, 'order');
         // Trickery to make sure the existing stages don't get

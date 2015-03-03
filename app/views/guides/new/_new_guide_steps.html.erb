@@ -1,6 +1,14 @@
+<% edit = false if !edit #define edit so that an undefined variable error is not thrown%>
+
 <div class="multi-bar-header">
   <div class="bar-header">
-    <h1 class="title"><%= t('.create_a_growing_guide') %></h1>
+    <h1 class="title">
+      <% if edit %>
+        <%= t('.edit_a_growing_guide') %>
+      <% else %>
+        <%= t('.create_a_growing_guide') %>
+      <% end %>
+    </h1>
   </div>
   <div class="bar-header guide-creation-nav">
     <div class="container">

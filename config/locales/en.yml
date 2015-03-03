@@ -213,6 +213,7 @@ en:
           back: "Back"
           new_guide_steps:
               create_a_growing_guide: "Create a Growing Guide"
+              edit_a_growing_guide: "Edit a Growing Guide"
               the_basics: "The Basics"
               life_stages: "Life Stages"
               stage_details: "Stage Details"

@@ -79,6 +79,10 @@ video { display: block; }
     margin-right: auto;
     margin-top: 1rem;
     margin-bottom: 2rem;
+
+    &:hover {
+    background-color: rgba(153,153,153,0.7);
+    }
   }
 
   // The search bar is laid out with tables.

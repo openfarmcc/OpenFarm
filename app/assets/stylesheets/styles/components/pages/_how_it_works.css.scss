@@ -22,6 +22,11 @@
   right: 2rem;
   top: 2rem;
   z-index: 3;
+  @media #{$small-only} {
+    font-size: 1.5em;
+    top: 1rem;
+    right: 1rem;
+  }
 
     &:hover {
       color: #333333;
@@ -34,7 +39,10 @@
     font-weight: 400;
     margin: 1rem;
     text-shadow: none;
-    @media #{$small-only} { font-size: .9em; }
+    @media #{$small-only} {
+      font-size: .9em;
+      margin-top: 3rem;
+    }
   }
 
   .steps {
@@ -107,6 +115,7 @@
 
   ul.life-stage-icons {
     list-style: none;
+    text-align: center;
 
     li {
       background-image: url('stages/blue_life_stages.png');

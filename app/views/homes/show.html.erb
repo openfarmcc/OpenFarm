@@ -19,8 +19,6 @@
                 <%= t 'home.how_it_works' %>
             </button></a>
         </div>
-
-
         <div class="search text-center">
             <form action="<%= crop_search_via_get_path %>" method="get" >
             <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
@@ -58,18 +56,18 @@
                 </div>
             </div>
             <h2 class="center">
-                Growing Guides tell you how to take care of a Crop during each of its Life Stages. Information is based on specific environmental conditions and growing practices, and matched with you and your location.
+                Growing Guides show you how to care for your Crop during all of its Life Stages. Each Guide is based on specific environmental conditions and growing practices, and ranked for compatibility with you and your gardens.
             </h2>
             <ul class="life-stage-icons">
                 <!-- Why don't these icons show up? -->
-                <li><img src="stages/prep_sm.png"></li>
-                <li><img src="stages/sow_sm.png"></li>
-                <li><img src="stages/germination_sm.png"></li>
-                <li><img src="stages/sprouting_sm.png"></li>
-                <li><img src="stages/juvenile_sm.png"></li>
-                <li><img src="stages/adult_sm.png"></li>
-                <li><img src="stages/fruiting_sm.png"></li>
-                <li><img src="stages/flowering_sm.png"></li>
+                <li class="Preparation"></li>
+                <li class="Sow"></li>
+                <li class="Germination"></li>
+                <li class="Seedling"></li>
+                <li class="Juvenile"></li>
+                <li class="Adult"></li>
+                <li class="Fruit"></li>
+                <li class="Flowering"></li>
             </ul>
         </div>
     </div>

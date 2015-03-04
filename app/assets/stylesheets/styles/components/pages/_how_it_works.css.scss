@@ -80,7 +80,51 @@
     list-style: none;
 
     li {
+      background-image: url('stages/other_sm.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
       display: inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      margin: 0.5rem;
+
+      &.Preparation {
+        background-image: url('stages/colored-stages/prep_color.png');
+      }
+
+      &.Sow {
+        background-image: url('stages/colored-stages/sow_color.png');
+      }
+
+      &.Germination {
+        background-image: url('stages/colored-stages/germination_color.png');
+      }
+
+      &.Seedling {
+        background-image: url('stages/colored-stages/sprouting_color.png');
+      }
+
+      &.Juvenile {
+        background-image: url('stages/colored-stages/juvenile_color.png');
+      }
+
+      &.Adult {
+        background-image: url('stages/colored-stages/adult_color.png');
+      }
+
+      &.Flowering {
+        background-image: url('stages/colored-stages/flowering_color.png');
+      }
+
+      &.Fruit {
+        background-image: url('stages/colored-stages/fruiting_color.png');
+      }
+
+      &.Dormant {
+        background-image: url('stages/colored-stages/dormant_color.png');
+      }
     }
   }
 }

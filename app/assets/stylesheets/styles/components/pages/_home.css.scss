@@ -8,18 +8,6 @@ video { display: block; }
   }
 }
 
-// Change list elements from horizontal to vertical on small screens
-@media #{$medium-up} {
-  ul.steps li.step {
-    display: table-cell;
-    float: left;
-  }
-
-  ul.links li {
-    display: inline-block;
-  }
-}
-
 .video-background {
   position: absolute;
   overflow: hidden;
@@ -40,7 +28,7 @@ video { display: block; }
     bottom: 0;
     left: 0;
     right: 0;
-    min-width: 100%; min-height: 100%;
+    min-width: 100%; min-height: 10%;
     width: auto; height: auto; z-index: -100;
     background: image-url('home_video_first_frame.jpeg') no-repeat center center;
     background-size: cover;
@@ -60,7 +48,7 @@ video { display: block; }
   position: relative;
   max-width: initial;
   min-height: 500px;
-  height: inherit;
+  height: 70%;
 
   .logo {
     display: block;
@@ -75,50 +63,106 @@ video { display: block; }
     font-weight: 800;
   }
 
-  ul.steps {
+  button.how-it-works-button {
+    background-color: rgba(153,153,153,0.5);
+    color: #ffffff;
+    display: block;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    border-radius: 2px;
+  }
+
+  .how-it-works:target {
+    top: 0;
+    transition: 0.3s;
+  }
+
+  .how-it-works {
+    background-color: #dcd9fa;
+    width: 100%;
+    position: absolute;
+    max-width: initial;
+    height: 100%;
+    top: -100%;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.3s;
+
+    i.exit {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    font-size: 2rem;
+    color: #999999;
+
+      &:hover {
+        color: #333333;
+      }
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #333333;
+      text-shadow: none;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+  }
+
+  .steps {
     $step-circle-size: 50px;
 
-    display: table; // Hacks for centering the ul
-    list-style: none;
-    margin: 20px auto 0;
+    margin: 1rem auto 1.5rem;
+    line-height: 80px;
+    font-weight: 600;
 
-    li.step {
+    .step {
       display: block;
       line-height: $step-circle-size;
       vertical-align: middle;
       margin: 15px;
       font-size: 1.2rem;
+      color: #333333;
+      font-weight: 800;
+    }
+
+    .step-circle {
+      display: block;
+      box-sizing: border-box;
+      float: left;
+      width: $step-circle-size;
+      height: $step-circle-size;
+      margin-right: 15px;
+      border-radius: 50%;
+      border: 2px solid #333333;
       color: white;
       font-weight: 600;
+      font-size: 1.5rem;
+      line-height: $step-circle-size - 5px;
+      vertical-align: middle;
+      text-align: center;
+    }
 
-      .step-circle {
-        display: block;
-        box-sizing: border-box;
-        float: left;
-        width: $step-circle-size;
-        height: $step-circle-size;
-        margin-right: 15px;
-        border-radius: 50%;
-        border: 2px solid white;
-        background-color: #CCC;
-        color: white;
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: $step-circle-size - 5px;
-        vertical-align: middle;
-      }
+    .step-circle-1 {
+      background-color: rgba(120, 63,  4, 0.7);
+    }
 
-      .step-circle.step-circle-1 {
-        background-color: rgba(120, 63,  4, 0.7);
-      }
+    .step-circle-2 {
+      background-color: rgba(191, 144, 0, 0.7);
+    }
 
-      .step-circle.step-circle-2 {
-        background-color: rgba(191, 144, 0, 0.7);
-      }
+    .step-circle-3 {
+      background-color: rgba(106, 168, 79, 0.7);
+    }
+  }
 
-      .step-circle.step-circle-3 {
-        background-color: rgba(106, 168, 79, 0.7);
-      }
+  ul.life-stage-icons {
+    list-style: none;
+
+    li {
+      display: inline-block;
     }
   }
 
@@ -129,11 +173,11 @@ video { display: block; }
     display: table;
     width: 100%;
     max-width: 750px;
-    margin: 30px auto 0;
+    margin: 1.5rem auto;
   }
 
   .search-bar {
-    display: table-row;
+    padding: 0 1rem;
     position: relative;
     $search-bar-height: 50px;
 
@@ -143,16 +187,13 @@ video { display: block; }
 
       // Typeahead dropdown
       .f-dropdown {
-        margin-top: 3px;
-        margin-left: 11px;
-        border-radius: 3px;
+        margin-top: 0;
+        text-align: left;
+        padding-left: 0.5rem;
 
         // dropdown carrat
         &:before, &:after {
-          border: inset 10px;
-          top: -20px;
-          border-bottom-style: solid;
-          border-color: transparent transparent white transparent;
+          display: none;
         }
       }
     }
@@ -160,16 +201,12 @@ video { display: block; }
     input.search-input {
       display: table-cell;
       width: 100%;
-
       height: $search-bar-height;
-      border: 2px solid white;
-      background-color: rgba(0,0,0,0.4);
-      border-radius: 999rem;
-      color: white;
-      padding: 0 10px 0 $search-bar-height/2;
+      background-color: #ffffff;
+      color: #333333;
+      padding: 0 1rem;
       font-size: 1.2em;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      margin: 0;
     }
 
     .search-button-container {
@@ -179,23 +216,15 @@ video { display: block; }
 
     input.search-button {
       display: table-cell;
-
       padding: 0 35px;
       top: 0;
       right: 0;
       height: $search-bar-height;
-      border: 2px solid white;
-      border-radius: 999rem;
-      border-left: 0;
       font-size: 1.2em;
       color: white;
       background-image: none;
-      background-color: rgba(106, 168, 79, 0.7);
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-      // TODO: get rid of need for !important :(
-      border-top-right-radius: 999rem !important;
-      border-bottom-right-radius: 999rem !important;
+      background-color: $of-green;
+      border-radius: 0;
 
       &:hover {
         background-color: rgba(106, 168, 79, 1);
@@ -246,36 +275,13 @@ video { display: block; }
     }
   }
 
-  .explore-community-favorites {
+  .search {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding-top: 20px;
-    padding-bottom: 12px;
-    @include single-transition(background-color, 0.5s, ease-in-out);
-
-    background-image: -webkit-gradient(to bottom, color-stop(0%, transparent), color-stop(100%, rgba(0,0,0,0.25)));
-    background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.25));
-    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.25));
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.25));
-
-    &:hover {
-      // DRY with Compass
-      background-image: -webkit-gradient(to bottom, color-stop(0%, transparent), color-stop(100%, rgba(0,0,0,0.5)));
-      background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.5));
-      background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.5));
-      background-image: linear-gradient(transparent, rgba(0,0,0,0.5));
-    }
-
-    &.full-black {
-      background-color: rgba(0,0,0,1);
-    }
-
-    .fa-angle-down {
-      font-size: 2em;
-      color: rgba(255,255,255,0.75);
-    }
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
   }
 }
 

@@ -79,93 +79,6 @@ video { display: block; }
     transition: 0.3s;
   }
 
-  .how-it-works {
-    background-color: #dcd9fa;
-    width: 100%;
-    position: absolute;
-    max-width: initial;
-    height: 100%;
-    top: -100%;
-    overflow: hidden;
-    z-index: 1;
-    transition: 0.3s;
-
-    i.exit {
-    position: absolute;
-    right: 2rem;
-    top: 2rem;
-    font-size: 2rem;
-    color: #999999;
-
-      &:hover {
-        color: #333333;
-      }
-    }
-
-    h2 {
-      font-size: 1.3rem;
-      color: #333333;
-      text-shadow: none;
-      margin-bottom: 0;
-      font-weight: 400;
-    }
-  }
-
-  .steps {
-    $step-circle-size: 50px;
-
-    margin: 1rem auto 1.5rem;
-    line-height: 80px;
-    font-weight: 600;
-
-    .step {
-      display: block;
-      line-height: $step-circle-size;
-      vertical-align: middle;
-      margin: 15px;
-      font-size: 1.2rem;
-      color: #333333;
-      font-weight: 800;
-    }
-
-    .step-circle {
-      display: block;
-      box-sizing: border-box;
-      float: left;
-      width: $step-circle-size;
-      height: $step-circle-size;
-      margin-right: 15px;
-      border-radius: 50%;
-      border: 2px solid #333333;
-      color: white;
-      font-weight: 600;
-      font-size: 1.5rem;
-      line-height: $step-circle-size - 5px;
-      vertical-align: middle;
-      text-align: center;
-    }
-
-    .step-circle-1 {
-      background-color: rgba(120, 63,  4, 0.7);
-    }
-
-    .step-circle-2 {
-      background-color: rgba(191, 144, 0, 0.7);
-    }
-
-    .step-circle-3 {
-      background-color: rgba(106, 168, 79, 0.7);
-    }
-  }
-
-  ul.life-stage-icons {
-    list-style: none;
-
-    li {
-      display: inline-block;
-    }
-  }
-
   // The search bar is laid out with tables.
   // Yes this makes sense...for backwards compatability and feeling bad
   // Eventually we will have the sweet, sweet flexbox.
@@ -237,44 +150,6 @@ video { display: block; }
     }
   }
 
-  .add-a-guide {
-    p {
-      opacity: 0.85;
-      font-weight: 600;
-      display: inline-block;
-      color: white;
-    }
-
-    a.create-guide-link {
-      position: relative;
-      display: inline-block;
-      box-sizing: content-box;
-      vertical-align: bottom;
-      color: white;
-      overflow: hidden;
-      padding: 0 2px;
-      @include transition(all 0.35s);
-
-      &:before {
-        position: absolute;
-        z-index: -1;
-        top: 0; left: 0; width: 100%; height:100%;
-        content: "";
-        background-color: $of-green;
-        @include transition(transform 0.25s ease-out);
-        @include transform(translateY(8px) scaleY(0.1));
-      }
-
-      &:hover:before {
-        @include transform(scaleY(1));
-      }
-
-      &:active:before {
-        background-color: darken($of-green, 10%);
-      }
-    }
-  }
-
   .search {
     position: absolute;
     bottom: 0;
@@ -282,49 +157,5 @@ video { display: block; }
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
-  }
-}
-
-// TODO(@warpling): refactor this into it's own file
-.featured-crops {
-  background-color: rgb(240, 245, 240);
-  padding: 40px inherit 20px;
-
-  .featured-crops-grid {
-    margin-top: 30px;
-
-    .featured-crop-container {
-      margin-bottom: 30px;
-
-      .featured-crop {
-        position: relative;
-        height: 280px;
-
-        &:hover {
-          .blackness {
-            opacity: 1;
-            @include single-transition(opacity, 200ms, ease-in-out);
-          }
-        }
-      }
-
-      .blackness {
-        background-color: rgba(0,0,0,0.45);
-        opacity: 0.5;
-      }
-
-      .crop-image {
-        background-color: #f5f5f5;
-        background-size: cover;
-        background-position: center;
-      }
-
-      .crop-name {
-        color: white;
-        font-weight: 800;
-        text-align: center;
-        padding: 30px;
-      }
-    }
   }
 }

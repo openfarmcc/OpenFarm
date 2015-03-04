@@ -165,27 +165,34 @@
                     ng-init="action.length_type = 'minutes'"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
-                    <i class="fa fa-arrows-v"></i> {{ $index+1 }}. {{ action.name }}
-                </li>
-                <li class="expand"
-                    ng-click="openAddActionModal(stage)"
-                    name="add-action"
-                    ><i class="fa fa-plus"></i> <%= t('.manage_actions') %>
+                    {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
                 </li>
               </ul>
+              <button class="button expand add-actions-button"
+                ng-click="openAddActionModal(stage)"
+                name="add-action"
+                ><i class="fa fa-plus"></i> <%= t('.add_actions') %>
+              </button>
             </div>
-            <div class="columns large-9 small-8">
-              <label id="description" for="action_content" ng-bind="stage.activeAction.description">
-              </label>
-                <textarea id="action_content" ng-model="stage.activeAction.overview"></textarea>
-            </div>
-            <div class="columns small-8 large-9">
+            <div class="columns large-9 medium-8 small-12">
+              <div class="row">
+                <div class="columns small-12">
+                  <h2 class="action-name">
+                    {{ stage.activeAction.name }}
+                  </h2>
+                  <label class="left"
+                      for="action_description"><%= t('.describe_action') %>
+                  </label>
+                  <textarea id="action_content" ng-model="stage.activeAction.overview">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="columns small-12 medium-8 large-6">
                   <label class="left"
                       for="how_long"><%= t('.how_long_action') %><br/>
                     <small><%= t('.do_not_sweat') %></small>
                   </label>
-                </div>
-                <div class="columns small-8">
                   <div class="vertical-input-select-group">
                     <input ng-model="stage.activeAction.time"
                            type="number"/>
@@ -196,6 +203,8 @@
                     </select>
                   </div>
                 </div>
+              </div>
+            </div>
           </div>
         </div><!-- ng-form -->
         <div class="button-wrapper row">

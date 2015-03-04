@@ -18,6 +18,15 @@
     li:hover{
       border-color: lighten($of-green, 20%);
       color: lighten($of-green, 20%);
+
+      > i.fa-arrows-v {
+        opacity: 1;
+      }
+    }
+
+    i.fa-arrows-v {
+      line-height: 1.6;
+      opacity: 0;
     }
 
     li.selected {
@@ -32,8 +41,11 @@
     }
   }
 
-  padding-bottom: 1rem;
   margin-top: 1rem;
+
+  .add-actions-button {
+    margin-bottom: 1.5rem;
+  }
 
   textarea {
     min-height: 95px;

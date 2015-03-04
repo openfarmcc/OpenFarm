@@ -47,12 +47,18 @@ video { display: block; }
 .hero {
   height: 70%;
   max-width: initial;
-  min-height: 500px;
   position: relative;
+  transition: 0.3s;
+
+  // Keep hero large enough for how-it-works on large screens
+  @media #{$medium-up} {
+    min-height: 650px;
+  }
 
   .logo {
     display: block;
     margin: 0 auto 10px auto;
+    max-width: 70%;
   }
 
   h2 {
@@ -72,12 +78,7 @@ video { display: block; }
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem;
-  }
-
-  // Slide how-it-works into the view when browser is at the how-it-works anchor
-  .how-it-works:target {
-    top: 0;
-    transition: 0.3s;
+    margin-bottom: 2rem;
   }
 
   // The search bar is laid out with tables.

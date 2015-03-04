@@ -1,14 +1,19 @@
 .how-it-works {
   background-color: #dcd9fa;
-  height: 100%;
+  height: 70%;
   max-width: initial;
   overflow: hidden;
   position: absolute;
   // Initially position the how-it-works section above the screen
-  top: -100%;
+  top: -200%;
   transition: 0.3s;
   width: 100%;
   z-index: 1;
+
+  // Keep how-it-works large enough on large screens
+  @media #{$medium-up} {
+    min-height: 650px;
+  }
 
   i.exit {
   color: #999999;
@@ -29,6 +34,7 @@
     font-weight: 400;
     margin: 1rem;
     text-shadow: none;
+    @media #{$small-only} { font-size: .9em; }
   }
 
   .steps {
@@ -146,6 +152,25 @@
       &.Dormant {
         background-position: -928px center;
       }
+    }
+  }
+}
+
+// Slide how-it-works into the view when browser is at the how-it-works anchor
+.how-it-works:target {
+  top: 0;
+  transition: 0.3s;
+
+  // Allow how-it-works to go full screen on mobile
+  @media #{$small-only} {
+    height: 100%;
+  }
+
+  // Allow hero to expand to full screen on mobile when how-it-works is open
+  + .hero {
+    @media #{$small-only} {
+      height: 100%;
+      transition: 0.3s;
     }
   }
 }

@@ -21,11 +21,11 @@
     }
   }
 
-  h2 {
+  h2.guide-description {
     font-size: 1.3rem;
     color: #333333;
     text-shadow: none;
-    margin-bottom: 0;
+    margin: 1rem;
     font-weight: 400;
   }
 
@@ -73,6 +73,27 @@
 
     .step-circle-3 {
       background-color: rgba(106, 168, 79, 0.7);
+    }
+
+    .step-icon {
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: block;
+      height: 200px;
+      width: 100%;
+
+      &.step-1 {
+        background-image: url('steps/step_1.png');
+      }
+
+      &.step-2 {
+        background-image: url('steps/step_2.png');
+      }
+
+      &.step-3 {
+        background-image: url('steps/step_3.png');
+      }
     }
   }
 

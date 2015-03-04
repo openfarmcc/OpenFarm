@@ -1,20 +1,20 @@
 .how-it-works {
   background-color: #dcd9fa;
-  width: 100%;
-  position: absolute;
-  max-width: initial;
   height: 100%;
-  top: -100%;
+  max-width: initial;
   overflow: hidden;
-  z-index: 1;
+  position: absolute;
+  top: -100%;
   transition: 0.3s;
+  width: 100%;
+  z-index: 1;
 
   i.exit {
+  color: #999999;
+  font-size: 2rem;
   position: absolute;
   right: 2rem;
   top: 2rem;
-  font-size: 2rem;
-  color: #999999;
 
     &:hover {
       color: #333333;
@@ -22,45 +22,45 @@
   }
 
   h2.guide-description {
-    font-size: 1.3rem;
     color: #333333;
-    text-shadow: none;
-    margin: 1rem;
+    font-size: 1.3rem;
     font-weight: 400;
+    margin: 1rem;
+    text-shadow: none;
   }
 
   .steps {
     $step-circle-size: 50px;
 
-    margin: 1rem auto 1.5rem;
-    line-height: 80px;
     font-weight: 600;
+    line-height: 80px;
+    margin: 1rem auto 1.5rem;
 
     .step {
-      display: block;
-      line-height: $step-circle-size;
-      vertical-align: middle;
-      margin: 15px;
-      font-size: 1.2rem;
       color: #333333;
+      display: block;
+      font-size: 1.2rem;
       font-weight: 800;
+      line-height: $step-circle-size;
+      margin: 15px;
+      vertical-align: middle;
     }
 
     .step-circle {
-      display: block;
-      box-sizing: border-box;
-      float: left;
-      width: $step-circle-size;
-      height: $step-circle-size;
-      margin-right: 15px;
-      border-radius: 50%;
       border: 2px solid #333333;
+      border-radius: 50%;
+      box-sizing: border-box;
       color: white;
+      display: block;
+      float: left;
       font-weight: 600;
       font-size: 1.5rem;
+      height: $step-circle-size;
       line-height: $step-circle-size - 5px;
-      vertical-align: middle;
+      margin-right: 15px;
       text-align: center;
+      vertical-align: middle;
+      width: $step-circle-size;
     }
 
     .step-circle-1 {
@@ -105,11 +105,11 @@
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
-      display: inline-block;
-      width: 100px;
-      height: 100px;
       border-radius: 50px;
+      display: inline-block;
+      height: 100px;
       margin: 0.5rem;
+      width: 100px;
 
       &.Preparation {
         background-image: url('stages/colored-stages/prep_color.png');

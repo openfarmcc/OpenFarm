@@ -45,10 +45,10 @@ video { display: block; }
 }
 
 .hero {
-  position: relative;
+  height: 70%;
   max-width: initial;
   min-height: 500px;
-  height: 70%;
+  position: relative;
 
   .logo {
     display: block;
@@ -56,22 +56,22 @@ video { display: block; }
   }
 
   h2 {
-    font-size: 1.3rem;
     color: white;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
-    margin-bottom: 0;
+    font-size: 1.3rem;
     font-weight: 800;
+    margin-bottom: 0;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
   }
 
   button.how-it-works-button {
     background-color: rgba(153,153,153,0.5);
+    border-radius: 3px;
     color: #ffffff;
     display: block;
     font-weight: 800;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1rem;
-    border-radius: 2px;
   }
 
   .how-it-works:target {
@@ -84,9 +84,9 @@ video { display: block; }
   // Eventually we will have the sweet, sweet flexbox.
   .search-bar-container {
     display: table;
-    width: 100%;
-    max-width: 750px;
     margin: 1.5rem auto;
+    max-width: 750px;
+    width: 100%;
   }
 
   .search-bar {
@@ -101,8 +101,8 @@ video { display: block; }
       // Typeahead dropdown
       .f-dropdown {
         margin-top: 0;
-        text-align: left;
         padding-left: 0.5rem;
+        text-align: left;
 
         // dropdown carrat
         &:before, &:after {
@@ -112,14 +112,14 @@ video { display: block; }
     }
 
     input.search-input {
-      display: table-cell;
-      width: 100%;
-      height: $search-bar-height;
       background-color: #ffffff;
       color: #333333;
-      padding: 0 1rem;
+      display: table-cell;
       font-size: 1.2em;
+      height: $search-bar-height;
       margin: 0;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     .search-button-container {
@@ -128,16 +128,16 @@ video { display: block; }
     }
 
     input.search-button {
-      display: table-cell;
-      padding: 0 35px;
-      top: 0;
-      right: 0;
-      height: $search-bar-height;
-      font-size: 1.2em;
-      color: white;
       background-image: none;
       background-color: $of-green;
       border-radius: 0;
+      color: white;
+      display: table-cell;
+      font-size: 1.2em;
+      height: $search-bar-height;
+      padding: 0 35px;
+      right: 0;
+      top: 0;
 
       &:hover {
         background-color: rgba(106, 168, 79, 1);
@@ -151,11 +151,11 @@ video { display: block; }
   }
 
   .search {
-    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
     bottom: 0;
     left: 0;
+    position: absolute;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
     z-index: 2;
   }
 }

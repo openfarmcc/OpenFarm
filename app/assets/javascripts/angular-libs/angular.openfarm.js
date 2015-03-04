@@ -4,12 +4,18 @@ var openFarmApp = angular.module('openFarmApp', [
   'ngS3upload',
   'ngDragDrop',
   'ui.sortable',
+  'LocalStorageModule',
   'openFarmModule'
 ]);
 
 var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
+
+openFarmApp.config(['localStorageServiceProvider', function (localStorageServiceProvider){
+  localStorageServiceProvider
+    .setPrefix('openFarm');
+}]);
 
 openFarmModule.factory('userService', ['$http',
   function userService($http) {
@@ -110,14 +116,17 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectId = $attrs.multiSelectId;
 
           $scope.$watch('options', function(){
-            $scope.othered = $scope.options
-              .reduce(function(returned, current, index){
-                if (index > $scope.multiSelectOverflowCount){
-                  return returned || current.selected;
-                } else {
-                  return false;
-                }
-              });
+            if ($scope.options !== undefined){
+              $scope.othered = $scope.options
+                .reduce(function(returned, current, index){
+                  if (index > $scope.multiSelectOverflowCount){
+                    return returned || current.selected;
+                  } else {
+                    return false;
+                  }
+                });
+            }
+
           }, true);
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',

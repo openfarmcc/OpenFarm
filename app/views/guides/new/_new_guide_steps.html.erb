@@ -15,22 +15,26 @@
       <div class="row">
         <ul class="small-12 columns">
           <li>
-            <a href="#" ng-class="{ 'active' : step === 1, 'disabled' : !newGuide.crop, 'check' : newGuide.crop }" ng-click="switchToStep(1)">
+            <a ng-class="{ 'active' : step === 1, 'disabled' : !newGuide.crop, 'check' : newGuide.crop }"
+            ng-click="switchToStep(1)">
               <%= t('.the_basics') %>
             </a>
           </li>
           <li>
-            <a href="#" ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.selectedStages.length > 0 }" ng-click="switchToStep(2)">
+            <a ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.selectedStages.length > 0 }"
+            ng-click="switchToStep(2)">
               <%= t('.life_stages') %>
             </a>
           </li>
           <li>
-            <a href="#" ng-class="{ 'active' : step === 3, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : hasEditedStages }" ng-click="switchToStep(3)">
+            <a ng-class="{ 'active' : step === 3, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : hasEditedStages }"
+            ng-click="switchToStep(3)">
               <%= t('.stage_details') %>
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.name }" href="#" ng-click="switchToStep(4)">
+            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.name }"
+            ng-click="switchToStep(4)">
               <%= t('.final_touches') %>
             </a>
           </li>

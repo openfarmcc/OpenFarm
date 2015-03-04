@@ -242,6 +242,7 @@ GEM
       rails-assets-jquery-ui
     rails-assets-angular-foundation (0.5.1)
       rails-assets-angular (>= 1)
+    rails-assets-angular-local-storage (0.1.5)
     rails-assets-angular-ui-sortable (0.13.3)
       rails-assets-angular (>= 1.2)
       rails-assets-jquery-ui (>= 1.9)
@@ -412,6 +413,7 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-dragdrop!
   rails-assets-angular-foundation!
+  rails-assets-angular-local-storage!
   rails-assets-angular-ui-sortable!
   rails-assets-jquery-ui!
   rails_12factor

@@ -6,6 +6,7 @@
 //= require angular-dragdrop
 //= require angular-ui-sortable
 //= require angular-foundation
+//= require angular-local-storage
 //= require ng-rails-csrf
 //= require ./libs/showdown
 //= require ./libs/moment.min

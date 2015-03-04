@@ -1,15 +1,15 @@
 <div class="button-wrapper row">
   <div class="columns large-12">
-    <a class="button small secondary left"
+    <!-- <a class="button small secondary left"
         name="back"
         href="{{ cancelUrl }}"
-        >{{ cancelText }}</a>
+        >{{ cancelText }}</a> -->
     <input class="button small secondary left"
         ng-if="backText"
         name="back"
         type="submit"
         value="{{ backText }}"
-        ng-click="previousStep()">
+        ng-click="switchToStep(step - 1)">
 
     <input class="button small right"
         name="commit"

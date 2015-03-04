@@ -74,6 +74,7 @@ video { display: block; }
     margin-top: 1rem;
   }
 
+  // Slide how-it-works into the view when browser is at the how-it-works anchor
   .how-it-works:target {
     top: 0;
     transition: 0.3s;

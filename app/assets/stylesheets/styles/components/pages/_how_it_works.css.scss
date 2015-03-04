@@ -4,6 +4,7 @@
   max-width: initial;
   overflow: hidden;
   position: absolute;
+  // Initially position the how-it-works section above the screen
   top: -100%;
   transition: 0.3s;
   width: 100%;
@@ -101,50 +102,48 @@
     list-style: none;
 
     li {
-      background-image: url('stages/other_sm.png');
-      background-position: center center;
+      background-image: url('stages/blue_life_stages.png');
       background-repeat: no-repeat;
       background-size: cover;
       border-radius: 50px;
       display: inline-block;
-      height: 100px;
-      margin: 0.5rem;
-      width: 100px;
+      height: 116px;
+      width: 116px;
 
       &.Preparation {
-        background-image: url('stages/colored-stages/prep_color.png');
-      }
+        background-position: 0;
+       }
 
       &.Sow {
-        background-image: url('stages/colored-stages/sow_color.png');
+        background-position: -116px center;
       }
 
       &.Germination {
-        background-image: url('stages/colored-stages/germination_color.png');
+        background-position: -232px center;
       }
 
       &.Seedling {
-        background-image: url('stages/colored-stages/sprouting_color.png');
+        background-position: -348px center;
       }
 
       &.Juvenile {
-        background-image: url('stages/colored-stages/juvenile_color.png');
+        background-position: -464px center;
       }
 
       &.Adult {
-        background-image: url('stages/colored-stages/adult_color.png');
+        background-position: -580px center;
       }
 
       &.Flowering {
-        background-image: url('stages/colored-stages/flowering_color.png');
+        background-position: -696px center;
       }
 
       &.Fruit {
-        background-image: url('stages/colored-stages/fruiting_color.png');
+        background-position: -812px center;
       }
 
       &.Dormant {
-        background-image: url('stages/colored-stages/dormant_color.png');
+        background-position: -928px center;
       }
     }
   }

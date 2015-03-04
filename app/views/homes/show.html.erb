@@ -35,41 +35,7 @@
             </form>
         </div>
     </div>
-    <div class="how-it-works" id="how-it-works">
-        <div class="row">
-            <a href="#"><i class="fa fa-times exit"></i></a>
-            <div class="small-12 columns steps">
-                <div class="small-12 medium-4 columns">
-                    <div class="step step-circle step-circle-1">1</div>
-                        <%= t 'home.step_1' %>
-                    <div class="step-icon step-1"></div>
-                </div>
-                <div class="small-12 medium-4 columns">
-                    <div class="step step-circle step-circle-2">2</div>
-                        <%= t 'home.step_2' %>
-                    <div class="step-icon step-2"></div>
-                </div>
-                <div class="small-12 medium-4 columns">
-                    <div class="step step-circle step-circle-3">3</div>
-                        <%= t 'home.step_3' %>
-                    <div class="step-icon step-3"></div>
-                </div>
-            </div>
-            <h2 class="center guide-description">
-                <%= t 'home.guide_description' %>
-            </h2>
-            <ul class="life-stage-icons">
-                <li class="Preparation"></li>
-                <li class="Sow"></li>
-                <li class="Germination"></li>
-                <li class="Seedling"></li>
-                <li class="Juvenile"></li>
-                <li class="Adult"></li>
-                <li class="Fruit"></li>
-                <li class="Flowering"></li>
-            </ul>
-        </div>
-    </div>
+    <%= render partial: 'how_it_works' %>
 </div>
 
 <div class="featured-crops">

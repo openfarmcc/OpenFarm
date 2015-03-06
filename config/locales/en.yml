@@ -52,6 +52,10 @@ en:
     open_core: "Open is at Our Core"
     project_history: "Project History"
     code_of_conduct: "Code of Conduct"
+    faq: "Frequently Asked Questions"
+    email_newsletter: "Subscribe to our Email Newsletter"
+    privacy_policy: "Privacy Policy"
+    tos: "Terms of Service"
   measurements:
     cm: "cm"
     centimeters:

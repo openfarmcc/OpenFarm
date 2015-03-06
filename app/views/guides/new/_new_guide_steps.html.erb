@@ -21,19 +21,19 @@
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.selectedStages.length > 0 }"
+            <a ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !selectedStagesCount > 0, 'check' : selectedStagesCount > 0 }"
             ng-click="switchToStep(2)">
               <%= t('.life_stages') %>
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 3, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : hasEditedStages }"
+            <a ng-class="{ 'active' : step === 3, 'disabled' : !newGuide.crop || !selectedStagesCount > 0, 'check' : hasEditedStages }"
             ng-click="switchToStep(3)">
               <%= t('.stage_details') %>
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !newGuide.selectedStages.length > 0, 'check' : newGuide.name }"
+            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !selectedStagesCount > 0, 'check' : newGuide.name }"
             ng-click="switchToStep(4)">
               <%= t('.final_touches') %>
             </a>

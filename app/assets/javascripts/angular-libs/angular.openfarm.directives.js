@@ -12,7 +12,7 @@ openFarmModule.directive('alerts', ['$timeout',
             $scope.alerts.splice(index, 1);
           };
           $scope.$watch('alerts.length', function(){
-            if ($scope.alerts.length){
+            if ($scope.alerts && $scope.alerts.length){
               $timeout(function(){
                 $scope.alerts = $scope.alerts.filter(function(alert){
                   return alert.cancelTimeout;

@@ -412,13 +412,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if ($scope.guideExists){
       loadExternalGuide(getIDFromURL('guides'), practices);
     } else {
-      if (localStorageService.get('guide')){
-        $scope.newGuide = localStorageService.get('guide');
+      var localGuide = localStorageService.get('guide')
+      if (localGuide && !localGuide._id){
+        $scope.newGuide = localGuide;
         if (checkAlert){
           resetAlert();
         }
-      }
-      if(localStorageService.get('guide')){
         $scope.newGuide.stages = buildDetailsForStages($scope.newGuide.stages);
       } else {
         $scope.newGuide.stages = buildDetailsForStages($scope.stages);
@@ -695,13 +694,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     }, practices);
 
+    var defineFeaturedImage = function(image){
+      var featured_image = null
+      if ($scope.newGuide.featured_image.indexOf('baren_field') === -1){
+        featured_image = $scope.newGuide.featured_image;
+      }
+      return featured_image;
+    }
+
     var params = {
       time_span: $scope.newGuide.time_span,
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
       location: $scope.newGuide.location || null,
-      featured_image: $scope.newGuide.featured_image || null,
+      featured_image: defineFeaturedImage($scope.newGuide.featured_image),
       practices: practices
     };
 
@@ -757,9 +764,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
+    console.log('sending stages');
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
+      console.log('sending stage');
       var stageParams = {
         name: stage.name,
         guide_id: guide._id,
@@ -799,6 +808,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // each stage.
 
       if (stage.selected && !stage.exists){
+        console.log('creating stage');
         stageService.createStage(stageParams,
                                  $scope.alerts,
                                  function(success, stage){
@@ -808,6 +818,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  });
 
       } else if (stage.selected && stage.exists){
+        console.log('updating stage');
         stageService.updateStage(stage._id,
                                  stageParams,
                                  $scope.alerts,
@@ -818,6 +829,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  });
 
       } else if (stage.exists){
+        console.log('deleting stage');
         stageService.deleteStage(stage._id,
                                  $scope.alerts,
                                  function(){

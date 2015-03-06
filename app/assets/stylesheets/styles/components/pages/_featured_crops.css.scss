@@ -1,0 +1,42 @@
+.featured-crops {
+  background-color: rgb(240, 245, 240);
+  padding: 40px inherit 20px;
+
+  .featured-crops-grid {
+    margin-top: 30px;
+
+    .featured-crop-container {
+      margin-bottom: 30px;
+
+      .featured-crop {
+        position: relative;
+        height: 280px;
+
+        &:hover {
+          .blackness {
+            opacity: 1;
+            @include single-transition(opacity, 200ms, ease-in-out);
+          }
+        }
+      }
+
+      .blackness {
+        background-color: rgba(0, 0, 0, .45);
+        opacity: .5;
+      }
+
+      .crop-image {
+        background-color: #f5f5f5;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .crop-name {
+        color: #ffffff;
+        font-weight: 800;
+        text-align: center;
+        padding: 30px;
+      }
+    }
+  }
+}

@@ -319,3 +319,9 @@ en:
       step_1: "Choose a Crop"
       step_2: "Find a Guide"
       step_3: "Grow!"
+      how_it_works: "See how it works"
+      guide_description: |
+        Growing Guides show you how to care for your Crop during all
+        of its Life Stages. Each Guide is based on specific environmental
+        conditions and growing practices, and ranked for compatibility
+        with you and your gardens.

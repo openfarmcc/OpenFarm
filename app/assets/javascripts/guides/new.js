@@ -297,13 +297,15 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }).length > 0);
 
     if (!isSet){
-      $scope.newGuide.selectedStages.forEach(function(stage){
+      $scope.newGuide.stages.forEach(function(stage){
         if (stage.selected && !selectedSet){
           // hacked hack is a hack
-          $scope.newGuide.stages[stage.originalIndex].editing = true;
+          // $scope.newGuide.stages[stage.originalIndex].editing = true;
           selectedSet = true;
+          stage.editing = true;
         } else {
-          $scope.newGuide.stages[stage.originalIndex].editing = false;
+          // $scope.newGuide.stages[stage.originalIndex].editing = false;
+          stage.editing = false;
         }
       });
     }
@@ -321,19 +323,22 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   var buildFromExistingAndPreloadedStages = function(existing, preloaded){
     var stages = [];
-    existing.forEach(function(existingStage){
-      preloaded.forEach(function(preloadedStage, index){
-        if (existingStage.name === preloadedStage.name){
-          existingStage.exists = true;
-          existingStage.selected = true;
-          existingStage = transferStageActions(existingStage,
-                                               preloadedStage);
-          existingStage = calculateStageLengthType(existingStage);
-          stages.push(existingStage);
-        } else {
-          stages.push(preloadedStage);
-        }
-      });
+    var existingStageNames = existing.map(function(s){
+      return s.name;
+    });
+    preloaded.forEach(function(preloadedStage, index){
+      var existingStageIndex = existingStageNames.indexOf(preloadedStage.name);
+      if (existingStageIndex !== -1){
+        var existingStage = existing[existingStageIndex];
+        existingStage.exists = true;
+        existingStage.selected = true;
+        existingStage = transferStageActions(existingStage,
+                                             preloadedStage);
+        existingStage = calculateStageLengthType(existingStage);
+        stages.push(existingStage);
+      } else {
+        stages.push(preloadedStage);
+      }
     });
 
     return buildDetailsForStages(stages);
@@ -397,8 +402,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide = angular.copy($scope.originalGuide);
         $scope.alerts.splice(index, 1);
         $scope.switchToStep(1);
-        checkGuideSource();
         localStorageService.remove('guide');
+        checkGuideSource();
       }
     });
   };
@@ -427,7 +432,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         name: '',
         crop: undefined,
         overview: '',
-        selectedStages: [],
+        // selectedStages: [],
         time_span: {
           'length': 24,
           'length_units':'weeks',
@@ -460,8 +465,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
     $scope.$watch('newGuide.stages', function(){
 
-      $scope.newGuide.selectedStages = [];
+      // $scope.newGuide.selectedStages = [];
+
+
       var stages = $scope.newGuide.stages;
+      $scope.selectedStagesCount = $scope.newGuide.stages
+                                    .filter(function(s) {
+                                      return s.selected;
+                                    }).length;
 
       // keep track of what the next and previous stage is for toggling
       // through them.
@@ -476,15 +487,15 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
               stages[lastSelectedIndex].nextSelectedIndex = index;
             }
 
-            $scope.newGuide.selectedStages.push(item);
+            // $scope.newGuide.selectedStages.push(item);
             lastSelectedIndex = index;
           }
         });
       }
 
-      $scope.newGuide.selectedStages.sort(function(a, b){
-        return a.order > b.order;
-      });
+      // $scope.newGuide.selectedStages.sort(function(a, b){
+      //   return a.order > b.order;
+      // });
 
       setEditingStage();
     }, true);

@@ -291,15 +291,22 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   var setEditingStage = function(){
     var selectedSet = false;
-    $scope.newGuide.selectedStages.forEach(function(stage){
-      if (stage.selected && !selectedSet){
-        // hacked hack is a hack
-        $scope.newGuide.stages[stage.originalIndex].editing = true;
-        selectedSet = true;
-      } else {
-        $scope.newGuide.stages[stage.originalIndex].editing = false;
-      }
-    });
+
+    var isSet = ($scope.newGuide.stages.filter(function(stage) {
+      return stage.editing;
+    }).length > 0);
+
+    if (!isSet){
+      $scope.newGuide.selectedStages.forEach(function(stage){
+        if (stage.selected && !selectedSet){
+          // hacked hack is a hack
+          $scope.newGuide.stages[stage.originalIndex].editing = true;
+          selectedSet = true;
+        } else {
+          $scope.newGuide.stages[stage.originalIndex].editing = false;
+        }
+      });
+    }
   };
 
   var transferStageActions = function(existing, preloaded){
@@ -581,12 +588,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.editSelectedStage($scope.stages[index]);
   };
 
-  $scope.editSelectedStage = function(stage){
-    $scope.newGuide.selectedStages.forEach(function(item){
-      item.editing = false;
-      if (stage === item){
-        item.editing = true;
-        $scope.currentStage = stage;
+  $scope.editSelectedStage = function(chosenStage){
+    $scope.newGuide.stages.forEach(function(stage){
+      stage.editing = false;
+      if (chosenStage.name === stage.name){
+        stage.editing = true;
+
+        $scope.currentStage = chosenStage;
       }
     });
   };

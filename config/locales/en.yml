@@ -39,7 +39,7 @@ en:
     crop: "Crop"
     guide: "Guide"
   meta:
-    about: "About"
+    about: "About OpenFarm"
     our_mission: "Our Mission"
     mission_statement: |
       Develop community and tools for freely sharing plant knowledge
@@ -51,6 +51,7 @@ en:
     past_team_members: "Past Team Members"
     open_core: "Open is at Our Core"
     project_history: "Project History"
+    code_of_conduct: "Code of Conduct"
   measurements:
     cm: "cm"
     centimeters:

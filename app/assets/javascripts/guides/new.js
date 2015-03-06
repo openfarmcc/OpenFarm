@@ -9,7 +9,7 @@ openFarmApp.directive('formChecker', function(){
       scope.$watch('stage', function(){
         if (scope.stage.selected){
           scope.stage.edited = false;
-          scope.stage.where.forEach(function(opt){
+          scope.stage.environment.forEach(function(opt){
             if (opt.selected){
               scope.stage.edited = true;
             }
@@ -214,7 +214,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.step = +$location.hash() || 1;
   });
 
-  $scope.whereOptions = ['Potted', 'Outside', 'Greenhouse', 'Inside'];
+  $scope.environmentOptions = ['Potted', 'Outside', 'Greenhouse', 'Inside'];
   $scope.lightOptions = ['Full Sun', 'Partial Sun', 'Shaded', 'Darkness'];
   $scope.soilOptions = ['Potting', 'Loam', 'Clay', 'Clay Loam',
                         'Loamy Sand', 'Sandy Clay', 'Sandy Loam',
@@ -258,27 +258,27 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  // var calculateStageLengthType = function(loadedStage, stage){
-  //   switch(true){
-  //     case (parseInt(stage.stage_length, 10) % 7 === 0):
-  //       loadedStage.stage_length = loadedStage.stage_length / 7;
-  //       loadedStage.length_type = 'weeks';
-  //       break;
-  //     case (parseInt(stage.stage_length, 10) % 30 === 0):
-  //       loadedStage.stage_length = loadedStage.stage_length / 30;
-  //       loadedStage.length_type = 'months';
-  //       break;
-  //     default:
-  //       loadedStage.length_type = 'days';
-  //   }
-  //   return loadedStage;
-  // };
+  var calculateStageLengthType = function(existing){
+    switch(true){
+      case (parseInt(existing.stage_length, 10) % 7 === 0):
+        existing.stage_length = existing.stage_length / 7;
+        existing.length_type = 'weeks';
+        break;
+      case (parseInt(existing.stage_length, 10) % 30 === 0):
+        existing.stage_length = existing.stage_length / 30;
+        existing.length_type = 'months';
+        break;
+      default:
+        existing.length_type = 'days';
+    }
+    return existing;
+  };
 
   var buildDetailsForStages = function(preloadedStages, existingStages){
     preloadedStages.forEach(function(preloadedStage){
-      preloadedStage.where = $scope.buildStageDetails($scope.whereOptions,
-                                                      (preloadedStage.where ||
-                                                       []));
+      preloadedStage.environment = $scope.buildStageDetails($scope.environmentOptions,
+                                                            (preloadedStage.environment ||
+                                                             []));
       preloadedStage.light = $scope.buildStageDetails($scope.lightOptions,
                                                       (preloadedStage.light ||
                                                        []));
@@ -287,7 +287,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                                       []));
     });
     return preloadedStages;
-  }
+  };
 
   var setEditingStage = function(){
     var selectedSet = false;
@@ -300,7 +300,17 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.stages[stage.originalIndex].editing = false;
       }
     });
-  }
+  };
+
+  var transferStageActions = function(existing, preloaded){
+    if (existing.stage_actions.length > 0){
+      existing.stage_action_options = [];
+      existing.stage_action_options = existing.stage_actions;
+    } else {
+      existing.stage_action_options = preloaded.stage_action_options;
+    }
+    return existing;
+  };
 
   var buildFromExistingAndPreloadedStages = function(existing, preloaded){
     var stages = [];
@@ -309,15 +319,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         if (existingStage.name === preloadedStage.name){
           existingStage.exists = true;
           existingStage.selected = true;
+          existingStage = transferStageActions(existingStage,
+                                               preloadedStage);
+          existingStage = calculateStageLengthType(existingStage);
           stages.push(existingStage);
         } else {
           stages.push(preloadedStage);
         }
       });
     });
-    buildDetailsForStages(stages);
-    return stages;
-  }
+
+    return buildDetailsForStages(stages);
+  };
 
   var loadExternalGuide = function(guideId, practices){
     $http.get('/api/guides/' + guideId)
@@ -342,11 +355,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.time_span = transferTimeSpan($scope.newGuide.time_span,
                                                      r.guide.time_span);
 
-
         if (r.guide.practices){
-          $scope.newGuide.practices.forEach(function(d){
-            if (r.guide.practices.indexOf(d.slug) !== -1){
-              d.selected = true;
+          $scope.newGuide.practices.forEach(function(practice){
+            if (r.guide.practices.indexOf(practice.slug) !== -1){
+              practice.selected = true;
             }
           });
         }
@@ -365,11 +377,46 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         });
         console.log(r, e);
       });
+  };
+
+  var resetAlert = function(){
+    $scope.alerts.push({
+      msg: 'We noticed that you hadn\'t finished completing your guide, ' +
+           'so we preloaded it.',
+      type: 'info',
+      action: 'Start from scratch?',
+      cancelTimeout: true,
+      actionFunction: function(index){
+        $scope.newGuide = angular.copy($scope.originalGuide);
+        $scope.alerts.splice(index, 1);
+        $scope.switchToStep(1);
+        checkGuideSource();
+        localStorageService.remove('guide');
+      }
+    });
+  }
+
+  var checkGuideSource = function(checkAlert){
+    if ($scope.guideExists){
+      loadExternalGuide(getIDFromURL('guides'), practices);
+    } else {
+      if (localStorageService.get('guide')){
+        $scope.newGuide = localStorageService.get('guide');
+        if (checkAlert){
+          resetAlert();
+        }
+      }
+      if(localStorageService.get('guide')){
+        $scope.newGuide.stages = buildDetailsForStages($scope.newGuide.stages);
+      } else {
+        $scope.newGuide.stages = buildDetailsForStages($scope.stages);
+      }
+    }
   }
 
   var setGuide = function(){
 
-    $scope.newGuide = {
+    $scope.originalGuide = {
         name: '',
         crop: undefined,
         overview: '',
@@ -394,18 +441,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         start_time: moment().format('MMMM')
     };
 
-    if ($scope.guideExists){
-      loadExternalGuide(getIDFromURL('guides'), practices);
-    } else {
-      if (localStorageService.get('guide')){
-        $scope.newGuide = localStorageService.get('guide');
-      }
-      if(localStorageService.get('guide')){
-        $scope.newGuide.stages = buildDetailsForStages($scope.newGuide.stages);
-      } else {
-        $scope.newGuide.stages = buildDetailsForStages($scope.stages);
-      }
-    }
+    $scope.newGuide = angular.copy($scope.originalGuide);
+
+    checkGuideSource(true);
 
     $scope.$watch('newGuide', function(){
       if (!$scope.guideExists){
@@ -471,7 +509,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           type: 'warning'
         });
       });
-  }
+  };
 
   getStages(setGuide);
 
@@ -708,7 +746,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         guide_id: guide._id,
         order: stage.order,
         stage_length: calcTimeLength(stage.stage_length, stage.length_type),
-        environment: stage.where.filter(function(s){
+        environment: stage.environment.filter(function(s){
             return s.selected;
           }).map(function(s){
             return s.label;

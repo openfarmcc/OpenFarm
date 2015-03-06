@@ -133,35 +133,6 @@ openFarmModule.directive('multiRowSelect', [
     };
 }]);
 
-openFarmModule.directive('alerts', ['$timeout',
-  function alerts($timeout) {
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      scope: true,
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
-          $scope.closeAlert = function(index) {
-            $scope.alerts.splice(index, 1);
-          };
-          $scope.$watch('alerts.length', function(){
-            if ($scope.alerts.length > 0){
-              $timeout(function(){
-                $scope.alerts = [];
-              }, 3000);
-            }
-          });
-      }],
-      template:
-        '<alert ng-cloak ' +
-          'class="ng-cloak columns large-6 large-centered radius float" ' +
-          'ng-repeat="alert in alerts" ' +
-          'type="alert.type" close="closeAlert($index)">' +
-            '<div class=""> {{alert.msg}} </div>' +
-        '</alert>'
-    };
-  }]);
-
 openFarmApp.directive('clearOn', function() {
    return function(scope, elem, attr) {
       scope.$on('clearOn', function(e, name) {

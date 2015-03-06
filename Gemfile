@@ -38,6 +38,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-dragdrop'
   gem 'rails-assets-angular-foundation'
   gem 'rails-assets-angular-ui-sortable'
+  gem 'rails-assets-angular-local-storage'
 end
 
 group :development, :test do

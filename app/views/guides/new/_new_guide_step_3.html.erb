@@ -25,7 +25,7 @@
         ng-init="stageForms[$index] = stage.name"
         ng-if="stage.editing">
         <div ng-form="stageForm"
-             form-checker
+             form-checker="stage"
              form-id="stage.slug"
              form-stage="stage">
           <span ng-bind="stageForms[$index].$valid"></span>
@@ -89,7 +89,7 @@
               </div> -->
             </div>
             <div class="right-half columns large-7 large-offset-1">
-              <div class="row where">
+              <div class="row environment">
                 <div class="columns small-12">
                   <label class="left"
                     for="where_should_stage_happen">
@@ -101,10 +101,10 @@
                 <div class="columns small-12">
                   <div multi-row-select
                      class="multi-choice"
-                     options="stage.where"
+                     options="stage.environment"
                      multi-select-overflow-count="3"
                      multi-select-type="checkbox"
-                     multi-select-id="where">
+                     multi-select-id="environment">
                   </div>
                 </div>
               </div>
@@ -226,7 +226,6 @@
                 value="{{ stage.edited ? '<%= t('guides.new.new_guide_step_3.edit_next_stage') %>': '<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>' }}"
                 ng-disabled="!(stage.edited)"
                 ng-click="nextStage(stage.nextSelectedIndex)"/>
-
             <input class="button small right"
                 ng-if="!stage.nextSelectedIndex"
                 name="commit"

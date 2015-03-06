@@ -4,12 +4,19 @@ var openFarmApp = angular.module('openFarmApp', [
   'ngS3upload',
   'ngDragDrop',
   'ui.sortable',
+  'LocalStorageModule',
   'openFarmModule'
 ]);
 
 var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
+
+openFarmApp.config(['localStorageServiceProvider',
+  function (localStorageServiceProvider){
+    localStorageServiceProvider
+      .setPrefix('openFarm');
+}]);
 
 openFarmModule.factory('userService', ['$http',
   function userService($http) {
@@ -110,48 +117,22 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectId = $attrs.multiSelectId;
 
           $scope.$watch('options', function(){
-            $scope.othered = $scope.options
-              .reduce(function(returned, current, index){
-                if (index > $scope.multiSelectOverflowCount){
-                  return returned || current.selected;
-                } else {
-                  return false;
-                }
-              });
+            if ($scope.options !== undefined){
+              $scope.othered = $scope.options
+                .reduce(function(returned, current, index){
+                  if (index > $scope.multiSelectOverflowCount){
+                    return returned || current.selected;
+                  } else {
+                    return false;
+                  }
+                });
+            }
+
           }, true);
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',
     };
 }]);
-
-openFarmModule.directive('alerts', ['$timeout',
-  function alerts($timeout) {
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      scope: true,
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
-          $scope.closeAlert = function(index) {
-            $scope.alerts.splice(index, 1);
-          };
-          $scope.$watch('alerts.length', function(){
-            if ($scope.alerts.length > 0){
-              $timeout(function(){
-                $scope.alerts = [];
-              }, 3000);
-            }
-          });
-      }],
-      template:
-        '<alert ng-cloak ' +
-          'class="ng-cloak columns large-6 large-centered radius float" ' +
-          'ng-repeat="alert in alerts" ' +
-          'type="alert.type" close="closeAlert($index)">' +
-            '<div class=""> {{alert.msg}} </div>' +
-        '</alert>'
-    };
-  }]);
 
 openFarmApp.directive('clearOn', function() {
    return function(scope, elem, attr) {

@@ -28,7 +28,6 @@ openFarmModule.directive('alerts', ['$timeout',
           'type="alert.type" close="closeAlert($index)">' +
             '<div class=""> {{alert.msg}} </div>' +
             '<a ng-if="alert.action" ' +
-               'class="button tiny" ' +
                'ng-click="alert.actionFunction($index)"> ' +
               '{{alert.action}} ' +
             '</a>' +

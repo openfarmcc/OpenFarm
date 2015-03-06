@@ -1,53 +1,92 @@
-<div class="row">
-  <div class="swatch columns large-7 large-centered">
-    <h1>About</h1>
-    <p>
-    OpenFarm is a free and open database for farming and gardening knowledge. We provide a platform for expert and beginner farmers and gardeners to share their knowledge in the form of Growing Guides - structured, community generated, single-author documents that describe how to grow a Crop based on specific environmental conditions and growing practices. Compatibility Scoring between Users and Guides allows high quality and relevant information to be discovered quickly. We are a global service that aims to break down borders through the open sharing of knowledge, increase participation in the food system, and help everyone become a better farmer or gardener.
-    </p><p>
-    Our Vision is a world where everyone can grow anything.
-    </p><p>
-    Our Mission is to create space for freely sharing plant and animal knowledge locally and globally.
+<div class="bar-header">
+  <h1 class="title">
+    <%= t('meta.about') %>
+  </h1>
+</div>
 
-    <h2>Our Team</h2>
+<div class="row">
+  <div class="swatch columns large-10 large-centered">
+    <h2 class="center"><%= t('application.site_title') %></h2>
+    <hr>
     <p>
-    OpenFarm’s core team is composed of software developers, community building specialists, gardening hobbyists, UI/UX experts, and business minds. We’re dedicated to increasing the diversity of our team and always looking for more help. We have adopted a <a href="https://openfarm.cc/pages/code_of_conduct">Code of Conduct</a> to ensure that our working spaces (and community spaces at-large) are safe and inviting for everyone. Drop in to <a href="https://github.com/openfarmcc/OpenFarm">GitHub</a> if you want to help out with software, share your feedback and ideas in our <a href="http://loomio.org/g/yWm14fG6/openfarm-development-group">discussion forum</a>, or <a href="mailto:rory@openfarm.cc">email us directly</a> if you have other ways in mind that you’d like to help out or are interested in joining the core team.
+        OpenFarm is a free and open database for farming and gardening knowledge. We provide a platform for expert and beginner farmers and gardeners to share their knowledge in the form of Growing Guides - structured, community generated, single-author documents that describe how to grow a Crop based on specific environmental conditions and growing practices. Compatibility Scoring between Users and Guides allows high quality and relevant information to be discovered quickly. We are a global service that aims to break down borders through the open sharing of knowledge, increase participation in the food system, and help everyone become a better farmer or gardener.
+    </p>
+    <h4><%= t('meta.our_vision') %></h4>
+    <p>
+        <%= t('meta.vision_statement') %>
+    </p>
+    <h4><%= t('meta.our_mission') %></h4>
+    <p>
+        <%= t('meta.mission_statement') %>
+    </p>
+    </br>
+    <h2 class="center"><%= t('meta.open_core') %></h2>
+    <hr>
+    <p>
+        We believe that the open sharing of knowledge - especially that for growing food and taking care of our environment - can significantly raise our quality of life and reduce our negative impact on the earth. As a project with openness at our core, we’re striving towards organizational and financial transparency; accessibility of our data and source code; and openness to all ideas, people, and perspectives. We invite you to join in our thinking and explore these specific actions we are taking:
     </p>
     <ul>
-    <li>Kat Ying - Community Builder</li>
-    <li>Kevin Bertolero - Community Builder</li>
-    <li>Rory Aronson - Architecture and UI/UX Design</li>
-    <li>Simon Vansintjan - Full Stack Web Development</li>
-    <li>Rick Carlino - Backend and API Web Development</li>
-    <li>Ryan McLeod - Frontend Engineering and UI/UX Design</li>
-    <li>Emily Plummer - Business Development and Frontend Engineering</li>
-    <li>Christian Renfro - Business Development</li>
-    <li>Ally Woods - Business Development</li>
-    <li>Jake Wing - Business Development</li>
+        <li>OpenFarm’s source code is available on <a href="https://github.com/openfarmcc/OpenFarm">GitHub</a> under the <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
+        <li>All of OpenFarm’s data and content is in the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain (CC0)</a> and readily accessible via our <a href="https://github.com/openfarmcc/OpenFarm/wiki/The-OpenFarm-API-(ALPHA-VERSION)">API</a> within reasonable bandwidth limits</li>
+        <li>We openly publish all of our <a href="https://drive.google.com/open?id=1l00i92MiF56o5uwWurzMwnJXQ6Zq28AvER2a3LrBGjg">expenditures and revenues</a></li>
+        <li>Anyone can help us develop OpenFarm and we strongly encourage it; here is our <a href="https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing">development roadmap</a></li>
+        <li>We have created a <a href="https://openfarm.cc/pages/code_of_conduct">Code of Conduct</a> that applies to our entire community</li>
+        <li>We have a <a href="http://loomio.org/g/yWm14fG6/openfarm-development-group">dedicated forum</a> for listening to you - our community</li>
+        <li>Our progress is regularly documented and shared on our <a href="http://blog.openfarm.cc">blog</a> and social media profiles</li>
     </ul>
-    <h2>Open is at Our Core</h2>
+    </br>
+    </br>
+    <h2 class="center"><%= t('meta.project_history') %></h2>
+    <hr>
     <p>
-    We believe that the open sharing of knowledge - especially that for growing food and taking care of our environment - can significantly raise our quality of life and reduce our negative impact on the earth. As a project with openness at our core, we’re striving towards organizational and financial transparency; accessibility of our data and source code; and openness to all ideas, people, and perspectives. We invite you to join in our thinking and explore these specific actions we are taking:
-    </p><ul>
-    <li>OpenFarm’s source code is available on <a href="https://github.com/openfarmcc/OpenFarm">GitHub</a> under the <a href="http://opensource.org/licenses/MIT">MIT License</a></li>
-    <li>All of OpenFarm’s data and content is in the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Public Domain (CC0)</a> and readily accessible via our <a href="https://github.com/openfarmcc/OpenFarm/wiki/The-OpenFarm-API-(ALPHA-VERSION)">API</a> within reasonable bandwidth limits</li>
-    <li>We openly publish all of our <a href="https://drive.google.com/open?id=1l00i92MiF56o5uwWurzMwnJXQ6Zq28AvER2a3LrBGjg">expenditures and revenues</a></li>
-    <li>Anyone can help us develop OpenFarm and we strongly encourage it; here is our <a href="https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing">development roadmap</a></li>
-    <li>We have created a <a href="https://openfarm.cc/pages/code_of_conduct">Code of Conduct</a> that applies to our entire community</li>
-    <li>We have a <a href="http://loomio.org/g/yWm14fG6/openfarm-development-group">dedicated forum</a> for listening to you - our community</li>
-    <li>Our progress is regularly documented and shared on our <a href="http://blog.openfarm.cc">blog</a> and social media profiles</li>
-    </ul>
+        The concept of OpenFarm originated in September of 2013 in the <a href="http://go.farmbot.it/whitepaper/">FarmBot Whitepaper</a> by <a href="http://roryaronson.com/">Rory Aronson</a>. The idea was to build a centralized, structured, and open dataset that described how to grow plants based on specific environmental conditions and growing practices. This database would be the knowledge for FarmBot to function, and it was necessary to build from the ground up because nothing like it existed. Up until the middle half of 2014, OpenFarm was significantly tied to the FarmBot Project in purpose, team members, and resources.
+    </p>
+    <p>
+        Around July of 2014, it became apparent that OpenFarm should be an independent project, and that the best way to create and curate the data was to ask the whole world to do so. And so OpenFarm.cc was established, with the .cc domain name symbolizing the Creative Commons license chosen for the database: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 - Public Domain Dedication</a>.
+    </p>
+    <p>
+        Rory decided to launch a <a href="http://kck.st/1yBHkVG">Kickstarter campaign</a> in August of 2014 to increase awareness, build up the team, and also raise independent funding for the project. By September of 2014 the campaign had raised over $24,000 from over 1,600 people around the world. It was obvious that OpenFarm had the support it needed to thrive.
+    </p>
+    <p>
+        The team slowly expanded to include business minds and more software developers, the vision and roadmap became clearer, and development began accelerating. In December of 2014 the OpenFarm team <a href="http://blog.openfarm.cc/2014/12/11/openfarm-will-launch-on-january-18th/">announced</a> it would be launching the site on January 18, 2015.
+    </p>
+    <p>
+        In the time leading up to the launch, the team expanded further to include graphic design and community development skill sets. And on January 18th, 2015, OpenFarm was <a href="http://blog.openfarm.cc/2015/01/18/introducing-openfarm-you-can-grow-anything/">officially launched</a>. Though full of bugs and not very useful at the time, its need to exist and potential for impact was validated through the support and excitement of the community. Our user base and content base began slowly growing.
+    </p>
+    <p>
+        In February of 2015, we solidified our understanding of where we want to go with the project and what legal entity would best fit our needs. OpenFarm filed to become a California Non-Profit Public Benefit Corporation. A blog post about this decision is coming soon!
+    </p>
+    <p>
+        As well as the rest of our story as it unfolds!
+    </p>
+    </br>
 
-    <h2>Project History</h2>
-    <p>The concept of OpenFarm originated in September of 2013 in the <a href="http://go.farmbot.it/whitepaper/">FarmBot Whitepaper</a> by <a href="http://roryaronson.com/">Rory Aronson</a>. Up until the middle half of 2014, OpenFarm was significantly tied to the FarmBot Project in purpose, team members, and resources.
-    </p>
+    <h2 class="center"><%= t('meta.our_team') %></h2>
+    <hr>
     <p>
-    Around July of 2014, it became apparent that OpenFarm should be an independent project. Rory decided to launch a <a href="http://kck.st/1yBHkVG">Kickstarter campaign</a> in August to increase awareness, build up the team, and also raise independent funding for the project. By September of 2014 the campaign had raised over $24,000 from over 1,600 people around the world. It was obvious that OpenFarm had the support it needed to thrive.
+        OpenFarm’s core team is composed of software developers, community building specialists, gardening hobbyists, UI/UX experts, and business minds. We’re dedicated to increasing the diversity of our team and always looking for more help. We have adopted a <a href="https://openfarm.cc/pages/code_of_conduct">Code of Conduct</a> to ensure that our working spaces (and community spaces at-large) are safe and inviting for everyone. Drop in to <a href="https://github.com/openfarmcc/OpenFarm">GitHub</a> if you want to help out with software, share your feedback and ideas in our <a href="http://loomio.org/g/yWm14fG6/openfarm-development-group">discussion forum</a>, or <a href="mailto:rory@openfarm.cc">email us directly</a> if you have other ways in mind that you’d like to help out or are interested in joining the core team.
     </p>
-    <p>
-    Since then the team slowly expanded to include business minds and more software developers, the vision and roadmap became clearer, and development began accelerating. In December of 2014 the OpenFarm team <a href="http://blog.openfarm.cc/2014/12/11/openfarm-will-launch-on-january-18th/">announced</a> it would be launching the site on January 18, 2015.
-    </p>
-    <p>
-    We are now in the process of becoming a 501(c)3 non-profit.
-    </p>
+    <h4><%= t('meta.current_team_members') %></h4>
+    <ul>
+        <li>Kat Ying - Community Development</li>
+        <li><a href="http://kevinbertolero.com">Kevin Bertolero</a> - Community Development</li>
+        <li><a href="http://roryaronson.com">Rory Aronson</a> - Architecture, Team Development, and Frontend Engineering</li>
+        <li><a href="http://simon.vansintjan.net/">Simon Vansintjan</a> - Full Stack Web Development</li>
+        <li><a href="http://www.rickcarlino.com/">Rick Carlino</a> - Backend and API Web Development</li>
+        <li><a href="https://twitter.com/warpling">Ryan McLeod</a> - Frontend Engineering and UI/UX Design</li>
+        <li><a href="https://twitter.com/eplummer26">Emily Plummer</a> - Business Development and Frontend Engineering</li>
+        <li><a href="http://clairedierksen.com/">Claire Dierksen</a> - Graphic Design and Brand Development</li>
+        <li>Matt Pruitt - Backend Web Development</li>
+        <li>Jake Rayson - Frontend Engineering</li>
+    </ul>
+    </br>
+
+    <h4><%= t('meta.past_team_members') %></h4>
+    <ul>
+        <li>Christian Renfro - Business Development</li>
+        <li>Ally Woods - Business Development</li>
+        <li>Jake Wing - Business Development</li>
+    </ul>
+    </br>
   </div>
 </div>

@@ -6,8 +6,8 @@ openFarmModule.directive('alerts', ['$timeout',
       scope: {
         alerts: '='
       },
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+      controller: ['$scope',
+        function ($scope) {
           $scope.closeAlert = function(index) {
             $scope.alerts.splice(index, 1);
           };

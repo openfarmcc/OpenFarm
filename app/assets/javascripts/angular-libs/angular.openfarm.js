@@ -12,9 +12,10 @@ var openFarmModule = angular.module('openFarmModule', [
   'ngSanitize'
 ]);
 
-openFarmApp.config(['localStorageServiceProvider', function (localStorageServiceProvider){
-  localStorageServiceProvider
-    .setPrefix('openFarm');
+openFarmApp.config(['localStorageServiceProvider',
+  function (localStorageServiceProvider){
+    localStorageServiceProvider
+      .setPrefix('openFarm');
 }]);
 
 openFarmModule.factory('userService', ['$http',

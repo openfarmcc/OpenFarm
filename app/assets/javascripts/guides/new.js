@@ -210,7 +210,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService,
                         $modal, $location, localStorageService) {
 
-  $scope.$on("$locationChangeSuccess", function(){
+  $scope.$on('$locationChangeSuccess', function(){
     $scope.step = +$location.hash() || 1;
   });
 
@@ -274,7 +274,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     return existing;
   };
 
-  var buildDetailsForStages = function(preloadedStages, existingStages){
+  var buildDetailsForStages = function(preloadedStages){
     preloadedStages.forEach(function(preloadedStage){
       preloadedStage.environment = $scope.buildStageDetails($scope.environmentOptions,
                                                             (preloadedStage.environment ||
@@ -394,7 +394,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         localStorageService.remove('guide');
       }
     });
-  }
+  };
 
   var checkGuideSource = function(checkAlert){
     if ($scope.guideExists){
@@ -412,7 +412,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         $scope.newGuide.stages = buildDetailsForStages($scope.stages);
       }
     }
-  }
+  };
 
   var setGuide = function(){
 

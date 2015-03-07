@@ -7,11 +7,13 @@
   <div class="small-12 columns">
     <div class="row">
       <div class="large-8 medium-10 small-12 small-centered columns">
-        <h3><%= t('users.account_information') %></h3>
+        <h3 class="center"><%= t('users.account_information') %></h3>
+        <hr>
         <%= render 'devise/shared/user_form' %>
         <br/>
         <br/>
-        <h3><%= t('users.delete_account') %></h3>
+        <h3 class="center"><%= t('users.delete_account') %></h3>
+        <hr>
         <p><%= t('users.delete_account_message') %>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :delete) do |f| %>
           <%= f.label :password_confirmation, I18n.t('users.current_password') %>

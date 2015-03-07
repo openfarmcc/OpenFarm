@@ -103,6 +103,30 @@
     margin: 1.5rem 0;
   }
 
+  .life-stage-nav {
+    background-color: #54853f;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &.bar-header {
+      height: auto;
+    }
+
+    ul.chosen-stages {
+      margin: -1rem 0;
+      white-space: nowrap;
+
+      p {
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      li {
+        white-space: normal;
+      }
+    }
+  }
+
   // Note: these are shared by step 2 and 3
   // For now these live in .new-guide, but they
   // might be better suited somewhere else.

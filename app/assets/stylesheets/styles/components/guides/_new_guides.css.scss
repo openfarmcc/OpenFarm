@@ -104,7 +104,7 @@
   }
 
   .life-stage-nav {
-    background-color: #54853f;
+    background-color: darken($of-green, 10%);
     overflow-x: auto;
     overflow-y: hidden;
 
@@ -117,7 +117,7 @@
       white-space: nowrap;
 
       p {
-        color: #ffffff;
+        color: $white;
         font-weight: 600;
       }
 

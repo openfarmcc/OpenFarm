@@ -285,7 +285,7 @@ textarea {
     @include font-awesome-mixin();
 
     cursor: pointer;
-    color: #b7ca98;
+    color: $openfarm-green-muted;
     width: 100px;
     height: 100px;
     border-radius: 1em;
@@ -296,7 +296,7 @@ textarea {
     vertical-align: top;
 
     &:hover {
-      color: #5e9546;
+      color: darken($of-green, 10%);
     }
 
     &:before{

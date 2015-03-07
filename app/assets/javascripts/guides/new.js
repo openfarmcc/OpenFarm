@@ -695,9 +695,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }, practices);
 
     var defineFeaturedImage = function(image){
-      var featured_image = null
-      if ($scope.newGuide.featured_image.indexOf('baren_field') === -1){
-        featured_image = $scope.newGuide.featured_image;
+      var featured_image = null;
+      if (image.indexOf('baren_field') === -1){
+        featured_image = image;
       }
       return featured_image;
     }

@@ -2,7 +2,7 @@ class CropSearchesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :search
 
   def search
-    query = params[:q].to_s
+    query = params[:q].to_s.encode('utf-8', 'iso-8859-1')
     @crops = Crop.search(query,
                          limit: 25,
                          partial: true,

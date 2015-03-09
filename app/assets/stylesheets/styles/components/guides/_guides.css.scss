@@ -19,8 +19,12 @@
   padding: 26px;
   position: relative;
   border-radius: 10px;
-  color: #CCC;
+  color: #999;
   font-size: 1em;
+
+  &:hover {
+    color: #333;
+  }
 }
 
 // TODO: Remove/refactor out generic selectors like this!

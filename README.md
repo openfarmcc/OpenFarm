@@ -36,6 +36,8 @@ If all went well, you will have a seeded database and can use the account `admin
 
 #### How to Contribute
 
+Help us [translate the website](https://www.transifex.com/projects/p/openfarm/).
+
 For code, have a look at our [contribution guidelines](https://github.com/openfarmcc/OpenFarm/blob/master/CONTRIBUTING.md).
 
 Want to see the big picture? We have a [project roadmap](https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing) for that!

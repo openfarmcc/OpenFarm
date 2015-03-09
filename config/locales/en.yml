@@ -34,8 +34,9 @@ en:
     create_account: "Create an Account"
     loading_locations: "loading locations"
     manage_gardens: "Manage Your Gardens"
-    only_upload_what_you_own: "Only upload a photo you own"
+    only_upload_what_you_own: "Only upload photos you own"
     choose_photo: "Upload a photo"
+    choose_stage_photo: "Add a photo for this stage"
     crop: "Crop"
     guide: "Guide"
   meta:
@@ -91,14 +92,14 @@ en:
           I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
           <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
-      account_information: "Account information"
+      account_information: "Account Information"
       display_name: "Username:"
       password: "New Password:"
       current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
       create_account: "Create account"
       update_account: "Update account"
-      delete_account: "Delete account"
+      delete_account: "Delete Account"
       delete_account_message: |
           We're sorry that you want to leave OpenFarm. Note: Deleting your
           account will permanently delete all of your user profile and garden
@@ -255,7 +256,7 @@ en:
               no_crop_selected: "No crop selected"
               lets_get_started: "Lets Get Started!"
               which_crop: "Which crop is this guide For?"
-              choose_photo: "Upload a photo"
+              choose_photo: "Add a photo of this crop"
               common_or_scientific: "Common or scientific names are okay"
               which_practices: "Which practices will you be using?"
               check_all_that_apply: "Check all that apply."
@@ -276,7 +277,6 @@ en:
               finish_stage_to_continue: "Finish Stage To Continue"
               fill_in_details: "Fill in the details for each life stage."
               stage_details: "Stage Details"
-              what_should_people_know_about_this_stage: "Let's start with this Stage's basic info"
               where_does_this_stage_happen: "Where does this stage happen?"
               choose_more_than_one: "You can choose more than one."
               what_type_of_soil: "What type of soil should be used?"

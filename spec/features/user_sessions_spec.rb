@@ -100,4 +100,16 @@ describe 'User sessions' do
     click_button 'Next: Add Garden'
     expect(page).to have_content('Your Gardens')
   end
+
+  it 'should redirect to sign up page when user is not authorized' do
+    visit new_crop_path
+    see("You're not authorized to go to there.")
+    user.password = 'password123'
+    user.password_confirmation = 'password123'
+    user.save
+    fill_in :user_email, with: user[:email]
+    fill_in :user_password, with: 'password123'
+    click_button "Sign in"
+    expect(page).to have_content("Add a new crop!")
+  end
 end

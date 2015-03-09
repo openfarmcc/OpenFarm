@@ -21,6 +21,6 @@ describe 'Crop pages', type: :controller do
 
   it 'requires user log in to create a guide' do
     visit '/crops/new'
-    expect(page).to have_content('Woops, that\'s not a page!')
+    expect(page).to have_content('You\'re not authorized to go to there.')
   end
 end

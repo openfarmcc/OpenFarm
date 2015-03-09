@@ -55,8 +55,23 @@ class ApplicationController < ActionController::Base
            layout: false
   end
 
-  def user_not_authorized
-    flash[:alert] = "Woops, that's not a page!"
+  def user_not_authorized(exception)
+    flash[:alert] = 'You\'re not authorized to go to there.'
+    if !current_user
+      store_location_for(:user, new_crop_path)
+
+      return redirect_to(new_user_session_path)
+    end
     redirect_to(request.referrer || root_path)
+  end
+
+  def after_sign_in_path_for(resource)
+    go_to = stored_location_for(resource)
+
+    if go_to
+      go_to || request.referer || root_path
+    else
+      url_for(root_path)
+    end
   end
 end

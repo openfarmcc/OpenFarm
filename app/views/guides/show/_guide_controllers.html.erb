@@ -2,5 +2,6 @@
 <% if @guide.owned_by?(current_user) %>
   <%= link_to(icon('edit') + " Edit Guide", {:action => 'edit'}, :class=>'button tiny secondary edit-link') %>
   <%= link_to(icon('trash') + t('.delete_guide'), guide_path(@guide), :method => 'delete', :class=>'button tiny secondary edit-link') %>
+  <a type="button" id="print" class="button tiny secondary edit-link" onclick="print()"><%= icon('trash') + t('.print_guide') %></a>
 <% end %>
 </div>

@@ -31,7 +31,8 @@
     </title>
     <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", media: "screen, projection" %>
+    <%= stylesheet_link_tag "application-print", media: "print" %>
     <%= csrf_meta_tags %>
     <%# Controller specific start JS %>
     <%= javascript_include_tag "application" %>

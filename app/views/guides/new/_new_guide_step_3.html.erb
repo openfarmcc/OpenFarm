@@ -12,15 +12,6 @@
     </form>
     <!--  -->
 
-    <form name="stagesForm">
-      <div class="instructions">
-        <h2 class="center">
-          <%= t('.fill_in_details') %>
-        </h2>
-      </div>
-
-      <%= render 'guides/new/stage_details/chosen_stages' %>
-
       <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
         ng-init="stageForms[$index] = stage.name"
         ng-if="stage.editing">
@@ -31,7 +22,6 @@
           <span ng-bind="stageForms[$index].$valid"></span>
           <div class="instructions text-center">
             <h2>{{ stage.name }} Stage Overview</h2>
-            <h3><%= t('.what_should_people_know_about_this_stage') %></h3>
           </div>
           <hr/>
           <div class="row">
@@ -39,7 +29,7 @@
               <div class="row image">
                 <div class="columns small-12">
                   <label class="left"
-                      for="stage_image_upload"><%= t('application.choose_photo') %><br/>
+                      for="stage_image_upload"><%= t('application.choose_stage_photo') %><br/>
                     <small><%= t('application.only_upload_what_you_own') %></small>
                   </label>
                 </div>
@@ -236,9 +226,6 @@
           </div>
         </div>
       </section>
-
-      <%= render 'guides/new/stage_details/chosen_stages' %>
-
     </form>
   </div>
 </section>

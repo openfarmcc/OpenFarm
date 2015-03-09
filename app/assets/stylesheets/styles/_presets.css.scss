@@ -285,7 +285,7 @@ textarea {
     @include font-awesome-mixin();
 
     cursor: pointer;
-
+    color: $openfarm-green-muted;
     width: 100px;
     height: 100px;
     border-radius: 1em;
@@ -295,6 +295,9 @@ textarea {
     position: relative;
     vertical-align: top;
 
+    &:hover {
+      color: darken($of-green, 10%);
+    }
 
     &:before{
       content: "\f06c";

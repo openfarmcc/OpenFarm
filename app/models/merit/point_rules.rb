@@ -5,7 +5,6 @@
 module Merit
   class PointRules
     include Merit::PointRulesMethods
-
     def initialize
       # empty, who knows if we'll implement points, but we need the
       # thing for merit to work.

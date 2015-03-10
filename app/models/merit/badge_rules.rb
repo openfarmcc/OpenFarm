@@ -20,8 +20,16 @@ module Merit
 
     def initialize
 
-      # Grant on guide create, or API
-      grant_on '.*guides#create', badge: 'guide-creator', multiple: true
+      # for more specific badges: https://github.com/tute/merit
+      grant_on '.*guides#create', badge: 'guide-creator'
+
+      grant_on '.*crops#create', badge: 'crop-creator'
+
+      grant_on '.*crops#update', badge: 'crop-editor'
+
+      grant_on '.*gardens#create', badge: 'garden-creator'
+
+      grant_on '.*garden_crops#create', badge: 'gardener'
     end
   end
 end

@@ -11,6 +11,8 @@ module Api
         type: 'Outside',
         soil_type: 'Loam'
       )
+      @user = current_user
+      # puts garden
       respond_with_mutation(:created)
     end
 

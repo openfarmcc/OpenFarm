@@ -112,4 +112,16 @@ describe 'User sessions' do
     click_button 'Sign in'
     expect(page).to have_content('Add a new crop!')
   end
+
+  it 'should direct to root after log in' do
+    visit root_path
+    click_link 'Log in'
+    user.password = 'password123'
+    user.password_confirmation = 'password123'
+    user.save
+    fill_in :user_email, with: user[:email]
+    fill_in :user_password, with: 'password123'
+    click_button 'Sign in'
+    expect(page).to have_content("Hi, #{user.display_name}")
+  end
 end

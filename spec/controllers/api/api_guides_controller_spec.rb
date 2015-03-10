@@ -106,4 +106,21 @@ describe Api::GuidesController, type: :controller do
     expect(response.status).to eq(422)
     expect(json['featured_image']).to include('Must be a fully formed URL')
   end
+
+  it 'should give current_user a badge for creating a guide' do
+    sign_in user
+
+    assert user.badges.empty?
+
+    data = { name: 'brocolini in the desert',
+             overview: 'something exotic',
+             crop_id: FactoryGirl.create(:crop).id.to_s }
+    post 'create', data, format: :json
+    expect(response.status).to eq(201)
+    user.reload
+
+    assert user.badges.count == 1
+
+    assert user.badges.first.name == 'guide-creator'
+  end
 end

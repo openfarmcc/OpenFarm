@@ -8,7 +8,6 @@ badge_id = 0
   id: (badge_id = badge_id+1),
   name: 'kickstarter-backer',
   description: 'You sponsored OpenFarm on Kickstarter!',
-  level: 10
 }, {
   id: (badge_id = badge_id+1),
   name: 'guide-creator',
@@ -29,4 +28,6 @@ badge_id = 0
   id: (badge_id = badge_id+1),
   name: 'gardener',
   description: 'You\'ve added a crop or a guide to one of your gardens!'
-}]
+}].each do |badge|
+  Merit::Badge.create! badge
+end

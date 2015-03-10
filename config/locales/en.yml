@@ -301,6 +301,7 @@ en:
       show:
           edit_guide: " Edit Guide"
           delete_guide: " Delete Guide"
+          print_guide: " Print Guide"
           guide_by: "Guide by"
           compatibility_based_on: "Based on"
           show_guide_statistics:

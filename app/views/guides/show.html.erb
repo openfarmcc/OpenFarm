@@ -2,6 +2,10 @@
 <%= content_for(:description) do %><%= @guide.overview %><% end %>
 <%= content_for(:keywords) do %><% if @guide.practices %><%= @guide.practices.join(', ') %><% end %>, <%= @guide.crop.name %><% end %>
 
+<%= content_for(:start_js) do %>
+
+<% end %>
+
 <div ng-controller="showGuideCtrl"
      ng-cloak
      class="guides show-guide">
@@ -58,8 +62,6 @@
     <!-- TODO: There's a lot of duplicate content here, we should try and minimize that. -->
     <div class="row wide-row small-guide show-for-medium-down">
 
-      <!-- TODO: we should to stop storing leaf-grey in guides and handle this
-      logic in a better way -->
       <div class="canopy"
         ng-attr-alt="{{ guide.name }}"
         style="background-image: url({{ guide.featured_image }})">

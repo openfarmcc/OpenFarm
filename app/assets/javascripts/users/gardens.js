@@ -15,6 +15,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
       $scope.gardens = user.gardens;
 
       angular.forEach(user.gardens, function(garden){
+        // set the pH if it hasn't been set.
+        if (!garden.ph){
+          garden.ph = 7.5;
+        }
+
         angular.forEach(garden.garden_crops, function(garden_crop){
           var callback = function(success, response){
             garden_crop.guide.crop = response;

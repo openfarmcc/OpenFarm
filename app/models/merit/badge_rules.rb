@@ -17,9 +17,7 @@
 module Merit
   class BadgeRules
     include Merit::BadgeRulesMethods
-
     def initialize
-
       # for more specific badges: https://github.com/tute/merit
       grant_on '.*guides#create', badge: 'guide-creator'
 

@@ -97,6 +97,15 @@ describe Api::GardensController, type: :controller do
     end
 
     it 'should prevent non-logged in users from creating a garden'
+
+    it 'should give garden-creator badge when user creates a second garden' do
+      assert @viewing_user.badges.empty?
+      post :create,
+           name: 'Second Garden',
+           format: :json
+      @viewing_user.reload
+      assert @viewing_user.badges.count == 1
+    end
   end
 
   describe 'update' do

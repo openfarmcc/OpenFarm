@@ -40,6 +40,7 @@ module Crops
       # Find pictures IDs that exist, but were not provided
       do_delete   = current_ids - dont_delete
       # Delete pic IDs that were not provided in params.
+      # FIXME: this is what mongoid is complaining about.
       @existing_crop.pictures.find(do_delete).map(&:destroy)
     end
 

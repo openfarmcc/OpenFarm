@@ -86,4 +86,30 @@ describe CropsController, :type => :controller do
     expect(crop.reload.name).to eq('Updated name')
     expect(response.status).to eq(302)
   end
+
+  it 'should give current_user a badge for creating a crop' do
+    user = FactoryGirl.create(:user)
+    sign_in user
+
+    crop = FactoryGirl.attributes_for(:crop)
+    post 'create', crop: crop
+    user.reload
+
+    assert user.badges.count == 1
+    assert user.badges.first.name == 'crop-creator'
+  end
+
+  it 'should give current_user a badge for editing a crop' do
+    user = FactoryGirl.create(:user)
+    sign_in user
+
+    crop = FactoryGirl.create(:crop)
+    put 'update',
+        id: crop.id,
+        crop: { name: 'Updated name' }
+    user.reload
+
+    assert user.badges.count == 1
+    assert user.badges.first.name == 'crop-editor'
+  end
 end

@@ -25,6 +25,20 @@ describe Api::GardenCropsController, type: :controller do
       expect(new_length).to eq(old_length + 1)
     end
 
+    it 'should give the user a gardener badge on adding a garden crop' do
+      guide = FactoryGirl.create(:guide)
+      garden = FactoryGirl.create(:garden, user: @user)
+      data = { quantity: rand(100),
+               stage: "#{Faker::Lorem.word}",
+               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+               guide_id: guide.id,
+               garden_id: garden.id }
+
+      post :create, data, format: :json
+      @user.reload
+      assert @user.badges.last.name == 'gardener'
+    end
+
     it 'should not allow user to add garden crops to other user gardens' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden)

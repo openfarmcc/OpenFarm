@@ -18,21 +18,21 @@
       left: 0;
       right: 0;
       padding: 50px 10px 10px;
-      color: white;
+      color: $white;
       /* FIXME: Avoid compass gradient for some reason.
          When using compass' background image function,
          linear gradients output an error:
          `Cannot determine the opposite position of: to`, our personal
          method defined in presets doesn't have this issue.
          see: https://github.com/FarmBot/OpenFarm/issues/325; */
-         @include background-gradient(rgba(0,0,0,.85), rgba(0,0,0,0));
-      /*@include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));*/
+      @include background-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, 0));
+      // @include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));
     }
   }
 }
 
-/* This ensures that on non-mobile screens the two containers
-show up not only side-by-side but full-height */
+// This ensures that on non-mobile screens the two containers
+// show up not only side-by-side but full-height
 
 @media #{$medium-up} {
   .crop-info-container {

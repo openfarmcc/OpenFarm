@@ -1,0 +1,16 @@
+.guide-results-container {
+  background-color: $openfarm-blue-grey;
+
+  h2 {
+    margin: 1em 0;
+  }
+}
+
+// This ensures that on non-mobile screens the two containers
+// show up not only side-by-side but full-height
+@media #{$medium-up} {
+  .guide-results-container {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

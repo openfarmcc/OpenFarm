@@ -47,9 +47,17 @@ class User
   field :is_private, type: Mongoid::Boolean, default: false
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
          # , :omniauthable
+
+  # These are needed to be defined. Dunno why this doesn't
+  # get automatically generated. Part of Devise.Confirmable
+  # http://stackoverflow.com/a/9952241/154392
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String
 
   has_merit
 

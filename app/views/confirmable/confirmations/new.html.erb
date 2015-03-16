@@ -1,0 +1,28 @@
+<div class="row">
+<div class="columns small-6 small-centered">
+  <h2>Resend confirmation instructions</h2>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <% if resource.errors.any? %>
+      <div class="alert-box alert radius" data-alert="">
+        <ul>
+        <% resource.errors.full_messages.each do |full_message| %>
+          <li><%= full_message %></li>
+        <% end %>
+        </ul>
+        <a class="close" href="#">×</a>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Resend confirmation instructions", class: 'button submit' %>
+    </div>
+  <% end %>
+
+  <%= render "confirmable/shared/links" %>
+  </div>
+  </div>

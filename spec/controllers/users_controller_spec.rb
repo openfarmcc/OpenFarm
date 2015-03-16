@@ -42,4 +42,20 @@ describe UsersController do
     get 'index'
     expect(assigns(:users)).to match_array([public_user, user, private_user])
   end
+
+  it 'should not update with incomplete information' do
+    user = FactoryGirl.create(:user)
+    sign_in user
+    put 'update', {'location': '', 'units': 'metric'}
+    expect(response).to redirect_to({controller: 'users', action: 'finish'})
+  end
+
+  it 'should not update with incomplete information' do
+    user = FactoryGirl.create(:user)
+    sign_in user
+    put 'update', {'location': 'Hanoi', 'units': 'metric'}
+    expect(response).to redirect_to ({ controller: 'users',
+                                       action: 'gardens',
+                                       manage: true })
+  end
 end

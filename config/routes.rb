@@ -3,7 +3,8 @@ OpenFarm::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
-      registrations: "registrations"
+      registrations: "registrations",
+      confirmations: "confirmations"
     }
   devise_scope :users do
     get 'users/gardens' => 'users#gardens'

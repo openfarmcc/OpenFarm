@@ -3,6 +3,7 @@ class User
   has_many :guides
   has_many :gardens
   has_one :token, dependent: :delete
+  has_one :user_setting
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
@@ -30,9 +31,14 @@ class User
                                            'Privacy Policy' },
                     on: :create
 
+  # TODO: These are being moved to user_setting.rb, once
+  # the migration is complete on the server,
+  # delete them on user.rb ~@simonv3 16/03/2015
+
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String
+
   field :mailing_list, type: Mongoid::Boolean, default: false
 
   field :admin, type: Mongoid::Boolean, default: false
@@ -46,4 +52,8 @@ class User
          # , :omniauthable
 
   has_merit
+
+  def user_setting
+    UserSetting.find_or_create_by(user: self)
+  end
 end

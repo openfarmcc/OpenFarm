@@ -26,7 +26,7 @@ OpenFarm::Application.configure do
                         'ActionController::RoutingError',
                         'ActionController::InvalidAuthenticityToken',
                         'ActionView::MissingTemplate']
-  config.action_mailer.default_url_options = { host: 'openfarm.cc' }
+  config.action_mailer.default_url_options = { host: 'staging.openfarm.cc' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false

@@ -66,6 +66,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-angular (0.1.0)
+      capybara
     chunky_png (1.3.3)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -250,7 +252,7 @@ GEM
       rails-assets-angular (>= 1.2)
       rails-assets-jquery-ui (>= 1.9)
     rails-assets-jquery (2.1.3)
-    rails-assets-jquery-ui (1.11.3)
+    rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
     rails_12factor (0.0.3)
       rails_serve_static_assets
@@ -381,6 +383,7 @@ DEPENDENCIES
   bson_ext
   bundler (>= 1.7.0)
   capybara
+  capybara-angular
   coffee-rails
   compass-rails
   coveralls

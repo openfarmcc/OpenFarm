@@ -58,6 +58,7 @@ group :test do
   gem 'test-unit'
   gem 'doc_yo_self'
   gem 'capybara'
+  gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'

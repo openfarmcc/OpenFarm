@@ -1,5 +1,4 @@
 class ConfirmationsController < Devise::ConfirmationsController
-
   def show
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
 
@@ -23,7 +22,7 @@ class ConfirmationsController < Devise::ConfirmationsController
       respond_with_navigational(
         resource.errors,
         status: :unprocessable_entity ){
-          render 'confirmable/confirmations/new'
+          render '/devise/confirmations/new'
         }
     end
   end

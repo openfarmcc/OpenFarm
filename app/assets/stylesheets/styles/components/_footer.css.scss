@@ -1,7 +1,7 @@
 
 footer {
   height: $footer-height;
-  background: RGB(32, 25, 23);
+  background: rgb(32, 25, 23);
   @include transition(all .5s);
   padding: .5em 0;
 

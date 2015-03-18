@@ -135,7 +135,6 @@ textarea {
 .row.row-table {
   display: table;
   table-layout: fixed;
-  width: 100%; // Tables will only be as big as they need to without this
 }
 
 .row.row-full-height {
@@ -157,7 +156,6 @@ textarea {
   height: 100%;
   margin-bottom: -$footer-height;
 }
-
 
 // For covering content in partial blackness
 .the-blackness {

@@ -696,7 +696,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
     var defineFeaturedImage = function(image){
       var featured_image = null;
-      if (image.indexOf('baren_field') === -1){
+      if (image !== undefined && image.indexOf('baren_field') === -1){
         featured_image = image;
       }
       return featured_image;

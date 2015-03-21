@@ -99,7 +99,7 @@ describe Guide do
     FactoryGirl.create(:guide)
     guide = FactoryGirl.create(:guide)
     existing_score = guide.popularity_score
-    guide.impressions_field = 20 # Note: guide factory can randomly create 20
+    guide.impressions_field = 110
     guide.save
     expect(guide.popularity_score).not_to eq(0)
     expect(guide.popularity_score).not_to eq(existing_score)

@@ -54,10 +54,7 @@ if Rails.env != 'production' # <= Prevent catastrophe
   FactoryGirl.create(:detail_option, name: 'Potted', category: 'environment')
   FactoryGirl.create(:detail_option, name: 'Inside', category: 'environment')
   FactoryGirl.create(:detail_option, name: 'Inside', category: 'environment')
-  outside = FactoryGirl.create(:detail_option,
-                               name: 'Outside',
-                               category: 'environment')
-
+  FactoryGirl.create(:detail_option, name: 'Outside', category: 'environment')
 
   FactoryGirl.create(:detail_option, name: 'Loam', category: 'soil')
   FactoryGirl.create(:detail_option, name: 'Clay', category: 'soil')
@@ -76,7 +73,6 @@ if Rails.env != 'production' # <= Prevent catastrophe
   FactoryGirl.create(:detail_option,
                      name: 'Permaculture',
                      category: 'practices')
-
 
   prep = FactoryGirl.create(:stage_option, name: 'Preparation', order: 0)
   prep.stage_action_options = [water, fertilize, amend, prepare]
@@ -106,8 +102,6 @@ if Rails.env != 'production' # <= Prevent catastrophe
 
   dormant = FactoryGirl.create(:stage_option, name: 'Dormant', order: 8)
   dormant.stage_action_options = [prune, cover, tap]
-
-
 
   Guide.all.each{ |gde| gde.update_attributes(user: admin) }
 end

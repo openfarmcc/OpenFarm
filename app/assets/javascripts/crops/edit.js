@@ -1,13 +1,15 @@
 openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
-  function newGuideCtrl($scope, $http, cropService) {
+  function editCropCtrl($scope, $http, cropService) {
     $scope.alerts = [];
     $scope.s3upload = '';
     $scope.editCrop = {};
+    var cropId = getIDFromURL('crops');
+
     var setCrop = function(success, crop){
       $scope.editCrop = crop;
     };
 
-    cropService.getCrop(getIDFromURL('crops'), $scope.alerts, setCrop);
+    cropService.getCrop(cropId, $scope.alerts, setCrop);
 
     $scope.submitForm = function(){
       $scope.editCrop.sending = true;
@@ -16,8 +18,13 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
       if (typeof $scope.editCrop.common_names === 'string'){
         commonNames = $scope.editCrop.common_names.split(/,+|\n+/)
                         .map(function(s){ return s.trim(); });
+        if (commonNames !== null){
+          commonNames = commonNames.filter(function(s){
+            return s.length > 0;
+          });
+        }
+
       }
-      commonNames = commonNames.filter(function(s){ return s.length > 0; });
 
       var params = {
         crop: {
@@ -41,6 +48,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
       var cropCallback = function(success, crop){
         $scope.editCrop.sending = false;
         $scope.editCrop = crop;
+        window.location.href = '/crops/' + $scope.editCrop._id + '/';
       };
 
       cropService.updateCrop($scope.editCrop._id,

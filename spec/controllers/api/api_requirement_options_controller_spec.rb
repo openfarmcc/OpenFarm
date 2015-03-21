@@ -15,7 +15,7 @@ describe Api::RequirementOptionsController, type: :controller do
   # it 'lists requirement options' do
   #   get 'index', format: :json
   #   expect(response.status).to eq(200)
-  #   expect(json['requirement_options'].length).to eq(RequirementOption.all.length)
+  #   expect(json['requirement_options'].length).to
+  #      eq(RequirementOption.all.length)
   # end
-
 end

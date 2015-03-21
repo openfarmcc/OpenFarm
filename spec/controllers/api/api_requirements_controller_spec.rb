@@ -32,7 +32,8 @@ describe Api::RequirementsController, type: :controller do
   # end
 
   # it 'should return an error when wrong info is passed to create' do
-  #   # FIXME reword this to better describe whats going on or make assertions on
+  #   # FIXME reword this to better describe whats going on or make assertions
+  # on
   #   # the response body text.
   #   data = {
   #     required: "#{Faker::Lorem.sentences(2)}",
@@ -99,8 +100,8 @@ describe Api::RequirementsController, type: :controller do
 
   # it 'handles deletion of unknown requirements' do
   #   delete :destroy, id: 1
-  #   expect(json['requirement']).to eq("Could not find a requirement with id 1.")
+  #   expect(json['requirement'])
+  #     .to eq("Could not find a requirement with id 1.")
   #   expect(response.status).to eq(422)
   # end
-
 end

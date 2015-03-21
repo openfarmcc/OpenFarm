@@ -223,7 +223,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $http.get('/api/detail_options/')
     .success(function(response){
       response.detail_options.forEach(function(detail) {
-        var category = detail.category + "Options";
+        var category = detail.category + 'Options';
         $scope[category].push(detail.name);
       });
 
@@ -233,7 +233,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           'slug': practice.toLowerCase(),
           'label': practice,
           'selected': false
-        }
+        };
       });
     })
     .error(function(r, e){

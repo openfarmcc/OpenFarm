@@ -31,9 +31,9 @@ en:
     user_settings: "Account Settings"
     log_out: "Log out"
     log_in: "Log in"
-    create_account: "Create an Account"
+    create_account: "Become a Member"
     loading_locations: "loading locations"
-    manage_gardens: "Manage Your Gardens"
+    manage_gardens: "Manage My Gardens"
     only_upload_what_you_own: "Only upload photos you own"
     choose_photo: "Upload a photo"
     choose_stage_photo: "Add a photo for this stage"
@@ -80,7 +80,7 @@ en:
   users:
       create_your_openfarm_profile: "Create your OpenFarm Profile"
       community: "Community"
-      join_a_community: "Join a community of %{users} people."
+      join_a_community: "Join a community of %{users} members."
       compatibility: "Compatibility"
       find_guides_based_on_compatibility: "Find guides based on compatibility."
       favorite: "Favorite"
@@ -93,18 +93,18 @@ en:
           <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
       account_information: "Account Information"
-      display_name: "Username:"
+      display_name: "Membername:"
       password: "New Password:"
       current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
-      create_account: "Create account"
+      create_account: "Join OpenFarm"
       update_account: "Update account"
       delete_account: "Delete Account"
       delete_account_message: |
           We're sorry that you want to leave OpenFarm. Note: Deleting your
-          account will permanently delete all of your user profile and garden
+          account will permanently delete all of your member profile and garden
           data and you will no longer be able to access it. Your Guides will not
-          be deleted, though the by-line will no longer show your username in
+          be deleted, though the by-line will no longer show your membername in
           order to protect your privacy. You will no longer be able to edit or
           delete your Guides after deleting your account. If you do not want
           your Guides on OpenFarm any longer, you must manually delete them
@@ -221,7 +221,7 @@ en:
           successful_creation: "You’ve successfully created a guide."
           to_get_more_into_details_html: "To get more into details, describe your process <a href='#stages'>in stages</a>."
           using_markdown_is_okay_html: "Using <a href='http://daringfireball.net/projects/markdown/syntax'>markdown</a> is okay!"
-          more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
+          more_details: "Give other OpenFarm members a bit more details about how to grow your plant."
           statistics: "Statistics"
           impressions:
               zero: "Your guide has had no views yet"
@@ -316,9 +316,9 @@ en:
               each_stage_with_details: "Each stage of growing this crop, with details"
           show_guide_timeline:
               title: "Timeline"
-              not_supplied_timeline_info: "The user hasn't supplied the necessary timeline info to properly calculate this."
+              not_supplied_timeline_info: "The Guide author hasn't supplied the necessary timeline info to properly calculate this."
       crop: "Crop"
-      user: "User"
+      user: "Member"
       stages: "Stages"
       basic_needs: "Basic Needs"
       name: "Name"

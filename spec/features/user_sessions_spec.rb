@@ -12,7 +12,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create account'
+    click_button 'Join OpenFarm'
     usr = User.find_by(email: 'm@il.com')
     expect(usr.display_name).to eq('Rick')
     expect(usr.valid_password?('password123')).to eq(true)
@@ -27,7 +27,7 @@ describe 'User sessions' do
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    click_button 'Create account'
+    click_button 'Join OpenFarm'
     see 'Agree to the Terms of Service and Privacy Policy'
   end
 
@@ -72,7 +72,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create account'
+    click_button 'Join OpenFarm'
     usr = User.find_by(email: 'm@il.com')
 
     # This is a bit of a hack, but I can't think of a different
@@ -92,7 +92,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     check :user_agree
-    click_button 'Create account'
+    click_button 'Join OpenFarm'
     expect(page).to have_content('confirmation link has been sent')
     usr = User.find_by(email: 'm@il.com')
 

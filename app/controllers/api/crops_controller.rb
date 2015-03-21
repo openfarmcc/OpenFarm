@@ -4,7 +4,17 @@ module Api
     def index
       if params[:query].present? && (params[:query].length > 2)
         q = params[:query]
-        render json: { crops: Crop.search(q, fields: ['name^20', 'common_names^10', 'binomial_name^10', 'description'], limit: 5) }
+        crops = Crop.search(q,
+                            limit: 25,
+                            partial: true,
+                            misspellings: { distance: 2 },
+                            fields: ['name^20',
+                                     'common_names^10',
+                                     'binomial_name^10',
+                                     'description'],
+                            boost_by: [:guides_count]
+                           )
+        render json: { crops: crops }
       else
         render json: { crops: [] }
       end

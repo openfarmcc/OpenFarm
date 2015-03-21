@@ -214,12 +214,35 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.step = +$location.hash() || 1;
   });
 
-  $scope.environmentOptions = ['Potted', 'Outside', 'Greenhouse', 'Inside'];
-  $scope.lightOptions = ['Full Sun', 'Partial Sun', 'Shaded', 'Darkness'];
-  $scope.soilOptions = ['Potting', 'Loam', 'Clay', 'Clay Loam',
-                        'Loamy Sand', 'Sandy Clay', 'Sandy Loam',
-                        'Sandy Clay Loam', 'Sand', 'Silty Clay',
-                        'Silty Clay Loam', 'Silt Loam', 'Silt'];
+  $scope.environmentOptions = [];
+  $scope.lightOptions = [];
+  $scope.soilOptions = [];
+  $scope.practicesOptions = [];
+  var practices = [];
+
+  $http.get('/api/detail_options/')
+    .success(function(response){
+      response.detail_options.forEach(function(detail) {
+        var category = detail.category + "Options";
+        $scope[category].push(detail.name);
+      });
+
+      practices = $scope.practicesOptions.map(function(practice) {
+        return {
+          // TODO: make the slug creation more robust.
+          'slug': practice.toLowerCase(),
+          'label': practice,
+          'selected': false
+        }
+      });
+    })
+    .error(function(r, e){
+      $scope.alerts.push({
+        msg: e,
+        type: 'alert'
+      });
+      console.log(r, e);
+    });
 
   $scope.alerts = [];
   $scope.crops = [];
@@ -232,14 +255,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.existingGuideID = getIDFromURL('guides');
   $scope.guideExists = ($scope.existingGuideID &&
                         $scope.existingGuideID !== 'new');
-
-  var practices = [
-    {slug: 'organic',      label: 'Organic',      selected: false},
-    {slug: 'permaculture', label: 'Permaculture', selected: false},
-    {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
-    {slug: 'conventional', label: 'Conventional', selected: false},
-    {slug: 'intensive',    label: 'Intensive',    selected: false}
-  ];
 
   var processCropID = function(crop_id) {
     if (crop_id){

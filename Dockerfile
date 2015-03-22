@@ -2,28 +2,16 @@
 # Image name: openfarm-webapp
 #
 
-FROM    ubuntu:trusty
+FROM    ruby:2.2.0
 MAINTAINER https://github.com/FarmBot/OpenFarm
 
-ENV     DEBIAN_FRONTEND noninteractive
-
-RUN     apt-get update && apt-get install -y \
-            software-properties-common \
-            python-software-properties && \
-        apt-add-repository ppa:brightbox/ruby-ng
-
-RUN     apt-get update && apt-get install -y \
-            ruby2.1 \
-            ruby2.1-dev \
-            git \
-            build-essential
-
-RUN     gem install bundler
 ADD     Gemfile /openfarm/Gemfile
 ADD     Gemfile.lock /openfarm/Gemfile.lock
 WORKDIR /openfarm
 
-RUN     bundle install
+RUN     set -x; \
+        bundle config build.nokogiri --use-system-libraries \
+        && bundle install --without development
 
 # ADD code for production, this will be replaced by a volume during development
 ADD     . /openfarm

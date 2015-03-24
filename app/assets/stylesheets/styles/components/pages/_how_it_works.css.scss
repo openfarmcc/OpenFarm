@@ -1,4 +1,4 @@
-@import "compass/css3/flexbox";
+// @import "compass/css3/flexbox";
 
 .how-it-works {
   background-color: #dcccb3;
@@ -55,11 +55,6 @@
     margin: 2rem auto 1.5rem;
 
     .step {
-      @include display-flex;
-      @include flex-direction(row);
-      @include justify-content(center);
-      @include align-items(center);
-
       color: #333333;
       display: block;
       font-size: 1.2rem;

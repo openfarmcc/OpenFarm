@@ -36,14 +36,22 @@ video { display: block; }
 }
 
 .hero {
-  height: 70%;
-  max-width: initial;
   position: relative;
   transition: 0.3s;
+  height: $hero-height-small;
 
   // Keep hero large enough for how-it-works on large screens
   @media #{$medium-up} {
-    min-height: 650px;
+    height: $hero-height-medium;
+  }
+
+  .hero-title-content {
+    position: absolute;
+    height: 225px;
+    left: 0;
+    top: 50%;
+    right: 0;
+    margin-top: -150px;
   }
 
   .logo {

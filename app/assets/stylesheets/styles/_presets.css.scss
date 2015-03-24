@@ -151,13 +151,7 @@ textarea {
 }
 
 // Must reside in the top level of stylesheets
-// Note: sticky-footer is setting the height of the first selector to auto !important. To counteract that we are setting it manually.
-@include sticky-footer($footer-height, "#foo-bar", "#layout_footer", "#footer");
-#content {
-  clear: both;
-  height: 100%;
-  margin-bottom: -$footer-height;
-}
+@include sticky-footer($footer-height, "#content", "#layout_footer", "#footer");
 
 // For covering content in partial blackness
 .the-blackness {

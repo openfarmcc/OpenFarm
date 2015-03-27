@@ -1,5 +1,10 @@
 class User
   include Mongoid::Document
+
+  def encrypted_password=(value)
+    write_attribute(:encrypted_password, value)
+  end
+
   has_many :guides
   has_many :gardens
   has_one :token, dependent: :delete

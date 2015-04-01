@@ -799,7 +799,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
-      console.log('sending stage');
       var stageParams = {
         name: stage.name,
         guide_id: guide._id,
@@ -820,10 +819,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }).map(function(s){
             return s.label;
           }) || null,
-        actions: stage.stage_action_options.filter(function(s){
-            return s.overview;
+        actions: stage.stage_action_options.filter(function(a){
+          console.log(a);
+            return a.overview || a.time || (a.pictures && a.pictures.length > 0);
           }).map(function(action, index){
             return { name: action.name,
+                     images: action.pictures.filter(function(p){
+                      return !p.deleted;
+                     }),
                      overview: action.overview,
                      time: calcTimeLength(action.time, action.length_type),
                      order: index };
@@ -834,6 +837,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           return !p.deleted;
         });
       }
+      console.log(stage.actions);
 
       // Go through all the possible changes on
       // each stage.
@@ -884,7 +888,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if (updatedNum === $scope.sent){
       $scope.newGuide.sending = false;
       localStorageService.remove('guide');
-      window.location.href = '/guides/' + $scope.newGuide._id + '/';
+      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
 
@@ -893,6 +897,16 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       stage.pictures = [];
     }
     stage.pictures.push({
+      new: true,
+      image_url: image
+    });
+  };
+
+  $scope.placeStageActionUpload = function(action, image){
+    if (!action.pictures){
+      action.pictures = [];
+    }
+    action.pictures.push({
       new: true,
       image_url: image
     });

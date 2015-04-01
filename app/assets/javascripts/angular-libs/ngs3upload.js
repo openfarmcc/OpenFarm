@@ -243,6 +243,8 @@ angular.module('ngS3upload.directives', []).
 
                         scope.s3UploadPlacePic({image: s3Uri + key});
 
+                        console.log(s3Uri + key);
+
                         ngModel.$setValidity('uploading', true);
                         ngModel.$setValidity('succeeded', true);
                       }, function (resp) {

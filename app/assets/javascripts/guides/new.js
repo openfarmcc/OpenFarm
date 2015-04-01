@@ -481,7 +481,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
       // $scope.newGuide.selectedStages = [];
 
-
       var stages = $scope.newGuide.stages;
       $scope.selectedStagesCount = $scope.newGuide.stages
                                     .filter(function(s) {
@@ -525,7 +524,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
     processCropID(getUrlVar('crop_id'));
-
   };
 
   var getStages = function(success_callback, error_callback){
@@ -550,7 +548,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.search = function () {
     // be nice and only hit the server if
     // length >= 3
-    if ($scope.query.length >= 3){
+    if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
         method: "GET",
@@ -594,7 +592,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.switchToStep = function(step){
     $scope.step = step;
     $location.hash($scope.step);
+    scrollToTop();
   };
+
+  var scrollToTop = function(){
+    $('body').scrollTop(0);
+  }
 
   $scope.nextStep = function(){
     if ($scope.step === 3){
@@ -602,15 +605,28 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
     $scope.step += 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
   $scope.previousStep = function(){
     $scope.step -= 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
-  $scope.nextStage = function(index){
-    $scope.editSelectedStage($scope.stages[index]);
+  var transferStageValuesIfNoneExist = function(stage, nextStage) {
+    if (!$scope.guideExists) {
+      nextStage.environment = stage.environment;
+      nextStage.light = stage.light;
+      nextStage.soil = stage.soil;
+    }
+  }
+
+  $scope.nextStage = function(stage){
+    var nextStage = $scope.stages[stage.nextSelectedIndex];
+    transferStageValuesIfNoneExist(stage, nextStage);
+    $scope.editSelectedStage(nextStage);
+    scrollToTop();
   };
 
   $scope.editSelectedStage = function(chosenStage){

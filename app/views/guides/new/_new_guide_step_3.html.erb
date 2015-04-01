@@ -44,13 +44,13 @@
                 </div>
               </div>
               <div class="row how-long">
-                <div class="columns small-12">
+                <div class="columns small-12 medium-6">
                   <label class="left"
                       for="how_long"><%= t('.how_long') %><br/>
                     <small><%= t('.do_not_sweat') %></small>
                   </label>
                 </div>
-                <div class="columns small-12">
+                <div class="columns small-12 medium-6">
                   <div class="vertical-input-select-group">
                     <input ng-model="stage.stage_length"
                            type="number"/>
@@ -215,7 +215,7 @@
                 type="submit"
                 value="{{ stage.edited ? '<%= t('guides.new.new_guide_step_3.edit_next_stage') %>': '<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>' }}"
                 ng-disabled="!(stage.edited)"
-                ng-click="nextStage(stage.nextSelectedIndex)"/>
+                ng-click="nextStage(stage)"/>
             <input class="button small right"
                 ng-if="!stage.nextSelectedIndex"
                 name="commit"

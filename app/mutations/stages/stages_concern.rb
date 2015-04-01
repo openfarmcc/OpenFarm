@@ -1,7 +1,7 @@
 module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
-    def validate_images
+    def validate_images(images)
       images && images.each do |pic|
         pic_id = "#{pic[:id]}" if pic[:id].present?
         pictures = @stage.pictures if @stage
@@ -35,6 +35,8 @@ module Stages
           add_error :actions, :invalid_overview, 'Please provide a valid '\
                     'overview.'
         end
+
+        validate_images(action[:images])
       end
     end
 
@@ -56,6 +58,7 @@ module Stages
       actions && actions.each do |action|
         StageActions::CreateStageAction.run(user: user,
                                             action: action,
+                                            images: action[:images],
                                             id: "#{@stage.id}")
       end
     end

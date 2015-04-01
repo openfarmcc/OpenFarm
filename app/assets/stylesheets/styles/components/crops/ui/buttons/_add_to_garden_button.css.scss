@@ -1,6 +1,9 @@
-.add-to-garden {
+.add-to-garden-button {
   margin: 1em;
   bottom: 0;
   position: absolute;
   right: 0;
+  .add-to-garden-button-guide {
+    position: relative;
+  }
 }

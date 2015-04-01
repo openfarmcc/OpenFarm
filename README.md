@@ -11,6 +11,8 @@ Other use cases: a mobile app for home gardeners, Google providing &ldquo;One Bo
 
 ### Core Contributor Group
 
+If you have any quick questions, ask them on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). If the room looks empty it's because our core team uses Slack, we have a bot piping messages back and forth - read on if you want to join that!
+
 We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is enter your email into [this form](http://goo.gl/forms/ZqBdmN2nu2) or [email Rory](mailto:rory@openfarm.cc) with your email address and he&#8217;ll send you an invitation to join!
 
 ### Community Discussion Group

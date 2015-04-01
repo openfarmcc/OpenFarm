@@ -295,6 +295,9 @@ en:
               actions_header: "Actions"
               actions_instructions: "What Actions do you recommend others to take during this stage?"
               add_actions: "Add Actions"
+              stage_overview: "Stage Overview"
+              select_some_stages: "Please select some stages!"
+              choose_action_photo: "Add a photo to this action"
           new_guide_step_4:
               give_an_overview: "Give a short overview of your guide."
               almost_done: "Almost done!"

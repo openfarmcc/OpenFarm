@@ -28,7 +28,7 @@ module Stages
     def validate
       @stage = stage
       validate_permissions
-      validate_images
+      validate_images(images)
       validate_actions
     end
 

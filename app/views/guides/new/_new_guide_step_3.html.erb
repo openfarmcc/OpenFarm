@@ -1,7 +1,7 @@
 <section name="step-3" class="step stage-details" ng-show="step === 3">
 
   <div ng-if="selectedStagesCount === 0">
-    Please select some stages!
+    <%= t('.select_some_stages') %>
   </div>
 
   <div ng-if="selectedStagesCount > 0">
@@ -21,7 +21,7 @@
              form-stage="stage">
           <span ng-bind="stageForms[$index].$valid"></span>
           <div class="instructions text-center">
-            <h2>{{ stage.name }} Stage Overview</h2>
+            <h2>{{ stage.name }} <%= t('.stage_overview') %></h2>
           </div>
           <hr/>
           <div class="row">
@@ -175,6 +175,18 @@
                   </label>
                   <textarea id="action_content" ng-model="stage.activeAction.overview">
                   </textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="columns small-12 medium-8 large-6">
+                  <label><%= t('.choose_action_photo') %></label>
+                  <div s3-upload
+                      bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+                      ng-model="s3upload"
+                      s3-upload-existing-pictures="stage.activeAction.pictures"
+                      s3-upload-place-pic="placeStageActionUpload(stage.activeAction, image)"
+                      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+                  </div>
                 </div>
               </div>
               <div class="row">

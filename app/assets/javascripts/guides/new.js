@@ -837,7 +837,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           return !p.deleted;
         });
       }
-      console.log(stage.actions);
 
       // Go through all the possible changes on
       // each stage.
@@ -888,7 +887,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     if (updatedNum === $scope.sent){
       $scope.newGuide.sending = false;
       localStorageService.remove('guide');
-      // window.location.href = '/guides/' + $scope.newGuide._id + '/';
+      window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
 

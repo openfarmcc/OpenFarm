@@ -3,15 +3,16 @@
 @import "styles/variables"; // colors
 @import "styles/foundation_and_overrides";
 @import "styles/presets";
-@import "styles/devise";
 @import "styles/components/nav";
 @import "styles/ui/icons";
+@import "styles/ui/compatibility_circle";
+
 @import "styles/alerts";
 @import "styles/components/crop_searches/**/*";
 @import "styles/components/crops/**/*";
 @import "styles/components/guides/**/*";
 @import "styles/components/users/**/*";
-@import "styles/ui/compatibility_circle";
+@import "styles/components/devise/**/*";
 // begin static page styles
 @import "styles/components/pages/home";
 @import "styles/components/pages/styles";

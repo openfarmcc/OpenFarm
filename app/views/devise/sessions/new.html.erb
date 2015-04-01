@@ -1,14 +1,13 @@
-<br/>
-<div class="row">
-  <div class="columns large-4 small-centered">
+<div class="row user-access">
+  <div class="columns small-12 medium-5 small-centered">
     <div class="panel sign-in-panel">
       <h2>Sign in</h2>
 
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <div><%= f.label :email %><br />
+        <div><%= f.label :email %>
         <%= f.email_field :email, :autofocus => true %></div>
 
-        <div><%= f.label :password %><br />
+        <div><%= f.label :password %>
         <%= f.password_field :password %></div>
 
         <% if devise_mapping.rememberable? %>
@@ -16,7 +15,7 @@
         <% end %>
 
         <div align="center"><%= f.submit "Sign in", class: 'button small' %></div>
-<% end %>
+      <% end %>
 <hr/>
 <%= render "devise/shared/links" %>
 </div>

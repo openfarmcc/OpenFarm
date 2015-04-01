@@ -1,15 +1,15 @@
-<div class="row">
-<div class="columns small-6 small-centered">
+<div class="row user-access">
+<div class="columns small-12 medium-5 small-centered">
   <h2>Resend confirmation instructions</h2>
 
   <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
 
     <%= render "/shared/alerts" %>
 
-    <div class="field"><%= f.label :email %><br />
+    <div class="field"><%= f.label :email %>
     <%= f.email_field :email, :autofocus => true %></div>
 
-    <div class="actions"><%= f.submit "Resend confirmation instructions", class: 'button submit' %></div>
+    <div class="actions"><%= f.submit "Resend confirmation instructions", class: 'button submit small' %></div>
   <% end %>
 
   <%= render "devise/shared/links" %>

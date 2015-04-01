@@ -179,6 +179,7 @@ textarea {
 
   &.alert {
     background-image: none;
+    @include box-shadow(0px 4px 0px 0px darken($of-red, 10%));
   }
 
   &.secondary {

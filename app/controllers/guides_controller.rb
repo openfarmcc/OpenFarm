@@ -21,4 +21,11 @@ class GuidesController < ApplicationController
       redirect_to @guide
     end
   end
+
+  def destroy
+    @outcome = Guides::DestroyGuide.run(params,
+                                        user: current_user)
+
+    redirect_to guides_path
+  end
 end

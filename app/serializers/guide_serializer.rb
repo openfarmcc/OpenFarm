@@ -11,10 +11,10 @@ class GuideSerializer < ApplicationSerializer
   end
 
   def compatibility_score
-    object.compatibility_score
+    object.compatibility_score(current_user)
   end
 
   def basic_needs
-    object.basic_needs
+    object.basic_needs(current_user)
   end
 end

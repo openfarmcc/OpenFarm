@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="alert-box alert radius" data-alert="">
+    <ul>
+    <% resource.errors.full_messages.each do |full_message| %>
+      <li><%= full_message %></li>
+    <% end %>
+    </ul>
+    <a class="close" href="#">×</a>
+  </div>
+<% end %>

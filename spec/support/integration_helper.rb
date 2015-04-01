@@ -1,5 +1,6 @@
 module IntegrationHelper
   module InstanceMethods
+
     def see(text)
       expect(page).to have_content(text)
     end

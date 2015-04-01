@@ -8,18 +8,6 @@ video { display: block; }
   }
 }
 
-// Change list elements from horizontal to vertical on small screens
-@media #{$medium-up} {
-  ul.steps li.step {
-    display: table-cell;
-    float: left;
-  }
-
-  ul.links li {
-    display: inline-block;
-  }
-}
-
 .video-background {
   position: absolute;
   overflow: hidden;
@@ -40,7 +28,7 @@ video { display: block; }
     bottom: 0;
     left: 0;
     right: 0;
-    min-width: 100%; min-height: 100%;
+    min-width: 100%; min-height: 10%;
     width: auto; height: auto; z-index: -100;
     background: image-url('home_video_first_frame.jpeg') no-repeat center center;
     background-size: cover;
@@ -53,72 +41,47 @@ video { display: block; }
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.35);
+  background-color: rgba(0, 0, 0, .25);
 }
 
 .hero {
-  position: relative;
+  height: 70%;
   max-width: initial;
-  min-height: 500px;
-  height: inherit;
+  position: relative;
+  transition: 0.3s;
+
+  // Keep hero large enough for how-it-works on large screens
+  @media #{$medium-up} {
+    min-height: 650px;
+  }
 
   .logo {
     display: block;
     margin: 0 auto 10px auto;
+    max-width: 70%;
   }
 
   h2 {
+    color: #ffffff;
     font-size: 1.3rem;
-    color: white;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
-    margin-bottom: 0;
     font-weight: 800;
+    margin-bottom: 0;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
   }
 
-  ul.steps {
-    $step-circle-size: 50px;
+  button.how-it-works-button {
+    background-color: rgba(153,153,153,0.5);
+    border-radius: 3px;
+    color: #ffffff;
+    display: block;
+    font-weight: 800;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 
-    display: table; // Hacks for centering the ul
-    list-style: none;
-    margin: 20px auto 0;
-
-    li.step {
-      display: block;
-      line-height: $step-circle-size;
-      vertical-align: middle;
-      margin: 15px;
-      font-size: 1.2rem;
-      color: white;
-      font-weight: 600;
-
-      .step-circle {
-        display: block;
-        box-sizing: border-box;
-        float: left;
-        width: $step-circle-size;
-        height: $step-circle-size;
-        margin-right: 15px;
-        border-radius: 50%;
-        border: 2px solid white;
-        background-color: #CCC;
-        color: white;
-        font-weight: 600;
-        font-size: 1.5rem;
-        line-height: $step-circle-size - 5px;
-        vertical-align: middle;
-      }
-
-      .step-circle.step-circle-1 {
-        background-color: rgba(120, 63,  4, 0.7);
-      }
-
-      .step-circle.step-circle-2 {
-        background-color: rgba(191, 144, 0, 0.7);
-      }
-
-      .step-circle.step-circle-3 {
-        background-color: rgba(106, 168, 79, 0.7);
-      }
+    &:hover {
+    background-color: rgba(153,153,153,0.7);
     }
   }
 
@@ -127,13 +90,13 @@ video { display: block; }
   // Eventually we will have the sweet, sweet flexbox.
   .search-bar-container {
     display: table;
-    width: 100%;
+    margin: 1.5rem auto;
     max-width: 750px;
-    margin: 30px auto 0;
+    width: 100%;
   }
 
   .search-bar {
-    display: table-row;
+    padding: 0 1rem;
     position: relative;
     $search-bar-height: 50px;
 
@@ -143,33 +106,26 @@ video { display: block; }
 
       // Typeahead dropdown
       .f-dropdown {
-        margin-top: 3px;
-        margin-left: 11px;
-        border-radius: 3px;
+        margin-top: 0;
+        padding-left: 0.5rem;
+        text-align: left;
 
         // dropdown carrat
         &:before, &:after {
-          border: inset 10px;
-          top: -20px;
-          border-bottom-style: solid;
-          border-color: transparent transparent white transparent;
+          display: none;
         }
       }
     }
 
     input.search-input {
+      background-color: #ffffff;
+      color: #333333;
       display: table-cell;
-      width: 100%;
-
-      height: $search-bar-height;
-      border: 2px solid white;
-      background-color: rgba(0,0,0,0.4);
-      border-radius: 999rem;
-      color: white;
-      padding: 0 10px 0 $search-bar-height/2;
       font-size: 1.2em;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      height: $search-bar-height;
+      margin: 0;
+      padding: 0 1rem;
+      width: 100%;
     }
 
     .search-button-container {
@@ -178,24 +134,16 @@ video { display: block; }
     }
 
     input.search-button {
-      display: table-cell;
-
-      padding: 0 35px;
-      top: 0;
-      right: 0;
-      height: $search-bar-height;
-      border: 2px solid white;
-      border-radius: 999rem;
-      border-left: 0;
-      font-size: 1.2em;
-      color: white;
       background-image: none;
-      background-color: rgba(106, 168, 79, 0.7);
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-      // TODO: get rid of need for !important :(
-      border-top-right-radius: 999rem !important;
-      border-bottom-right-radius: 999rem !important;
+      background-color: $of-green;
+      border-radius: 0;
+      color: #ffffff;
+      display: table-cell;
+      font-size: 1.2em;
+      height: $search-bar-height;
+      padding: 0 35px;
+      right: 0;
+      top: 0;
 
       &:hover {
         background-color: rgba(106, 168, 79, 1);
@@ -208,117 +156,12 @@ video { display: block; }
     }
   }
 
-  .add-a-guide {
-    p {
-      opacity: 0.85;
-      font-weight: 600;
-      display: inline-block;
-      color: white;
-    }
-
-    a.create-guide-link {
-      position: relative;
-      display: inline-block;
-      box-sizing: content-box;
-      vertical-align: bottom;
-      color: white;
-      overflow: hidden;
-      padding: 0 2px;
-      @include transition(all 0.35s);
-
-      &:before {
-        position: absolute;
-        z-index: -1;
-        top: 0; left: 0; width: 100%; height:100%;
-        content: "";
-        background-color: $of-green;
-        @include transition(transform 0.25s ease-out);
-        @include transform(translateY(8px) scaleY(0.1));
-      }
-
-      &:hover:before {
-        @include transform(scaleY(1));
-      }
-
-      &:active:before {
-        background-color: darken($of-green, 10%);
-      }
-    }
-  }
-
-  .explore-community-favorites {
-    position: absolute;
+  .search {
+    background-color: rgba(0, 0, 0, 0.6);
     bottom: 0;
     left: 0;
+    position: absolute;
     right: 0;
-    padding-top: 20px;
-    padding-bottom: 12px;
-    @include single-transition(background-color, 0.5s, ease-in-out);
-
-    background-image: -webkit-gradient(to bottom, color-stop(0%, transparent), color-stop(100%, rgba(0,0,0,0.25)));
-    background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.25));
-    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.25));
-    background-image: linear-gradient(transparent, rgba(0,0,0,0.25));
-
-    &:hover {
-      // DRY with Compass
-      background-image: -webkit-gradient(to bottom, color-stop(0%, transparent), color-stop(100%, rgba(0,0,0,0.5)));
-      background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.5));
-      background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.5));
-      background-image: linear-gradient(transparent, rgba(0,0,0,0.5));
-    }
-
-    &.full-black {
-      background-color: rgba(0,0,0,1);
-    }
-
-    .fa-angle-down {
-      font-size: 2em;
-      color: rgba(255,255,255,0.75);
-    }
-  }
-}
-
-// TODO(@warpling): refactor this into it's own file
-.featured-crops {
-  background-color: rgb(240, 245, 240);
-  padding: 40px inherit 20px;
-
-  .featured-crops-grid {
-    margin-top: 30px;
-
-    .featured-crop-container {
-      margin-bottom: 30px;
-
-      .featured-crop {
-        position: relative;
-        height: 280px;
-
-        &:hover {
-          .blackness {
-            opacity: 1;
-            @include single-transition(opacity, 200ms, ease-in-out);
-          }
-        }
-      }
-
-      .blackness {
-        background-color: rgba(0,0,0,0.45);
-        opacity: 0.5;
-      }
-
-      .crop-image {
-        background-color: #f5f5f5;
-        background-size: cover;
-        background-position: center;
-      }
-
-      .crop-name {
-        color: white;
-        font-weight: 800;
-        text-align: center;
-        padding: 30px;
-      }
-    }
+    z-index: 2;
   }
 }

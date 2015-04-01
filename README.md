@@ -5,21 +5,23 @@
 OpenFarm
 ========
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, ie: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
 
-Other use cases: a mobile app for home gardeners, Google providing "One Box" answers to search queries such as "How do I grow tomatoes", smart garden sensors, automated farming machines.
+Other use cases: a mobile app for home gardeners, Google providing &ldquo;One Box&rdquo; answers to search queries such as &ldquo;How do I grow tomatoes?&rdquo;, smart garden sensors, automated farming machines.
 
 ### Core Contributor Group
 
-We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is [email Rory](mailto:rory@openfarm.cc) with your email address and he'll send you an invitation to join!
+If you have any quick questions, ask them on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). If the room looks empty it's because our core team uses Slack, we have a bot piping messages back and forth - read on if you want to join that!
+
+We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is enter your email into [this form](http://goo.gl/forms/ZqBdmN2nu2) or [email Rory](mailto:rory@openfarm.cc) with your email address and he&#8217;ll send you an invitation to join!
 
 ### Community Discussion Group
 
-For discussing features, feature requests and ideas, and interfacing with our users at large (and contributors not on GitHub), please check out our public [discussion forum](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group).
+To discuss features, feature requests, and ideas, and to interface with our users at large (and contributors not on GitHub), please check out our public [discussion forum](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group).
 
 ### Getting Started (Setup)
 
-You will need [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) and [Mongodb](http://docs.mongodb.org/manual/installation/) installed before continuing. Once you have these prerequisites to get started with a local copy of the project, run:
+You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
 
 ```bash
 $ git clone https://github.com/openfarmcc/OpenFarm.git
@@ -30,11 +32,13 @@ $ echo "ENV['SECRET_KEY_BASE'] = '$(rake secret)'" >> config/app_environment_var
 $ rails s
 ```
 
-If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
+Then, visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to see the OpenFarm web application running on your local machine. If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
 
 **If you had any problems** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/openfarmcc/OpenFarm/wiki/Common-Issues).
 
 #### How to Contribute
+
+Help us [translate the website](https://www.transifex.com/projects/p/openfarm/).
 
 For code, have a look at our [contribution guidelines](https://github.com/openfarmcc/OpenFarm/blob/master/CONTRIBUTING.md).
 
@@ -56,7 +60,7 @@ To view the most recent mockups, click [here](https://drive.google.com/open?id=0
 
 ### Contributors
 
-We encourage everyone to contribute! From newbies to pros, to people who don't write software, to those with just a few ideas to share - we greatly appreciate everyone's input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
+We encourage everyone to contribute! From newbies, to pros, to people who don&#8217;t write software, to those with just a few ideas to share &mdash; we greatly appreciate everyone&#8217;s input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
 
 Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub.
 

@@ -1,0 +1,15 @@
+<div class="actions-modal">
+  <h3 class="center">Choose which actions we should add</h3>
+  <hr/>
+  <div class="actions">
+    <ul>
+      <li class="action" ng-repeat="action in actionOptions" ng-class="{ selected: action.selected}"
+      ng-click="action.selected = !action.selected">
+        {{ action.name }}
+      </li>
+    </ul>
+  </div>
+  <hr/>
+  <button class="button" ng-click="ok()">Done</button>
+  <a class="fa fa-times-circle close-modal" ng-click="cancel()"></a>
+</div>

@@ -4,10 +4,14 @@
 //= require jquery-ui
 //= require angular/angular-sanitize
 //= require angular-dragdrop
+//= require angular-ui-sortable
+//= require angular-foundation
+//= require angular-local-storage
 //= require ng-rails-csrf
 //= require ./libs/showdown
 //= require ./libs/moment.min
 //= require ./angular-libs/angular.openfarm
+//= require ./angular-libs/angular.openfarm.directives
 //= require ./angular-libs/angular.openfarm.guides
 //= require ./angular-libs/angular.openfarm.gardens
 //= require ./angular-libs/angular.openfarm.stages
@@ -21,8 +25,6 @@
 //= require foundation/foundation.dropdown
 //= require foundation/foundation.tooltip
 //= require foundation/foundation.topbar
-//= require foundation/mm-foundation-0.3.0.js
-//= require foundation/mm-foundation-tpls-0.3.0.js
 //= require_tree ./guides
 //= require_tree ./crops
 
@@ -78,20 +80,3 @@ var pushToAlerts = function (response, code, alerts){
     type: 'warning'
   });
 };
-
-// Smooth anchor scrolling via Chris Coyier
-// http://css-tricks.com/snippets/jquery/smooth-scrolling/
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, 800);
-        return false;
-      }
-    }
-  });
-});

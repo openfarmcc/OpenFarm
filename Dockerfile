@@ -2,28 +2,29 @@
 # Image name: openfarm-webapp
 #
 
-FROM    ubuntu:trusty
+FROM    ruby:2.2.0
 MAINTAINER https://github.com/FarmBot/OpenFarm
 
-ENV     DEBIAN_FRONTEND noninteractive
+ENV     PHANTOM_JS_VERSION 1.9.8
 
-RUN     apt-get update && apt-get install -y \
-            software-properties-common \
-            python-software-properties && \
-        apt-add-repository ppa:brightbox/ruby-ng
+# Install phantomjs in /usr/local/bin
+RUN     set -x; \
+        curl -o /tmp/phantomjs.tar.bz2 -SL "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${PHANTOM_JS_VERSION}-linux-x86_64.tar.bz2" \
+        && mkdir /tmp/phantomjs \
+        && tar -xf /tmp/phantomjs.tar.bz2 -C /tmp/phantomjs --strip-components=1 \
+        && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin/ \
+        && rm -rf /tmp/phantomjs* \
+        && phantomjs --version
 
-RUN     apt-get update && apt-get install -y \
-            ruby2.1 \
-            ruby2.1-dev \
-            git \
-            build-essential
-
-RUN     gem install bundler
+# Add the Gemfile and Gemfile.lock, then run `bundle install`
 ADD     Gemfile /openfarm/Gemfile
 ADD     Gemfile.lock /openfarm/Gemfile.lock
 WORKDIR /openfarm
 
-RUN     bundle install
+RUN     jobs="$(nproc)"; \
+        set -x; \
+        bundle config build.nokogiri --use-system-libraries \
+        && bundle install --jobs "$jobs" --without development
 
 # ADD code for production, this will be replaced by a volume during development
 ADD     . /openfarm
@@ -31,5 +32,5 @@ ADD     . /openfarm
 # Environment is passed in from the host environment, disable the warning
 RUN     touch /openfarm/config/app_environment_variables.rb
 
-CMD     bundle exec rails server
+CMD     ["bundle", "exec", "rails", "server", "-P", "tmp/pids/docker.pid"]
 EXPOSE  3000

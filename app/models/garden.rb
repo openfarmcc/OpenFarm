@@ -4,6 +4,8 @@ class Garden
   belongs_to :user
   validates_presence_of :user
 
+  after_save :reindex_guides
+
   embeds_many :garden_crops
 
   field :name
@@ -21,4 +23,10 @@ class Garden
   accepts_nested_attributes_for :pictures
 
   scope :is_public, -> { where(is_private: true) }
+
+  protected
+
+  def reindex_guides
+    ReindexGuidesJob.perform_later
+  end
 end

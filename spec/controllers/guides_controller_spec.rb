@@ -68,6 +68,25 @@ describe GuidesController do
     expect(response.status).to eq(200)
   end
 
+  it 'should delete a guide' do
+    user = FactoryGirl.create(:user)
+    guide = FactoryGirl.create(:guide, user: user)
+    sign_in user
+    delete 'destroy', id: guide.id
+
+    expect(response.status).to eq(302)
+  end
+
+  it 'should not delete a guide if the user does not own it' do
+    user = FactoryGirl.create(:user)
+    guide = FactoryGirl.create(:guide)
+    sign_in user
+
+    expect do
+      delete 'destroy', id: guide.id
+    end.to raise_exception(OpenfarmErrors::NotAuthorized)
+  end
+
   it 'shows a 404 on DocumentNotFound' do
     get 'show', id: '1'
     expect(response).to render_template(file: "#{Rails.root}/public/404.html")

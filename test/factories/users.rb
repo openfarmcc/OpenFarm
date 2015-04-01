@@ -8,6 +8,7 @@ FactoryGirl.define do
     admin false
     password 'password'
     is_private false
+    confirmed_at { Faker::Date.between(2.days.ago, Date.today) }
     trait :admin do
       admin :false
     end

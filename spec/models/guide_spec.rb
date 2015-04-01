@@ -22,16 +22,16 @@ describe Guide do
     guide = FactoryGirl.build(:guide)
 
     allow(guide).to receive(:compatibility_score).and_return(80)
-    expect(guide.compatibility_label).to eq('high')
+    expect(guide.compatibility_label(guide.user)).to eq('high')
 
     allow(guide).to receive(:compatibility_score).and_return(60)
-    expect(guide.compatibility_label).to eq('medium')
+    expect(guide.compatibility_label(guide.user)).to eq('medium')
 
     allow(guide).to receive(:compatibility_score).and_return(20)
-    expect(guide.compatibility_label).to eq('low')
+    expect(guide.compatibility_label(guide.user)).to eq('low')
 
     allow(guide).to receive(:compatibility_score).and_return(nil)
-    expect(guide.compatibility_label).to eq('')
+    expect(guide.compatibility_label(guide.user)).to eq('')
   end
 
   it 'creates a basic_needs array if a user has a garden' do
@@ -46,7 +46,7 @@ describe Guide do
               environment: ['Outside'],
               soil: ['Clay'],
               light: ['Partial Sun'])
-    expect(guide.compatibility_score.round).to eq(50)
+    expect(guide.compatibility_score(user).round).to eq(50)
   end
 
   it 'returns 0 percent if there are no basic_needs for a guide' do
@@ -61,7 +61,7 @@ describe Guide do
               environment: [],
               soil: [],
               light: [])
-    expect(guide.compatibility_score.round).to eq(0)
+    expect(guide.compatibility_score(user).round).to eq(0)
   end
 
   it 'returns nil from basic_needs if a user has no garden' do
@@ -70,7 +70,7 @@ describe Guide do
               environment: ['Outside'],
               soil: ['Clay'],
               light: ['Partial Sun'])
-    expect(guide.compatibility_score).to eq(nil)
+    expect(guide.compatibility_score(guide.user)).to eq(nil)
   end
 
   it 'sets the completeness score' do
@@ -95,11 +95,11 @@ describe Guide do
   end
 
   it 'updates the popularity score' do
-    FactoryGirl.create(:guide)
-    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide, impressions_field: 101)
+    FactoryGirl.create(:guide, impressions_field: 50)
     guide = FactoryGirl.create(:guide)
     existing_score = guide.popularity_score
-    guide.impressions_field = 20
+    guide.impressions_field = 102
     guide.save
     expect(guide.popularity_score).not_to eq(0)
     expect(guide.popularity_score).not_to eq(existing_score)

@@ -1,0 +1,53 @@
+/* each step has actions to fill out */
+.actions {
+
+   ul {
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: .25rem .5rem;
+      cursor: pointer;
+      transition: color 0.5s, border-color 0.5s;
+      margin: .25rem 0;
+      color: #666666;
+      border: 2px solid $secondary-color;
+      border-radius: $global-radius;
+    }
+
+    li:hover{
+      border-color: lighten($of-green, 20%);
+      color: lighten($of-green, 20%);
+
+      > i.fa-arrows-v {
+        opacity: 1;
+      }
+    }
+
+    i.fa-arrows-v {
+      line-height: 1.6;
+      opacity: 0;
+    }
+
+    li.selected {
+      border-color: $of-green;
+      color: $of-green;
+    }
+
+    li.completed {
+      border-color: $of-green;
+      background: $of-green;
+      color: white;
+    }
+  }
+
+  margin-top: 1rem;
+
+  .add-actions-button {
+    margin-bottom: 1.5rem;
+  }
+
+  textarea {
+    min-height: 95px;
+  }
+}

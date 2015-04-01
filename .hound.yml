@@ -8,3 +8,5 @@ java_script:
 ruby:
   enabled: true
   config_file: config/.rubocup.yml
+scss:
+  config_file: config/.scss-style.yml

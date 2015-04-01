@@ -3,7 +3,8 @@ OpenFarm::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
-      registrations: "registrations"
+      registrations: "registrations",
+      confirmations: "confirmations"
     }
   devise_scope :users do
     get 'users/gardens' => 'users#gardens'
@@ -31,7 +32,7 @@ OpenFarm::Application.routes.draw do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
     resources :crops, only: [:index, :show, :update]
     resources :users, only: [:show]
-    resources :guides, only: [:create, :show, :update]
+    resources :guides, only: [:create, :show, :update, :destroy]
     resources :gardens, only: [:create, :show, :update, :destroy] do
       resources :garden_crops, only: [:index,
                                       :show,
@@ -39,10 +40,13 @@ OpenFarm::Application.routes.draw do
                                       :update,
                                       :destroy]
     end
-    resources :requirement_options, only: [:index]
+    # resources :requirement_options, only: [:index]
+    # resources :requirements, only: [:create, :show, :update, :destroy]
+    resources :detail_options, only: [:index]
     resources :stage_options, only: [:index]
+    resources :stage_action_options, only: [:index]
     resources :stages, only: [:create, :show, :update, :destroy]
-    resources :requirements, only: [:create, :show, :update, :destroy]
+
     # TODO Figure out why I can't use a singular resource route here.
     post 'token', to: 'tokens#create'
     delete 'token', to: 'tokens#destroy'

@@ -24,10 +24,12 @@ gem 'rack-attack'
 gem 'impressionist', '~> 1.5.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
+gem 'activejob_backport'
 gem 'patron' # For searchKick
 gem 'searchkick', '~> 0.8.5'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
+gem 'merit'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -35,6 +37,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ui'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-dragdrop'
+  gem 'rails-assets-angular-foundation'
+  gem 'rails-assets-angular-ui-sortable'
+  gem 'rails-assets-angular-local-storage'
 end
 
 group :development, :test do
@@ -53,6 +58,7 @@ group :test do
   gem 'test-unit'
   gem 'doc_yo_self'
   gem 'capybara'
+  gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'

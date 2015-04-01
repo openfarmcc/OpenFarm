@@ -9,7 +9,7 @@
   }
 }
 
-.new-guide-button{
+.new-guide-button {
   @include add-new-button();
   @include box-shadow(none);
   width: 100%;
@@ -19,8 +19,12 @@
   padding: 26px;
   position: relative;
   border-radius: 10px;
-  color: #CCC;
+  color: #999;
   font-size: 1em;
+
+  &:hover {
+    color: #333;
+  }
 }
 
 // TODO: Remove/refactor out generic selectors like this!
@@ -39,13 +43,63 @@
 .guides {
   position: relative;
 
-  .box {
-    margin: 2rem inherit;
-    padding-top: 1rem;
+  .large-guide {
+    padding-top: 20px;
+
+    .canopy {
+      margin-top: 20px;
+    }
+
+    .guide-controls {
+      margin-right: 0px;
+    }
+
+    .header {
+      border-bottom: rgb(148, 148, 148) 3px solid;
+    }
+
+    .guide-name {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .guide-author {
+      color: #666666;
+      float: left;
+      font-size: 1rem;
+      margin-top: 30px;
+    }
   }
 
-  .stages .box {
-    margin-top: 0;
+  .small-guide {
+    .canopy {
+      height: 400px;
+    }
+
+    .guide-name {
+      @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+      bottom: -408px;
+      color: #ffffff;
+      left: 0px;
+      padding-bottom: 10px;
+      padding-top: 50px;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .guide-controls {
+    float: right;
+    margin: 1rem;
+  }
+
+  .margin-top {
+    margin-top: 0.7rem;
+  }
+
+  .box {
+    padding-top: 1rem;
   }
 
   .empty {
@@ -57,11 +111,10 @@
   }
 
   .canopy {
-    height: 300px;
-    margin-bottom: 1rem;
     /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
     background-position: center 20%;
     background-size: cover;
+    height: 400px;
   }
 
   .title {
@@ -77,12 +130,29 @@
 
     .right {
       position: absolute;
-      top: 1rem;
-      right: 0;
+      right: 2.5rem;
+      top: 3rem;
     }
   }
 
-  .actual-requirements {
+  .actual-basic-needs {
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      tr {
+        border-bottom: #cdcdcd 2px solid;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td:nth-child(1) {
+        border-right: #cdcdcd 2px solid;
+      }
+    }
+
     ul {
       list-style: none;
     }
@@ -95,33 +165,38 @@
     }
   }
 
-  .edit-link{
+  .edit-link {
     float: right;
     margin-top: .9rem;
+    margin-left: .9rem;
   }
 
-  .overview{
+  .overview {
     margin: 1rem auto;
   }
-
   .content {
     padding-bottom: 8rem;
   }
 
-  dd.accordion-navigation > a{
-    border-top: rgb(148, 148, 148) 1px solid;
+  dd.accordion-navigation > a {
     background-color: transparent;
-    transition: .5s background-color;
+    border-bottom: rgb(148, 148, 148) 3px solid;
+    transition: 0.2s background-color;
 
     // angle icon
     i.fa {
-      margin-right: 8px;
       @include single-transition(transform, 0.2s, ease-out);
+      opacity: 0;
 
       &.open {
-        @include transform(rotate(90deg));
+        @include transform(rotate(180deg));
       }
     }
+  }
+
+  // Show Arrow on Hover
+  .accordion > .accordion-navigation > a:hover i.fa {
+    opacity: 100;
   }
 
   /* Section accordion styling */
@@ -129,53 +204,162 @@
   .accordion > dd.active > a,
   .accordion > dd.active > a.title-wrapper {
     display: block;
-    padding: .2rem 1rem;
+    padding: 0.2rem 1rem;
 
     @include accordion-header-color($of-orange);
 
     h2, h5 {
+      color: #333;
       display: inline-block;
-      font-weight: 100;
+      font-weight: 600;
+      margin: 0.3rem 0;
     }
 
     .title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
 
     .author {
-      margin-left: 20px;
       display: inline-block;
+      margin-left: 20px;
     }
   }
 
   .accordion dd > .content {
-    padding: 0 0.935rem;
+    padding: 0;
+  }
+
+  .accordion dd.accordion-navigation {
+    margin-top: 2rem;
   }
 
   .actions {
-    border: 1px solid #CCCCCC;
+    margin-top: 1rem;
 
     .action {
-      padding: 10px 40px;
-      border-top: 2px solid #333333;
+      border-top: 1px solid rgb(148, 148, 148);
+      padding: 1.5rem;
     }
   }
 
   /* Stages in completed guides */
-  .stages{
-    .image img{
-      height: 170px;
-      background-size: cover;
-      background-position: center;
+  .stages {
+
+    // This is shared with guide creation steps, and should be DRYed up
+
+    .stage-wrapper {
+      display: inline-block;
+      height: 300px;
+      margin-bottom: 3%;
+      overflow: hidden;
+    }
+
+    .stage-option {
+      border: solid 1px #dfdfdf;
+      border-radius: 4px;
+      display: block;
+      height: 100%;
+      padding: 0.25rem;
       width: 100%;
     }
 
-    h3{
+    .stage-option, .chosen-stage > .bubble {
+      background-image: url('stages/other_sm.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+
+      &.Preparation {
+        background-image: url('stages/prep_sm.png');
+      }
+
+      &.Sow {
+        background-image: url('stages/sow_sm.png');
+      }
+
+      &.Germination {
+        background-image: url('stages/germination_sm.png');
+      }
+
+      &.Seedling {
+        background-image: url('stages/sprouting_sm.png');
+      }
+
+      &.Juvenile {
+        background-image: url('stages/juvenile_sm.png');
+      }
+
+      &.Adult {
+        background-image: url('stages/adult_sm.png');
+      }
+
+      &.Flowering {
+        background-image: url('stages/flowering_sm.png');
+      }
+
+      &.Fruit {
+        background-image: url('stages/fruiting_sm.png');
+      }
+
+      &.Dormant {
+        background-image: url('stages/dormant_sm.png');
+      }
+    }
+
+    // End need DRYing
+
+    .action-content {
+      border-bottom: #cdcdcd 2px solid;
+      margin-top: 1rem;
+    }
+
+    .action-content:last-child {
+      border-bottom: none;
+    }
+
+    .image img {
+      background-position: center;
+      background-size: cover;
+      height: 170px;
+      width: 100%;
+    }
+
+    h3 {
       font-size: 1rem;
       margin: 0;
     }
 
-    /* Action labels in completed guides look different */
+    .tabs {
+      background-color: #efefef;
+    }
+
+    .tabs-content {
+      background-color: #f6f6f6;
+    }
+
+    .tabs dd > a {
+      padding: 0.75rem 1.5rem;
+    }
+
+    .tabs > dd.active > a,
+    .tabs > dd.active > a > tab-heading > h3 {
+      background-color: #4a4a4a;
+      color: #ffffff;
+    }
+
+    // Allow horizontal scrolling of Life Stage tabs
+    dl.tabs {
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    .tabs dd {
+      display: inline-block;
+      float: none;
+    }
+
+    // Action labels in completed guides look different
     .actions li {
       color: #333333;
       border-color: #333333;
@@ -189,100 +373,62 @@
   }
 }
 
-
 .show-guide {
 
-  .canopy{
-    height: 300px;
+  background-color: #f6f6f6;
+
+  .compatibility-circle-container {
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    width: 50px;
   }
 
-  .title{
-    .guide-name {
-      text-transform: capitalize;
-    }
+  .basic-needs {
+    padding: 0;
 
-    .by-line {
-      font-size: 1rem;
-      color: #666666;
-    }
+    table {
+      border: none;
+      height: 100%;
+      margin: 0;
+      width: 100%;
 
-    .guide-controls {
-      float: right;
-      text-align: right;
-    }
-  }
+      tr {
 
-  .requirements {
-    .box {
-      padding: 0;
+        &.low {
+          background: $compatibility-low-color-bg;
+        }
 
-      table {
-        width: 100%;
-        height: 100%;
+        &.medium {
+          background: $compatibility-med-color-bg;
+        }
+
+        &.high {
+          background: $compatibility-high-color-bg;
+        }
+
+        td {
+          padding: 16px;
+        }
+      }
+
+      p {
         margin: 0;
+      }
 
-        tr {
-
-          &.low {
-            background: $compatibility-low-color-bg;
-          }
-
-          &.medium {
-            background: $compatibility-med-color-bg;
-          }
-
-          &.high {
-            background: $compatibility-high-color-bg;
-          }
-
-          td {
-            padding: 16px;
-          }
+      .basic-need-name {
+        span {
+          font-weight: 600;
+          padding-left: 10px;
         }
+      }
 
-        p {
-          margin: 0;
-        }
-
-        .basic-need-name {
-          span {
-            padding-left: 10px;
-            font-weight: 600;
-          }
-        }
-
-        .icon {
-          margin-right: 8px;
-        }
+      .icon {
+        margin-right: 8px;
       }
     }
   }
-
-
-  // .image-wrapper{
-  //   background-position: top;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   overflow: hidden;
-  //   height: 300px;
-  //   border-bottom: 1px solid rgb(51, 51, 51);
-  //   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-
-    // img{
-    //   position: absolute;
-    //   left: 0;
-    //   right: 0;
-    //   top: -9999px;
-    //   bottom: -9999px;
-    //   margin: auto 0;
-    //   width: 100%;
-    // }
-  // }
-
 }
 
 /*
@@ -292,10 +438,10 @@
 */
 
 .markdown-help-text {
-  font-size: .8rem;
   display: block;
-  margin-top: .25rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
+  margin-top: 0.25rem;
 }
 
 .markdown {
@@ -311,6 +457,6 @@
   }
 
   h4, h5, h6 {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 }

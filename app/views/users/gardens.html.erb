@@ -118,10 +118,19 @@
                   backend %>
               <select ng-if="garden.editing"
                       ng-model="garden.soil_type">
+                <option value="Potting"><%= t('.potting') %></option>
                 <option value="Loam"><%= t('.loam') %></option>
+                <option value="Loamy Sand"><%= t('.loamy_sand') %></option>
+                <option value="Sandy Clay"><%= t('.sandy_clay') %></option>
+                <option value="Sandy Loam"><%= t('.sandy_loam') %></option>
+                <option value="Clay Loam"><%= t('.clay_loam') %></option>
+                <option value="Sandy Clay Loam"><%= t('.sandy_clay_loam') %></option>
+                <option value="Sand"><%= t('.sand') %></option>
                 <option value="Clay"><%= t('.clay') %></option>
-                <option value="Sandy"><%= t('.sandy') %></option>
-                <option value="Silty"><%= t('.silty') %></option>
+                <option value="Silty Clay"><%= t('.silty_clay') %></option>
+                <option value="Silty Clay Loam"><%= t('.silty_clay_loam') %></option>
+                <option value="Silt Loam"><%= t('.silt_loam') %></option>
+                <option value="Silt"><%= t('.silt') %></option>
               </select>
             </td>
           </tr>
@@ -257,12 +266,12 @@
     <hr/>
     <div class="columns small-6"
          ng-class="{ 'small-centered' : currentUser.gardens.length === 0 }">
-      <p ng-if="currentUser.gardens.length === 0">
+      <h4 ng-if="currentUser.gardens.length === 0">
         <%= t('.create_your_first_garden') %>
-      </p>
-      <p ng-if="currentUser.gardens.length > 0">
+      </h4>
+      <h4 ng-if="currentUser.gardens.length > 0">
         <%= t('.create_a_new_garden') %>
-      </p>
+      </h4>
       <label><%= t('.call_your_garden') %></label>
       <input type="text" ng-model="newGarden.name"/>
       <input type="button"

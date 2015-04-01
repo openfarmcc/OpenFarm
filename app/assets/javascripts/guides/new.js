@@ -1,49 +1,31 @@
 openFarmApp.directive('formChecker', function(){
   return {
-    // scope: {
-    //   'formId': '=',
-    //   'formStage': '='
-    // },
     require: '^form',
+    scope: {
+      stage: '=formChecker'
+    },
     link: function(scope, element, attr){
       // loop through each stage
-      var rootParent = scope.$parent.$parent.$parent;
-
-      scope.$watch('$parent.stage', function(){
-        var allDone = [];
-        rootParent.stages.forEach(function(stage){
-          if (stage.selected){
-            stage.where.forEach(function(opt){
-              if (opt.selected){
-                stage.edited = true;
-              }
-            });
-            stage.light.forEach(function(opt){
-              if (opt.selected){
-                stage.edited = true;
-              }
-            });
-            stage.soil.forEach(function(opt){
-              if (opt.selected){
-                stage.edited = true;
-              }
-            });
-            // Point the next step button to the next
-            // stage.
-
-            allDone.push(stage.edited ? true : false);
-          }
-        });
-        var tracker = true;
-        allDone.forEach(function(isDone){
-          if (!isDone){
-            tracker = false;
-          }
-        });
-
-        rootParent.stageThreeTracker = tracker;
+      scope.$watch('stage', function(){
+        if (scope.stage.selected){
+          scope.stage.edited = false;
+          scope.stage.environment.forEach(function(opt){
+            if (opt.selected){
+              scope.stage.edited = true;
+            }
+          });
+          scope.stage.light.forEach(function(opt){
+            if (opt.selected){
+              scope.stage.edited = true;
+            }
+          });
+          scope.stage.soil.forEach(function(opt){
+            if (opt.selected){
+              scope.stage.edited = true;
+            }
+          });
+        }
       }, true);
-
     }
   };
 });
@@ -219,226 +201,60 @@ openFarmApp.directive('createTimeline', ['guideService',
     };
   }]);
 
+openFarmApp.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(false).hashPrefix('!');
+}]);
+
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
-  'guideService', 'stageService',
-  function newGuideCtrl($scope, $http, $filter, guideService, stageService) {
+  'guideService', 'stageService', '$modal', '$location', 'localStorageService',
+  function newGuideCtrl($scope, $http, $filter, guideService, stageService,
+                        $modal, $location, localStorageService) {
+
+  $scope.$on('$locationChangeSuccess', function(){
+    $scope.step = +$location.hash() || 1;
+  });
+
+  $scope.environmentOptions = [];
+  $scope.lightOptions = [];
+  $scope.soilOptions = [];
+  $scope.practicesOptions = [];
+  var practices = [];
+
+  $http.get('/api/detail_options/')
+    .success(function(response){
+      response.detail_options.forEach(function(detail) {
+        var category = detail.category + 'Options';
+        $scope[category].push(detail.name);
+      });
+
+      practices = $scope.practicesOptions.map(function(practice) {
+        return {
+          // TODO: make the slug creation more robust.
+          'slug': practice.toLowerCase(),
+          'label': practice,
+          'selected': false
+        };
+      });
+    })
+    .error(function(r, e){
+      $scope.alerts.push({
+        msg: e,
+        type: 'alert'
+      });
+      console.log(r, e);
+    });
+
   $scope.alerts = [];
   $scope.crops = [];
-  $scope.step = 1;
+  $scope.step = +$location.hash() || 1;
   $scope.crop_not_found = false;
   $scope.addresses = [];
   $scope.stages = [];
   $scope.hasEdited = [];
   $scope.haveEditedStages = false;
-
-  // What's a new guide.
-  $scope.newGuide = {
-    name: '',
-    crop: undefined,
-    overview: '',
-    selectedStages: [],
-    time_span: {
-      'length': 24,
-      'length_units':'weeks',
-      'start_event': 21,
-      'start_event_format':'%W',
-      set_start_event: function(val){
-        this.start_event = val;
-      },
-      set_length: function(val){
-        this.length = val;
-      }
-    },
-    exists: false,
-    stages: [],
-    practices: [
-      {slug: 'organic',      label: 'Organic',      selected: false},
-      {slug: 'permaculture', label: 'Permaculture', selected: false},
-      {slug: 'hydroponic',   label: 'Hydroponic',   selected: false},
-      {slug: 'conventional', label: 'Conventional', selected: false},
-      {slug: 'intensive',    label: 'Intensive',    selected: false}
-    ],
-    how_long: 0,
-    how_long_type: 'days',
-    start_time: moment().format('MMMM')
-  };
-
-  $scope.$watch('newGuide.stages', function(){
-    $scope.newGuide.selectedStages = [];
-    var stages = $scope.newGuide.stages;
-    if (stages){
-      var lastSelectedIndex = null;
-      stages.forEach(function(item, index){
-        item.nextSelectedIndex = undefined;
-        if (item.selected){
-          item.originalIndex = index;
-          if (lastSelectedIndex !== null){
-            item.lastSelectedIndex = lastSelectedIndex;
-            stages[lastSelectedIndex].nextSelectedIndex = index;
-          }
-
-          $scope.newGuide.selectedStages.push(item);
-          lastSelectedIndex = index;
-        }
-      });
-    }
-    $scope.newGuide.selectedStages.sort(function(a, b){
-      return a.order > b.order;
-    });
-  }, true);
-
-  $scope.$watch('step', function(afterValue){
-    if (afterValue === 3){
-      var selectedSet = false;
-      $scope.newGuide.selectedStages.forEach(function(stage){
-        if (stage.selected && !selectedSet){
-          // hacked hack is a hack
-          $scope.newGuide.stages[stage.originalIndex].editing = true;
-          selectedSet = true;
-        } else {
-          $scope.newGuide.stages[stage.originalIndex].editing = false;
-        }
-      });
-    }
-  });
-
-  $scope.$watch('alerts.length', function(){
-    $scope.newGuide.sending = false;
-  });
-
-  var getStages = function(){
-    $http.get('/api/stage_options/')
-      .success(function(response){
-        var stageWhere = ['Potted', 'Outside', 'Greenhouse', 'Indoors'];
-        var stageLight = ['Full Sun', 'Partial Sun', 'Shaded', 'Darkness'];
-        var stageSoil = ['Potting', 'Loam',
-                         'Sandy Loam', 'Clay Loam',
-                         'Sand', 'Clay'];
-        $scope.stages = response.stage_options;
-        $scope.stages = $filter('orderBy')($scope.stages, 'order');
-        // Trickery to make sure the existing stages don't get
-        // overwritten
-        $scope.stages.forEach(function(item){
-          item.selected = false;
-
-          item.length_type = 'days';
-
-          // loop over the existing stages.
-          $scope.newGuide.stages.forEach(function(d){
-            if (d.name === item.name){
-              // And copy over the relevant stuff.
-              item.selected = true;
-              item.exists = true;
-              item._id = d._id;
-              item.pictures = d.pictures;
-
-              item.stage_length = d.stage_length;
-              switch(true){
-                case (parseInt(d.stage_length, 10) % 7 === 0):
-                  item.stage_length = item.stage_length / 7;
-                  item.length_type = 'weeks';
-                  break;
-                case (parseInt(d.stage_length, 10) % 30 === 0):
-                  item.stage_length = item.stage_length / 30;
-                  item.length_type = 'months';
-                  break;
-                default:
-                  item.length_type = 'days';
-              }
-
-              item.where = $scope.buildStageDetails(stageWhere,
-                                                    d.environment || []);
-              item.light = $scope.buildStageDetails(stageLight,
-                                                    d.light || []);
-              item.soil = $scope.buildStageDetails(stageSoil,
-                                                   d.soil || []);
-
-              // Find the existing stage actions and overwrite
-              item.stage_action_options.forEach(function(saOption){
-                d.stage_actions.forEach(function(existingSA){
-                  if (existingSA.name === saOption.name){
-                    saOption.overview = existingSA.overview;
-                  }
-                });
-              });
-            }
-          });
-
-          // TODO: The below probably needs to be broken out
-          // and made *way* more dynamic.
-          if (!item.where){
-            item.where = $scope.buildStageDetails(stageWhere, []);
-          }
-          if (!item.light){
-            item.light = $scope.buildStageDetails(stageLight, []);
-          }
-          if (!item.soil){
-            item.soil = $scope.buildStageDetails(stageSoil, []);
-          }
-          return item;
-        });
-
-        $scope.newGuide.stages = $scope.stages;
-      })
-      .error(function(response, code){
-        $scope.alerts.push({
-          msg: code + ' error. We had trouble fetching all stage options.',
-          type: 'warning'
-        });
-      });
-  };
-
-  if (getIDFromURL('guides') && getIDFromURL('guides') !== 'new'){
-    $http.get('/api/guides/' + getIDFromURL('guides'))
-      .success(function(r){
-        $scope.hasEditedStages = true;
-        $scope.newGuide.exists = true;
-        $scope.newGuide._id = r.guide._id;
-        $scope.newGuide.featured_image = r.guide.featured_image;
-        $scope.s3upload = r.guide.featured_image;
-        $scope.newGuide.name = r.guide.name;
-        $scope.newGuide.location = r.guide.location;
-        $scope.newGuide.overview = r.guide.overview;
-
-        var transferTimeSpan = function(defaultTS, remoteTS){
-          var newTimeSpan = remoteTS || defaultTS;
-          newTimeSpan.set_length = defaultTS.set_length;
-          newTimeSpan.set_start_event = defaultTS.set_start_event;
-          return newTimeSpan;
-        };
-
-        $scope.newGuide.time_span = transferTimeSpan($scope.newGuide.time_span,
-                                                     r.guide.time_span);
-
-        if (r.guide.practices){
-          $scope.newGuide.practices.forEach(function(d){
-            if (r.guide.practices.indexOf(d.slug) !== -1){
-              d.selected = true;
-            }
-          });
-        }
-
-        if (r.guide.stages){
-          r.guide.stages.forEach(function(d){
-            d.exists = true;
-            $scope.newGuide.stages.push(d);
-          });
-        }
-
-        getStages();
-
-        processCropID(r.guide.crop_id);
-      })
-      .error(function(r, e){
-        $scope.alerts.push({
-          msg: e,
-          type: 'alert'
-        });
-        console.log(r, e);
-      });
-  } else {
-    getStages();
-  }
+  $scope.existingGuideID = getIDFromURL('guides');
+  $scope.guideExists = ($scope.existingGuideID &&
+                        $scope.existingGuideID !== 'new');
 
   var processCropID = function(crop_id) {
     if (crop_id){
@@ -457,13 +273,282 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
   };
 
-  processCropID(getUrlVar('crop_id'));
+  var calculateStageLengthType = function(existing){
+    switch(true){
+      case (parseInt(existing.stage_length, 10) % 7 === 0):
+        existing.stage_length = existing.stage_length / 7;
+        existing.length_type = 'weeks';
+        break;
+      case (parseInt(existing.stage_length, 10) % 30 === 0):
+        existing.stage_length = existing.stage_length / 30;
+        existing.length_type = 'months';
+        break;
+      default:
+        existing.length_type = 'days';
+    }
+    return existing;
+  };
+
+  var buildDetailsForStages = function(preloadedStages){
+    preloadedStages.forEach(function(preloadedStage){
+      preloadedStage.environment = $scope.buildStageDetails($scope.environmentOptions,
+                                                            (preloadedStage.environment ||
+                                                             []));
+      preloadedStage.light = $scope.buildStageDetails($scope.lightOptions,
+                                                      (preloadedStage.light ||
+                                                       []));
+      preloadedStage.soil = $scope.buildStageDetails($scope.soilOptions,
+                                                     (preloadedStage.soil ||
+                                                      []));
+    });
+    return preloadedStages;
+  };
+
+  var setEditingStage = function(){
+    var selectedSet = false;
+
+    var isSet = ($scope.newGuide.stages.filter(function(stage) {
+      return stage.editing;
+    }).length > 0);
+
+    if (!isSet){
+      $scope.newGuide.stages.forEach(function(stage){
+        if (stage.selected && !selectedSet){
+          // hacked hack is a hack
+          // $scope.newGuide.stages[stage.originalIndex].editing = true;
+          selectedSet = true;
+          stage.editing = true;
+        } else {
+          // $scope.newGuide.stages[stage.originalIndex].editing = false;
+          stage.editing = false;
+        }
+      });
+    }
+  };
+
+  var transferStageActions = function(existing, preloaded){
+    if (existing.stage_actions.length > 0){
+      existing.stage_action_options = [];
+      existing.stage_action_options = existing.stage_actions;
+    } else {
+      existing.stage_action_options = preloaded.stage_action_options;
+    }
+    return existing;
+  };
+
+  var buildFromExistingAndPreloadedStages = function(existing, preloaded){
+    var stages = [];
+    var existingStageNames = existing.map(function(s){
+      return s.name;
+    });
+    preloaded.forEach(function(preloadedStage, index){
+      var existingStageIndex = existingStageNames.indexOf(preloadedStage.name);
+      if (existingStageIndex !== -1){
+        var existingStage = existing[existingStageIndex];
+        existingStage.exists = true;
+        existingStage.selected = true;
+        existingStage = transferStageActions(existingStage,
+                                             preloadedStage);
+        existingStage = calculateStageLengthType(existingStage);
+        stages.push(existingStage);
+      } else {
+        stages.push(preloadedStage);
+      }
+    });
+
+    return buildDetailsForStages(stages);
+  };
+
+  var loadExternalGuide = function(guideId, practices){
+    $http.get('/api/guides/' + guideId)
+      .success(function(r){
+        $scope.hasEditedStages = true;
+        $scope.newGuide.exists = true;
+        $scope.newGuide.practices = practices;
+        $scope.newGuide._id = r.guide._id;
+        $scope.newGuide.featured_image = r.guide.featured_image;
+        $scope.s3upload = r.guide.featured_image;
+        $scope.newGuide.name = r.guide.name;
+        $scope.newGuide.location = r.guide.location;
+        $scope.newGuide.overview = r.guide.overview;
+
+        var transferTimeSpan = function(defaultTS, remoteTS){
+          var newTimeSpan = remoteTS || defaultTS;
+          newTimeSpan.set_length = defaultTS.set_length;
+          newTimeSpan.set_start_event = defaultTS.set_start_event;
+          return newTimeSpan;
+        };
+
+        $scope.newGuide.time_span = transferTimeSpan($scope.newGuide.time_span,
+                                                     r.guide.time_span);
+
+        if (r.guide.practices){
+          $scope.newGuide.practices.forEach(function(practice){
+            if (r.guide.practices.indexOf(practice.slug) !== -1){
+              practice.selected = true;
+            }
+          });
+        }
+
+        if (r.guide.stages){
+          $scope.newGuide.stages =
+            buildFromExistingAndPreloadedStages(r.guide.stages, $scope.stages);
+
+        }
+        processCropID(r.guide.crop_id);
+      })
+      .error(function(r, e){
+        $scope.alerts.push({
+          msg: e,
+          type: 'alert'
+        });
+        console.log(r, e);
+      });
+  };
+
+  var resetAlert = function(){
+    $scope.alerts.push({
+      msg: 'We noticed that you hadn\'t finished completing your guide, ' +
+           'so we preloaded it.',
+      type: 'info',
+      action: 'Start from scratch?',
+      cancelTimeout: true,
+      actionFunction: function(index){
+        $scope.newGuide = angular.copy($scope.originalGuide);
+        $scope.alerts.splice(index, 1);
+        $scope.switchToStep(1);
+        localStorageService.remove('guide');
+        checkGuideSource();
+      }
+    });
+  };
+
+  var checkGuideSource = function(checkAlert){
+    if ($scope.guideExists){
+      loadExternalGuide(getIDFromURL('guides'), practices);
+    } else {
+      var localGuide = localStorageService.get('guide')
+      if (localGuide && !localGuide._id){
+        $scope.newGuide = localGuide;
+        if (checkAlert){
+          resetAlert();
+        }
+        $scope.newGuide.stages = buildDetailsForStages($scope.newGuide.stages);
+      } else {
+        $scope.newGuide.stages = buildDetailsForStages($scope.stages);
+      }
+    }
+  };
+
+  var setGuide = function(){
+
+    $scope.originalGuide = {
+        name: '',
+        crop: undefined,
+        overview: '',
+        // selectedStages: [],
+        time_span: {
+          'length': 24,
+          'length_units':'weeks',
+          'start_event': 21,
+          'start_event_format':'%W',
+          set_start_event: function(val){
+            this.start_event = val;
+          },
+          set_length: function(val){
+            this.length = val;
+          }
+        },
+        exists: false,
+        stages: $scope.stages,
+        practices: practices,
+        how_long: 0,
+        how_long_type: 'days',
+        start_time: moment().format('MMMM')
+    };
+
+    $scope.newGuide = angular.copy($scope.originalGuide);
+
+    checkGuideSource(true);
+
+    $scope.$watch('newGuide', function(){
+      if (!$scope.guideExists){
+        localStorageService.set('guide', $scope.newGuide);
+      }
+    }, true);
+
+    $scope.$watch('newGuide.stages', function(){
+
+      // $scope.newGuide.selectedStages = [];
+
+      var stages = $scope.newGuide.stages;
+      $scope.selectedStagesCount = $scope.newGuide.stages
+                                    .filter(function(s) {
+                                      return s.selected;
+                                    }).length;
+
+      // keep track of what the next and previous stage is for toggling
+      // through them.
+      if (stages){
+        var lastSelectedIndex = null;
+        stages.forEach(function(item, index){
+          item.nextSelectedIndex = undefined;
+          if (item.selected){
+            item.originalIndex = index;
+            if (lastSelectedIndex !== null){
+              item.lastSelectedIndex = lastSelectedIndex;
+              stages[lastSelectedIndex].nextSelectedIndex = index;
+            }
+
+            // $scope.newGuide.selectedStages.push(item);
+            lastSelectedIndex = index;
+          }
+        });
+      }
+
+      // $scope.newGuide.selectedStages.sort(function(a, b){
+      //   return a.order > b.order;
+      // });
+
+      setEditingStage();
+    }, true);
+
+    $scope.$watch('step', function(afterValue){
+      if (afterValue === 3){
+        setEditingStage();
+      }
+    });
+
+    $scope.$watch('alerts.length', function(){
+      $scope.newGuide.sending = false;
+    });
+
+    processCropID(getUrlVar('crop_id'));
+  };
+
+  var getStages = function(success_callback, error_callback){
+    $http.get('/api/stage_options/')
+      .success(function(response){
+        $scope.stages = response.stage_options;
+        $scope.stages = $filter('orderBy')($scope.stages, 'order');
+        success_callback();
+      })
+      .error(function(response, code){
+        $scope.alerts.push({
+          msg: code + ' error. We had trouble fetching all stage options.',
+          type: 'warning'
+        });
+      });
+  };
+
+  getStages(setGuide);
+
 
   //Typeahead search for crops
   $scope.search = function () {
     // be nice and only hit the server if
     // length >= 3
-    if ($scope.query.length >= 3){
+    if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
         method: "GET",
@@ -506,30 +591,110 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   $scope.switchToStep = function(step){
     $scope.step = step;
+    $location.hash($scope.step);
+    scrollToTop();
   };
+
+  var scrollToTop = function(){
+    $('body').scrollTop(0);
+  }
 
   $scope.nextStep = function(){
     if ($scope.step === 3){
       $scope.hasEditedStages = true;
     }
     $scope.step += 1;
+    $location.hash($scope.step);
+    scrollToTop();
   };
 
   $scope.previousStep = function(){
     $scope.step -= 1;
+    $location.hash($scope.step);
+    scrollToTop();
   };
 
-  $scope.nextStage = function(index){
-    $scope.editSelectedStage($scope.stages[index]);
+  var transferStageValuesIfNoneExist = function(stage, nextStage) {
+    if (!$scope.guideExists) {
+      nextStage.environment = stage.environment;
+      nextStage.light = stage.light;
+      nextStage.soil = stage.soil;
+    }
+  }
+
+  $scope.nextStage = function(stage){
+    var nextStage = $scope.stages[stage.nextSelectedIndex];
+    transferStageValuesIfNoneExist(stage, nextStage);
+    $scope.editSelectedStage(nextStage);
+    scrollToTop();
   };
 
-  $scope.editSelectedStage = function(stage){
-    $scope.newGuide.selectedStages.forEach(function(item){
-      item.editing = false;
-      if (stage === item){
-        item.editing = true;
-        $scope.currentStage = stage;
+  $scope.editSelectedStage = function(chosenStage){
+    $scope.newGuide.stages.forEach(function(stage){
+      stage.editing = false;
+      if (chosenStage.name === stage.name){
+        stage.editing = true;
+
+        $scope.currentStage = chosenStage;
       }
+    });
+  };
+
+  $scope.openAddActionModal = function(stage){
+    var actionOptions = [];
+    $http({
+      url: '/api/stage_action_options',
+      method: 'GET'
+    }).success(function (response) {
+      actionOptions = response.stage_action_options;
+
+      // http://pineconellc.github.io/angular-foundation/#modal
+      var modalInstance = $modal.open({
+        templateUrl: '/assets/templates/_add_action_modal.html',
+        controller: ['$scope', '$modalInstance', 'stage', 'actionOptions',
+          function ($scope, $modalInstance, stage, actionOptions) {
+            $scope.actionOptions = actionOptions;
+            $scope.existingActions = stage.stage_action_options;
+
+            $scope.actionOptions.forEach(function(action){
+              $scope.existingActions.forEach(function(existingAction){
+                if (existingAction.name === action.name){
+                  action.overview = existingAction.overview;
+                  action.selected = true;
+                }
+              });
+            });
+
+            $scope.ok = function () {
+              var selectedActions = $scope.actionOptions
+                                      .filter(function(action){
+                                        return action.selected;
+                                      });
+              $modalInstance.close(selectedActions);
+            };
+
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          }],
+        keyboard: false,
+        resolve: {
+          stage: function(){
+            return stage;
+          },
+          actionOptions: function(){
+            return actionOptions;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedActions) {
+
+        stage.stage_action_options = selectedActions;
+        stage.activeAction = selectedActions[0];
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
     });
   };
 
@@ -560,13 +725,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       }
     }, practices);
 
+    var defineFeaturedImage = function(image){
+      var featured_image = null;
+      if (image !== undefined && image.indexOf('baren_field') === -1){
+        featured_image = image;
+      }
+      return featured_image;
+    }
+
     var params = {
       time_span: $scope.newGuide.time_span,
       name: $scope.newGuide.name,
       crop_id: $scope.newGuide.crop._id,
       overview: $scope.newGuide.overview || null,
       location: $scope.newGuide.location || null,
-      featured_image: $scope.newGuide.featured_image || null,
+      featured_image: defineFeaturedImage($scope.newGuide.featured_image),
       practices: practices
     };
 
@@ -602,6 +775,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   var calcTimeLength = function(length, length_type){
     if (length && length_type){
       switch (length_type){
+        case 'minutes':
+        return length;
+        case 'hours':
+        return length * 60;
+        case 'action_days': // A special case of days,
+        // for actions we're measuring in minutes, not days;
+        return length * 60 * 24;
         case 'months':
         return length * 30;
         case 'weeks':
@@ -615,15 +795,17 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
+    console.log('sending stages');
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
+      console.log('sending stage');
       var stageParams = {
         name: stage.name,
         guide_id: guide._id,
         order: stage.order,
         stage_length: calcTimeLength(stage.stage_length, stage.length_type),
-        environment: stage.where.filter(function(s){
+        environment: stage.environment.filter(function(s){
             return s.selected;
           }).map(function(s){
             return s.label;
@@ -640,8 +822,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }) || null,
         actions: stage.stage_action_options.filter(function(s){
             return s.overview;
-          }).map(function(s){
-            return { name: s.name, overview: s.overview };
+          }).map(function(action, index){
+            return { name: action.name,
+                     overview: action.overview,
+                     time: calcTimeLength(action.time, action.length_type),
+                     order: index };
           }) || null
       };
       if (stage.pictures){
@@ -654,6 +839,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       // each stage.
 
       if (stage.selected && !stage.exists){
+        console.log('creating stage');
         stageService.createStage(stageParams,
                                  $scope.alerts,
                                  function(success, stage){
@@ -663,6 +849,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  });
 
       } else if (stage.selected && stage.exists){
+        console.log('updating stage');
         stageService.updateStage(stage._id,
                                  stageParams,
                                  $scope.alerts,
@@ -673,6 +860,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
                                  });
 
       } else if (stage.exists){
+        console.log('deleting stage');
         stageService.deleteStage(stage._id,
                                  $scope.alerts,
                                  function(){
@@ -695,6 +883,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
     if (updatedNum === $scope.sent){
       $scope.newGuide.sending = false;
+      localStorageService.remove('guide');
       window.location.href = '/guides/' + $scope.newGuide._id + '/';
     }
   };
@@ -714,6 +903,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.cancel = function(path){
+    localStorageService.remove('guide');
     window.location.href = path || '/';
   };
 }]);

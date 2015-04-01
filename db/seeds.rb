@@ -47,6 +47,33 @@ if Rails.env != 'production' # <= Prevent catastrophe
   stratify = FactoryGirl.create(:stage_action_option, name: 'Stratify')
   train = FactoryGirl.create(:stage_action_option, name: 'Train')
 
+  # Seed the details for each guide.
+  FactoryGirl.create(:detail_option,
+                     name: 'Greenhouse',
+                     category: 'environment')
+  FactoryGirl.create(:detail_option, name: 'Potted', category: 'environment')
+  FactoryGirl.create(:detail_option, name: 'Inside', category: 'environment')
+  FactoryGirl.create(:detail_option, name: 'Inside', category: 'environment')
+  FactoryGirl.create(:detail_option, name: 'Outside', category: 'environment')
+
+  FactoryGirl.create(:detail_option, name: 'Loam', category: 'soil')
+  FactoryGirl.create(:detail_option, name: 'Clay', category: 'soil')
+
+  FactoryGirl.create(:detail_option, name: 'Full Sun', category: 'light')
+  FactoryGirl.create(:detail_option, name: 'Partial Sun', category: 'light')
+  FactoryGirl.create(:detail_option, name: 'Shaded', category: 'light')
+  FactoryGirl.create(:detail_option, name: 'Indirect Light', category: 'light')
+
+  FactoryGirl.create(:detail_option, name: 'Organic', category: 'practices')
+  FactoryGirl.create(:detail_option, name: 'Hydroponic', category: 'practices')
+  FactoryGirl.create(:detail_option, name: 'Intensive', category: 'practices')
+  FactoryGirl.create(:detail_option,
+                     name: 'Conventional',
+                     category: 'practices')
+  FactoryGirl.create(:detail_option,
+                     name: 'Permaculture',
+                     category: 'practices')
+
   prep = FactoryGirl.create(:stage_option, name: 'Preparation', order: 0)
   prep.stage_action_options = [water, fertilize, amend, prepare]
 

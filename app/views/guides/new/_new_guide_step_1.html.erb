@@ -4,7 +4,7 @@
     id="new-guide-step-1"
     method="post"
     >
-    <div class="instructions">
+    <div class="instructions text-center">
       <h1>
         <%= t('.lets_get_started') %>
       </h1>
@@ -28,6 +28,7 @@
           typeahead-wait-ms="350"
           typeahead-min-length="3"
           auto-focus
+          autocomplete="off"
           clear-on="cropSelectionCanceled"
           focus-on="cropSelectionCanceled"
           class="form-control"

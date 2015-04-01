@@ -1,28 +1,31 @@
 <section name="step-2" class="step" ng-show="step === 2">
     <form class="life-stages">
-      <div class="instructions">
+      <div class="instructions text-center">
         <h2><%= t('.choose_the_life_stages') %></h2>
         <h3>
           <%= t('.life_stages_description') %>
         </h3>
       </div>
       <div class="row">
-        <div class="columns large-3 medium-4 small-6 stage-wrapper"
-             ng-repeat="stage in newGuide.stages | orderBy : 'order' "
-             ng-class="{end: $last}">
-             <input name="{{ stage.name }}"
-                    id="{{ stage.name }}"
-                    type="checkbox"
-                    ng-model="stage.selected"/>
-             <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
-               <p>{{ stage.name }}</p>
-             </label>
+        <div class="all-stages-wrapper">
+
+          <div class="columns large-3 medium-4 small-6 stage-wrapper"
+               ng-repeat="stage in newGuide.stages | orderBy : 'order' "
+               ng-class="{end: $last}">
+               <input name="{{ stage.name }}"
+                      id="{{ stage.name }}"
+                      type="checkbox"
+                      ng-model="stage.selected"/>
+               <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+                 <p>{{ stage.name }}</p>
+               </label>
+          </div>
         </div>
       </div>
       <div class="button-wrapper row">
         <div class="columns small-12">
           <p class="right">
-            You've selected <strong><span ng-bind="newGuide.selectedStages.length"></span> stages</strong>.
+            You've selected <strong><span ng-bind="selectedStagesCount"></span> stages</strong>.
           </p>
         </div>
         <div class="columns small-12">
@@ -31,7 +34,7 @@
               cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
               back-text="<%= t('guides.new.back') %>"
               abled-text="<%= t('.next_stage_details') %>"
-              abled-bool="newGuide.selectedStages.length > 0"
+              abled-bool="selectedStagesCount > 0"
               disabled-text="<%= t('.choose_some_stages_to_continue') %>"
               >
           </div>

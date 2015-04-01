@@ -38,7 +38,10 @@ VCR.configure do |c|
   c.hook_into :webmock # or :fakeweb
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
-  c.ignore_hosts '127.0.0.1', 'localhost', 'localhost:9200'
+  c.ignore_localhost = true
+  c.ignore_request do |request|
+    URI(request.uri).port == 9200
+  end
   # c.allow_http_connections_when_no_cassette = true
 end
 # =====
@@ -47,6 +50,7 @@ Paperclip.options[:log] = false
 
 require 'database_cleaner'
 Capybara.javascript_driver = :poltergeist
+Capybara.default_wait_time = 5
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
 RSpec.configure do |config|

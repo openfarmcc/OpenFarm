@@ -38,5 +38,9 @@
     <br/>
   <% end %>
 
-  <%= f.submit class: 'button submit' %>
+  <% if @user.new_record? %>
+    <%= f.submit I18n.t('users.create_account'), class: 'button submit' %>
+  <% else %>
+    <%= f.submit I18n.t('users.update_account'), class: 'button submit' %>
+  <% end %>
 <% end %>

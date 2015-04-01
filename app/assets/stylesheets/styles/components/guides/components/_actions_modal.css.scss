@@ -1,0 +1,32 @@
+// Styles for the actions modal
+
+@import "compass/css3/transition";
+
+.actions-modal {
+  @include transition(opacity 200ms ease-in);
+
+  &:target {
+    opacity: 1;
+  }
+
+  .actions li {
+    width: 31.5%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 1.5%;
+    @media #{$small-only} { width: 48.5%; }
+  }
+}
+
+.close-modal {
+  color: $of-red;
+  font-size: 1.4rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  text-decoration: none;
+  @include transition(color 200ms ease-in);
+
+  &:hover { color: darken($of-red, 10%); }
+}
+

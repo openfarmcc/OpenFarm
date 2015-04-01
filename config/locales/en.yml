@@ -28,16 +28,35 @@ en:
     greeting: "Hi, %{user}"
     skip: "Do This Later"
     create_guide: "Create Guide"
-    user_settings: "My Account"
+    user_settings: "Account Settings"
     log_out: "Log out"
     log_in: "Log in"
-    create_account: "Create an Account"
+    create_account: "Become a Member"
     loading_locations: "loading locations"
-    manage_gardens: "Manage Your Gardens"
-    only_upload_what_you_own: "Only upload a photo you own"
+    manage_gardens: "Manage My Gardens"
+    only_upload_what_you_own: "Only upload photos you own"
     choose_photo: "Upload a photo"
+    choose_stage_photo: "Add a photo for this stage"
     crop: "Crop"
     guide: "Guide"
+  meta:
+    about: "About OpenFarm"
+    our_mission: "Our Mission"
+    mission_statement: |
+      Develop community and tools for freely sharing plant knowledge
+      locally and globally.
+    our_vision: "Our Vision"
+    vision_statement: "A world where you can grow anything."
+    our_team: "Our Team"
+    current_team_members: "Current Team Members"
+    past_team_members: "Past Team Members"
+    open_core: "Open is at Our Core"
+    project_history: "Project History"
+    code_of_conduct: "Code of Conduct"
+    faq: "Frequently Asked Questions"
+    email_newsletter: "Subscribe to our Email Newsletter"
+    privacy_policy: "Privacy Policy"
+    tos: "Terms of Service"
   measurements:
     cm: "cm"
     centimeters:
@@ -59,31 +78,42 @@ en:
       you started. You can edit it to better suit
       your needs!
   users:
-      create_your_openfarm_profile: "Create your OpenFarm Profile"
+      create_your_openfarm_profile: "Become a Member of OpenFarm"
       community: "Community"
-      join_a_community: "Join a community of %{users} people."
+      join_a_community: "Join a community of %{users} members"
       compatibility: "Compatibility"
-      find_guides_based_on_compatibility: "Find guides based on compatibility."
+      find_guides_based_on_compatibility: "Find guides based on compatibility"
       favorite: "Favorite"
-      star_your_favorite_guides_and_crops: "Star your favorite crops and guides."
+      star_your_favorite_guides_and_crops: "Star your favorite crops and guides"
       create: "Create"
-      share_your_knowledge_with_guide_creation: "Share your knowledge with guide creation."
+      share_your_knowledge_with_guide_creation: "Share your knowledge with guide creation"
       email_address: "Email Address"
       tos_privacy_html: |
           I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
           <a href='%{privacy_url}'>Privacy Policy</a>
       is_private: "Check to keep your profile private."
-      display_name: "Username:"
+      account_information: "Account Information"
+      display_name: "Display Name:"
       password: "New Password:"
-      current_password: |
-          "Current Password (we need your current password
-          to confirm your changes)"
+      current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
+      create_account: "Join OpenFarm"
+      update_account: "Update account"
+      delete_account: "Delete Account"
+      delete_account_message: |
+          We're sorry that you want to leave OpenFarm. Note: Deleting your
+          account will permanently delete all of your member profile and garden
+          data and you will no longer be able to access it. Your Guides will not
+          be deleted, though the by-line will no longer show your display name in
+          order to protect your privacy. You will no longer be able to edit or
+          delete your Guides after deleting your account. If you do not want
+          your Guides on OpenFarm any longer, you must manually delete them
+          before you delete your account.
       password_confirmation: "Confirm Password"
       location: "Location"
       years_experience: "Years Experience"
       mailing_list: "Get (occassional) updates about OpenFarm via email"
-      delete: "Permanently delete your account."
+      delete: "Permanently delete account"
       finish:
           welcome: "Welcome %{user}!"
           openfarm_works_best_when: "OpenFarm works best when we know the following:"
@@ -99,17 +129,18 @@ en:
           loading_gardens: "Loading Your Gardens"
           your_gardens: "Your Gardens"
           garden_name: "Name your garden:"
-          call_your_garden: "Call your garden something, anything!"
+          call_your_garden: "Give your new garden a name"
           first_garden_html: |
-            <p>We've created your first garden for you - change its name and
-            edit the details to better suit your style. </p> <p> As you
-            continue to use OpenFarm, you can store guides to it, update it,
-            and watch it grow. </p> <p> Feel free to tweak it so that it suits
-            your growing environment, upload some pictures, and then
-            <a href='/'>get exploring</a>. </p> <p> And don't worry, you can
-            come back to this at any time.</p>
+            <p>OpenFarm allows you to have virtual gardens which can help you
+            keep track of what you are planting in real life. </p>
+            We've created your first virtual garden for you. Go ahead and change
+            its name and edit the details to better match you. </p> <p> As you
+            continue to use OpenFarm, add your favorite Guides and Crops
+            to your garden. We'll keep track of their progress for you. </p>
+            <p> Come back to this page at anytime from the menu in the top right
+            of the site! </p>
           create_a_new_garden: |
-            If you've got more gardens, add another one!
+            Add a new Garden
           edit_garden: "Edit Garden"
           save_garden: "Save Garden"
           destroy_garden: "Destroy Garden"
@@ -123,10 +154,19 @@ en:
           partial_sun: "Partial Sun"
           full_shade: "Full Shade"
           soil_type: "Soil Type"
+          potting: "Potting"
           loam: "Loam"
+          loamy_sand: "Loamy Sand"
+          sandy_clay: "Sandy Clay"
+          sandy_loam: "Sandy Loam"
+          clay_loam: "Clay Loam"
+          sandy_clay_loam: "Sandy Clay Loam"
+          sand: "Sand"
           clay: "Clay"
-          sandy: "Sandy"
-          silty: "Silty"
+          silty_clay: "Silty Clay"
+          silty_clay_loam: "Silty Clay Loam"
+          silt_loam: "Silt Loam"
+          silt: "Silt"
           ph: "pH"
           edit: "Edit"
           save_changes: "Save Changes"
@@ -134,8 +174,8 @@ en:
           life_stage: "Life Stage"
           quantity: "Quantity"
           add_crop: "To add another crop to this garden, explore the guides"
-          create_your_first_garden: "Create your first garden."
-          create_another_garden: "Create another garden."
+          create_your_first_garden: "Create your first garden"
+          create_another_garden: "Create new garden"
   crops:
     name: "Name"
     binomial_name: "Binomial Name"
@@ -181,7 +221,7 @@ en:
           successful_creation: "You’ve successfully created a guide."
           to_get_more_into_details_html: "To get more into details, describe your process <a href='#stages'>in stages</a>."
           using_markdown_is_okay_html: "Using <a href='http://daringfireball.net/projects/markdown/syntax'>markdown</a> is okay!"
-          more_details: "Give other OpenFarm users a bit more details about how to grow your plant."
+          more_details: "Give other OpenFarm members a bit more details about how to grow your plant."
           statistics: "Statistics"
           impressions:
               zero: "Your guide has had no views yet"
@@ -189,8 +229,8 @@ en:
               other: "Your guide has had %{count} views"
           save_guide: "Save Guide"
           if_you_are_happy_with_your_guide_so_far: "If you’re happy with your guide so far, save it!"
-          requirements: "Requirements"
-          requirements_are_the_small_details: "Requirements are the small details that make sure this crop grows successfully."
+          basic_needs: "Basic Needs"
+          basic_needs_are_the_small_details: "Basic Needs are the small details that make sure this crop grows successfully."
           if_you_do_not_know_everything_thats_okay: "If you don’t know everything, or it’s not applicable, that’s okay."
           you_have_selected: "You’ve selected: "
           you_have_not_selected_anything: "You haven’t selected anything yet."
@@ -201,6 +241,7 @@ en:
           back: "Back"
           new_guide_steps:
               create_a_growing_guide: "Create a Growing Guide"
+              edit_a_growing_guide: "Edit a Growing Guide"
               the_basics: "The Basics"
               life_stages: "Life Stages"
               stage_details: "Stage Details"
@@ -215,7 +256,7 @@ en:
               no_crop_selected: "No crop selected"
               lets_get_started: "Lets Get Started!"
               which_crop: "Which crop is this guide For?"
-              choose_photo: "Upload a photo"
+              choose_photo: "Add a photo of this crop"
               common_or_scientific: "Common or scientific names are okay"
               which_practices: "Which practices will you be using?"
               check_all_that_apply: "Check all that apply."
@@ -236,45 +277,50 @@ en:
               finish_stage_to_continue: "Finish Stage To Continue"
               fill_in_details: "Fill in the details for each life stage."
               stage_details: "Stage Details"
-              what_should_people_know_about_this_stage: "What should people know about this stage?"
               where_does_this_stage_happen: "Where does this stage happen?"
               choose_more_than_one: "You can choose more than one."
               what_type_of_soil: "What type of soil should be used?"
               not_sure_about_soil_types_html: "Not sure about soil types? <a target='_blank' href='/pages/faq/#soil-types'>Learn more</a>"
               how_much_light: "How much light should be in this area?"
               how_long: "About how long does this stage take?"
+              how_long_action: "About how long does it take to complete this action?"
+              describe_action: "Describe how you do this action"
               do_not_sweat: "Don’t sweat, this is just an estimation."
               repeat_annually: "Does this stage repeat annually?"
               not_sure_html: "Not sure? <a href='/pages/faq#repeat-annually' target='_blank'>Learn More</a>."
-              actions_header: "Make this guide your own!"
-              actions_instructions: "Fill out as many of these optional sections as you have tips, tricks, and instructions for."
+              actions_header: "Actions"
+              actions_instructions: "What Actions do you recommend others to take during this stage?"
+              add_actions: "Add Actions"
           new_guide_step_4:
               give_an_overview: "Give a short overview of your guide."
               almost_done: "Almost done!"
               where_are_you_growing_it: "Where are you growing it"
-              youre_growing_a: "You’re growing a"
               what_do_you_want_to_call_your_guide: "What do you want to call your guide?"
               done: "Done! Publish your Guide"
               call_your_guide_something: "Call your guide something"
       show:
+          edit_guide: " Edit Guide"
+          delete_guide: " Delete Guide"
+          print_guide: " Print Guide"
           guide_by: "Guide by"
+          compatibility_based_on: "Based on"
           show_guide_statistics:
               title: "Statistics"
               once_we_know_more: "Once we know a bit more about this guide, you’ll see some interesting statistics here."
-          show_guide_requirements:
+          show_guide_basic_needs:
               title: "Basic Needs"
-              the_small_details: "Basic needs are the small details that make sure this crop grow successfully."
-              no_requirements_yet: "The person who made this guide hasn’t added any requirements yet!"
+              the_small_details: "Basic Needs are the small details that make sure this crop grow successfully."
+              no_basic_needs_yet: "The person who made this guide hasn’t added any Basic Needs yet!"
           show_guide_stages:
-              title: "Stages"
+              title: "Life Stages"
               each_stage_with_details: "Each stage of growing this crop, with details"
           show_guide_timeline:
               title: "Timeline"
-              not_supplied_timeline_info: "The user hasn't supplied the necessary timeline info to properly calculate this."
+              not_supplied_timeline_info: "The Guide author hasn't supplied the necessary timeline info to properly calculate this."
       crop: "Crop"
-      user: "User"
+      user: "Member"
       stages: "Stages"
-      requirements: "Requirements"
+      basic_needs: "Basic Needs"
       name: "Name"
       overview: "Overview"
       num_guides:
@@ -292,3 +338,9 @@ en:
       step_1: "Choose a Crop"
       step_2: "Find a Guide"
       step_3: "Grow!"
+      how_it_works: "See how it works"
+      guide_description: |
+        Growing Guides show you how to care for your Crop during all
+        of its Life Stages. Each Guide is based on specific environmental
+        conditions and growing practices, and ranked for compatibility
+        with you and your gardens.

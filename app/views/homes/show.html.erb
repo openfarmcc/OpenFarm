@@ -3,64 +3,44 @@
   <%= javascript_include_tag "search" %>
 <% end %>
 
-<div class="hero">
+<%= render partial: 'how_it_works' %>
+<div class="hero the-blackness">
     <div class="video-background">
         <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
             <source src="<%= asset_path 'home_video.webm' %>" type="video/webm">
             <source src="<%= asset_path 'home_video.mp4' %>" type="video/mp4">
         </video>
     </div>
-    <div class="the-blackness"></div>
     <div class="row row-table row-full-height">
         <div class="small-12 small-centered column-middle columns">
             <img class="logo" src="<%= image_path 'openfarm_logo.png' %>" width="420px">
             <h2 class="text-center"><%=t 'home.hero_header' %></h2>
-            <ul class="steps text-center clearfix hidden-for-small-down">
-                <li class="step">
-                    <div class="step-circle step-circle-1">1</div>
-                    <%= t 'home.step_1' %>
-                </li>
-                <li class="step">
-                    <div class="step-circle step-circle-2">2</div>
-                    <%= t 'home.step_2' %>
-                </li>
-                <li class="step">
-                    <div class="step-circle step-circle-3">3</div>
-                    <%= t 'home.step_3' %>
-                </li>
-            </ul>
+            <a href="#how-it-works"><button class="how-it-works-button">
+                <%= t 'home.how_it_works' %>
+            </button></a>
+        </div>
+        <div class="search text-center">
             <form action="<%= crop_search_via_get_path %>" method="get" >
             <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
-                <div class="row">
-                    <div class="small-12 small-centered columns">
-                        <div class="search-bar-container">
-                            <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
-                                <div class="search-input-container">
-                                    <input typeahead-min-length="3" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="555" typeahead="crop.name for crop in crops">
-                                </div>
-                                <div class="search-button-container">
-                                    <input class="search-button button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
-                                </div>
-                            </div>
+                <div class="search-bar-container">
+                    <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
+                        <div class="search-input-container">
+                            <input typeahead-min-length="1" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="200" typeahead="crop.name for crop in crops">
                         </div>
-                    </div>
-                    <div class="small-12">
-                        <div class="add-a-guide text-center">
-                            <p>
-                                Share your knowledge with the world, <%= link_to "create a guide", new_guide_path, class:"create-guide-link" %>.
-                            </p>
+                        <div class="search-button-container">
+                            <input class="search-button button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <a href="#explore-community-favorites" id="explore-community-favorites" class="explore-community-favorites text-center">
-            <h2><%= t('home.explore_community_favorites') %></h2>
-            <i class="fa fa-angle-down"></i>
-        </a>
     </div>
 </div>
+
 <div class="featured-crops">
+    <div id="community-favorites" class="explore-community-favorites text-center">
+        <h2><%= t('home.community_favorites') %></h2>
+    </div>
     <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
 </div>
 <% content_for(:end_js) do %>

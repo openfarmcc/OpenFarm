@@ -1,17 +1,13 @@
 <accordion-group
-  is-open="stage.isopen"
   ng-init="stage.isopen = true"
+  is-open="stage.isopen"
   class="accordion-navigation stages">
   <accordion-heading class="title-wrapper">
     <h2 class="title" id="stages">
-      <i ng-class="{'fa fa-angle-right': true, 'open': stage.isopen}"></i>
       <%= t('.title') %>
+      <i class="right" ng-class="{'fa fa-angle-down': true, 'open': stage.isopen}"></i>
     </h2>
-
   </accordion-heading>
-  <p class="section-text">
-    <%= t('.each_stage_with_details') %>
-  </p>
   <div class="box"
     ng-if="guide.stages.length === 0">
     <div class="row">
@@ -23,16 +19,35 @@
     </div>
   </div>
   <tabset class="tabs">
-
     <tab ng-repeat="stage in guide.stages | orderBy:'order'">
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>
       </tab-heading>
-      <div class="actions columns small-12">
-        <div class="row">
-          <div class="action columns small-12" ng-repeat="action in stage.stage_actions">
-            <h3 ng-bind="action.name"></h3>
-            <p ng-bind="action.overview"></p>
+      <div class="columns small-12">
+        <div class="row actions">
+
+          <!-- This is hacked from the Guide creation flow. It should be rebuilt
+            as a normal image, but I don't know how to do that and have it
+            change with the selected stage. Also, if the stage has photos, it
+            should display those (the graphic should only be a placeholder). I
+            imagine that when the user clicks through the Stage Actions, the
+            image displayed would corresponding to that Action (once we have
+            Action images of course ;p) -->
+
+          <div class="columns small-6 medium-4 action-photos stage-wrapper"
+            ng-class="{end: $last}">
+            <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+            </label>
+          </div>
+
+          <div class="columns small-6 medium-8 action-content">
+            <h4 class="action-name">{{ stage.name }} Overview</h4>
+            <p class="action-description"></p>
+          </div>
+          <div class="columns small-6 medium-8 action-content"
+            ng-repeat="action in stage.stage_actions">
+            <h4 class="action-name" ng-bind="action.name"></h4>
+            <p class="action-description" ng-bind="action.overview"></p>
           </div>
         </div>
       </div>

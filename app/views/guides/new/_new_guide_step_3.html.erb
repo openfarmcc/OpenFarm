@@ -1,10 +1,10 @@
 <section name="step-3" class="step stage-details" ng-show="step === 3">
 
-  <div ng-if="newGuide.selectedStages.length === 0">
+  <div ng-if="selectedStagesCount === 0">
     Please select some stages!
   </div>
 
-  <div ng-if="newGuide.selectedStages.length > 0">
+  <div ng-if="selectedStagesCount > 0">
 
     <!-- TODO: Fix before deploy -->
     <form name="sacrificial-form" style="background:red">
@@ -12,33 +12,24 @@
     </form>
     <!--  -->
 
-    <form name="stagesForm">
-      <div class="instructions">
-        <h2 class="center">
-          <%= t('.fill_in_details') %>
-        </h2>
-      </div>
-
-      <%= render 'guides/new/stage_details/chosen_stages' %>
-
       <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
         ng-init="stageForms[$index] = stage.name"
         ng-if="stage.editing">
         <div ng-form="stageForm"
-             form-checker
+             form-checker="stage"
              form-id="stage.slug"
              form-stage="stage">
           <span ng-bind="stageForms[$index].$valid"></span>
-          <div class="instructions">
-            <h2>{{ stage.name }}</h2>
-            <h3><%= t('.what_should_people_know_about_this_stage') %></h3>
+          <div class="instructions text-center">
+            <h2>{{ stage.name }} Stage Overview</h2>
           </div>
+          <hr/>
           <div class="row">
             <div class="left-half columns large-4">
               <div class="row image">
                 <div class="columns small-12">
                   <label class="left"
-                      for="stage_image_upload"><%= t('application.choose_photo') %><br/>
+                      for="stage_image_upload"><%= t('application.choose_stage_photo') %><br/>
                     <small><%= t('application.only_upload_what_you_own') %></small>
                   </label>
                 </div>
@@ -53,13 +44,13 @@
                 </div>
               </div>
               <div class="row how-long">
-                <div class="columns small-12">
+                <div class="columns small-12 medium-6">
                   <label class="left"
                       for="how_long"><%= t('.how_long') %><br/>
                     <small><%= t('.do_not_sweat') %></small>
                   </label>
                 </div>
-                <div class="columns small-12">
+                <div class="columns small-12 medium-6">
                   <div class="vertical-input-select-group">
                     <input ng-model="stage.stage_length"
                            type="number"/>
@@ -88,7 +79,7 @@
               </div> -->
             </div>
             <div class="right-half columns large-7 large-offset-1">
-              <div class="row where">
+              <div class="row environment">
                 <div class="columns small-12">
                   <label class="left"
                     for="where_should_stage_happen">
@@ -100,10 +91,10 @@
                 <div class="columns small-12">
                   <div multi-row-select
                      class="multi-choice"
-                     options="stage.where"
+                     options="stage.environment"
                      multi-select-overflow-count="3"
                      multi-select-type="checkbox"
-                     multi-select-id="where">
+                     multi-select-id="environment">
                   </div>
                 </div>
               </div>
@@ -148,28 +139,61 @@
           <div class="row actions"
                ng-init="stage.activeAction = stage.stage_action_options[0]">
             <div class="columns small-12">
-              <div class="instructions">
+              <div class="instructions text-center">
                 <h2>
-                  <%= t('.actions_header') %>
+                  {{ stage.name }} <%= t('.actions_header') %>
                 </h2>
                 <h3>
                   <%= t('.actions_instructions') %>
                 </h3>
               </div>
             </div>
+            <hr/>
             <div class="columns large-3 medium-4">
-              <ul>
+              <ul ui-sortable ng-model="stage.stage_action_options">
                 <li ng-repeat="action in stage.stage_action_options"
+                    ng-init="action.length_type = 'minutes'"
                     ng-click="stage.activeAction = action"
                     ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
-                    {{ action.name }}
+                    {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
                 </li>
               </ul>
+              <button class="button expand add-actions-button"
+                ng-click="openAddActionModal(stage)"
+                name="add-action"
+                ><i class="fa fa-plus"></i> <%= t('.add_actions') %>
+              </button>
             </div>
-            <div class="columns large-9 medium-8">
-              <label id="description" for="action_content" ng-bind="stage.activeAction.description">
-              </label>
-                <textarea id="action_content" ng-model="stage.activeAction.overview"></textarea>
+            <div class="columns large-9 medium-8 small-12">
+              <div class="row">
+                <div class="columns small-12">
+                  <h2 class="action-name">
+                    {{ stage.activeAction.name }}
+                  </h2>
+                  <label class="left"
+                      for="action_description"><%= t('.describe_action') %>
+                  </label>
+                  <textarea id="action_content" ng-model="stage.activeAction.overview">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="columns small-12 medium-8 large-6">
+                  <label class="left"
+                      for="how_long"><%= t('.how_long_action') %><br/>
+                    <small><%= t('.do_not_sweat') %></small>
+                  </label>
+                  <div class="vertical-input-select-group">
+                    <input ng-model="stage.activeAction.time"
+                           type="number"/>
+                    <select ng-model="stage.activeAction.length_type">
+                      <option value="minutes">Minutes</option>
+                      <option value="hours">Hours</option>
+                      <option value="action_days">Days</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div><!-- ng-form -->
@@ -191,8 +215,7 @@
                 type="submit"
                 value="{{ stage.edited ? '<%= t('guides.new.new_guide_step_3.edit_next_stage') %>': '<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>' }}"
                 ng-disabled="!(stage.edited)"
-                ng-click="nextStage(stage.nextSelectedIndex)"/>
-
+                ng-click="nextStage(stage)"/>
             <input class="button small right"
                 ng-if="!stage.nextSelectedIndex"
                 name="commit"
@@ -203,9 +226,6 @@
           </div>
         </div>
       </section>
-
-      <%= render 'guides/new/stage_details/chosen_stages' %>
-
     </form>
   </div>
 </section>

@@ -1,5 +1,7 @@
 module StageActions
   class CreateStageAction < Mutations::Command
+    include StageActions::StageActionsConcern
+
     required do
       model :user
       string :id
@@ -8,16 +10,27 @@ module StageActions
           string :name
           string :overview
         end
+        optional do
+          integer :order
+          integer :time
+        end
       end
+    end
+
+    optional do
+      array :images, class: Hash, arrayize: true
     end
 
     def validate
       validate_stage
+      validate_images
       validate_permissions
     end
 
     def execute
-      @stage.stage_actions.create(action)
+      @action = @stage.stage_actions.create(action)
+      set_images
+      @action
     end
 
     private

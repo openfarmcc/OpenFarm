@@ -45,7 +45,7 @@ describe Api::GuidesController, type: :controller do
   it 'create guide should return an error when wrong info is passed' do
     sign_in FactoryGirl.create(:user)
     data = { overview: 'A tiny pixel test image.',
-               crop_id: FactoryGirl.create(:crop).id.to_s }
+             crop_id: FactoryGirl.create(:crop).id.to_s }
     post 'create', guide: data
     expect(response.status).to eq(422)
   end
@@ -74,9 +74,53 @@ describe Api::GuidesController, type: :controller do
     expect(response.body).to include('only modify guides that you created')
   end
 
+  describe 'destroy' do
+    it 'deletes guides' do
+      garden = FactoryGirl.create(:guide, user: user)
+      sign_in user
+      old_length = Guide.all.length
+      delete :destroy, id: garden.id, format: :json
+      new_length = Guide.all.length
+      expect(new_length).to eq(old_length - 1)
+    end
+
+    it 'returns an error when a guide does not exist' do
+      sign_in user
+      delete :destroy, id: 1, format: :json
+      expect(json['stage']).to include(
+        'Could not find a guide with id')
+      expect(response.status).to eq(422)
+    end
+
+    it 'only destroys guides owned by the user' do
+      sign_in user
+      delete :destroy, id: FactoryGirl.create(:guide)
+      expect(json['error']).to include(
+        'can only destroy guides that belong to you.')
+      expect(response.status).to eq(401)
+    end
+  end
+
   it 'validates URL paramters' do
     put :update, id: guide.id, featured_image: 'not a real URL'
     expect(response.status).to eq(422)
     expect(json['featured_image']).to include('Must be a fully formed URL')
+  end
+
+  it 'should give current_user a badge for creating a guide' do
+    sign_in user
+
+    assert user.badges.empty?
+
+    data = { name: 'brocolini in the desert',
+             overview: 'something exotic',
+             crop_id: FactoryGirl.create(:crop).id.to_s }
+    post 'create', data, format: :json
+    expect(response.status).to eq(201)
+    user.reload
+
+    assert user.badges.count == 1
+
+    assert user.badges.first.name == 'guide-creator'
   end
 end

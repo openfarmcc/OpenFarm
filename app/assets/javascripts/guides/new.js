@@ -592,7 +592,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.switchToStep = function(step){
     $scope.step = step;
     $location.hash($scope.step);
+    scrollToTop();
   };
+
+  var scrollToTop = function(){
+    $('body').scrollTop(0);
+  }
 
   $scope.nextStep = function(){
     if ($scope.step === 3){
@@ -600,11 +605,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
     $scope.step += 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
   $scope.previousStep = function(){
     $scope.step -= 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
   var transferStageValuesIfNoneExist = function(stage, nextStage) {
@@ -619,6 +626,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     var nextStage = $scope.stages[stage.nextSelectedIndex];
     transferStageValuesIfNoneExist(stage, nextStage);
     $scope.editSelectedStage(nextStage);
+    scrollToTop();
   };
 
   $scope.editSelectedStage = function(chosenStage){

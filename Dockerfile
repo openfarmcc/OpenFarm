@@ -20,9 +20,11 @@ RUN     set -x; \
 ADD     Gemfile /openfarm/Gemfile
 ADD     Gemfile.lock /openfarm/Gemfile.lock
 WORKDIR /openfarm
-RUN     set -x; \
+
+RUN     jobs="$(nproc)"; \
+        set -x; \
         bundle config build.nokogiri --use-system-libraries \
-        && bundle install --without development
+        && bundle install --jobs "$jobs" --without development
 
 # ADD code for production, this will be replaced by a volume during development
 ADD     . /openfarm
@@ -30,5 +32,5 @@ ADD     . /openfarm
 # Environment is passed in from the host environment, disable the warning
 RUN     touch /openfarm/config/app_environment_variables.rb
 
-CMD     bundle exec rails server
+CMD     ["bundle", "exec", "rails", "server", "-P", "tmp/pids/docker.pid"]
 EXPOSE  3000

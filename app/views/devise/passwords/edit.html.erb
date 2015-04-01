@@ -1,21 +1,23 @@
 <div class="row user-access">
 
   <div class="columns small-12 medium-5 small-centered">
-    <h2>Change your password</h2>
+    <div class="panel">
+      <h2>Change your password</h2>
 
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-      <%= devise_error_messages! %>
-      <%= f.hidden_field :reset_password_token %>
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
 
-      <div><%= f.label :password, "New password" %>
-      <%= f.password_field :password, :autofocus => true %></div>
+        <div><%= f.label :password, "New password" %>
+        <%= f.password_field :password, :autofocus => true %></div>
 
-      <div><%= f.label :password_confirmation, "Confirm new password" %>
-      <%= f.password_field :password_confirmation %></div>
+        <div><%= f.label :password_confirmation, "Confirm new password" %>
+        <%= f.password_field :password_confirmation %></div>
 
-      <div><%= f.submit "Change my password" %></div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+        <div><%= f.submit "Change my password" %></div>
+      <% end %>
+      <hr/>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

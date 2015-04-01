@@ -1,6 +1,6 @@
 <div class="row user-access">
   <div class="columns small-12 medium-5 small-centered">
-    <div class="panel sign-in-panel">
+    <div class="panel">
       <h2>Sign in</h2>
 
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -16,8 +16,8 @@
 
         <div align="center"><%= f.submit "Sign in", class: 'button small' %></div>
       <% end %>
-<hr/>
-<%= render "devise/shared/links" %>
-</div>
-</div>
+      <hr/>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
 </div>

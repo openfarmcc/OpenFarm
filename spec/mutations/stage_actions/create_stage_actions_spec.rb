@@ -33,7 +33,7 @@ describe StageActions::CreateStageAction do
     end
   end
 
-   it 'disallows phony URLs' do
+  it 'disallows phony URLs' do
     image_hash = {
       image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
     }

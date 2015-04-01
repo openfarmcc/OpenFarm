@@ -481,7 +481,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
       // $scope.newGuide.selectedStages = [];
 
-
       var stages = $scope.newGuide.stages;
       $scope.selectedStagesCount = $scope.newGuide.stages
                                     .filter(function(s) {
@@ -525,7 +524,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
     processCropID(getUrlVar('crop_id'));
-
   };
 
   var getStages = function(success_callback, error_callback){
@@ -550,7 +548,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.search = function () {
     // be nice and only hit the server if
     // length >= 3
-    if ($scope.query.length >= 3){
+    if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
         method: "GET",
@@ -609,8 +607,18 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $location.hash($scope.step);
   };
 
-  $scope.nextStage = function(index){
-    $scope.editSelectedStage($scope.stages[index]);
+  var transferStageValuesIfNoneExist = function(stage, nextStage) {
+    if (!$scope.guideExists) {
+      nextStage.environment = stage.environment;
+      nextStage.light = stage.light;
+      nextStage.soil = stage.soil;
+    }
+  }
+
+  $scope.nextStage = function(stage){
+    var nextStage = $scope.stages[stage.nextSelectedIndex];
+    transferStageValuesIfNoneExist(stage, nextStage);
+    $scope.editSelectedStage(nextStage);
   };
 
   $scope.editSelectedStage = function(chosenStage){

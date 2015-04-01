@@ -223,7 +223,6 @@ angular.module('ngS3upload.directives', []).
               scope.$apply(function () {
                 S3Uploader.getUploadOptions(opts.getOptionsUri)
                   .then(function (s3Options) {
-                    console.log(ngModel);
                     ngModel.$setValidity('uploading', false);
                     var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
                     var key = opts.folder + (new Date()).getTime() + '-' +
@@ -242,8 +241,6 @@ angular.module('ngS3upload.directives', []).
                         ngModel.$setViewValue(s3Uri + key);
 
                         scope.s3UploadPlacePic({image: s3Uri + key});
-
-                        console.log(s3Uri + key);
 
                         ngModel.$setValidity('uploading', true);
                         ngModel.$setValidity('succeeded', true);

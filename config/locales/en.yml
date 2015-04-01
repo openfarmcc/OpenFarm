@@ -177,6 +177,8 @@ en:
           create_your_first_garden: "Create your first garden"
           create_another_garden: "Create new garden"
   crops:
+    edit_crop: "Edit crop"
+    add_this_information: "Add this information"
     name: "Name"
     binomial_name: "Binomial Name"
     description: "Description"

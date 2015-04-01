@@ -8,7 +8,7 @@
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
       <% if current_user %>
-        <%= link_to(icon('edit') + " Edit Crop", {action: 'edit'}, class: 'edit-link button secondary tiny') %>
+        <%= link_to(icon('edit') + " " + t('crops.edit_crop'), {action: 'edit'}, class: 'edit-link button secondary tiny') %>
           <%= render 'gardens/add_to_gardens.html' %>
       <% end %>
     </div>
@@ -22,39 +22,39 @@
         </tr>
         <tr>
           <td><%= I18n.t('crops.binomial_name') %></td>
-          <td><%= @crop.binomial_name %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.binomial_name} %></td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.description') %></td>
-          <td><%= @crop.description %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.description} %></td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.sun_requirements') %></td>
-          <td><%= @crop.sun_requirements %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.sun_requirements} %></td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.sowing_method') %></td>
-          <td><%= @crop.sowing_method %></td>
+          <td>
+          <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.sowing_method} %></td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.spread') %></td>
           <td>
-            <%= @crop.spread %>
-            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.spread) %></small>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.spread} %>
           </td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.row_spacing') %></td>
           <td>
-            <%= @crop.row_spacing %>
-            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.row_spacing) %></small>
-          </td>        </tr>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.row_spacing} %>
+          </td>
+        </tr>
         <tr>
           <td><%= I18n.t('crops.height') %></td>
           <td>
-            <%= @crop.height %>
-            <small class="measurement-unit"> <%= I18n.t('measurements.centimeters', count: @crop.height) %></small>
-          </td>        </tr>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.height} %>
+          </td>
+        </tr>
         </tbody>
     </table>
   </div>

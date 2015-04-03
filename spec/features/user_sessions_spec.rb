@@ -34,7 +34,7 @@ describe 'User sessions' do
   it 'logs out' do
     login_as user
     visit root_path
-    click_link 'Log out'
+    page.first(:link, 'Log out').click
     see('Signed out successfully.')
   end
 

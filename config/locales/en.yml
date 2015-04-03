@@ -126,6 +126,10 @@ en:
           check_all_that_apply: "Check all that apply"
           units_preference: "What units do you prefer"
           email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
+          help_sign_up: "Do you want to help build OpenFarm?"
+          help_description: |
+            Some examples of ways we might ask you to help: organizing
+            community events, translation, etc.
           add_garden: "Next: Add Garden"
       gardens:
           loading_gardens: "Loading Your Gardens"

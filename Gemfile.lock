@@ -145,11 +145,17 @@ GEM
       railties (>= 3.1.0)
       sass (>= 3.2.0)
     fssm (0.2.10)
+    gibbon (1.1.5)
+      httparty
+      multi_json (>= 1.9.0)
     haml (4.0.6)
       tilt
     hashie (3.3.2)
     high_voltage (2.2.1)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpclient (2.6.0.1)
     i18n (0.7.0)
     impressionist (1.5.1)
@@ -186,6 +192,7 @@ GEM
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     mutations (0.7.2)
       activesupport
@@ -241,7 +248,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.2)
       sprockets-rails (~> 2.0.0)
-    rails-assets-angular (1.3.14)
+    rails-assets-angular (1.3.15)
     rails-assets-angular-dragdrop (1.0.11)
       rails-assets-angular (~> 1.0)
       rails-assets-jquery-ui
@@ -397,6 +404,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   foundation-rails (~> 5.4.5)
+  gibbon
   high_voltage
   impressionist (~> 1.5.0)
   jquery-rails

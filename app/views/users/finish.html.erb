@@ -63,8 +63,22 @@
       </label>
     </div>
     <div class="large-8 columns">
-      <input type="radio" id="yes" value="true" name="mailing_list"><label for="yes">Yes</label>
-      <input id="no" type="radio" value="false" name="mailing_list" checked><label for="no">No</label>
+      <input type="radio" id="yes-email" value="true" name="mailing_list"><label for="yes-email">Yes</label>
+      <input id="no-email" type="radio" value="false" name="mailing_list" checked><label for="no-email">No</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="location">
+        <%= t('.help_sign_up') %>
+        <br/><small><%= t('.help_description') %></small>
+      </label>
+
+    </div>
+    <div class="large-8 columns">
+      <input type="radio" id="yes-help" value="true" name="help_list"><label for="yes-help">Yes</label>
+      <input id="no-help" type="radio" value="false" name="help_list" checked><label for="no-help">No</label>
     </div>
   </div>
 

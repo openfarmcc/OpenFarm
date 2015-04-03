@@ -9,6 +9,7 @@ module Users
           string :location
           string :years_experience
           string :mailing_list
+          string :help_list
           string :units
           string :is_private
         end
@@ -22,6 +23,7 @@ module Users
     def execute
       @user = User.find(id)
       @user.update_attributes(user)
+      @user.save
       # set_valid_params
     end
 

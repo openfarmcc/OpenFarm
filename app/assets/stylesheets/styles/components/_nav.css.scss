@@ -31,9 +31,15 @@ html, body {
     }
   }
 
-  .search{
+  .search {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  .top-bar-section {
+    .show-for-medium-up {
+      margin-right: 1rem;
+    }
   }
 
   // Special home nav style
@@ -55,7 +61,7 @@ html, body {
       }
 
       a {
-        background: rgba(0,0,0,0.4) !important;
+        background: rgba(0, 0, 0, .6) !important;
         font-size: 0.8em;
         color: white;
         font-weight: 800;
@@ -66,13 +72,13 @@ html, body {
         }
 
         &:hover {
-          background-color: rgba(0,0,0,0.5) !important;
+          background-color: rgba(0, 0, 0, .8) !important;
         }
       }
 
-      &.toggle-topbar.menu-icon a {
-        padding: 0 15px;
-      }
+      // &.toggle-topbar.menu-icon a {
+      //  padding: 0 15px;
+      // }
     }
 
     // nudge the right menu down and over

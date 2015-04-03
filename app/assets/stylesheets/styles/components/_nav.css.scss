@@ -61,7 +61,7 @@ html, body {
       }
 
       a {
-        background: rgba(0,0,0,0.6) !important;
+        background: rgba(0, 0, 0, .6) !important;
         font-size: 0.8em;
         color: white;
         font-weight: 800;
@@ -72,13 +72,13 @@ html, body {
         }
 
         &:hover {
-          background-color: rgba(0,0,0,0.8) !important;
+          background-color: rgba(0, 0, 0, .8) !important;
         }
       }
 
-      &.toggle-topbar.menu-icon a {
-        /*padding: 0 15px;*/
-      }
+      // &.toggle-topbar.menu-icon a {
+      //  padding: 0 15px;
+      // }
     }
 
     // nudge the right menu down and over

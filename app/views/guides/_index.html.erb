@@ -12,7 +12,7 @@
           <td>
             <%= link_to(guide.crop.name, { controller: 'crops',
               action: 'show',
-              id: guide.crop.id }, :class => 'action show') %>
+              id: guide.crop.id }, :class => 'action show crop-name') %>
           </td>
           <td>
             <%= link_to(icon('edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show') %>
@@ -28,7 +28,5 @@
         <%= t('.no_guides_yet') %>
       </div>
     <% end %>
-    <%= link_to t('.create_a_guide'), { controller: 'guides', action: 'new' },
-    class:"button new-guide-button" %>
   </div>
 </div>

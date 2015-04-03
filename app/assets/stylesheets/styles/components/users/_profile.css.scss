@@ -35,7 +35,7 @@
     }
   }
 
-  .profile-sidebar-section {
+  .sidebar-section, .section {
     margin-bottom: 3rem;
   }
 
@@ -51,13 +51,22 @@
   }
 
   .guides-list {
-    tr {
-      background: none;
+
+    table {
+      border: none;
+      border-collapse: collapse;
     }
 
     .guide-name {
+      color: #333333;
       font-weight: bold;
       font-size: 1.2rem;
+    }
+
+    .crop-name {
+      color: #666666;
+      font-style: italic;
+      font-size: 1rem;
     }
   }
 

@@ -1,0 +1,77 @@
+.member-profile {
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .profile-sub-header {
+    ul {
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      margin: 0.4rem 0;
+      background-color: #e9e9e9;
+    }
+
+    .number {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .attribute {
+      color: #999999;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+  }
+
+  .section-title {
+    display: block;
+    float: left;
+  }
+
+  .guides-list {
+    tr {
+      background: none;
+    }
+
+    .guide-name {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+
+  .member-info-wrapper {
+
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    .member-picture {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 70px;
+      border: 3px solid #ffffff;
+      float: right;
+      height: 140px;
+      width: 140px;
+    }
+
+    .member-infos {
+
+      h2 {
+      font-weight: bold;
+      }
+
+      h2, h5 {
+        color: #ffffff;
+        text-shadow: 1px 1px 20px #666666;
+      }
+    }
+  }
+}

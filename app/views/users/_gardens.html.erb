@@ -1,9 +1,4 @@
 <div class="gardens" ng-controller="gardenCtrl" ng-cloak>
-  <div class="bar-header">
-    <h1 class="title">
-      <%= t('gardens.your_gardens') %>
-    </h1>
-  </div>
   <div alerts ng-model="alerts"></div>
   <div ng-if="!currentUser" class="row">
     <div class="columns small-6 small-centered loading-content">

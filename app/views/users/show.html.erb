@@ -17,6 +17,7 @@
           </div>
         </div>
       </div>
+      <button class="button right tiny secondary edit-profile-button">Edit Profile</button>
     </div>
   </div>
 
@@ -55,8 +56,6 @@
           </ul>
         </div>
       </div>
-      </br>
-      </br>
 
       <!-- Followers -->
       <div class="row">
@@ -70,8 +69,6 @@
           </ul>
         </div>
       </div>
-      </br>
-      </br>
 
       <!-- Following -->
       <div class="row">
@@ -93,8 +90,7 @@
         <div class="section-header">
           <h3 class="section-title"><%= t('member.guides') %></h3>
           <!-- TODO: Only show create button if user is current_user -->
-          <button class="button right small">Create Guide</button>
-          <hr>
+          <button class="button right tiny">Create Guide</button>
         </div>
         <%= render 'guides/index' %>
       </div>
@@ -106,10 +102,9 @@
         <div class="section-header">
           <h3 class="section-title">Gardens</h3>
           <!-- TODO: Only show button if user is current_user -->
-          <button class="button right small">Manage Gardens</button>
-          <button class="button right small">Add Garden</button>
-          <hr>
+          <button class="button right tiny">Add Garden</button>
         </div>
+        <%= render 'users/gardens' %>
       </div>
       </br>
       </br>
@@ -119,8 +114,7 @@
         <div class="section-header">
           <h3 class="section-title"><%= t('users.organizations') %></h3>
           <!-- TODO: Only show button if user is current_user -->
-          <button class="button right small">Explore Organizations</button>
-          <hr>
+          <button class="button right tiny">Explore Organizations</button>
         </div>
       </div>
       </br>
@@ -131,20 +125,11 @@
       <div class="small-12 columns profile-section">
         <div class="section-header">
           <h3 class="section-title"><%= t('users.account_information') %></h3>
-          <button class="button right small">Edit</button>
-          <hr>
+          <button class="button right tiny">Edit</button>
         </div>
+      <!-- Getting an undefined resource variable in devise/shared/_user_form -->
+      <%#= render 'devise/registrations/edit' %>
       </div>
-      </br>
-      </br>
-
-      <!-- Delete Account -->
-      <!-- TODO: Only show if user is current_user -->
-      <div class="small-12 columns profile-section">
-        <div class="section-header">
-          <h3 class="section-title"><%= t('users.delete_account') %></h3>
-          <hr>
-        </div>
-      </div>
+    </div>
   </div>
 </div>

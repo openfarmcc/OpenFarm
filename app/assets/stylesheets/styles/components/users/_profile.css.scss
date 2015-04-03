@@ -5,6 +5,11 @@
     margin-left: 0;
   }
 
+  .edit-profile-button {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
   .profile-sub-header {
     ul {
       text-align: center;
@@ -30,9 +35,19 @@
     }
   }
 
+  .profile-sidebar-section {
+    margin-bottom: 3rem;
+  }
+
   .section-title {
     display: block;
     float: left;
+  }
+
+  .section-header {
+    border-bottom: 2px solid #cecece;
+    display: inline-block;
+    width: 100%;
   }
 
   .guides-list {

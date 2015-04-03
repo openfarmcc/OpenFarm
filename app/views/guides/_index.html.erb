@@ -7,7 +7,7 @@
             <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
           </td>
           <td>
-            <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show') %>
+            <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
           </td>
           <td>
             <%= link_to(guide.crop.name, { controller: 'crops',

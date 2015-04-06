@@ -12,11 +12,18 @@
 
   <span class="thumbnails"
         ng-if="s3UploadExistingPictures && s3UploadExistingPictures.indexOf('leaf-grey') === -1 && hasOnePicture">
-    <img ng-src="{{ s3UploadExistingPictures }}"
+    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures }}"
        />
   </span>
+
   <span class='click-to-upload-image'>
     <input type='file' style='display: none'/>
     <input type='field' style='display: none' name='{{ nameAttribute }}' value='{{ filename }}'/>
+
+    <div ng-show="uploading" class="progress primary round">
+      <span class="meter" style="width: {{progress}}%"></span>
+    </div>
   </span>
+
+
 </span>

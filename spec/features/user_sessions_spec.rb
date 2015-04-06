@@ -66,40 +66,13 @@ describe 'User sessions' do
   # end
 
   it 'should create a new garden for a newly registered user' do
-    visit root_path
-    click_link 'register'
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    check :user_agree
-    click_button 'Join OpenFarm'
-    usr = User.find_by(email: 'm@il.com')
-
-    # This is a bit of a hack, but I can't think of a different
-    # way to get the token that is sent via email (it's different from
-    # what gets stored in the DB)
-    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
-
-    visit href
+    usr = sign_up_procedure
 
     expect(Garden.all.last.user).to eq (usr)
   end
 
   it 'user gets redirected to their finish page after sign up confirmation' do
-    visit root_path
-    click_link 'register'
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    check :user_agree
-    click_button 'Join OpenFarm'
-    expect(page).to have_content('confirmation link has been sent')
-    usr = User.find_by(email: 'm@il.com')
-
-    # This is a bit of a hack
-    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
-
-    visit href
+    usr = sign_up_procedure
 
     expect(page).to have_content('Your account was successfully confirmed')
 
@@ -110,6 +83,22 @@ describe 'User sessions' do
     click_button 'Next: Add Garden'
 
     expect(page).to have_content('Your Gardens')
+  end
+
+  it 'should link to mailchimp if user chooses to be on mailing list' do
+    usr = sign_up_procedure
+
+    choose('yes-email')
+
+    click_button 'Next: Add Garden'
+  end
+
+  it 'should link to mailchimp if user chooses to be on mailing list' do
+    usr = sign_up_procedure
+
+    choose('yes-help')
+
+    click_button 'Next: Add Garden'
   end
 
   it 'should show an error message if no location is defined'
@@ -149,5 +138,25 @@ describe 'User sessions' do
     doc = Nokogiri::HTML(email.to_s)
     hrefs = doc.xpath("//a[starts-with(text(), 'C')]/@href").map(&:to_s)
     hrefs[0]
+  end
+
+  def sign_up_procedure
+    visit root_path
+    click_link 'register'
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    check :user_agree
+
+    click_button 'Join OpenFarm'
+    usr = User.find_by(email: 'm@il.com')
+
+    # This is a bit of a hack, but I can't think of a different
+    # way to get the token that is sent via email (it's different from
+    # what gets stored in the DB)
+    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
+
+    visit href
+    usr
   end
 end

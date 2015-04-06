@@ -40,6 +40,7 @@ class User
   field :units, type: String
 
   field :mailing_list, type: Mongoid::Boolean, default: false
+  field :help_list, type: Mongoid::Boolean, default: false
 
   field :admin, type: Mongoid::Boolean, default: false
 

@@ -55,6 +55,7 @@ angular.module('ngS3upload.services', []).
 
     this.upload = function (scope, uri, key, acl, type, accessKey, policy, signature, file) {
       var deferred = $q.defer();
+
       scope.attempt = true;
 
       var fd = new FormData();
@@ -237,7 +238,7 @@ angular.module('ngS3upload.directives', []).
                         s3Options.signature,
                         selectedFile
                       ).then(function (resp) {
-
+                        console.log(scope);
                         ngModel.$setViewValue(s3Uri + key);
 
                         scope.s3UploadPlacePic({image: s3Uri + key});

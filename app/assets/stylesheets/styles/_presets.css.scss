@@ -1,3 +1,5 @@
+@import "compass/layout/sticky-footer";
+
 /*
 
   Custom mixins
@@ -64,6 +66,12 @@
 
 */
 
+html,
+body,
+#content {
+  min-height: 100%;
+}
+
 p {
   letter-spacing: 0.025rem;
 }
@@ -129,7 +137,6 @@ textarea {
 .row.row-table {
   display: table;
   table-layout: fixed;
-  width: 100%; // Tables will only be as big as they need to without this
 }
 
 .row.row-full-height {
@@ -141,6 +148,25 @@ textarea {
   display: table-cell;
   vertical-align: middle;
   float: none;
+}
+
+// Must reside in the top level of stylesheets
+// Note: sticky-footer is setting the height of the first selector to auto !important. To counteract that we are setting it manually.
+@include sticky-footer($footer-height, "#foo-bar", "#layout_footer", "#footer");
+#content {
+  clear: both;
+  height: 100%;
+  margin-bottom: -$footer-height;
+}
+
+// For covering content in partial blackness
+.the-blackness {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .25);
 }
 
 /*

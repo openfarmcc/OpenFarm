@@ -138,9 +138,14 @@
       <%# if we're at root, we need to create a wrapper for these to float them somewhere else, close that wrapper %>
       </div>
     <% end %>
-    <%= yield %>
+    <div id="content">
+      <%= yield %>
+      <!-- Necessary for sticky footer -->
+      <div id='layout_footer'></div>
 
-    <%# <%= render 'shared/footer' %>
+    </div>
+
+    <%= render 'shared/footer' %>
     <%# Controller specific end JS %>
     <%= yield(:end_js) %>
   </body>

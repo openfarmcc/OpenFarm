@@ -29,7 +29,7 @@
   }
 
   @include compatibility-color('compatibility-low', $compatibility-low-color);
-  @include compatibility-color('compatibility-med', $compatibility-med-color);
+  @include compatibility-color('compatibility-medium', $compatibility-medium-color);
   @include compatibility-color('compatibility-high', $compatibility-high-color);
 
   &:hover {

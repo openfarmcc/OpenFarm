@@ -30,6 +30,6 @@
   }
 
   @include compatibility-color('low', $compatibility-low-color);
-  @include compatibility-color('medium', $compatibility-med-color);
+  @include compatibility-color('medium', $compatibility-medium-color);
   @include compatibility-color('high', $compatibility-high-color);
 }

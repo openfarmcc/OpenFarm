@@ -35,11 +35,11 @@ $openfarm-green-muted: #99b36c;
 $openfarm-blue-grey:   #eceff0;
 
 $compatibility-low-color:  #b23a2c;
-$compatibility-med-color:  #fbad2f;
+$compatibility-medium-color:  #fbad2f;
 $compatibility-high-color: #84c93f;
  /* Same color, just lighter (adjusted to appear perceptually equally lighter) */
 $compatibility-low-color-bg:  lighten($compatibility-low-color, 45%);
-$compatibility-med-color-bg:  lighten($compatibility-med-color, 35%);
+$compatibility-medium-color-bg:  lighten($compatibility-medium-color, 35%);
 $compatibility-high-color-bg: lighten($compatibility-high-color, 40%);
 
 /* Ceci, n'est pas un couleur */

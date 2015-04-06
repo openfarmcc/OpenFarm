@@ -29,7 +29,7 @@ module Stages
     def validate
       validate_guide
       validate_permissions
-      validate_images
+      validate_images(images)
       validate_actions
     end
 

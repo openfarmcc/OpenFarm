@@ -61,22 +61,16 @@
               <!-- Right Nav Section -->
               <ul class="right">
                   <% if current_user %>
-                      <li class="has-dropdown">
+                      <li class="has-dropdown show-for-medium-up">
                           <a href="#"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
                           <ul class="dropdown">
-                              <li>
-                                  <%= link_to t('application.create_guide'), new_guide_path %>
-
-                                  <%= link_to t('guides.index.my_guides'), guides_path %>
-
-                                  <%= link_to t('application.user_settings'), edit_user_registration_path %>
-                                  <%= link_to t('application.manage_gardens'), users_gardens_path(current_user) %>
-                                  <%= link_to(t("application.log_out"), destroy_user_session_path, method: :delete, class: '', id: 'logout') %>
-                              </li>
+                            <li>
+                              <%= render 'shared/header_links.html.erb' %>
+                            </li>
                           </ul>
                       </li>
-                      <li class="has-form">
-
+                      <li class="show-for-small-only">
+                        <%= render 'shared/header_links.html.erb' %>
                       </li>
                   <% else %>
                       <li class="has-form">
@@ -106,7 +100,6 @@
                   </form>
                 </div>
               <% end %>
-
 
           </section>
       </nav>

@@ -1,0 +1,25 @@
+// Styles for the user access pages.
+
+.user-access {
+  margin-top: 4rem;
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .panel {
+    padding: 2rem;
+    background-color: lighten($of-light, 10%);
+    border: 1px solid lighten($of-light, 20%);
+    box-shadow: 0 0 1rem $of-light;
+  }
+
+  .devise-links {
+    margin-top: 1rem;
+    line-height: 1.6;
+    font-size: .9rem;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }
+}

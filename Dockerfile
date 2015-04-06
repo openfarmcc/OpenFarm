@@ -20,9 +20,11 @@ RUN     set -x; \
 ADD     Gemfile /openfarm/Gemfile
 ADD     Gemfile.lock /openfarm/Gemfile.lock
 WORKDIR /openfarm
-RUN     set -x; \
+
+RUN     jobs="$(nproc)"; \
+        set -x; \
         bundle config build.nokogiri --use-system-libraries \
-        && bundle install --without development
+        && bundle install --jobs "$jobs" --without development
 
 # ADD code for production, this will be replaced by a volume during development
 ADD     . /openfarm

@@ -39,6 +39,8 @@ en:
     choose_stage_photo: "Add a photo for this stage"
     crop: "Crop"
     guide: "Guide"
+    forgot_your_password: "Forgot your password?"
+    did_not_receive_confirmation_instructions_html: "Didn't receive confirmation<br/> instructions?"
   meta:
     about: "About OpenFarm"
     our_mission: "Our Mission"
@@ -177,6 +179,8 @@ en:
           create_your_first_garden: "Create your first garden"
           create_another_garden: "Create new garden"
   crops:
+    edit_crop: "Edit crop"
+    add_this_information: "Add this information"
     name: "Name"
     binomial_name: "Binomial Name"
     description: "Description"
@@ -291,6 +295,9 @@ en:
               actions_header: "Actions"
               actions_instructions: "What Actions do you recommend others to take during this stage?"
               add_actions: "Add Actions"
+              stage_overview: "Stage Overview"
+              select_some_stages: "Please select some stages!"
+              choose_action_photo: "Add a photo to this action"
           new_guide_step_4:
               give_an_overview: "Give a short overview of your guide."
               almost_done: "Almost done!"

@@ -36,7 +36,9 @@
 
           <div class="columns small-6 medium-4 action-photos stage-wrapper"
             ng-class="{end: $last}">
-            <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+            <label class="stage-option {{stage.name}}"
+                style="background-image: url({{stage.pictures[0].image_url}})"
+                ng-class="{stage.name : stage.pictures.length === 0}" for="{{ stage.name }}">
             </label>
           </div>
 

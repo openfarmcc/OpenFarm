@@ -27,7 +27,7 @@
       display: inline-block;
       padding: 0.4rem 1rem;
       margin: 0.4rem 0;
-      background-color: #e9e9e9;
+      background-color: $gray-bg;
     }
 
     .number {
@@ -75,7 +75,7 @@
     .guide-name {
       color: $off-black;
       font-weight: bold;
-      font-size: 1.3rem;6
+      font-size: 1.3rem;
       line-height: 56px;
     }
 

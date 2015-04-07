@@ -30,7 +30,7 @@
 
   <div class="row wide-row member-content">
 
-    <!-- Sub header for badges and followers on mobile TODO: Make it real
+    <!-- Sub header for mobile (replaces sidebar) TODO: Make it real
     <div class="small-12 show-for-small-only columns profile-sub-header">
       <ul>
         <li>
@@ -48,52 +48,18 @@
       </ul>
     </div> -->
 
-
+    <!-- Sidebar for medium and up screens -->
     <div class="medium-4 large-3 show-for-medium-up columns profile-sidebar">
-      <div class="row">
-        <div class="small-12 columns sidebar-section">
-          <h4 class="section-header">Badges</h4>
-          <p>Coming soon!</p>
-          <!-- TODO: Make it real
-          <ul class="badges-list">
-            <li>Backer Badge</li>
-            <li>Guide Creator Level 3</li>
-            <li>25 Comments</li>
-            <li>Crop Editor Level 10</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-12 columns sidebar-section">
-          <h4 class="section-header">Followers</h4>
-          <ul class="badges-list">
-            <li>Barack Obama</li>
-            <li>Hilary Clinton</li>
-            <li>Kat Ying</li>
-            <li>+ 4 more</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="small-12 columns sidebar-section">
-          <h4 class="section-header">Following</h4>
-          <ul class="badges-list">
-            <li>Barack Obama</li>
-            <li>Hilary Clinton</li>
-            <li>Kat Ying</li>
-            <li>+ 4 more</li>
-          </ul> -->
-        </div>
-      </div>
+      <%= render 'users/badges' %>
+      <%= render 'users/followers' %>
+      <%= render 'users/following' %>
     </div>
 
     <div class="small-12 medium-8 large-9 columns">
 
       <!-- Member's Guides -->
       <div class="small-12 columns section">
-        <%= render 'guides/index' %>
+        <%= render 'users/guides' %>
       </div>
 
       <!-- Member's Gardens -->
@@ -101,27 +67,17 @@
         <%= render 'users/gardens' %>
       </div>
 
-      <!-- Member's Organizations TODO: Organization everything!
+      <!-- Member's Organizations TODO: everything
       <div class="small-12 columns section">
-        <div class="section-header">
-          <h3 class="section-title"><%= t('users.organizations') %></h3>
-          <button class="button right tiny">Explore Organizations</button>
-        </div>
-      </div>
-      </br>
-      </br>
-      -->
+        <%= render 'users/organizations' %>
+      </div> -->
 
       <!-- Account Information TODO: Only show if user is current_user
+      Getting an undefined resource variable in devise/shared/_user_form -->
       <div class="small-12 columns section">
-        <div class="section-header">
-          <h3 class="section-title"><%= t('users.account_information') %></h3>
-          <button class="button right tiny">Edit</button>
-        </div> -->
-      <!-- Getting an undefined resource variable in devise/shared/_user_form -->
-      <%#= render 'devise/registrations/edit' %>
-
+        <%#= render 'devise/registrations/edit' %>
       </div>
+
     </div>
   </div>
 </div>

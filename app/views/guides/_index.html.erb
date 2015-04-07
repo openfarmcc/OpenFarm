@@ -1,3 +1,9 @@
+<div class="section-header">
+  <h3 class="section-title"><%= t('member.guides') %></h3>
+  <!-- TODO: Only show create button if user is current_user -->
+  <button class="button right tiny create-guide-button"><%= link_to t('application.create_guide'), new_guide_path %>
+</div>
+
 <div class="guides row guides-list">
   <div class="small-12 columns">
     <table>
@@ -5,8 +11,6 @@
         <tr>
           <td>
             <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
-          </td>
-          <td>
             <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
           </td>
           <td>

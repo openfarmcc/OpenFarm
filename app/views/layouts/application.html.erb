@@ -122,6 +122,12 @@
           <a href="#" class="close">&times;</a>
         </div>
     <% end %>
+    <% if flash[:warning] %>
+        <div data-alert class="alert-box warning radius columns large-4 small-centered">
+          <%= flash[:warning] %>
+          <a href="#" class="close">&times;</a>
+        </div>
+    <% end %>
     <% if alert %>
         <div data-alert class="alert-box alert radius columns large-4 small-centered">
           <% if alert.is_a?(Array) %>

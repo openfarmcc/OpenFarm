@@ -22,15 +22,17 @@
 
   <% if @user.new_record? %>
     <%= f.label :password, I18n.t('users.password') %>
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.check_box :agree %><%= f.label :agree, t('users.tos_privacy_html',
-          tos_url: page_path('tos'),
-          privacy_url: page_path('privacy') ) %>
+    <small id="passwordhelp"><%= t('users.at_least_8_characters') %></small>
+    <%= f.password_field :password, autocomplete: "off", ariaDescribedby: "passwordhelp" %>
+
+    <%= f.hidden_field :agree, value: true %><%= f.label :agree, t('users.tos_privacy_html',
+        tos_url: page_path('tos'),
+        privacy_url: page_path('privacy') ) %>
   <% else %>
     <%= f.label :current_password, I18n.t('users.current_password') %>
     <%= f.password_field :current_password, autocomplete: "off" %>
 
-    <%= f.label :password, I18n.t('users.password') + I18n.t('users.password_blank_ok') %>
+    <%= f.label :password, I18n.t('users.new_password') + I18n.t('users.password_blank_ok') %>
     <%= f.password_field :password, autocomplete: "off" %>
 
     <%= f.check_box :is_private %><%= f.label :is_private, I18n.t('users.is_private') %>

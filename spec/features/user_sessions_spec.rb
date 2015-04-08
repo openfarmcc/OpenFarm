@@ -11,7 +11,6 @@ describe 'User sessions' do
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    check :user_agree
     click_button 'Join OpenFarm'
     usr = User.find_by(email: 'm@il.com')
     expect(usr.display_name).to eq('Rick')
@@ -19,16 +18,6 @@ describe 'User sessions' do
     expect(usr.agree).to eq(true)
     expect(usr.email).to eq('m@il.com')
     expect(usr.confirmed?).to eq(false)
-  end
-
-  it 'fails to register when user does not subscribe to tos' do
-    visit root_path
-    click_link 'register'
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    click_button 'Join OpenFarm'
-    see 'Agree to the Terms of Service and Privacy Policy'
   end
 
   it 'logs out' do
@@ -146,7 +135,6 @@ describe 'User sessions' do
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    check :user_agree
 
     click_button 'Join OpenFarm'
     usr = User.find_by(email: 'm@il.com')

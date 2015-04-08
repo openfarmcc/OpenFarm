@@ -15,6 +15,7 @@
 
   <%= f.label :email, I18n.t('users.email_address') %>
   <%= f.email_field :email %>
+  <small id="passwordhelp"><%= t('users.will_send_email') %></small>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -22,12 +23,14 @@
 
   <% if @user.new_record? %>
     <%= f.label :password, I18n.t('users.password') %>
-    <small id="passwordhelp"><%= t('users.at_least_8_characters') %></small>
+
     <%= f.password_field :password, autocomplete: "off", ariaDescribedby: "passwordhelp" %>
+    <small id="passwordhelp"><%= t('users.at_least_8_characters') %></small>
 
     <%= f.hidden_field :agree, value: true %><%= f.label :agree, t('users.tos_privacy_html',
         tos_url: page_path('tos'),
-        privacy_url: page_path('privacy') ) %>
+        privacy_url: page_path('privacy'),
+        coc_url: page_path('code_of_conduct') ) %>
   <% else %>
     <%= f.label :current_password, I18n.t('users.current_password') %>
     <%= f.password_field :current_password, autocomplete: "off" %>
@@ -41,7 +44,9 @@
   <% end %>
 
   <% if @user.new_record? %>
-    <%= f.submit I18n.t('users.create_account'), class: 'button submit' %>
+    <div class="center">
+      <%= f.submit I18n.t('users.create_account'), class: 'button submit sign-up' %>
+    </div>
   <% else %>
     <%= f.submit I18n.t('users.update_account'), class: 'button submit' %>
   <% end %>

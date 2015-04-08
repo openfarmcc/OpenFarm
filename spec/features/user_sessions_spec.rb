@@ -65,13 +65,22 @@ describe 'User sessions' do
 
     expect(page).to have_content('Your account was successfully confirmed')
 
-    see 'Welcome Rick'
+    see 'Thanks for joining!'
     # TODO: this isn't working
     # wait_until_angular_ready
-    # fill_in :units, with: 'Chicago'
+    # fill_in :location, with: 'Chicago'
     click_button 'Next: Add Garden'
 
     expect(page).to have_content('Your Gardens')
+  end
+
+  it 'should register the user unit preference' do
+    usr = sign_up_procedure
+
+    choose 'units-imperial'
+
+    click_button 'Next: Add Garden'
+    expect(usr.user_setting.units).to eq('imperial')
   end
 
   it 'should link to mailchimp if user chooses to be on mailing list' do

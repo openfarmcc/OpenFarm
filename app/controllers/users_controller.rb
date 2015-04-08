@@ -4,8 +4,15 @@ class UsersController < ApplicationController
 
   def update
     authorize current_user
+
+    user_settings = {
+      units: params[:units],
+      location: params[:location]
+    }
+
     @outcome = Users::UpdateUser.run(
       user: params,
+      user_setting: user_settings,
       id: "#{current_user._id}")
 
     if @outcome.errors

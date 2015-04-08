@@ -67,6 +67,7 @@ class User
   end
 
   protected
+
   def confirmation_required?
     false
   end

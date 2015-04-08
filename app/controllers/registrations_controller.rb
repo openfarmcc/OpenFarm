@@ -15,14 +15,14 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     # stored resource gets cleared after it gets called apparently
     go_to = stored_location_for(resource)
-    if (!resource.confirmed?)
+    if !resource.confirmed?
       resource.send_confirmation_instructions
     end
     if go_to
       go_to || request.referer || root_path
     else
       url_for(controller: 'users',
-        action: 'finish')
+              action: 'finish')
     end
   end
 end

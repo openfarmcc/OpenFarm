@@ -20,6 +20,11 @@ module Users
           string :units
         end
       end
+      string :featured_image
+    end
+
+    def validate
+      validate_image
     end
 
     def execute
@@ -27,8 +32,28 @@ module Users
       if user_setting
         @user.user_setting.update_attributes(user_setting)
       end
+      set_image
       @user.update_attributes(user)
       @user.save
+      @user
+    end
+
+    def validate_image
+      if featured_image
+        picture = @user.user_setting.featured_image if @user
+        outcome = Pictures::CreatePicture.validate(url: featured_image)
+        unless outcome.success?
+          add_error :images,
+                    :bad_format,
+                    outcome.errors.message_list.to_sentence
+        end
+      end
+    end
+
+    def set_image
+      if featured_image
+        @user.user_setting.picture = Picture.new(attachment: open(featured_image))
+      end
     end
   end
 end

@@ -1,5 +1,7 @@
 class UserSetting
   include Mongoid::Document
+  include Mongoid::Paperclip
+
   belongs_to :user
 
   # TODO: These are being moved from user.rb, once
@@ -9,4 +11,9 @@ class UserSetting
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String
+
+  # The below are new and don't have to be migrated
+  # has_one :crop, as: :favorite_crop
+
+  embeds_one :picture, as: :photographic
 end

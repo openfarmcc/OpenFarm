@@ -1,4 +1,4 @@
-<span class="devise-links">
+<div class="devise-links center">
 <%- if controller_name != 'sessions' %>
   <%= link_to t('application.log_in'), new_session_path(resource_name) %><br/>
 <% end -%>
@@ -25,4 +25,4 @@
     <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br/>
   <% end -%>
 <% end -%>
-</span>
+</div>

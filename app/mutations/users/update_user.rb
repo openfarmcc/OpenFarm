@@ -6,35 +6,29 @@ module Users
       hash :user do
         optional do
           string :display_name
-          string :location
-          string :years_experience
           string :mailing_list
           string :help_list
-          string :units
           string :is_private
         end
       end
     end
-
-    # optional do
-
-    # end
+    optional do
+      hash :user_setting do
+        optional do
+          string :location
+          string :years_experience
+          string :units
+        end
+      end
+    end
 
     def execute
       @user = User.find(id)
+      if user_setting
+        @user.user_setting.update_attributes(user_setting)
+      end
       @user.update_attributes(user)
       @user.save
-      # set_valid_params
     end
-
-    # def set_valid_params
-    #   # TODO: Probably a DRYer way of doing this.
-    #   user.location       = location if location.present?
-    #   user.display_name   = display_name if display_name.present?
-    #   user.mailing_list   = mailing_list if mailing_list.present?
-    #   user.units          = units if units.present?
-    #   user.is_private     = is_private if is_private.present?
-    #   user.save
-    # end
   end
 end

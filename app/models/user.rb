@@ -65,4 +65,10 @@ class User
   def user_setting
     UserSetting.find_or_create_by(user: self)
   end
+
+  protected
+
+  def confirmation_required?
+    false
+  end
 end

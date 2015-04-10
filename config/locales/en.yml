@@ -89,14 +89,19 @@ en:
       star_your_favorite_guides_and_crops: "Star your favorite crops and guides"
       create: "Create"
       share_your_knowledge_with_guide_creation: "Share your knowledge with guide creation"
-      email_address: "Email Address"
+      email_address: "Email Address:"
+      will_send_email: We'll send you an email to confirm your account.
       tos_privacy_html: |
-          I agree to the <a href='%{tos_url}'>Terms of Service</a> and the
-          <a href='%{privacy_url}'>Privacy Policy</a>
+          By signing up you agree to the <a href='%{tos_url}'>Terms of Service</a>,
+          <a href='%{privacy_url}'>Privacy Policy</a>, and <a href='%{coc_url}'>
+          Code of Conduct</a>
       is_private: "Check to keep your profile private."
       account_information: "Account Information"
       display_name: "Display Name:"
-      password: "New Password:"
+      password: "Password:"
+      at_least_8_characters: Your password should be at least 8 characters long.
+      need_confirmation: "You need to confirm your account, check your email!"
+      new_password: "New Password:"
       current_password: "Current Password (we need this to confirm your changes)"
       password_blank_ok: " (leave blank if you don’t want to change it)"
       create_account: "Join OpenFarm"
@@ -118,6 +123,7 @@ en:
       delete: "Permanently delete account"
       finish:
           welcome: "Welcome %{user}!"
+          thanks_for_joining: Thanks for joining! Now just a few more things.
           openfarm_works_best_when: "OpenFarm works best when we know the following:"
           where_do_you_farm: "Where do you farm or garden?"
           city_or_zip: "City or Zip Code is Recommended."

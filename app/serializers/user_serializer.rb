@@ -1,9 +1,11 @@
 class UserSerializer < ApplicationSerializer
   attributes :_id, :display_name, :email, :admin,
-             :location, :years_experience, :units, :is_private
+             :location, :years_experience, :units, :is_private,
+             :help_list, :mailing_list
 
   has_many :gardens  # , embed: :ids, key: :gardens, embed_namespace: :links
   has_many :guides  # , embed: :ids, key: :guides, embed_namespace: :links
+  has_one :user_setting
 
   def filter(keys)
     if scope && scope.admin

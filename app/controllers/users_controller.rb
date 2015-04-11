@@ -34,15 +34,22 @@ class UsersController < ApplicationController
     @users = policy_scope(User)
   end
 
+  def finish
+    authorize current_user
+  end
+
   def gardens
     @gardens = current_user.gardens
   end
 
   private
 
+  # TODO: this should probably be moved to the user model
+  # and performed on update.
+
   def connect_to_mailchimp(user)
     gb = Gibbon::API.new
-    if user.mailing_list
+    if user.mailing_list && user.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Subscribers' } })
       gb.lists.subscribe({ id: list['data'][0]['id'],
                            email: { email: user[:email] },
@@ -51,7 +58,7 @@ class UsersController < ApplicationController
                            update_existing: true })
 
     end
-    if user.help_list
+    if user.help_list && user.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Helpers' } })
       gb.lists.subscribe({ id: list['data'][0]['id'],
                            email: { email: user[:email] },

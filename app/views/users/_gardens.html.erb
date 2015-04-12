@@ -1,9 +1,10 @@
+<div class="section-header">
+  <h3 class="section-title">Gardens</h3>
+  <!-- TODO: Only show button if user is current_user. This will replace the more confusing add garden foo we currently have -->
+  <button class="button right tiny">Add Garden</button>
+</div>
+
 <div class="gardens" ng-controller="gardenCtrl" ng-cloak>
-  <div class="bar-header">
-    <h1 class="title">
-      <%= t('gardens.your_gardens') %>
-    </h1>
-  </div>
   <div alerts ng-model="alerts"></div>
   <div ng-if="!currentUser" class="row">
     <div class="columns small-6 small-centered loading-content">

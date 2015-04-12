@@ -1,0 +1,138 @@
+.member-profile {
+
+  ul {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .member-content {
+    margin-top: 2rem;
+  }
+
+  .edit-profile-button {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
+  .create-guide-button a {
+    color: $white;
+  }
+
+  .profile-sub-header {
+    ul {
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      padding: .4rem 1rem;
+      margin: .4rem 0;
+      background-color: $gray-bg;
+    }
+
+    .number {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .attribute {
+      color: $gray;
+      margin-bottom: .4rem;
+      font-weight: bold;
+    }
+  }
+
+  .sidebar-section,
+  .section {
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    display: block;
+    float: left;
+  }
+
+  .section-header {
+    border-bottom: 2px solid $light-gray;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .guides-list {
+
+    margin-top: -.4rem;
+
+    table {
+      border: none;
+      border-collapse: collapse;
+    }
+
+    .compatibility-circle {
+      float: left;
+      margin: .2rem 1rem;
+    }
+
+    .guide-name {
+      color: $off-black;
+      font-weight: bold;
+      font-size: 1.3rem;
+      line-height: 56px;
+    }
+
+    .crop-name {
+      color: $dark-gray;
+      font-style: italic;
+      font-size: 1rem;
+    }
+  }
+
+  .member-info-wrapper {
+
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    @media #{$small-only} {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .member-picture {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 70px;
+      border: 3px solid $white;
+      float: right;
+      margin-right: 1rem;
+      height: 140px;
+      width: 140px;
+
+      @media #{$small-only} {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
+        height: 100px;
+        width: 100px;
+      }
+    }
+
+    .member-infos {
+
+      h2 {
+        font-weight: bold;
+      }
+
+      h2,
+      h5 {
+        color: $white;
+        text-shadow: 1px 1px 20px $dark-gray;
+      }
+
+      @media #{$small-only} {
+        text-align: center;
+      }
+    }
+  }
+}

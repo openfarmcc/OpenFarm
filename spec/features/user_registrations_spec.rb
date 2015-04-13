@@ -63,4 +63,16 @@ describe 'User registrations' do
     expect { User.find(user.id) }.to raise_error(
       Mongoid::Errors::DocumentNotFound)
   end
+
+  it 'should leave guides that belong to the user when deleting an account' do
+    login_as user
+    guide = FactoryGirl.create(:guide, user: user)
+    before_count = Guide.all.count
+    visit edit_user_registration_path(user)
+    fill_in :user_password_confirmation, with: user.password
+    click_button 'Permanently delete account'
+    see('Your account was successfully cancelled.')
+    expect(Guide.all.count).to eq(before_count)
+    expect(guide.reload.user).to eq(nil)
+  end
 end

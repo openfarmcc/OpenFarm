@@ -62,6 +62,10 @@ class User
 
   has_merit
 
+  def is_current_user?(user)
+    self == user
+  end
+
   def user_setting
     UserSetting.find_or_create_by(user: self)
   end

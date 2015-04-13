@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         action: 'finish')
     else
       connect_to_mailchimp current_user.reload
-      redirect_to(controller: 'users', action: 'gardens', manage: true)
+      redirect_to user_path(current_user)
     end
   end
 
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 
   def gardens
     @gardens = current_user.gardens
+    redirect_to user_path(current_user)
   end
 
   private

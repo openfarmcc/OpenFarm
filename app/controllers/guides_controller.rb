@@ -2,7 +2,7 @@ class GuidesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @guides = Guide.where(user: current_user)
+    redirect_to user_path(current_user)
   end
 
   def show

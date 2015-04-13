@@ -1,7 +1,8 @@
 <div class="section-header">
-  <h3 class="section-title"><%= t('member.guides') %></h3>
-  <!-- TODO: Only show create button if user is current_user -->
+  <h3 class="section-title"><%= t('application.guides') %></h3>
+  <% if current_user == @user %>
   <button class="button right tiny create-guide-button"><%= link_to t('application.create_guide'), new_guide_path %>
+  <% end %>
 </div>
 
 <div class="guides row guides-list">
@@ -29,7 +30,11 @@
     </table>
     <% if @user.guides.count == 0 %>
       <div class="loading-content">
-        <%= t('.no_guides_yet') %>
+        <% if @user != current_user %>
+          <%= t('.no_guides_yet') %>
+        <% else %>
+          <%= t('.you_have_not_created_a_guide') %>
+        <% end %>
       </div>
     <% end %>
   </div>

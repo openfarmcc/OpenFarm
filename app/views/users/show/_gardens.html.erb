@@ -1,17 +1,36 @@
+<div class="gardens" ng-controller="gardenCtrl" ng-cloak>
 <div class="section-header">
   <h3 class="section-title">Gardens</h3>
-  <!-- TODO: Only show button if user is current_user. This will replace the more confusing add garden foo we currently have -->
-  <button class="button right tiny">Add Garden</button>
-</div>
+  <button ng-if="profileUser._id === currentUser._id" class="button right tiny" ng-click="toggleAddGarden()">Add Garden</button>
 
-<div class="gardens" ng-controller="gardenCtrl" ng-cloak>
-  <div alerts ng-model="alerts"></div>
-  <div ng-if="!currentUser" class="row">
+</div>
+<% if @user == current_user %>
+  <div class="add-garden row">
+    <div class="columns small-12 large-6"
+         ng-class="{ 'small-centered' : profileUser.gardens.length === 0 }" ng-show="addingGarden">
+      <h4 ng-if="profileUser.gardens.length === 0">
+        <%= t('.create_your_first_garden') %>
+      </h4>
+      <h4 ng-if="profileUser.gardens.length > 0">
+        <%= t('.create_a_new_garden') %>
+      </h4>
+      <label><%= t('.call_your_garden') %></label>
+      <input type="text" ng-model="newGarden.name"/>
+      <input type="button"
+             class="button"
+             ng-cloak
+             value="{{ profileUser.gardens.length === 0 ? '<%= t('.create_your_first_garden') %>' : '<%= t('.create_another_garden') %>' }}"
+             ng-click="createGarden(newGarden);"/>
+    </div>
+  </div>
+<% end %>
+
+  <div ng-if="!profileUser" class="row">
     <div class="columns small-6 small-centered loading-content">
       <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_your_gardens') %>
     </div>
   </div>
-  <div class="garden" ng-repeat="garden in currentUser.gardens" ng-cloak ng-show="!garden.hide">
+  <div class="garden" ng-repeat="garden in profileUser.gardens" ng-cloak ng-show="!garden.hide">
     <div class="row header">
       <% if params[:manage] %>
         <div class="columns large-6 large-centered">
@@ -24,7 +43,7 @@
           <label ng-if="garden.editing"><%= t('.garden_name') %></label><input type="text" ng-model="garden.name" ng-if="garden.editing"/>
         </h2>
       </div>
-      <div class="columns large-3 edit">
+      <div class="columns large-3 edit" ng-if="profileUser._id == profileUser._id">
         <i class="fa fa-lock"></i>
         <a class="button secondary tiny"
            ng-click="garden.editing = !garden.editing"
@@ -262,25 +281,8 @@
       </div>
     </div>
   </div>
-
-  <div class="add-garden row">
-    <hr/>
-    <div class="columns small-6"
-         ng-class="{ 'small-centered' : currentUser.gardens.length === 0 }">
-      <h4 ng-if="currentUser.gardens.length === 0">
-        <%= t('.create_your_first_garden') %>
-      </h4>
-      <h4 ng-if="currentUser.gardens.length > 0">
-        <%= t('.create_a_new_garden') %>
-      </h4>
-      <label><%= t('.call_your_garden') %></label>
-      <input type="text" ng-model="newGarden.name"/>
-      <input type="button"
-             class="button"
-             ng-cloak
-             value="{{ currentUser.gardens.length === 0 ? '<%= t('.create_your_first_garden') %>' : '<%= t('.create_another_garden') %>' }}"
-             ng-click="createGarden(newGarden);"/>
-    </div>
+  <div ng-if="profileUser && profileUser.gardens.length === 0" class="loading-content">
+    This user hasn't created any gardens yet.
   </div>
 </div>
 <% content_for(:end_js) do %>

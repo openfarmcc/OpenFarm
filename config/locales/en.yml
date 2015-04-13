@@ -37,10 +37,12 @@ en:
     only_upload_what_you_own: "Only upload photos you own"
     choose_photo: "Upload a photo"
     choose_stage_photo: "Add a photo for this stage"
-    crop: "Crop"
-    guide: "Guide"
+    crop: Crop
+    guide: Guide
+    guides: Guides
     forgot_your_password: "Forgot your password?"
     did_not_receive_confirmation_instructions_html: "Didn't receive confirmation<br/> instructions?"
+    my_profile: "My Profile"
   meta:
     about: "About OpenFarm"
     our_mission: "Our Mission"
@@ -92,9 +94,9 @@ en:
       email_address: "Email Address:"
       will_send_email: We'll send you an email to confirm your account.
       tos_privacy_html: |
-          By signing up you agree to the <a href='%{tos_url}'>Terms of Service</a>,
-          <a href='%{privacy_url}'>Privacy Policy</a>, and <a href='%{coc_url}'>
-          Code of Conduct</a>
+        By signing up you agree to the <a href='%{tos_url}'>Terms of Service</a>,
+        <a href='%{privacy_url}'>Privacy Policy</a>, and <a href='%{coc_url}'>
+        Code of Conduct</a>
       is_private: "Check to keep your profile private."
       account_information: "Account Information"
       display_name: "Display Name:"
@@ -108,37 +110,29 @@ en:
       update_account: "Update account"
       delete_account: "Delete Account"
       delete_account_message: |
-          We're sorry that you want to leave OpenFarm. Note: Deleting your
-          account will permanently delete all of your member profile and garden
-          data and you will no longer be able to access it. Your Guides will not
-          be deleted, though the by-line will no longer show your display name in
-          order to protect your privacy. You will no longer be able to edit or
-          delete your Guides after deleting your account. If you do not want
-          your Guides on OpenFarm any longer, you must manually delete them
-          before you delete your account.
+        We're sorry you're leaving OpenFarm. Please note that deleting your
+        account will permanently delete all of your member profile and garden
+        data and you will no longer be able to access it. Your Guides will not
+        be deleted, though the by-line will no longer show your display name in
+        order to protect your privacy. You will no longer be able to edit or
+        delete your Guides after deleting your account. If you do not want
+        your Guides on OpenFarm any longer, you must manually delete them
+        before you delete your account.
       password_confirmation: "Confirm Password"
       location: "Location"
       years_experience: "Years Experience"
       mailing_list: "Get (occassional) updates about OpenFarm via email"
       delete: "Permanently delete account"
-      finish:
-          welcome: "Welcome %{user}!"
-          thanks_for_joining: Thanks for joining! Now just a few more things.
-          openfarm_works_best_when: "OpenFarm works best when we know the following:"
-          where_do_you_farm: "Where do you farm or garden?"
-          city_or_zip: "City or Zip Code is Recommended."
-          location_placeholder: "Portland, OR, USA"
-          describe_your_growing_practices: "Describe your growing practices"
-          check_all_that_apply: "Check all that apply"
-          units_preference: "What units do you prefer"
-          email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
-          help_sign_up: "Do you want to help build OpenFarm?"
-          help_description: |
-            Some examples of ways we might ask you to help: organizing
-            community events, translation, etc.
-          add_garden: "Next: Add Garden"
-      gardens:
-          loading_gardens: "Loading Your Gardens"
+      show:
+        member_profile_intro: |
+          This is your member profile. It reflects your presence on OpenFarm
+        guides:
+          no_guides_yet: "This user hasn't created a guide yet."
+          you_have_not_created_a_guide: You haven't created a guide yet!
+        gardens:
+          create_your_first_garden: "Create your first garden"
+          create_another_garden: "Create new garden"
+          loading_your_gardens: "Loading Your Gardens"
           your_gardens: "Your Gardens"
           garden_name: "Name your garden:"
           call_your_garden: "Give your new garden a name"
@@ -186,8 +180,22 @@ en:
           life_stage: "Life Stage"
           quantity: "Quantity"
           add_crop: "To add another crop to this garden, explore the guides"
-          create_your_first_garden: "Create your first garden"
-          create_another_garden: "Create new garden"
+      finish:
+          welcome: "Welcome %{user}!"
+          thanks_for_joining: Thanks for joining! Now just a few more things.
+          openfarm_works_best_when: "OpenFarm works best when we know the following:"
+          where_do_you_farm: "Where do you farm or garden?"
+          city_or_zip: "City or Zip Code is Recommended."
+          location_placeholder: "Portland, OR, USA"
+          describe_your_growing_practices: "Describe your growing practices"
+          check_all_that_apply: "Check all that apply"
+          units_preference: "What units do you prefer"
+          email_sign_up: "Do you want to receive the OpenFarm email newsletter?"
+          help_sign_up: "Do you want to help build OpenFarm?"
+          help_description: |
+            Some examples of ways we might ask you to help: organizing
+            community events, translation, etc.
+          add_garden: "Next: Add Garden"
   crops:
     edit_crop: "Edit crop"
     add_this_information: "Add this information"

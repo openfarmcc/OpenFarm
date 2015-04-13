@@ -29,7 +29,6 @@
   </div>
 
   <div class="row wide-row member-content">
-
     <!-- Sub header for mobile (replaces sidebar) TODO: Make it real
     <div class="small-12 show-for-small-only columns profile-sub-header">
       <ul>
@@ -50,34 +49,43 @@
 
     <!-- Sidebar for medium and up screens -->
     <div class="medium-4 large-3 show-for-medium-up columns profile-sidebar">
+      <p class="member ">
+        <%= t('.member_profile_intro') %>
+      </p>
       <%#= render 'users/badges' %>
       <%#= render 'users/followers' %>
       <%#= render 'users/following' %>
+
     </div>
 
     <div class="small-12 medium-8 large-9 columns">
 
       <!-- Member's Guides -->
       <div class="small-12 columns section">
-        <%= render 'users/guides' %>
+        <%= render 'users/show/guides' %>
       </div>
 
       <!-- Member's Gardens -->
       <div class="small-12 columns section">
-        <%= render 'users/gardens' %>
+        <%= render 'users/show/gardens' %>
       </div>
 
       <!-- Member's Organizations TODO: everything
       <div class="small-12 columns section">
-        <%= render 'users/organizations' %>
+        <%= render 'users/show/organizations' %>
       </div> -->
 
-      <!-- Account Information TODO: Only show if user is current_user
-      Getting an undefined resource variable in devise/shared/_user_form -->
       <div class="small-12 columns section">
-        <%#= render 'devise/registrations/edit' %>
+        <% if @user == current_user %>
+        Manage <%= link_to t('application.user_settings'), edit_user_registration_path %>
+        <% end %>
       </div>
 
     </div>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+  <%= javascript_tag "var PROFILE_ID = '#{@user ? @user._id : nil}';" %>
+<% end %>

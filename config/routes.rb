@@ -6,11 +6,6 @@ OpenFarm::Application.routes.draw do
       registrations: "registrations",
       confirmations: "confirmations"
     }
-  devise_scope :users do
-    get 'users/gardens' => 'users#gardens'
-    get 'users/finish' => 'users#finish'
-    put 'users' => 'users#update'
-  end
 
   scope '(:locale)', locale: /en|nl/ do
     root to: 'homes#show'
@@ -18,6 +13,12 @@ OpenFarm::Application.routes.draw do
          as: :crop_search_via_post
     get '(:locale)/crop_search' => 'crop_searches#search',
         as: :crop_search_via_get
+
+    devise_scope :users do
+      get 'users/gardens' => 'users#gardens'
+      get 'users/finish' => 'users#finish'
+      put 'users' => 'users#update'
+    end
     resources :users
     resources :crops
     resources :guides

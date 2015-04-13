@@ -124,6 +124,16 @@ en:
       mailing_list: "Get (occassional) updates about OpenFarm via email"
       delete: "Permanently delete account"
       show:
+        success: Success!
+        show_you_around: |
+          Now that you’re done setting up your membership, let’s show you
+          around.
+        this_is_your_member_profile_page: |
+          This is your Member Profile page. Here you can create Guides, manage
+          your Gardens, and access the profiles of Organizations and other
+          Members. We’re gonna let you go explore from here, but before you
+          get too excited and run off, we have one more question:
+        what_is_your_favorite_crop: What is your favorite crop?
         member_profile_intro: |
           This is your member profile. It reflects your presence on OpenFarm
         guides:
@@ -195,7 +205,7 @@ en:
           help_description: |
             Some examples of ways we might ask you to help: organizing
             community events, translation, etc.
-          add_garden: "Next: Add Garden"
+          next_step: "Next: View Profile"
   crops:
     edit_crop: "Edit crop"
     add_this_information: "Add this information"

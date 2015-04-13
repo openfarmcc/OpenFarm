@@ -1,5 +1,18 @@
 .member-profile {
 
+  .canopy .canopy {
+    background-color: rgba(0, 0, 0, 0.15);
+
+    p, h2, h5 {
+      color: $white;
+    }
+
+    transition: .5s background-color;
+    &.editing {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+
   ul {
     list-style: none;
     margin-left: 0;
@@ -134,5 +147,21 @@
         text-align: center;
       }
     }
+  }
+}
+
+.set-crop {
+  text-align: center;
+  color: $white;
+
+  label {
+    margin-right: 1rem;
+    color: $white;
+  }
+
+  input[type=button] {
+    box-shadow: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }

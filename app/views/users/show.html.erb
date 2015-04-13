@@ -1,17 +1,43 @@
-<div class="member-profile">
+<%= content_for(:title) do %><% @user.display_name %> Profile<% end %>
+
+<div class="member-profile" ng-controller="profileCtrl">
   <!-- Pull cover image from member's favorite_crop -->
   <div class="row wide-row canopy"
        style="background-image: url(/assets/baren_field.jpg)">
-    <div class="canopy" style="background-color: rgba(0,0,0,0.15)">
+    <div class="canopy" ng-class="{ editing : editing }" style="">
       <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper">
         <div class="row">
-          <div class="small-12 medium-4 columns">
+          <div ng-if="cropNotSet" class="small-12 columns set-crop">
+          <h2>Success!</h2>
+          <p><%= t('.show_you_around') %>
+          </p>
+          <p>
+          <%= t('.this_is_your_member_profile_page') %>
+          </p>
+          </div>
+          <form class="set-crop">
+            <div class="row collapse">
+              <div class="columns small-4">
+                <label class="right inline">
+                <%= t('.what_is_your_favorite_crop') %>
+                </label>
+              </div>
+              <div class="columns small-6">
+                <input type="text" placeholder="Blueberries"/>
+              </div>
+              <div class="columns small-2">
+                <input type="button" class="button postfix" value="submit"/>
+              </div>
+
+            </div>
+          </form>
+          <div ng-if="!editing" class="small-12 medium-4 columns">
             <!-- Make this a thing -->
             <div class="member-picture"
               style="background-image: url(/assets/baren_field.jpg)">
             </div>
           </div>
-          <div class="small-12 medium-8 columns member-infos">
+          <div ng-if="!editing" class="small-12 medium-8 columns member-infos">
             <h2><%= @user.display_name %></h2>
             <h5><%= @user.user_setting.location %></h5>
 
@@ -88,4 +114,6 @@
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
   <%= javascript_tag "var PROFILE_ID = '#{@user ? @user._id : nil}';" %>
+  <%= javascript_include_tag 'users/gardens' %>
+  <%= javascript_include_tag 'users/show' %>
 <% end %>

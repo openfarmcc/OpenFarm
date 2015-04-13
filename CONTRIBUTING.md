@@ -12,6 +12,10 @@ If you're keen on contributing code, sign our [Contributor License Agreement](ht
 
 Not sure where to help? Take a look at the [Issue Tracker](https://github.com/openfarmcc/OpenFarm/issues). It is advisable to let others know your intent to implement a feautre before starting, as it lets other contributors focus their efforts elsewhere.
 
+We have issues specifically for [newcomers](https://github.com/openfarmcc/OpenFarm/issues?q=is%3Aopen+is%3Aissue+label%3Anewcomers) - if you're having a problem getting set up, anything like that, we'll tag it with that, and one of the more experienced developers on the project will offer to help you out.
+
+We also have issues that are with a [mentor](https://github.com/openfarmcc/OpenFarm/issues?q=is%3Aopen+is%3Aissue+label%3Amentored). These are good starter issues for which a mentor is happy to help out with. These are very similar to [low hanging fruit](https://github.com/openfarmcc/OpenFarm/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+label%3A%22low+hanging+fruit%22+)
+
 Want to see the big picture? We have a [project roadmap](https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing) for that!
 
 # Running Locally

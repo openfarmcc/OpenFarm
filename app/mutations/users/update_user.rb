@@ -25,7 +25,6 @@ module Users
     end
 
     def validate
-      puts "user setting: #{user_setting}"
       validate_user
       validate_favorite_crop
     end
@@ -50,7 +49,6 @@ module Users
 
     def set_favorite_crop
       if @favorite_crop
-        puts "setting favorite crop"
         @user.user_setting.favorite_crops = [@favorite_crop]
       end
     end
@@ -67,7 +65,6 @@ module Users
 
     def validate_user
       # TODO update this to use the Policy
-      puts current_user.id, id
       if current_user.id.to_s != id.to_s
         msg = 'You can only update your own profile'
         raise OpenfarmErrors::NotAuthorized, msg

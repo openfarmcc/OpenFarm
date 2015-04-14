@@ -14,7 +14,7 @@ describe Api::UsersController, type: :controller do
     get 'show', id: private_user.id, format: :json
     expect(response.status).to eq(200)
     expect(json.length).to eq(1)
-    expect(json['user']).to have_key('location')
+    expect(json['user']).to have_key('user_setting')
   end
 
   it 'does not show private user to an ordinary user' do
@@ -28,12 +28,12 @@ describe Api::UsersController, type: :controller do
     sign_in viewing_user
     get 'show', id: public_user.id, format: :json
     expect(response.status).to eq(200)
-    expect(json['user']).to have_key('location')
+    expect(json['user']).to have_key('user_setting')
   end
 
   it 'shows basics to non-logged in users' do
     get 'show', id: public_user.id, format: :json
     expect(response.status).to eq(200)
-    expect(json['user']).to_not have_key('location')
+    expect(json['user']).to_not have_key('uset_setting')
   end
 end

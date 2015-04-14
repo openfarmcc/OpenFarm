@@ -3,22 +3,25 @@ require 'spec_helper'
 describe Users::UpdateUser do
   let(:mutation) { Users::UpdateUser }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:other_user) { FactoryGirl.create(:user) }
+  let(:current_user) { FactoryGirl.create(:user) }
   let(:crop) { FactoryGirl.create(:crop) }
 
   let(:params) do
-    { id: "#{user.id}",
+    { id: "#{current_user.id}",
       user: {
         mailing_list: false
-      }
+      },
+      current_user: current_user
     }
   end
   let(:params_with_usetting) do
-    { id: "#{user.id}",
+    { id: "#{current_user.id}",
       user: {},
       user_setting: {
         location: "Manila"
-      }
+      },
+      current_user: current_user
     }
   end
 

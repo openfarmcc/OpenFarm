@@ -50,12 +50,10 @@ describe UsersController do
     expect(response).to redirect_to({controller: 'users', action: 'finish'})
   end
 
-  it 'should not update with incomplete information' do
+  it 'should update with complete information' do
     user = FactoryGirl.create(:user)
     sign_in user
     put 'update', {'location': 'Hanoi', 'units': 'metric'}
-    expect(response).to redirect_to ({ controller: 'users',
-                                       action: 'gardens',
-                                       manage: true })
+    expect(response).to redirect_to({controller: 'users', action: 'show', id: user.id})
   end
 end

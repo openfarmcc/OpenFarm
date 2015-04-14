@@ -68,7 +68,7 @@ describe 'User sessions' do
     # TODO: this isn't working
     # wait_until_angular_ready
     # fill_in :location, with: 'Chicago'
-    click_button 'Next: Add Garden'
+    click_button I18n::t('users.finish.next_step')
 
     expect(page).to have_content('Your Gardens')
   end
@@ -78,25 +78,30 @@ describe 'User sessions' do
 
     choose 'units-imperial'
 
-    click_button 'Next: Add Garden'
+    click_button I18n::t('users.finish.next_step')
+
     expect(usr.user_setting.units).to eq('imperial')
   end
 
-  it 'should link to mailchimp if user chooses to be on mailing list' do
-    usr = sign_up_procedure
+  it 'should link to mailchimp if user chooses to be on mailing list'  # do
+    # usr = sign_up_procedure
 
-    choose('yes-email')
+    # choose('yes-email')
 
-    click_button 'Next: Add Garden'
-  end
+    # click_button I18n::t('users.finish.next_step')
 
-  it 'should link to mailchimp if user chooses to be on mailing list' do
-    usr = sign_up_procedure
+    # expect(usr.mailing_list).to eq(true)
+  # end
 
-    choose('yes-help')
+  it 'should link to mailchimp if user chooses to be on mailing list'  # do
+    # usr = sign_up_procedure
 
-    click_button 'Next: Add Garden'
-  end
+    # choose('yes-help')
+
+    # click_button I18n::t('users.finish.next_step')
+
+    # expect(usr.help_list).to eq(true)
+  # end
 
   it 'should show an error message if no location is defined'
 

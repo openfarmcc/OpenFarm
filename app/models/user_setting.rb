@@ -9,5 +9,5 @@ class UserSetting
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String
-  has_one :favorite_crop, class_name: 'Crop'
+  has_and_belongs_to_many :favorite_crops, class_name: 'Crop', inverse_of: nil
 end

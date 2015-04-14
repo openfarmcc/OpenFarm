@@ -3,5 +3,5 @@ class CropSerializer < ApplicationSerializer
              :sun_requirements, :sowing_method, :spread,
              :row_spacing, :height
 
-  has_many :pictures
+  has_many :pictures, serializer: PictureSerializer
 end

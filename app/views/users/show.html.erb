@@ -2,10 +2,12 @@
 
 <div class="member-profile" ng-controller="profileCtrl">
   <!-- Pull cover image from member's favorite_crop -->
+
+
   <div class="row wide-row canopy"
-       style="background-image: url(/assets/baren_field.jpg)">
+       style="background-image: url({{ profileUser.user_setting.favorite_crop.image_url || '/assets/baren_field.jpg' }}) ">
     <div class="canopy" ng-class="{ editing : editing }" style="">
-      <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper">
+      <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper" ng-cloak ng-show="profileUser">
         <div class="row">
           <div ng-if="cropNotSet" class="small-12 columns set-crop">
           <h2>Success!</h2>
@@ -15,7 +17,7 @@
           <%= t('.this_is_your_member_profile_page') %>
           </p>
           </div>
-          <form class="set-crop">
+          <form class="set-crop" ng-show="editing">
             <div class="row collapse">
               <div class="columns small-4">
                 <label class="right inline">
@@ -23,10 +25,22 @@
                 </label>
               </div>
               <div class="columns small-6">
-                <input type="text" placeholder="Blueberries"/>
+                <input typeahead-min-length="1"
+                       autocomplete="off"
+                       class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched"
+                       id="q"
+                       maxlength="120"
+                       name="q"
+                       ng-change="search()"
+                       ng-model="query"
+                       typeahead-on-select="setFavoriteCrop()"
+                       placeholder="<%= t('home.placeholder') %>"
+                       type="text"
+                       typeahead-wait-ms="200"
+                       typeahead="crop.name for crop in crops">
               </div>
               <div class="columns small-2">
-                <input type="button" class="button postfix" value="submit"/>
+                <input type="button" class="button postfix" value="submit" ng-click="setFavoriteCrop()"/>
               </div>
 
             </div>
@@ -116,4 +130,5 @@
   <%= javascript_tag "var PROFILE_ID = '#{@user ? @user._id : nil}';" %>
   <%= javascript_include_tag 'users/gardens' %>
   <%= javascript_include_tag 'users/show' %>
+  <%= javascript_include_tag "search" %>
 <% end %>

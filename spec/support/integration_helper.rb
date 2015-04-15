@@ -7,8 +7,10 @@ module IntegrationHelper
 
     def wait_for_ajax
       Timeout.timeout(Capybara.default_wait_time) do
+
         active = page.evaluate_script('angular.element.active')
         until active == 0
+          puts page.evaluate_script('angular.element.active')
           active = page.evaluate_script('angular.element.active')
         end
       end

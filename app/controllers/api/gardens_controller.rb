@@ -5,14 +5,8 @@ module Api
     def create
       @outcome = Gardens::CreateGarden.run(
         params,
-        user: current_user,
-        description: I18n.t('registrations.generated_this_garden'),
-        average_sun: 'Full Sun',
-        type: 'Outside',
-        soil_type: 'Loam'
-      )
+        user: current_user )
       @user = current_user
-      # puts garden
       respond_with_mutation(:created)
     end
 

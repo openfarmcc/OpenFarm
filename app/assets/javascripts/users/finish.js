@@ -7,7 +7,6 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
     $scope.setUser = function(success, object){
       if (success){
         $scope.user = object;
-        console.log($scope.user);
       }
     };
 
@@ -36,9 +35,11 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
         }
       };
 
-      params.featured_image = $scope.user.user_setting.picture.image_url || null;
-
-      console.log('params', params)
+      if ($scope.user.user_setting.picture) {
+        params.featured_image = $scope.user.user_setting.picture.image_url || null;
+      } else {
+        params.featured_image = null
+      }
 
       var userCallback = function(success, user){
         $scope.user.sending = false;

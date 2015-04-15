@@ -70,6 +70,6 @@ describe Users::UpdateUser do
     }
     result = mutation.run(params)
     expect(result.success?).to be(false)
-    puts result.errors.message_list
-  let(:user) { FactoryGirl.create(:user) }
+    expect(result.errors.message_list).to include('Could not find a crop with id ')
+  end
 end

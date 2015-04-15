@@ -198,7 +198,6 @@ angular.module('ngS3upload.directives', []).
               if(objType === '[object Array]') {
                 scope.hasOnePicture = false;
               } else {
-                console.log('has one picture');
                 scope.hasOnePicture = true;
               }
             });

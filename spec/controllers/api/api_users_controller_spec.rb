@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Api::UsersController, type: :controller do
   include ApiHelpers
 
-  let(:viewing_user) { FactoryGirl.create(:user) }
-  let(:public_user) { FactoryGirl.create(:user) }
-  let(:private_user) { FactoryGirl.create(:user, is_private: true) }
+  let(:viewing_user) { FactoryGirl.create(:confirmed_user) }
+  let(:public_user) { FactoryGirl.create(:confirmed_user) }
+  let(:private_user) { FactoryGirl.create(:confirmed_user, is_private: true) }
 
   it 'shows private user to an admin' do
     viewing_user.admin = true

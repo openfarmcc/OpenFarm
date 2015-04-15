@@ -3,37 +3,28 @@ module Gardens
     required do
       model :user
       string :name
-    end
-
-    optional do
-      string :location
-      string :description
-      string :type
-      string :average_sun
-      string :soil_type
-      float :ph
-      Array :growing_practices
-    end
-
-    def garden
-      @garden ||= Garden.new
+      hash :garden do
+        optional do
+          string :location
+          string :description
+          string :type
+          string :average_sun
+          string :soil_type
+          boolean :is_private
+          float :ph
+          Array :growing_practices
+        end
+      end
     end
 
     def execute
-      set_params
-      garden
-    end
-
-    def set_params
-      garden.user          = user
-      garden.name           = name
-      garden.location       = location if location
-      garden.description    = description if description
-      garden.type           = type if type
-      garden.average_sun    = average_sun if average_sun
-      garden.soil_type      = soil_type if soil_type
-      garden.ph             = ph if ph
-      garden.save
+      @garden = Garden.new(garden)
+      @garden.user = user
+      @garden.name = name
+      # TODO: This is another spot where mongoid comparable error
+      # happens
+      @garden.save!
+      @garden
     end
   end
 end

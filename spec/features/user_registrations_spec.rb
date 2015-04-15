@@ -7,8 +7,10 @@ describe 'User registrations' do
 
   it 'can change user settings' do
     login_as user
+    user.save
     visit edit_user_registration_path(user)
     fill_in :user_display_name, with: 'Bert'
+    fill_in :user_email, with: "bert@bert.com"
     fill_in :user_current_password, with: user.password
     click_button 'Update account'
     see('You updated your account successfully')
@@ -18,6 +20,7 @@ describe 'User registrations' do
   it 'can change user password' do
     login_as user
     visit edit_user_registration_path(user)
+    fill_in :user_email, with: "bert@bert.com"
     fill_in :user_current_password, with: user.password
     fill_in :user_password, with: "bert1234"
     click_button 'Update account'

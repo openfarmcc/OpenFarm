@@ -49,7 +49,7 @@ end
 Paperclip.options[:log] = false
 
 require 'database_cleaner'
-Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :poltergeist
 Capybara.default_wait_time = 5
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
@@ -58,6 +58,7 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.include Devise::TestHelpers, type: :controller
   config.include ApiHelpers, type: :controller
+  config.include IntegrationHelper, type: :feature
   config.include Capybara::DSL
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of

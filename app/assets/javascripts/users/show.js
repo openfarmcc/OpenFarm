@@ -9,7 +9,6 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http', 'userSer
     $scope.setProfileUser = function(success, object){
       if (success){
         $scope.profileUser = object;
-        console.log($scope.profileUser._id, $scope.currentUser._id)
         if(!object.user_setting.favorite_crop &&
            $scope.profileUser._id === $scope.currentUser._id) {
           $scope.cropNotSet = true;
@@ -44,7 +43,6 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http', 'userSer
 
 
     userService.getUser(USER_ID, $scope.alerts, function(success, user) {
-      console.log('hi', user);
       $scope.currentUser = user;
 
       userService.getUser(PROFILE_ID,

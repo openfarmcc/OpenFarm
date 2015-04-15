@@ -37,8 +37,6 @@ module Users
       set_image
       @user.update_attributes(user)
       @user.save
-      puts "DONE"
-
       @user
     end
 
@@ -90,8 +88,12 @@ module Users
 
     def set_image
       if featured_image
-        existing_file = @user.user_setting.picture[:attachment_file_name]
-        unless featured_image.include?(existing_file)
+        if @user.user_setting.picture
+          existing_file = @user.user_setting.picture[:attachment_file_name]
+        else
+          existing_file = false
+        end
+        if !existing_file || featured_image.include?(existing_file)
           @user.user_setting.picture = Picture.new(attachment: open(featured_image))
         end
       end

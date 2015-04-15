@@ -16,12 +16,13 @@ describe CropSearchesController, type: 'controller' do
   end
 
   it 'should order guides by compatibility' do
-    user = FactoryGirl.create(:user)
-    FactoryGirl.create(:garden,
-                       user: user,
-                       soil_type: 'Loam',
-                       type: 'Outside',
-                       average_sun: 'Full Sun')
+    user = FactoryGirl.create(:confirmed_user)
+    garden = Garden.all.last
+    garden.update_attributes(soil_type: 'Loam',
+                             type: 'Outside',
+                             average_sun: 'Full Sun')
+    garden.save
+
 
     crop = FactoryGirl.create(:crop, name: 'Carrot')
 

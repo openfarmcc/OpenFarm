@@ -12,13 +12,16 @@ module Api
     end
 
     def update
-      puts params
       @outcome = Users::UpdateUser.run(
         user: params,
         current_user: current_user,
+        featured_image: params[:featured_image],
         user_setting: params[:user_setting],
         id: "#{current_user._id}")
-
+      if !@outcome.success?
+        puts "ERRORS"
+        puts @outcome.errors.message_list
+      end
       respond_with_mutation(:ok)
     end
 

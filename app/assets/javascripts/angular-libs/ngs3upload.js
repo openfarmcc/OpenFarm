@@ -198,6 +198,7 @@ angular.module('ngS3upload.directives', []).
               if(objType === '[object Array]') {
                 scope.hasOnePicture = false;
               } else {
+                console.log('has one picture');
                 scope.hasOnePicture = true;
               }
             });
@@ -238,7 +239,6 @@ angular.module('ngS3upload.directives', []).
                         s3Options.signature,
                         selectedFile
                       ).then(function (resp) {
-                        console.log(scope);
                         ngModel.$setViewValue(s3Uri + key);
 
                         scope.s3UploadPlacePic({image: s3Uri + key});

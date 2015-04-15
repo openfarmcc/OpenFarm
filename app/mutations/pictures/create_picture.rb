@@ -22,6 +22,7 @@ module Pictures
     end
 
     def validate_picture
+      storage_type = Paperclip::Attachment.default_options[:storage]
       if id
         exist_pic = pictures.bsearch { |p| p[:id].to_s == id.to_s }
         if exist_pic && exist_pic.attachment.url != url
@@ -29,7 +30,7 @@ module Pictures
                     :changed_image, 'You can\'t change an existing image, '\
                     'delete it and upload an other image.'
         end
-      elsif !url.valid_url?
+      elsif storage_type == 's3' && !url.valid_url?
         add_error :images,
                   :invalid_url, "'#{url}' is not a valid URL. "\
                   'Ensure that it is a fully formed URL (including HTTP://'\

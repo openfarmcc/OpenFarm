@@ -22,18 +22,23 @@ module Users
           string :favorite_crop
         end
       end
+      string :featured_image
     end
 
     def validate
       validate_user
       validate_favorite_crop
+      validate_image
     end
 
     def execute
       @user = User.find(id)
       set_user_setting
+      set_image
       @user.update_attributes(user)
       @user.save
+      puts "DONE"
+
       @user
     end
 
@@ -68,6 +73,27 @@ module Users
       if current_user.id.to_s != id.to_s
         msg = 'You can only update your own profile'
         raise OpenfarmErrors::NotAuthorized, msg
+      end
+    end
+
+    def validate_image
+      if featured_image
+        picture = @user.user_setting.featured_image if @user
+        outcome = Pictures::CreatePicture.validate(url: featured_image)
+        unless outcome.success?
+          add_error :images,
+                    :bad_format,
+                    outcome.errors.message_list.to_sentence
+        end
+      end
+    end
+
+    def set_image
+      if featured_image
+        existing_file = @user.user_setting.picture[:attachment_file_name]
+        unless featured_image.include?(existing_file)
+          @user.user_setting.picture = Picture.new(attachment: open(featured_image))
+        end
       end
     end
   end

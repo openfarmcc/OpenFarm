@@ -48,7 +48,7 @@
           <div ng-if="!editing" class="small-12 medium-4 columns">
             <!-- Make this a thing -->
             <div class="member-picture"
-              style="background-image: url(/assets/baren_field.jpg)">
+              style="background-image: url({{ profileUser.user_setting.picture.thumbnail_url || '/assets/baren_field.jpg' }})">
             </div>
           </div>
           <div ng-if="!editing" class="small-12 medium-8 columns member-infos">
@@ -92,6 +92,20 @@
       <p class="member ">
         <%= t('.member_profile_intro') %>
       </p>
+      <ul>
+        <li>
+          Units: {{ user.user_setting.units }}
+        </li>
+        <li>
+          Mailing List: {{ user.mailing_list }}
+        </li>
+        <li>
+          Help List: {{ user.help_list }}
+        </li>
+        <li>
+          Years Experience: {{ user.user_setting.years_experience }}
+        </li>
+      </ul>
       <%#= render 'users/badges' %>
       <%#= render 'users/followers' %>
       <%#= render 'users/following' %>

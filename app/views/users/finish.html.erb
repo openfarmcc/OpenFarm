@@ -12,7 +12,8 @@
       <h2><%= t('.openfarm_works_best_when') %></h2>
     </div>
   </div>
-<%= form_for :user, controller: 'users', action: 'finish', method: 'put' do |f| %>
+<%# form_for :user, controller: 'users', action: 'finish', method: 'put' do |f| %>
+<form>
   <div class="row">
     <div class="large-4 columns">
       <label for="location">
@@ -39,6 +40,25 @@
       <input id="units-metric" type="radio" value="metric" name="units" ng-model="user.user_setting.units" checked><label for="units-metric">Metric</label>
     </div>
   </div>
+
+  <div class="row">
+      <div class="columns large-4">
+        <label for="user[images]">Choose a profile image!</label>
+      </div>
+      <div class="columns large-8">
+        <div id="user_image_upload"
+            name="user[images]"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="user.user_setting.picture"
+            s3-upload-place-pic="placeUserUpload(image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+      </div>
+    </div>
+
+
   <div class="row">
     <div class="large-4 columns">
       <label for="location">
@@ -75,14 +95,17 @@
       </a>
 
       <input class="button small"
+        ng-disabled="user.sending"
         data-disable-with="Saving..."
         name="commit"
         type="submit"
+        ng-click="submitForm()"
         value="<%= t('.next_step') %>"/>
       </span>
     </div>
   </div>
-<% end %>
+</form>
+<%# end %>
 </div>
 
 <% content_for(:end_js) do %>

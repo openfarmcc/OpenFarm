@@ -23,7 +23,6 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
             return s.length > 0;
           });
         }
-
       }
 
       var params = {
@@ -62,5 +61,5 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
         new: true,
         image_url: image
       });
-    };
+    };{}
   }]);

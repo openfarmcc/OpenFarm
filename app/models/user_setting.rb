@@ -1,13 +1,15 @@
 class UserSetting
   include Mongoid::Document
-  belongs_to :user
+  include Mongoid::Paperclip
 
-  # TODO: These are being moved from user.rb, once
-  # the migration is complete on the server,
-  # delete them on user.rb ~@simonv3 16/03/2015
+  belongs_to :user
 
   field :location, type: String
   field :years_experience, type: Integer
   field :units, type: String
+
   has_and_belongs_to_many :favorite_crops, class_name: 'Crop', inverse_of: nil
+
+  embeds_one :picture, as: :photographic
+  accepts_nested_attributes_for :picture
 end

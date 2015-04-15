@@ -57,8 +57,22 @@ openFarmModule.factory('userService', ['$http',
         });
     }
 
+    var updateUser = function(userId, params, alerts, callback) {
+      $http.put('/api/users/' + userId + '/', params)
+        .success(function(response) {
+          return callback(true, response.user);
+        }).error(function (response, code) {
+          alerts.push({
+            msg: response,
+            type: 'warning'
+          });
+          return callback(false, response, code);
+        });
+    }
+
     return {
       'getUser': getUser,
+      'updateUser': updateUser,
       'setFavoriteCrop': setFavoriteCrop
     };
 

@@ -1,0 +1,16 @@
+.alert-box {
+  position: fixed;
+  top: 4rem;
+  right: 1rem;
+  width: 265px;
+  z-index: 9999;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+}
+
+.home-alert-wrapper{
+  height: 0;
+}
+
+.warning {
+  color: $of-dark;
+}

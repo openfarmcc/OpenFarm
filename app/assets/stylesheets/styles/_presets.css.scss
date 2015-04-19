@@ -199,6 +199,7 @@ textarea {
 
   &.alert {
     background-image: none;
+    @include box-shadow(0px 4px 0px 0px darken($of-red, 10%));
   }
 
   &.secondary {
@@ -294,77 +295,3 @@ textarea {
   }
 }
 
-/**
- * A class that covers all the s3 upload buttons.
- */
-
-.s3-upload-input{
-  .click-to-upload-image{
-    @include add-new-button();
-    @include box-shadow(none);
-    @include font-awesome-mixin();
-
-    cursor: pointer;
-    color: $openfarm-green-muted;
-    width: 100px;
-    height: 100px;
-    border-radius: 1em;
-    /*border: 2px dashed #979797;*/
-    display: inline-block;
-    margin-bottom: 1rem;
-    position: relative;
-    vertical-align: top;
-
-    &:hover {
-      color: darken($of-green, 10%);
-    }
-
-    &:before{
-      content: "\f06c";
-      font-size: 4rem;
-      position: absolute;
-      z-index: 0;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .wrapper{
-      height: 100%;
-    }
-
-    img.no-image{
-      transform: translate(-50%, -50%);
-      position: relative;
-      top: 50%;
-      left: 50%;
-    }
-
-    img{
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-      position: relative;
-    }
-  }
-
-  &.ng-invalid-uploading .click-to-upload-image:before{
-    // TODO: Make this use the built in fa-spin class
-    content: "\f110";
-    -webkit-animation: fa-spin-image-load 2s infinite linear;
-    animation: fa-spin-image-load 2s infinite linear;
-  }
-}
-
-/**
- * A class that can be applied to divs that indicate that something is
- * still loading.
- */
-
-.loading-content{
-  @include grey-inset();
-  text-align: center;
-  padding: 2rem;
-  color: rgb(187, 187, 187);
-  margin-bottom: 1rem;
-}

@@ -11,7 +11,6 @@ describe 'User sessions' do
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    check :user_agree
     click_button 'Join OpenFarm'
     usr = User.find_by(email: 'm@il.com')
     expect(usr.display_name).to eq('Rick')
@@ -21,20 +20,10 @@ describe 'User sessions' do
     expect(usr.confirmed?).to eq(false)
   end
 
-  it 'fails to register when user does not subscribe to tos' do
-    visit root_path
-    click_link 'register'
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    click_button 'Join OpenFarm'
-    see 'Agree to the Terms of Service and Privacy Policy'
-  end
-
   it 'logs out' do
     login_as user
     visit root_path
-    click_link 'Log out'
+    page.first(:link, 'Log out').click
     see('Signed out successfully.')
   end
 
@@ -43,73 +32,70 @@ describe 'User sessions' do
     expect(page).to have_content('I told you kids to get out of here!')
   end
 
-  # it 'should redirect the user to their finish page after sign up' do
-  #   visit new_user_registration_path
-  #   fill_in :user_display_name, with: 'Rick'
-  #   fill_in :user_password, with: 'password123'
-  #   fill_in :user_email, with: 'm@il.com'
-  #   check :user_agree
-  #   click_button 'Create account'
-  #   expect(page).to have_content("Welcome Rick")
-  # end
-
-  # it 'should redirect the user to the page they were viewing after sign up' do
-  #   visit "/guides/new"
-  #   see ("You need to sign in or sign up before continuing.")
-  #   click_link "Sign up"
-  #   fill_in :user_display_name, with: 'Rick'
-  #   fill_in :user_password, with: 'password123'
-  #   fill_in :user_email, with: 'm@il.com'
-  #   check :user_agree
-  #   click_button 'Create account'
-  #   expect(page).to have_content(I18n::t('guides.new.new_guide_steps.create_a_growing_guide'))
-  # end
-
-  it 'should create a new garden for a newly registered user' do
-    visit root_path
-    click_link 'register'
+  it 'should redirect the user to their finish page after sign up' do
+    visit new_user_registration_path
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
-    check :user_agree
     click_button 'Join OpenFarm'
-    usr = User.find_by(email: 'm@il.com')
+    expect(page).to have_content('Thanks for joining!')
+  end
 
-    # This is a bit of a hack, but I can't think of a different
-    # way to get the token that is sent via email (it's different from
-    # what gets stored in the DB)
-    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
+  it 'should redirect the user to the page they were viewing after sign up' do
+    visit '/guides/new'
+    see ('You need to sign in or sign up before continuing.')
+    page.first(:link, 'Become a Member').click
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+    click_button 'Join OpenFarm'
+    string_ref = 'guides.new.new_guide_steps.create_a_growing_guide'
+    expect(page).to have_content(I18n::t(string_ref))
+  end
 
-    visit href
+  it 'should create a new garden for a newly registered user' do
+    usr = sign_up_procedure
 
     expect(Garden.all.last.user).to eq (usr)
   end
 
   it 'user gets redirected to their finish page after sign up confirmation' do
-    visit root_path
-    click_link 'register'
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    check :user_agree
-    click_button 'Join OpenFarm'
-    expect(page).to have_content('confirmation link has been sent')
-    usr = User.find_by(email: 'm@il.com')
-
-    # This is a bit of a hack
-    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
-
-    visit href
+    usr = sign_up_procedure
 
     expect(page).to have_content('Your account was successfully confirmed')
 
-    see 'Welcome Rick'
+    see 'Thanks for joining!'
     # TODO: this isn't working
     # wait_until_angular_ready
-    # fill_in :units, with: 'Chicago'
+    # fill_in :location, with: 'Chicago'
     click_button 'Next: Add Garden'
 
     expect(page).to have_content('Your Gardens')
+  end
+
+  it 'should register the user unit preference' do
+    usr = sign_up_procedure
+
+    choose 'units-imperial'
+
+    click_button 'Next: Add Garden'
+    expect(usr.user_setting.units).to eq('imperial')
+  end
+
+  it 'should link to mailchimp if user chooses to be on mailing list' do
+    usr = sign_up_procedure
+
+    choose('yes-email')
+
+    click_button 'Next: Add Garden'
+  end
+
+  it 'should link to mailchimp if user chooses to be on mailing list' do
+    usr = sign_up_procedure
+
+    choose('yes-help')
+
+    click_button 'Next: Add Garden'
   end
 
   it 'should show an error message if no location is defined'
@@ -149,5 +135,24 @@ describe 'User sessions' do
     doc = Nokogiri::HTML(email.to_s)
     hrefs = doc.xpath("//a[starts-with(text(), 'C')]/@href").map(&:to_s)
     hrefs[0]
+  end
+
+  def sign_up_procedure
+    visit root_path
+    click_link 'register'
+    fill_in :user_display_name, with: 'Rick'
+    fill_in :user_password, with: 'password123'
+    fill_in :user_email, with: 'm@il.com'
+
+    click_button 'Join OpenFarm'
+    usr = User.find_by(email: 'm@il.com')
+
+    # This is a bit of a hack, but I can't think of a different
+    # way to get the token that is sent via email (it's different from
+    # what gets stored in the DB)
+    href = extract_url_from_email(usr.resend_confirmation_instructions.body)
+
+    visit href
+    usr
   end
 end

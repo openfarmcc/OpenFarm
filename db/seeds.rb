@@ -4,7 +4,8 @@ if Rails.env != 'production' # <= Prevent catastrophe
   admin = FactoryGirl.create(:user, admin: true,
                              email: 'admin@admin.com',
                              password: 'admin123',
-                             password_confirmation: 'admin123')
+                             password_confirmation: 'admin123',
+                             confirmed_at: Date.today)
 
   FactoryGirl.create(:garden, user: admin)
 

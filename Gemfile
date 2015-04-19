@@ -30,6 +30,7 @@ gem 'searchkick', '~> 0.8.5'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'
+gem 'gibbon'
 
 # Asset management using bower
 # https://rails-assets.org/

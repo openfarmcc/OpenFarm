@@ -481,7 +481,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
       // $scope.newGuide.selectedStages = [];
 
-
       var stages = $scope.newGuide.stages;
       $scope.selectedStagesCount = $scope.newGuide.stages
                                     .filter(function(s) {
@@ -525,7 +524,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
     processCropID(getUrlVar('crop_id'));
-
   };
 
   var getStages = function(success_callback, error_callback){
@@ -550,7 +548,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.search = function () {
     // be nice and only hit the server if
     // length >= 3
-    if ($scope.query.length >= 3){
+    if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
         method: "GET",
@@ -594,7 +592,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.switchToStep = function(step){
     $scope.step = step;
     $location.hash($scope.step);
+    scrollToTop();
   };
+
+  var scrollToTop = function(){
+    $('body').scrollTop(0);
+  }
 
   $scope.nextStep = function(){
     if ($scope.step === 3){
@@ -602,15 +605,28 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     }
     $scope.step += 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
   $scope.previousStep = function(){
     $scope.step -= 1;
     $location.hash($scope.step);
+    scrollToTop();
   };
 
-  $scope.nextStage = function(index){
-    $scope.editSelectedStage($scope.stages[index]);
+  var transferStageValuesIfNoneExist = function(stage, nextStage) {
+    if (!$scope.guideExists) {
+      nextStage.environment = stage.environment;
+      nextStage.light = stage.light;
+      nextStage.soil = stage.soil;
+    }
+  }
+
+  $scope.nextStage = function(stage){
+    var nextStage = $scope.stages[stage.nextSelectedIndex];
+    transferStageValuesIfNoneExist(stage, nextStage);
+    $scope.editSelectedStage(nextStage);
+    scrollToTop();
   };
 
   $scope.editSelectedStage = function(chosenStage){
@@ -783,7 +799,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){
-      console.log('sending stage');
       var stageParams = {
         name: stage.name,
         guide_id: guide._id,
@@ -804,10 +819,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           }).map(function(s){
             return s.label;
           }) || null,
-        actions: stage.stage_action_options.filter(function(s){
-            return s.overview;
+        actions: stage.stage_action_options.filter(function(a){
+          console.log(a);
+            return a.overview || a.time || (a.pictures && a.pictures.length > 0);
           }).map(function(action, index){
             return { name: action.name,
+                     images: action.pictures.filter(function(p){
+                      return !p.deleted;
+                     }),
                      overview: action.overview,
                      time: calcTimeLength(action.time, action.length_type),
                      order: index };
@@ -877,6 +896,16 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       stage.pictures = [];
     }
     stage.pictures.push({
+      new: true,
+      image_url: image
+    });
+  };
+
+  $scope.placeStageActionUpload = function(action, image){
+    if (!action.pictures){
+      action.pictures = [];
+    }
+    action.pictures.push({
       new: true,
       image_url: image
     });

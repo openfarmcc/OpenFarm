@@ -5,7 +5,7 @@
 <div class="finish"
   ng-controller="finishCtrl">
   <div class="bar-header">
-    <h1 class="title"><%= t('.welcome', user: current_user.display_name) %></h1>
+    <h1 class="title"><%= t('.thanks_for_joining') %></h1>
   </div>
   <div class="row title">
     <div class="large-12 columns">
@@ -22,28 +22,11 @@
     </div>
     <div class="large-8 columns">
       <span location
-            ng-model="location"
+            ng-model="user.user_setting.location"
             loading-text="<%= t('application.loading_locations') %>">
       </span>
     </div>
   </div>
-  <%# TODO: How do we store these? %>
-  <!-- <div class="row">
-    <div class="large- columns">
-      <label for="location">
-        <%= t('.describe_your_growing_practices') %>
-      </label>
-      <small><%= t('.check_all_that_apply') %></small>
-    </div>
-    <div class="large-8 columns">
-      <input id="organic" type="checkbox" name="practices" checked><label for="organic" >Organic</label>
-      <input id="permaculture" type="checkbox" name="practices"><label for="permaculture">Permaculture</label>
-      <input id="conventional" type="checkbox" name="practices"><label for="conventional">Conventional</label>
-      <span class="dropdown">
-        <input id="hydroponic" type="checkbox" name="practices"><label for="hydroponic">Hydroponic</label>
-      </span>
-    </div>
-  </div> -->
   <div class="row">
     <div class="large-4 columns">
       <label for="location">
@@ -51,9 +34,9 @@
       </label>
     </div>
     <div class="large-8 columns">
-      <input type="radio" id="imperial" value="imperial" name="units"><label for="imperial">Imperial</label>
+      <input type="radio" id="units-imperial" value="imperial" name="units" ng-model="user.user_setting.units"><label for="units-imperial">Imperial</label>
 
-      <input id="metric" type="radio" value="metric" name="units" checked><label for="metric">Metric</label>
+      <input id="units-metric" type="radio" value="metric" name="units" ng-model="user.user_setting.units" checked><label for="units-metric">Metric</label>
     </div>
   </div>
   <div class="row">
@@ -63,8 +46,22 @@
       </label>
     </div>
     <div class="large-8 columns">
-      <input type="radio" id="yes" value="true" name="mailing_list"><label for="yes">Yes</label>
-      <input id="no" type="radio" value="false" name="mailing_list" checked><label for="no">No</label>
+      <input type="radio" id="yes-email" value="true" name="mailing_list" ng-checked="user.mailing_list" ><label for="yes-email">Yes</label>
+      <input id="no-email" type="radio" value="false" name="mailing_list" checked ng-checked="!user.mailing_list"><label for="no-email">No</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="help_sign_up">
+        <%= t('.help_sign_up') %>
+        <br/><small><%= t('.help_description') %></small>
+      </label>
+
+    </div>
+    <div class="large-8 columns">
+      <input type="radio" id="yes-help" value="true" name="help_list" ng-checked="user.help_list" ><label for="yes-help">Yes</label>
+      <input id="no-help" type="radio" value="false" name="help_list" ng-checked="!user.help_list" checked><label for="no-help">No</label>
     </div>
   </div>
 
@@ -89,5 +86,6 @@
 </div>
 
 <% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
   <%= javascript_include_tag 'users/finish' %>
 <% end %>

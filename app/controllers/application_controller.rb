@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # Allow certain fields for devise - needed in Rails 4.0+
   before_filter :update_sanitized_params, if: :devise_controller?
 
-  before_action :set_locale
+  before_action :set_locale, :check_for_confirmation
 
   def default_url_options(options = {})
     { locale: I18n.locale }
@@ -15,6 +15,12 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def check_for_confirmation
+    if current_user && !current_user.confirmed?
+      flash[:warning] = I18n.t('users.need_confirmation')
+    end
   end
 
   protected

@@ -95,11 +95,11 @@ describe Guide do
   end
 
   it 'updates the popularity score' do
-    FactoryGirl.create(:guide)
-    FactoryGirl.create(:guide)
+    FactoryGirl.create(:guide, impressions_field: 101)
+    FactoryGirl.create(:guide, impressions_field: 50)
     guide = FactoryGirl.create(:guide)
     existing_score = guide.popularity_score
-    guide.impressions_field = 110
+    guide.impressions_field = 102
     guide.save
     expect(guide.popularity_score).not_to eq(0)
     expect(guide.popularity_score).not_to eq(existing_score)

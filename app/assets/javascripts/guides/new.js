@@ -238,9 +238,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           'selected': false
         };
       });
-      if ($scope.newGuide.practices !== undefined) {
-        $scope.newGuide.practices = practices;
-      }
+
+      // getStages sets the right things.
+      getStages(setGuide);
     })
     .error(function(r, e){
       $scope.alerts.push({
@@ -321,11 +321,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       $scope.newGuide.stages.forEach(function(stage){
         if (stage.selected && !selectedSet){
           // hacked hack is a hack
-          // $scope.newGuide.stages[stage.originalIndex].editing = true;
           selectedSet = true;
           stage.editing = true;
         } else {
-          // $scope.newGuide.stages[stage.originalIndex].editing = false;
           stage.editing = false;
         }
       });
@@ -547,7 +545,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
   };
 
-  getStages(setGuide);
+
 
 
   //Typeahead search for crops

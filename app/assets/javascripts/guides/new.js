@@ -220,6 +220,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.practicesOptions = [];
   var practices = [];
 
+  $scope.loadingThings = true;
+
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = +$location.hash() || 1;
@@ -501,6 +503,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
     processCropID(getUrlVar('crop_id'));
+
+    $scope.loadingEverything = false;
   };
 
   var getStages = function(success_callback, error_callback){

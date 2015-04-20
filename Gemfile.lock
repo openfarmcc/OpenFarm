@@ -427,7 +427,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails-assets-angular!
   rails-assets-angular-dragdrop!
-  rails-assets-angular-foundation!
+  rails-assets-angular-foundation (~> 0.6.0)!
   rails-assets-angular-local-storage!
   rails-assets-angular-ui-sortable!
   rails-assets-jquery-ui!
@@ -435,7 +435,7 @@ DEPENDENCIES
   rails_admin
   rspec-rails (~> 3.0.0)
   rubocop
-  sass-rails (~> 4.0.0)
+  sass-rails
   searchkick (~> 0.8.5)
   simplecov
   test-unit

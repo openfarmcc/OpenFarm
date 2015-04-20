@@ -38,7 +38,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ui'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-dragdrop'
-  gem 'rails-assets-angular-foundation'
+  gem 'rails-assets-angular-foundation', '~> 0.6.0'
   gem 'rails-assets-angular-ui-sortable'
   gem 'rails-assets-angular-local-storage'
 end

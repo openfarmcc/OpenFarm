@@ -252,7 +252,7 @@ GEM
     rails-assets-angular-dragdrop (1.0.11)
       rails-assets-angular (~> 1.0)
       rails-assets-jquery-ui
-    rails-assets-angular-foundation (0.5.1)
+    rails-assets-angular-foundation (0.6.0)
       rails-assets-angular (>= 1)
     rails-assets-angular-local-storage (0.1.5)
     rails-assets-angular-ui-sortable (0.13.3)
@@ -427,7 +427,7 @@ DEPENDENCIES
   rails (= 4.0.2)
   rails-assets-angular!
   rails-assets-angular-dragdrop!
-  rails-assets-angular-foundation!
+  rails-assets-angular-foundation (~> 0.6.0)!
   rails-assets-angular-local-storage!
   rails-assets-angular-ui-sortable!
   rails-assets-jquery-ui!
@@ -435,7 +435,7 @@ DEPENDENCIES
   rails_admin
   rspec-rails (~> 3.0.0)
   rubocop
-  sass-rails (~> 4.0.0)
+  sass-rails
   searchkick (~> 0.8.5)
   simplecov
   test-unit

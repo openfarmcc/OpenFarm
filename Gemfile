@@ -8,7 +8,7 @@ gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 gem 'compass-rails'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
@@ -38,7 +38,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ui'
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-dragdrop'
-  gem 'rails-assets-angular-foundation'
+  gem 'rails-assets-angular-foundation', '~> 0.6.0'
   gem 'rails-assets-angular-ui-sortable'
   gem 'rails-assets-angular-local-storage'
 end

@@ -1,6 +1,8 @@
+// @import "compass/css3/flexbox";
+
 .how-it-works {
   background-color: #dcccb3;
-  height: 70%;
+  height: $hero-height-small;
   max-width: initial;
   overflow: hidden;
   position: absolute;
@@ -8,11 +10,11 @@
   top: -200%;
   transition: 0.3s top;
   width: 100%;
-  z-index: 1;
+  z-index: 5;
 
   // Keep how-it-works large enough on large screens
   @media #{$medium-up} {
-    min-height: 650px;
+    height: $hero-height-medium;
   }
 
   i.exit {
@@ -45,12 +47,12 @@
     }
   }
 
-  .steps {
+  .steps-text {
     $step-circle-size: 50px;
 
     font-weight: 600;
     line-height: 80px;
-    margin: 1rem auto 1.5rem;
+    margin: 2rem auto 1.5rem;
 
     .step {
       color: #333333;
@@ -77,6 +79,11 @@
       text-align: center;
       vertical-align: middle;
       width: $step-circle-size;
+
+      & + p {
+        display: inline-block;
+        margin: 0;
+      }
     }
 
     .step-circle-1 {
@@ -90,6 +97,11 @@
     .step-circle-3 {
       background-color: rgba(106, 168, 79, 0.7);
     }
+
+  }
+
+  .steps-images {
+    margin-bottom: 2rem;
 
     .step-icon {
       background-position: top center;
@@ -114,6 +126,9 @@
   }
 
   ul.life-stage-icons {
+    $life-stage-icon-size: 116px;
+    height: $life-stage-icon-size;
+    overflow: hidden;
     list-style: none;
     text-align: center;
 
@@ -123,8 +138,8 @@
       background-size: cover;
       border-radius: 50px;
       display: inline-block;
-      height: 116px;
-      width: 116px;
+      height: $life-stage-icon-size;
+      width: $life-stage-icon-size;
 
       &.Preparation {
         background-position: 0;

@@ -223,7 +223,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $http.get('/api/detail_options/')
     .success(function(response){
       response.detail_options.forEach(function(detail) {
+        console.log("detail: ", detail);
+        console.log(detail.category, detail.category + 'Options')
+        console.log('$scope.practicesOptions')
         var category = detail.category + 'Options';
+        console.log(category);
+        console.log($scope[category]);
         $scope[category].push(detail.name);
       });
 

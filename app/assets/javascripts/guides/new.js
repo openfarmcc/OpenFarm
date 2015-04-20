@@ -223,12 +223,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $http.get('/api/detail_options/')
     .success(function(response){
       response.detail_options.forEach(function(detail) {
-        console.log("detail: ", detail);
-        console.log(detail.category, detail.category + 'Options')
-        console.log('$scope.practicesOptions')
         var category = detail.category + 'Options';
-        console.log(category);
-        console.log($scope[category]);
         if ($scope[category] !== undefined) {
           $scope[category].push(detail.name);
         }
@@ -243,6 +238,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           'selected': false
         };
       });
+      if ($scope.newGuide.practices !== undefined) {
+        $scope.newGuide.practices = practices;
+      }
     })
     .error(function(r, e){
       $scope.alerts.push({

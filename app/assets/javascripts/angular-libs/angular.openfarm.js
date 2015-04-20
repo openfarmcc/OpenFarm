@@ -115,7 +115,7 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectOverflowCount = $attrs
             .multiSelectOverflowCount || 3;
           $scope.multiSelectId = $attrs.multiSelectId;
-
+          console.log($scope.options);
           $scope.$watch('options', function(){
             if ($scope.options !== undefined){
               $scope.othered = $scope.options

@@ -229,7 +229,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         var category = detail.category + 'Options';
         console.log(category);
         console.log($scope[category]);
-        $scope[category].push(detail.name);
+        if ($scope[category] !== undefined) {
+          $scope[category].push(detail.name);
+        }
+
       });
 
       practices = $scope.practicesOptions.map(function(practice) {

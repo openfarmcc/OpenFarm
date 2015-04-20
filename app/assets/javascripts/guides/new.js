@@ -220,36 +220,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.practicesOptions = [];
   var practices = [];
 
-  $http.get('/api/detail_options/')
-    .success(function(response){
-      response.detail_options.forEach(function(detail) {
-        var category = detail.category + 'Options';
-        if ($scope[category] !== undefined) {
-          $scope[category].push(detail.name);
-        }
-
-      });
-
-      practices = $scope.practicesOptions.map(function(practice) {
-        return {
-          // TODO: make the slug creation more robust.
-          'slug': practice.toLowerCase(),
-          'label': practice,
-          'selected': false
-        };
-      });
-
-      // getStages sets the right things.
-      getStages(setGuide);
-    })
-    .error(function(r, e){
-      $scope.alerts.push({
-        msg: e,
-        type: 'alert'
-      });
-      console.log(r, e);
-    });
-
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = +$location.hash() || 1;
@@ -470,8 +440,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         how_long_type: 'days',
         start_time: moment().format('MMMM')
     };
+    console.log("originalguide", $scope.originalGuide.practices)
+    console.log("practices", practices)
 
     $scope.newGuide = angular.copy($scope.originalGuide);
+    console.log("newguide", $scope.newGuide.practices)
 
     checkGuideSource(true);
 
@@ -545,8 +518,36 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
   };
 
+  // This starts loading everything!
+  $http.get('/api/detail_options/')
+    .success(function(response){
+      response.detail_options.forEach(function(detail) {
+        var category = detail.category + 'Options';
+        if ($scope[category] !== undefined) {
+          $scope[category].push(detail.name);
+        }
 
+      });
 
+      practices = $scope.practicesOptions.map(function(practice) {
+        return {
+          // TODO: make the slug creation more robust.
+          'slug': practice.toLowerCase(),
+          'label': practice,
+          'selected': false
+        };
+      });
+
+      // getStages sets the right things.
+      getStages(setGuide);
+    })
+    .error(function(r, e){
+      $scope.alerts.push({
+        msg: e,
+        type: 'alert'
+      });
+      console.log(r, e);
+    });
 
   //Typeahead search for crops
   $scope.search = function () {

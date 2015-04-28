@@ -90,10 +90,17 @@
         <label class="right" for="spread">Spread</label>
       </div>
       <div class="columns small-8 medium-8">
-        <input data-ng-model="editCrop.spread"
-               id="crop_spread"
-               name="crop[spread]"
-               type="text"/>
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="editCrop.spread"
+                   id="crop_spread"
+                   name="crop[spread]"
+                  type="text"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -114,10 +121,17 @@
         <label class="right" for="row_spacing">Row Spacing</label>
       </div>
       <div class="columns small-8 medium-8">
-        <input data-ng-model="editCrop.row_spacing"
-               id="crop_row_spacing"
-               name="crop[row_spacing]"
-               type="number"/>
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="editCrop.row_spacing"
+                   id="crop_row_spacing"
+                   name="crop[row_spacing]"
+                   type="number"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -126,10 +140,17 @@
         <label class="right" for="height">Height</label>
       </div>
       <div class="columns small-8 medium-8">
-        <input data-ng-model="editCrop.height"
-               id="crop_height"
-               name="crop[height]"
-               type="number"/>
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="editCrop.height"
+                   id="crop_height"
+                   name="crop[height]"
+                   type="number"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
       </div>
     </div>
 

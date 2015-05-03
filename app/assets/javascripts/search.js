@@ -19,5 +19,14 @@ openFarmApp.controller('searchCtrl', ['$scope', '$http',
         }
       });
     }
-  };    
+  };   
+
+  // Redirect the browser to a specified crop
+  //
+  // pathTemplate is a string template for a crop path, 
+  //              with the text "ID" representing where the url slug should go
+  $scope.goToCrop = function (crop, pathTemplate) {
+    var slug = crop._slugs.length > 0 ? crop._slugs[0] : crop._id;
+    location.assign( pathTemplate.replace('ID', slug) );
+  };
 }]);

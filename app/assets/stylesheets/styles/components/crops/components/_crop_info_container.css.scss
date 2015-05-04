@@ -31,14 +31,9 @@
   }
 }
 
-// This ensures that on non-mobile screens the two containers
-// show up not only side-by-side but full-height
-
+// Shrink the new crop button on small screens
 @media #{$medium-up} {
   .crop-info-container {
-    height: 100%;
-    overflow-y: scroll;
-
     .new-crop-button {
       height: 100px;
     }

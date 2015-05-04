@@ -1,0 +1,32 @@
+
+footer {
+  height: $footer-height;
+  background: rgb(32, 25, 23);
+  @include transition(all .5s);
+  padding: .5em 0;
+
+  a {
+    $button-height: 2em;
+    $line-height: 1em;
+    height: $button-height;
+    margin-bottom: .5em;
+    padding: ($button-height - $line-height)/2 .5em;
+    font-weight: 600;
+    line-height: $line-height;
+    letter-spacing: .08em;
+    color: rgba(255, 255, 255, .5);
+    text-align: center;
+    vertical-align: middle;
+    @include transition(all .65s ease-out);
+
+    &:hover {
+      background: rgba(255, 255, 255, .25);
+      color: rgba(255, 255, 255, .75);
+    }
+
+    &:active {
+      @include transition(none);
+      background: rgba(255, 255, 255, .15);
+    }
+  }
+}

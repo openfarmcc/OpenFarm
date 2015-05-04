@@ -14,20 +14,6 @@
     to account for the compatibility score bar */
     padding: 0 15px 30px 15px;
   }
-
-  /* This ensures that on non-mobile screens the two containers
-  show up not only side-by-side but full-height */
-  @media #{$medium-up} {
-    .crop-results-container {
-      height: 100%;
-      overflow-y: scroll;
-    }
-
-    .guide-results-container {
-      height: 100%;
-      overflow-y: scroll;
-    }
-  }
 }
 
 /*@import "crop_searches/_crop_results.css.scss";

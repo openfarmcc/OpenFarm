@@ -2,9 +2,10 @@
 <%= content_for(:keywords) do %><% if @crop.common_names %><%= @crop.common_names.join(', ') %><% end %>, <%= @crop.name %>, <%= @crop.binomial_name %><% end %>
 
 <div class="crop-page row wide-row"
+     data-equalizer
      ng-controller="showCropCtrl"
      ng-cloak>
-  <div class="crop-info-container columns medium-6 small-12">
+  <div data-equalizer-watch class="crop-info-container columns medium-6 small-12">
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
       <% if current_user %>
@@ -58,7 +59,7 @@
         </tbody>
     </table>
   </div>
-  <div class="guide-results-container columns medium-6 small-12">
+  <div data-equalizer-watch class="guide-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= @guides.empty? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
 
     <% if @guides.empty? %>

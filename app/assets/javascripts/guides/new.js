@@ -30,13 +30,14 @@ openFarmApp.directive('formChecker', function(){
   };
 });
 
-openFarmApp.factory('focus', function ($rootScope, $timeout) {
-  return function(name) {
-    $timeout(function (){
-      $rootScope.$broadcast('focusOn', name);
-    });
-  };
-});
+openFarmApp.factory('focus', ['$rootScope', '$timeout',
+  function ($rootScope, $timeout) {
+    return function(name) {
+      $timeout(function (){
+        $rootScope.$broadcast('focusOn', name);
+      });
+    };
+}]);
 
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
@@ -220,30 +221,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.practicesOptions = [];
   var practices = [];
 
-  $http.get('/api/detail_options/')
-    .success(function(response){
-      response.detail_options.forEach(function(detail) {
-        var category = detail.category + 'Options';
-        $scope[category].push(detail.name);
-      });
+  $scope.loadingThings = true;
 
-      practices = $scope.practicesOptions.map(function(practice) {
-        return {
-          // TODO: make the slug creation more robust.
-          'slug': practice.toLowerCase(),
-          'label': practice,
-          'selected': false
-        };
-      });
-    })
-    .error(function(r, e){
-      $scope.alerts.push({
-        msg: e,
-        type: 'alert'
-      });
-      console.log(r, e);
-    });
-
+  $scope.cropQuery = '';
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = +$location.hash() || 1;
@@ -315,11 +295,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       $scope.newGuide.stages.forEach(function(stage){
         if (stage.selected && !selectedSet){
           // hacked hack is a hack
-          // $scope.newGuide.stages[stage.originalIndex].editing = true;
           selectedSet = true;
           stage.editing = true;
         } else {
-          // $scope.newGuide.stages[stage.originalIndex].editing = false;
           stage.editing = false;
         }
       });
@@ -524,6 +502,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
     processCropID(getUrlVar('crop_id'));
+
+    $scope.loadingEverything = false;
   };
 
   var getStages = function(success_callback, error_callback){
@@ -541,13 +521,42 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       });
   };
 
-  getStages(setGuide);
+  // This starts loading everything!
+  $http.get('/api/detail_options/')
+    .success(function(response){
+      response.detail_options.forEach(function(detail) {
+        var category = detail.category + 'Options';
+        if ($scope[category] !== undefined) {
+          $scope[category].push(detail.name);
+        }
 
+      });
+
+      practices = $scope.practicesOptions.map(function(practice) {
+        return {
+          // TODO: make the slug creation more robust.
+          'slug': practice.toLowerCase(),
+          'label': practice,
+          'selected': false
+        };
+      });
+
+      // getStages sets the right things.
+      getStages(setGuide);
+    })
+    .error(function(r, e){
+      $scope.alerts.push({
+        msg: e,
+        type: 'alert'
+      });
+      console.log(r, e);
+    });
 
   //Typeahead search for crops
-  $scope.search = function () {
+  $scope.search = function (val) {
     // be nice and only hit the server if
     // length >= 3
+    $scope.query = val;
     if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
@@ -795,7 +804,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
-    console.log('sending stages');
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){

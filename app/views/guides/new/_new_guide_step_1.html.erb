@@ -1,4 +1,4 @@
-<section name="step-1" class="step" ng-show="step === 1">
+<section name="step-1" class="step" ng-show="step === 1" ng-if="!$scope.loadingEverything">
   <form accept-charset="UTF-8"
     class="getting-started"
     id="new-guide-step-1"
@@ -20,8 +20,8 @@
         <input
           id="crop_name"
           type="text"
-          ng-model="query"
-          ng-change="search()"
+          ng-model="cropQuery"
+          ng-change="search(cropQuery)"
           typeahead-on-select='cropSelected($item, $model, $label)'
           typeahead="crop.name for crop in crops"
           typeahead-loading="loadingCrops"
@@ -90,6 +90,7 @@
           </div>
           <div class="columns small-12 options">
             <div multi-row-select
+                 ng-if="newGuide.practices"
                  class="multi-choice"
                  options="newGuide.practices"
                  multi-select-overflow-count="3"

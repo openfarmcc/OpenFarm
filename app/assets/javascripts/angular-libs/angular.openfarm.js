@@ -151,9 +151,8 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectOverflowCount = $attrs
             .multiSelectOverflowCount || 3;
           $scope.multiSelectId = $attrs.multiSelectId;
-
           $scope.$watch('options', function(){
-            if ($scope.options !== undefined){
+            if ($scope.options !== undefined && $scope.options !== []){
               $scope.othered = $scope.options
                 .reduce(function(returned, current, index){
                   if (index > $scope.multiSelectOverflowCount){
@@ -170,7 +169,7 @@ openFarmModule.directive('multiRowSelect', [
     };
 }]);
 
-openFarmApp.directive('clearOn', function() {
+openFarmApp.directive('clearOn', [function() {
    return function(scope, elem, attr) {
       scope.$on('clearOn', function(e, name) {
         if(name === attr.clearOn) {
@@ -178,10 +177,10 @@ openFarmApp.directive('clearOn', function() {
         }
       });
    };
-});
+}]);
 
 // Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
-openFarmApp.directive('focusOn', function() {
+openFarmApp.directive('focusOn', [function() {
    return function(scope, elem, attr) {
       scope.$on('focusOn', function(e, name) {
         if(name === attr.focusOn) {
@@ -189,10 +188,11 @@ openFarmApp.directive('focusOn', function() {
         }
       });
    };
-});
+}]);
 
 // Source: http://stackoverflow.com/questions/14833326/how-to-set-focus-on-input-field/14837021#14837021
-openFarmApp.directive('autoFocus', function($timeout) {
+openFarmApp.directive('autoFocus', ['$timeout',
+  function($timeout) {
     return {
         restrict: 'AC',
         link: function(_scope, _element) {
@@ -201,4 +201,4 @@ openFarmApp.directive('autoFocus', function($timeout) {
             }, 0);
         }
     };
-});
+}]);

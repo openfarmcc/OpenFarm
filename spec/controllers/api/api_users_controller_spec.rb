@@ -34,6 +34,49 @@ describe Api::UsersController, type: :controller do
   it 'shows basics to non-logged in users' do
     get 'show', id: public_user.id, format: :json
     expect(response.status).to eq(200)
-    expect(json['user']).to_not have_key('uset_setting')
+    expect(json['user']).to_not have_key('user_setting')
+  end
+
+  it 'shows a favorite crop for a user' do
+    crop = FactoryGirl.create(:crop)
+    public_user.user_setting.favorite_crops = [crop]
+    public_user.user_setting.save
+    sign_in viewing_user
+    get 'show', id: public_user.id, format: :json
+    expect(response.status).to eq(200)
+    expect(json['user']['user_setting']).to have_key('favorite_crop')
+  end
+
+  it 'shows a favorite crop with images for a user' do
+    VCR.use_cassette('controllers/api/api_users_controller_spec') do
+      crop = FactoryGirl.create(:crop)
+
+      crop.pictures = [FactoryGirl.create(:crop_picture)]
+      crop.save
+
+      public_user.user_setting.favorite_crops = [crop]
+      public_user.user_setting.save
+      sign_in viewing_user
+
+      get 'show', id: public_user.id, format: :json
+
+      expect(json['user']['user_setting']).to have_key('favorite_crop')
+      fav_crop = json['user']['user_setting']['favorite_crop']
+      expect(fav_crop).to have_key('image_url')
+    end
+  end
+
+  it 'adds a featured image' do
+    VCR.use_cassette('controllers/api/api_users_controller_spec') do
+      public_user.user_setting.picture = FactoryGirl.create(:user_picture)
+      public_user.user_setting.save
+      sign_in viewing_user
+      get 'show', id: public_user.id, format: :json
+      expect(json['user']['user_setting']).to have_key('picture')
+      # cat.jpg is the name created in the factorygirl for user_picture
+      # (fixture file)
+      pic_json = json['user']['user_setting']['picture']
+      expect(pic_json['image_url']).to include('cat.jpg')
+    end
   end
 end

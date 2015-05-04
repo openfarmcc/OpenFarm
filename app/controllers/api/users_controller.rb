@@ -12,6 +12,8 @@ module Api
     end
 
     def update
+      puts "params.id #{params['id']}"
+      puts "currentuser.id #{current_user.id}"
       @outcome = Users::UpdateUser.run(
         user: params,
         current_user: current_user,

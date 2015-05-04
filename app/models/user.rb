@@ -66,10 +66,6 @@ class User
   after_save :connect_to_mailchimp
   after_save :create_garden_if_none
 
-  def is_current_user?(user)
-    self == user
-  end
-
   def user_setting
     UserSetting.find_or_create_by(user: self)
   end
@@ -88,7 +84,7 @@ class User
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Subscribers' } })
       gb.lists.subscribe({ id: list['data'][0]['id'],
                            email: { email: self[:email] },
-                           merge_vars: { :DNAME => user[:display_name] },
+                           merge_vars: { :DNAME => self[:display_name] },
                            double_optin: false,
                            update_existing: true })
 

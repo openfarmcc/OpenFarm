@@ -45,6 +45,8 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
         $scope.user.sending = false;
         if (success) {
           $scope.user = user;
+
+          // TODO unhardcode this URL
           window.location.href = '/users/' + $scope.user._id + '/';
         } else {
 

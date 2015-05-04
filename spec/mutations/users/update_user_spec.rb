@@ -1,4 +1,10 @@
 require 'spec_helper'
+require 'openfarm_errors'
+
+# module OpenfarmErrors
+#   class NotAuthorized < StandardError; end
+#   class StaleToken < StandardError; end
+# end
 
 describe Users::UpdateUser do
   let(:mutation) { Users::UpdateUser }
@@ -68,8 +74,16 @@ describe Users::UpdateUser do
     params[:user_setting] = {
       favorite_crop: 'bla'
     }
+
     result = mutation.run(params)
     expect(result.success?).to be(false)
     expect(result.errors.message_list).to include('Could not find a crop with id ')
+  end
+
+  it 'rejects users that are not themselves' do
+    params['current_user'] = other_user
+    expect do
+      result = mutation.run(params)
+    end.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
 end

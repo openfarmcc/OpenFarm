@@ -89,23 +89,26 @@
 
     <!-- Sidebar for medium and up screens -->
     <div class="medium-4 large-3 show-for-medium-up columns profile-sidebar">
-      <p class="member ">
-        <%= t('.member_profile_intro') %>
-      </p>
-      <ul>
-        <li>
-          Units: {{ user.user_setting.units }}
-        </li>
-        <li>
-          Mailing List: {{ user.mailing_list }}
-        </li>
-        <li>
-          Help List: {{ user.help_list }}
-        </li>
-        <li>
-          Years Experience: {{ user.user_setting.years_experience }}
-        </li>
-      </ul>
+      <% if current_user == @user %>
+        <p class="member ">
+          <%= t('.member_profile_intro') %>
+        </p>
+
+        <ul>
+          <li>
+            Units: {{ profileUser.user_setting.units }}
+          </li>
+          <!-- <li>
+            Mailing List: {{ profileUser.mailing_list }}
+          </li>
+          <li>
+            Help List: {{ profileUser.help_list }}
+          </li> -->
+          <!-- <li>
+            Years Experience: {{ profileUser.user_setting.years_experience }}
+          </li> -->
+        </ul>
+      <% end %>
       <%#= render 'users/badges' %>
       <%#= render 'users/followers' %>
       <%#= render 'users/following' %>

@@ -86,4 +86,22 @@ describe Users::UpdateUser do
       result = mutation.run(params)
     end.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
+
+  it 'rejects users without a valid featured image' do
+    params[:featured_image] = 'not/absoloute.png'
+    VCR.use_cassette('mutations/users/update_user_invalid_pic.rb') do
+      result = mutation.run(params)
+      expect(result.success?).to be(false)
+      expect(result.errors.message_list.first).to include('is not a valid URL')
+    end
+  end
+
+  it 'rejects users without a valid featured image' do
+    params[:featured_image] = 'not/absoloute.png'
+    VCR.use_cassette('mutations/users/update_user_invalid_pic.rb') do
+      result = mutation.run(params)
+      expect(result.success?).to be(false)
+      expect(result.errors.message_list.first).to include('is not a valid URL')
+    end
+  end
 end

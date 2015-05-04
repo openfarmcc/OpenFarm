@@ -19,12 +19,12 @@
         </button></a>
     </div>
     <div class="search text-center">
-        <form action="<%= crop_search_via_get_path %>" method="get" >
+        <form action="<%= crop_search_via_get_path %>" method="get">
         <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
             <div class="search-bar-container">
-                <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
+                <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl" >
                     <div class="search-input-container">
-                        <input typeahead-min-length="1" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="200" typeahead="crop.name for crop in crops">
+                        <input typeahead-min-length="1" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="200" typeahead="crop.name for crop in crops" typeahead-on-select='goToCrop($item, "<%= crop_path("ID") %>")'>
                     </div>
                     <div class="search-button-container">
                         <input class="search-button button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">

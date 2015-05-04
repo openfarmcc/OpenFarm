@@ -30,13 +30,14 @@ openFarmApp.directive('formChecker', function(){
   };
 });
 
-openFarmApp.factory('focus', function ($rootScope, $timeout) {
-  return function(name) {
-    $timeout(function (){
-      $rootScope.$broadcast('focusOn', name);
-    });
-  };
-});
+openFarmApp.factory('focus', ['$rootScope', '$timeout',
+  function ($rootScope, $timeout) {
+    return function(name) {
+      $timeout(function (){
+        $rootScope.$broadcast('focusOn', name);
+      });
+    };
+}]);
 
 openFarmApp.directive('stageButtons', [
   function stageButtons(){
@@ -222,6 +223,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   $scope.loadingThings = true;
 
+  $scope.cropQuery = '';
   $scope.alerts = [];
   $scope.crops = [];
   $scope.step = +$location.hash() || 1;
@@ -442,11 +444,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         how_long_type: 'days',
         start_time: moment().format('MMMM')
     };
-    console.log("originalguide", $scope.originalGuide.practices)
-    console.log("practices", practices)
 
     $scope.newGuide = angular.copy($scope.originalGuide);
-    console.log("newguide", $scope.newGuide.practices)
 
     checkGuideSource(true);
 
@@ -554,9 +553,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
   //Typeahead search for crops
-  $scope.search = function () {
+  $scope.search = function (val) {
     // be nice and only hit the server if
     // length >= 3
+    $scope.query = val;
     if ($scope.query && $scope.query.length >= 3){
       $http({
         url: '/api/crops',
@@ -804,7 +804,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   $scope.sendStages = function(success, guide){
-    console.log('sending stages');
     $scope.newGuide._id = guide._id;
     $scope.sent = 0;
     $scope.newGuide.stages.forEach(function(stage){

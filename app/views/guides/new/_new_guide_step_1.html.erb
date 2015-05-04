@@ -20,8 +20,8 @@
         <input
           id="crop_name"
           type="text"
-          ng-model="query"
-          ng-change="search()"
+          ng-model="cropQuery"
+          ng-change="search(cropQuery)"
           typeahead-on-select='cropSelected($item, $model, $label)'
           typeahead="crop.name for crop in crops"
           typeahead-loading="loadingCrops"

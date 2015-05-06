@@ -38,13 +38,13 @@ openFarmModule.factory('userService', ['$http',
 
     var setFavoriteCrop = function(userId, cropId, alerts, callback){
       // wrapper function around put user
-      params = {
+      var params = {
         'user': {},
         'user_setting': {
           'favorite_crop': cropId
         }
       }
-      console.log(params);
+
       $http.put('/api/users/' + userId + '/', params)
         .success(function(response) {
           return callback(true, response.user);

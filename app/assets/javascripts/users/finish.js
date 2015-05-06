@@ -36,7 +36,8 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
       };
 
       if ($scope.user.user_setting.picture) {
-        params.featured_image = $scope.user.user_setting.picture.image_url || null;
+        params.featured_image = $scope
+          .user.user_setting.picture.image_url || null;
       } else {
         params.featured_image = null
       }
@@ -48,10 +49,7 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
 
           // TODO unhardcode this URL
           window.location.href = '/users/' + $scope.user._id + '/';
-        } else {
-
         }
-
       };
 
       userService.updateUser($scope.user._id,

@@ -21,6 +21,7 @@
     "openFarmModule",
     "USER_ID",
     "GUIDE_ID",
+    "PROFILE_ID",
 
     "console",
     "jasmine",

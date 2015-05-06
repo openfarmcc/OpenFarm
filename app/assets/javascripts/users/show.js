@@ -1,4 +1,5 @@
-openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http', 'userService',
+openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
+  'userService',
   function profileCtrl($scope, $rootScope, $http, userService) {
     $scope.profileId = PROFILE_ID || undefined;
     $scope.userId = USER_ID || undefined;
@@ -45,10 +46,10 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http', 'userSer
 
 
 
-    userService.getUser(USER_ID, $scope.alerts, function(success, user) {
+    userService.getUser($scope.userId, $scope.alerts, function(success, user) {
       $scope.currentUser = user;
 
-      userService.getUser(PROFILE_ID,
+      userService.getUser($scope.userId,
                         $scope.alerts,
                         $scope.setProfileUser);
     });
@@ -61,7 +62,7 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http', 'userSer
       if ($scope.query.length >= 3){
         $http({
           url: '/api/crops',
-          method: "GET",
+          method: 'GET',
           params: {
             query: $scope.query
           }

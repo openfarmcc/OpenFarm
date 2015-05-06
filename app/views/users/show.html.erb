@@ -1,5 +1,151 @@
-<div class="row">
-  <div class="small-12 columns">
-    <h2><%= @user.display_name %>'s profile will come soon!</h2>
+<%= content_for(:title) do %><% @user.display_name %> Profile<% end %>
+
+<div class="member-profile" ng-controller="profileCtrl">
+  <!-- Pull cover image from member's favorite_crop -->
+
+
+  <div class="row wide-row canopy"
+       style="background-image: url({{ profileUser.user_setting.favorite_crop.image_url || '/assets/baren_field.jpg' }}) ">
+    <div class="canopy" ng-class="{ editing : editing }" style="">
+      <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper" ng-cloak ng-show="profileUser">
+        <div class="row">
+          <div ng-if="cropNotSet" class="small-12 columns set-crop">
+          <h2>Success!</h2>
+          <p><%= t('.show_you_around') %>
+          </p>
+          <p>
+          <%= t('.this_is_your_member_profile_page') %>
+          </p>
+          </div>
+          <form class="set-crop" ng-show="editing">
+            <div class="row collapse">
+              <div class="columns small-4">
+                <label class="right inline">
+                <%= t('.what_is_your_favorite_crop') %>
+                </label>
+              </div>
+              <div class="columns small-6">
+                <input typeahead-min-length="1"
+                       autocomplete="off"
+                       class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched"
+                       id="q"
+                       maxlength="120"
+                       name="q"
+                       ng-change="search()"
+                       ng-model="query"
+                       typeahead-on-select="setFavoriteCrop()"
+                       placeholder="<%= t('home.placeholder') %>"
+                       type="text"
+                       typeahead-wait-ms="200"
+                       typeahead="crop.name for crop in crops">
+              </div>
+              <div class="columns small-2">
+                <input type="button" class="button postfix" value="submit" ng-click="setFavoriteCrop()"/>
+              </div>
+
+            </div>
+          </form>
+          <div ng-if="!editing" class="small-12 medium-4 columns">
+            <!-- Make this a thing -->
+            <div class="member-picture"
+              style="background-image: url({{ profileUser.user_setting.picture.thumbnail_url || '/assets/baren_field.jpg' }})">
+            </div>
+          </div>
+          <div ng-if="!editing" class="small-12 medium-8 columns member-infos">
+            <h2><%= @user.display_name %></h2>
+            <h5><%= @user.user_setting.location %></h5>
+
+            <!-- Make this a user_setting and link_to crop page
+            <h5>Favorite Crop: Blueberries</h5> -->
+
+            <!-- Make this real
+            <h5>Growing Practices: Organic</h5> -->
+          </div>
+        </div>
+      </div>
+      <!-- Make this a thing
+      <button class="button right tiny secondary edit-profile-button">Edit Profile</button> -->
+    </div>
+  </div>
+
+  <div class="row wide-row member-content">
+    <!-- Sub header for mobile (replaces sidebar) TODO: Make it real
+    <div class="small-12 show-for-small-only columns profile-sub-header">
+      <ul>
+        <li>
+          <h4 class="number">4</h4>
+          <p class="attribute">badges</p>
+        </li>
+        <li>
+          <h4 class="number">22</h4>
+          <p class="attribute">followers</p>
+        </li>
+        <li>
+          <h4 class="number">68</h4>
+          <p class="attribute">following</p>
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- Sidebar for medium and up screens -->
+    <div class="medium-4 large-3 show-for-medium-up columns profile-sidebar">
+      <% if current_user == @user %>
+        <p class="member ">
+          <%= t('.member_profile_intro') %>
+        </p>
+
+        <ul>
+          <li>
+            Units: {{ profileUser.user_setting.units }}
+          </li>
+          <!-- <li>
+            Mailing List: {{ profileUser.mailing_list }}
+          </li>
+          <li>
+            Help List: {{ profileUser.help_list }}
+          </li> -->
+          <!-- <li>
+            Years Experience: {{ profileUser.user_setting.years_experience }}
+          </li> -->
+        </ul>
+      <% end %>
+      <%#= render 'users/badges' %>
+      <%#= render 'users/followers' %>
+      <%#= render 'users/following' %>
+
+    </div>
+
+    <div class="small-12 medium-8 large-9 columns">
+
+      <!-- Member's Guides -->
+      <div class="small-12 columns section">
+        <%= render 'users/show/guides' %>
+      </div>
+
+      <!-- Member's Gardens -->
+      <div class="small-12 columns section">
+        <%= render 'users/show/gardens' %>
+      </div>
+
+      <!-- Member's Organizations TODO: everything
+      <div class="small-12 columns section">
+        <%= render 'users/show/organizations' %>
+      </div> -->
+
+      <div class="small-12 columns section">
+        <% if @user == current_user %>
+        Manage <%= link_to t('application.user_settings'), edit_user_registration_path %>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 </div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+  <%= javascript_tag "var PROFILE_ID = '#{@user ? @user._id : nil}';" %>
+  <%= javascript_include_tag 'users/gardens' %>
+  <%= javascript_include_tag 'users/show' %>
+  <%= javascript_include_tag "search" %>
+<% end %>

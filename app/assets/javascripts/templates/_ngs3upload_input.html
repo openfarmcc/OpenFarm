@@ -11,8 +11,8 @@
   </span>
 
   <span class="thumbnails"
-        ng-if="s3UploadExistingPictures && s3UploadExistingPictures.indexOf('leaf-grey') === -1 && hasOnePicture">
-    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures }}"
+        ng-if="s3UploadExistingPictures && hasOnePicture">
+    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures.image_url }}"
        />
   </span>
 

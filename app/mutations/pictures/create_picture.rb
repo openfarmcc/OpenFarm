@@ -22,6 +22,7 @@ module Pictures
     end
 
     def validate_picture
+      storage_type = Paperclip::Attachment.default_options[:storage]
       if id
         exist_pic = pictures.bsearch { |p| p[:id].to_s == id.to_s }
         if exist_pic && exist_pic.attachment.url != url

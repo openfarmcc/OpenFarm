@@ -1,6 +1,5 @@
 class UserSerializer < ApplicationSerializer
-  attributes :_id, :display_name, :email, :admin,
-             :location, :years_experience, :units, :is_private,
+  attributes :_id, :display_name, :email, :admin, :is_private,
              :help_list, :mailing_list
 
   has_many :gardens  # , embed: :ids, key: :gardens, embed_namespace: :links

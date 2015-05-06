@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/list
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"68db7a3df1dba0616c03a1e65fcff20c-us8","filters":{"list_name":"OpenFarm
+        Subscribers"}}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '977'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 04 May 2015 17:26:40 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"total":1,"data":[{"id":"8b8c94b1c5","web_id":435541,"name":"OpenFarm
+        Subscribers","date_created":"2014-07-17 18:58:16","email_type_option":false,"use_awesomebar":true,"default_from_name":"OpenFarm","default_from_email":"rory@openfarm.cc","default_subject":"","default_language":"en","list_rating":3.5,"subscribe_url_short":"http:\/\/eepurl.com\/bbQeJ5","subscribe_url_long":"http:\/\/openfarm.us8.list-manage.com\/subscribe?u=d41f97f612d606f032a884227&id=8b8c94b1c5","beamer_address":"us8-da517f3f46-bdec459f10@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":2159,"unsubscribe_count":53,"cleaned_count":6,"member_count_since_send":165,"unsubscribe_count_since_send":9,"cleaned_count_since_send":1,"campaign_count":11,"grouping_count":1,"group_count":1,"merge_var_count":2,"avg_sub_rate":96,"avg_unsub_rate":5,"target_sub_rate":5,"open_rate":48.929688786432,"click_rate":11.968348170129,"date_last_campaign":"2015-04-05
+        15:00:48"},"modules":[]}],"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 04 May 2015 17:26:40 GMT
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/subscribe
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"68db7a3df1dba0616c03a1e65fcff20c-us8","id":"8b8c94b1c5","email":{"email":"haylee@conn.name"},"merge_vars":{"DNAME":"Kaitlin
+        Corwin"},"double_optin":false,"update_existing":true}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '67'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 04 May 2015 17:27:55 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"email":"haylee@conn.name","euid":"fa842e9197","leid":"261635953"}'
+    http_version: 
+  recorded_at: Mon, 04 May 2015 17:27:55 GMT
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/list
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"68db7a3df1dba0616c03a1e65fcff20c-us8","filters":{"list_name":"OpenFarm
+        Subscribers"}}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '977'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 04 May 2015 17:27:55 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"total":1,"data":[{"id":"8b8c94b1c5","web_id":435541,"name":"OpenFarm
+        Subscribers","date_created":"2014-07-17 18:58:16","email_type_option":false,"use_awesomebar":true,"default_from_name":"OpenFarm","default_from_email":"rory@openfarm.cc","default_subject":"","default_language":"en","list_rating":3.5,"subscribe_url_short":"http:\/\/eepurl.com\/bbQeJ5","subscribe_url_long":"http:\/\/openfarm.us8.list-manage.com\/subscribe?u=d41f97f612d606f032a884227&id=8b8c94b1c5","beamer_address":"us8-da517f3f46-bdec459f10@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":2159,"unsubscribe_count":53,"cleaned_count":6,"member_count_since_send":166,"unsubscribe_count_since_send":9,"cleaned_count_since_send":1,"campaign_count":11,"grouping_count":1,"group_count":1,"merge_var_count":2,"avg_sub_rate":96,"avg_unsub_rate":5,"target_sub_rate":5,"open_rate":48.929688786432,"click_rate":11.968348170129,"date_last_campaign":"2015-04-05
+        15:00:48"},"modules":[]}],"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 04 May 2015 17:27:55 GMT
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/subscribe
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"68db7a3df1dba0616c03a1e65fcff20c-us8","id":"8b8c94b1c5","email":{"email":"haylee@conn.name"},"merge_vars":{"DNAME":"Kaitlin
+        Corwin"},"double_optin":false,"update_existing":true}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '67'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 04 May 2015 17:27:56 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"email":"haylee@conn.name","euid":"fa842e9197","leid":"261635953"}'
+    http_version: 
+  recorded_at: Mon, 04 May 2015 17:27:56 GMT
+recorded_with: VCR 2.9.3

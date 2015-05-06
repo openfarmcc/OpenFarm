@@ -11,23 +11,40 @@
             <source src="<%= asset_path 'home_video.mp4' %>" type="video/mp4">
         </video>
     </div>
-    <div class="hero-title-content">
-        <img class="logo" src="<%= image_path 'openfarm_logo.png' %>" width="420px">
-        <h2 class="text-center"><%=t 'home.hero_header' %></h2>
-        <a href="#how-it-works"><button class="how-it-works-button">
-            <%= t 'home.how_it_works' %>
-        </button></a>
-    </div>
-    <div class="search text-center">
-        <form action="<%= crop_search_via_get_path %>" method="get">
-        <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
-            <div class="search-bar-container">
-                <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl" >
-                    <div class="search-input-container">
-                        <input typeahead-min-length="1" autocomplete="off" class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched" id="q" maxlength="120" name="q" ng-change="search()" ng-model="query" placeholder="<%= t('home.placeholder') %>" type="text" typeahead-wait-ms="200" typeahead="crop.name for crop in crops" typeahead-on-select='goToCrop($item, "<%= crop_path("ID") %>")'>
-                    </div>
-                    <div class="search-button-container">
-                        <input class="search-button button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
+    <div class="row row-table row-full-height">
+        <div class="small-12 small-centered column-middle columns">
+            <img class="logo" src="<%= image_path 'openfarm_logo.png' %>" width="420px">
+            <h2 class="text-center"><%=t 'home.hero_header' %></h2>
+            <a href="#how-it-works"><button class="how-it-works-button">
+                <%= t 'home.how_it_works' %>
+            </button></a>
+        </div>
+        <div class="search text-center">
+            <form action="<%= crop_search_via_get_path %>" method="get">
+            <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
+                <div class="search-bar-container">
+                    <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
+                        <div class="search-input-container">
+                          <input typeahead-min-length="1"
+                          autocomplete="off"
+                          class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched"
+                          id="q"
+                          maxlength="120"
+                          name="q"
+                          ng-change="search()"
+                          ng-model="query"
+                          placeholder="<%= t('home.placeholder') %>"
+                          type="text"
+                          typeahead-wait-ms="200"
+                          typeahead="crop.name for crop in crops"
+                          typeahead-on-select='goToCrop($item, "<%= crop_path("ID") %>")'>
+                        </div>
+                        <div class="search-button-container">
+                            <input class="search-button button no-shadow postfix"
+                            data-disable-with="Searching..."
+                            type="submit"
+                            value="<%= t('home.search') %>">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,6 @@ class PictureSerializer < ApplicationSerializer
   end
 
   def thumbnail_url
-    object.attachment.url(:small)
+    object.attachment.url(:medium)
   end
 end

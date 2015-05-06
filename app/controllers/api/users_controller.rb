@@ -11,6 +11,17 @@ module Api
       end
     end
 
+    def update
+      @outcome = Users::UpdateUser.run(
+        user: params,
+        current_user: current_user,
+        featured_image: params[:featured_image],
+        user_setting: params[:user_setting],
+        id: "#{current_user._id}")
+
+      respond_with_mutation(:ok)
+    end
+
     # TODO: figure out how to make this work with nested
     # def index
     #   users = Pundit.policy_scope(current_user, User)

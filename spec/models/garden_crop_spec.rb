@@ -18,6 +18,6 @@ describe GardenCrop do
 
     expect_any_instance_of(Guide).to receive(:reindex_async)
 
-    FactoryGirl.create(:garden, user: FactoryGirl.create(:user))
+    FactoryGirl.create(:user)
   end
 end

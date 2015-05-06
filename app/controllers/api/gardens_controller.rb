@@ -5,7 +5,8 @@ module Api
     def create
       @outcome = Gardens::CreateGarden.run(
         params,
-        user: current_user )
+        user: current_user
+      )
       @user = current_user
       respond_with_mutation(:created)
     end

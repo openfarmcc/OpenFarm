@@ -1,15 +1,18 @@
 .member-profile {
 
   .canopy .canopy {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, .15);
+    transition: .5s background-color;
 
-    p, h2, h5 {
+    p,
+    h2,
+    h5 {
       color: $white;
     }
 
-    transition: .5s background-color;
+
     &.editing {
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, .6);
     }
   }
 

@@ -102,10 +102,11 @@ class User
 
   def create_garden_if_none
     if self.gardens.all.count == 0 && self.confirmed?
-      outcome = Gardens::CreateGarden.run(
+      Gardens::CreateGarden.run(
         user: self,
         name: I18n::t('registrations.your_first_garden'),
-        garden: { is_private: true })
+        garden: { is_private: true }
+      )
     end
   end
 end

@@ -3,7 +3,7 @@
 <div class="member-profile" ng-controller="profileCtrl">
   <!-- Pull cover image from member's favorite_crop -->
 
-  <div class="row wide-row canopy"
+  <div class="row wide-row canopy-wrapper"
        style="background-image: url({{ profileUser.user_setting.favorite_crop.image_url || '/assets/baren_field.jpg' }}) ">
     <div class="canopy" ng-class="{ editing : editing }" style="">
       <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper" ng-cloak ng-show="profileUser">

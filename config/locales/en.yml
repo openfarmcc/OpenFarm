@@ -140,6 +140,7 @@ en:
         favorite_crop_suggestion: "e.g. Cherry Tomatoes"
         member_profile_intro: |
           This is your member profile. It reflects your presence on OpenFarm
+        edit_favorite_crop: Edit Favorite Crop
         guides:
           no_guides_yet: "This user hasn't created a guide yet."
           you_have_not_created_a_guide: You haven't created a guide yet!

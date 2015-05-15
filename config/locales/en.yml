@@ -45,6 +45,8 @@ en:
     my_profile: "My Profile"
   meta:
     about: "About OpenFarm"
+    blog: "Blog"
+    mailing_list: Mailing List
     our_mission: "Our Mission"
     mission_statement: |
       Develop community and tools for freely sharing plant knowledge
@@ -59,6 +61,7 @@ en:
     code_of_conduct: "Code of Conduct"
     faq: "Frequently Asked Questions"
     email_newsletter: "Subscribe to our Email Newsletter"
+    privacy: "Privacy"
     privacy_policy: "Privacy Policy"
     tos: "Terms of Service"
   measurements:

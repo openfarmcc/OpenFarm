@@ -3,19 +3,18 @@
 <div class="member-profile" ng-controller="profileCtrl">
   <!-- Pull cover image from member's favorite_crop -->
 
-
   <div class="row wide-row canopy"
        style="background-image: url({{ profileUser.user_setting.favorite_crop.image_url || '/assets/baren_field.jpg' }}) ">
     <div class="canopy" ng-class="{ editing : editing }" style="">
       <div class="small-12 medium-10 large-6 small-centered columns member-info-wrapper" ng-cloak ng-show="profileUser">
         <div class="row">
-          <div ng-if="cropNotSet" class="small-12 columns set-crop">
-          <h2>Success!</h2>
-          <p><%= t('.show_you_around') %>
-          </p>
-          <p>
-          <%= t('.this_is_your_member_profile_page') %>
-          </p>
+          <div ng-if="cropNotSet && profileId === userId" class="small-12 columns set-crop">
+            <h2>Success!</h2>
+            <p><%= t('.show_you_around') %>
+            </p>
+            <p>
+            <%= t('.this_is_your_member_profile_page') %>
+            </p>
           </div>
           <form class="set-crop" ng-show="editing">
             <div class="row collapse">

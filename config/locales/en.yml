@@ -137,6 +137,7 @@ en:
           Members. We’re gonna let you go explore from here, but before you
           get too excited and run off, we have one more question:
         what_is_your_favorite_crop: What is your favorite crop?
+        favorite_crop_suggestion: "e.g. Cherry Tomatoes"
         member_profile_intro: |
           This is your member profile. It reflects your presence on OpenFarm
         guides:

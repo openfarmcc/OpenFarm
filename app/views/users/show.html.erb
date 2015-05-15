@@ -34,7 +34,7 @@
                        ng-change="search()"
                        ng-model="query"
                        typeahead-on-select="setFavoriteCrop()"
-                       placeholder="<%= t('home.placeholder') %>"
+                       placeholder="<%= t('.favorite_crop_suggestion') %>"
                        type="text"
                        typeahead-wait-ms="200"
                        typeahead="crop.name for crop in crops">

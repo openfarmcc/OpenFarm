@@ -7,7 +7,7 @@ module Api
         crops = Crop.search(q,
                             limit: 25,
                             partial: true,
-                            misspellings: { distance: 2 },
+                            misspellings: { distance: 1 },
                             fields: ['name^20',
                                      'common_names^10',
                                      'binomial_name^10',

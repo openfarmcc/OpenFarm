@@ -1,0 +1,16 @@
+.typeahead {
+
+  & + ul {
+    width: 100%;
+    max-width: 100%;
+
+    li {
+      width: 100%;
+      max-width: 100%;
+
+      .active {
+
+      }
+    }
+  }
+}

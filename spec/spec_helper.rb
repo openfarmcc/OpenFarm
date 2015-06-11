@@ -35,7 +35,7 @@ Delayed::Worker.delay_jobs = false
 # ===== VCR stuff (records HTTP requests for playback)
 VCR.configure do |c|
   c.cassette_library_dir = 'vcr'
-  c.hook_into :webmock # or :fakeweb
+  c.hook_into :webmock 
   c.default_cassette_options = { record: :new_episodes,
                                  match_requests_on: [:host, :method] }
   c.ignore_localhost = true

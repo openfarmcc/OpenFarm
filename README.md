@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/openfarmcc/OpenFarm.png?label=ready&title=Ready)](https://waffle.io/openfarmcc/OpenFarm)
 [![Coverage Status](https://img.shields.io/coveralls/openfarmcc/OpenFarm.svg)](https://coveralls.io/r/openfarmcc/OpenFarm)
 [![Code Climate](https://codeclimate.com/github/openfarmcc/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
 [![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/pr)](http://issuestats.com/github/openfarmcc/openfarm)

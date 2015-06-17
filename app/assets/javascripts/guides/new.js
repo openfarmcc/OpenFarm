@@ -829,10 +829,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           console.log(a);
             return a.overview || a.time || (a.pictures && a.pictures.length > 0);
           }).map(function(action, index){
-            return { name: action.name,
-                     images: action.pictures.filter(function(p){
+            var img = null;
+            if(action.pictures != null) {
+              img = action.pictures.filter(function(p){
                       return !p.deleted;
-                     }),
+                     });
+            }
+            return { name: action.name,
+                     images: img,
                      overview: action.overview,
                      time: calcTimeLength(action.time, action.length_type),
                      order: index };
@@ -846,7 +850,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
       // Go through all the possible changes on
       // each stage.
-
       if (stage.selected && !stage.exists){
         console.log('creating stage');
         stageService.createStage(stageParams,

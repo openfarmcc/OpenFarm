@@ -830,7 +830,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
             return a.overview || a.time || (a.pictures && a.pictures.length > 0);
           }).map(function(action, index){
             var img = null;
-            if(action.pictures != null) {
+            if(action.pictures !== null) {
               img = action.pictures.filter(function(p){
                       return !p.deleted;
                      });

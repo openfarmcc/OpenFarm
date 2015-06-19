@@ -24,6 +24,7 @@
       <div class="large-12 columns">
         <div class="large-12 columns header">
           <h1 class="guide-name">{{ guide.name }}</h1>
+          <h2 class="crop-name">{{ guide.crop_name }}</h2>
           <h2 class="guide-author"><%= t('.guide_by') %> {{ guide.user.display_name }}</h2>
           <%= render "guides/show/guide_controllers" %>
         </div>

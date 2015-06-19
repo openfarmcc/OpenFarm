@@ -5,6 +5,7 @@
         class="button tiny secondary dropdown add-to-garden-button"
         ng-class="{ 'add-to-garden-button-guide': guide !== undefined }">Add To Garden</button><br>
 <ul id="addToGarden" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+  <li class="fa" ng-hide="currentUser.gardens.length"><a href=""></a></li>
   <li ng-repeat="garden in currentUser.gardens">
     <a ng-click="toggleGarden(garden)">
       <i class="fa fa-spin fa-spinner" ng-show="garden.adding"></i>

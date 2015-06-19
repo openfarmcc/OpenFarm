@@ -60,9 +60,13 @@
 
     .guide-name {
       float: left;
-      margin-right: 20px;
+      // margin-right: 20px;
     }
-
+    
+    .crop-name{
+      float: left;
+      margin: 0 20px;
+    }
     .guide-author {
       color: #666666;
       float: left;

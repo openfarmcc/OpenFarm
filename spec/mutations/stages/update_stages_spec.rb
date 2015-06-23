@@ -34,6 +34,9 @@ describe Stages::UpdateStage do
   end
 
   it 'disallows phony URLs' do
+    # Fake using S3
+    # Paperclip::Attachment.default_options[:storage] = 's3'
+    # Paperclip::Attachment.default_options[:s3_credentials][:bucket] =
     image_hash = {
       image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
     }

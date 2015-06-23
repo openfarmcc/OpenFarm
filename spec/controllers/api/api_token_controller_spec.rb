@@ -4,7 +4,7 @@ describe Api::TokensController, type: :controller do
 
   include ApiHelpers
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
 
   it 'creates a token' do
     note """ Hit this API endpoint to generate an authentication token. Take the

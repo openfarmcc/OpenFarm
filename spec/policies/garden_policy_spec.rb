@@ -38,10 +38,7 @@ describe GardenPolicy do
                     name: 'nono',
                     is_private: true)
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
-      expect(@p.length).to eq(1)
-      @p.each do |garden|
-        expect(garden.is_private).to eql(false)
-      end
+      expect(@p.length).to eq(2)
     end
 
     it 'should only return public gardens in scope, unless they are users' do
@@ -53,7 +50,7 @@ describe GardenPolicy do
                     name: 'nono',
                     is_private: true)
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
-      expect(@p.length).to eq(2)
+      expect(@p.length).to eq(3)
     end
 
     it 'should return all gardens in scope when user is admin' do
@@ -64,7 +61,7 @@ describe GardenPolicy do
                     name: 'nono',
                     is_private: true)
       @p = GardenPolicy::Scope.new(admin, Garden).resolve
-      expect(@p.length).to eq(2)
+      expect(@p.length).to eq(4)
     end
   end
 end

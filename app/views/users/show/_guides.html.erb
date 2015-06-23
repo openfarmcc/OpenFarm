@@ -1,0 +1,41 @@
+<div class="section-header">
+  <h3 class="section-title"><%= t('application.guides') %></h3>
+  <% if current_user == @user %>
+  <button class="button right tiny create-guide-button"><%= link_to t('application.create_guide'), new_guide_path %>
+  <% end %>
+</div>
+
+<div class="guides row guides-list">
+  <div class="small-12 columns">
+    <table>
+      <% @user.guides.each do |guide| %>
+        <tr>
+          <td>
+            <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
+            <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
+          </td>
+          <td>
+            <%= link_to(guide.crop.name, { controller: 'crops',
+              action: 'show',
+              id: guide.crop.id }, :class => 'action show crop-name') %>
+          </td>
+          <td>
+            <%= link_to(icon('edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show') %>
+          </td>
+          <td>
+            <%= link_to(icon('trash'), guide_path(guide), :method => 'delete', :class => 'action show', data: {confirm: "Are you sure?"}) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <% if @user.guides.count == 0 %>
+      <div class="loading-content">
+        <% if @user != current_user %>
+          <%= t('.no_guides_yet') %>
+        <% else %>
+          <%= t('.you_have_not_created_a_guide') %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

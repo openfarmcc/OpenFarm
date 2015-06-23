@@ -5,12 +5,16 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
                       userService,
                       gardenService,
                       cropService) {
-
+    $scope.addingGarden = false;
     $scope.alerts = [];
     $scope.newGarden = {};
 
+    $scope.toggleAddGarden = function() {
+      $scope.addingGarden = !$scope.addingGarden;
+    }
+
     $scope.initCallback = function(success, user){
-      $scope.currentUser = user;
+      $scope.profileUser = user;
 
       $scope.gardens = user.gardens;
 
@@ -34,7 +38,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
         });
       });
     };
-    userService.getUser(USER_ID, $scope.alerts, $scope.initCallback);
+    userService.getUser(PROFILE_ID, $scope.alerts, $scope.initCallback);
+
+    userService.getUser(USER_ID, $scope.alerts, function(success, user) {
+      $scope.currentUser = user;
+    });
 
     $scope.selectAll = function(garden){
       angular.forEach(garden.garden_crops, function(crop){

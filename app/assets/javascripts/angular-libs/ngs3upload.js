@@ -238,7 +238,6 @@ angular.module('ngS3upload.directives', []).
                         s3Options.signature,
                         selectedFile
                       ).then(function (resp) {
-                        console.log(scope);
                         ngModel.$setViewValue(s3Uri + key);
 
                         scope.s3UploadPlacePic({image: s3Uri + key});

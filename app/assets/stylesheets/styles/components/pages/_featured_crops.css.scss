@@ -12,6 +12,11 @@
         position: relative;
         height: 280px;
 
+        .row {
+          margin: 0;
+          width: 100%;
+        }
+
         &:hover {
           .blackness {
             opacity: 1;

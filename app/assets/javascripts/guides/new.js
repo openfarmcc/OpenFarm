@@ -553,30 +553,24 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     });
 
   //Typeahead search for crops
-  $scope.search = function (val) {
+  $scope.getCrops = function (val) {
     // be nice and only hit the server if
     // length >= 3
-    $scope.query = val;
-    if ($scope.query && $scope.query.length >= 3){
-      $http({
-        url: '/api/crops',
-        method: "GET",
-        params: {
-          query: $scope.query
-        }
-      }).success(function (response) {
-        if (response.crops.length){
-          $scope.crops = response.crops;
-        } else {
-          $scope.crop_not_found = true;
-        }
-      }).error(function (response, code) {
-        $scope.alerts.push({
-          msg: code + ' error. Could not retrieve data from server. Please try again later.',
-          type: 'warning'
+    return $http.get('/api/crops', {
+      params: {
+        query: val
+      }
+    }).then(function(res) {
+      var crops = [];
+      crops = res.data.crops;
+      if (crops.length === 0) {
+        crops.push({
+          name: val,
+          is_new: true
         });
-      });
-    }
+      }
+      return crops;
+    })
   };
 
   //Gets fired when user selects dropdown.
@@ -745,12 +739,16 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
     var params = {
       time_span: $scope.newGuide.time_span,
       name: $scope.newGuide.name,
-      crop_id: $scope.newGuide.crop._id,
+      crop_id: $scope.newGuide.crop._id || null,
       overview: $scope.newGuide.overview || null,
       location: $scope.newGuide.location || null,
       featured_image: defineFeaturedImage($scope.newGuide.featured_image),
       practices: practices
     };
+
+    if (params.crop_id === null) {
+      params.crop_name = $scope.newGuide.crop.name;
+    }
 
     if (params.featured_image === '/assets/leaf-grey.png'){
       params.featured_image = null;
@@ -831,10 +829,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           console.log(a);
             return a.overview || a.time || (a.pictures && a.pictures.length > 0);
           }).map(function(action, index){
-            return { name: action.name,
-                     images: action.pictures.filter(function(p){
+            var img = null;
+            if(action.pictures !== null) {
+              img = action.pictures.filter(function(p){
                       return !p.deleted;
-                     }),
+                     });
+            }
+            return { name: action.name,
+                     images: img,
                      overview: action.overview,
                      time: calcTimeLength(action.time, action.length_type),
                      order: index };
@@ -848,7 +850,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
       // Go through all the possible changes on
       // each stage.
-
       if (stage.selected && !stage.exists){
         console.log('creating stage');
         stageService.createStage(stageParams,

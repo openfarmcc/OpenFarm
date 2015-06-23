@@ -60,8 +60,12 @@
       font-size: 1.2rem;
       font-weight: 800;
       line-height: $step-circle-size;
-      margin: 15px;
       vertical-align: middle;
+      text-align: center;
+
+      > div {
+        display: inline-block;
+      }
     }
 
     .step-circle {

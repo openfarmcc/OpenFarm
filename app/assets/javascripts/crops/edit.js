@@ -23,7 +23,6 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
             return s.length > 0;
           });
         }
-
       }
 
       var params = {

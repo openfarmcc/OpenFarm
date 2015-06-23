@@ -35,10 +35,21 @@ describe GuidesController do
     expect(response.status).to eq(302)
   end
 
-  it 'should show the index page' do
+  it 'should access logged in user profile page when accessing index' do
+    user = FactoryGirl.create(:user)
+    sign_in user
     get 'index'
-    expect(response).to render_template(:index)
-    expect(response.status).to eq(200)
+    expect(response).to redirect_to ({ controller: 'users',
+                                       action: 'show',
+                                       id: user.id,
+                                       locale: 'en' })
+    expect(response.status).to eq(302)
+  end
+
+  it 'should access root page when accessing index not logged in' do
+    get 'index'
+    expect(response).to redirect_to "/en"
+    expect(response.status).to eq(302)
   end
 
   it 'should add an impression if a user shows the guide' do

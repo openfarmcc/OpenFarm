@@ -41,6 +41,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-foundation', '~> 0.6.0'
   gem 'rails-assets-angular-ui-sortable'
   gem 'rails-assets-angular-local-storage'
+  gem 'rails-assets-angular-typeahead'
 end
 
 group :development, :test do

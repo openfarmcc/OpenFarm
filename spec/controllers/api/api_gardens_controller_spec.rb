@@ -5,8 +5,8 @@ describe Api::GardensController, type: :controller do
 
   describe 'index' do
     before do
-      @viewing_user = FactoryGirl.create :user
-      @other_user = FactoryGirl.create :user
+      @viewing_user = FactoryGirl.create :confirmed_user
+      @other_user = FactoryGirl.create :confirmed_user
       sign_in @viewing_user
     end
 
@@ -19,8 +19,8 @@ describe Api::GardensController, type: :controller do
 
   describe 'show' do
     before do
-      @viewing_user = FactoryGirl.create :user
-      @other_user = FactoryGirl.create :user
+      @viewing_user = FactoryGirl.create :confirmed_user
+      @other_user = FactoryGirl.create :confirmed_user
       sign_in @viewing_user
     end
 
@@ -84,16 +84,17 @@ describe Api::GardensController, type: :controller do
 
   describe 'create' do
     before do
-      @viewing_user = FactoryGirl.create :user
+      @viewing_user = FactoryGirl.create :confirmed_user
       sign_in @viewing_user
     end
 
     it 'should create a garden' do
       post :create,
            name: 'New Garden',
+           garden: {},
            format: :json
       expect(response.status).to eq(201)
-      expect(Garden.all.first.name).to eq('New Garden')
+      expect(Garden.all.last.name).to eq('New Garden')
     end
 
     it 'should prevent non-logged in users from creating a garden'

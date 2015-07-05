@@ -14,10 +14,6 @@ class Crop
   has_many :guides
   field :guides_count, type: Fixnum, default: 0
 
-  field :name
-  field :common_names, type: Array
-  validates_presence_of :name
-  field :binomial_name
   field :description
   belongs_to :crop_data_source
   field :sun_requirements
@@ -27,6 +23,22 @@ class Crop
   field :minimum_temperature, type: Integer # In Celcius
   field :row_spacing, type: Integer
   field :height, type: Integer
+
+  # Naming. This is tricky.
+  # See https://github.com/openfarmcc/OpenFarm/issues/641
+  field :binomial_name
+
+  field :genus
+  field :species
+
+  field :cultivar_name
+
+  field :name
+  field :common_names, type: Array
+  validates_presence_of :name
+
+  has_many :varieties, class_name: 'Crop'
+  belongs_to :parent, class_name: 'Crop'
 
   # embeds_many :crop_times
 

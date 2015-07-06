@@ -211,6 +211,11 @@ en:
             Some examples of ways we might ask you to help: organizing
             community events, translation, etc.
           next_step: "Next: View Profile"
+      edit:
+        edit_profile: "Edit your member profile"
+        location_placeholder: "Portland, OR, USA"
+        help_sign_up: "Do you want to help build OpenFarm?"
+        save: "Save Changes"
   crops:
     edit_crop: "Edit crop"
     add_this_information: "Add this information"

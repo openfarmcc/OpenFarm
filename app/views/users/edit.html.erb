@@ -1,0 +1,105 @@
+<% content_for(:start_js) do %>
+<%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+<% end %>
+
+<div class="finish"
+  ng-controller="finishCtrl">
+  <div class="row title">
+    <div class="large-12 columns">
+      <h2><%= t('.edit_profile') %></h2>
+    </div>
+  </div>
+<%# form_for :user, controller: 'users', action: 'finish', method: 'put' do |f| %>
+<form>
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="location">
+        <%= t('users.finish.where_do_you_farm') %>
+      </label>
+      <small><%= t('users.finish.city_or_zip') %></small>
+    </div>
+    <div class="large-8 columns">
+      <span location
+            ng-model="user.user_setting.location"
+            loading-text="<%= t('application.loading_locations') %>">
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="units_preference">
+        <%= t('users.finish.units_preference') %>
+      </label>
+    </div>
+    <div class="large-8 columns">
+      <input type="radio" id="units-imperial" value="imperial" name="units" ng-model="user.user_setting.units"><label for="units-imperial">Imperial</label>
+
+      <input id="units-metric" type="radio" value="metric" name="units" ng-model="user.user_setting.units" checked><label for="units-metric">Metric</label>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="columns large-4">
+        <label for="user[images]">Choose a profile image!</label>
+      </div>
+      <div class="columns large-8">
+        <div id="user_image_upload"
+            name="user[images]"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="user.user_setting.picture"
+            s3-upload-place-pic="placeUserUpload(image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+      </div>
+    </div>
+
+
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="location">
+        <%= t('users.finish.email_sign_up') %>
+      </label>
+    </div>
+    <div class="large-8 columns">
+      <input type="radio" id="yes-email" value="true" name="mailing_list" ng-checked="user.mailing_list" ><label for="yes-email">Yes</label>
+      <input id="no-email" type="radio" value="false" name="mailing_list" checked ng-checked="!user.mailing_list"><label for="no-email">No</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-4 columns">
+      <label for="help_sign_up">
+        <%= t('.help_sign_up') %>
+        <br/><small><%= t('users.finish.help_description') %></small>
+      </label>
+
+    </div>
+    <div class="large-8 columns">
+      <input type="radio" id="yes-help" value="true" name="help_list" ng-checked="user.help_list" ><label for="yes-help">Yes</label>
+      <input id="no-help" type="radio" value="false" name="help_list" ng-checked="!user.help_list" checked><label for="no-help">No</label>
+    </div>
+  </div>
+
+  <div class="row submit">
+    <div class="large-12 columns">
+    <span class="right">
+      <input class="button small"
+        ng-disabled="user.sending"
+        data-disable-with="Saving..."
+        name="commit"
+        type="submit"
+        ng-click="submitForm()"
+        value="<%= t('.save') %>"/>
+      </span>
+    </div>
+  </div>
+</form>
+<%# end %>
+</div>
+
+<% content_for(:end_js) do %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+  <%= javascript_include_tag 'users/finish' %>
+<% end %>

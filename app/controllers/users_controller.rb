@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     @users = policy_scope(User)
   end
 
+  def edit
+    authorize current_user
+  end
+
   def finish
     authorize current_user
   end

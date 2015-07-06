@@ -20,6 +20,10 @@ class UserPolicy < ApplicationPolicy
     @viewed_user == @current_user || @current_user.admin?
   end
 
+  def edit?
+    @viewed_user == @current_user || @current_user.admin?
+  end
+
   def finish?
     @viewed_user == @current_user || @current_user.admin?
   end

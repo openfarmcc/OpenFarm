@@ -43,6 +43,7 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
       }
 
       var userCallback = function(success, user){
+        console.log(success, user)
         $scope.user.sending = false;
         if (success) {
           $scope.user = user;

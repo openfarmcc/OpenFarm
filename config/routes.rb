@@ -17,6 +17,7 @@ OpenFarm::Application.routes.draw do
     devise_scope :users do
       get 'users/gardens' => 'users#gardens'
       get 'users/finish' => 'users#finish'
+      get 'users/edit' => 'users#edit'
       put 'users' => 'users#update'
     end
     resources :users

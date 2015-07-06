@@ -82,20 +82,20 @@ class User
     gb = Gibbon::API.new
     if self.mailing_list && self.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Subscribers' } })
-      gb.lists.subscribe({ id: list['data'][0]['id'],
-                           email: { email: self[:email] },
-                           merge_vars: { :DNAME => self[:display_name] },
-                           double_optin: false,
-                           update_existing: true })
+      gb.lists.subscribe(id: list['data'][0]['id'],
+                         email: { email: self[:email] },
+                         merge_vars: { DNAME: self[:display_name] },
+                         double_optin: false,
+                         update_existing: true)
 
     end
     if self.help_list && self.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Helpers' } })
-      gb.lists.subscribe({ id: list['data'][0]['id'],
-                           email: { email: self[:email] },
-                           merge_vars: { :DNAME => self[:display_name] },
-                           double_optin: false,
-                           update_existing: true })
+      gb.lists.subscribe(id: list['data'][0]['id'],
+                         email: { email: self[:email] },
+                         merge_vars: { DNAME: self[:display_name] },
+                         double_optin: false,
+                         update_existing: true)
 
     end
   end

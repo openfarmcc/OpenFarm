@@ -35,10 +35,10 @@ class Crop
 
   field :name
   field :common_names, type: Array
-  validates_presence_of :name
+  validates :name, presence: true
 
-  # has_many :varieties, class_name: Crop
-  # belongs_to :parent, class_name: Crop
+  has_many :varieties, class_name: 'Crop', inverse_of: :parent
+  belongs_to :parent, class_name: 'Crop', inverse_of: :varieties
 
   # embeds_many :crop_times
 

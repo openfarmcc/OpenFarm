@@ -79,7 +79,7 @@ class User
   private
 
   def connect_to_mailchimp
-    gb = Gibbon::API.new
+    gb = Gibbon::API.new(ENV['MAILCHIMP_API_KEY'] || 'fake_key')
     if self.mailing_list && self.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Subscribers' } })
       gb.lists.subscribe(id: list['data'][0]['id'],

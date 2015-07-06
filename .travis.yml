@@ -6,3 +6,8 @@ rvm:
 services:
 - mongodb
 - elasticsearch
+env:
+  # This needs to be set here because TravisCI doesn't
+  # let untrusted sources run on mailchimp. Anyway, this is
+  # fake.
+  - MAILCHIMP_API_KEY=mailchimp-abc

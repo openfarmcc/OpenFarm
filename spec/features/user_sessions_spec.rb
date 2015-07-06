@@ -91,13 +91,13 @@ describe 'User sessions' do
   end
 
   it 'should link to mailchimp if user chooses to be on mailing list'  # do
-    # usr = sign_up_procedure
+  #   usr = sign_up_procedure
 
-    # choose('yes-email')
+  #   choose('yes-email')
 
-    # click_button I18n::t('users.finish.next_step')
+  #   click_button I18n::t('users.finish.next_step')
 
-    # expect(usr.mailing_list).to eq(true)
+  #   expect(usr.mailing_list).to eq(true)
   # end
 
   it 'should link to mailchimp if user chooses to be on mailing list'  # do

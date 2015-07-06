@@ -54,6 +54,7 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'webmock'
 end
 
 group :test do

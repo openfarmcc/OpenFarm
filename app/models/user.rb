@@ -91,7 +91,7 @@ class User
     end
     if self.help_list && self.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Helpers' } })
-      gb.lists.subscribe({ id: self['data'][0]['id'],
+      gb.lists.subscribe({ id: list['data'][0]['id'],
                            email: { email: self[:email] },
                            merge_vars: { :DNAME => self[:display_name] },
                            double_optin: false,

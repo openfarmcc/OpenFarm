@@ -21,6 +21,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'vcr'
+require 'webmock/rspec'
 require 'pundit/rspec'
 # ====== PHANTOMJS stuff
 require 'capybara/poltergeist'

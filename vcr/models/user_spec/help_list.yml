@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/list
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"","filters":{"list_name":"OpenFarm
+        Helpers"}}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '930'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 06 Jul 2015 05:36:27 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"total":1,"data":[{"id":"7ec999ba49","web_id":540717,"name":"OpenFarm
+        Helpers","date_created":"2015-04-03 08:25:15","email_type_option":false,"use_awesomebar":true,"default_from_name":"The
+        OpenFarm Team","default_from_email":"kevin@openfarm.cc","default_subject":"","default_language":"en","list_rating":0,"subscribe_url_short":"http:\/\/eepurl.com\/biTabv","subscribe_url_long":"http:\/\/openfarm.us8.list-manage.com\/subscribe?u=&id=7ec999ba49","beamer_address":"us8@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":24,"unsubscribe_count":0,"cleaned_count":0,"member_count_since_send":27,"unsubscribe_count_since_send":0,"cleaned_count_since_send":0,"campaign_count":0,"grouping_count":0,"group_count":0,"merge_var_count":1,"avg_sub_rate":0,"avg_unsub_rate":0,"target_sub_rate":0,"open_rate":0,"click_rate":0,"date_last_campaign":null},"modules":[]}],"errors":[]}'
+    http_version:
+  recorded_at: Mon, 06 Jul 2015 05:36:27 GMT
+- request:
+    method: post
+    uri: https://us8.api.mailchimp.com/2.0/lists/subscribe
+    body:
+      encoding: UTF-8
+      string: '{"apikey":"","id":"7ec999ba49","email":{"email":"blanca.lehner@klockodoyle.net"},"merge_vars":{"DNAME":"Alek
+        Romaguera"},"double_optin":false,"update_existing":true}'
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '80'
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 06 Jul 2015 05:36:28 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _AVESTA_ENVIRONMENT=prod; path=/
+    body:
+      encoding: UTF-8
+      string: '{"email":"blanca.lehner@klockodoyle.net","euid":"57ee2f5e2a","leid":"266178321"}'
+    http_version:
+  recorded_at: Mon, 06 Jul 2015 05:36:28 GMT
+recorded_with: VCR 2.9.3

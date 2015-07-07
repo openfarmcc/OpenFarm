@@ -13,7 +13,7 @@ Other use cases: a mobile app for home gardeners, Google providing &ldquo;One Bo
 
 If you have any quick questions, ask them on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). If the room looks empty it's because our core team uses Slack, we have a bot piping messages back and forth - read on if you want to join that!
 
-We use [Slack](https://openfarm.slack.com/) for real-time discussion and mockup sharing among the core team. We strongly recommend joining this group if you want to get involved and meet the other contributors. All you have to do is enter your email into [this form](http://goo.gl/forms/ZqBdmN2nu2) or [email Rory](mailto:rory@openfarm.cc) with your email address and he&#8217;ll send you an invitation to join!
+Sign up to [our Slack room](http://openfarm-slack.herokuapp.com/)! We strongly recommend joining this group if you want to get involved and meet the other contributors. 
 
 ### Community Discussion Group
 
@@ -62,7 +62,7 @@ To view the most recent mockups, click [here](https://drive.google.com/open?id=0
 
 We encourage everyone to contribute! From newbies, to pros, to people who don&#8217;t write software, to those with just a few ideas to share &mdash; we greatly appreciate everyone&#8217;s input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
 
-Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub.
+Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub. But that's just people who contribute code. There's a whole host of people who contributed financially, and people contribute guides on the actual website too!
 
 ### Software License
 

@@ -26,6 +26,12 @@ describe UsersController do
     expect(response).to redirect_to root_path(locale: 'en')
   end
 
+  it 'should show the user the edit page' do
+    sign_in user
+    get 'edit'
+    expect(response).to render_template(:edit)
+  end
+
   it 'should only show public users on index' do
     private_user = FactoryGirl.create(:user, is_private: true)
     public_user = FactoryGirl.create(:user)

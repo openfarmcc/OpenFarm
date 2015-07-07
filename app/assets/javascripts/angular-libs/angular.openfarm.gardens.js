@@ -19,7 +19,7 @@ openFarmModule.factory('gardenService', ['$http',
         .success(function (response, object) {
           alerts.push({
             'type': 'success',
-            'msg': 'Success!'
+            'msg': 'Updated Your Garden!'
           });
           if (callback){
             return callback(true, response, object);
@@ -56,7 +56,7 @@ openFarmModule.factory('gardenService', ['$http',
         .success(function (object, status) {
           alerts.push({
             'type': 'success',
-            'msg': 'Success!'
+            'msg': 'Created Your Garden!'
           });
           if (callback){
             return callback(true, object.garden, status);
@@ -82,7 +82,7 @@ openFarmModule.factory('gardenService', ['$http',
         .success(function (response, object) {
           alerts.push({
             'type': 'success',
-            'msg': 'Success!'
+            'msg': 'Saved The Garden Crop!'
           });
           if (callback){
             return callback(true, response, object);
@@ -110,7 +110,7 @@ openFarmModule.factory('gardenService', ['$http',
         .success(function(response, object){
           alerts.push({
             'type': 'success',
-            'msg': 'Success!'
+            'msg': 'Added Crop to Garden!'
           });
           if (callback){
             return callback(true, response, object);

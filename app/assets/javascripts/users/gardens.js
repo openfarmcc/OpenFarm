@@ -67,6 +67,9 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
       var callback = function(success, garden){
         if (success){
           $scope.currentUser.gardens.push(garden);
+          $scope.profileUser.gardens.push(garden);
+          $scope.newGarden = {};
+          $scope.addingGarden = false;
         }
       };
       gardenService.createGarden(newGarden, $scope.alerts, callback);

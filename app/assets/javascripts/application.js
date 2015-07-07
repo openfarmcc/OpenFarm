@@ -12,6 +12,7 @@
 //= require ./libs/moment.min
 //= require ./angular-libs/angular.openfarm
 //= require ./angular-libs/angular.openfarm.directives
+//= require ./angular-libs/angular.openfarm.users
 //= require ./angular-libs/angular.openfarm.guides
 //= require ./angular-libs/angular.openfarm.gardens
 //= require ./angular-libs/angular.openfarm.stages
@@ -70,7 +71,6 @@ var getIDFromURL = function(key) {
 };
 
 var pushToAlerts = function (response, code, alerts){
-  console.log(response, code);
   var msg = '';
   angular.forEach(response, function(value){
     msg += value;

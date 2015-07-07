@@ -23,7 +23,7 @@
           id="crop_name"
           type="text"
           ng-model="cropQuery"
-          typeahead="crop as crop.name for crop in getCrops($viewValue) | filter:$viewValue"
+          typeahead="crop as crop.attributes.name for crop in getCrops($viewValue) | filter:$viewValue"
           typeahead-on-select='cropSelected($item, $model, $label)'
           typeahead-loading="loadingCrops"
           typeahead-wait-ms="500"
@@ -38,15 +38,16 @@
           <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
         </span>
       </div>
-      <div class="crop-name-and-description center columns small-12" ng-cloak ng-if="newGuide.crop.name">
+
+      <div class="crop-name-and-description center columns small-12" ng-cloak ng-if="newGuide.crop.attributes.name">
         <p class="crop-name">
           <i class="cancel-selection-btn fa fa-times-circle-o" ng-click="clearCropSelection()"></i>
-          <strong class="common-name" ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
+          <strong class="common-name" ng-cloak ng-bind="newGuide.crop.attributes.name ? newGuide.crop.attributes.name : ''"></strong>
           <br/>
-          <small><em class="binomial-name" ng-bind="newGuide.crop.binomial_name"></em></small>
+          <small><em class="binomial-name" ng-bind="newGuide.crop.attributes.binomial_name"></em></small>
         </p>
         <p class="center" ng-show="newGuide.crop">
-          <span ng-bind="newGuide.crop.description"></span>
+          <span ng-bind="newGuide.crop.attributes.description"></span>
         </p>
         <p ng-if="newGuide.crop.is_new">
           We couldn't find that crop in our database yet. We'll automatically add it!

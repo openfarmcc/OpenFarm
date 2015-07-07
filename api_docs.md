@@ -1,7 +1,59 @@
+# API Docs V1
+=============
+
+The v1 API uses the JSON-API specifications. We're still migrating to it. Watch this space to keep up to date on it.
+
+## Quirks
+* We're overriding the standard name format because both JavaScript and Ruby work better with an `_` than a `-` in names.
+This is counter to the [JSON-API recommendation on naming](http://jsonapi.org/recommendations/#naming).
+
+* We don't do the relationships thing. For now it's too verbose, and the benefit isn't immediately clear. This will return null as long as the route doesn't work. IF someone feels it's necessary they can figure it out.
+
+## General
+
+The general structure of an API response is (for example, through a GET request):
+
+```
+{
+    'data': {
+        'type': '<object_type>',
+        'id': '<object_id>',
+        'attributes': {},
+        'relationships': {}
+    }
+}
+```
+And how you'd send a PATCH, PUT, or POST
+```
+{
+    'data': {
+        'type': '<object_type>',
+        'id': '<object_id>', // optional for POST
+        'attributes': {},
+        'relationships': {}
+    }
+}
+```
+
+## Crops
+
+> *Note:* Crops need a filter to return something. There's too many otherwise, and we don't have pagination sorted yet. It's not sure we ever will, as the need for that isn't immediately clear.
+
+Possible methods:
+```
+GET api/v1/crops/?filter=<query>
+POST api/v1/crops/
+GET api/v1/crops/<id>/
+PUT api/v1/crops/<id>/
+GET api/v1/crops/<id>/pictures
+```
+
+# API Docs V0.
+==============
+
+These are the docs for the existing API. However, we're currently migrating to a v1, structured by JSON-API. Have a look at the top of this document to see what that entails.
 
 # GET /api/crops
-
-
 
 ## Params
 ```
@@ -585,6 +637,5 @@ Hit this API endpoint to generate an authentication token. Take the token that i
   }
 }
 ```
-
 
 

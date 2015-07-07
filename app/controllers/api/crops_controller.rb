@@ -14,9 +14,9 @@ module Api
                                      'description'],
                             boost_by: [:guides_count]
                            )
-        render json: { crops: crops }
+        render json: {crops: crops}
       else
-        render json: { crops: [] }
+        render json: {crops: []}
       end
     end
 

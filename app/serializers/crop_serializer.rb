@@ -1,7 +1,13 @@
-class CropSerializer < ApplicationSerializer
-  attributes :_id, :name, :binomial_name, :common_names, :description,
-             :sun_requirements, :sowing_method, :spread,
-             :row_spacing, :height
+class CropSerializer < BaseSerializer
+  attribute :name
+  attribute :binomial_name
+  attribute :common_names
+  attribute :description
+  attribute :sun_requirements
+  attribute :sowing_method
+  attribute :spread
+  attribute :row_spacing
+  attribute :height
 
   has_many :pictures, serializer: PictureSerializer
 end

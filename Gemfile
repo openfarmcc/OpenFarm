@@ -31,6 +31,7 @@ gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'
 gem 'gibbon'
+gem 'jsonapi-serializers'
 
 # Asset management using bower
 # https://rails-assets.org/

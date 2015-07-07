@@ -54,5 +54,13 @@ OpenFarm::Application.routes.draw do
     delete 'token', to: 'tokens#destroy'
   end
 
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :crops, only: [:index, :show, :update] do
+        resources :pictures, only: [:index, :show]
+      end
+    end
+  end
+
   get '/:locale' => 'homes#show'
 end

@@ -1,207 +1,3 @@
-openFarmApp.directive('formChecker', function(){
-  return {
-    require: '^form',
-    scope: {
-      stage: '=formChecker'
-    },
-    link: function(scope, element, attr){
-      // loop through each stage
-      scope.$watch('stage', function(){
-        if (scope.stage.selected){
-          scope.stage.edited = false;
-          scope.stage.environment.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
-          });
-          scope.stage.light.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
-          });
-          scope.stage.soil.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
-          });
-        }
-      }, true);
-    }
-  };
-});
-
-openFarmApp.factory('focus', ['$rootScope', '$timeout',
-  function ($rootScope, $timeout) {
-    return function(name) {
-      $timeout(function (){
-        $rootScope.$broadcast('focusOn', name);
-      });
-    };
-}]);
-
-openFarmApp.directive('stageButtons', [
-  function stageButtons(){
-    return {
-      restrict: 'A',
-      scope: {
-          abledBool: '&',
-          nextFunction: '=',
-          processing: '='
-      },
-      controller: ['$scope', '$element', '$attrs',
-       function ($scope, $element, $attrs){
-        // Takes in attributes and set them to the appropriate
-        // variable on the local scope.
-        $scope.$watch('processing', function(){
-          if ($scope.processing === true){
-            $scope.disabledText = 'This may take some time';
-          }
-        });
-        $scope.abledText = $attrs.abledText || 'Continue';
-        $scope.disabledText =
-          $attrs.disabledText || 'You can\'t continue yet.';
-        $scope.cancelText = $attrs.cancelText || 'Cancel.';
-        $scope.cancelUrl = $attrs.cancelUrl || '/';
-        $scope.backText = $attrs.backText || undefined;
-
-        $scope.previousStep = $scope.$parent.previousStep;
-        $scope.nextStep = $scope.nextFunction || $scope.$parent.nextStep;
-      }],
-      templateUrl: '/assets/templates/_stage_buttons.html'
-    };
-}]);
-
-openFarmApp.directive('lifetimeChange', [
-  function lifetimeChange(){
-    return {
-      restrict: 'A',
-      scope: {
-        timespan: '=timespan',
-        calendarScale: '='
-      },
-      controller: ['$scope', '$element', '$attrs',
-        function($scope, $element, $attrs){
-          var diffX = -1;
-
-          var calculateDifference = function(x, offset){
-            // calculates the offset to maintain the difference between
-            // where the user clicked and where they're dragging to.
-            return x - offset;
-          };
-
-          var jumpToWeekStarts = function(position, scale){
-            // Makes sure that the newPosition jumps to the relevant week.
-            var weekWidth = scale.step * 7;
-            return scale.convertPositionToWeek(position) * weekWidth;
-          };
-
-          var dictateLength = function(x, diffX, scale, leftOffset){
-            // A function that constrains the length based on days of the year
-            var newPosition = x - diffX;
-
-            leftOffset = leftOffset || 0;
-
-            if (newPosition >= 0 && newPosition <= scale.range - leftOffset){
-              return jumpToWeekStarts(newPosition, scale);
-            }
-            if (newPosition < 0){
-              return 0;
-            }
-            if (newPosition > scale.range - leftOffset){
-              return scale.range - leftOffset;
-            }
-          };
-
-          var lengthChangeHandler = function(e){
-            var element = e.data.element;
-            var scale = e.data.scale;
-            var direction = e.data.direction;
-            var x = e.pageX - element.parent().parent().offset().left;
-            var oldLeftX = parseInt(element.parent().css('left'), 10) || 0;
-            var oldRightX = parseInt(element.parent().css('width'), 10);
-            var newWidth = oldRightX;
-
-            if (diffX === -1){
-              var offset = (direction === 'left' ? oldLeftX : oldRightX);
-              diffX = calculateDifference(x, offset);
-            }
-            // Calculate new things based on direction;
-            if (direction === 'left'){
-
-              var newLeft = dictateLength(x, diffX, scale);
-
-              element.parent().css('left', newLeft);
-
-              // This needs to be made more functional
-              $scope
-                .timespan
-                .set_start_event(scale.convertPositionToWeek(newLeft));
-
-              var newLeftX = parseInt(element.parent().css('left'), 10);
-
-
-              // But we also need to set the new length.
-              var previousWidth = parseInt(element.parent().css('width'), 10);
-              // The new width will be the previous width minus
-              // the difference in length.
-              newWidth = previousWidth + oldLeftX - newLeftX;
-
-            } else {
-              newWidth = dictateLength(x, diffX, scale, oldLeftX);
-            }
-
-            element.parent().css('width', newWidth);
-
-            // this needs to be made more functional
-
-            $scope
-              .timespan
-              .set_length(scale.convertPositionToWeek(newWidth));
-          };
-
-          $element.on('mousedown', function(){
-            $(document).bind('mousemove.lifetime',
-              {
-                'direction': $attrs.lifetimeChange,
-                'element': $element,
-                'scale': $scope.calendarScale,
-                'timespan': $scope.timespan
-              },
-              lengthChangeHandler);
-          });
-
-
-          $(document).on('mouseup', function(){
-            $(document).unbind('mousemove.lifetime', lengthChangeHandler);
-          });
-        }]
-    };
-  }]);
-
-openFarmApp.directive('createTimeline', ['guideService',
-  function createTimeline(guideService){
-    return {
-      restrict: 'A',
-      scope: {
-        timespan: '=createTimeline'
-      },
-      require: 'timeline',
-      controller: ['$scope',
-        function($scope){
-          $scope.creating = true;
-
-          guideService.drawTimeline($scope.timespan,
-                                    function(days, dayWidth, scale){
-                                      $scope.days = days;
-                                      $scope.dayWidth = dayWidth;
-                                      $scope.calendarScale = scale;
-                                    });
-
-        }],
-      templateUrl: '/assets/templates/_timeline.html'
-    };
-  }]);
-
 openFarmApp.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
@@ -556,13 +352,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.getCrops = function (val) {
     // be nice and only hit the server if
     // length >= 3
-    return $http.get('/api/crops', {
+    return $http.get('/api/v1/crops', {
       params: {
-        query: val
+        filter: val
       }
     }).then(function(res) {
       var crops = [];
-      crops = res.data.crops;
+      crops = res.data.data;
       if (crops.length === 0) {
         crops.push({
           name: val,
@@ -575,9 +371,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
 
   //Gets fired when user selects dropdown.
   $scope.cropSelected = function ($item, $model, $label) {
+    console.log('on select', $item);
     $scope.newGuide.crop = $item;
     $scope.crop_not_found = false;
-    $scope.newGuide.crop.description = '';
+    $scope.newGuide.crop.attributes.description = '';
   };
 
   //Gets fired when user resets their selection.

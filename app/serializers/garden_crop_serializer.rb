@@ -1,3 +1,8 @@
 class GardenCropSerializer < ApplicationSerializer
-  attributes :_id, :guide, :crop, :sowed, :stage, :quantity
+  attribute :_id
+  attribute :guide
+  attribute :crop
+  attribute :sowed
+  attribute :stage
+  attribute :quantity
 end

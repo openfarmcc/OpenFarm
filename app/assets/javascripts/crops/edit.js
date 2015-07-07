@@ -6,6 +6,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
     var cropId = getIDFromURL('crops');
 
     var setCrop = function(success, crop){
+      console.log(crop);
       $scope.editCrop = crop;
     };
 
@@ -25,33 +26,31 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
         }
       }
 
-      var params = {
-        crop: {
-          common_names: commonNames,
-          name: $scope.editCrop.name,
-          description: $scope.editCrop.description || null,
-          binomial_name: $scope.editCrop.binomial_name || null,
-          sun_requirements: $scope.editCrop.sun_requirements || null,
-          sowing_method: $scope.editCrop.sowing_method || null,
-          spread: $scope.editCrop.spread || null,
-          // days_to_maturity: $scope.editCrop.days_to_maturity || null,
-          row_spacing: $scope.editCrop.row_spacing || null,
-          height: $scope.editCrop.height || null,
-        }
-      };
+      var crop = {
+        common_names: commonNames,
+        name: $scope.editCrop.name,
+        description: $scope.editCrop.description || null,
+        binomial_name: $scope.editCrop.binomial_name || null,
+        sun_requirements: $scope.editCrop.sun_requirements || null,
+        sowing_method: $scope.editCrop.sowing_method || null,
+        spread: $scope.editCrop.spread || null,
+        // days_to_maturity: $scope.editCrop.days_to_maturity || null,
+        row_spacing: $scope.editCrop.row_spacing || null,
+        height: $scope.editCrop.height || null,
+      }
 
-      params.images = $scope.editCrop.pictures.filter(function(d){
+      crop.images = $scope.editCrop.pictures.filter(function(d){
         return !d.deleted;
       });
 
       var cropCallback = function(success, crop){
         $scope.editCrop.sending = false;
         $scope.editCrop = crop;
-        window.location.href = '/crops/' + $scope.editCrop._id + '/';
+        window.location.href = '/crops/' + $scope.editCrop.id + '/';
       };
 
-      cropService.updateCrop($scope.editCrop._id,
-                             params,
+      cropService.updateCrop($scope.editCrop.id,
+                             crop,
                              $scope.alerts,
                              cropCallback);
     };

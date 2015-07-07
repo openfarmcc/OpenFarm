@@ -90,7 +90,7 @@
     <!-- Sidebar for medium and up screens -->
     <div class="medium-4 large-3 show-for-medium-up columns profile-sidebar">
       <% if current_user == @user %>
-        <%= link_to t('.application.edit_profile'), users_finish_path, class: 'tiny button secondary' %>
+        <%= link_to t('.application.edit_profile'), users_edit_path, class: 'tiny button secondary' %>
         <button class="button tiny secondary" ng-click="editing = !editing"><%= t('.edit_favorite_crop') %></button>
 
         <p class="member ">

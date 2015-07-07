@@ -34,6 +34,18 @@ describe UserPolicy do
     end
   end
 
+  permissions :edit? do
+    it 'denies edit if viewed user is not current user' do
+      expect(UserPolicy).not_to permit(current_user, other_user)
+    end
+    it 'grants edit if user is current user' do
+      expect(UserPolicy).to permit(current_user, current_user)
+    end
+    it 'grants edit if user is admin user' do
+      expect(UserPolicy).to permit(admin, other_user)
+    end
+  end
+
   context "for a user" do
     it "should only return users on index that are public" do
       @p = UserPolicy::Scope.new(current_user, User).resolve

@@ -35,18 +35,18 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
     }
 
     // get the guide specified.
-    var getCrop = function(cropId, alerts, callback){
+    var getCrop = function(cropId, callback){
       $http({
         url: '/api/v1/crops/' + cropId,
         method: 'GET'
       }).success(function (response) {
         return callback (true, buildCrop(response.data, response.included));
       }).error(function (response, code) {
-        alertsService.pushToAlerts(response, code, alerts);
+        alertsService.pushToAlerts(response, code);
       });
     };
 
-    var updateCrop = function(cropId, cropObject, alerts, callback){
+    var updateCrop = function(cropId, cropObject, callback){
       var url = '/api/v1/crops/' + cropId + '/';
       $log.debug(url);
       $http.put(url, buildParams(cropObject))
@@ -54,7 +54,7 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
           return callback (true, buildCrop(response.data, response.included));
         })
         .error(function (response) {
-          alertsService.pushToAlerts(response, code, alerts);
+          alertsService.pushToAlerts(response, code);
         });
     };
     return {

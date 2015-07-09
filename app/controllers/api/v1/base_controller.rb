@@ -43,7 +43,11 @@ class Api::V1::BaseController < ActionController::Base
 
   def respond_with_mutation(status = :ok, options = {})
     if @outcome.success?
-      render json: serialize_model(@outcome.result, options), status: status
+      result = @outcome.result
+      if status == :no_content
+        result = nil
+      end
+      render json: serialize_model(result, options), status: status
     else
       errors = @outcome.errors.message_list.map do |error|
         { 'title': error }

@@ -1,48 +1,51 @@
-openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
-  'gardenService', 'cropService',
+openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
+  'userService', 'gardenService', 'cropService',
   function gardenCtrl($scope,
                       $http,
+                      $rootScope,
                       userService,
                       gardenService,
                       cropService) {
     $scope.addingGarden = false;
-    $scope.alerts = [];
     $scope.newGarden = {};
+
+    // console.log($rootScope.profileUser);
+
+    // $scope.profileUser = $rootScope.profileUser;
+    // $scope.currentUser = $rootScope.currentUser;
 
     $scope.toggleAddGarden = function() {
       $scope.addingGarden = !$scope.addingGarden;
     }
 
-    $scope.initCallback = function(success, user){
-      $scope.profileUser = user;
-      console.log(user);
+    $scope.$watch('profileUser', function(){
+      if($rootScope.profileUser) {
+        gardenService.getGardensForUser($rootScope.profileUser,
+          function(success, response, code) {
+            if(success) {
+              $scope.profileUser.gardens = response;
 
-      $scope.gardens = user.gardens;
+              $scope.profileUser.gardens.forEach(function(garden){
+                // set the pH if it hasn't been set.
+                if (!garden.ph){
+                  garden.ph = 7.5;
+                }
 
-      angular.forEach(user.gardens, function(garden){
-        // set the pH if it hasn't been set.
-        if (!garden.ph){
-          garden.ph = 7.5;
-        }
-
-        angular.forEach(garden.garden_crops, function(garden_crop){
-          var callback = function(success, response){
-            garden_crop.guide.crop = response;
-          };
-          // We only need to fetch the crop if the garden_crop doesn't already
-          // have a crop associated with it.
-          if (garden_crop.guide){
-            cropService.getCrop(garden_crop.guide.crop_id,
-                                $scope.alerts,
-                                callback);
-          }
-        });
-      });
-    };
-    userService.getUser(PROFILE_ID, $scope.alerts, $scope.initCallback);
-
-    userService.getUser(USER_ID, $scope.alerts, function(success, user) {
-      $scope.currentUser = user;
+                garden.garden_crops.forEach(function(garden_crop){
+                  var callback = function(success, response){
+                    garden_crop.guide.crop = response;
+                  };
+                  // We only need to fetch the crop if the garden_crop doesn't already
+                  // have a crop associated with it.
+                  if (garden_crop.guide){
+                    cropService.getCrop(garden_crop.guide.crop_id,
+                                        callback);
+                  }
+                });
+              });
+            }
+          });
+      }
     });
 
     $scope.selectAll = function(garden){
@@ -73,11 +76,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
           $scope.addingGarden = false;
         }
       };
-      gardenService.createGarden(newGarden, $scope.alerts, callback);
+      gardenService.createGarden(newGarden, callback);
     };
 
     $scope.saveGarden = function(garden){
-      gardenService.saveGarden(garden, $scope.alerts);
+      gardenService.saveGarden(garden);
     };
 
     $scope.destroyGarden = function(index, garden){
@@ -91,20 +94,19 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
         garden.hide = true;
       };
       if (answer){
-        gardenService.deleteGarden(garden, $scope.alerts, removeFromGardens);
+        gardenService.deleteGarden(garden, removeFromGardens);
       }
     };
 
     $scope.saveGardenCropChanges = function(garden){
       angular.forEach(garden.garden_crops, function(crop){
         gardenService.saveGardenCrop(garden,
-                                     crop,
-                                     $scope.alerts);
+                                     crop);
       });
     };
 
     $scope.deleteSelected = function(garden){
-      angular.forEach(garden.garden_crops, function(crop){
+      garden.garden_crops.forEach(function(crop){
         if (crop.selected && !crop.hide){
           var removeFromList = function(success){
             if (success){
@@ -115,7 +117,6 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
           };
           gardenService.deleteGardenCrop(garden,
                                          crop,
-                                         $scope.alerts,
                                          removeFromList);
         }
       });

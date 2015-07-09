@@ -14,6 +14,7 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
     var buildUser = function(data, included) {
       var user = data.attributes;
       user.id = data.id;
+      user.relationships = data.relationships;
       if(included) {
         // This can be done better.
         var user_setting = included.filter(function(obj) {

@@ -6,8 +6,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     if Pundit.policy(current_user, user).show?
       render json: serialize_model(user, include: ['user_setting',
                                                    'user_setting.picture',
-                                                   'gardens',
-                                                   'gardens.garden_crops',
                                                    'guides',
                                                    ])
     else

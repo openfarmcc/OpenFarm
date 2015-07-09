@@ -1,6 +1,11 @@
 class Api::V1::GardensController < Api::V1::BaseController
   skip_before_action :authenticate_from_token!, only: [:index, :show]
 
+  def index
+    render json: serialize_models(User.find(params[:user_id]).gardens,
+                                  include: 'garden_crops')
+  end
+
   def create
     @outcome = Gardens::CreateGarden.run(
       params,

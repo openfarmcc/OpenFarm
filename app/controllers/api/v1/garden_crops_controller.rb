@@ -13,6 +13,13 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
   end
 
   def create
+    # According to JSON-API Params must be structured like this:
+    # {
+    #  'data': {
+    #     'type': 'garden-crops',
+    #     'attributes': {},
+    # }
+    puts "params #{params}"
     @outcome = GardenCrops::CreateGardenCrop.run(
       params,
       user: current_user
@@ -34,9 +41,16 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
   end
 
   def update
+    # According to JSON-API params must be structured like this:
+    # {
+    #  'data': {
+    #     'type': 'garden-crops',
+    #     'id': <id>,
+    #     'attributes': {},
+    # }
     garden_crop = Garden.find(params[:garden_id]).
         garden_crops.find(params[:id])
-    @outcome = GardenCrops::UpdateGardenCrop.run(params,
+    @outcome = GardenCrops::UpdateGardenCrop.run(attributes: params[:attributes],
                                                  user: current_user,
                                                  garden_crop: garden_crop)
     respond_with_mutation(:ok)

@@ -13,15 +13,6 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     $scope.setCurrentUser = function(success, object){
       if (success){
         $scope.currentUser = object;
-
-        $scope.currentUser.gardens.forEach(function(garden){
-          garden.garden_crops.forEach(function(gardenCrop){
-            if (gardenCrop.crop && gardenCrop.crop._id === $scope.crop._id){
-              garden.added = true;
-              $scope.gardenCrop = gardenCrop;
-            }
-          });
-        });
       }
     };
 

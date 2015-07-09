@@ -1,22 +1,19 @@
 module GardenCrops
   class CreateGardenCrop < Mutations::Command
-    attr_writer :garden_crop
+    # attr_writer :garden_crop
 
     required do
       model :user
       string :garden_id
-    end
-
-    optional do
-      string :quantity
-      string :guide_id
-      string :crop_id
-      string :stage
-      date :sowed
-    end
-
-    def garden_crop
-      @garden_crop ||= GardenCrop.new
+      hash :attributes do
+        optional do
+          string :quantity
+          string :guide
+          string :crop
+          string :stage
+          date :sowed
+        end
+      end
     end
 
     def validate
@@ -27,13 +24,22 @@ module GardenCrops
     end
 
     def execute
-      set_params
-      garden_crop
+      @garden_crop ||= GardenCrop.new(attributes)
+      # if @guide
+      #   @garden_crop.guide = @guide
+      # end
+      # if @crop
+      #   @garden_crop.crop = @crop
+      # end
+      @garden_crop.garden = @garden
+      @garden_crop.save
+      # puts @garden_crop.to_json
+      @garden_crop
     end
 
     def validate_guide
-      if guide_id
-        @guide = Guide.find(guide_id)
+      if attributes[:guide]
+        attributes[:guide] = Guide.find(attributes[:guide])
       end
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a guide with id #{guide_id}."
@@ -41,8 +47,8 @@ module GardenCrops
     end
 
     def validate_crop
-      if crop_id
-        @crop = Crop.find(crop_id)
+      if attributes[:crop]
+        attributes[:crop] = Crop.find(attributes[:crop])
       end
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a crop with id #{crop_id}."
@@ -61,16 +67,6 @@ module GardenCrops
         msg = 'You can\'t create garden crops for gardens you don\'t own.'
         add_error :garden, :not_authorized, msg
       end
-    end
-
-    def set_params
-      garden_crop.garden      = @garden
-      garden_crop.guide       = @guide if @guide.present?
-      garden_crop.crop        = @crop if @crop.present?
-      garden_crop.quantity    = quantity if quantity.present?
-      garden_crop.stage       = stage if stage.present?
-      garden_crop.sowed       = sowed if sowed.present?
-      garden_crop.save
     end
   end
 end

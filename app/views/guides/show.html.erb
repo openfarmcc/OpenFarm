@@ -51,7 +51,12 @@
         </div>
         <div class="add-to-garden center">
           <% if current_user %>
-            <%= render partial: 'gardens/add_to_gardens.html' %>
+            <div add-to-gardens
+              crop-object="guide"
+              object-type="'guide'"
+              user="currentUser">
+            </div>
+
           <% end %>
         </div>
       </div>
@@ -88,7 +93,11 @@
         </div>
         <div class="add-to-garden center">
           <% if current_user %>
-            <%= render 'gardens/add_to_gardens.html' %>
+            <div add-to-gardens
+              crop-object="guide"
+              object-type="'guide'"
+              user="currentUser">
+            </div>
           <% end %>
         </div>
       </div>

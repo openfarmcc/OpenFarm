@@ -3,11 +3,9 @@ module Guides
     attr_writer :guide
 
     include Guides::GuidesConcern
-    # TODO: refactor to use a hash.
 
     required do
       model :user
-      string :crop_id
 
       hash :attributes do
         required do
@@ -35,6 +33,10 @@ module Guides
           end
         end
       end
+    end
+    optional do
+      string :crop_id
+      string :crop_name
     end
 
     def validate
@@ -65,10 +67,30 @@ module Guides
     end
 
     def validate_crop
-      @crop = Crop.find(crop_id)
+      if crop_id
+        @crop = Crop.find(crop_id)
+      end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a crop with id #{crop_id}."
-      add_error :crop_id, :crop_not_found, msg
+      if crop_name
+        @crop = check_if_crop_exists
+      else
+        msg = "Could not find a crop with id #{crop_id} or name #{crop_name}."
+        add_error :crop_id, :crop_not_found, msg
+      end
+    end
+
+    private
+
+    def check_if_crop_exists
+      crops = Crop.search :crop_name, fields: [{ name: :exact }]
+      if crops.count == 0
+        crop = Crop.new( name: :crop_name,
+                         common_names: [:crop_name,] )
+        crop.save
+        crop
+      else
+        crops[0]
+      end
     end
   end
 end

@@ -1,9 +1,13 @@
-class UserSerializer < ApplicationSerializer
-  attributes :_id, :display_name, :email, :admin, :is_private,
-             :help_list, :mailing_list
+class UserSerializer < BaseSerializer
+  attribute :display_name
+  attribute :email
+  attribute :admin
+  attribute :is_private
+  attribute :help_list
+  attribute :mailing_list
 
-  has_many :gardens  # , embed: :ids, key: :gardens, embed_namespace: :links
-  has_many :guides  # , embed: :ids, key: :guides, embed_namespace: :links
+  has_many :gardens
+  has_many :guides
   has_one :user_setting
 
   def filter(keys)

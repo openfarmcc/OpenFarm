@@ -1,4 +1,4 @@
-class GardenCropSerializer < ApplicationSerializer
+class GardenCropSerializer < BaseSerializer
   attribute :_id
   attribute :guide
   attribute :crop

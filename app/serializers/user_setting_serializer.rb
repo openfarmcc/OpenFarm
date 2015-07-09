@@ -1,9 +1,8 @@
-class UserSettingSerializer < ApplicationSerializer
-  attributes :_id, :location, :units, :years_experience, :favorite_crop
-
-  has_one :picture, serializer: PictureSerializer
-
-  def favorite_crop
+class UserSettingSerializer < BaseSerializer
+  attribute :location
+  attribute :units
+  attribute :years_experience
+  attribute :favorite_crop do
     if object.favorite_crops.count > 0
       # TODO: THIS IS A HACK, this should just use the crop serializer
       crop_picture = nil
@@ -22,4 +21,6 @@ class UserSettingSerializer < ApplicationSerializer
       nil
     end
   end
+
+  has_one :picture
 end

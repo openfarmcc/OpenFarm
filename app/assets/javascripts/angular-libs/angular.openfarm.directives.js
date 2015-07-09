@@ -1,5 +1,6 @@
 openFarmModule.directive('alerts', ['$timeout',
   function alerts($timeout) {
+    console.log('loaded');
     return {
       restrict: 'A',
       require: '?ngModel',
@@ -7,14 +8,15 @@ openFarmModule.directive('alerts', ['$timeout',
         alerts: '='
       },
       controller: ['$scope',
-        function ($scope) {
-          $scope.closeAlert = function(index) {
-            $scope.alerts.splice(index, 1);
+        function (scope) {
+          console.log(scope.alerts);
+          scope.closeAlert = function(index) {
+            scope.alerts.splice(index, 1);
           };
-          $scope.$watch('alerts', function(){
-            if ($scope.alerts && $scope.alerts.length){
+          scope.$watch('alerts', function(){
+            if (scope.alerts && scope.alerts.length){
               $timeout(function(){
-                $scope.alerts = $scope.alerts.filter(function(alert){
+                scope.alerts = scope.alerts.filter(function(alert){
                   return alert.cancelTimeout;
                 });
               }, 3000);

@@ -1,3 +1,5 @@
+require 'openfarm_errors'
+
 class Api::V1::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
@@ -5,6 +7,8 @@ class Api::V1::BaseController < ActionController::Base
   respond_to :json
 
   before_action :authenticate_from_token!
+
+  serialization_scope :current_user
 
   rescue_from OpenfarmErrors::NotAuthorized do |exc|
     json = { error: "Not Authorized. #{exc.message}" }
@@ -14,12 +18,13 @@ class Api::V1::BaseController < ActionController::Base
   # Convenience methods for serializing models:
   def serialize_model(model, options = {})
     options[:is_collection] = false
+    options[:context] = { current_user: serialization_scope }
     JSONAPI::Serializer.serialize(model, options)
   end
 
   def serialize_models(models, options = {})
     options[:is_collection] = true
-    puts options
+    options[:context] = { current_user: serialization_scope }
     JSONAPI::Serializer.serialize(models, options)
   end
 

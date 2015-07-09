@@ -1,7 +1,38 @@
-openFarmModule.factory('gardenService', ['$http',
-  function gardenService($http) {
-    var saveGarden = function(garden, alerts, callback){
-      var url = '/api/gardens/' + garden._id;
+openFarmModule.factory('gardenService', ['$http','alertsService',
+  function gardenService($http, alertsService) {
+
+    // Should return Guide model:
+    // {
+    //   id: '',
+    //   name: '',
+    //   location: '',
+    //   ...
+    //   stages: [],
+    //
+    // }
+    var buildGarden = function(data, included) {
+      var garden = data.attributes;
+      garden.relationships = data.relationships;
+      if (included) {
+        var garden_crops = included.filter(function(obj) {
+          return obj.type === 'garden_crops';
+        });
+      }
+      garden.garden_crops = garden_crops || [];
+      return garden;
+    }
+
+    var buildParams = function(gardenObject) {
+      var data = {
+        type: 'gardens',
+        id: gardenObject.id,
+        attributes: gardenObject
+      }
+      return {'data': data}
+    }
+
+    var saveGarden = function(garden, callback){
+      var url = '/api/v1/gardens/' + garden._id;
       var data = {
         images: garden.pictures ? garden.pictures.filter(function(p){
           return !p.deleted;
@@ -17,27 +48,21 @@ openFarmModule.factory('gardenService', ['$http',
       };
       $http.put(url, data)
         .success(function (response, object) {
-          alerts.push({
-            'type': 'success',
-            'msg': 'Updated Your Garden!'
-          });
+          alertsService.pushToAlerts(['Updated your garden!'], status)
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function (response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, status)
           if (callback){
             return callback(false, response, code);
           }
         });
     };
 
-    var createGarden = function(garden, alerts, callback){
-      var url = '/api/gardens';
+    var createGarden = function(garden, callback){
+      var url = '/api/v1/gardens';
       var data = {
         images: garden.pictures ? garden.pictures.filter(function(p){
           return !p.deleted;
@@ -53,46 +78,35 @@ openFarmModule.factory('gardenService', ['$http',
         }
       };
       $http.post(url, data)
-        .success(function (object, status) {
-          alerts.push({
-            'type': 'success',
-            'msg': 'Created Your Garden!'
-          });
+        .success(function (response, status) {
+          alertsService.pushToAlerts(['Created Your Garden!'], status)
           if (callback){
-            return callback(true, object.garden, status);
+            return callback(true,
+                            buildGarden(response.data, response.included),
+                            status);
           }
         })
         .error(function (response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, code);
           if (callback){
             return callback(false, response, code);
           }
         });
     };
 
-    var saveGardenCrop = function(garden, gardenCrop, alerts, callback){
+    var saveGardenCrop = function(garden, gardenCrop, callback){
       // TODO: this is on pause until there's a way to
       // actually add crops and guides to a garden.
-      var url = '/api/gardens/'+ garden._id +
-                '/garden_crops/' + gardenCrop._id;
+      var url = garden.relationships.garden_crops.links.related;
       $http.put(url, gardenCrop)
         .success(function (response, object) {
-          alerts.push({
-            'type': 'success',
-            'msg': 'Saved The Garden Crop!'
-          });
+          alertsService.pushToAlerts(['Saved your garden crop!'], '200')
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function (response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, status)
           if (callback){
             return callback(false, response, code);
           }
@@ -100,82 +114,69 @@ openFarmModule.factory('gardenService', ['$http',
     };
 
     var addGardenCropToGarden = function(garden,
-      adding,
-      object,
-      alerts,
-      callback){
+                                         adding,
+                                         object,
+                                         alerts,
+                                         callback){
       var data = {};
       data[adding + '_id'] = object._id;
-      $http.post('/api/gardens/' + garden._id +'/garden_crops/', data)
+      var url = garden.relationships.garden_crops.links.related;
+      $http.post(url, data)
         .success(function(response, object){
-          alerts.push({
-            'type': 'success',
-            'msg': 'Added Crop to Garden!'
-          });
+          alertsService.pushToAlerts(['Added crop to garden!'], '200')
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function(response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, code)
           if (callback){
-            // TODO: I need to make these consistent. What do these functions
+            // TODO: We need to make these consistent. What do these functions
             // return?
             return callback(false, response, code);
           }
         });
     };
 
-    var deleteGardenCrop = function(garden, gardenCrop, alerts, callback){
-      var url = '/api/gardens/'+ garden._id +
+    var deleteGardenCrop = function(garden, gardenCrop, callback){
+      var url = '/api/v1/gardens/'+ garden._id +
                 '/garden_crops/' + gardenCrop._id;
       $http.delete(url)
         .success(function(response, object){
-          alerts.push({
-            'type': 'success',
-            'msg': 'Deleted crop',
-          });
+          alertsService.pushToAlerts(['Deleted crop.'], status)
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function(response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, code);
           if (callback){
             return callback(false, response, code);
           }
         });
     };
 
-    var deleteGarden = function(garden, alerts, callback){
-      var url = '/api/gardens/' + garden._id;
+    var deleteGarden = function(garden, callback){
+      var url = '/api/v1/gardens/' + garden._id;
       $http.delete(url)
         .success(function(response, object){
-          alerts.push({
-            'type': 'success',
-            'msg': 'Deleted garden',
-          });
+          alertsService.pushToAlerts(['Deleted garden.'], status)
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function(response, code){
-          alerts.push({
-            'type': 'alert',
-            'msg': response
-          });
+          alertsService.pushToAlerts(response, code, alerts);
           if (callback){
             return callback(false, response, code);
           }
         });
     };
     return {
+      'utilities': {
+        'buildGarden': buildGarden,
+        'buildParams': buildParams
+      },
       'saveGarden': saveGarden,
       'createGarden': createGarden,
       'deleteGarden': deleteGarden,
@@ -184,3 +185,42 @@ openFarmModule.factory('gardenService', ['$http',
       'deleteGardenCrop': deleteGardenCrop
     };
 }]);
+
+openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
+  function($rootScope, gardenService) {
+    console.log($rootScope);
+    return {
+      restrict: 'A',
+      scope: {
+        gardens: '=gardens',
+        crop: '=crop',
+      },
+      link: function(scope, element, attr){
+        scope.toggleGarden = function(garden){
+          garden.adding = true;
+
+          if (!garden.added){
+
+            var callback = function(success){
+              if (success){
+                garden.adding = false;
+                garden.added = true;
+              }
+            };
+            gardenService.addGardenCropToGarden(garden,
+              'crop',
+              scope.crop,
+              callback);
+          } else {
+            gardenService.deleteGardenCrop(garden,
+              scope.gardenCrop,
+              function(){
+                garden.adding = false;
+                garden.added = false;
+              });
+          }
+        };
+      },
+      templateUrl: '/assets/templates/_add_to_gardens.html'
+    }
+  }])

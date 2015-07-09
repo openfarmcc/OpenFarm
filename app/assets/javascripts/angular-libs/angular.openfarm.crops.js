@@ -1,5 +1,5 @@
-openFarmModule.factory('cropService', ['$http', '$log',
-  function cropService($http, $log) {
+openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
+  function cropService($http, $log, alertsService) {
 
     // Should return Crop model:
     // {
@@ -9,10 +9,10 @@ openFarmModule.factory('cropService', ['$http', '$log',
     //   ...
     // }
 
-    var buildCrop = function(response) {
-      var crop = response.data.attributes;
-      crop.id = response.data.id;
-      var pictures = response.included.filter(function(obj) {
+    var buildCrop = function(data, included) {
+      var crop = data.attributes;
+      crop.id = data.id;
+      var pictures = included.filter(function(obj) {
         return obj.type === 'pictures';
       });
       crop.pictures = pictures;
@@ -40,13 +40,9 @@ openFarmModule.factory('cropService', ['$http', '$log',
         url: '/api/v1/crops/' + cropId,
         method: 'GET'
       }).success(function (response) {
-        return callback (true, buildCrop(response));
+        return callback (true, buildCrop(response.data, response.included));
       }).error(function (response, code) {
-        alerts.push({
-          msg: code + ' error. Could not retrieve data from server. ' +
-            'Please try again later.',
-          type: 'warning'
-        });
+        alertsService.pushToAlerts(response, code, alerts);
       });
     };
 
@@ -55,20 +51,17 @@ openFarmModule.factory('cropService', ['$http', '$log',
       $log.debug(url);
       $http.put(url, buildParams(cropObject))
         .success(function (response) {
-          return callback (true, buildCrop(response));
+          return callback (true, buildCrop(response.data, response.included));
         })
         .error(function (response) {
-          var msg = '';
-          angular.forEach(response, function(value){
-            msg += value;
-          });
-          alerts.push({
-            msg: msg,
-            type: 'warning'
-          });
+          alertsService.pushToAlerts(response, code, alerts);
         });
     };
     return {
+      'utilities': {
+        'buildCrop': buildCrop,
+        'buildParams': buildParams,
+      },
       'getCrop': getCrop,
       'updateCrop': updateCrop
     };

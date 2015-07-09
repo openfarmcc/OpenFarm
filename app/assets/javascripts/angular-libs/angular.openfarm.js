@@ -142,3 +142,26 @@ openFarmApp.directive('autoFocus', ['$timeout',
         }
     };
 }]);
+
+openFarmModule.factory('alertsService', ['$rootScope',
+  function alertsService($rootScope) {
+    $rootScope.alerts = [];
+    return {
+      pushToAlerts: function(response, code) {
+        var msg_type = 'warning';
+        if (['200','201','202'].indexOf(code) !== -1) {
+          msg_type = 'success'
+        }
+
+        var msg = '';
+        angular.forEach(response, function(value){
+            msg += value;
+          });
+        $rootScope.alerts.push({
+          msg: msg,
+          type: msg_type
+        });
+        console.log($rootScope);
+      }
+    }
+  }]);

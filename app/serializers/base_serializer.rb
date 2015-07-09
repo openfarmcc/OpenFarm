@@ -1,7 +1,7 @@
 # Using https://github.com/fotinakis/jsonapi-serializers
 require 'jsonapi-serializers'
 
-class BaseSerializer
+class BaseSerializer < ActiveModel::Serializer
   include JSONAPI::Serializer
 
   def self_link
@@ -24,6 +24,6 @@ class BaseSerializer
   end
 
   def current_user
-    scope
+    context[:current_user]
   end
 end

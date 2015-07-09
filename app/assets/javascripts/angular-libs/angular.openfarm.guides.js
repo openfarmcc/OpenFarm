@@ -1,44 +1,67 @@
-openFarmModule.factory('guideService', ['$http',
-  function guideService($http) {
-    // A regularly used pushToAlerts method
-    var pushToAlerts = function (response, code, alerts){
-      var msg = '';
-    angular.forEach(response, function(value){
-        msg += value;
+openFarmModule.factory('guideService', ['$http', 'alertsService', 'stageService',
+  function guideService($http, alertsService, stageService) {
+
+    // Should return Guide model:
+    // {
+    //   id: '',
+    //   name: '',
+    //   location: '',
+    //   ...
+    //   stages: [],
+    //
+    // }
+
+    var buildGuide = function(data, included) {
+      var guide = data.attributes;
+      guide.id = data.id;
+      var stages = included.filter(function(obj) {
+        return obj.type === 'stages';
       });
-      alerts.push({
-        msg: msg,
-        type: 'warning'
+      stages = stages.map(function(stage) {
+        return stageService.utilities.buildStage(stage);
       });
-    };
+      guide.stages = stages;
+      return guide;
+    }
+
+    // Builds params according to JSON-API from the
+    // front end Guide model.
+    var buildParams = function(guideObject) {
+      var data = {
+        type: 'guides',
+        id: guideObject.id,
+        attributes: guideObject,
+      }
+      return {'data': data}
+    }
 
     // get the guide specified.
     var getGuide = function(guideId, alerts, callback){
       $http({
-        url: '/api/guides/' + guideId,
+        url: '/api/v1/guides/' + guideId,
         method: 'GET'
       }).success(function (response) {
-        return callback (true, response.guide);
+        return callback (true, buildGuide(response.data, response.included));
       }).error(function (response, code) {
-        pushToAlerts(response, code, alerts);
+        alertsService.pushToAlerts(response, code, alerts);
       });
     };
 
     var createGuide = function(params, alerts, callback){
-      $http.post('/api/guides/', params).success(function (response) {
-        return callback (true, response.guide);
+      $http.post('/api/v1/guides/', params).success(function (response) {
+        return callback (true, buildGuide(response.data, response.included));
       }).error(function (response, code) {
-        pushToAlerts(response, code, alerts);
+        alertsService.pushToAlerts(response, code, alerts);
       });
     };
 
     var updateGuide = function(guideId, params, alerts, callback){
-      $http.put('/api/guides/' + guideId + '/', params)
+      $http.put('/api/v1/guides/' + guideId + '/', params)
       .success(function (response) {
-        return callback (true, response.guide);
+        return callback (true, buildGuide(response.data, response.included));
       })
       .error(function (response, code) {
-        pushToAlerts(response, code, alerts);
+        alertsService.pushToAlerts(response, code, alerts);
       });
     };
 

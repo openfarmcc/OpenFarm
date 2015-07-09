@@ -15,6 +15,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', 'userService',
 
     $scope.initCallback = function(success, user){
       $scope.profileUser = user;
+      console.log(user);
 
       $scope.gardens = user.gardens;
 

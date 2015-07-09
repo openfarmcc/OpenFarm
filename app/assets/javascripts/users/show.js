@@ -10,6 +10,7 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
     $scope.setProfileUser = function(success, object){
       if (success){
         $scope.profileUser = object;
+        console.log(object);
         if(!object.user_setting.favorite_crop &&
            $scope.profileUser._id === $scope.currentUser._id) {
           $scope.cropNotSet = true;
@@ -26,7 +27,7 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
     };
 
     $scope.setFavoriteCrop = function(){
-      if ($scope.currentUser._id == $scope.profileUser._id) {
+      if ($scope.currentUser.id == $scope.profileUser.id) {
         var favCrop = $scope.crops.filter(function(crop) {
           return crop.name === $scope.query;
         })[0];

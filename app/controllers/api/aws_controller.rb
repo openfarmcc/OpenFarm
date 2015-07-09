@@ -1,4 +1,7 @@
 module Api
+  # TODO: This needs to be understood and brought into the
+  # V1 API.
+
   # A controller that handles all the non-restful stuff for AWS.
   class AwsController < Api::Controller
     def s3_access_token

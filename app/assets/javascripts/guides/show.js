@@ -121,34 +121,5 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
-    // TODO: this can be cleaned up. It's duplicated in
-    // crops/show.js. Either create a directive or put
-    // it in the gardenService.
-
-    $scope.toggleGarden = function(garden){
-      garden.adding = true;
-      if (!garden.added){
-        var callback = function(success){
-          if (success){
-            garden.adding = false;
-            garden.added = true;
-          }
-        };
-        gardenService.addGardenCropToGarden(garden,
-          'guide',
-          $scope.guide,
-          $scope.alerts,
-          callback);
-      } else {
-        gardenService.deleteGardenCrop(garden,
-          $scope.gardenCrop,
-          $scope.alerts,
-          function(){
-            garden.adding = false;
-            garden.added = false;
-          });
-      }
-    };
-
     guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
   }]);

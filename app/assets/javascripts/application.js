@@ -69,14 +69,3 @@ var getIDFromURL = function(key) {
   var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
   return result && unescape(result[1]) || "";
 };
-
-var pushToAlerts = function (response, code, alerts){
-  var msg = '';
-  angular.forEach(response, function(value){
-    msg += value;
-  });
-  alerts.push({
-    msg: msg,
-    type: 'warning'
-  });
-};

@@ -1,11 +1,6 @@
 require 'spec_helper'
 require 'openfarm_errors'
 
-# module OpenfarmErrors
-#   class NotAuthorized < StandardError; end
-#   class StaleToken < StandardError; end
-# end
-
 describe Users::UpdateUser do
   let(:mutation) { Users::UpdateUser }
 
@@ -15,15 +10,15 @@ describe Users::UpdateUser do
 
   let(:params) do
     { id: "#{current_user.id}",
-      user: {
+      attributes: {
         mailing_list: false
       },
       current_user: current_user
     }
   end
-  let(:params_with_usetting) do
+  let(:params_with_usersetting) do
     { id: "#{current_user.id}",
-      user: {},
+      attributes: {},
       user_setting: {
         location: "Manila"
       },
@@ -34,7 +29,7 @@ describe Users::UpdateUser do
   it 'requires fields' do
     errors = mutation.run({}).errors.message_list
     expect(errors).to include('Id is required')
-    expect(errors).to include('User is required')
+    expect(errors).to include('Attributes is required')
     expect(errors).to include('Current User is required')
   end
 
@@ -54,7 +49,7 @@ describe Users::UpdateUser do
   end
 
   it 'updates valid user_setting' do
-    result = mutation.run(params_with_usetting).result
+    result = mutation.run(params_with_usersetting).result
     expect(result).to be_a(User)
     expect(result.user_setting.location).to eq("Manila")
     expect(result.valid?).to be(true)

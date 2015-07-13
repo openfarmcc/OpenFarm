@@ -1,5 +1,6 @@
 class CropSerializer < BaseSerializer
   attribute :name
+  attribute :slug
   attribute :binomial_name
   attribute :common_names
   attribute :description

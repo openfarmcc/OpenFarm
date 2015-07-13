@@ -1,0 +1,27 @@
+<div class="row collapse postfix-radius">
+  <div class="columns small-8">
+    <input
+      id="search_crop_name"
+      name="search_crop_name"
+      type="text"
+      placeholder="{{ placeholder }}"
+      ng-model="cropQuery"
+      typeahead="crop as crop.attributes.name for crop in getCrops($viewValue) | filter:$viewValue"
+      typeahead-on-select='cropOnSelect($item, $model, $label, options)'
+      typeahead-loading="loadingCrops"
+      typeahead-wait-ms="500"
+      typeahead-min-length="3"
+      auto-focus
+      autocomplete="off"
+      clear-on="cropSelectionCanceled"
+      focus-on="cropSelectionCanceled"
+      class="form-control typeahead search-input"
+      required/>
+    <span ng-show="loadingCrops" >
+      <i class="fa fa-spinner fa-spin"></i>{{ loadingCropsText }}
+    </span>
+  </div>
+  <div class="columns small-4">
+    <input type="button" class="button postfix search-button" value="{{ buttonValue }}" ng-click="submitCrop()" id="submit_crop"/>
+  </div>
+</div>

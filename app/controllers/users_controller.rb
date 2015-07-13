@@ -9,9 +9,8 @@ class UsersController < ApplicationController
       units: params[:units],
       location: params[:location]
     }
-
     @outcome = Users::UpdateUser.run(
-      user: params,
+      attributes: params,
       current_user: current_user,
       user_setting: user_settings,
       id: "#{current_user._id}")

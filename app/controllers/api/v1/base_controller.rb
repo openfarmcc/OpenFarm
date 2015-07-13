@@ -7,11 +7,12 @@ class Api::V1::BaseController < ActionController::Base
   respond_to :json
 
   before_action :authenticate_from_token!
+  before_action :verify_sent_data_structure
 
   serialization_scope :current_user
 
   rescue_from OpenfarmErrors::NotAuthorized do |exc|
-    json = { error: "Not Authorized. #{exc.message}" }
+    json = { errors: [{ title: "Not Authorized. #{exc.message}" }] }
     render json: json, status: 401
   end
 
@@ -29,6 +30,10 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   protected
+
+  def verify_sent_data_structure
+    # TODO verify that data structure
+  end
 
   def authenticate_from_token!
     request.authorization.present? ? token_auth : authenticate_user!

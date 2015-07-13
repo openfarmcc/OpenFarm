@@ -1,13 +1,19 @@
 class GuideSerializer < BaseSerializer
-  attribute :crop_id
-  attribute :crop_name do
-    object.crop.name
-  end
-  attribute :user_id
+  # attribute :crop_id
+  # attribute :crop_name do
+  #   object.crop.name
+  # end
+  has_one :crop
+  has_one :user
   attribute :name
   attribute :overview
   attribute :featured_image do
-    object.featured_image.url
+    if object.featured_image
+      {
+        image_url: object.featured_image.url,
+        thumbnail_url: object.featured_image.url(:small)
+      }
+    end
   end
   attribute :location
   attribute :practices

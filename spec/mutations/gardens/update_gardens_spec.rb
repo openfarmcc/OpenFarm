@@ -8,13 +8,13 @@ describe Gardens::UpdateGarden do
   let(:params) do
     { user: garden.user,
       id: "#{garden._id}",
-      garden: {} }
+      attributes: {} }
   end
 
   it 'requires fields' do
     errors = mutation.run({}).errors.message_list
     expect(errors).to include('User is required')
-    expect(errors).to include('Garden is required')
+    expect(errors).to include('Attributes is required')
   end
 
   it 'minimally requires a user and a garden' do

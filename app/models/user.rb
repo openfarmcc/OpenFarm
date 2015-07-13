@@ -95,8 +95,8 @@ class User
     if self.gardens.all.count == 0 && self.confirmed?
       Gardens::CreateGarden.run(
         user: self,
-        name: I18n::t('registrations.your_first_garden'),
-        garden: { is_private: true }
+        attributes: { is_private: true,
+                      name: I18n::t('registrations.your_first_garden') }
       )
     end
   end

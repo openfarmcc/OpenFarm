@@ -100,8 +100,8 @@ video { display: block; }
     $search-bar-height: 50px;
 
     .search-input-container {
-      display: table-cell;
-      width: 100%;
+      /*display: table-cell;
+      width: 100%;*/
 
       // Typeahead dropdown
       .f-dropdown {
@@ -116,7 +116,7 @@ video { display: block; }
       }
     }
 
-    input.search-input {
+    .search-input {
       background-color: #ffffff;
       color: #333333;
       display: table-cell;
@@ -132,7 +132,7 @@ video { display: block; }
       width: auto;
     }
 
-    input.search-button {
+    .search-button {
       background-image: none;
       background-color: $of-green;
       border-radius: 0;
@@ -143,6 +143,7 @@ video { display: block; }
       padding: 0 35px;
       right: 0;
       top: 0;
+      box-shadow: none;
 
       &:hover {
         background-color: rgba(106, 168, 79, 1);

@@ -10,13 +10,13 @@ describe Crops::UpdateCrop do
   let(:params) do
     { user: user,
       id: "#{crop.id}",
-      crop: { binomial_name: 'updated',
-              description: 'A random description' } }
+      attributes: { binomial_name: 'updated',
+                    description: 'A random description' } }
   end
 
   it 'requires fields' do
     errors = mutation.run({}).errors.message_list
-    expect(errors).to include('Crop is required')
+    expect(errors).to include('Attributes is required')
     expect(errors).to include('Id is required')
   end
 

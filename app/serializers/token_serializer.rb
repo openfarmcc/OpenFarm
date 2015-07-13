@@ -1,8 +1,6 @@
 class TokenSerializer < BaseSerializer
   attribute :expiration
-  attribute :secret
-
-  def secret
+  attribute :secret do
     object.fully_formed
   end
 end

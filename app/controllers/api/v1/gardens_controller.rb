@@ -8,7 +8,7 @@ class Api::V1::GardensController < Api::V1::BaseController
 
   def create
     @outcome = Gardens::CreateGarden.run(
-      params,
+      params[:data],
       user: current_user
     )
     @user = current_user
@@ -25,16 +25,18 @@ class Api::V1::GardensController < Api::V1::BaseController
   end
 
   def update
-    @outcome = Gardens::UpdateGarden.run(params,
+    # According to JSON-API Params must be structured like this:
+    # {
+    #  'data': {
+    #     'type': 'gardens',
+    #     'id': '<id>',
+    #     'attributes': {},
+    # }
+    @outcome = Gardens::UpdateGarden.run(params[:data],
                                          user: current_user,
                                          id: params[:id])
     respond_with_mutation(:ok)
   end
-
-  # def index
-  #   gardens = Pundit.policy_scope(current_user, Garden)
-  #   render json: { gardens: gardens }
-  # end
 
   def destroy
     @outcome = Gardens::DestroyGarden.run(params,

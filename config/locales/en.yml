@@ -238,6 +238,7 @@ en:
       save_crop: "Save Crop"
   crop_searches:
     show:
+      loading_crops: "loading crops"
       choose_a_crop: "Choose a crop"
       no_crops: "Sorry, we don't have any crops matching"
       title: "Search"
@@ -294,7 +295,6 @@ en:
               add_one: "add one"
               uh_oh: "Uh oh!"
               not_found: "We couldn’t find that crop in our database."
-              loading_crops: "loading crops"
               no_crop_selected: "No crop selected"
               lets_get_started: "Lets Get Started!"
               which_crop: "Which crop is this guide For?"
@@ -379,6 +379,7 @@ en:
       placeholder: "What do you want to grow?"
       search: "Search"
       hero_header: "Learn to farm or garden with community created guides"
+      community_favorites: "Community Favorites"
       explore_community_favorites: "Explore community favorites"
       step_1: "Choose a Crop"
       step_2: "Find a Guide"

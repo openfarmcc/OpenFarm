@@ -29,14 +29,13 @@ openFarmModule.factory('alertsService', ['$rootScope',
         }
 
         var msg = '';
-        angular.forEach(response, function(value){
-            msg += value;
+        angular.forEach(response, function(obj){
+            msg += obj.title;
           });
         $rootScope.alerts.push({
           msg: msg,
           type: msg_type
         });
-        console.log($rootScope);
       }
     }
   }]);

@@ -318,7 +318,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   };
 
   // This starts loading everything!
-  $http.get('/api/detail_options/')
+  $http.get('/api/v1/detail_options/')
     .success(function(response){
       response.detail_options.forEach(function(detail) {
         var category = detail.category + 'Options';
@@ -348,30 +348,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       console.log(r, e);
     });
 
-  //Typeahead search for crops
-  $scope.getCrops = function (val) {
-    // be nice and only hit the server if
-    // length >= 3
-    return $http.get('/api/v1/crops', {
-      params: {
-        filter: val
-      }
-    }).then(function(res) {
-      var crops = [];
-      crops = res.data.data;
-      if (crops.length === 0) {
-        crops.push({
-          name: val,
-          is_new: true
-        });
-      }
-      return crops;
-    })
-  };
-
   //Gets fired when user selects dropdown.
   $scope.cropSelected = function ($item, $model, $label) {
-    console.log('on select', $item);
     $scope.newGuide.crop = $item;
     $scope.crop_not_found = false;
     $scope.newGuide.crop.attributes.description = '';

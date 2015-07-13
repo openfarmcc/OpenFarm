@@ -34,6 +34,7 @@ module Guides
         end
       end
     end
+
     optional do
       string :crop_id
       string :crop_name
@@ -41,8 +42,8 @@ module Guides
 
     def validate
       validate_practices
-      validate_crop
       validate_image_url
+      validate_crop
     end
 
     def execute
@@ -51,7 +52,7 @@ module Guides
       @guide.crop = @crop
       set_time_span
       set_featured_image_async
-      @guide.save
+      @guide.save!
       @guide
     end
 
@@ -69,6 +70,8 @@ module Guides
     def validate_crop
       if crop_id
         @crop = Crop.find(crop_id)
+      else
+        @crop = check_if_crop_exists
       end
     rescue Mongoid::Errors::DocumentNotFound
       if crop_name
@@ -82,7 +85,8 @@ module Guides
     private
 
     def check_if_crop_exists
-      crops = Crop.search :crop_name, fields: [{ name: :exact }]
+      crops = Crop.search(crop_name,
+                          fields: [{ name: :exact }])
       if crops.count == 0
         crop = Crop.new( name: :crop_name,
                          common_names: [:crop_name,] )

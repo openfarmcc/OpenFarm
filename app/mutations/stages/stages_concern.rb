@@ -56,8 +56,8 @@ module Stages
       @stage.stage_actions.delete_all
 
       actions && actions.each do |action|
-        StageActions::CreateStageAction.run(user: user,
-                                            action: action,
+        @outcome = StageActions::CreateStageAction.run(user: user,
+                                            attributes: action,
                                             images: action[:images],
                                             id: "#{@stage.id}")
       end

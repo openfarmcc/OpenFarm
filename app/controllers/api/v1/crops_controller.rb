@@ -28,10 +28,12 @@ class Api::V1::CropsController < Api::V1::BaseController
   def update
     # According to JSON-API Params must be structured like this:
     # {
-    #  'data': {
+    #   'data': {
     #     'type': 'crops',
     #     'id': '<id>',
-    #     'attributes': {},
+    #     'attributes': {
+    #     },
+    #   }
     # }
     @outcome = Crops::UpdateCrop.run(params[:data],
                                      user: current_user,

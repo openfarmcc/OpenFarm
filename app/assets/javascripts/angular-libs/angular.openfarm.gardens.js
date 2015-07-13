@@ -178,7 +178,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     var deleteGardenCrop = function(garden, gardenCrop, callback){
       var url = garden.relationships.garden_crops.links.related +
                 '/' + gardenCrop.id;
-      console.log(url);
       $http.delete(url)
         .success(function(response, object){
           alertsService.pushToAlerts(['Deleted crop.'], status)
@@ -251,7 +250,6 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
                       garden.added = true;
                     }
                   });
-                  console.log(scope.gardens);
                 }
               });
           }

@@ -19,9 +19,9 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'type': 'garden-crops',
     #     'attributes': {},
     # }
-    puts "params #{params}"
     @outcome = GardenCrops::CreateGardenCrop.run(
-      params,
+      params[:data],
+      garden_id: params[:garden_id],
       user: current_user
     )
     respond_with_mutation(:created)
@@ -50,7 +50,7 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     # }
     garden_crop = Garden.find(params[:garden_id]).
         garden_crops.find(params[:id])
-    @outcome = GardenCrops::UpdateGardenCrop.run(attributes: params[:attributes],
+    @outcome = GardenCrops::UpdateGardenCrop.run(params[:data],
                                                  user: current_user,
                                                  garden_crop: garden_crop)
     respond_with_mutation(:ok)

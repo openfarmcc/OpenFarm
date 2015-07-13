@@ -5,9 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     user = User.find(params[:id])
     if Pundit.policy(current_user, user).show?
       render json: serialize_model(user, include: ['user_setting',
-                                                   'user_setting.picture',
-                                                   'guides',
-                                                   ])
+                                                   'guides'])
     else
       raise OpenfarmErrors::NotAuthorized
     end
@@ -15,12 +13,12 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     @outcome = Users::UpdateUser.run(
-      user: params,
+      attributes: params[:data],
       current_user: current_user,
-      featured_image: params[:featured_image],
-      user_setting: params[:user_setting],
+      featured_image: params[:data][:featured_image],
+      user_setting: params[:data][:user_setting],
       id: "#{current_user._id}")
 
-    respond_with_mutation(:ok)
+    respond_with_mutation(:ok, include: ['user_setting', 'guides'])
   end
 end

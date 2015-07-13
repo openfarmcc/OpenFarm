@@ -19,22 +19,23 @@ module GardenCrops
     def validate
       validate_guide
       validate_crop
+      validate_guide_or_crop
       validate_garden
       validate_permissions
     end
 
     def execute
       @garden_crop ||= GardenCrop.new(attributes)
-      # if @guide
-      #   @garden_crop.guide = @guide
-      # end
-      # if @crop
-      #   @garden_crop.crop = @crop
-      # end
       @garden_crop.garden = @garden
       @garden_crop.save
-      # puts @garden_crop.to_json
       @garden_crop
+    end
+
+    def validate_guide_or_crop
+      unless attributes[:guide] || attributes[:crop]
+        msg = "You need either a guide or a crop for the garden crop."
+        add_error :attributes, :not_found, msg
+      end
     end
 
     def validate_guide
@@ -42,7 +43,7 @@ module GardenCrops
         attributes[:guide] = Guide.find(attributes[:guide])
       end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a guide with id #{guide_id}."
+      msg = "Could not find a guide with id #{attributes[:guide]}."
       add_error :guide, :guide_not_found, msg
     end
 
@@ -51,7 +52,7 @@ module GardenCrops
         attributes[:crop] = Crop.find(attributes[:crop])
       end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a crop with id #{crop_id}."
+      msg = "Could not find a crop with id #{attributes[:crop]}."
       add_error :crop, :crop_not_found, msg
     end
 

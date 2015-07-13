@@ -5,7 +5,7 @@ module StageActions
     required do
       model :user
       string :id
-      hash :action do
+      hash :attributes do
         required do
           string :name
           string :overview
@@ -28,7 +28,7 @@ module StageActions
     end
 
     def execute
-      @action = @stage.stage_actions.create(action)
+      @action = @stage.stage_actions.create(attributes)
       set_images
       @action
     end

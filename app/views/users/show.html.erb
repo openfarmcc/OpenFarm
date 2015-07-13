@@ -25,30 +25,20 @@
                 </label>
               </div>
               <div class="columns small-6">
-                <input typeahead-min-length="1"
-                       autocomplete="off"
-                       class="search-input ng-pristine ng-valid ng-valid-maxlength ng-touched"
-                       id="q"
-                       maxlength="120"
-                       name="q"
-                       ng-change="search()"
-                       ng-model="query"
-                       typeahead-on-select="setFavoriteCrop()"
-                       placeholder="<%= t('.favorite_crop_suggestion') %>"
-                       type="text"
-                       typeahead-wait-ms="200"
-                       typeahead="crop.name for crop in crops">
+                <div crop-search
+                  loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
+                  crop-on-select="setFavoriteCrop"
+                  clear-crop-selection="clearCropSelection">
+                  </div>
               </div>
-              <div class="columns small-2">
-                <input type="button" class="button postfix" value="submit" ng-click="setFavoriteCrop()"/>
-              </div>
+
 
             </div>
           </form>
           <div ng-if="!editing" class="small-12 medium-4 columns">
             <!-- Make this a thing -->
             <div class="member-picture"
-              style="background-image: url({{ profileUser.user_setting.picture.thumbnail_url || '/assets/baren_field.jpg' }})">
+              style="background-image: url({{ profileUser.user_setting.picture.medium_url || '/assets/baren_field.jpg' }})">
             </div>
           </div>
           <div ng-if="!editing" class="small-12 medium-8 columns member-infos">
@@ -63,8 +53,8 @@
           </div>
         </div>
       </div>
-      <!-- Make this a thing
-      <button class="button right tiny secondary edit-profile-button">Edit Profile</button> -->
+      <!-- <%= link_to t('.application.edit_profile'), users_edit_path, class: 'tiny button secondary' %>
+      <button class="button tiny secondary" ng-click="editing = !editing"><%= t('.edit_favorite_crop') %></button> -->
     </div>
   </div>
 

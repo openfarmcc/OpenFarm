@@ -5,14 +5,14 @@
           ng-class="{ 'deleted' : pic.deleted }"
           ng-init="pic.deleted = false"
           ng-click="pic.deleted = !pic.deleted">
-      <img ng-src="{{ pic.attributes.thumbnail_url || pic.attributes.image_url }}" width="100"
+      <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" width="100"
            ng-model="pic"/>
     </span>
   </span>
 
   <span class="thumbnails"
         ng-if="s3UploadExistingPictures && hasOnePicture">
-    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures.attributes.image_url }}"
+    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures.image_url }}"
        />
   </span>
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::GardensController, type: :controller do
+describe Api::V1::GardensController, type: :controller do
   include ApiHelpers
 
   describe 'index' do
@@ -34,10 +34,10 @@ describe Api::GardensController, type: :controller do
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(public_garden.name)
+      expect(json['data']['attributes']['name']).to eq(public_garden.name)
       get 'show', id: private_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(private_garden.name)
+      expect(json['data']['attributes']['name']).to eq(private_garden.name)
     end
 
     it 'should shown not signed in users only public gardens' do
@@ -49,7 +49,7 @@ describe Api::GardensController, type: :controller do
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(public_garden.name)
+      expect(json['data']['attributes']['name']).to eq(public_garden.name)
       get 'show', id: private_garden.id
       expect(response.status).to eq(401)
     end
@@ -62,7 +62,7 @@ describe Api::GardensController, type: :controller do
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(public_garden.name)
+      expect(json['data']['attributes']['name']).to eq(public_garden.name)
       get 'show', id: private_garden.id
       expect(response.status).to eq(401)
     end
@@ -75,10 +75,10 @@ describe Api::GardensController, type: :controller do
                                           is_private: true)
       get 'show', id: public_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(public_garden.name)
+      expect(json['data']['attributes']['name']).to eq(public_garden.name)
       get 'show', id: private_garden.id
       expect(response.status).to eq(200)
-      expect(json['garden']['name']).to eq(private_garden.name)
+      expect(json['data']['attributes']['name']).to eq(private_garden.name)
     end
   end
 
@@ -90,8 +90,7 @@ describe Api::GardensController, type: :controller do
 
     it 'should create a garden' do
       post :create,
-           name: 'New Garden',
-           garden: {},
+           data: { attributes: { name: 'New Garden' } },
            format: :json
       expect(response.status).to eq(201)
       expect(Garden.all.last.name).to eq('New Garden')
@@ -101,8 +100,9 @@ describe Api::GardensController, type: :controller do
 
     it 'should give garden-creator badge when user creates a second garden' do
       assert @viewing_user.badges.empty?
+      data = { attributes: { name: 'Second Garden' } }
       post :create,
-           name: 'Second Garden',
+           data: data,
            format: :json
       @viewing_user.reload
       assert @viewing_user.badges.count == 1
@@ -118,10 +118,8 @@ describe Api::GardensController, type: :controller do
     it 'should not allow editing of non-owned gardens' do
       garden = FactoryGirl.create(:garden)
       put :update,
-          id: garden.id,
-          garden: {
-            name: 'updated'
-          },
+          id: garden.id.to_s,
+          data: { attributes: { name: 'updated' } },
           format: :json
 
       expect(response.status).to eq(422)
@@ -131,10 +129,8 @@ describe Api::GardensController, type: :controller do
     it 'should edit owned gardens' do
       garden = FactoryGirl.create(:garden, user: @viewing_user)
       put :update,
-          id: garden.id,
-          garden: {
-            name: 'updated'
-          },
+          id: garden.id.to_s,
+          data: { attributes: { name: 'updated' } },
           format: :json
       expect(response.status).to eq(200)
       expect(garden.reload.name).to eq('updated')
@@ -156,7 +152,7 @@ describe Api::GardensController, type: :controller do
     it 'returns an error when a garden does not exist' do
       sign_in user
       delete :destroy, id: 1, format: :json
-      expect(json['stage']).to include(
+      expect(json['errors'][0]['title']).to include(
         'Could not find a garden with id')
       expect(response.status).to eq(422)
     end
@@ -164,7 +160,7 @@ describe Api::GardensController, type: :controller do
     it 'only destroys gardens owned by the user' do
       sign_in user
       delete :destroy, id: FactoryGirl.create(:garden)
-      expect(json['error']).to include(
+      expect(json['errors'][0]['title']).to include(
         'can only destroy gardens that belong to you.')
       expect(response.status).to eq(401)
     end

@@ -1,17 +1,17 @@
 openFarmApp.controller('searchCtrl', ['$scope', '$http',
   function searchCtrl($scope, $http) {
   $scope.crops = [];
-   
-  //Typeahead search for crops    
-  $scope.search = function () {
+
+  //Typeahead search for crops
+  $scope.search = function (val) {
     // be nice and only hit the server if
     // length >= 3
     if ($scope.query.length >= 3){
       $http({
-        url: '/api/crops',
+        url: '/api/v1/crops',
         method: "GET",
         params: {
-          query: $scope.query
+          filter: val
         }
       }).success(function (response) {
         if (response.crops.length){
@@ -19,14 +19,17 @@ openFarmApp.controller('searchCtrl', ['$scope', '$http',
         }
       });
     }
-  };   
+  };
 
   // Redirect the browser to a specified crop
   //
-  // pathTemplate is a string template for a crop path, 
+  // pathTemplate is a string template for a crop path,
   //              with the text "ID" representing where the url slug should go
-  $scope.goToCrop = function (crop, pathTemplate) {
-    var slug = crop._slugs.length > 0 ? crop._slugs[0] : crop._id;
-    location.assign( pathTemplate.replace('ID', slug) );
+  $scope.goToCrop = function (crop, model, label, options) {
+
+    console.log('crop', crop)
+
+    var slug = crop.slug ? crop.slug : crop.id;
+    location.assign( options.pathTemplate.replace('ID', slug) );
   };
 }]);

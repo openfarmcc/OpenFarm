@@ -1,5 +1,6 @@
 openFarmModule.factory('userService', ['$http', 'gardenService',
-  function userService($http, gardenService) {
+  'alertsService',
+  function userService($http, gardenService, alertsService) {
     // get the user specified.
 
     // Should return User model:
@@ -15,6 +16,7 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
       var user = data.attributes;
       user.id = data.id;
       user.relationships = data.relationships;
+      user.links = data.links;
       if(included) {
         // This can be done better.
         var user_setting = included.filter(function(obj) {
@@ -32,9 +34,7 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
         })
 
       }
-
       user.user_setting = buildUserSetting(user_setting[0]) || {};
-      user.user_setting.picture = picture[0].attributes || {};
       user.gardens = gardens || [];
 
       return user;
@@ -45,45 +45,48 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
       return userSetting;
     }
 
-    var getUser = function(userId, alerts, callback){
+    var buildPicture = function(data) {
+      return data.attributes;
+    }
+
+    var getUser = function(userId, callback){
+      var url = '/api/v1/users/' + userId;
       $http({
-        url: '/api/v1/users/' + userId,
+        url: url,
         method: 'GET'
       }).success(function (response) {
-        return callback (true, buildUser(response.data, response.included));
+        return callback(true, buildUser(response.data, response.included));
       }).error(function (response, code) {
-        alerts.push({
-          msg: response,
-          type: 'warning'
-        });
+        alertsService.pushToAlerts(response, code);
         return callback(false, response, code);
       });
     };
 
-    var setFavoriteCrop = function(userId, cropId, alerts, callback){
+    var setFavoriteCrop = function(userId, cropId, callback){
       // wrapper function around put user
       var params = {
-        'user': {},
+        'attributes': {},
         'user_setting': {
           'favorite_crop': cropId
         }
       }
 
-      $http.put('/api/v1/users/' + userId + '/', params)
+      $http.put('/api/v1/users/' + userId + '/', { 'data': params } )
         .success(function(response) {
           return callback(true, buildUser(response.data, response.included));
         }).error(function (response, code) {
-          alertsService.pushToAlerts(response, code, alerts);
+          alertsService.pushToAlerts(response, code);
           return callback(false, response, code);
         });
     }
 
-    var updateUser = function(userId, params, alerts, callback) {
-      $http.put('/api/v1/users/' + userId + '/', params)
+    var updateUser = function(userId, params, callback) {
+      var data = { 'data': params }
+      $http.put('/api/v1/users/' + userId + '/', data)
         .success(function(response) {
           return callback(true, buildUser(response.data, response.included));
         }).error(function (response, code) {
-          alertsService.pushToAlerts(response, code, alerts);
+          alertsService.pushToAlerts(response.errors, code);
           return callback(false, response, code);
         });
     }

@@ -1,6 +1,7 @@
-require "spec_helper"
+require 'spec_helper'
+require 'openfarm_errors'
 
-describe Api::CropsController, :type => :controller do
+describe Api::V1::CropsController, :type => :controller do
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -11,30 +12,30 @@ describe Api::CropsController, :type => :controller do
   end
 
   it 'lists crops.' do
-    get 'index', format: :json, query: 'mung'
+    get 'index', format: :json, filter: 'mung'
     expect(response.status).to eq(200)
-    expect(json.length).to eq(1)
-    expect(json['crops'][0]['_id']).to eq(@beans.id.to_s)
+    expect(json['data'].length).to eq(1)
+    expect(json['data'][0]['id']).to eq(@beans.id.to_s)
   end
 
   it 'returns [] for tiny searches' do
     DocYoSelf.skip
     get 'index', format: :json, query: 'mu'
     expect(response.status).to eq(200)
-    expect(json).to eq('crops' => [])
+    expect(json).to eq('data' => [])
   end
 
   it 'should show a crop' do
     crop = FactoryGirl.create(:crop)
     get 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
-    expect(json['crop']['name']).to eq(crop.name)
+    expect(json['data']['attributes']['name']).to eq(crop.name)
   end
 
   it 'should update a crop' do
     sign_in user
     crop = FactoryGirl.create(:crop)
-    put :update, id: crop.id, crop: { description: 'Updated' }
+    put :update, id: crop.id, data: { attributes: { description: 'Updated' }}
     expect(response.status).to eq(200)
     crop.reload
     expect(crop.description).to eq('Updated')
@@ -45,7 +46,7 @@ describe Api::CropsController, :type => :controller do
     sign_in user
     put :update,
         id: crop.id,
-        crop: { common_names: ['Radish', 'Red Thing', 'New'] }
+        data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] }}
     expect(response.status).to eq(200)
     expect(crop.reload.common_names.length).to eq(3)
   end
@@ -53,7 +54,7 @@ describe Api::CropsController, :type => :controller do
   it 'should return an error when updating faulty information' do
     sign_in user
     crop = FactoryGirl.create(:crop)
-    put :update, id: crop.id, crop: { description: '' }
+    put :update, id: crop.id, data: { attributes: { description: '' }}
     expect(response.status).to eq(422)
     old_description = crop.description
     crop.reload

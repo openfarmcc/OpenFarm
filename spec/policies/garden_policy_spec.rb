@@ -31,35 +31,41 @@ describe GardenPolicy do
   context 'for a user' do
     it 'should only return gardens in scope that are public' do
       other_user = FactoryGirl.create :user
-      Garden.create(user: other_user,
-                    name: 'haha',
-                    is_private: false)
-      Garden.create(user: other_user,
-                    name: 'nono',
-                    is_private: true)
+      FactoryGirl.create :garden,
+                         is_private: true,
+                         name: 'nono',
+                         user: other_user
+      FactoryGirl.create :garden,
+                         is_private: false,
+                         name: 'yes!',
+                         user: other_user
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
       expect(@p.length).to eq(2)
     end
 
-    it 'should only return public gardens in scope, unless they are users' do
+    it 'should only return public gardens unless they are current_user' do
       other_user = FactoryGirl.create :user
-      Garden.create(user: other_user,
-                    name: 'haha',
-                    is_private: false)
-      Garden.create(user: current_user,
-                    name: 'nono',
-                    is_private: true)
+      FactoryGirl.create :garden,
+                         is_private: true,
+                         name: 'nono',
+                         user: current_user
+      FactoryGirl.create :garden,
+                         is_private: false,
+                         name: 'yes!',
+                         user: other_user
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
       expect(@p.length).to eq(3)
     end
 
     it 'should return all gardens in scope when user is admin' do
-      Garden.create(user: current_user,
-                    name: 'haha',
-                    is_private: false)
-      Garden.create(user: current_user,
-                    name: 'nono',
-                    is_private: true)
+      FactoryGirl.create :garden,
+                         is_private: true,
+                         name: 'nono',
+                         user: current_user
+      FactoryGirl.create :garden,
+                         is_private: false,
+                         name: 'yes!',
+                         user: current_user
       @p = GardenPolicy::Scope.new(admin, Garden).resolve
       expect(@p.length).to eq(4)
     end

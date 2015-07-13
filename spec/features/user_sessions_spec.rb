@@ -42,7 +42,7 @@ describe 'User sessions' do
   end
 
   it 'should redirect the user to the page they were viewing after sign up' do
-    visit '/guides/new'
+    visit '/en/guides/new/'
     see ('You need to sign in or sign up before continuing.')
     page.first(:link, 'Become a Member').click
     fill_in :user_display_name, with: 'Rick'
@@ -61,56 +61,32 @@ describe 'User sessions' do
 
   it 'user gets redirected to finish page after confirmation', js: true do
     usr = sign_up_procedure
-
     expect(page).to have_content('Your account was successfully confirmed')
-
     see 'Thanks for joining!'
-    # TODO: this isn't working
-    # wait_until_angular_ready
-    # fill_in :location, with: 'Chicago'
     click_button I18n::t('users.finish.next_step')
-
     see('Gardens')
-
     expect(page).to have_content('Gardens')
+  end
+
+  it 'should register the user location', js: true do
+    login_as user
+    visit users_finish_path
+    wait_for_ajax
+    fill_in :location, with: 'Chicago'
+    click_button I18n::t('users.finish.next_step')
+    see('This is your member profile')
+    expect(user.reload.user_setting.location).to eq('Chicago')
   end
 
   it 'should register the user unit preference', js: true do
     login_as user
-    visit "/en/users/finish"
-
+    visit users_finish_path
     wait_for_ajax
-
     choose 'units-imperial'
-
     click_button I18n::t('users.finish.next_step')
-
     see('This is your member profile')
-
     expect(user.reload.user_setting.units).to eq('imperial')
   end
-
-  it 'should link to mailchimp if user chooses to be on mailing list'  # do
-  #   usr = sign_up_procedure
-
-  #   choose('yes-email')
-
-  #   click_button I18n::t('users.finish.next_step')
-
-  #   expect(usr.mailing_list).to eq(true)
-  # end
-
-  it 'should link to mailchimp if user chooses to be on mailing list'  # do
-    # usr = sign_up_procedure
-
-    # choose('yes-help')
-
-    # click_button I18n::t('users.finish.next_step')
-
-    # expect(usr.help_list).to eq(true)
-  # end
-
-  it 'should show an error message if no location is defined'
 
   it 'should redirect to sign up page when user is not authorized' do
     usr = sign_up_procedure
@@ -138,12 +114,24 @@ describe 'User sessions' do
     expect(page).to have_content("Hi, #{usr.display_name}")
   end
 
-  it 'should tell the user that fields are missing'
-
   it 'should redirect if there was a problem with the token' do
     visit '/users/confirmation?confirmation_token=fake_token'
     expect(page).to have_content('Resend confirmation instructions')
   end
+
+  it 'should let the user set favorite crop on profile page' #, js: true do
+  #   FactoryGirl.create(:crop, name: 'Tomato')
+  #   login_as user
+  #   visit user_path('en', user)
+  #   see('Success!')
+  #   see('This is your Member Profile page.')
+  #   wait_for_ajax
+  #   fill_in :search_crop_name, with: 'tomat'
+  #   wait_for_ajax
+  #   click_button :submit_crop
+  #   see('Tomato')
+  #   puts user.reload.user_setting.to_json
+  # end
 
   def extract_url_from_email(email)
     doc = Nokogiri::HTML(email.to_s)

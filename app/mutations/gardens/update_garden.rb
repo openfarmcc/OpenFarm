@@ -4,7 +4,7 @@ module Gardens
       model :user
       string :id
 
-      hash :garden do
+      hash :attributes do
         optional do
           string :name
           string :location
@@ -13,13 +13,13 @@ module Gardens
           string :average_sun
           string :soil_type
           integer :ph
+          array :growing_practices
         end
       end
     end
 
     optional do
       array :images, class: Hash, arrayize: true
-      array :growing_practices
     end
 
     def validate
@@ -30,7 +30,7 @@ module Gardens
 
     def execute
       set_images
-      @existing_garden.update(garden)
+      @existing_garden.update(attributes)
       # todo growing practices
       @existing_garden.save
       @existing_garden

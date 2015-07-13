@@ -27,11 +27,12 @@
 
                         <div class="search-input-container">
                           <div crop-search
+                            query="cropQuery"
                             loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                             crop-on-select="goToCrop"
                             placeholder="<%= t('home.placeholder') %>"
                             button-value="<%= t('home.search') %>"
-                            options="{ 'pathTemplate': '<%= crop_path("ID") %>' }"
+                            options="{ 'pathTemplate': '<%= crop_path("ID") %>', 'fieldName': 'q' }"
                           ></div>
                         <!--
                           <input typeahead-min-length="1"

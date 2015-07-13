@@ -10,11 +10,16 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
     // }
 
     var buildCrop = function(data, included) {
+      var pictures;
       var crop = data.attributes;
       crop.id = data.id;
-      var pictures = included.filter(function(obj) {
+      crop.relationships = data.relationships;
+      crop.links = data.links;
+
+      pictures = included.filter(function(obj) {
         return obj.type === 'pictures';
       });
+
       crop.pictures = pictures;
       return crop;
     };
@@ -26,9 +31,7 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
         type: 'crops',
         id: cropObject.id,
         attributes: cropObject,
-        relationships: {
-          'pictures': cropObject.images,
-        }
+        images: cropObject.images
       };
       cropObject.images = null;
       return {'data': data};

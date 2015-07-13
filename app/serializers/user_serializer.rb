@@ -1,14 +1,67 @@
 class UserSerializer < BaseSerializer
   attribute :display_name
-  attribute :email
-  attribute :admin
-  attribute :is_private
-  attribute :help_list
-  attribute :mailing_list
+  attribute :email do
+    if current_user == object
+      object.admin
+    else
+      nil
+    end
+  end
+  attribute :admin do
+    if current_user == object
+      object.admin
+    else
+      nil
+    end
+  end
 
-  has_many :gardens
-  has_many :guides
-  has_one :user_setting
+  attribute :is_private do
+    if current_user == object
+      object.is_private
+    else
+      nil
+    end
+  end
+
+  attribute :help_list do
+    if current_user == object
+      object.help_list
+    else
+      nil
+    end
+  end
+
+  attribute :mailing_list do
+    if current_user == object
+      object.mailing_list
+    else
+      nil
+    end
+  end
+
+  has_many :gardens do
+    if Pundit.policy(current_user, object).show?
+      object.gardens
+    else
+      nil
+    end
+  end
+
+  has_many :guides do
+    if Pundit.policy(current_user, object).show?
+      object.guides
+    else
+      nil
+    end
+  end
+
+  has_one :user_setting do
+    if Pundit.policy(current_user, object).show?
+      object.user_setting
+    else
+      nil
+    end
+  end
 
   def filter(keys)
     if scope && scope.admin
@@ -18,7 +71,7 @@ class UserSerializer < BaseSerializer
     elsif scope && Pundit.policy!(scope, object).show?
       keys - [:admin]
     else
-      [:_id, :display_name]
+      [:id, :display_name]
     end
   end
 end

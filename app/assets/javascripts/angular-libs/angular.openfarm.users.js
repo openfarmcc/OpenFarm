@@ -13,28 +13,33 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
     //   gardens: []
     // }
     var buildUser = function(data, included) {
+      var user_setting,
+          picture,
+          gardens;
       var user = data.attributes;
       user.id = data.id;
       user.relationships = data.relationships;
       user.links = data.links;
       if(included) {
         // This can be done better.
-        var user_setting = included.filter(function(obj) {
+        user_setting = included.filter(function(obj) {
           return obj.type === 'user-settings';
         })
 
-        var picture = included.filter(function(obj) {
+        picture = included.filter(function(obj) {
           return obj.type === 'pictures';
         })
 
-        var gardens = included.filter(function(obj) {
+        gardens = included.filter(function(obj) {
           return obj.type === 'gardens';
         }).map(function(garden) {
           return gardenService.utilities.buildGarden(garden);
         })
 
       }
-      user.user_setting = buildUserSetting(user_setting[0]) || {};
+      if (user_setting && user_setting.length > 0) {
+        user.user_setting = buildUserSetting(user_setting[0]);
+      }
       user.gardens = gardens || [];
 
       return user;
@@ -92,6 +97,9 @@ openFarmModule.factory('userService', ['$http', 'gardenService',
     }
 
     return {
+      'utilities': {
+        'buildUser': buildUser
+      },
       'getUser': getUser,
       'updateUser': updateUser,
       'setFavoriteCrop': setFavoriteCrop

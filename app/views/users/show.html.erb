@@ -136,8 +136,8 @@
 </div>
 
 <% content_for(:end_js) do %>
-  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
-  <%= javascript_tag "var PROFILE_ID = '#{@user ? @user._id : nil}';" %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>
+  <%= javascript_tag "var PROFILE_ID = '#{@user ? @user.id : nil}';" %>
   <%= javascript_include_tag 'users/gardens' %>
   <%= javascript_include_tag 'users/show' %>
   <%= javascript_include_tag "search" %>

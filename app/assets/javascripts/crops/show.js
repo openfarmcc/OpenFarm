@@ -18,10 +18,9 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
 
     $scope.setCrop = function(success, crop){
       userService.getUser($scope.userId,
-                          $scope.alerts,
                           $scope.setCurrentUser);
       $scope.crop = crop;
     };
 
-    cropService.getCrop(getIDFromURL('crops'), $scope.alerts, $scope.setCrop);
+    cropService.getCrop(getIDFromURL('crops'), $scope.setCrop);
   }]);

@@ -1,17 +1,18 @@
 openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
-    'userService', 'gardenService',
+    'userService', 'gardenService', 'cropService',
   function showGuideCtrl($scope,
                          $http,
                          guideService,
                          userService,
-                         gardenService) {
+                         gardenService,
+                         cropService) {
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
-    $scope.alerts = [];
     $scope.gardenCrop = {};
 
-    $scope.setUser = function(success, object){
+    $scope.setGuideUser = function(success, object){
       if (success){
+        console.log(object);
         $scope.guide.user = object;
       }
     };
@@ -103,13 +104,18 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
         if ($scope.userId){
           userService.getUser($scope.userId,
-                              $scope.alerts,
                               $scope.setCurrentUser);
         }
+
         $scope.guide = object;
-        userService.getUser($scope.guide.user_id,
-                            $scope.alerts,
-                            $scope.setUser);
+        userService.getUser($scope.guide.user.id,
+                            $scope.setGuideUser);
+
+        console.log($scope.guide);
+        cropService.getCrop($scope.guide.relationships.crop.data.id,
+                            function(success, crop) {
+                              $scope.guide.crop = crop;
+                            })
 
         $scope.haveTimes = $scope.guide.stages
           .sort(function(a, b){ return a.order > b.order; })
@@ -121,5 +127,5 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
-    guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
+    guideService.getGuide($scope.guideId, $scope.setGuide);
   }]);

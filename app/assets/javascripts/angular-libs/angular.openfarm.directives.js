@@ -160,8 +160,8 @@ openFarmModule.directive('alerts', ['$timeout',
     };
   }]);
 
-openFarmApp.directive('cropSearch', ['$http',
-  function cropSearch($http) {
+openFarmApp.directive('cropSearch', ['$http', 'cropService',
+  function cropSearch($http, cropService) {
     return {
       restrict: 'A',
       scope: {
@@ -171,7 +171,9 @@ openFarmApp.directive('cropSearch', ['$http',
         focusOn: '=',
         loadingVariable: '=',
         loadingCropsText: '=',
-        options: '='
+        options: '=',
+        allowNew: '=',
+        query: '=',
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
@@ -190,40 +192,27 @@ openFarmApp.directive('cropSearch', ['$http',
               }
             }).then(function(res) {
               var crops = [];
-              console.log("response",res.data)
               crops = res.data.data;
-              if (crops.length === 0) {
-
+              if (crops.length === 0 && $scope.allowNew) {
                 crops.push({ attributes: {
                   name: val,
                   is_new: true
                 } });
               }
-              crops.forEach(function(crop) {
-                console.log(crop.attributes.name);
+              crops = crops.map(function(crop) {
+                return cropService.utilities.buildCrop(crop, res.data.included);
               });
               $scope.firstCrop = crops[0];
-              console.log(crops);
               return crops;
             })
           };
 
-          // $scope.cropSelected = function ($item, $model, $label) {
-          //   $scope.newGuide.crop = $item;
-          //   $scope.crop_not_found = false;
-          //   $scope.newGuide.crop.attributes.description = '';
-          // };
-
-          //Gets fired when user resets their selection.
-          // $scope.clearCropSelection = function ($item, $model, $label) {
-          //   $scope.newGuide.crop = null;
-          //   $scope.crop_not_found = false;
-
-          //   focus('cropSelectionCanceled');
-          // };
           $scope.submitCrop = function() {
-            console.log('submitting');
-            $scope.cropOnSelect($scope.firstCrop);
+            if ($scope.firstCrop !== undefined) {
+              $scope.cropOnSelect($scope.firstCrop);
+            } else {
+              $scope.cropOnSelect($scope.cropQuery);
+            }
           }
 
         }

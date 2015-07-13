@@ -5,7 +5,14 @@ class BaseSerializer < ActiveModel::Serializer
   include JSONAPI::Serializer
 
   def self_link
-    "/api/v1#{super}"
+    {
+      'api': "/api/v1#{super}",
+      'website': "#{super}"
+    }
+  end
+
+  def relationship_related_link(attribute_name)
+    "#{self_link[:api]}/#{format_name(attribute_name)}"
   end
 
   def relationship_self_link(attribute_name)

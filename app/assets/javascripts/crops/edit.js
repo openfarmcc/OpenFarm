@@ -1,16 +1,14 @@
 openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
   function editCropCtrl($scope, $http, cropService) {
-    $scope.alerts = [];
     $scope.s3upload = '';
     $scope.editCrop = {};
     var cropId = getIDFromURL('crops');
 
     var setCrop = function(success, crop){
-      console.log(crop);
       $scope.editCrop = crop;
     };
 
-    cropService.getCrop(cropId, $scope.alerts, setCrop);
+    cropService.getCrop(cropId, setCrop);
 
     $scope.submitForm = function(){
       $scope.editCrop.sending = true;
@@ -51,7 +49,6 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
 
       cropService.updateCrop($scope.editCrop.id,
                              crop,
-                             $scope.alerts,
                              cropCallback);
     };
 

@@ -4,8 +4,10 @@ openFarmApp.config(['$locationProvider', function($locationProvider) {
 
 openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   'guideService', 'stageService', '$modal', '$location', 'localStorageService',
+  '$rootScope',
   function newGuideCtrl($scope, $http, $filter, guideService, stageService,
-                        $modal, $location, localStorageService) {
+                        $modal, $location, localStorageService, alertService,
+                        $rootScope) {
 
   $scope.$on('$locationChangeSuccess', function(){
     $scope.step = +$location.hash() || 1;
@@ -20,7 +22,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
   $scope.loadingThings = true;
 
   $scope.cropQuery = '';
-  $scope.alerts = [];
   $scope.crops = [];
   $scope.step = +$location.hash() || 1;
   $scope.crop_not_found = false;
@@ -40,11 +41,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
           $scope.query = r.crop.name;
         })
         .error(function(r, e){
-          $scope.alerts.push({
-            msg: e,
-            type: 'alert'
-          });
-          console.log(r, e);
+          alertsService.pushToAlerts(r, e);
         });
     }
   };
@@ -172,16 +169,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         processCropID(r.guide.crop_id);
       })
       .error(function(r, e){
-        $scope.alerts.push({
-          msg: e,
-          type: 'alert'
-        });
-        console.log(r, e);
+        alertsService.pushToAlerts(r, e);
       });
   };
 
   var resetAlert = function(){
-    $scope.alerts.push({
+    $rootScope.alerts.push({
       msg: 'We noticed that you hadn\'t finished completing your guide, ' +
            'so we preloaded it.',
       type: 'info',
@@ -310,10 +303,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         success_callback();
       })
       .error(function(response, code){
-        $scope.alerts.push({
-          msg: code + ' error. We had trouble fetching all stage options.',
-          type: 'warning'
-        });
+        alertsService.pushToAlerts(['We had trouble fetching all of the stage options'], e);
       });
   };
 
@@ -341,11 +331,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       getStages(setGuide);
     })
     .error(function(r, e){
-      $scope.alerts.push({
-        msg: e,
-        type: 'alert'
-      });
-      console.log(r, e);
+      alertsService.pushToAlerts(r, e);
     });
 
   //Gets fired when user selects dropdown.
@@ -545,11 +531,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       params._id = $scope.newGuide._id;
       guideService.updateGuide(params._id,
                                params,
-                               $scope.alerts,
                                $scope.sendStages);
     } else {
       guideService.createGuide(params,
-                               $scope.alerts,
                                $scope.sendStages);
     }
   };
@@ -628,7 +612,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       if (stage.selected && !stage.exists){
         console.log('creating stage');
         stageService.createStage(stageParams,
-                                 $scope.alerts,
                                  function(success, stage){
                                    stage.sent = true;
                                    $scope.sent ++;
@@ -639,7 +622,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
         console.log('updating stage');
         stageService.updateStage(stage._id,
                                  stageParams,
-                                 $scope.alerts,
                                  function(){
                                    stage.sent = true;
                                    $scope.sent ++;
@@ -649,7 +631,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$filter',
       } else if (stage.exists){
         console.log('deleting stage');
         stageService.deleteStage(stage._id,
-                                 $scope.alerts,
                                  function(){
                                    stage.sent = true;
                                    $scope.sent ++;

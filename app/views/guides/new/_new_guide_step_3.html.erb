@@ -154,7 +154,7 @@
                 <li ng-repeat="action in stage.stage_action_options"
                     ng-init="action.length_type = 'minutes'"
                     ng-click="stage.activeAction = action"
-                    ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
+                    ng-class="{ selected : stage.activeAction.id == action.id, completed : action.overview }">
                     {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
                 </li>
               </ul>

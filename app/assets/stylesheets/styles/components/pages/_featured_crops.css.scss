@@ -2,6 +2,14 @@
   background-color: rgb(240, 245, 240);
   padding: 40px inherit 20px;
 
+  h2 {
+    color: $off-black;
+    text-shadow: none;
+    font-size: 2em;
+    padding-top: 1em;
+    margin: 0;
+  }
+
   .featured-crops-grid {
     margin-top: 30px;
 

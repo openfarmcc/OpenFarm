@@ -30,7 +30,11 @@ openFarmModule.factory('alertsService', ['$rootScope',
 
         var msg = '';
         angular.forEach(response, function(obj){
-            msg += obj.title;
+            if (obj.title) {
+              msg += obj.title;
+            } else {
+              msg += obj
+            }
           });
         $rootScope.alerts.push({
           msg: msg,

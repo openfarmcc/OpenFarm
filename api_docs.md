@@ -51,7 +51,7 @@ GET api/v1/crops/<id>/pictures/
 
 ### Returned from server
 
-> ToDo
+> ToDo. This is based on the standardized output shown above.
 
 ### Send to server
 ```

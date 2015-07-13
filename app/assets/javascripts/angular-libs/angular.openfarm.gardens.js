@@ -12,8 +12,10 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     // }
 
     var buildGarden = function(data, included) {
+      var gardenCropIds;
       var garden = data.attributes;
-      var gardenCropIds = data.relationships.garden_crops.data.map(function(gc) {
+      garden.id = data.id;
+      gardenCropIds = data.relationships.garden_crops.data.map(function(gc) {
         return gc.id;
       })
       garden.relationships = data.relationships;
@@ -40,12 +42,15 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     }
 
     var buildParams = function(gardenObject) {
+      gardenObject.relationships = null;
+      gardenObject.links = null;
+
       var data = {
         type: 'gardens',
         id: gardenObject.id,
         attributes: gardenObject
       }
-      return {'data': data}
+      return data;
     }
 
     var getGardensForUser = function(user, callback) {
@@ -101,8 +106,9 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
         images: garden.pictures ? garden.pictures.filter(function(p){
           return !p.deleted;
         }) : [],
-        name: garden.name,
-        garden: {
+        id: garden.id || null,
+        attributes: {
+          name: garden.name,
           description: garden.description || null,
           type: garden.type || null,
           location: garden.location || null,
@@ -111,7 +117,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           soil_type: garden.soil_type || null
         }
       };
-      $http.post(url, data)
+      $http.post(url, { data: data })
         .success(function (response, status) {
           alertsService.pushToAlerts(['Created Your Garden!'], status)
           if (callback){
@@ -151,8 +157,8 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
                                          adding,
                                          object,
                                          callback){
-      var data = {'attributes': {}};
-      data.attributes[adding] = object.id;
+      var data = { 'data': {'attributes': {}}};
+      data.data.attributes[adding] = object.id;
       var url = garden.relationships.garden_crops.links.related;
       $http.post(url, data)
         .success(function(response, object){
@@ -203,7 +209,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           }
         })
         .error(function(response, code) {
-          alertsService.pushToAlerts(response, code, alerts);
+          alertsService.pushToAlerts(response.errors, code);
           if (callback){
             return callback(false, response, code);
           }

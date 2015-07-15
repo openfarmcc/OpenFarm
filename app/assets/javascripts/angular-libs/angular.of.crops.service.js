@@ -1,5 +1,5 @@
-openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
-  function cropService($http, $log, alertsService) {
+openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
+  function cropService($http, $q, $log, alertsService) {
 
     // Should return Crop model:
     // {
@@ -49,6 +49,24 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
       });
     };
 
+    var getCropWithPromise = function(cropId) {
+      return $q(function (resolve, reject) {
+        if (cropId !== undefined && cropId !== '') {
+          $http({
+            url: '/api/v1/crops/' + cropId,
+            method: 'GET'
+          }).success(function (response) {
+            resolve(buildCrop(response.data, response.included));
+          }).error(function (response, code) {
+            reject();
+            alertsService.pushToAlerts(response, code);
+          });
+        } else {
+          resolve();
+        }
+      });
+    }
+
     var updateCrop = function(cropId, cropObject, callback){
       var url = '/api/v1/crops/' + cropId + '/';
       $log.debug(url);
@@ -66,6 +84,7 @@ openFarmModule.factory('cropService', ['$http', '$log', 'alertsService',
         'buildParams': buildParams,
       },
       'getCrop': getCrop,
+      'getCropWithPromise': getCropWithPromise,
       'updateCrop': updateCrop
     };
 }]);

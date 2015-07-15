@@ -11,12 +11,23 @@
 //= require ./libs/showdown
 //= require ./libs/moment.min
 //= require ./angular-libs/angular.openfarm
-//= require ./angular-libs/angular.openfarm.directives
-//= require ./angular-libs/angular.openfarm.users
-//= require ./angular-libs/angular.openfarm.guides
-//= require ./angular-libs/angular.openfarm.gardens
-//= require ./angular-libs/angular.openfarm.stages
-//= require ./angular-libs/angular.openfarm.crops
+//= require ./angular-libs/angular.of.directives
+//= require ./angular-libs/angular.of.users.service
+//= require ./angular-libs/angular.of.defaults.service
+//= require ./angular-libs/angular.of.gardens.service
+//= require ./angular-libs/angular.of.stages.service
+//= require ./angular-libs/angular.of.crops.service
+//= require ./angular-libs/guides/guides.service
+//= require ./angular-libs/guides/directives/guides.directives
+//= require ./angular-libs/guides/directives/guides.stageButtons.directive.js
+//= require ./angular-libs/guides/directives/guides.timeline.directive.js
+//= require ./angular-libs/guides/directives/guides.lifetimeChange.directive.js
+//= require ./angular-libs/guides/new/guides.new.stages.directive.js
+//= require ./angular-libs/guides/new/guides.new.stage.directive.js
+//= require ./angular-libs/guides/new/guides.new.chooseCrop.directive.js
+//= require ./angular-libs/guides/new/guides.new.actions.directive.js
+//= require ./angular-libs/guides/directives/guides.formChecker.directive.js
+
 //= require ./angular-libs/ngs3upload
 //= require foundation
 //= require foundation/custom.modernizr
@@ -67,5 +78,8 @@ var getUrlVar = function(key) {
 
 var getIDFromURL = function(key) {
   var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
+  if (result === "new") {
+    return "";
+  }
   return result && unescape(result[1]) || "";
 };

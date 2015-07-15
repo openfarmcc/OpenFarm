@@ -1,3 +1,4 @@
+
 <ul class="chosen-stages">
   <li class="chosen-stage" ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
       ng-class="{ 'editing' : stage.editing }"
@@ -5,8 +6,8 @@
     <div class="bubble {{ stage.name }}"
          ng-class="{ fa: stage.edited, 'fa-check': stage.edited }">
     </div>
-    <p>
+    <span>
       {{ stage.name }}
-    </p>
+    </span>
   </li>
 </ul>

@@ -26,8 +26,8 @@ openFarmModule.directive('location', [
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
           $scope.loadingText = $attrs.loadingText;
-
           $scope.$watch('ngModel', function(){
+            console.log($scope.ngModel);
             $scope.location = $scope.ngModel;
           });
 
@@ -174,6 +174,7 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
         options: '=',
         allowNew: '=',
         query: '=',
+        doesNotHaveButton: '=',
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {

@@ -68,14 +68,14 @@
       &.editing .bubble {
         border-color: $of-green;
       }
-      p {
+      span {
         text-align: center;
         opacity: 0;
         transition: opacity .2s;
         width: 120px;
         margin-left: -20px;
       }
-      &.editing p {
+      &.editing span {
         opacity: 1;
       }
 

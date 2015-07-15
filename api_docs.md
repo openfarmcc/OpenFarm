@@ -195,6 +195,7 @@ DELETE /api/v1/stages/<id>/
             'light',
             'stage_length'
         },
+        'guide_id',
         'actions',
         'images', [] # TODO: read the section on images
     }

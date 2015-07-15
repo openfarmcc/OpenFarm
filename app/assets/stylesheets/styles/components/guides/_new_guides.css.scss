@@ -113,10 +113,10 @@
     }
 
     ul.chosen-stages {
-      margin: -1rem 0;
+      /*margin: -1rem 0;*/
       white-space: nowrap;
 
-      p {
+      span {
         color: $white;
         font-weight: 600;
       }

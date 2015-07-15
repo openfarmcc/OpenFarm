@@ -11,6 +11,11 @@ class Api::V1::BaseController < ActionController::Base
 
   serialization_scope :current_user
 
+  rescue_from Mongoid::Errors::DocumentNotFound do |exc|
+    json = { errors: [{ title: "Not Found. #{exc.message}" }] }
+    render json: json, status: 404
+  end
+
   rescue_from OpenfarmErrors::NotAuthorized do |exc|
     json = { errors: [{ title: "Not Authorized. #{exc.message}" }] }
     render json: json, status: 401

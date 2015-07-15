@@ -322,7 +322,8 @@ en:
               where_does_this_stage_happen: "Where does this stage happen?"
               choose_more_than_one: "You can choose more than one."
               what_type_of_soil: "What type of soil should be used?"
-              not_sure_about_soil_types_html: "Not sure about soil types? <a target='_blank' href='/pages/faq/#soil-types'>Learn more</a>"
+              not_sure_about_soil_types_html: |
+                Not sure about soil types?
               how_much_light: "How much light should be in this area?"
               how_long: "About how long does this stage take?"
               how_long_action: "About how long does it take to complete this action?"

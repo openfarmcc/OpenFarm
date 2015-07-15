@@ -51,6 +51,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     $scope.newGuide.id = existingGuide.id;
     $scope.newGuide.featured_image = existingGuide.featured_image;
     $scope.s3upload = existingGuide.featured_image;
+    $scope.newGuide.crop = existingGuide.crop;
     $scope.newGuide.name = existingGuide.name;
     $scope.newGuide.location = existingGuide.location;
     $scope.newGuide.overview = existingGuide.overview;
@@ -113,7 +114,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
     // AND FINALLY sets the guide name.
     $scope.$watch('newGuide.crop', function(afterValue){
-      console.log(afterValue);
       if (afterValue !== undefined &&
           ($scope.newGuide.name === undefined ||
            $scope.newGuide.name === ''))
@@ -122,7 +122,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     $scope.newGuide.location = $scope.user.user_setting.location;
   };
 
-  var setGuide = function(crop){
+  var buildNewGuide = function(crop){
 
     $scope.originalGuide = {
       name: '',
@@ -199,8 +199,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         'selected': false
       };
     });
-
-    setGuide(crop);
+    buildNewGuide(crop);
     checkGuideSource(externalGuide, practices, true);
   }, function(error) {
     console.log('error', error);
@@ -213,7 +212,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   };
 
   var scrollToTop = function(){
-    $('body').scrollTop(0);
+    window.scrollTo($('.guides').scrollTop(), 0);
   }
 
   $scope.nextStep = function(){

@@ -1,6 +1,7 @@
 openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
-  'stageService', 'userService',
-  function guideService($http, $q, alertsService, stageService, userService) {
+  'stageService', 'userService', 'cropService',
+  function guideService($http, $q, alertsService, stageService, userService,
+    cropService) {
 
     // Should return Guide model:
     // {
@@ -20,7 +21,6 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       guide.id = data.id;
       guide.relationships = data.relationships;
       guide.links = data.links;
-
       stages = included.filter(function(obj) {
         return obj.type === 'stages';
       }).map(function(stage) {
@@ -31,8 +31,15 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         return obj.type === 'users';
       });
 
-      if (user.length > 0) {
+      crop = included.filter(function(obj) {
+        return obj.type === 'crops';
+      });
+
+      if (user !== undefined && user.length > 0) {
         guide.user = userService.utilities.buildUser(user[0]);
+      }
+      if (crop !== undefined && crop.length > 0) {
+        guide.crop = cropService.utilities.buildCrop(crop[0]);
       }
       guide.stages = stages;
       return guide;
@@ -52,10 +59,8 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     // get the guide specified. Out of Date. Use Promise Function
     // below
     var getGuide = function(guideId, callback){
-      $http({
-        url: '/api/v1/guides/' + guideId,
-        method: 'GET'
-      }).success(function (response) {
+      $http.get('/api/v1/guides/' + guideId)
+      .success(function (response) {
         return callback (true, buildGuide(response.data, response.included));
       }).error(function (response, code) {
         alertsService.pushToAlerts(response, code);
@@ -65,8 +70,8 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     // part of refactoring.
     var getGuideWithPromise = function(guideId) {
       return $q( function(resolve, reject) {
-        if (guideId === "") {
-          $http('/api/v1/guides/' + guideId)
+        if (guideId !== "") {
+          $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {

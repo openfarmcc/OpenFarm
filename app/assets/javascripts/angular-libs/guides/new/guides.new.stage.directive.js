@@ -64,7 +64,7 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope', 'defau
           };
 
           var scrollToTop = function(){
-            $('body').scrollTop(0);
+            window.scrollTo($('.guides').scrollTop(), 0);
           }
         }
       ],

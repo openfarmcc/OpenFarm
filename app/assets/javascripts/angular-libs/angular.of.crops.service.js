@@ -16,11 +16,13 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       crop.relationships = data.relationships;
       crop.links = data.links;
 
-      pictures = included.filter(function(obj) {
-        return obj.type === 'pictures';
-      });
+      if (included) {
+        pictures = included.filter(function(obj) {
+          return obj.type === 'pictures';
+        });
+      }
 
-      crop.pictures = pictures;
+      crop.pictures = pictures || [];
       return crop;
     };
 

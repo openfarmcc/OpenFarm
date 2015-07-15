@@ -9,13 +9,13 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    puts "CREATE PARAMS #{params}"
     @outcome = Guides::CreateGuide.run(params[:data],
                                        crop_id: params[:data][:crop_id],
                                        crop_name: params[:data][:crop_name],
                                        user: current_user)
     respond_with_mutation(:created, include: ['stages',
                                               'stages.pictures',
+                                              'stages.stage_actions',
                                               'crop',
                                               'user'])
     unless @outcome.errors
@@ -27,6 +27,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
     guide = Guide.find(params[:id])
     render json: serialize_model(guide, include: ['stages',
                                                   'stages.pictures',
+                                                  'stages.stage_actions',
                                                   'crop',
                                                   'user'])
   end
@@ -44,6 +45,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                        guide: Guide.find(params[:id]))
     respond_with_mutation(:ok, include: ['stages',
                                          'stages.pictures',
+                                         'stages.stage_actions',
                                          'crop',
                                          'user'])
   end

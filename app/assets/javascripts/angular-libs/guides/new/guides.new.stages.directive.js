@@ -29,9 +29,10 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
               });
 
               $scope.$watch('guide.exists', function(afterValue) {
-                if (afterValue && guide.loadedStages) {
+                if (afterValue && $scope.guide.loadedStages) {
+                  console.log($scope.guide.loadedStages);
                   $scope.guide.stages = buildFromExistingAndPreloadedStages(
-                    guide.loadedStages,
+                    $scope.guide.loadedStages,
                     $scope.stages
                   );
                 }
@@ -146,10 +147,12 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             var existingStageNames = existing.map(function(s){
               return s.name;
             });
+            console.log(existingStageNames);
             preloaded.forEach(function(preloadedStage, index){
               var existingStageIndex = existingStageNames.indexOf(preloadedStage.name);
               if (existingStageIndex !== -1){
                 var existingStage = existing[existingStageIndex];
+                console.log(existingStage);
                 existingStage.exists = true;
                 existingStage.selected = true;
                 existingStage = transferStageActions(existingStage,

@@ -11,15 +11,24 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
     //
     // }
 
-    var buildStage = function(data) {
-      var stage = data.attributes
+    var buildStage = function(data, included) {
+      console.log("building stage");
+      var stage = data.attributes;
+      console.log(data);
+      if (data.relationships.stage_actions.data.length == 0) {
+        stage.stage_actions = [];
+      } else {
+        // TODO: we'll need to go fetch these from the
+        // server.
+      }
+
       return stage;
     }
 
     var createStage = function(params, callback){
       $http.post('/api/v1/stages/', params)
         .success(function (response) {
-          return callback (true, response.stage);
+          return callback (true, buildStage(response.stage, response.included));
         }).error(function (response, code) {
           alertsService.pushToAlerts(response, code);
         });
@@ -29,7 +38,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
       return $q(function (resolve, reject) {
         $http.post('/api/v1/stages/', params)
           .success(function (response) {
-            resolve(buildStage(response.data));
+            resolve(buildStage(response.data, response.included));
           }).error(function (response, code) {
             reject();
             alertsService.pushToAlerts(response, code);

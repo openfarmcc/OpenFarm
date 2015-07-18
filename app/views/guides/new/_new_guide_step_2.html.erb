@@ -16,7 +16,7 @@
                       id="{{ stage.name }}"
                       type="checkbox"
                       ng-model="stage.selected"/>
-               <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+               <label class="stage-option {{ stage.name | lowercase }}" for="{{ stage.name }}">
                  <p>{{ stage.name }}</p>
                </label>
           </div>

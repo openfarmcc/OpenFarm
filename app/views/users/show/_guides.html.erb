@@ -1,7 +1,7 @@
 <div class="section-header">
   <h3 class="section-title"><%= t('application.guides') %></h3>
   <% if current_user == @user && current_user.confirmed?%>
-  <button class="button right tiny create-guide-button"><%= link_to t('application.create_guide'), new_guide_path %>
+  <%= link_to t('application.create_guide'), new_guide_path, class: "button right tiny create-guide-button" %>
   <% end %>
 </div>
 

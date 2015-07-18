@@ -88,7 +88,9 @@ module Users
 
     def set_image
       if featured_image
-        @user.user_setting.picture = Picture.new(attachment: open(featured_image))
+        @user.user_setting.picture = Picture.new(
+          attachment: open(featured_image)
+        )
       end
     end
   end

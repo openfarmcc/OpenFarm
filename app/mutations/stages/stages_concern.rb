@@ -57,9 +57,9 @@ module Stages
 
       actions && actions.each do |action|
         @outcome = StageActions::CreateStageAction.run(user: user,
-                                            attributes: action,
-                                            images: action[:images],
-                                            id: "#{@stage.id}")
+                                                       attributes: action,
+                                                       images: action[:images],
+                                                       id: "#{@stage.id}")
       end
     end
   end

@@ -7,6 +7,7 @@ The v1 API uses the JSON-API specifications. We're still migrating to it. Watch 
 * We're overriding the standard name format because both JavaScript and Ruby work better with an `_` than a `-` in names.
 This is counter to the [JSON-API recommendation on naming](http://jsonapi.org/recommendations/#naming).
 * We're a bit more flexible about PUTing and POSTing data to the API and how it's structured relationship wise. 
+* The v1 api is not done. There are certain routes that the gem used [jsonapi-serializers](https://github.com/fotinakis/jsonapi-serializers) that we don't have yet. Don't trust URLs returned in the API. This document takes priority.
 
 ## General
 

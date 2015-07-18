@@ -1,84 +1,89 @@
-/* Step 3 */
+// Step 3
 .stage-details {
   section {
     .row {
       margin-bottom: 1.8rem;
     }
   }
+}
 
-  // TODO: Refactor out into component CSS
-  /* Current stage breadcrumb nav */
-  .chosen-stages {
-    text-align: center;
-    margin: 1rem 0 2rem;
+// TODO: Refactor out into component CSS
+// Current stage breadcrumb nav
+.chosen-stages {
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
 
-    .chosen-stage {
-      display: inline-block;
-      width: 5rem;
-      cursor: pointer;
+.chosen-stage {
+  display: inline-block;
+  width: 5rem;
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    content: "";
+    border-bottom: 2px solid $of-light;
+    height: 0;
+    width: 100%;
+    display: inline-block;
+    margin-left: 2rem;
+    margin-bottom: -2.25rem;
+    z-index: 0;
+    position: relative;
+  }
+
+  &:last-child::before {
+    display: none;
+  }
+
+  .bubble {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 10rem;
+    background-origin: padding-box;
+    background-size: 100%;
+    border: 2px solid $of-yellow;
+    margin: 0 auto;
+    transition: border-color .2s;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+      font-size: 2rem;
       position: relative;
+      color: $of-green;
+      width: 100%;
+      height: 100%;
+      display: block;
+      padding-top: .75rem;
+      background-color: rgba(255, 255, 255, .7);
+      border-radius: 10rem;
+    }
 
-      &::before {
-        content: '';
-        border-bottom: 2px solid $of-light;
-        height: 0;
-        width: 100%;
-        display: inline-block;
-        margin-left: 2rem;
-        margin-bottom: -2.25rem;
-        z-index: 0;
-        position: relative;
-      }
+    &.fa-check {
+      border: 2px solid $of-green;
+    }
+  }
 
-      &:last-child::before {
-        display: none;
-      }
+  &:last-child {
+    margin-right: 0;
+  }
 
-      .bubble {
-        width: 3.5rem;
-        height: 3.5rem;
-        border-radius: 10rem;
-        background-origin: padding-box;
-        background-size: 100%;
-        border: 2px solid $of-yellow;
-        margin: 0 auto;
-        transition: border-color .2s;
-        position: relative;
-        z-index: 1;
+  span {
+    text-align: center;
+    opacity: 0;
+    transition: opacity .2s;
+    width: 120px;
+    margin-left: -20px;
+  }
 
-        &:before {
-          font-size: 2rem;
-          position: relative;
-          color: $of-green;
-          width: 100%;
-          height: 100%;
-          display: block;
-          padding-top: .75rem;
-          background-color: rgba(255,255,255,.7);
-          border-radius: 10rem;
-        }
-        &.fa-check {
-          border: 2px solid $of-green;
-        }
-      }
+  &.editing {
+    .bubble {
+      border-color: $of-green;
+    }
 
-      &:last-child {
-        margin-right: 0;
-      }
-      &.editing .bubble {
-        border-color: $of-green;
-      }
-      span {
-        text-align: center;
-        opacity: 0;
-        transition: opacity .2s;
-        width: 120px;
-        margin-left: -20px;
-      }
-      &.editing span {
-        opacity: 1;
-      }
-
+    span {
+      opacity: 1;
     }
   }
 }

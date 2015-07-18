@@ -4,10 +4,10 @@
   }
 
   .guide-name {
-    @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+    @include background-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, 0));
     bottom: -408px;
     color: #ffffff;
-    left: 0px;
+    left: 0;
     padding-bottom: 10px;
     padding-top: 50px;
     position: absolute;

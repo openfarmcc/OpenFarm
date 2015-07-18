@@ -19,13 +19,11 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'type': 'garden-crops',
     #     'attributes': {},
     # }
-    puts params
     @outcome = GardenCrops::CreateGardenCrop.run(
       params[:data],
       garden_id: params[:garden_id],
       user: current_user
     )
-    puts @outcome
     respond_with_mutation(:created)
   end
 

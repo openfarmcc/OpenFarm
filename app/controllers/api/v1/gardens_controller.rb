@@ -7,7 +7,6 @@ class Api::V1::GardensController < Api::V1::BaseController
   end
 
   def create
-    puts params
     @outcome = Gardens::CreateGarden.run(params[:data],
                                          user: current_user)
     @user = current_user

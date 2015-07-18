@@ -15,7 +15,7 @@ class BaseSerializer < ActiveModel::Serializer
     "#{self_link[:api]}/#{format_name(attribute_name)}"
   end
 
-  def relationship_self_link(attribute_name)
+  def relationship_self_link(*)
     nil
   end
 

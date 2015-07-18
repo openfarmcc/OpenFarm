@@ -27,7 +27,6 @@ openFarmModule.directive('location', [
         function ($scope, $element, $attrs) {
           $scope.loadingText = $attrs.loadingText;
           $scope.$watch('ngModel', function(){
-            console.log($scope.ngModel);
             $scope.location = $scope.ngModel;
           });
 

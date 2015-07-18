@@ -3,7 +3,7 @@ module Api
   # V1 API.
 
   # A controller that handles all the non-restful stuff for AWS.
-  class AwsController < Api::Controller
+  class AwsController < Api::V1::BaseController
     def s3_access_token
       render json: {
         policy:    s3_upload_policy,

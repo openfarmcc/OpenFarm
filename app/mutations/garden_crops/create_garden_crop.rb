@@ -33,7 +33,7 @@ module GardenCrops
 
     def validate_guide_or_crop
       unless attributes[:guide] || attributes[:crop]
-        msg = "You need either a guide or a crop for the garden crop."
+        msg = 'You need either a guide or a crop for the garden crop.'
         add_error :attributes, :not_found, msg
       end
     end

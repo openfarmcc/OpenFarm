@@ -11,12 +11,12 @@ class Api::V1::StagesController < Api::V1::BaseController
     # }
     @outcome = Stages::CreateStage.run(params[:data],
                                        user: current_user)
-    respond_with_mutation(:created)
+    respond_with_mutation(:created, include: ['pictures'])
   end
 
   def show
     stage = Stage.find(params[:id])
-    render json: serialize_model(stage)
+    render json: serialize_model(stage, include: ['pictures'])
   end
 
   def update
@@ -36,12 +36,17 @@ class Api::V1::StagesController < Api::V1::BaseController
                                        images: params[:data][:images],
                                        stage: Stage.find(params[:id]),
                                        user: current_user)
-    respond_with_mutation(:ok)
+    respond_with_mutation(:ok, include: ['pictures'])
   end
 
   def destroy
     @outcome = Stages::DestroyStage.run(params,
                                         user: current_user)
     respond_with_mutation(:no_content)
+  end
+
+  def pictures
+    stage = Stage.find(params[:stage_id])
+    render json: serialize_models(stage.pictures)
   end
 end

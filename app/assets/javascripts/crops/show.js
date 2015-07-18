@@ -10,15 +10,14 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     $scope.crop = {};
     $scope.userId = USER_ID || undefined;
 
-    $scope.setCurrentUser = function(success, object){
-      if (success){
-        $scope.currentUser = object;
-      }
+    $scope.setCurrentUser = function(object){
+      $scope.currentUser = object;
     };
 
     $scope.setCrop = function(success, crop){
-      userService.getUser($scope.userId,
-                          $scope.setCurrentUser);
+      userService.getUserWithPromise($scope.userId)
+        .then($scope.setCurrentUser)
+
       $scope.crop = crop;
     };
 

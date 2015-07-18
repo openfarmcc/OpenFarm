@@ -14,7 +14,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  it 'handles empty searches', js: true  do
+  it 'handles empty searches', js: true do
     visit root_path
     fill_in 'q', with: ''
     FactoryGirl.create_list(:crop, 10)
@@ -23,7 +23,7 @@ describe 'Crop search', type: :controller do
     expect(page).to have_content(Crop.last.name)
   end
 
-  it 'handles empty search results', js: true  do
+  it 'handles empty search results', js: true do
     visit root_path
     fill_in 'q', with: 'pokemon'
     FactoryGirl.create_list(:crop, 10)
@@ -32,7 +32,7 @@ describe 'Crop search', type: :controller do
     expect(page).to have_content("Sorry, we don't have any crops matching")
   end
 
-  it 'handles plurals', js: true  do
+  it 'handles plurals', js: true do
     visit root_path
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
@@ -42,7 +42,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  it 'handles misspellings', js: true  do
+  it 'handles misspellings', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
     FactoryGirl.create(:crop, name: 'radish')
@@ -53,7 +53,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  it 'handles multiple words', js: true  do
+  it 'handles multiple words', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
     FactoryGirl.create(:crop, name: 'radish')
@@ -64,7 +64,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  it 'has a top nav bar', js: true  do
+  it 'has a top nav bar', js: true do
     visit crop_search_via_get_path(cropsearch: { q: 'red' })
     fill_in 'q', with: crop.name
     FactoryGirl.create_list(:crop, 10)
@@ -73,7 +73,5 @@ describe 'Crop search', type: :controller do
     expect(page).to have_content(crop.name)
   end
 
-  it 'handles pressing enter', js: true do
-
-  end
+  it 'handles pressing enter'
 end

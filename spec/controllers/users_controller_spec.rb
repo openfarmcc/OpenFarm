@@ -51,14 +51,14 @@ describe UsersController do
 
   it 'should not update with incomplete information' do
     sign_in user
-    put :update, { location: '', units: 'metric' }
+    put :update, location: '', units: 'metric'
     expect(response).to redirect_to({controller: 'users', action: 'finish'})
     expect(flash[:alert]).to include("Location can't be blank")
   end
 
   it 'should update with complete information' do
     sign_in user
-    put :update, { location: 'Hanoi', units: 'metric' }
+    put :update, location: 'Hanoi', units: 'metric'
     expect(response).to redirect_to({ controller: 'users',
                                       action: 'show',
                                       id: user.id })

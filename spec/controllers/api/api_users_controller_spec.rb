@@ -35,9 +35,9 @@ describe Api::V1::UsersController, type: :controller do
   # it 'shows basics to non-logged in users' do
   #   get 'show', id: public_user.id, format: :json
   #   expect(response.status).to eq(200)
-  #   puts json
   #   expect(json['data']['relationships']).to have_key('user_setting')
-  #   expect(json['data']['relationships']['user_setting']).to not_have_key('data')
+  #   expect(json['data']['relationships']['user_setting']).to
+  #     not_have_key('data')
   # end
 
   it 'shows a favorite crop for a user' do

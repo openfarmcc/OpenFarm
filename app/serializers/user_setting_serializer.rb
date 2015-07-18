@@ -16,8 +16,6 @@ class UserSettingSerializer < BaseSerializer
       { id: object._id,
         image_url: crop_picture,
         thumbnail_url: thumbnail }
-    else
-      nil
     end
   end
 
@@ -26,8 +24,6 @@ class UserSettingSerializer < BaseSerializer
       { image_url: object.picture.attachment.url,
         medium_url: object.picture.attachment.url(:medium),
         thumbnail_url: object.picture.attachment.url(:small) }
-    else
-      nil
     end
   end
 end

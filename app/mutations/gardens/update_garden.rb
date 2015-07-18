@@ -12,7 +12,7 @@ module Gardens
           string :type
           string :average_sun
           string :soil_type
-          integer :ph
+          float :ph
           array :growing_practices
         end
       end

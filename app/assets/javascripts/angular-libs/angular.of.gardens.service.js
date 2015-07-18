@@ -48,7 +48,11 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
       var data = {
         type: 'gardens',
         id: gardenObject.id,
-        attributes: gardenObject
+        attributes: gardenObject,
+        images: gardenObject.pictures ? garden.pictures.filter(function(p) {
+          return !p.deleted;
+        }) : [],
+
       }
       return data;
     }
@@ -72,20 +76,21 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
 
     var saveGarden = function(garden, callback){
       var url = '/api/v1/gardens/' + garden.id;
-      var data = {
-        images: garden.pictures ? garden.pictures.filter(function(p){
-          return !p.deleted;
-        }) : [],
-        garden: {
-          description: garden.description || null,
-          type: garden.type || null,
-          location: garden.location || null,
-          average_sun: garden.average_sun || null,
-          ph: garden.ph || null,
-          soil_type: garden.soil_type || null
-        }
-      };
-      $http.put(url, data)
+      var data = buildParams(garden);
+      // var data = {
+      //   images: garden.pictures ? garden.pictures.filter(function(p){
+      //     return !p.deleted;
+      //   }) : [],
+      //   garden: {
+      //     description: garden.description || null,
+      //     type: garden.type || null,
+      //     location: garden.location || null,
+      //     average_sun: garden.average_sun || null,
+      //     ph: garden.ph || null,
+      //     soil_type: garden.soil_type || null
+      //   }
+      // };
+      $http.put(url, {'data': data})
         .success(function (response, object) {
           alertsService.pushToAlerts(['Updated your garden!'], status)
           if (callback){
@@ -93,7 +98,8 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           }
         })
         .error(function (response, code){
-          alertsService.pushToAlerts(response, code)
+          console.log(response);
+          alertsService.pushToAlerts(response.errors, code)
           if (callback){
             return callback(false, response, code);
           }
@@ -129,7 +135,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
         .error(function (response, code){
           alertsService.pushToAlerts(response, code);
           if (callback){
-            return callback(false, response, code);
+            return callback(false, response.errors, code);
           }
         });
     };

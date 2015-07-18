@@ -43,7 +43,8 @@ describe Api::V1::StagesController, type: :controller do
                            order: 0 },
              guide_id: 1 }
     post 'create', data: data, format: :json
-    expect(json['errors'][0]['title']).to eq("Could not find a guide with id 1.")
+    error = json['errors'][0]
+    expect(error['title']).to eq('Could not find a guide with id 1.')
     expect(response.status).to eq(422)
   end
 
@@ -102,8 +103,24 @@ describe Api::V1::StagesController, type: :controller do
 
   it 'handles deletion of unknown stages' do
     delete :destroy, id: 1
-    expect(json['errors'][0]['title']).to eq('Could not find a stage with id 1.')
+    errors = json['errors']
+    expect(errors[0]['title']).to eq('Could not find a stage with id 1.')
     expect(response.status).to eq(422)
+  end
+
+  it 'has a picture route, which returns empty when there are no pictures' do
+    get :pictures, stage_id: FactoryGirl.create(:stage).id.to_s
+    expect(json['data'].count).to eq(0)
+  end
+
+  it 'has a picture route, which returns with pictures' do
+    VCR.use_cassette('controllers/api/api_stages_controller') do
+      stage = FactoryGirl.create(:stage)
+      Picture.from_url('http://i.imgur.com/2haLt4J.jpg', stage)
+      stage.reload
+      get :pictures, stage_id: stage.id
+      expect(json['data'].count).to eq(1)
+    end
   end
 
   it 'should add actions in a stage creation event successfully' do

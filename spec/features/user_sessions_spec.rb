@@ -119,7 +119,7 @@ describe 'User sessions' do
     expect(page).to have_content('Resend confirmation instructions')
   end
 
-  it 'should let the user set favorite crop on profile page' #, js: true do
+  it 'should let the user set favorite crop on profile page' # , js: true do
   #   FactoryGirl.create(:crop, name: 'Tomato')
   #   login_as user
   #   visit user_path('en', user)

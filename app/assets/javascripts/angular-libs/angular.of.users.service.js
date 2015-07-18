@@ -67,14 +67,18 @@ openFarmModule.factory('userService', ['$http', '$q', 'gardenService',
 
     var getUserWithPromise = function(userId) {
       return $q(function (resolve, reject) {
-        var url = '/api/v1/users/' + userId;
-        $http.get(url)
-          .success(function (response) {
-            resolve(buildUser(response.data, response.included));
-          }).error(function (response, code) {
-            alertsService.pushToAlerts(response, code);
-            reject(response, code);
-          });
+        if (userId) {
+          var url = '/api/v1/users/' + userId;
+          $http.get(url)
+            .success(function (response) {
+              resolve(buildUser(response.data, response.included));
+            }).error(function (response, code) {
+              alertsService.pushToAlerts(response, code);
+              reject(response, code);
+            });
+        } else {
+          reject()
+        }
       })
     }
 

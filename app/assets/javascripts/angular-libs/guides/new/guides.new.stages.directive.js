@@ -10,7 +10,8 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
-          $q.all([
+          var initStages = function() {
+            $q.all([
               defaultService.getStageOptions()
             ])
             .then(function(data) {
@@ -30,7 +31,6 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
 
               $scope.$watch('guide.exists', function(afterValue) {
                 if (afterValue && $scope.guide.loadedStages) {
-                  console.log($scope.guide.loadedStages);
                   $scope.guide.stages = buildFromExistingAndPreloadedStages(
                     $scope.guide.loadedStages,
                     $scope.stages
@@ -39,49 +39,56 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
               });
               $scope.$watch('guide.stages', function(){
                 if ($scope.guide !== undefined && $scope.guide.stages) {
-
-                  // we only want to set these watches once we know that
-                  // we'll have a guide to check on.
-                  $rootScope.$watch('step', function(afterValue){
-                    if (afterValue === 3){
-                      setEditingStage();
-                    }
-                  });
-
-
-                  var stages = $scope.guide.stages;
-                  $scope.guide.selectedStagesCount = $scope.guide.stages
-                                                .filter(function(s) {
-                                                  return s.selected;
-                                                }).length;
-
-                  // keep track of what the next and previous stage is for toggling
-                  // through them.
-                  if (stages){
-                    var lastSelectedIndex = null;
-                    stages.forEach(function(item, index){
-                      item.nextSelectedIndex = undefined;
-                      if (item.selected){
-                        item.originalIndex = index;
-                        if (lastSelectedIndex !== null){
-                          item.lastSelectedIndex = lastSelectedIndex;
-                          stages[lastSelectedIndex].nextSelectedIndex = index;
-                        }
-
-                        lastSelectedIndex = index;
+                  if ($scope.guide.stages.length === 0) {
+                    $scope.guide.stages = $scope.stages;
+                    // we did a reset, so we should redo everything.
+                  } else {
+                    // we only want to set these watches once we know that
+                    // we'll have a guide to check on.
+                    $rootScope.$watch('step', function(afterValue){
+                      if (afterValue === 3){
+                        setEditingStage();
                       }
                     });
+
+                    var stages = $scope.guide.stages;
+                    $scope.guide.selectedStagesCount = $scope.guide.stages
+                                                  .filter(function(s) {
+                                                    return s.selected;
+                                                  }).length;
+
+                    // keep track of what the next and previous stage is for toggling
+                    // through them.
+                    if (stages){
+                      var lastSelectedIndex = null;
+                      stages.forEach(function(item, index){
+                        item.nextSelectedIndex = undefined;
+                        if (item.selected){
+                          item.originalIndex = index;
+                          if (lastSelectedIndex !== null){
+                            item.lastSelectedIndex = lastSelectedIndex;
+                            stages[lastSelectedIndex].nextSelectedIndex = index;
+                          }
+
+                          lastSelectedIndex = index;
+                        }
+                      });
+                    }
+                    setEditingStage();
                   }
-                  setEditingStage();
                 }
               }, true);
-            })
+            });
+          }
 
-          // $scope.watch('guide.exists', function() {
-          //   console.log($scope.guide.exists)
-          // });
+          // We should only init stages if we have a guide.
+          $scope.$watch('guide', function() {
+            if ($scope.guide !== undefined) {
+              initStages();
+            }
+          });
 
-          $scope.buildStageDetails = function(array, selectedArray){
+          var buildStageDetails = function(array, selectedArray){
             var returnArray = [];
             array.forEach(function(d){
               var obj = {
@@ -116,15 +123,15 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
               preloadedStages = $scope.stages;
             }
             preloadedStages.forEach(function(preloadedStage){
-              preloadedStage.environment = $scope.buildStageDetails(
+              preloadedStage.environment = buildStageDetails(
                 $scope.options.environment,
                 (preloadedStage.environment || [])
               );
-              preloadedStage.light = $scope.buildStageDetails(
+              preloadedStage.light = buildStageDetails(
                 $scope.options.light,
                 (preloadedStage.light || [])
               );
-              preloadedStage.soil = $scope.buildStageDetails(
+              preloadedStage.soil = buildStageDetails(
                 $scope.options.soil,
                 (preloadedStage.soil || [])
               );
@@ -147,12 +154,10 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             var existingStageNames = existing.map(function(s){
               return s.name;
             });
-            console.log(existingStageNames);
             preloaded.forEach(function(preloadedStage, index){
               var existingStageIndex = existingStageNames.indexOf(preloadedStage.name);
               if (existingStageIndex !== -1){
                 var existingStage = existing[existingStageIndex];
-                console.log(existingStage);
                 existingStage.exists = true;
                 existingStage.selected = true;
                 existingStage = transferStageActions(existingStage,

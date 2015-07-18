@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'openfarm_errors'
 
-describe Api::V1::CropsController, :type => :controller do
+describe Api::V1::CropsController, type: :controller do
 
   let(:user) { FactoryGirl.create(:user) }
 
@@ -35,7 +35,7 @@ describe Api::V1::CropsController, :type => :controller do
   it 'should update a crop' do
     sign_in user
     crop = FactoryGirl.create(:crop)
-    put :update, id: crop.id, data: { attributes: { description: 'Updated' }}
+    put :update, id: crop.id, data: { attributes: { description: 'Updated' } }
     expect(response.status).to eq(200)
     crop.reload
     expect(crop.description).to eq('Updated')
@@ -46,7 +46,7 @@ describe Api::V1::CropsController, :type => :controller do
     sign_in user
     put :update,
         id: crop.id,
-        data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] }}
+        data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] } }
     expect(response.status).to eq(200)
     expect(crop.reload.common_names.length).to eq(3)
   end
@@ -54,7 +54,7 @@ describe Api::V1::CropsController, :type => :controller do
   it 'should return an error when updating faulty information' do
     sign_in user
     crop = FactoryGirl.create(:crop)
-    put :update, id: crop.id, data: { attributes: { description: '' }}
+    put :update, id: crop.id, data: { attributes: { description: '' } }
     expect(response.status).to eq(422)
     old_description = crop.description
     crop.reload

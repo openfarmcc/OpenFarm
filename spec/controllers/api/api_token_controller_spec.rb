@@ -15,9 +15,9 @@ describe Api::V1::TokensController, type: :controller do
     post :create, data, format: :json
     expect(response.status).to eq(201)
     user.reload
-    token      = json['data']['attributes']
+    token = json['data']['attributes']
     expiration = Time.parse(token['expiration'])
-    email      = token['secret'].split(':').first
+    email = token['secret'].split(':').first
     expect(User.find_by(email: email)).to eq(user)
     expect(token['secret']).to match(/#{user.email}\:.*/)
     expect(expiration).to be_a_kind_of(Time)

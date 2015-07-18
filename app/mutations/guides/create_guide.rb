@@ -85,11 +85,10 @@ module Guides
     private
 
     def check_if_crop_exists
-      crops = Crop.search(crop_name,
-                          fields: [{ name: :exact }])
+      crops = Crop.where(name: crop_name)
       if crops.count == 0
-        crop = Crop.new( name: :crop_name,
-                         common_names: [:crop_name,] )
+        crop = Crop.new(name: :crop_name,
+                        common_names: [:crop_name,])
         crop.save
         crop
       else

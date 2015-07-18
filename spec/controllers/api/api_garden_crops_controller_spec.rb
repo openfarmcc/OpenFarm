@@ -12,9 +12,10 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should create garden crops' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden, user: @user)
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
-                             sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                             sowed: sowed,
                              guide: guide.id.to_s } }
 
       old_length = garden.garden_crops.length
@@ -27,9 +28,10 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should give the user a gardener badge on adding a garden crop' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden, user: @user)
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
-                             sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                             sowed: sowed,
                              guide: guide.id.to_s } }
 
       post :create, data: data, garden_id: garden.id.to_s, format: :json
@@ -40,11 +42,12 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should not allow user to add garden crops to other user gardens' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden)
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
-                             sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                             sowed: sowed,
                              guide: guide.id.to_s,
-                              } }
+                            } }
       post :create, data: data, garden_id: garden.id.to_s, format: :json
       expect(response.status).to eq(422)
     end
@@ -128,6 +131,28 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should return a not found error for non-existent garden crops' do
       get :show, garden_id: @garden.id, id: 1
       expect(response.status).to eq(404)
+    end
+
+    it 'should show a garden_crop with a crop' do
+      crop = FactoryGirl.create :crop
+      garden_crop = FactoryGirl.create(:garden_crop,
+                                       garden: @garden,
+                                       crop: crop)
+      # @garden.crop = FactoryGirl.create :crop
+      garden_crop.save
+      get :show, garden_id: @garden.id, id: garden_crop.id
+      expect(json['data']['attributes']['crop']['name']).to eq(crop.name)
+    end
+
+    it 'should show a garden_crop with a guide' do
+      guide = FactoryGirl.create :guide
+      garden_crop = FactoryGirl.create(:garden_crop,
+                                       garden: @garden,
+                                       guide: guide)
+      # @garden.crop = FactoryGirl.create :crop
+      garden_crop.save
+      get :show, garden_id: @garden.id, id: garden_crop.id
+      expect(json['data']['attributes']['guide']['name']).to eq(guide.name)
     end
 
     it 'should show a garden crop that exists' do

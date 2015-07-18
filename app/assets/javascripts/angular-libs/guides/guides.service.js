@@ -13,6 +13,43 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     //
     // }
 
+    var buildBlankGuide = function(crop, stages, practices) {
+      return {
+        name: '',
+        crop: crop || null,
+        overview: '',
+        // selectedStages: [],
+        time_span: {
+          'length': 24,
+          'length_units':'weeks',
+          'start_event': 21,
+          'start_event_format':'%W',
+          set_start_event: function(val){
+            this.start_event = val;
+          },
+          set_length: function(val){
+            this.length = val;
+          }
+        },
+        exists: false,
+        stages: angular.copy(stages) || [],
+        practices: practices || [],
+        how_long: 0,
+        how_long_type: 'days',
+        start_time: moment().format('MMMM'),
+        stagesToBuildFromLocalStoredGuide: false,
+        stagesToBuildDefault: true
+      }
+    };
+
+    var isBlankGuide = function(guide, blankPractices) {
+      var blankGuide = buildBlankGuide(null, [], blankPractices);
+      var truthy = (JSON.stringify(blankGuide) === JSON.stringify(guide) &&
+                    blankGuide.crop === null);
+      console.log(truthy)
+      return truthy;
+    }
+
     var buildGuide = function(data, included) {
       var stages,
           user,
@@ -63,19 +100,19 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       .success(function (response) {
         return callback (true, buildGuide(response.data, response.included));
       }).error(function (response, code) {
-        alertsService.pushToAlerts(response, code);
+        alertsService.pushToAlerts(response.errors, code);
       });
     };
     // This function should replace the above function,
     // part of refactoring.
     var getGuideWithPromise = function(guideId) {
-      return $q( function(resolve, reject) {
-        if (guideId !== "") {
+      return $q(function (resolve, reject) {
+        if (guideId !== "" && guideId !== "new") {
           $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {
-            alertsService.pushToAlerts(response, code);
+            alertsService.pushToAlerts(response.errors, code);
             reject(response);
           });
         } else {
@@ -86,10 +123,11 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     };
 
     var createGuide = function(params, callback){
-      $http.post('/api/v1/guides/', params).success(function (response) {
+      $http.post('/api/v1/guides/', params)
+      .success(function (response) {
         return callback (true, buildGuide(response.data, response.included));
       }).error(function (response, code) {
-        alertsService.pushToAlerts(response, code);
+        alertsService.pushToAlerts(response.errors, code);
       });
     };
 
@@ -99,7 +137,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
           resolve(buildGuide(response.data, response.included));
         }).error(function (response, code) {
           reject();
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors, code);
         });
       });
     }
@@ -110,7 +148,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
           return callback (true, buildGuide(response.data, response.included));
         })
         .error(function (response, code) {
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors, code);
         });
     };
 
@@ -122,7 +160,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
           })
           .error(function (response, code) {
             reject();
-            alertsService.pushToAlerts(response, code);
+            alertsService.pushToAlerts(response.errors, code);
           });
       });
     }
@@ -222,6 +260,10 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       return callback(days, scale.step, scale);
     };
     return {
+      'utilities': {
+        'buildBlankGuide': buildBlankGuide,
+        'isBlankGuide': isBlankGuide
+      },
       'getGuide': getGuide,
       'getGuideWithPromise': getGuideWithPromise,
       'updateGuideWithPromise': updateGuideWithPromise,

@@ -66,7 +66,7 @@ describe Api::V1::GuidesController, type: :controller do
 
     it 'uploads a featured_image' do
       params = { attributes: { name: 'Just 1 pixel.',
-                               overview: 'A tiny pixel test image.' ,
+                               overview: 'A tiny pixel test image.',
                                featured_image: 'http://placehold.it/1x1.jpg' },
                  crop_id: FactoryGirl.create(:crop).id.to_s }
       sign_in FactoryGirl.create(:user)

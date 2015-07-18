@@ -6,3 +6,5 @@ rvm:
 services:
 - mongodb
 - elasticsearch
+
+sudo: false

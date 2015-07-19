@@ -1,5 +1,5 @@
-openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope', 'defaultService',
-  function guidesActions($http, $location, $rootScope, defaultService) {
+openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
+  function guidesActions($http, $location, $rootScope) {
     return {
       restrict: 'A',
       scope: {
@@ -8,8 +8,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope', 'defau
         guideExists: '=',
         texts: '='
       },
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+      controller: ['$scope',
+        function ($scope) {
           $scope.placeStageUpload = function(stage, image){
             if (!stage.pictures){
               stage.pictures = [];

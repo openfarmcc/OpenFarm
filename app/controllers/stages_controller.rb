@@ -15,6 +15,10 @@ class StagesController < ApplicationController
 
   # private
   #   def stages_params
-  #     params.require(:stage).permit(:name, :guide_id, :days_start, :days_end, :instructions)
+  #     params.require(:stage).permit(:name,
+  #                                   :guide_id,
+  #                                   :days_start,
+  #                                   :days_end,
+  #                                   :instructions)
   #   end
 end

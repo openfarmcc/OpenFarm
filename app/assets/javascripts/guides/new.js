@@ -45,7 +45,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     }
   };
 
-  var loadExternalGuide = function(localGuide, externalGuide, practices){
+  var loadExternalGuide = function(localGuide, existingGuide, practices){
     localGuide.exists = true;
     localGuide.practices = practices;
     localGuide.id = existingGuide.id;
@@ -92,7 +92,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         $scope.alerts.splice(index, 1);
         $scope.switchToStep(1);
         localStorageService.remove('guide');
-        window.location.reload;
+        window.location.reload();
       }
     });
   };
@@ -136,6 +136,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         guide = guideService.utilities.buildBlankGuide(null, [], practices);
         resolve(guide);
       }
+      reject();
     });
   }
 
@@ -146,8 +147,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       userService.getUserWithPromise(USER_ID),
     ])
   .then(function(data){
-    var crop,
-        user;
+    var crop;
     var detail_options = data[0];
 
     if (data[1]) {
@@ -185,7 +185,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           if (afterValue !== undefined && afterValue !== null &&
               ($scope.newGuide.name === undefined ||
                $scope.newGuide.name === '')) {
-            $scope.newGuide.name = $scope.user.display_name + "'s " + $scope.newGuide.crop.name;
+            $scope.newGuide.name = $scope.user.display_name +
+                                   '\'s ' +
+                                   $scope.newGuide.crop.name;
           }
         });
         $scope.newGuide.location = $scope.user.user_setting.location;
@@ -239,7 +241,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
     var defineFeaturedImage = function(image){
       var featured_image = null;
-      if (image !== undefined && image.image_url !== undefined && image.image_url.indexOf('baren_field') === -1){
+      if (image !== undefined &&
+          image.image_url !== undefined &&
+          image.image_url.indexOf('baren_field') === -1){
         featured_image = image.image_url;
       }
       return featured_image;
@@ -323,7 +327,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           'attributes': {
             'name': stage.name,
             'order': stage.order,
-            'stage_length': calcTimeLength(stage.stage_length, stage.length_type),
+            'stage_length': calcTimeLength(stage.stage_length,
+                                           stage.length_type),
             'environment': stage.environment.filter(function(s){
                 return s.selected;
               }).map(function(s){
@@ -342,7 +347,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           },
           'guide_id': guide.id,
           'actions': stage.stage_action_options.filter(function(a){
-                return a.overview || a.time || (a.pictures && a.pictures.length > 0);
+                return (a.overview ||
+                        a.time ||
+                        (a.pictures && a.pictures.length > 0));
               }).map(function(action, index){
                 var img = null;
                 if(action.pictures !== null) {

@@ -107,7 +107,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
 
       $scope.guide = object;
-      if($scope.guide.user != undefined) {
+      if($scope.guide.user !== undefined) {
         userService.getUser($scope.guide.user.id,
                             $scope.setGuideUser);
       }

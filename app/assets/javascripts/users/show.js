@@ -1,6 +1,6 @@
 openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
-  'userService', 'gardenService',
-  function profileCtrl($scope, $rootScope, $http, userService, gardenService) {
+  'userService',
+  function profileCtrl($scope, $rootScope, $http, userService) {
     $scope.profileId = PROFILE_ID || undefined;
     $scope.userId = USER_ID || undefined;
 
@@ -25,7 +25,8 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
       $scope.editing = true;
     };
 
-    $scope.setFavoriteCrop = function(item, model, label){
+    // setFavoriteCrop was originally = function(item, model, label);
+    $scope.setFavoriteCrop = function(item){
       if ($scope.currentUser.id == $scope.profileUser.id) {
         var favCrop = item;
 

@@ -1,6 +1,5 @@
 openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
-  'alertsService',
-  function finishCtrl($scope, $http, userService, alertsService) {
+  function finishCtrl($scope, $http, userService) {
     $scope.userId = USER_ID || undefined;
 
     $scope.setUser = function(success, object){

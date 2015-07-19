@@ -49,7 +49,7 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'attributes': {},
     # }
     garden_crop = Garden.find(params[:garden_id]).
-        garden_crops.find(params[:id])
+                  garden_crops.find(params[:id])
     @outcome = GardenCrops::UpdateGardenCrop.run(params[:data],
                                                  user: current_user,
                                                  garden_crop: garden_crop)

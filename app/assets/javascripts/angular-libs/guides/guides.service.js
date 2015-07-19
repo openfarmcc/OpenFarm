@@ -262,7 +262,8 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     return {
       'utilities': {
         'buildBlankGuide': buildBlankGuide,
-        'isBlankGuide': isBlankGuide
+        'isBlankGuide': isBlankGuide,
+        'buildParams': buildParams
       },
       'getGuide': getGuide,
       'getGuideWithPromise': getGuideWithPromise,

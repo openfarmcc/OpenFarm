@@ -4,7 +4,7 @@ openFarmApp.controller('searchCtrl', ['$scope', '$http',
 
   // Redirect the browser to a specified crop
   //
-  $scope.goToCrop = function (crop, model, label, options) {
+  $scope.goToCrop = function (crop) {
     if(crop !== undefined && crop.name !== undefined) {
       location.assign( crop.links.self.website );
     } else if (typeof crop === 'string' || crop instanceof String) {
@@ -12,9 +12,6 @@ openFarmApp.controller('searchCtrl', ['$scope', '$http',
     } else if (crop === undefined) {
       location.assign('/crop_search/?q=');
     }
-
-
     // options.pathTemplate.replace('ID', slug)
-
   };
 }]);

@@ -64,8 +64,6 @@ class Api::V1::BaseController < ActionController::Base
       end
       render json: { errors: errors },
              status: :unprocessable_entity
-
     end
   end
 end
-

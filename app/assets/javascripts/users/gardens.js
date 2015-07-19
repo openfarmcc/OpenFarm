@@ -21,7 +21,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     $scope.$watch('profileUser', function(){
       if($rootScope.profileUser) {
         gardenService.getGardensForUser($rootScope.profileUser,
-          function(success, response, code) {
+          function(success, response) {
             if(success) {
               $scope.profileUser.gardens = response;
 
@@ -35,8 +35,8 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
                   var callback = function(success, response){
                     garden_crop.guide.crop = response;
                   };
-                  // We only need to fetch the crop if the garden_crop doesn't already
-                  // have a crop associated with it.
+                  // We only need to fetch the crop if the garden_crop doesn't
+                  // already have a crop associated with it.
                   if (garden_crop.guide){
                     cropService.getCrop(garden_crop.guide.crop_id,
                                         callback);

@@ -6,10 +6,9 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
         stage: '=',
         texts: '='
       },
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+      controller: ['$scope',
+        function ($scope) {
           $scope.stage.stage_action_options = [];
-          console.log($scope.stage);
 
           $scope.openAddActionModal = function(stage){
 
@@ -19,7 +18,8 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
                 // http://pineconellc.github.io/angular-foundation/#modal
                 var modalInstance = $modal.open({
                   templateUrl: '/assets/templates/_add_action_modal.html',
-                  controller: ['$scope', '$modalInstance', 'stage', 'actionOptions',
+                  controller: ['$scope', '$modalInstance', 'stage',
+                    'actionOptions',
                     function ($scope, $modalInstance, stage, actionOptions) {
                       console.log(stage);
                       $scope.actionOptions = actionOptions;

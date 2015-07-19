@@ -9,7 +9,7 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
         texts: '=',
       },
       controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+        function ($scope) {
           var initStages = function() {
             $q.all([
               defaultService.getStageOptions()
@@ -17,17 +17,21 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             .then(function(data) {
               $scope.stages = $filter('orderBy')(data[0], 'order');
 
-              $scope.$watch('guide.stagesToBuildFromLocalStoredGuide', function(afterValue) {
-                if (afterValue) {
-                  $scope.guide.stages = buildDetailsForStages($scope.guide.stages);
-                }
-              });
+              $scope.$watch('guide.stagesToBuildFromLocalStoredGuide',
+                function(afterValue) {
+                  if (afterValue) {
+                    $scope.guide.stages = buildDetailsForStages(
+                      $scope.guide.stages
+                    );
+                  }
+                });
 
-              $scope.$watch('guide.stagesToBuildDefault', function(afterValue) {
-                if (afterValue) {
-                  $scope.guide.stages = buildDetailsForStages();
-                }
-              });
+              $scope.$watch('guide.stagesToBuildDefault',
+                function(afterValue) {
+                  if (afterValue) {
+                    $scope.guide.stages = buildDetailsForStages();
+                  }
+                });
 
               $scope.$watch('guide.exists', function(afterValue) {
                 if (afterValue && $scope.guide.loadedStages) {
@@ -57,8 +61,8 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
                                                     return s.selected;
                                                   }).length;
 
-                    // keep track of what the next and previous stage is for toggling
-                    // through them.
+                    // keep track of what the next and previous stage
+                    // is for toggling through them.
                     if (stages){
                       var lastSelectedIndex = null;
                       stages.forEach(function(item, index){
@@ -149,13 +153,15 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             return existing;
           };
 
-          var buildFromExistingAndPreloadedStages = function(existing, preloaded){
+          var buildFromExistingAndPreloadedStages = function(existing,
+                                                             preloaded){
             var stages = [];
             var existingStageNames = existing.map(function(s){
               return s.name;
             });
-            preloaded.forEach(function(preloadedStage, index){
-              var existingStageIndex = existingStageNames.indexOf(preloadedStage.name);
+            preloaded.forEach(function(preloadedStage){
+              var existingStageIndex = existingStageNames
+                .indexOf(preloadedStage.name);
               if (existingStageIndex !== -1){
                 var existingStage = existing[existingStageIndex];
                 existingStage.exists = true;

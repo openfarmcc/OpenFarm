@@ -6,17 +6,17 @@ openFarmApp.directive('guidesChooseCrop' ,[
         texts: '=',
         guide: '=',
       },
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+      controller: ['$scope',
+        function ($scope) {
           //Gets fired when user selects dropdown.
-          $scope.cropSelected = function ($item, $model, $label) {
+          $scope.cropSelected = function ($item, $model) {
             $scope.guide.crop = $item;
             $scope.crop_not_found = false;
             $scope.guide.crop.description = '';
           };
 
           //Gets fired when user resets their selection.
-          $scope.clearCropSelection = function ($item, $model, $label) {
+          $scope.clearCropSelection = function ($item, $model) {
             $scope.guide.crop = null;
             $scope.crop_not_found = false;
 
@@ -24,7 +24,8 @@ openFarmApp.directive('guidesChooseCrop' ,[
           };
 
           $scope.createCrop = function(){
-            window.location.href = '/crops/new/?source=guide&name=' + $scope.query;
+            window.location.href = '/crops/new/?source=guide&name=' +
+                                   $scope.query;
           };
         }
       ],

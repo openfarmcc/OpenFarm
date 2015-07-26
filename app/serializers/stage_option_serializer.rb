@@ -1,6 +1,9 @@
-class StageOptionSerializer < ApplicationSerializer
-  attributes :default_value, :name, :slug, :description,
-             :order
+class StageOptionSerializer < BaseSerializer
+  attribute :default_value
+  attribute :name
+  attribute :slug
+  attribute :description
+  attribute :order
 
   has_many :stage_action_options
 end

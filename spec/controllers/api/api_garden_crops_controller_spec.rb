@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::GardenCropsController, type: :controller do
+describe Api::V1::GardenCropsController, type: :controller do
   include ApiHelpers
 
   describe 'create' do
@@ -12,14 +12,14 @@ describe Api::GardenCropsController, type: :controller do
     it 'should create garden crops' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden, user: @user)
-      data = { quantity: rand(100),
-               stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
-               guide_id: guide.id,
-               garden_id: garden.id }
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
+      data = { attributes: { quantity: rand(100),
+                             stage: "#{Faker::Lorem.word}",
+                             sowed: sowed,
+                             guide: guide.id.to_s } }
 
       old_length = garden.garden_crops.length
-      post :create, data, format: :json
+      post :create, data: data, garden_id: garden.id.to_s, format: :json
       new_length = garden.reload.garden_crops.length
       expect(response.status).to eq(201)
       expect(new_length).to eq(old_length + 1)
@@ -28,13 +28,13 @@ describe Api::GardenCropsController, type: :controller do
     it 'should give the user a gardener badge on adding a garden crop' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden, user: @user)
-      data = { quantity: rand(100),
-               stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
-               guide_id: guide.id,
-               garden_id: garden.id }
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
+      data = { attributes: { quantity: rand(100),
+                             stage: "#{Faker::Lorem.word}",
+                             sowed: sowed,
+                             guide: guide.id.to_s } }
 
-      post :create, data, format: :json
+      post :create, data: data, garden_id: garden.id.to_s, format: :json
       @user.reload
       assert @user.badges.last.name == 'gardener'
     end
@@ -42,12 +42,13 @@ describe Api::GardenCropsController, type: :controller do
     it 'should not allow user to add garden crops to other user gardens' do
       guide = FactoryGirl.create(:guide)
       garden = FactoryGirl.create(:garden)
-      data = { quantity: rand(100),
-               stage: "#{Faker::Lorem.word}",
-               sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
-               guide_id: guide.id,
-               garden_id: garden.id }
-      post :create, data, format: :json
+      sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
+      data = { attributes: { quantity: rand(100),
+                             stage: "#{Faker::Lorem.word}",
+                             sowed: sowed,
+                             guide: guide.id.to_s,
+                            } }
+      post :create, data: data, garden_id: garden.id.to_s, format: :json
       expect(response.status).to eq(422)
     end
   end
@@ -72,7 +73,7 @@ describe Api::GardenCropsController, type: :controller do
     it 'should not delete garden crops of other users gardens' do
       garden_crop = FactoryGirl.create(:garden_crop)
       delete :destroy,
-             garden_id: garden_crop.garden.id,
+             garden_id: garden_crop.garden.id.to_s,
              id: garden_crop.id,
              format: :json
       expect(response.status).to eq(401)
@@ -80,7 +81,7 @@ describe Api::GardenCropsController, type: :controller do
 
     it 'should handle deletion of unknown garden crops' do
       garden = FactoryGirl.create(:garden, user: @user)
-      delete :destroy, garden_id: garden.id, id: 1
+      delete :destroy, garden_id: garden.id.to_s, id: 1
       expect(response.status).to eq(422)
     end
   end
@@ -96,7 +97,7 @@ describe Api::GardenCropsController, type: :controller do
 
       get :index, garden_id: garden.id
 
-      expect(json['garden_crops'].length).to eq(1)
+      expect(json['data'].length).to eq(1)
       expect(response.status).to eq(200)
     end
 
@@ -132,11 +133,33 @@ describe Api::GardenCropsController, type: :controller do
       expect(response.status).to eq(404)
     end
 
+    it 'should show a garden_crop with a crop' do
+      crop = FactoryGirl.create :crop
+      garden_crop = FactoryGirl.create(:garden_crop,
+                                       garden: @garden,
+                                       crop: crop)
+      # @garden.crop = FactoryGirl.create :crop
+      garden_crop.save
+      get :show, garden_id: @garden.id, id: garden_crop.id
+      expect(json['data']['attributes']['crop']['name']).to eq(crop.name)
+    end
+
+    it 'should show a garden_crop with a guide' do
+      guide = FactoryGirl.create :guide
+      garden_crop = FactoryGirl.create(:garden_crop,
+                                       garden: @garden,
+                                       guide: guide)
+      # @garden.crop = FactoryGirl.create :crop
+      garden_crop.save
+      get :show, garden_id: @garden.id, id: garden_crop.id
+      expect(json['data']['attributes']['guide']['name']).to eq(guide.name)
+    end
+
     it 'should show a garden crop that exists' do
       garden_crop = FactoryGirl.create(:garden_crop, garden: @garden)
       get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
       expect(response.status).to eq(200)
-      expect(json['garden_crop']['quantity']).to eq(garden_crop.quantity)
+      expect(json['data']['attributes']['quantity']).to eq(garden_crop.quantity)
     end
 
     it 'should not show garden crops that belong to a private garden' do
@@ -155,7 +178,7 @@ describe Api::GardenCropsController, type: :controller do
       get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
 
       expect(response.status).to eq(200)
-      expect(json['garden_crop']['quantity']).to eq(garden_crop.quantity)
+      expect(json['data']['attributes']['quantity']).to eq(garden_crop.quantity)
     end
   end
 
@@ -168,7 +191,7 @@ describe Api::GardenCropsController, type: :controller do
       put :update,
           garden_id: garden_crop.garden.id,
           id: garden_crop.id,
-          stage: 'updated',
+          data: { attributes: { stage: 'updated' } },
           format: :json
       expect(response.status).to eq(200)
       expect(garden_crop.reload.stage).to eq('updated')
@@ -178,7 +201,7 @@ describe Api::GardenCropsController, type: :controller do
       put :update,
           garden_id: garden_crop.garden.id,
           id: garden_crop.id,
-          stage: 'updated',
+          data: { attributes: { stage: 'updated' } },
           format: :json
       expect(response.status).to eq(401)
     end

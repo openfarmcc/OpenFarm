@@ -1,9 +1,9 @@
-class UserSettingSerializer < ApplicationSerializer
-  attributes :_id, :location, :units, :years_experience, :favorite_crop
+class UserSettingSerializer < BaseSerializer
+  attribute :location
+  attribute :units
+  attribute :years_experience
 
-  has_one :picture, serializer: PictureSerializer
-
-  def favorite_crop
+  attribute :favorite_crop do
     if object.favorite_crops.count > 0
       # TODO: THIS IS A HACK, this should just use the crop serializer
       crop_picture = nil
@@ -13,13 +13,17 @@ class UserSettingSerializer < ApplicationSerializer
         thumbnail = object.favorite_crops[0].pictures[0].attachment.url(:small)
       end
 
-      {
-          id: object._id,
-          image_url: crop_picture,
-          thumbnail_url: thumbnail
-      }
-    else
-      nil
+      { id: object._id,
+        image_url: crop_picture,
+        thumbnail_url: thumbnail }
+    end
+  end
+
+  attribute :picture do
+    if object.picture
+      { image_url: object.picture.attachment.url,
+        medium_url: object.picture.attachment.url(:medium),
+        thumbnail_url: object.picture.attachment.url(:small) }
     end
   end
 end

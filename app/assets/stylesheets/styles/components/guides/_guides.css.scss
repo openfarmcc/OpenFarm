@@ -43,56 +43,6 @@
 .guides {
   position: relative;
 
-  .large-guide {
-    padding-top: 20px;
-
-    .canopy {
-      margin-top: 20px;
-    }
-
-    .guide-controls {
-      margin-right: 0px;
-    }
-
-    .header {
-      border-bottom: rgb(148, 148, 148) 3px solid;
-    }
-
-    .guide-name {
-      float: left;
-    }
-
-    .crop-name {
-      float: left;
-      margin-right: 20px;
-    }
-
-    .guide-author {
-      color: #666666;
-      float: left;
-      font-size: 1rem;
-      margin-top: 30px;
-    }
-  }
-
-  .small-guide {
-    .canopy {
-      height: 400px;
-    }
-
-    .guide-name {
-      @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
-      bottom: -408px;
-      color: #ffffff;
-      left: 0px;
-      padding-bottom: 10px;
-      padding-top: 50px;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-    }
-  }
-
   .guide-controls {
     float: right;
     margin: 1rem;
@@ -171,7 +121,6 @@
 
   .edit-link {
     float: right;
-    margin-top: .9rem;
     margin-left: .9rem;
   }
 
@@ -267,7 +216,7 @@
       width: 100%;
     }
 
-    .stage-option, .chosen-stage > .bubble {
+    /*.stage-option, .chosen-stage > .bubble {
       background-image: url('stages/other_sm.png');
       background-position: center center;
       background-repeat: no-repeat;
@@ -309,7 +258,7 @@
       &.Dormant {
         background-image: url('stages/dormant_sm.png');
       }
-    }
+    }*/
 
     // End need DRYing
 

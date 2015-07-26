@@ -7,7 +7,7 @@ module Crops
     required do
       string :id
       model :user
-      hash :crop do
+      hash :attributes do
         optional do
           string :name
           array :common_names
@@ -35,7 +35,7 @@ module Crops
 
     def execute
       set_pictures
-      @existing_crop.update_attributes(crop)
+      @existing_crop.update_attributes(attributes)
       @existing_crop
     end
 

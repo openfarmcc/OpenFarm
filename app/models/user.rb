@@ -31,15 +31,6 @@ class User
                                            'Privacy Policy' },
                     on: :create
 
-  # TODO: These are being moved to user_setting.rb, once
-  # the migration is complete on the server,
-  # delete them on user.rb ~@simonv3 16/03/2015
-  # Done on 11/03/2015
-
-  # field :location, type: String
-  # field :years_experience, type: Integer
-  # field :units, type: String
-
   field :mailing_list, type: Mongoid::Boolean, default: false
   field :help_list, type: Mongoid::Boolean, default: false
 
@@ -104,8 +95,8 @@ class User
     if self.gardens.all.count == 0 && self.confirmed?
       Gardens::CreateGarden.run(
         user: self,
-        name: I18n::t('registrations.your_first_garden'),
-        garden: { is_private: true }
+        attributes: { is_private: true,
+                      name: I18n::t('registrations.your_first_garden') }
       )
     end
   end

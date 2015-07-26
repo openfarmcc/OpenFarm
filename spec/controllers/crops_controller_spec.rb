@@ -71,18 +71,18 @@ describe CropsController, :type => :controller do
     initial_name = crop.name
     put 'update',
         id: crop.id,
-        crop: { name: '' }
+        attributes: { name: '' }
     expect(crop.reload.name).to eq(initial_name)
     expect(response.status).to eq(200)
   end
 
-  it 'post successful updates to a crop' do
+  it 'puts successful updates to a crop' do
     crop = FactoryGirl.create(:crop)
     user = FactoryGirl.create(:user, admin: true)
     sign_in user
     put 'update',
         id: crop.id,
-        crop: { name: 'Updated name' }
+        attributes: { name: 'Updated name' }
     expect(crop.reload.name).to eq('Updated name')
     expect(response.status).to eq(302)
   end
@@ -106,7 +106,7 @@ describe CropsController, :type => :controller do
     crop = FactoryGirl.create(:crop)
     put 'update',
         id: crop.id,
-        crop: { name: 'Updated name' }
+        attributes: { name: 'Updated name' }
     user.reload
 
     assert user.badges.count == 1

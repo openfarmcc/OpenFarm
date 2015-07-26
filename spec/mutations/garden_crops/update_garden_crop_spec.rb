@@ -9,11 +9,11 @@ describe GardenCrops::UpdateGardenCrop do
   let(:garden_crop) { FactoryGirl.create(:garden_crop, garden: garden) }
 
   let(:params) do
-    { user:      user,
+    { user: user,
       garden_crop: garden_crop,
-      stage:     'update',
-      sowed:     "#{Faker::Date.between(2.days.ago, Date.today)}",
-      quantity:  rand(100) }
+      attributes: { stage: 'update',
+                    sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                    quantity: rand(100) } }
   end
 
   it 'requires fields' do

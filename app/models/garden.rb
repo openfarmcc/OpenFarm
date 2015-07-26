@@ -7,6 +7,7 @@ class Garden
   after_save :reindex_guides
 
   embeds_many :garden_crops
+  accepts_nested_attributes_for :garden_crops
 
   field :name
   field :description

@@ -1,0 +1,73 @@
+<div class="row actions"
+   ng-init="stage.activeAction = stage.stage_action_options[0]">
+  <div class="columns small-12">
+    <div class="instructions text-center">
+      <h2>
+        {{ stage.name }} {{ texts.actionsHeader }}
+      </h2>
+      <h3>
+        {{ texts.actionsInstructions }}
+      </h3>
+    </div>
+  </div>
+  <hr/>
+  <div class="columns large-3 medium-4">
+    <ul ui-sortable ng-model="stage.stage_action_options">
+      <li ng-repeat="action in stage.stage_action_options"
+          ng-init="action.length_type = 'minutes'"
+          ng-click="stage.activeAction = action"
+          ng-class="{ selected : stage.activeAction.id == action.id, completed : action.overview }">
+          {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
+      </li>
+    </ul>
+    <button class="button expand add-actions-button"
+      ng-click="openAddActionModal(stage)"
+      name="add-action"
+      ><i class="fa fa-plus"></i> {{ texts.addActions }}
+    </button>
+  </div>
+  <div class="columns large-9 medium-8 small-12" ng-if="stage.activeAction">
+    <div class="row">
+      <div class="columns small-12">
+        <h2 class="action-name">
+          {{ stage.activeAction.name }}
+        </h2>
+        <label class="left"
+            for="action_description">{{ texts.describeActions }}
+        </label>
+        <textarea id="action_content" ng-model="stage.activeAction.overview">
+        </textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns small-12 medium-8 large-6">
+        <label>{{ texts.chooseActionPhoto }}</label>
+
+        <div s3-upload
+            bucket="'{{ texts.s3Bucket }}'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="stage.activeAction.pictures"
+            s3-upload-place-pic="placeStageActionUpload(stage.activeAction, image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns small-12 medium-8 large-6">
+        <label class="left"
+            for="how_long">{{ howLongAction }}<br/>
+          <small>{{ doNotSweat }}</small>
+        </label>
+        <div class="vertical-input-select-group">
+          <input ng-model="stage.activeAction.time"
+                 type="number"/>
+          <select ng-model="stage.activeAction.length_type">
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+            <option value="action_days">Days</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

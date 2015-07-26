@@ -32,26 +32,35 @@ OpenFarm::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
-    resources :crops, only: [:index, :show, :update]
-    resources :users, only: [:show, :update]
-    resources :guides, only: [:create, :show, :update, :destroy]
-    resources :gardens, only: [:create, :show, :update, :destroy] do
-      resources :garden_crops, only: [:index,
-                                      :show,
-                                      :create,
-                                      :update,
-                                      :destroy]
-    end
-    # resources :requirement_options, only: [:index]
-    # resources :requirements, only: [:create, :show, :update, :destroy]
-    resources :detail_options, only: [:index]
-    resources :stage_options, only: [:index]
-    resources :stage_action_options, only: [:index]
-    resources :stages, only: [:create, :show, :update, :destroy]
+    namespace :v1 do
+      resources :crops, only: [:index, :show, :update] do
+        resources :pictures, only: [:index, :show]
+      end
+      resources :guides, only: [:create, :show, :update, :destroy]
+      resources :users, only: [:show, :update] do
+        resources :gardens, only: [:index]
+      end
+      resources :gardens, only: [:create, :show, :update, :destroy] do
+        resources :garden_crops, only: [:index,
+                                        :show,
+                                        :create,
+                                        :update,
+                                        :destroy]
+      end
+      resources :detail_options, only: [:index]
+      resources :stage_options, only: [:index]
+      resources :stage_action_options, only: [:index]
+      resources :stages, only: [:create, :show, :update, :destroy] do
+        resources :pictures,
+                  only: [:index],
+                  controller: 'stages',
+                  action: 'pictures'
+      end
 
-    # TODO Figure out why I can't use a singular resource route here.
-    post 'token', to: 'tokens#create'
-    delete 'token', to: 'tokens#destroy'
+      # TODO Figure out why I can't use a singular resource route here.
+      post 'token', to: 'tokens#create'
+      delete 'token', to: 'tokens#destroy'
+    end
   end
 
   get '/:locale' => 'homes#show'

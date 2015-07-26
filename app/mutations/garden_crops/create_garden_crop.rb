@@ -1,51 +1,58 @@
 module GardenCrops
   class CreateGardenCrop < Mutations::Command
-    attr_writer :garden_crop
+    # attr_writer :garden_crop
 
     required do
       model :user
       string :garden_id
-    end
-
-    optional do
-      string :quantity
-      string :guide_id
-      string :crop_id
-      string :stage
-      date :sowed
-    end
-
-    def garden_crop
-      @garden_crop ||= GardenCrop.new
+      hash :attributes do
+        optional do
+          string :quantity
+          string :guide
+          string :crop
+          string :stage
+          date :sowed
+        end
+      end
     end
 
     def validate
       validate_guide
       validate_crop
+      validate_guide_or_crop
       validate_garden
       validate_permissions
     end
 
     def execute
-      set_params
-      garden_crop
+      @garden_crop ||= GardenCrop.new(attributes)
+      @garden_crop.garden = @garden
+      @garden_crop.save
+      @garden_crop
+    end
+
+    def validate_guide_or_crop
+      unless attributes[:guide] || attributes[:crop]
+        msg = 'You need either a guide or a crop for the garden crop.'
+        add_error :attributes, :not_found, msg
+      end
     end
 
     def validate_guide
-      if guide_id
-        @guide = Guide.find(guide_id)
+      if attributes[:guide]
+        attributes[:guide] = Guide.find(attributes[:guide])
       end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a guide with id #{guide_id}."
+      msg = "Could not find a guide with id #{attributes[:guide]}."
       add_error :guide, :guide_not_found, msg
     end
 
     def validate_crop
-      if crop_id
-        @crop = Crop.find(crop_id)
+      if attributes[:crop]
+        attributes[:crop] = Crop.find(attributes[:crop])
       end
     rescue Mongoid::Errors::DocumentNotFound
-      msg = "Could not find a crop with id #{crop_id}."
+      msg = "Could not find a crop with id #{attributes[:crop]}."
       add_error :crop, :crop_not_found, msg
     end
 
@@ -61,16 +68,6 @@ module GardenCrops
         msg = 'You can\'t create garden crops for gardens you don\'t own.'
         add_error :garden, :not_authorized, msg
       end
-    end
-
-    def set_params
-      garden_crop.garden      = @garden
-      garden_crop.guide       = @guide if @guide.present?
-      garden_crop.crop        = @crop if @crop.present?
-      garden_crop.quantity    = quantity if quantity.present?
-      garden_crop.stage       = stage if stage.present?
-      garden_crop.sowed       = sowed if sowed.present?
-      garden_crop.save
     end
   end
 end

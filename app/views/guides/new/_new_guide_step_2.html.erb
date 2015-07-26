@@ -16,7 +16,7 @@
                       id="{{ stage.name }}"
                       type="checkbox"
                       ng-model="stage.selected"/>
-               <label class="stage-option {{stage.name}}" for="{{ stage.name }}">
+               <label class="stage-option {{ stage.name | lowercase }}" for="{{ stage.name }}">
                  <p>{{ stage.name }}</p>
                </label>
           </div>
@@ -25,7 +25,7 @@
       <div class="button-wrapper row">
         <div class="columns small-12">
           <p class="right">
-            You've selected <strong><span ng-bind="selectedStagesCount"></span> stages</strong>.
+            You've selected <strong><span ng-bind="newGuide.selectedStagesCount"></span> stages</strong>.
           </p>
         </div>
         <div class="columns small-12">
@@ -34,7 +34,7 @@
               cancel-text="<%= t('guides.new.cancel_and_go_to_home') %>"
               back-text="<%= t('guides.new.back') %>"
               abled-text="<%= t('.next_stage_details') %>"
-              abled-bool="selectedStagesCount > 0"
+              abled-bool="newGuide.selectedStagesCount > 0"
               disabled-text="<%= t('.choose_some_stages_to_continue') %>"
               >
           </div>

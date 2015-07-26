@@ -10,47 +10,12 @@
       </h1>
     </div>
     <div class="row">
-      <div class="columns small-12" ng-show="!newGuide.crop">
-        <label class="left"
-          for="guide_crop_id"><%= t('.which_crop') %><br/>
-          <small><%= t('.common_or_scientific') %></small>
-        </label>
-      </div>
-      <div class="columns small-12" ng-show="!newGuide.crop">
-
-      <!-- ng-change="search(cropQuery)" -->
-        <input
-          id="crop_name"
-          type="text"
-          ng-model="cropQuery"
-          typeahead="crop as crop.name for crop in getCrops($viewValue) | filter:$viewValue"
-          typeahead-on-select='cropSelected($item, $model, $label)'
-          typeahead-loading="loadingCrops"
-          typeahead-wait-ms="500"
-          typeahead-min-length="3"
-          auto-focus
-          autocomplete="off"
-          clear-on="cropSelectionCanceled"
-          focus-on="cropSelectionCanceled"
-          class="form-control typeahead"
-          required/>
-        <span ng-show="loadingCrops" >
-          <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_crops') %>
-        </span>
-      </div>
-      <div class="crop-name-and-description center columns small-12" ng-cloak ng-if="newGuide.crop.name">
-        <p class="crop-name">
-          <i class="cancel-selection-btn fa fa-times-circle-o" ng-click="clearCropSelection()"></i>
-          <strong class="common-name" ng-cloak ng-bind="newGuide.crop.name ? newGuide.crop.name : ''"></strong>
-          <br/>
-          <small><em class="binomial-name" ng-bind="newGuide.crop.binomial_name"></em></small>
-        </p>
-        <p class="center" ng-show="newGuide.crop">
-          <span ng-bind="newGuide.crop.description"></span>
-        </p>
-        <p ng-if="newGuide.crop.is_new">
-          We couldn't find that crop in our database yet. We'll automatically add it!
-        </p>
+      <div guides-choose-crop
+        guide="newGuide"
+        texts="{ 'commonOrScientific': '<%= t('.common_or_scientific') %>',
+        'whichCrop': '<%= t('.which_crop') %>',
+        'cropSearches': '<%= t('crop_searches.show.loading_crops') %>',
+        'placeholder': '<%= t('home.placeholder') %>'}">
       </div>
       <hr/>
       <div class="left-half columns small-5">

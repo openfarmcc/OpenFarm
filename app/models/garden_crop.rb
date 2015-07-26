@@ -6,4 +6,7 @@ class GardenCrop
   field :quantity, type: Integer, default: 0
   field :stage, type: String, default: 'Planted'
   field :sowed, type: Date, default: -> { Date.today }
+
+  accepts_nested_attributes_for :guide
+  accepts_nested_attributes_for :crop
 end

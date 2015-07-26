@@ -6,7 +6,7 @@ module Stages
       model :user
       string :guide_id
 
-      hash :stage do
+      hash :attributes do
         required do
           string :name
           integer :order
@@ -34,13 +34,12 @@ module Stages
     end
 
     def execute
-      @stage ||= Stage.new(stage)
+      @stage ||= Stage.new(attributes)
       @stage.guide = @guide
       @stage.save
       set_images
       set_actions
 
-      # TODO: Why is this record being reloaded? Possible refactor target:
       @stage.save
       @stage.reload
       @stage

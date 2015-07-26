@@ -1,5 +1,8 @@
-class StageActionSerializer < ApplicationSerializer
-  attributes :_id, :name, :overview, :time, :order
+class StageActionSerializer < BaseSerializer
+  attribute :name
+  attribute :overview
+  attribute :time
+  attribute :order
 
   has_many :pictures
 end

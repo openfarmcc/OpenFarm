@@ -3,12 +3,13 @@ module GardenCrops
     required do
       model :user
       model :garden_crop
-    end
-
-    optional do
-      string :quantity
-      string :stage
-      date :sowed
+      hash :attributes do
+        optional do
+          string :quantity
+          string :stage
+          date :sowed
+        end
+      end
     end
 
     def validate
@@ -16,7 +17,7 @@ module GardenCrops
     end
 
     def execute
-      set_valid_params
+      garden_crop.update_attributes(attributes)
       garden_crop
     end
 
@@ -25,13 +26,6 @@ module GardenCrops
         msg = 'You can only update crops that are in your gardens.'
         add_error :garden, :not_authorized, msg
       end
-    end
-
-    def set_valid_params
-      garden_crop.quantity    = quantity if quantity.present?
-      garden_crop.stage       = stage if stage.present?
-      garden_crop.sowed       = sowed if stage.present?
-      garden_crop.save
     end
   end
 end

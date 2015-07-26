@@ -19,3 +19,6 @@
     <%= render 'guides/new/new_guide_step_4' %>
   </div>
 </div>
+<% content_for(:end_js) do %>
+<%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>
+<% end %>

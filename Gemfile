@@ -31,6 +31,7 @@ gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'
 gem 'gibbon'
+gem 'jsonapi-serializers'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -85,5 +86,5 @@ gem 'rails_admin'
 gem 'ng-rails-csrf'
 
 gem 'bson_ext'
-gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.1'
+gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
 gem 'active_model_serializers'

@@ -26,9 +26,9 @@ describe 'Guides' do
     # Capybarra doesn't search the value of disabled buttons???
     commit_button = page.find('input[name="commit"]')
     expect(commit_button['value']).to have_content('Choose a crop to continue')
-    page.find('input#crop_name').click
-    # wait_for_ajax
-    fill_in :crop_name, with: 'radi'
+    wait_for_ajax
+    page.find('input#search_crop_name').click
+    fill_in :search_crop_name, with: 'radi'
 
     wait_for_ajax
     find_element('#crop_name + ul')

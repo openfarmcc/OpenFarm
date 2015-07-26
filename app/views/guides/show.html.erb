@@ -10,8 +10,6 @@
      ng-cloak
      class="guides show-guide">
 
-    <div alerts ng-model="alerts"></div>
-
     <!-- These two 'Tops of Guides' for different screen sizes are pretty similar
     and it may be possible/worth DRYing it up. I'm not sure. I imagine that as the
     site gets more complex, it is easier to develop fairly separated HTML in order
@@ -21,18 +19,17 @@
     <!-- Top of Guide for large screens -->
     <!-- TODO: There's a lot of duplicate content here, we should try and minimize that. -->
     <div class="row wide-row large-guide show-for-large-up">
-      <div class="large-12 columns">
-        <div class="large-12 columns header">
-          <h1 class="guide-name">{{ guide.name }}</h1>
-          <h1 class="crop-name">({{ guide.crop_name }})</h1>
-          <h2 class="guide-author"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }}</h2>
-          <%= render "guides/show/guide_controllers" %>
-        </div>
+      <div class="large-12 columns header">
+        <h1 class="guide-name">{{ guide.name }}</h1>
+
+        <h2 class="guide-relationships"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }} for <a href="crop" class="crop-name">{{ guide.crop.name }}</a></h2>
+        <%= render "guides/show/guide_controllers" %>
       </div>
       <div class="columns large-5">
         <div class="canopy"
           ng-attr-alt="{{ guide.name }}"
-          style="background-image: url({{ guide.featured_image }})">
+          style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
+
         </div>
       </div>
       <div class="columns large-5 margin-top">
@@ -52,8 +49,12 @@
           <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
         </div>
         <div class="add-to-garden center">
-          <% if current_user %>
-            <%= render partial: 'gardens/add_to_gardens.html' %>
+          <% if current_user && current_user.confirmed? %>
+            <div add-to-gardens
+              crop-object="guide"
+              object-type="'guide'"
+              user="currentUser">
+            </div>
           <% end %>
         </div>
       </div>
@@ -65,7 +66,7 @@
 
       <div class="canopy"
         ng-attr-alt="{{ guide.name }}"
-        style="background-image: url({{ guide.featured_image }})">
+        style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
         <div class="large-12 columns">
           <h1 class="guide-name">{{ guide.name }}</h1>
         </div>
@@ -90,7 +91,11 @@
         </div>
         <div class="add-to-garden center">
           <% if current_user %>
-            <%= render 'gardens/add_to_gardens.html' %>
+            <div add-to-gardens
+              crop-object="guide"
+              object-type="'guide'"
+              user="currentUser">
+            </div>
           <% end %>
         </div>
       </div>
@@ -114,6 +119,6 @@
 </div>
 
 <% content_for(:end_js) do %>
-  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>
   <%= javascript_include_tag 'guides/show' %>
 <% end %>

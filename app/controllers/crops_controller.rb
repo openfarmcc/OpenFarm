@@ -41,9 +41,10 @@ class CropsController < ApplicationController
     # TODO: Hacky hack is hacky.
     # Move the images in crop to be in images.
     # It's too nested if in crops.
-    params[:images] = params[:crop][:images] ? [params[:crop][:images]] : []
+    attributes = params[:attributes]
+    params[:images] = attributes[:images] ? [attributes[:images]] : []
     @outcome = Crops::UpdateCrop.run(params,
-                                     crop: params[:crop],
+                                     attributes: attributes,
                                      id: params[:id],
                                      user: current_user)
     if @outcome.success?

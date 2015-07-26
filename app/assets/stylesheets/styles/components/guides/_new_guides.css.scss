@@ -102,68 +102,74 @@
   .instructions {
     margin: 1.5rem 0;
   }
+}
 
-  .life-stage-nav {
-    background-color: darken($of-green, 10%);
-    overflow-x: auto;
-    overflow-y: hidden;
+.life-stage-nav {
+  background-color: darken($of-green, 10%);
+  overflow-x: auto;
+  overflow-y: hidden;
 
-    &.bar-header {
-      height: auto;
-    }
-
-    ul.chosen-stages {
-      margin: -1rem 0;
-      white-space: nowrap;
-
-      p {
-        color: $white;
-        font-weight: 600;
-      }
-
-      li {
-        white-space: normal;
-      }
-    }
+  &.bar-header {
+    height: auto;
   }
 
-  // Note: these are shared by step 2 and 3
-  // For now these live in .new-guide, but they
-  // might be better suited somewhere else.
-  .stage-option, .chosen-stage > .bubble {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+  ul.chosen-stages {
+    white-space: nowrap;
 
-    background-image: url('stages/other_sm.png');
+    span {
+      color: $white;
+      font-weight: 600;
+    }
 
+    li {
+      white-space: normal;
+    }
+  }
+}
 
-    &.Preparation {
-      background-image: url('stages/prep_sm.png');
-    }
-    &.Sow {
-      background-image: url('stages/sow_sm.png');
-    }
-    &.Germination {
-      background-image: url('stages/germination_sm.png');
-    }
-    &.Seedling {
-      background-image: url('stages/sprouting_sm.png');
-    }
-    &.Juvenile {
-      background-image: url('stages/juvenile_sm.png');
-    }
-    &.Adult {
-      background-image: url('stages/adult_sm.png');
-    }
-    &.Flowering {
-      background-image: url('stages/flowering_sm.png');
-    }
-    &.Fruit {
-      background-image: url('stages/fruiting_sm.png');
-    }
-    &.Dormant {
-      background-image: url('stages/dormant_sm.png');
-    }
+// Note: these are shared by step 2 and 3
+// For now these live in .new-guide, but they
+// might be better suited somewhere else.
+.stage-option,
+.chosen-stage > .bubble {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("stages/other_sm.png");
+
+  &.preparation {
+    background-image: url("stages/prep_sm.png");
+  }
+
+  &.sow {
+    background-image: url("stages/sow_sm.png");
+  }
+
+  &.germination {
+    background-image: url("stages/germination_sm.png");
+  }
+
+  &.seedling {
+    background-image: url("stages/sprouting_sm.png");
+  }
+
+  &.juvenile {
+    background-image: url("stages/juvenile_sm.png");
+  }
+
+  &.adult {
+    background-image: url("stages/adult_sm.png");
+  }
+
+  &.flowering {
+    background-image: url("stages/flowering_sm.png");
+  }
+
+  &.fruit {
+    background-image: url("stages/fruiting_sm.png");
+  }
+
+  &.dormant {
+    background-image: url("stages/dormant_sm.png");
   }
 }

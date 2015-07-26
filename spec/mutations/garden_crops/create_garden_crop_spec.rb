@@ -9,19 +9,17 @@ describe GardenCrops::CreateGardenCrop do
   let(:params) do
     { user:      user,
       garden_id: FactoryGirl.create(:garden, user: user).id.to_s,
-      stage:      "#{Faker::Lorem.word}",
-      sowed:     "#{Faker::Date.between(2.days.ago, Date.today)}",
-      quantity:  rand(100) }
+      attributes: { stage: "#{Faker::Lorem.word}",
+                    sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                    quantity: rand(100),
+                    guide: FactoryGirl.create(:guide).id.to_s }
+    }
   end
 
   it 'requires fields' do
     errors = cgc.run({}).errors.message_list
     expect(errors).to include('Garden is required')
     expect(errors).to include('User is required')
-  end
-
-  it 'grabs a blank garden_crop from #garden_crop' do
-    expect(cgc.new.garden_crop).to be_a(GardenCrop)
   end
 
   it 'catches bad garden IDs' do
@@ -32,14 +30,14 @@ describe GardenCrops::CreateGardenCrop do
   end
 
   it 'catches bad guide IDs' do
-    params[:guide_id] = 'wrong'
+    params[:attributes][:guide] = 'wrong'
     results = cgc.run(params)
     message = results.errors.message_list.first
     expect(message).to include('Could not find a guide with id wrong.')
   end
 
   it 'catches bad crop IDs' do
-    params[:crop_id] = 'wrong'
+    params[:attributes][:crop] = 'wrong'
     results = cgc.run(params)
     message = results.errors.message_list.first
     expect(message).to include('Could not find a crop with id wrong.')
@@ -50,6 +48,13 @@ describe GardenCrops::CreateGardenCrop do
     results = cgc.run(params)
     message = results.errors.message_list.first
     expect(message).to include('for gardens you don\'t own.')
+  end
+
+  it 'catches that there is no crop or guide attached' do
+    params[:attributes][:guide] = nil
+    results = cgc.run(params)
+    message = results.errors.message_list.first
+    expect(message).to include('You need either a guide or a crop')
   end
 
   it 'creates valid garden crops' do

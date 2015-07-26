@@ -4,18 +4,16 @@ describe Guides::CreateGuide do
   let(:cg) { Guides::CreateGuide }
 
   let(:params) do
-    { user:    FactoryGirl.create(:user),
+    { user: FactoryGirl.create(:user),
       crop_id: FactoryGirl.create(:crop).id.to_s,
-      id:      FactoryGirl.create(:guide).id.to_s,
-      attributes: { name:    'hi.',
-                  }
+      id: FactoryGirl.create(:guide).id.to_s,
+      attributes: { name: 'hi.' }
     }
   end
 
   it 'requires fields' do
     errors = cg.run({}).errors.message_list
     expect(errors).to include('Attributes is required')
-    expect(errors).to include('Crop is required')
     expect(errors).to include('User is required')
   end
 
@@ -24,10 +22,6 @@ describe Guides::CreateGuide do
     errors = cg.run(params).errors.message_list
     expect(errors).to include('Name is required')
   end
-
-  # it 'grabs a blank guide from #guide' do
-  #   expect(cg.new.guide).to be_a(Guide)
-  # end
 
   it 'validates invalid URLs' do
     attributes = params[:attributes]
@@ -46,7 +40,15 @@ describe Guides::CreateGuide do
     params[:crop_id] = 'wrong'
     results = cg.run(params)
     message = results.errors.message_list.first
-    expect(message).to include('Could not find a crop with id wrong.')
+    expect(message).to include('Could not find a crop with id wrong')
+  end
+
+  it 'catches bad crop IDs but saves with a good crop name' do
+    params[:crop_id] = 'wrong'
+    params[:crop_name] = FactoryGirl.create(:crop).name
+    result = cg.run(params).result
+    expect(result).to be_a(Guide)
+    expect(result.valid?).to be(true)
   end
 
   it 'creates valid guides' do
@@ -60,6 +62,15 @@ describe Guides::CreateGuide do
     results = cg.run(params)
     message = results.errors.message_list.first
     expect(message).to include('8 is not a valid practice.')
+  end
+
+  it 'knows to choose a crop based on a crop name' do
+    params.except!(:crop_id)
+    params[:crop_name] = FactoryGirl.create(:crop).name
+    Crop.reindex
+    result = cg.run(params).result
+    expect(result).to be_a(Guide)
+    expect(result.valid?).to be(true)
   end
 
   it 'creates an associated timespan object' do

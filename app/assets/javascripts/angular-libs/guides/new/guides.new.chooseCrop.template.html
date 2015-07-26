@@ -1,0 +1,31 @@
+<div class="columns small-12" ng-show="!newGuide.crop">
+  <label class="left"
+    for="guide_crop_id">{{ texts.whichCrop }}<br/>
+    <small ng-bind="texts.commonOrScientific"></small>
+  </label>
+</div>
+<div class="columns small-12" ng-show="!guide.crop">
+  <div crop-search
+    query="cropQuery"
+    loading-crops-text="texts.cropSearches"
+    crop-on-select="cropSelected"
+    allow-new="true"
+    options="{ 'placeholder': texts.placeholder }"
+    does-not-have-button="true"
+  ></div>
+</div>
+
+<div class="crop-name-and-description center columns small-12" ng-cloak ng-if="guide.crop.name">
+  <p class="crop-name">
+    <i class="cancel-selection-btn fa fa-times-circle-o" ng-click="clearCropSelection()"></i>
+    <strong class="common-name" ng-cloak ng-bind="guide.crop.name ? guide.crop.name : ''"></strong>
+    <br/>
+    <small><em class="binomial-name" ng-bind="guide.crop.binomial_name"></em></small>
+  </p>
+  <p class="center" ng-show="guide.crop">
+    <span ng-bind="guide.crop.description"></span>
+  </p>
+  <p ng-if="guide.crop.is_new">
+    We couldn't find that crop in our database yet. We'll automatically add it!
+  </p>
+</div>

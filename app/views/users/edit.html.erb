@@ -100,6 +100,6 @@
 </div>
 
 <% content_for(:end_js) do %>
-  <%= javascript_tag "var USER_ID = '#{current_user ? current_user._id : nil}';" %>
+  <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>
   <%= javascript_include_tag 'users/finish' %>
 <% end %>

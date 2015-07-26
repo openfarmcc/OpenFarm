@@ -1,7 +1,6 @@
-class TokenSerializer < ApplicationSerializer
-  attributes :expiration, :secret
-
-  def secret
+class TokenSerializer < BaseSerializer
+  attribute :expiration
+  attribute :secret do
     object.fully_formed
   end
 end

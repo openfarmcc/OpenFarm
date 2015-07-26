@@ -10,56 +10,16 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
     $scope.crop = {};
     $scope.userId = USER_ID || undefined;
 
-    $scope.setCurrentUser = function(success, object){
-      if (success){
-        $scope.currentUser = object;
-
-        $scope.currentUser.gardens.forEach(function(garden){
-          garden.garden_crops.forEach(function(gardenCrop){
-            if (gardenCrop.crop && gardenCrop.crop._id === $scope.crop._id){
-              garden.added = true;
-              $scope.gardenCrop = gardenCrop;
-            }
-          });
-        });
-      }
+    $scope.setCurrentUser = function(object){
+      $scope.currentUser = object;
     };
 
     $scope.setCrop = function(success, crop){
-      userService.getUser($scope.userId,
-                          $scope.alerts,
-                          $scope.setCurrentUser);
+      userService.getUserWithPromise($scope.userId)
+        .then($scope.setCurrentUser)
+
       $scope.crop = crop;
     };
 
-    // TODO: this can be cleaned up. It's duplicated in
-    // guides/show.js. Either create a directive or put
-    // it in the gardenService.
-
-    $scope.toggleGarden = function(garden){
-      garden.adding = true;
-      if (!garden.added){
-        var callback = function(success){
-          if (success){
-            garden.adding = false;
-            garden.added = true;
-          }
-        };
-        gardenService.addGardenCropToGarden(garden,
-          'crop',
-          $scope.crop,
-          $scope.alerts,
-          callback);
-      } else {
-        gardenService.deleteGardenCrop(garden,
-          $scope.gardenCrop,
-          $scope.alerts,
-          function(){
-            garden.adding = false;
-            garden.added = false;
-          });
-      }
-    };
-
-    cropService.getCrop(getIDFromURL('crops'), $scope.alerts, $scope.setCrop);
+    cropService.getCrop(getIDFromURL('crops'), $scope.setCrop);
   }]);

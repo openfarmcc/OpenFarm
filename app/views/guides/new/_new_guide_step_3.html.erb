@@ -1,244 +1,38 @@
 <section name="step-3" class="step stage-details" ng-show="step === 3">
 
-  <div ng-if="selectedStagesCount === 0">
+  <div ng-show="newGuide.selectedStagesCount === 0">
     <%= t('.select_some_stages') %>
   </div>
 
-  <div ng-if="selectedStagesCount > 0">
+  <div ng-show="newGuide.selectedStagesCount > 0">
 
     <!-- TODO: Fix before deploy -->
     <form name="sacrificial-form" style="background:red">
       <!-- This clearly shouldn't be necessary but something on the page is consuming the first form element -->
     </form>
     <!--  -->
-
-      <section ng-repeat="stage in newGuide.stages | filter: { selected: true } | orderBy: 'order'"
-        ng-init="stageForms[$index] = stage.name"
-        ng-if="stage.editing">
-        <div ng-form="stageForm"
-             form-checker="stage"
-             form-id="stage.slug"
-             form-stage="stage">
-          <span ng-bind="stageForms[$index].$valid"></span>
-          <div class="instructions text-center">
-            <h2>{{ stage.name }} <%= t('.stage_overview') %></h2>
-          </div>
-          <hr/>
-          <div class="row">
-            <div class="left-half columns large-4">
-              <div class="row image">
-                <div class="columns small-12">
-                  <label class="left"
-                      for="stage_image_upload"><%= t('application.choose_stage_photo') %><br/>
-                    <small><%= t('application.only_upload_what_you_own') %></small>
-                  </label>
-                </div>
-                <div class="columns small-12">
-                  <div s3-upload
-                      bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-                      ng-model="s3upload"
-                      s3-upload-existing-pictures="stage.pictures"
-                      s3-upload-place-pic="placeStageUpload(stage, image)"
-                      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-                  </div>
-                </div>
-              </div>
-              <div class="row how-long">
-                <div class="columns small-12 medium-6">
-                  <label class="left"
-                      for="how_long"><%= t('.how_long') %><br/>
-                    <small><%= t('.do_not_sweat') %></small>
-                  </label>
-                </div>
-                <div class="columns small-12 medium-6">
-                  <div class="vertical-input-select-group">
-                    <input ng-model="stage.stage_length"
-                           type="number"/>
-                    <select ng-model="stage.length_type">
-                      <option value="days">Days</option>
-                      <option value="weeks">Weeks</option>
-                      <option value="months">Months</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <!-- TODO -->
-              <!--
-
-
-              <div class="row annual">
-                <div class="columns small-12">
-                  <label class="right"
-                      for="repeat_annually"><%= t('.repeat_annually') %><br/>
-                    <small><%= t('.not_sure_html') %></small>
-                  </label>
-                </div>
-                <div class="columns small-12">
-                  Coming Soon
-                </div>
-              </div> -->
-            </div>
-            <div class="right-half columns large-7 large-offset-1">
-              <div class="row environment">
-                <div class="columns small-12">
-                  <label class="left"
-                    for="where_should_stage_happen">
-                      <%= t('.where_does_this_stage_happen') %>
-                      <br/>
-                      <small><%= t('.choose_more_than_one') %></small>
-                  </label>
-                </div>
-                <div class="columns small-12">
-                  <div multi-row-select
-                     class="multi-choice"
-                     options="stage.environment"
-                     multi-select-overflow-count="3"
-                     multi-select-type="checkbox"
-                     multi-select-id="environment">
-                  </div>
-                </div>
-              </div>
-              <div class="row soil">
-                <div class="columns small-12">
-                  <label class="left"
-                    for="what_type_of_soil">
-                      <%= t('.what_type_of_soil') %>
-                      <br/>
-                      <small><%= t('.not_sure_about_soil_types_html') %></small>
-                  </label>
-                </div>
-                <div class="columns small-12">
-                  <div multi-row-select
-                     class="multi-choice"
-                     options="stage.soil"
-                     multi-select-type="checkbox"
-                     multi-select-id="soil">
-                  </div>
-                </div>
-              </div>
-              <div class="row light">
-                <div class="columns small-12">
-                  <label class="left"
-                    for="how_much_light">
-                      <%= t('.how_much_light') %>
-                      <br/>
-                  </label>
-                </div>
-                <div class="columns small-12">
-                  <div multi-row-select
-                     class="multi-choice"
-                     options="stage.light"
-                     multi-select-type="checkbox"
-                     multi-select-id="light">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row actions"
-               ng-init="stage.activeAction = stage.stage_action_options[0]">
-            <div class="columns small-12">
-              <div class="instructions text-center">
-                <h2>
-                  {{ stage.name }} <%= t('.actions_header') %>
-                </h2>
-                <h3>
-                  <%= t('.actions_instructions') %>
-                </h3>
-              </div>
-            </div>
-            <hr/>
-            <div class="columns large-3 medium-4">
-              <ul ui-sortable ng-model="stage.stage_action_options">
-                <li ng-repeat="action in stage.stage_action_options"
-                    ng-init="action.length_type = 'minutes'"
-                    ng-click="stage.activeAction = action"
-                    ng-class="{ selected : stage.activeAction._id == action._id, completed : action.overview }">
-                    {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
-                </li>
-              </ul>
-              <button class="button expand add-actions-button"
-                ng-click="openAddActionModal(stage)"
-                name="add-action"
-                ><i class="fa fa-plus"></i> <%= t('.add_actions') %>
-              </button>
-            </div>
-            <div class="columns large-9 medium-8 small-12">
-              <div class="row">
-                <div class="columns small-12">
-                  <h2 class="action-name">
-                    {{ stage.activeAction.name }}
-                  </h2>
-                  <label class="left"
-                      for="action_description"><%= t('.describe_action') %>
-                  </label>
-                  <textarea id="action_content" ng-model="stage.activeAction.overview">
-                  </textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="columns small-12 medium-8 large-6">
-                  <label><%= t('.choose_action_photo') %></label>
-
-                  <div s3-upload
-                      bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-                      ng-model="s3upload"
-                      s3-upload-existing-pictures="stage.activeAction.pictures"
-                      s3-upload-place-pic="placeStageActionUpload(stage.activeAction, image)"
-                      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="columns small-12 medium-8 large-6">
-                  <label class="left"
-                      for="how_long"><%= t('.how_long_action') %><br/>
-                    <small><%= t('.do_not_sweat') %></small>
-                  </label>
-                  <div class="vertical-input-select-group">
-                    <input ng-model="stage.activeAction.time"
-                           type="number"/>
-                    <select ng-model="stage.activeAction.length_type">
-                      <option value="minutes">Minutes</option>
-                      <option value="hours">Hours</option>
-                      <option value="action_days">Days</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- ng-form -->
-        <div class="button-wrapper row">
-          <div class="columns small-12">
-            <a class="button small secondary left"
-                name="back"
-                href="<%= root_path %>"
-                ><%= t('guides.new.cancel_and_go_to_home') %></a>
-            <input class="button small secondary left"
-                name="back"
-                type="submit"
-                value="<%= t('guides.new.back') %>"
-                ng-click="previousStep()">
-
-            <input class="button small right"
-                ng-if="stage.nextSelectedIndex"
-                name="commit"
-                type="submit"
-                value="{{ stage.edited ? '<%= t('guides.new.new_guide_step_3.edit_next_stage') %>': '<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>' }}"
-                ng-disabled="!(stage.edited)"
-                ng-click="nextStage(stage)"/>
-            <input class="button small right"
-                ng-if="!stage.nextSelectedIndex"
-                name="commit"
-                type="submit"
-                value="{{ stage.edited ? '<%= t('guides.new.new_guide_step_3.next_final_touches') %>' : '<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>' }}"
-                ng-disabled="!(stage.edited)"
-                ng-click="nextStep()"/>
-          </div>
-        </div>
-      </section>
-    </form>
+    <!-- There has to be a better way to send all of these internationalizations to JS -->
+    <div guides-stages
+      guide="newGuide"
+      options="options"
+      texts="{ 'actionsHeader': '<%= t('.actions_header') %>',
+      'actionsInstructions': '<%= t('.actions_instructions') %>','addActions': '<%= t('.add_actions') %>','describeAction': '<%= t('.describe_action') %>','chooseActionPhoto': '<%= t('.choose_action_photo') %>','s3Bucket': '<%= ENV['S3_BUCKET_NAME'] %>','howLongAction': '<%= t('.how_long_action') %>',
+      'doNotSweat': '<%= t('.do_not_sweat') %>',
+      'stageOverview': '<%= t('.stage_overview') %>',
+      'chooseStagePhoto': '<%= t('application.choose_stage_photo') %>',
+      'onlyUploadWhatYouOwn': '<%= t('application.only_upload_what_you_own') %>',
+      'howLong': '<%= t('.how_long') %>',
+      'whereHappen': '<%= t('.where_does_this_stage_happen') %>',
+      'chooseMoreThanOne': '<%= t('.choose_more_than_one') %>',
+      'whatTypeOfSoil': '<%= t('.what_type_of_soil') %>',
+      'notSureSoil': '<%= t('.not_sure_about_soil_types_html') %>',
+      'howMuchLight': '<%= t('.how_much_light') %>',
+      'cancel': '<%= t('guides.new.cancel_and_go_to_home') %>',
+      'back': '<%= t('guides.new.back') %>',
+      'editNextStage': '<%= t('.edit_next_stage') %>',
+      'finishStageToContinue': '<%= t('.finish_stage_to_continue') %>',
+      'nextFinalTouches': '<%= t('.next_final_touches') %>'
+      }">
+    </div>
   </div>
 </section>

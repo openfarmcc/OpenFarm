@@ -4,7 +4,7 @@ module Users
     required do
       string :id
       model :current_user, class: 'User'
-      hash :user do
+      hash :attributes do
         optional do
           string :display_name
           string :mailing_list
@@ -35,7 +35,7 @@ module Users
       @user = User.find(id)
       set_user_setting
       set_image
-      @user.update_attributes(user)
+      @user.update_attributes(attributes)
       @user.save
       @user
     end
@@ -88,18 +88,9 @@ module Users
 
     def set_image
       if featured_image
-        # TODO: The below commented code was probably for a reason
-        # but now it doesn't make any sense to me. pictures should be
-        # overwritten, not only created if an existing image exists.
-        # Future coders here can probably remove it. ~Simon 04/05/15
-        # if @user.user_setting.picture
-        #   existing_file = @user.user_setting.picture[:attachment_file_name]
-        # else
-        #   existing_file = false
-        # end
-        # if !existing_file || featured_image.include?(existing_file)
-          @user.user_setting.picture = Picture.new(attachment: open(featured_image))
-        # end
+        @user.user_setting.picture = Picture.new(
+          attachment: open(featured_image)
+        )
       end
     end
   end

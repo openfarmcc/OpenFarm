@@ -2,8 +2,10 @@ module Gardens
   class CreateGarden < Mutations::Command
     required do
       model :user
-      string :name
-      hash :garden do
+      hash :attributes do
+        required do
+          string :name
+        end
         optional do
           string :location
           string :description
@@ -18,9 +20,9 @@ module Gardens
     end
 
     def execute
-      @garden = Garden.new(garden)
+      @garden = Garden.new(attributes)
       @garden.user = user
-      @garden.name = name
+      # @garden.name = name
       # TODO: This is another spot where mongoid comparable error
       # happens
       @garden.save!

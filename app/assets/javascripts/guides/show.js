@@ -1,16 +1,17 @@
 openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
-    'userService', 'gardenService',
+    'userService', 'gardenService', 'cropService', 'stageService',
   function showGuideCtrl($scope,
                          $http,
                          guideService,
                          userService,
-                         gardenService) {
+                         gardenService,
+                         cropService,
+                         stageService) {
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
-    $scope.alerts = [];
     $scope.gardenCrop = {};
 
-    $scope.setUser = function(success, object){
+    $scope.setGuideUser = function(success, object){
       if (success){
         $scope.guide.user = object;
       }
@@ -98,57 +99,62 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       }
     };
 
-    $scope.setGuide = function(success, object){
-      if (success){
+    $scope.setGuide = function(object){
 
-        if ($scope.userId){
-          userService.getUser($scope.userId,
-                              $scope.alerts,
-                              $scope.setCurrentUser);
-        }
-        $scope.guide = object;
-        userService.getUser($scope.guide.user_id,
-                            $scope.alerts,
-                            $scope.setUser);
-
-        $scope.haveTimes = $scope.guide.stages
-          .sort(function(a, b){ return a.order > b.order; })
-          .filter(function(s){ return s.stage_length; });
-
-        $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
-          return pV + cV.stage_length;
-        }, 0);
+      if ($scope.userId){
+        userService.getUser($scope.userId,
+                            $scope.setCurrentUser);
       }
-    };
 
-    // TODO: this can be cleaned up. It's duplicated in
-    // crops/show.js. Either create a directive or put
-    // it in the gardenService.
+      $scope.guide = object;
+      if($scope.guide.user !== undefined) {
+        userService.getUser($scope.guide.user.id,
+                            $scope.setGuideUser);
+      }
 
-    $scope.toggleGarden = function(garden){
-      garden.adding = true;
-      if (!garden.added){
-        var callback = function(success){
-          if (success){
-            garden.adding = false;
-            garden.added = true;
-          }
-        };
-        gardenService.addGardenCropToGarden(garden,
-          'guide',
-          $scope.guide,
-          $scope.alerts,
-          callback);
-      } else {
-        gardenService.deleteGardenCrop(garden,
-          $scope.gardenCrop,
-          $scope.alerts,
-          function(){
-            garden.adding = false;
-            garden.added = false;
+      cropService.getCrop($scope.guide.relationships.crop.data.id,
+                          function(success, crop) {
+                            $scope.guide.crop = crop;
+                          });
+      console.log($scope.guide);
+      $scope.$watch('guide.stages', function() {
+        if ($scope.guide.stages !== undefined) {
+          $scope.guide.stages.forEach(function(stage) {
+            stageService.getPictures(stage)
+              .then(function(pictures) {
+                // console.log('in show', pictures);
+                stage.pictures = pictures.map(function(pic) {
+                  return pic.attributes;
+                });
+                // console.log(stage.pictures, $scope.guide.stages[0].pictures);
+              });
           });
-      }
+          // This is a hack because stages get built from the
+          // API. This is kind of flawed still at the moment,
+          // and probably a suitable place to do the next refactor.
+          // All of these services can probably be "promise-fied"
+          // Basically what's happening here is we're making sure that
+          // guides.stages isn't just made up from yet-to-be-loaded stages
+
+          // $scope.isNotUndefined = $scope.guide.stages.filter(function(s) {
+          //   return undefined !== s
+          // }).length === $scope.guide.stages.length;
+          // console.log($scope.isNotUndefined);
+          if (true) {
+            $scope.haveTimes = $scope.guide.stages
+              .sort(function(a, b){ return a.order > b.order; })
+              .filter(function(s){ return s.stage_length; });
+
+            $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
+              return pV + cV.stage_length;
+            }, 0);
+          }
+
+        }
+      })
+
     };
 
-    guideService.getGuide($scope.guideId, $scope.alerts, $scope.setGuide);
+    guideService.getGuideWithPromise($scope.guideId)
+      .then($scope.setGuide);
   }]);

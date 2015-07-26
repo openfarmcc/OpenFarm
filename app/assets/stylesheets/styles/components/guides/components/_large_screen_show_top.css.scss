@@ -1,0 +1,31 @@
+.large-guide {
+  padding: 20px;
+
+  .canopy {
+    margin-top: 20px;
+  }
+
+  .guide-controls {
+    margin-right: 0;
+  }
+
+  .guide-name {
+    display: inline-block;
+  }
+
+  .header {
+    border-bottom: rgb(148, 148, 148) 3px solid;
+  }
+
+  .crop-name {
+    margin-right: 20px;
+  }
+
+  .guide-relationships {
+    color: $dark-gray;
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-right: .5rem;
+    display: inline-block;
+  }
+}

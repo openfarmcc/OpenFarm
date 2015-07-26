@@ -38,6 +38,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     var buildGardenCrop = function(data) {
       var gardenCrop = data.attributes;
       gardenCrop.id = data.id;
+      gardenCrop.links = data.links;
       return gardenCrop;
     }
 
@@ -141,8 +142,9 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     };
 
     var saveGardenCrop = function(garden, gardenCrop, callback){
-      var url = garden.relationships.garden_crops.links.related;
-      $http.put(url, gardenCrop)
+      var data = { 'data': { 'attributes': gardenCrop }}
+      var url = gardenCrop.links.self.api;
+      $http.put(url, data)
         .success(function (response, object) {
           alertsService.pushToAlerts(['Saved your garden crop!'], '200')
           if (callback){

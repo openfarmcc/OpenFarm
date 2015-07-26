@@ -188,7 +188,7 @@
     </div>
     <div class="row edit-buttons"
          ng-show="garden.selected">
-      <div class="columns large-3 right">
+      <div class="columns small-4 right">
         <a type="button"
            ng-show="!garden.editing_crops"
            class="button secondary tiny"
@@ -200,7 +200,7 @@
            class="button secondary tiny"
            ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);"
         ><i class="fa fa-save"></i> <%= t('.save_changes') %></a>
-        <input type="button" value="Delete" class="button alert tiny" ng-click="deleteSelected(garden)"/>
+        <a class="button alert tiny" ng-click="deleteSelected(garden)"><%= t('.delete') %></a>
       </div>
     </div>
     <div class="row crops">

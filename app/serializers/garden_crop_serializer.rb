@@ -20,4 +20,11 @@ class GardenCropSerializer < BaseSerializer
   attribute :sowed
   attribute :stage
   attribute :quantity
+
+  def self_link
+    {
+      'api': "/api/v1/gardens/#{object.garden.id}/garden_crops/#{object.id}",
+      # 'website': "/users/#{object.user.id}/#gardens"
+    }
+  end
 end

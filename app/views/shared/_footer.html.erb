@@ -1,10 +1,12 @@
 <footer id="footer">
     <div class="row">
-        <%= link_to(t('meta.about'),page_path('about'), :class=>'columns small-4' ) %>
-        <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc', :class=>'columns small-4') %>
-        <%= link_to(t('meta.mailing_list'), page_path('mailing-list'), :class=>'columns small-4' ) %>
-        <%= link_to(t('meta.privacy'),page_path('privacy'), :class=>'columns small-4' ) %>
-        <%= link_to(t('meta.tos'),page_path('tos'), :class=>'columns small-4' ) %>
-        <%= link_to(t('meta.code_of_conduct'),page_path('code_of_conduct'), :class=>'columns small-4') %>
+        <%= link_to(t('meta.about'),page_path('about')) %>
+
+        <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
+        <%= link_to(t('meta.slack'), 'http://slack.openfarm.cc') %>
+        <%= link_to(t('meta.mailing_list'), page_path('mailing-list')) %>
+        <%= link_to(t('meta.privacy'),page_path('privacy') ) %>
+        <%= link_to(t('meta.tos'),page_path('tos') ) %>
+        <%= link_to(t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
     </div>
 </footer>

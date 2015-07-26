@@ -48,7 +48,6 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'id': <id>,
     #     'attributes': {},
     # }
-    puts params
     garden_crop = Garden.find(params[:garden_id]).
                   garden_crops.find(params[:id])
     @outcome = GardenCrops::UpdateGardenCrop.run(params[:data],

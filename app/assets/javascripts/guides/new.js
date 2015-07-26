@@ -210,7 +210,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
   $scope.nextStep = function(){
     if ($rootScope.step === 3){
-      $scope.hasEditedStages = true;
+      $scope.newGuide.hasEditedStages = true;
     }
     $rootScope.step += 1;
     $location.hash($rootScope.step);

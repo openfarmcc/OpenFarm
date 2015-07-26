@@ -128,29 +128,11 @@
 
 <div class="button-wrapper row">
   <div class="columns small-12">
-    <a class="button small secondary left"
-        name="back"
-        href="/"
-        >{{ texts.cancel }}</a>
-    <input class="button small secondary left"
-        name="back"
-        type="submit"
-        value="{{ texts.back }}"
-        ng-click="previousStep()">
-
-    <input class="button small right"
-        ng-if="stage.nextSelectedIndex"
-        name="commit"
-        type="submit"
-        value="{{ stage.edited ? texts.editNextStage: texts.finishStageToContinue }}"
-        ng-disabled="!(stage.edited)"
-        ng-click="nextStage(stage)"/>
-    <input class="button small right"
-        ng-if="!stage.nextSelectedIndex"
-        name="commit"
-        type="submit"
-        value="{{ stage.edited ? texts.nextFinalTouches : texts.finishStageToContinue }}"
-        ng-disabled="!(stage.edited)"
-        ng-click="nextStep()"/>
+    <div stage-buttons
+      stage="stage"
+      next-stage="nextStage"
+      texts="texts"
+      >
+    </div>
   </div>
 </div>

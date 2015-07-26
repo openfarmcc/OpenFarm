@@ -217,26 +217,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.switchToStep = function(step){
     $rootScope.step = step;
     $location.hash($rootScope.step);
-    scrollToTop();
-  };
-
-  var scrollToTop = function(){
-    window.scrollTo($('.guides').scrollTop(), 0);
-  }
-
-  $scope.nextStep = function(){
-    if ($rootScope.step === 3){
-      $scope.newGuide.hasEditedStages = true;
-    }
-    $rootScope.step += 1;
-    $location.hash($rootScope.step);
-    scrollToTop();
-  };
-
-  $scope.previousStep = function(){
-    $rootScope.step -= 1;
-    $location.hash($rootScope.step);
-    scrollToTop();
   };
 
   // Sending methods

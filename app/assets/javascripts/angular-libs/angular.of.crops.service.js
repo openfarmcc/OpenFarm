@@ -77,7 +77,7 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
           return callback (true, buildCrop(response.data, response.included));
         })
         .error(function (response) {
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors);
         });
     };
     return {

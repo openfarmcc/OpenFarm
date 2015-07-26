@@ -21,7 +21,7 @@
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !selectedStagesCount > 0, 'check' : selectedStagesCount > 0 }"
+            <a ng-class="{ 'active' : step === 2, 'disabled' : !newGuide.crop || !newGuide.selectedStagesCount > 0, 'check' : newGuide.selectedStagesCount > 0 }"
             ng-click="switchToStep(2)">
               <%= t('.life_stages') %>
             </a>

@@ -56,9 +56,9 @@ $(function() {
 });
 
 var isDNT = (window.doNotTrack === 1 ||
-             navigator.doNotTrack === "yes" ||
-             navigator.doNotTrack == "1" ||
-             navigator.msDoNotTrack == "1");
+             navigator.doNotTrack === 'yes' ||
+             navigator.doNotTrack == '1' ||
+             navigator.msDoNotTrack == '1');
 
 if (!isDNT) {
 (function(i, s, o, g, r, a, m) {

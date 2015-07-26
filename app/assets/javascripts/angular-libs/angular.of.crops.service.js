@@ -19,7 +19,9 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       if (included) {
         pictures = included.filter(function(obj) {
           return obj.type === 'pictures';
-        });
+        }).map(function(pic) {
+          return pic.attributes;
+        })
       }
 
       crop.pictures = pictures || [];

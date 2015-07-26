@@ -1,5 +1,5 @@
-<span class="s3-upload-input">
-  <span ng-if="!hasOnePicture">
+<div class="s3-upload-input">
+  <div ng-if="!hasOnePicture" class="pictures">
     <span ng-repeat="pic in s3UploadExistingPictures"
           class="thumbnails"
           ng-class="{ 'deleted' : pic.deleted }"
@@ -8,23 +8,21 @@
       <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" width="100"
            ng-model="pic"/>
     </span>
-  </span>
+  </div>
 
-  <span class="thumbnails"
-        ng-if="s3UploadExistingPictures && hasOnePicture">
+  <div class="thumbnails"
+       ng-if="s3UploadExistingPictures && hasOnePicture">
 
     <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures.image_url }}"
        />
-  </span>
+  </div>
 
-  <span class='click-to-upload-image'>
-    <input type='file' style='display: none'/>
-    <input type='field' style='display: none' name='{{ nameAttribute }}' value='{{ filename }}'/>
+  <div class='click-to-upload-image'>
+    <input type='file'/>
+    <input type='field' name='{{ nameAttribute }}' value='{{ filename }}'/>
 
     <div ng-show="uploading" class="progress primary round">
       <span class="meter" style="width: {{progress}}%"></span>
     </div>
-  </span>
-
-
-</span>
+  </div>
+</div>

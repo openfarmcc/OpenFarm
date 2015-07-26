@@ -6,6 +6,7 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
 
     var setCrop = function(success, crop){
       $scope.editCrop = crop;
+      console.log(crop);
     };
 
     cropService.getCrop(cropId, setCrop);

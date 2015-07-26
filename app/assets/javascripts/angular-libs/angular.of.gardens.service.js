@@ -38,6 +38,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     var buildGardenCrop = function(data) {
       var gardenCrop = data.attributes;
       gardenCrop.id = data.id;
+      gardenCrop.links = data.links;
       return gardenCrop;
     }
 
@@ -141,8 +142,9 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     };
 
     var saveGardenCrop = function(garden, gardenCrop, callback){
-      var url = garden.relationships.garden_crops.links.related;
-      $http.put(url, gardenCrop)
+      var data = { 'data': { 'attributes': gardenCrop }}
+      var url = gardenCrop.links.self.api;
+      $http.put(url, data)
         .success(function (response, object) {
           alertsService.pushToAlerts(['Saved your garden crop!'], '200')
           if (callback){
@@ -188,8 +190,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     };
 
     var deleteGardenCrop = function(garden, gardenCrop, callback){
-      var url = garden.relationships.garden_crops.links.related +
-                '/' + gardenCrop.id;
+      var url = gardenCrop.links.self.api;
       $http.delete(url)
         .success(function(response, object){
           alertsService.pushToAlerts(['Deleted crop.'], status)
@@ -254,10 +255,17 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
               function(success, response, code) {
                 if(success) {
                   scope.gardens = response;
+                  console.log(scope.gardens);
                   scope.gardens.forEach(function(garden) {
-                    var gardenCropCropIds = garden.garden_crops.map(function(gc) {
-                      return gc.crop;
-                    })
+                    var gardenCropCropIds = garden.garden_crops.map(
+                      function(gc) {
+                        if (scope.objectType == 'guide' && gc.guide !== null) {
+                          return gc.guide.id
+                        } else if (gc.crop !== null) {
+                          return gc.crop.id;
+                        }
+                      })
+                    console.log(gardenCropCropIds);
                     if (gardenCropCropIds.indexOf(scope.cropObject.id) !== -1) {
                       garden.added = true;
                     }

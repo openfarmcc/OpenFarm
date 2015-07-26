@@ -186,9 +186,9 @@ angular.module('ngS3upload.directives', []).
             // Bind the button click event
             var button = angular.element(element.children()[0]),
               file = angular.element(element.find("input")[0]);
-              element.bind('click', function (e) {
-               file[0].click();
-              });
+            //   element.bind('click', function (e) {
+            //    file[0].click();
+            //   });
 
             scope.$watch('s3UploadExistingPictures', function(){
               var objType = Object.prototype.toString.call(

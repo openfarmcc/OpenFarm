@@ -34,6 +34,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.guideExists = ($scope.existingGuideID &&
                         $scope.existingGuideID !== 'new');
 
+  // Ideally we'll find a way of including this function in
+  // the stages directive.
+  $scope.editSelectedStage = function(chosenStage){
+    $scope.newGuide.stages.forEach(function(stage){
+      stage.editing = false;
+      if (chosenStage.name === stage.name){
+        stage.editing = true;
+
+        $scope.currentStage = chosenStage;
+      }
+    });
+  };
+
   var processCropID = function(crop_id) {
     if (crop_id){
       cropService.getCrop(crop_id, function(success, crop) {
@@ -64,7 +77,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       return newTimeSpan;
     };
 
-    localGuide.time_span = transferTimeSpan($scope.newGuide.time_span,
+    localGuide.time_span = transferTimeSpan(localGuide.time_span,
                                                  existingGuide.time_span);
 
     if (existingGuide.practices){
@@ -74,6 +87,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         }
       });
     }
+    return localGuide;
   };
 
   var resetAlert = function(){
@@ -102,7 +116,21 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     return $q(function (resolve, reject) {
       var guide = null;
       var localGuide = localStorageService.get('guide');
-      if (localGuide !== undefined && localGuide !== null &&
+       if ($scope.guideExists) {
+        console.log('we\'re editing a guide');
+        guideService.getGuideWithPromise(getIDFromURL('guides'))
+          .then(function(data) {
+            var externalGuide = data;
+            guide = guideService.utilities.buildBlankGuide();
+            guide = loadExternalGuide(guide, externalGuide, practices);
+            resolve(guide);
+          }, function(error) {
+            reject(error);
+          });
+
+        // else if it's external, we're editing, not
+        // creating a new one.
+      } else if (localGuide !== undefined && localGuide !== null &&
           !guideService.utilities.isBlankGuide(localGuide, practices)) {
         console.log('it\'s a non-blank local guide');
         // if it's local storage, we've been here before, but first
@@ -116,27 +144,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         guide.stagesToBuildDefault = false;
         resolve(guide);
 
-      } else if ($scope.guideExists) {
-        console.log('we\'re editing a guide');
-        $q.all([
-          guideService.getGuideWithPromise(getIDFromURL('guides')),
-          ])
-        .then(function(data) {
-          var externalGuide = data[0];
-          guide = guideService.utilities.buildBlankGuide();
-          loadExternalGuide(externalGuide, practices);
-          resolve(guide);
-        })
-
-        // else if it's external, we're editing, not
-        // creating a new one.
       } else {
         console.log('we\'re building it from scratch')
         // else build it from scratch
         guide = guideService.utilities.buildBlankGuide(null, [], practices);
         resolve(guide);
       }
-      reject();
     });
   }
 
@@ -191,6 +204,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           }
         });
         $scope.newGuide.location = $scope.user.user_setting.location;
+      },
+      function(error) {
+        console.log('an error', error);
       })
   }, function(error) {
     console.log('error', error);
@@ -201,26 +217,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.switchToStep = function(step){
     $rootScope.step = step;
     $location.hash($rootScope.step);
-    scrollToTop();
-  };
-
-  var scrollToTop = function(){
-    window.scrollTo($('.guides').scrollTop(), 0);
-  }
-
-  $scope.nextStep = function(){
-    if ($rootScope.step === 3){
-      $scope.hasEditedStages = true;
-    }
-    $rootScope.step += 1;
-    $location.hash($rootScope.step);
-    scrollToTop();
-  };
-
-  $scope.previousStep = function(){
-    $rootScope.step -= 1;
-    $location.hash($rootScope.step);
-    scrollToTop();
   };
 
   // Sending methods
@@ -268,7 +264,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if (data.featured_image === '/assets/leaf-grey.png'){
       data.featured_image = null;
     }
-    console.log(data);
 
     return data;
   };

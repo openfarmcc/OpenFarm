@@ -50,10 +50,6 @@ openFarmModule.factory('userService', ['$http', '$q', 'gardenService',
       return userSetting;
     }
 
-    var buildPicture = function(data) {
-      return data.attributes;
-    }
-
     var getUser = function(userId, callback){
       var url = '/api/v1/users/' + userId;
       $http.get(url)

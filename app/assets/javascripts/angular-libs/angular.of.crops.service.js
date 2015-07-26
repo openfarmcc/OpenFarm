@@ -19,7 +19,9 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       if (included) {
         pictures = included.filter(function(obj) {
           return obj.type === 'pictures';
-        });
+        }).map(function(pic) {
+          return pic.attributes;
+        })
       }
 
       crop.pictures = pictures || [];
@@ -77,7 +79,7 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
           return callback (true, buildCrop(response.data, response.included));
         })
         .error(function (response) {
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors);
         });
     };
     return {

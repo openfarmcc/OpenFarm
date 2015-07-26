@@ -5,18 +5,36 @@
         href="{{ cancelUrl }}"
         >{{ cancelText }}</a> -->
     <input class="button small secondary left"
-        ng-if="backText"
+        ng-if="backText || texts.back"
         name="back"
         type="submit"
-        value="{{ backText }}"
-        ng-click="switchToStep(step - 1)">
+        value="{{ backText || texts.back }}"
+        ng-click="goBack()">
 
-    <input class="button small right"
+    <span ng-if="stage">
+      <input class="button small right"
+        ng-if="stage.nextSelectedIndex"
         name="commit"
         type="submit"
-        value="{{ abledBool() ? abledText : disabledText }}"
-        ng-disabled="!(abledBool())"
-        ng-click="nextStep()"/>
+        value="{{ stage.edited ? texts.editNextStage: texts.finishStageToContinue }}"
+        ng-disabled="!(stage.edited)"
+        ng-click="tunnelToNextStage(stage)"/>
+      <input class="button small right"
+          ng-if="!stage.nextSelectedIndex"
+          name="commit"
+          type="submit"
+          value="{{ stage.edited ? texts.nextFinalTouches : texts.finishStageToContinue }}"
+          ng-disabled="!(stage.edited)"
+          ng-click="nextStep()"/>
+    </span>
+
+    <input class="button small right"
+      ng-if="!stage"
+      name="commit"
+      type="submit"
+      value="{{ abledBool() ? abledText : disabledText }}"
+      ng-disabled="!(abledBool())"
+      ng-click="nextStep()"/>
     <i ng-if="processing"
        class="fa fa-spinner fa-spin right loading-button"></i>
   </div>

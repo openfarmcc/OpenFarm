@@ -55,6 +55,12 @@ $(function() {
   });
 });
 
+var isDNT = (window.doNotTrack === 1 ||
+             navigator.doNotTrack === "yes" ||
+             navigator.doNotTrack == "1" ||
+             navigator.msDoNotTrack == "1");
+
+if (!isDNT) {
 (function(i, s, o, g, r, a, m) {
   i['GoogleAnalyticsObject'] = r;
   i[r] = i[r] || function() {
@@ -68,6 +74,7 @@ $(function() {
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
+}
 
 // TODO: move these somewhere actually meaningful.
 

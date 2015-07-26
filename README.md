@@ -13,7 +13,7 @@ Other use cases: a mobile app for home gardeners, Google providing &ldquo;One Bo
 
 If you have any quick questions, ask them on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). If the room looks empty it's because our core team uses Slack, we have a bot piping messages back and forth - read on if you want to join that!
 
-Sign up to [our Slack room](http://openfarm-slack.herokuapp.com/)! We strongly recommend joining this group if you want to get involved and meet the other contributors. 
+Sign up to [our Slack room](http://slack.openfarm.cc/)! We strongly recommend joining this group if you want to get involved and meet the other contributors. 
 
 ### Community Discussion Group
 

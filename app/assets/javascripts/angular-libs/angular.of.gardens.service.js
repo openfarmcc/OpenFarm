@@ -190,8 +190,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     };
 
     var deleteGardenCrop = function(garden, gardenCrop, callback){
-      var url = garden.relationships.garden_crops.links.related +
-                '/' + gardenCrop.id;
+      var url = gardenCrop.links.self.api;
       $http.delete(url)
         .success(function(response, object){
           alertsService.pushToAlerts(['Deleted crop.'], status)

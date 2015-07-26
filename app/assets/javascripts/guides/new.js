@@ -34,6 +34,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.guideExists = ($scope.existingGuideID &&
                         $scope.existingGuideID !== 'new');
 
+  // Ideally we'll find a way of including this function in
+  // the stages directive.
+  $scope.editSelectedStage = function(chosenStage){
+    $scope.newGuide.stages.forEach(function(stage){
+      stage.editing = false;
+      if (chosenStage.name === stage.name){
+        stage.editing = true;
+
+        $scope.currentStage = chosenStage;
+      }
+    });
+  };
+
   var processCropID = function(crop_id) {
     if (crop_id){
       cropService.getCrop(crop_id, function(success, crop) {
@@ -107,7 +120,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         console.log('we\'re editing a guide');
         guideService.getGuideWithPromise(getIDFromURL('guides'))
           .then(function(data) {
-            console.log(JSON.stringify(data));
             var externalGuide = data;
             guide = guideService.utilities.buildBlankGuide();
             guide = loadExternalGuide(guide, externalGuide, practices);
@@ -272,7 +284,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if (data.featured_image === '/assets/leaf-grey.png'){
       data.featured_image = null;
     }
-    console.log(data);
 
     return data;
   };

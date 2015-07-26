@@ -254,10 +254,17 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
               function(success, response, code) {
                 if(success) {
                   scope.gardens = response;
+                  console.log(scope.gardens);
                   scope.gardens.forEach(function(garden) {
-                    var gardenCropCropIds = garden.garden_crops.map(function(gc) {
-                      return gc.crop;
-                    })
+                    var gardenCropCropIds = garden.garden_crops.map(
+                      function(gc) {
+                        if (scope.objectType == 'guide' && gc.guide !== null) {
+                          return gc.guide.id
+                        } else if (gc.crop !== null) {
+                          return gc.crop.id;
+                        }
+                      })
+                    console.log(gardenCropCropIds);
                     if (gardenCropCropIds.indexOf(scope.cropObject.id) !== -1) {
                       garden.added = true;
                     }

@@ -299,6 +299,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         return length * 60 * 24;
         case 'months':
         return length * 30;
+        case 'years':
+        return length * 365;
         case 'weeks':
         return length * 7;
         default:
@@ -312,7 +314,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.sendStages = function(guide){
     $scope.sending--;
     $scope.newGuide.id = guide.id;
-
 
     $scope.newGuide.stages.forEach(function(stage){
 

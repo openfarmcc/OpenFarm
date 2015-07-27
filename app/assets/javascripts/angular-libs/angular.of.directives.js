@@ -130,8 +130,8 @@ openFarmModule.directive('alerts', ['$timeout',
       scope: {
         alerts: '='
       },
-      controller: ['$scope',
-        function (scope) {
+      controller: ['$scope', '$element',
+        function (scope, element) {
           scope.closeAlert = function(index) {
             scope.alerts.splice(index, 1);
           };
@@ -144,18 +144,22 @@ openFarmModule.directive('alerts', ['$timeout',
               }, 3000);
             }
           });
+          scope.$watch('alerts.length', function() {
+            scope.alerts.forEach(function(alert, index) {
+              $timeout(function() {
+                if (index > 0) {
+                  var height = element[0].children[index - 1].offsetHeight;
+                  var top = scope.alerts[index - 1].top;
+                  alert.top = height + top + 18;
+                } else {
+                  alert.top = 64;
+                }
+              }, 500)
+            })
+          });
       }],
-      template:
-        '<alert ng-cloak ' +
-          'class="ng-cloak columns large-6 large-centered radius float" ' +
-          'ng-repeat="alert in alerts" ' +
-          'type="alert.type" close="closeAlert($index)">' +
-            '<div class=""> {{alert.msg}} </div>' +
-            '<a ng-if="alert.action" ' +
-               'ng-click="alert.actionFunction($index)"> ' +
-              '{{alert.action}} ' +
-            '</a>' +
-        '</alert>'
+      templateUrl:'/assets/templates/angular.of.alerts.template.html'
+
     };
   }]);
 

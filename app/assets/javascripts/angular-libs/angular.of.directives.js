@@ -16,6 +16,16 @@ openFarmModule.directive('markdown', ['$sanitize',
     };
 }]);
 
+openFarmModule.directive('loader', ['$rootScope',
+  function loader($rootScope) {
+    return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+        $rootScope.ofPageLoading = true;
+      }
+    };
+}]);
+
 openFarmModule.directive('location', [
   function location() {
     var geocoder = new google.maps.Geocoder();

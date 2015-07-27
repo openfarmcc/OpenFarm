@@ -144,7 +144,7 @@ openFarmModule.directive('alerts', ['$timeout',
               }, 3000);
             }
           });
-          scope.$watch('alerts.length', function(newLength) {
+          scope.$watch('alerts.length', function() {
             scope.alerts.forEach(function(alert, index) {
               $timeout(function() {
                 if (index > 0) {

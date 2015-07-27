@@ -34,6 +34,7 @@ module Users
     def execute
       @user = User.find(id)
       set_user_setting
+      puts "into setting image"
       set_image
       @user.update_attributes(attributes)
       @user.save
@@ -87,10 +88,17 @@ module Users
     end
 
     def set_image
-      if featured_image
+      existing_url = nil
+      if @user.user_setting.picture
+        existing_url =  @user.user_setting.picture.attachment.url
+      end
+      if featured_image && featured_image != existing_url
         @user.user_setting.picture = Picture.new(
           attachment: open(featured_image)
         )
+      end
+      unless featured_image || @user.user_setting.picture == nil
+        @user.user_setting.picture.remove
       end
     end
   end

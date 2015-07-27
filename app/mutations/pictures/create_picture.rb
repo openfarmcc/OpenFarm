@@ -30,7 +30,7 @@ module Pictures
                     :changed_image, 'You can\'t change an existing image, '\
                     'delete it and upload an other image.'
         end
-      elsif !url.valid_url?
+      elsif !url.valid_url? && storage_type.to_s != 'filesystem'
         add_error :images,
                   :invalid_url, "'#{url}' is not a valid URL. "\
                   'Ensure that it is a fully formed URL (including HTTP://'\

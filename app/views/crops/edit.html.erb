@@ -173,12 +173,16 @@
 
     <div class="row form-buttons">
       <div class="columns small-12 medium-12">
-        <input class="button small right"
-          name="commit"
-          type="submit"
-          value="<%= t('.save_crop') %>"
-          ng-disabled="editCrop.sending"
-          ng-click="submitForm()"/>
+        <span class="right">
+          <i ng-if="editCrop.sending"
+            class="fa fa-spinner fa-spin loading-button"></i>
+          <input class="button small"
+            name="commit"
+            value="<%= t('.save_crop') %>"
+            data-disable-with="Saving..."
+            ng-disabled="editCrop.sending"
+            ng-click="submitForm()"/>
+        </span>
       </div>
     </div>
   </form>

@@ -33,7 +33,8 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
         }
       };
 
-      if ($scope.user.user_setting.picture) {
+      if ($scope.user.user_setting.picture &&
+          !$scope.user.user_setting.picture.deleted) {
         params.featured_image = $scope
           .user.user_setting.picture.image_url || null;
       } else {

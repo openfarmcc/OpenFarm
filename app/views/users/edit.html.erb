@@ -85,6 +85,8 @@
   <div class="row submit">
     <div class="large-12 columns">
     <span class="right">
+      <i ng-if="user.sending"
+        class="fa fa-spinner fa-spin loading-button"></i>
       <input class="button small"
         ng-disabled="user.sending"
         data-disable-with="Saving..."

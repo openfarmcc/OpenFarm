@@ -4,10 +4,13 @@ module Guides
     def validate_image_url
       featured_image = attributes[:featured_image]
       if featured_image.present? && !featured_image.valid_url?
-        add_error :featured_image,
-                  :invalid_url,
-                  'Must be a fully formed URL, including the HTTP:// or '\
-                  'HTTPS://'
+        outcome = Pictures::CreatePicture.validate(url: featured_image)
+        unless outcome.success?
+          add_error :featured_image,
+                    :bad_format,
+                    'Must be a fully formed URL, including the HTTP:// or '\
+                    'HTTPS://'
+        end
       end
     end
 
@@ -25,10 +28,15 @@ module Guides
       # -- move to the model level
       # -- Pass in featured_image as a param.
       # -- handle_asynchronously :this_guy_right_her
+      if @guide.featured_image
+        existing_url = @guide.featured_image
+      end
       featured_image = attributes[:featured_image]
-      if featured_image
-        # TODO: My suspicion is that this is what triggers the MONGOID errors
-        @guide.update_attributes(featured_image: URI(featured_image))
+      if featured_image && featured_image != existing_url.to_s
+        @guide.featured_image = Picture.new(
+          attachment: open(featured_image)
+        )
+        # @guide.update_attributes(featured_image: URI(featured_image))
       end
     end
   end

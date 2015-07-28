@@ -269,6 +269,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   };
 
   $scope.submitForm = function () {
+    $scope.startedSending = true;
     $scope.sending++;
     var params = { 'data': buildParametersFromScope() };
 
@@ -279,11 +280,16 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // so that it cancels things if things go wrong
       params.data.id = $scope.newGuide.id;
 
+      var errorFunction = function() {
+        $scope.startedSending = false;
+        $scope.sending --;
+      }
+
       guideService.updateGuideWithPromise(params.data.id, params)
-        .then($scope.sendStages);
+        .then($scope.sendStages, errorFunction);
     } else {
       guideService.createGuideWithPromise(params)
-        .then($scope.sendStages)
+        .then($scope.sendStages, errorFunction)
     }
   };
 
@@ -407,6 +413,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.checkNumberUpdated = function(){
     if ($scope.sending === 0){
       localStorageService.remove('guide');
+      $scope.startedSending = false;
       window.location.href = '/guides/' + $scope.newGuide.id + '/';
     }
   };

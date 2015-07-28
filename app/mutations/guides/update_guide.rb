@@ -39,7 +39,7 @@ module Guides
     end
 
     def execute
-      @guide.update(attributes)
+      @guide.update(attributes.select {|k| k != 'featured_image'})
       set_time_span
       set_featured_image_async
       @guide.save

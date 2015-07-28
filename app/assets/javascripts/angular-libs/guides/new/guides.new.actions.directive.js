@@ -21,7 +21,6 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
                   controller: ['$scope', '$modalInstance', 'stage',
                     'actionOptions',
                     function ($scope, $modalInstance, stage, actionOptions) {
-                      console.log(stage);
                       $scope.actionOptions = actionOptions;
                       $scope.existingActions = stage.stage_action_options || [];
 

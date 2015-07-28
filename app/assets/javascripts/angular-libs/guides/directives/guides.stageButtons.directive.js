@@ -66,7 +66,6 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
         }
 
         $scope.nextStep = function(){
-          console.log('going next');
           // if ($rootScope.step === 3){
             // $scope.newGuide.hasEditedStages = true;
           // }

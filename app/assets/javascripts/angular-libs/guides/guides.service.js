@@ -46,7 +46,6 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       var blankGuide = buildBlankGuide(null, [], blankPractices);
       var truthy = (JSON.stringify(blankGuide) === JSON.stringify(guide) &&
                     blankGuide.crop === null);
-      console.log(truthy)
       return truthy;
     }
 

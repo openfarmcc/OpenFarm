@@ -33,9 +33,7 @@ module Guides
       end
       featured_image = attributes[:featured_image]
       if featured_image && featured_image != existing_url.to_s
-        @guide.featured_image = Picture.new(
-          attachment: open(featured_image)
-        )
+        @guide.update_attributes(featured_image: URI(featured_image))
         # @guide.update_attributes(featured_image: URI(featured_image))
       end
     end

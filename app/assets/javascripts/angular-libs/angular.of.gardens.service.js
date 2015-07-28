@@ -99,7 +99,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           }
         })
         .error(function (response, code){
-          console.log(response);
           alertsService.pushToAlerts(response.errors, code)
           if (callback){
             return callback(false, response, code);
@@ -255,7 +254,6 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
               function(success, response, code) {
                 if(success) {
                   scope.gardens = response;
-                  console.log(scope.gardens);
                   scope.gardens.forEach(function(garden) {
                     var gardenCropCropIds = garden.garden_crops.map(
                       function(gc) {
@@ -265,7 +263,6 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
                           return gc.crop.id;
                         }
                       })
-                    console.log(gardenCropCropIds);
                     if (gardenCropCropIds.indexOf(scope.cropObject.id) !== -1) {
                       garden.added = true;
                     }

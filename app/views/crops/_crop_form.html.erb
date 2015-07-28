@@ -1,0 +1,197 @@
+<div class="crop-manipulation"
+    ng-controller="cropCtrl">
+
+  <div alerts ng-model="alerts"></div>
+
+  <div class="row">
+    <div class="small-8 medium-10 small-12 small-centered columns">
+
+      <h1>
+        <% if @crop.name %>
+          Edit <%= @crop.name %>
+        <% else %>
+          Add a new crop
+        <% end %>
+      </h1>
+    </div>
+  </div>
+  <form>
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="crop_name">OpenFarm Crop Name</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <input data-ng-model="crop.name"
+               id="crop_name"
+               name="crop[name]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="crop_name">Common Names</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <small>Comma Separated or New Lines</small>
+        <textarea data-ng-model="crop.common_names"
+               id="crop_common_names"
+               name="crop[common_names]"
+               type="text"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="binomial_name">Binomial Name</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <input data-ng-model="crop.binomial_name"
+               id="crop_binomial_name"
+               name="crop[binomial_name]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="description">Description</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <textarea ng-model="crop.description"
+                  id="crop_description"
+                  name="crop[description]"
+                  ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="sun_requirements">Sun Requirements</label>
+      </div>
+      <div class="columns small-8 medium-8">
+            <select ng-model="crop.sun_requirements"
+                    id="crop_sun_requirements"
+                    name="crop[sun_requirements]">
+              <option value="Full Sun"><%= t('edit.full_sun') %></option>
+              <option value="Partial Sun"><%= t('edit.partial_sun') %></option>
+              <option value="Full Shade"><%= t('edit.full_shade') %></option>
+            </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="sowing_method">Sowing Method</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <input data-ng-model="crop.sowing_method"
+               id="crop_sowing_method"
+               name="crop[sowing_method]"
+               type="text"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="spread">Spread</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="crop.spread"
+                   id="crop_spread"
+                   name="crop[spread]"
+                  type="text"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="days_to_maturity">Days to Maturity</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <input data-ng-model="crop.days_to_maturity"
+               id="crop_days_to_maturity"
+               name="crop[days_to_maturity]"
+               type="number"/>
+      </div>
+    </div> -->
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="row_spacing">Row Spacing</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="crop.row_spacing"
+                   id="crop_row_spacing"
+                   name="crop[row_spacing]"
+                   type="number"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="height">Height</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <div class="row collapse">
+          <div class="columns small-10">
+            <input data-ng-model="crop.height"
+                   id="crop_height"
+                   name="crop[height]"
+                   type="number"/>
+          </div>
+          <div class="columns small-2">
+            <span class="postfix">cm</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label for="crop[images]" class="right">Manage images</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <div id="crop_image_upload"
+            name="crop[images]"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="crop.pictures"
+            s3-upload-place-pic="placeCropUpload(image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-buttons">
+      <div class="columns small-12 medium-12">
+        <span class="right">
+          <i ng-if="crop.sending"
+            class="fa fa-spinner fa-spin loading-button"></i>
+          <input class="button small"
+            type="submit"
+            name="commit"
+            value="<%= t('crops.edit.save_crop') %>"
+            data-disable-with="Saving..."
+            ng-disabled="crop.sending"
+            ng-click="submitForm()"/>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>

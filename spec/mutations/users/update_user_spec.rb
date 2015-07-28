@@ -99,4 +99,29 @@ describe Users::UpdateUser do
       expect(result.errors.message_list.first).to include('is not a valid URL')
     end
   end
+
+  it 'handles users that have an existing image when image already exists' do
+    VCR.use_cassette('mutations/users/update_user_existing_image.rb') do
+      current_user.user_setting.picture = Picture.new(
+        attachment: open('http://i.imgur.com/2haLt4J.jpg')
+      )
+      featured_image = 'http://i.imgur.com/2haLt4J.jpg'
+      image_params = params.merge(featured_image: featured_image)
+      results = mutation.run(image_params)
+      expect(results.success?).to eq(true)
+    end
+  end
+
+  it 'handles sending an empty user featured_image' do
+    VCR.use_cassette('mutations/users/update_user_remove_image.rb') do
+      current_user.user_setting.picture = Picture.new(
+        attachment: open('http://i.imgur.com/2haLt4J.jpg')
+      )
+      featured_image = nil
+      image_params = params.merge(featured_image: featured_image)
+      results = mutation.run(image_params)
+      expect(results.success?).to eq(true)
+      expect(current_user.reload.user_setting.picture).to eq(nil)
+    end
+  end
 end

@@ -1,22 +1,27 @@
-openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
-  function editCropCtrl($scope, $http, cropService) {
+openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
+  function cropCtrl($scope, $http, cropService) {
     $scope.s3upload = '';
-    $scope.editCrop = {};
+    $scope.crop = {};
     var cropId = getIDFromURL('crops');
+    if (cropId !== 'new' && cropId !== undefined) {
+      cropService.getCropWithPromise(cropId)
+        .then(function(crop){
+          $scope.crop = crop;
+        })
+    } else {
+      $scope.crop = {
+        'is_new': true,
+        'pictures': []
+      };
+    }
 
-    var setCrop = function(success, crop){
-      $scope.editCrop = crop;
-      console.log(crop);
-    };
-
-    cropService.getCrop(cropId, setCrop);
 
     $scope.submitForm = function(){
-      $scope.editCrop.sending = true;
+      $scope.crop.sending = true;
 
-      var commonNames = $scope.editCrop.common_names;
-      if (typeof $scope.editCrop.common_names === 'string'){
-        commonNames = $scope.editCrop.common_names.split(/,+|\n+/)
+      var commonNames = $scope.crop.common_names;
+      if (typeof $scope.crop.common_names === 'string'){
+        commonNames = $scope.crop.common_names.split(/,+|\n+/)
                         .map(function(s){ return s.trim(); });
         if (commonNames !== null){
           commonNames = commonNames.filter(function(s){
@@ -27,34 +32,44 @@ openFarmApp.controller('editCropCtrl', ['$scope', '$http', 'cropService',
 
       var crop = {
         common_names: commonNames,
-        name: $scope.editCrop.name,
-        description: $scope.editCrop.description || null,
-        binomial_name: $scope.editCrop.binomial_name || null,
-        sun_requirements: $scope.editCrop.sun_requirements || null,
-        sowing_method: $scope.editCrop.sowing_method || null,
-        spread: $scope.editCrop.spread || null,
-        // days_to_maturity: $scope.editCrop.days_to_maturity || null,
-        row_spacing: $scope.editCrop.row_spacing || null,
-        height: $scope.editCrop.height || null,
+        name: $scope.crop.name,
+        description: $scope.crop.description || null,
+        binomial_name: $scope.crop.binomial_name || null,
+        sun_requirements: $scope.crop.sun_requirements || null,
+        sowing_method: $scope.crop.sowing_method || null,
+        spread: $scope.crop.spread || null,
+        row_spacing: $scope.crop.row_spacing || null,
+        height: $scope.crop.height || null,
       }
 
-      crop.images = $scope.editCrop.pictures.filter(function(d){
-        return !d.deleted;
-      });
+      if ($scope.crop.pictures !== undefined){
+        crop.images = $scope.crop.pictures.filter(function(d){
+          return !d.deleted;
+        });
+      }
 
       var cropCallback = function(success, crop){
-        $scope.editCrop.sending = false;
-        $scope.editCrop = crop;
-        window.location.href = '/crops/' + $scope.editCrop.id + '/';
+        $scope.crop.sending = false;
+        $scope.crop = crop;
+        window.location.href = '/crops/' + $scope.crop.id + '/';
       };
 
-      cropService.updateCrop($scope.editCrop.id,
-                             crop,
-                             cropCallback);
+      if ($scope.crop.is_new) {
+        cropService.createCropWithPromise(crop)
+          .then(function(crop) {
+            $scope.crop.sending = false;
+            $scope.crop = crop;
+            window.location.href = '/crops/' + $scope.crop.id + '/';
+          })
+      } else {
+        cropService.updateCrop($scope.crop.id,
+                               crop,
+                               cropCallback);
+      }
     };
 
     $scope.placeCropUpload = function(image){
-      $scope.editCrop.pictures.push({
+      $scope.crop.pictures.push({
         new: true,
         image_url: image
       });

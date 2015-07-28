@@ -34,7 +34,6 @@ module Users
     def execute
       @user = User.find(id)
       set_user_setting
-      puts "into setting image"
       set_image
       @user.update_attributes(attributes)
       @user.save

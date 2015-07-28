@@ -1,15 +1,16 @@
 module Crops
-  class UpdateCrop < Mutations::Command
+  class CreateCrop < Mutations::Command
     attr_reader :pictures
 
     include Crops::CropsConcern
 
     required do
-      string :id
       model :user
       hash :attributes do
-        optional do
+        required do
           string :name
+        end
+        optional do
           array :common_names
           string :binomial_name
           string :description
@@ -29,13 +30,14 @@ module Crops
 
     def validate
       validate_permissions
-      @crop = Crop.find(id)
+
       validate_images
     end
 
     def execute
+      @crop = Crop.new(attributes)
       set_pictures
-      @crop.update_attributes(attributes)
+      @crop.save
       @crop
     end
 

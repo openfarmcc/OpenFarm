@@ -32,6 +32,19 @@ describe Api::V1::CropsController, type: :controller do
     expect(json['data']['attributes']['name']).to eq(crop.name)
   end
 
+  it 'should not find a crop' do
+    get 'show', format: :json, id: 1
+    expect(response.status).to eq(404)
+    expect(json['errors'][0]['title']).to include('Not Found.')
+  end
+
+  it 'should minimally create a crop' do
+    sign_in user
+    post :create, data: { attributes: { name: 'Radish' }}
+    expect(response.status).to eq(200)
+    expect(Crop.last.name).to eq('Radish')
+  end
+
   it 'should update a crop' do
     sign_in user
     crop = FactoryGirl.create(:crop)

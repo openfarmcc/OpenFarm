@@ -71,9 +71,23 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       });
     }
 
+    var createCropWithPromise = function(cropObject) {
+      var url = '/api/v1/crops/';
+      return $q(function (resolve, reject) {
+        $http.post(url, buildParams(cropObject))
+          .success(function(response) {
+            resolve(buildCrop(response.data, response.included))
+          })
+          .error(function(response) {
+            console.log(response);
+            alertsService.pushToAlerts(response.errors);
+            reject();
+          })
+      })
+    }
+
     var updateCrop = function(cropId, cropObject, callback){
       var url = '/api/v1/crops/' + cropId + '/';
-      $log.debug(url);
       $http.put(url, buildParams(cropObject))
         .success(function (response) {
           return callback (true, buildCrop(response.data, response.included));
@@ -89,6 +103,7 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       },
       'getCrop': getCrop,
       'getCropWithPromise': getCropWithPromise,
-      'updateCrop': updateCrop
+      'updateCrop': updateCrop,
+      'createCropWithPromise': createCropWithPromise
     };
 }]);

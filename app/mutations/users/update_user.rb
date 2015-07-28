@@ -76,7 +76,6 @@ module Users
 
     def validate_image
       if featured_image
-        picture = @user.user_setting.featured_image if @user
         outcome = Pictures::CreatePicture.validate(url: featured_image)
         unless outcome.success?
           add_error :images,

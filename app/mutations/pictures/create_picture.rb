@@ -23,6 +23,8 @@ module Pictures
 
     def validate_picture
       storage_type = Paperclip::Attachment.default_options[:storage]
+      test_or_filesystem = storage_type.to_s != 'filesystem' ||
+                           Rails.env.to_s == 'test'
       if id
         exist_pic = pictures.bsearch { |p| p[:id].to_s == id.to_s }
         if exist_pic && exist_pic.attachment.url != url
@@ -32,8 +34,7 @@ module Pictures
         end
       # This might be the wrong way to test this (what with checking the env
       # variable)
-      elsif (!url.valid_url? &&
-            (storage_type.to_s != 'filesystem' || Rails.env.to_s == 'test'))
+      elsif !url.valid_url? && test_or_filesystem
         add_error :images,
                   :invalid_url, "'#{url}' is not a valid URL. "\
                   'Ensure that it is a fully formed URL (including HTTP://'\

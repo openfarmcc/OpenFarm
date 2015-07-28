@@ -40,7 +40,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'should minimally create a crop' do
     sign_in user
-    post :create, data: { attributes: { name: 'Radish' }}
+    post :create, data: { attributes: { name: 'Radish' } }
     expect(response.status).to eq(200)
     expect(Crop.last.name).to eq('Radish')
   end

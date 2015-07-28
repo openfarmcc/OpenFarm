@@ -20,7 +20,7 @@ openFarmModule.directive('loader', ['$rootScope',
   function loader($rootScope) {
     return {
       restrict: 'A',
-      link: function (scope, element, attrs) {
+      link: function () {
         $rootScope.ofPageLoading = true;
       }
     };

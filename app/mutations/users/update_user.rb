@@ -89,7 +89,7 @@ module Users
     def set_image
       existing_url = nil
       if @user.user_setting.picture
-        existing_url =  @user.user_setting.picture.attachment.url
+        existing_url = @user.user_setting.picture.attachment.url
       end
       if featured_image && featured_image != existing_url
         @user.user_setting.picture = Picture.new(

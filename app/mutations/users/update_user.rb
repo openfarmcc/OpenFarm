@@ -91,9 +91,7 @@ module Users
         existing_url = @user.user_setting.picture.attachment.url
       end
       if featured_image && featured_image != existing_url
-        @user.user_setting.picture = Picture.new(
-          attachment: open(featured_image)
-        )
+        UserSetting.from_url(featured_image, @user.user_setting)
       end
       unless featured_image || @user.user_setting.picture == nil
         @user.user_setting.picture.remove

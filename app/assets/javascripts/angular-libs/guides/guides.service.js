@@ -60,7 +60,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       stages = included.filter(function(obj) {
         return obj.type === 'stages';
       }).map(function(stage) {
-        return stageService.utilities.buildStage(stage);
+        return stageService.utilities.buildStage(stage, included);
       });
 
       user = included.filter(function(obj) {
@@ -79,7 +79,41 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       }
       guide.stages = stages;
       return guide;
-    }
+    };
+
+    // var buildGuideWithPromise = function(data, included) {
+    //   return $q(function (resolve, reject) {
+    //     var stages,
+    //         user,
+    //         crop;
+    //     var guide = data.attributes;
+    //     guide.id = data.id;
+    //     guide.relationships = data.relationships;
+    //     guide.links = data.links;
+    //     stages = included.filter(function(obj) {
+    //       return obj.type === 'stages';
+    //     }).map(function(stage) {
+    //       return stageService.utilities.buildStageWithPromise(stage);
+    //     });
+
+    //     user = included.filter(function(obj) {
+    //       return obj.type === 'users';
+    //     });
+
+    //     crop = included.filter(function(obj) {
+    //       return obj.type === 'crops';
+    //     });
+
+    //     if (user !== undefined && user.length > 0) {
+    //       guide.user = userService.utilities.buildUser(user[0]);
+    //     }
+    //     if (crop !== undefined && crop.length > 0) {
+    //       guide.crop = cropService.utilities.buildCrop(crop[0]);
+    //     }
+    //     guide.stages = stages;
+    //     return guide;
+    //   })
+    // }
 
     // Builds params according to JSON-API from the
     // front end Guide model.

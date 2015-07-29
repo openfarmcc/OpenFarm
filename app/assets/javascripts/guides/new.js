@@ -68,6 +68,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     localGuide.name = existingGuide.name;
     localGuide.location = existingGuide.location;
     localGuide.overview = existingGuide.overview;
+    console.log(existingGuide.stages[0])
     localGuide.loadedStages = existingGuide.stages;
 
     var transferTimeSpan = function(defaultTS, remoteTS){
@@ -111,13 +112,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     });
   };
 
-  // First check what the guide source is.
+  // check what the guide source is.
   var checkingGuideSource = function() {
     return $q(function (resolve, reject) {
       var guide = null;
       var localGuide = localStorageService.get('guide');
        if ($scope.guideExists) {
-        console.log('we\'re editing a guide');
+        // we're editing a guide. ignore local storage
         guideService.getGuideWithPromise(getIDFromURL('guides'))
           .then(function(data) {
             var externalGuide = data;
@@ -128,11 +129,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
             reject(error);
           });
 
-        // else if it's external, we're editing, not
-        // creating a new one.
+      // else if we're found a localguide and it's not blank
       } else if (localGuide !== undefined && localGuide !== null &&
           !guideService.utilities.isBlankGuide(localGuide, practices)) {
-        console.log('it\'s a non-blank local guide');
         // if it's local storage, we've been here before, but first
         // check that the guide in localStorage isn't just a blank guide.
         guide = localGuide;
@@ -144,9 +143,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         guide.stagesToBuildDefault = false;
         resolve(guide);
 
+      // else, we start from scratch
       } else {
-        console.log('we\'re building it from scratch')
-        // else build it from scratch
         guide = guideService.utilities.buildBlankGuide(null, [], practices);
         resolve(guide);
       }

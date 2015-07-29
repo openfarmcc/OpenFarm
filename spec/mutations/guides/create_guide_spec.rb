@@ -38,7 +38,6 @@ describe Guides::CreateGuide do
       results = cg.run(params)
       expect(results.success?).to be_truthy
     end
-
   end
 
   it 'catches bad crop IDs' do

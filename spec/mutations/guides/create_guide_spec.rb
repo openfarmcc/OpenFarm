@@ -29,11 +29,15 @@ describe Guides::CreateGuide do
     results = cg.run(params)
     message = results.errors.message_list.first
     expect(message).to include('Must be a fully formed URL')
+  end
+
+  it 'allows valid URLS' do
+    attributes = params[:attributes]
     attributes[:featured_image] = 'http://placehold.it/1x1.png'
     VCR.use_cassette('mutations/guides/create_guide.rb') do
       results = cg.run(params)
+      expect(results.success?).to be_truthy
     end
-    expect(results.success?).to be_truthy
   end
 
   it 'catches bad crop IDs' do

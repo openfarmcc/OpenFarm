@@ -12,4 +12,14 @@ class UserSetting
 
   embeds_one :picture, as: :photographic
   accepts_nested_attributes_for :picture
+
+  class << self
+    def from_url(url, parent)
+      parent.picture = Picture.new(
+        attachment: open(url)
+      )
+    end
+
+    handle_asynchronously :from_url
+  end
 end

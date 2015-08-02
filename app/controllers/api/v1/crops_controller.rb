@@ -25,6 +25,12 @@ class Api::V1::CropsController < Api::V1::BaseController
     render json: serialize_model(crop, include: ['pictures'])
   end
 
+  def create
+    @outcome = Crops::CreateCrop.run(params[:data],
+                                     user: current_user)
+    respond_with_mutation(:ok, include: ['pictures'])
+  end
+
   def update
     # According to JSON-API Params must be structured like this:
     # {

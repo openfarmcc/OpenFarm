@@ -61,7 +61,7 @@
              back-text="<%= t('guides.new.back') %>"
              next-function="submitForm"
              abled-bool="newGuide.name && !newGuide.sending"
-             processing="newGuide.sending"
+             processing="sending !== 0 && startedSending"
              abled-text="<%= t('.done') %>"
              disabled-text="<%= t('.call_your_guide_something') %>">
         </div>

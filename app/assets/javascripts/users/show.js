@@ -9,7 +9,7 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
     $scope.setProfileUser = function(success, object){
       if (success){
         $rootScope.profileUser = $scope.profileUser = object;
-
+        $rootScope.ofPageLoading = false;
         if(!object.user_setting.favorite_crop &&
           $scope.profileUser.id === $scope.currentUser.id) {
           $scope.cropNotSet = true;

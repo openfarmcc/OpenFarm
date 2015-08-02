@@ -33,7 +33,7 @@
       name="commit"
       type="submit"
       value="{{ abledBool() ? abledText : disabledText }}"
-      ng-disabled="!(abledBool())"
+      ng-disabled="!abledBool || processing"
       ng-click="nextStep()"/>
     <i ng-if="processing"
        class="fa fa-spinner fa-spin right loading-button"></i>

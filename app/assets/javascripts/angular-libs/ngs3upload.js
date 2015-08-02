@@ -186,9 +186,12 @@ angular.module('ngS3upload.directives', []).
             // Bind the button click event
             var button = angular.element(element.children()[0]),
               file = angular.element(element.find("input")[0]);
-            //   element.bind('click', function (e) {
-            //    file[0].click();
-            //   });
+            element.children().on('dragover', function(){
+              element.addClass('dragging');
+            });
+            element.on('dragleave', function(){
+              element.removeClass('dragging');
+            })
 
             scope.$watch('s3UploadExistingPictures', function(){
               var objType = Object.prototype.toString.call(
@@ -263,6 +266,7 @@ angular.module('ngS3upload.directives', []).
             };
 
             element.bind('change', function (nVal) {
+              element.removeClass('dragging');
               if (opts.submitOnChange) {
                 uploadFile();
               }

@@ -12,7 +12,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
     // }
 
     var buildStageWithPromise = function(data, included) {
-      return $q( function (resolve, reject) {
+      return $q(function (resolve, reject) {
         var stage = data.attributes;
 
         // The toExecute array gathers all the $q promises
@@ -68,13 +68,29 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
           data.relationships.pictures.data.length === 0) {
         stage.pictures = [];
       } else {
-        // Figure this out.
+        mappedIds = data.relationships.pictures.data.map(function (pic) {
+          return pic.id;
+        })
+        stage.pictures = included.filter(function (pic) {
+          return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
+        }).map(function(pic) {
+          return pic.attributes;
+        })
       }
       return stage
     }
 
+    var getStageWithPromise = function(id) {
+      return $q(function (resolve, reject) {
+        $http.get('/api/v1/stages/' + stage.id + '/pictures')
+          .success(function(pictures) {
+            resolve(pictures.data);
+          })
+      });
+    }
+
     var getPictures = function(stage) {
-      return $q( function (resolve, reject) {
+      return $q(function (resolve, reject) {
         $http.get('/api/v1/stages/' + stage.id + '/pictures')
           .success(function(pictures) {
             resolve(pictures.data);
@@ -154,6 +170,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
         'buildStage': buildStage,
         'buildStageWithPromise': buildStageWithPromise
       },
+      'getStageWithPromise': getStageWithPromise,
       'createStageWithPromise': createStageWithPromise,
       'updateStageWithPromise': updateStageWithPromise,
       'deleteStageWithPromise': deleteStageWithPromise,

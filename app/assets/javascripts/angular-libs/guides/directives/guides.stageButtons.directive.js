@@ -26,8 +26,8 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
         $scope.cancelUrl = $attrs.cancelUrl || '/';
         $scope.backText = $attrs.backText || undefined;
 
-        $scope.previousStep = $scope.$parent.previousStep;
-        $scope.nextStep = $scope.nextFunction || $scope.$parent.nextStep;
+        // $scope.previousStep = $scope.previousStep;
+
 
         $scope.switchToStep = function(step){
           $rootScope.step = step;
@@ -45,14 +45,14 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
           window.scrollTo($('.guides').scrollTop(), 0);
         }
 
-        $scope.nextStep = function(){
-          if ($rootScope.step === 3){
-            $scope.newGuide.hasEditedStages = true;
-          }
-          $rootScope.step += 1;
-          $location.hash($rootScope.step);
-          scrollToTop();
-        };
+        // $scope.nextStep = function(){
+        //   if ($rootScope.step === 3){
+        //     $scope.newGuide.hasEditedStages = true;
+        //   }
+        //   $rootScope.step += 1;
+        //   $location.hash($rootScope.step);
+        //   scrollToTop();
+        // };
 
         $scope.previousStep = function(){
           $rootScope.step -= 1;
@@ -66,9 +66,15 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
         }
 
         $scope.nextStep = function(){
+          // if ($rootScope.step === 3){
+            // $scope.newGuide.hasEditedStages = true;
+          // }
           $rootScope.step += 1;
           $location.hash($rootScope.step);
+          scrollToTop();
         }
+
+        $scope.nextStep = $scope.nextFunction || $scope.nextStep;
 
       }],
       templateUrl: '/assets/templates/_stage_buttons.html'

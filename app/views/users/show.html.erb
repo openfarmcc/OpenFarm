@@ -1,8 +1,15 @@
 <%= content_for(:title) do %><% @user.display_name %> Profile<% end %>
 
-<div class="member-profile" ng-controller="profileCtrl">
-  <!-- Pull cover image from member's favorite_crop -->
+<div loader
+  ng-show="ofPageLoading">
+  <i class="fa fa-spinner fa-spin"></i>
+</div>
 
+<div class="member-profile"
+  ng-controller="profileCtrl"
+  ng-show="profileUser.user_setting !== undefined"
+  ng-cloak>
+  <!-- Pull cover image from member's favorite_crop -->
 
   <div class="row wide-row canopy-wrapper"
        style="background-image: url({{ profileUser.user_setting.favorite_crop.image_url || '/assets/baren_field.jpg' }}) ">
@@ -108,7 +115,7 @@
 
     </div>
 
-    <div class="small-12 medium-8 large-9 columns">
+    <div class="small-12 medium-8 large-9 columns" ng-cloak>
 
       <!-- Member's Guides -->
       <div class="small-12 columns section">

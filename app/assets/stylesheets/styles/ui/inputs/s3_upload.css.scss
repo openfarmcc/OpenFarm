@@ -2,6 +2,55 @@
  * A class that covers all the s3 upload buttons.
  */
 
+.thumbnails {
+  margin: 0 .5rem .5rem 0;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: .2s opacity, .2s background-color;
+
+  &:before {
+    content: "\f1f8";
+    font-family: "FontAwesome";
+    position: absolute;
+    color: $white;
+    text-shadow: 0px 0px 4px $off-black;
+    margin: 2.25rem auto;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    opacity: 0;
+    transition: .2s opacity;
+  };
+
+  &:hover {
+    opacity: .7;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &.deleted {
+    background-color: $alert-color;
+
+    img {
+      opacity: .5;
+    }
+
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 100px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
 .s3-upload-input{
   .click-to-upload-image{
     @include add-new-button();
@@ -22,7 +71,7 @@
       color: darken($of-green, 10%);
     }
 
-    &:before{
+    &:before {
       content: "\f06c";
       font-size: 4rem;
       position: absolute;
@@ -32,11 +81,11 @@
       transform: translate(-50%, -50%);
     }
 
-    .wrapper{
+    .wrapper {
       height: 100%;
     }
 
-    img.no-image{
+    img.no-image {
       transform: translate(-50%, -50%);
       position: relative;
       top: 50%;
@@ -57,6 +106,13 @@
     }
   }
 
+  &.dragging .click-to-upload-image {
+    color: darken($of-green, 10%);
+    border-color: $openfarm-green-muted;
+    border-style: solid;
+    background-color: rgba(0, 0, 0, .05);
+  }
+
   .pictures {
     display: inline-block;
   }
@@ -68,7 +124,7 @@
     cursor: pointer;
   }
 
-  &.ng-invalid-uploading .click-to-upload-image:before{
+  &.ng-invalid-uploading .click-to-upload-image:before {
     // TODO: Make this use the built in fa-spin class
     content: "\f110";
     -webkit-animation: fa-spin-image-load 2s infinite linear;
@@ -81,7 +137,7 @@
  * still loading.
  */
 
-.loading-content{
+.loading-content {
   @include grey-inset();
   text-align: center;
   padding: 2rem;

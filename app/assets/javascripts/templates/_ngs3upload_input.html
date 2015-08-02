@@ -11,9 +11,13 @@
   </div>
 
   <div class="thumbnails"
-       ng-if="s3UploadExistingPictures && hasOnePicture">
+       ng-if="s3UploadExistingPictures && hasOnePicture"
+       ng-class="{ 'deleted' : s3UploadExistingPictures.deleted }"
+       ng-click="s3UploadExistingPictures.deleted = !s3UploadExistingPictures.deleted"
+       >
 
-    <img ng-hide="uploading" ng-src="{{ s3UploadExistingPictures.image_url }}"
+    <img ng-hide="uploading"
+      ng-src="{{ s3UploadExistingPictures.image_url }}"
        />
   </div>
 

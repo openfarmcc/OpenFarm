@@ -16,6 +16,16 @@ openFarmModule.directive('markdown', ['$sanitize',
     };
 }]);
 
+openFarmModule.directive('loader', ['$rootScope',
+  function loader($rootScope) {
+    return {
+      restrict: 'A',
+      link: function () {
+        $rootScope.ofPageLoading = true;
+      }
+    };
+}]);
+
 openFarmModule.directive('location', [
   function location() {
     var geocoder = new google.maps.Geocoder();
@@ -145,17 +155,19 @@ openFarmModule.directive('alerts', ['$timeout',
             }
           });
           scope.$watch('alerts.length', function() {
-            scope.alerts.forEach(function(alert, index) {
-              $timeout(function() {
-                if (index > 0) {
-                  var height = element[0].children[index - 1].offsetHeight;
-                  var top = scope.alerts[index - 1].top;
-                  alert.top = height + top + 18;
-                } else {
-                  alert.top = 64;
-                }
-              }, 500)
-            })
+            if (scope.alerts !== undefined) {
+              scope.alerts.forEach(function(alert, index) {
+                $timeout(function() {
+                  if (index > 0) {
+                    var height = element[0].children[index - 1].offsetHeight;
+                    var top = scope.alerts[index - 1].top;
+                    alert.top = height + top + 18;
+                  } else {
+                    alert.top = 64;
+                  }
+                }, 200)
+              })
+            }
           });
       }],
       templateUrl:'/assets/templates/angular.of.alerts.template.html'

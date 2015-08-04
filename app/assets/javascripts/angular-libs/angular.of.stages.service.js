@@ -1,5 +1,5 @@
-openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
-  function stageService($http, $q, alertsService) {
+openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
+  function stageService($http, $log, $q, alertsService) {
 
     // Should return Stage model:
     // {
@@ -71,11 +71,13 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
         mappedIds = data.relationships.pictures.data.map(function (pic) {
           return pic.id;
         })
-        stage.pictures = included.filter(function (pic) {
-          return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
-        }).map(function(pic) {
-          return pic.attributes;
-        })
+        if (included) {
+          stage.pictures = included.filter(function (pic) {
+            return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
+          }).map(function(pic) {
+            return pic.attributes;
+          })
+        }
       }
       return stage
     }
@@ -136,6 +138,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
           .success(function (response) {
             resolve(buildStage(response.data));
           }).error(function (response, code) {
+            $log.error(response);
             reject();
             alertsService.pushToAlerts(response, code);
           });

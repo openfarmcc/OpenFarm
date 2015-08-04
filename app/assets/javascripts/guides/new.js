@@ -387,9 +387,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         console.log('updating stage');
         stageService.updateStageWithPromise(stage.id, {'data': data})
           .then(function(stage){
-             stage.sent = true;
-             $scope.sending--;
-             $scope.checkNumberUpdated();
+            stage.sent = true;
+            $scope.sending--;
+            $scope.checkNumberUpdated();
            });
 
       } else if (stage.exists){
@@ -412,7 +412,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if ($scope.sending === 0){
       localStorageService.remove('guide');
       $scope.startedSending = false;
-      window.location.href = '/guides/' + $scope.newGuide.id + '/';
+      // window.location.href = '/guides/' + $scope.newGuide.id + '/';
     }
   };
 

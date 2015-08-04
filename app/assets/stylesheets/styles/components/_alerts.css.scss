@@ -6,7 +6,13 @@
   transition: top .5s;
   z-index: 10;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+
+  .close {
+    top: 18px;
+  }
 }
+
+
 
 .home-alert-wrapper{
   height: 0;

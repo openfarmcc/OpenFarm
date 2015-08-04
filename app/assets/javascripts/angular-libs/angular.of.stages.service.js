@@ -52,7 +52,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
     }
 
     var buildStage = function(data, included) {
-
+      $log.debug('building stage', data, included);
       var stage = data.attributes;
       stage.id = data.id;
 
@@ -66,9 +66,11 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
 
       if (data.relationships.pictures.data === undefined &&
           data.relationships.pictures.data.length === 0) {
+        $log.debug('no pictures');
         stage.pictures = [];
       } else {
-        mappedIds = data.relationships.pictures.data.map(function (pic) {
+        $log.debug('some pictures');
+        var mappedIds = data.relationships.pictures.data.map(function (pic) {
           return pic.id;
         })
         if (included) {
@@ -77,8 +79,10 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           }).map(function(pic) {
             return pic.attributes;
           })
+          $log.debug('has included');
         }
       }
+      $log.debug('exiting stage building', stage)
       return stage
     }
 
@@ -138,7 +142,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           .success(function (response) {
             resolve(buildStage(response.data));
           }).error(function (response, code) {
-            $log.error(response);
+            $log.error("error when updating a stage", response, code);
             reject();
             alertsService.pushToAlerts(response, code);
           });

@@ -158,7 +158,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
 
     var deleteStageWithPromise = function(stageId) {
       return $q(function (resolve, reject) {
-        $http.delete('/api/v1/stages/' + stageId, params)
+        $http.delete('/api/v1/stages/' + stageId + '/')
           .success(function (response) {
             resolve();
           }).error(function (response, code) {

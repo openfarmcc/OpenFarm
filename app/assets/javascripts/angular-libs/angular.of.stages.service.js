@@ -27,6 +27,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         } else {
           // TODO: we'll need to go fetch these from the
           // server.
+          stage.stage_actions = [];
         }
 
         if (data.relationships.pictures.data === undefined &&

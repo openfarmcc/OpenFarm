@@ -1,7 +1,7 @@
 <!-- Google schema.org -->
 	<meta itemprop="name" content="OpenFarm - You Can Grow Anything">
 	<meta itemprop="description" content="<%= content_for?(:description) ? yield(:description) : t('application.site_description') %>">
-	<meta itemprop="image" content="<%= image_url("openfarm-learn-to-grow-anything-with-community-created-guides.png") %>">
+	<meta itemprop="image" content="<%= content_for?(:social_image) ? yield(:social_image) : image_url("openfarm-learn-to-grow-anything-with-community-created-guides.jpg") %>">
 
 <!-- FACEBOOK Page-Connect -->
 	<!-- If connected with facebook account for a page / app -->
@@ -16,7 +16,7 @@
 	<meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : t('application.site_description') %>" />
 
 	<!-- All given Images would be available on fb to choose from when using the link https://openfarm.cc -->
-	<meta property="og:image" content="<%= image_url("openfarm-learn-to-grow-anything-with-community-created-guides.jpg") %>" />
+	<meta property="og:image" content="<%= content_for?(:social_image) ? yield(:social_image) : image_url("openfarm-learn-to-grow-anything-with-community-created-guides.jpg") %>" />
 	<!-- <meta property="og:image" content="https://openfarm.cc/assets/open-graph-images/farmbot-openfarm-[Readable-Keyword-using-Image-Name-minus-seperated].png" /> -->
 	<!-- <meta property="og:image" content="https://openfarm.cc/assets/open-graph-images/farmbot-openfarm-[Readable-Keyword-using-Image-Name-minus-seperated].png" /> -->
 <!-- OpenGraph - End -->

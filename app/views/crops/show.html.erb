@@ -1,4 +1,5 @@
-<%= content_for(:description) do %><%= @crop.description %><% end %>
+<%= content_for(:description) do %><%= truncate(@crop.description, length: 80, separator: ' ') %><% end %>
+<%= content_for(:social_image) do %><%= image_url(@crop.main_image_path) %><% end %>
 <%= content_for(:keywords) do %><% if @crop.common_names %><%= @crop.common_names.join(', ') %><% end %>, <%= @crop.name %>, <%= @crop.binomial_name %><% end %>
 
 <div class="crop-page row wide-row"

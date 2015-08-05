@@ -60,6 +60,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           data.relationships.stage_actions.data.length === 0) {
         stage.stage_actions = [];
       } else {
+        stage.stage_actions = [];
         // TODO: we'll need to go fetch these from the
         // server.
       }

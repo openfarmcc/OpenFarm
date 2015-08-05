@@ -147,6 +147,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         if (guideId !== "" && guideId !== "new") {
           $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
+            console.log('getting guide');
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {
             alertsService.pushToAlerts(response.errors, code);

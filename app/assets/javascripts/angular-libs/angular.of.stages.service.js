@@ -1,5 +1,5 @@
-openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
-  function stageService($http, $q, alertsService) {
+openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
+  function stageService($http, $log, $q, alertsService) {
 
     // Should return Stage model:
     // {
@@ -27,6 +27,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
         } else {
           // TODO: we'll need to go fetch these from the
           // server.
+          stage.stage_actions = [];
         }
 
         if (data.relationships.pictures.data === undefined &&
@@ -52,7 +53,6 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
     }
 
     var buildStage = function(data, included) {
-
       var stage = data.attributes;
       stage.id = data.id;
 
@@ -60,6 +60,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
           data.relationships.stage_actions.data.length === 0) {
         stage.stage_actions = [];
       } else {
+        stage.stage_actions = [];
         // TODO: we'll need to go fetch these from the
         // server.
       }
@@ -68,14 +69,16 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
           data.relationships.pictures.data.length === 0) {
         stage.pictures = [];
       } else {
-        mappedIds = data.relationships.pictures.data.map(function (pic) {
+        var mappedIds = data.relationships.pictures.data.map(function (pic) {
           return pic.id;
         })
-        stage.pictures = included.filter(function (pic) {
-          return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
-        }).map(function(pic) {
-          return pic.attributes;
-        })
+        if (included) {
+          stage.pictures = included.filter(function (pic) {
+            return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
+          }).map(function(pic) {
+            return pic.attributes;
+          })
+        }
       }
       return stage
     }
@@ -136,6 +139,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
           .success(function (response) {
             resolve(buildStage(response.data));
           }).error(function (response, code) {
+            $log.error("error when updating a stage", response, code);
             reject();
             alertsService.pushToAlerts(response, code);
           });
@@ -154,7 +158,7 @@ openFarmModule.factory('stageService', ['$http', '$q', 'alertsService',
 
     var deleteStageWithPromise = function(stageId) {
       return $q(function (resolve, reject) {
-        $http.delete('/api/v1/stages/' + stageId, params)
+        $http.delete('/api/v1/stages/' + stageId + '/')
           .success(function (response) {
             resolve();
           }).error(function (response, code) {

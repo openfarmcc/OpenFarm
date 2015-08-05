@@ -387,9 +387,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         console.log('updating stage');
         stageService.updateStageWithPromise(stage.id, {'data': data})
           .then(function(stage){
-             stage.sent = true;
-             $scope.sending--;
-             $scope.checkNumberUpdated();
+            stage.sent = true;
+            $scope.sending--;
+            $scope.checkNumberUpdated();
            });
 
       } else if (stage.exists){

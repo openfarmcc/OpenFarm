@@ -50,6 +50,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
     }
 
     var buildGuide = function(data, included) {
+      console.log("Building Guide", data, included);
       var stages,
           user,
           crop;
@@ -57,19 +58,21 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       guide.id = data.id;
       guide.relationships = data.relationships;
       guide.links = data.links;
-      stages = included.filter(function(obj) {
-        return obj.type === 'stages';
-      }).map(function(stage) {
-        return stageService.utilities.buildStage(stage, included);
-      });
+      if (included) {
+        stages = included.filter(function(obj) {
+          return obj.type === 'stages';
+        }).map(function(stage) {
+          return stageService.utilities.buildStage(stage, included);
+        });
 
-      user = included.filter(function(obj) {
-        return obj.type === 'users';
-      });
+        user = included.filter(function(obj) {
+          return obj.type === 'users';
+        });
 
-      crop = included.filter(function(obj) {
-        return obj.type === 'crops';
-      });
+        crop = included.filter(function(obj) {
+          return obj.type === 'crops';
+        });
+      }
 
       if (user !== undefined && user.length > 0) {
         guide.user = userService.utilities.buildUser(user[0]);
@@ -78,6 +81,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         guide.crop = cropService.utilities.buildCrop(crop[0]);
       }
       guide.stages = stages;
+      console.log("Built Guide", guide);
       return guide;
     };
 
@@ -143,6 +147,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         if (guideId !== "" && guideId !== "new") {
           $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
+            console.log('getting guide');
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {
             alertsService.pushToAlerts(response.errors, code);

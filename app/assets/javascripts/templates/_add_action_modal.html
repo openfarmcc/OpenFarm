@@ -10,6 +10,10 @@
     </ul>
   </div>
   <hr/>
+  <div ng-if="(actionOptions | filter: {selected: true}).length > 0">
+  Selected actions: <span ng-repeat="action in actionOptions | filter: {selected: true}">{{ action.name }}<span ng-if="!$last">, </span></span>
+  </div>
+  <hr/>
   <button class="button" ng-click="ok()">Done</button>
   <a class="fa fa-times-circle close-modal" ng-click="cancel()"></a>
 </div>

@@ -140,12 +140,11 @@ describe Api::V1::StagesController, type: :controller do
     data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
                            name: 'hello',
                            order: 0 },
-             actions: [{ name: "#{Faker::Lorem.word}",
-                         description: "#{Faker::Lorem.paragraph}" }],
+             actions: [{ name: "" }],
              guide_id: guide.id.to_s }
     post 'create', data: data, format: :json
     expect(response.status).to eq(422)
-    expect(response.body).to include('provide a valid overview')
+    expect(response.body).to include('provide a valid name')
   end
 
   it 'should only add actions to stages that the user owns the guide of'

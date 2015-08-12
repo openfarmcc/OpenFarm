@@ -49,6 +49,9 @@
           <div class="columns small-6 medium-8 action-content"
             ng-repeat="action in stage.stage_actions">
             <h4 class="action-name" ng-bind="action.name"></h4>
+            <span ng-repeat="picture in action.pictures">
+              <img src="{{picture.medium_url}}"/>
+            </span
             <p class="action-description" ng-bind="action.overview"></p>
           </div>
         </div>

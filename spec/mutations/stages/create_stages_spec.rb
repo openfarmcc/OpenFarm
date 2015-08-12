@@ -83,15 +83,6 @@ describe Stages::CreateStage do
     expect(results.result.stage_actions.length).to eq(2)
   end
 
-  it 'disallows a badly formed stage actions array' do
-    actions = [{ name: "#{Faker::Lorem.word}",
-                 description: "#{Faker::Lorem.paragraph}" },]
-    actions_params = params.merge(actions: actions)
-    results = mutation.run(actions_params)
-    expect(results.success?).to be_falsey
-    expect(results.errors.message[:actions]).to include('valid overview')
-  end
-
   it 'allows images in stage actions' do
     VCR.use_cassette('mutations/stages/create_stage') do
       actions = [{ name: "#{Faker::Lorem.word}",

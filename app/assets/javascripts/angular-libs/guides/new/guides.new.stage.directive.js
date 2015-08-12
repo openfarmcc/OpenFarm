@@ -20,16 +20,6 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
             });
           };
 
-          $scope.placeStageActionUpload = function(action, image){
-            if (!action.pictures){
-              action.pictures = [];
-            }
-            action.pictures.push({
-              new: true,
-              image_url: image
-            });
-          };
-
           var transferStageValuesIfNoneExist = function(stage, nextStage) {
             if (!$scope.guideExists) {
               nextStage.environment = stage.environment;
@@ -49,7 +39,6 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
               stage.editing = false;
               if (chosenStage.name === stage.name){
                 stage.editing = true;
-
                 $scope.currentStage = chosenStage;
               }
 

@@ -8,9 +8,9 @@ module StageActions
       hash :attributes do
         required do
           string :name
-          string :overview
         end
         optional do
+          string :overview
           integer :order
           integer :time
         end

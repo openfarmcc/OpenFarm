@@ -61,15 +61,6 @@ describe Stages::UpdateStage do
     expect(results.result.stage_actions.length).to eq(1)
   end
 
-  it 'disallows a badly formed stage actions array with bad overview' do
-    actions = [{ name: "#{Faker::Lorem.word}",
-                 description: "#{Faker::Lorem.paragraph}" }]
-    actions_params = params.merge(actions: actions)
-    results = mutation.run(actions_params)
-    expect(results.success?).to be_falsey
-    expect(results.errors.message[:actions]).to include('valid overview')
-  end
-
   it 'disallows a badly formed stage actions array with bad name' do
     actions = [{ moon: "#{Faker::Lorem.word}",
                  overview: "#{Faker::Lorem.paragraph}" }]

@@ -140,7 +140,7 @@ describe Api::V1::StagesController, type: :controller do
     data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
                            name: 'hello',
                            order: 0 },
-             actions: [{ name: "" }],
+             actions: [{ name: '' }],
              guide_id: guide.id.to_s }
     post 'create', data: data, format: :json
     expect(response.status).to eq(422)

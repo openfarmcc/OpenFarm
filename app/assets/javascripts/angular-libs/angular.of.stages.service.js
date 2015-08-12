@@ -158,7 +158,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         .success(function(response){
           return callback (true, response);
         })
-        .error(function (response){
+        .error(function (response, code){
           alertsService.pushToAlerts(response.errors, code);
         });
     };

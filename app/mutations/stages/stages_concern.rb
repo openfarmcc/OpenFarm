@@ -25,7 +25,7 @@ module Stages
         # And stage is nil at this point. There might be a way around this
         # using some mutation settings. If you're refactoring this
         # feel free to remove this comment!
-        if !action[:name] || !action[:name].is_a?(String)
+        if !action[:name] || !action[:name].is_a?(String) || action[:name] == ''
 
           add_error :actions, :invalid_name, 'Please provide a valid name.'
         end
@@ -60,10 +60,6 @@ module Stages
                                                        attributes: action,
                                                        images: action[:images],
                                                        id: "#{@stage.id}")
-        puts "WAS IT A SUCCESS?", @outcome.success?
-        unless @outcome.success?
-          puts @outcome.errors.message_list
-        end
       end
     end
   end

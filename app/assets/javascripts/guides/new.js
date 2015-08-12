@@ -279,7 +279,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       params.data.id = $scope.newGuide.id;
 
       var errorFunction = function(error) {
-        console.log('hi');
         $scope.startedSending = false;
         $scope.sending--;
       }

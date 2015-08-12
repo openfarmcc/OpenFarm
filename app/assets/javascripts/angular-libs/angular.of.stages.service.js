@@ -56,13 +56,17 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       var stage = data.attributes;
       stage.id = data.id;
 
+      var stageActions = (included || []).filter(function(obj) {
+        return obj.type === 'stage-actions';
+      });
+
       if (data.relationships.stage_actions.data === undefined ||
           data.relationships.stage_actions.data.length === 0) {
         stage.stage_actions = [];
-      } else {
-        stage.stage_actions = [];
-        // TODO: we'll need to go fetch these from the
-        // server.
+      } else if (stageActions.length > 0) {
+        stage.stage_actions = stageActions.map(function(stageAction) {
+          return buildStageAction(stageAction);
+        });
       }
 
       if (data.relationships.pictures.data === undefined &&
@@ -83,6 +87,10 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       return stage
     }
 
+    var buildStageAction = function(data) {
+      return data.attributes;
+    }
+
     var getStageWithPromise = function(id) {
       return $q(function (resolve, reject) {
         $http.get('/api/v1/stages/' + stage.id + '/pictures')
@@ -99,7 +107,6 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             resolve(pictures.data);
           })
       });
-
     }
 
     var createStage = function(params, callback){
@@ -107,7 +114,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         .success(function (response) {
           return callback (true, buildStage(response.stage, response.included));
         }).error(function (response, code) {
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors, code);
         });
     };
 
@@ -118,7 +125,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             resolve(buildStage(response.data, response.included));
           }).error(function (response, code) {
             reject();
-            alertsService.pushToAlerts(response, code);
+            alertsService.pushToAlerts(response.errors, code);
           });
       })
     }
@@ -129,7 +136,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           return callback (true, response.stage);
         })
         .error(function (response, code) {
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors, code);
         });
     };
 
@@ -141,7 +148,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           }).error(function (response, code) {
             $log.error("error when updating a stage", response, code);
             reject();
-            alertsService.pushToAlerts(response, code);
+            alertsService.pushToAlerts(response.errors, code);
           });
       })
     }
@@ -152,7 +159,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           return callback (true, response);
         })
         .error(function(r){
-          alertsService.pushToAlerts(response, code);
+          alertsService.pushToAlerts(response.errors, code);
         });
     };
 
@@ -163,7 +170,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             resolve();
           }).error(function (response, code) {
             reject();
-            alertsService.pushToAlerts(response, code);
+            alertsService.pushToAlerts(response.errors, code);
           });
       })
     }

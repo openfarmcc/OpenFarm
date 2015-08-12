@@ -278,9 +278,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // so that it cancels things if things go wrong
       params.data.id = $scope.newGuide.id;
 
-      var errorFunction = function() {
+      var errorFunction = function(error) {
+        console.log('hi');
         $scope.startedSending = false;
-        $scope.sending --;
+        $scope.sending--;
       }
 
       guideService.updateGuideWithPromise(params.data.id, params)
@@ -377,6 +378,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         $scope.sending++;
         stageService.createStageWithPromise({'data': data})
           .then(function(stage){
+            console.log(stage);
             stage.sent = true;
             $scope.sending--;
             $scope.checkNumberUpdated();
@@ -384,7 +386,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
       } else if (stage.selected && stage.exists){
         $scope.sending++;
-        console.log('updating stage');
         stageService.updateStageWithPromise(stage.id, {'data': data})
           .then(function(stage){
             stage.sent = true;
@@ -394,7 +395,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
       } else if (stage.exists){
         $scope.sending++;
-        console.log('deleting stage');
         stageService.deleteStageWithPromise(stage.id)
           .then(function(){
             stage.sent = true;

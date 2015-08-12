@@ -30,11 +30,11 @@ module Stages
           add_error :actions, :invalid_name, 'Please provide a valid name.'
         end
 
-        if !action[:overview] || !action[:overview].is_a?(String)
+        # if !action[:overview] || !action[:overview].is_a?(String)
 
-          add_error :actions, :invalid_overview, 'Please provide a valid '\
-                    'overview.'
-        end
+        #   add_error :actions, :invalid_overview, 'Please provide a valid '\
+        #             'overview.'
+        # end
 
         validate_images(action[:images])
       end
@@ -60,6 +60,10 @@ module Stages
                                                        attributes: action,
                                                        images: action[:images],
                                                        id: "#{@stage.id}")
+        puts "WAS IT A SUCCESS?", @outcome.success?
+        unless @outcome.success?
+          puts @outcome.errors.message_list
+        end
       end
     end
   end

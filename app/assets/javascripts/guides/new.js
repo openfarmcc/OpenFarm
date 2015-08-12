@@ -278,7 +278,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // so that it cancels things if things go wrong
       params.data.id = $scope.newGuide.id;
 
-      var errorFunction = function(error) {
+      var errorFunction = function() {
         $scope.startedSending = false;
         $scope.sending--;
       }

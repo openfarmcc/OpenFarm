@@ -9,7 +9,7 @@ class Crop
   is_impressionable counter_cache: true,
                     column_name: :impressions_field,
                     unique: :session_hash
-  field :impressions_field, default: 0
+  field :impressions_field, default: 0, type: Integer
 
   has_many :guides
   field :guides_count, type: Fixnum, default: 0

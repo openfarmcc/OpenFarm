@@ -1,0 +1,21 @@
+.badges-list {
+  .badge {
+    background-color: transparentize($openfarm-green-muted, .8);
+    display: inline-block;
+    text-transform: capitalize;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin: 2px;
+
+    &::before {
+      content: '';
+      background-color: $of-green;
+      border-radius: 100%;
+      display: inline-block;
+      height: 8px;
+      margin-bottom: .15rem;
+      margin-right: .5rem;
+      width: 8px;
+    }
+  }
+}

@@ -110,7 +110,7 @@
       <div class="home-alert-wrapper">
       <% Announcement.current(session[:announcement_hide_time]).each do |item| %>
           <div data-alert class="alert-box warning radius columns large-4 small-centered">
-            <%= item.message %>
+            <%= raw(item.message) %>
             <%= link_to('&times;'.html_safe, 'announcements/hide', class: 'close', remote: true) %>
           </div>
       <% end %>

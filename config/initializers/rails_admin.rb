@@ -33,4 +33,11 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Announcement' do
+    edit do
+      include_fields :starts_at, :ends_at, :is_permanent
+      field :message, :text
+    end
+  end
 end

@@ -2,7 +2,7 @@
   <div class="small-12 columns sidebar-section">
     <h4 class="section-header">Badges</h4>
     <ul class="badges-list">
-    <% current_user.badges.each do |badge| %><li class="badge"
+    <% @user.badges.each do |badge| %><li class="badge"
         class="has-tip"
         tooltip-placement="top"
         tooltip="<%= badge.description %>"><%= badge.name.gsub('-', ' ').capitalize %></li><% end %>

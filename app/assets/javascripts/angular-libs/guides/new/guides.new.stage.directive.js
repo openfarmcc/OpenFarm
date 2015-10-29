@@ -26,7 +26,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
               nextStage.light = stage.light;
               nextStage.soil = stage.soil;
             }
-          }
+          };
+
           $scope.nextStage = function(stage){
             var nextStage = $scope.stages[stage.nextSelectedIndex];
             transferStageValuesIfNoneExist(stage, nextStage);
@@ -47,6 +48,6 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
         }
       ],
       templateUrl: '/assets/angular-libs/guides/new/guides.new.stage.template.html'
-    }
+    };
   }
-])
+]);

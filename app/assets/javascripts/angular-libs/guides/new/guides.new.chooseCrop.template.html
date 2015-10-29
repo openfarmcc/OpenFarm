@@ -25,6 +25,7 @@
   <p class="center" ng-show="guide.crop">
     <span ng-bind="guide.crop.description"></span>
   </p>
+  <div class="crop-image" style="background-image: url({{ guide.crop.pictures[0].image_url }})" alt="{{ guide.crop.name }}"></div>
   <p ng-if="guide.crop.is_new">
     We couldn't find that crop in our database yet. We'll automatically add it!
   </p>

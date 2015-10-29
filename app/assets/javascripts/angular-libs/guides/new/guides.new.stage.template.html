@@ -8,122 +8,29 @@
   </div>
   <hr/>
   <div class="row">
-    <div class="left-half columns large-4">
-      <div class="row image">
-        <div class="columns small-12">
-          <label class="left"
-              for="stage_image_upload">{{ texts.chooseStagePhoto }}<br/>
-            <small>{{ texts.onlyUploadWhatYouOwn }}</small>
-          </label>
-        </div>
-        <div class="columns small-12">
-          <div s3-upload
-              bucket="'{{ texts.s3Bucket }}'"
-              ng-model="s3upload"
-              s3-upload-existing-pictures="stage.pictures"
-              s3-upload-place-pic="placeStageUpload(stage, image)"
-              s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-          </div>
-        </div>
+    <div class="stage-details-navigation columns large-3 medium-4">
+      <div class="stage-overview" ng-click="viewingStageOverview = true">
+        <span class="check"></span>Stage Overview
       </div>
-      <div class="row how-long">
-        <div class="columns small-12 medium-6">
-          <label class="left"
-              for="how_long">{{ texts.howLong }}<br/>
-            <small>{{ texts.doNotSweat }}</small>
-          </label>
-        </div>
-        <div class="columns small-12 medium-6">
-          <div class="vertical-input-select-group">
-            <input ng-model="stage.stage_length"
-                   type="number"/>
-            <select ng-model="stage.length_type">
-              <option value="days">Days</option>
-              <option value="weeks">Weeks</option>
-              <option value="months">Months</option>
-              <option value="years">Years</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- TODO -->
-      <!--
-
-
-      <div class="row annual">
-        <div class="columns small-12">
-          <label class="right"
-              for="repeat_annually"><%= t('.repeat_annually') %><br/>
-            <small><%= t('.not_sure_html') %></small>
-          </label>
-        </div>
-        <div class="columns small-12">
-          Coming Soon
-        </div>
-      </div> -->
+      <ul class="ordered-stage-actions">
+        <li></li>
+      </ul>
+      <ul class="unordered-stage-actions">
+      </ul>
     </div>
-    <div class="right-half columns large-7 large-offset-1">
-      <div class="row environment">
-        <div class="columns small-12">
-          <label class="left"
-            for="where_should_stage_happen">
-              {{ texts.whereHappen }}
-              <br/>
-              <small>{{ texts.chooseMoreThanOne }}</small>
-          </label>
-        </div>
-        <div class="columns small-12">
-          <div multi-row-select
-             class="multi-choice"
-             options="stage.environment"
-             multi-select-overflow-count="3"
-             multi-select-type="checkbox"
-             multi-select-id="environment">
-          </div>
-        </div>
-      </div>
-      <div class="row soil">
-        <div class="columns small-12">
-          <label class="left"
-            for="what_type_of_soil">
-              {{ texts.whatTypeOfSoil }}
-              <br/>
-              <small>{{ texts.notSureSoil }}</small>
-          </label>
-        </div>
-        <div class="columns small-12">
-          <div multi-row-select
-             class="multi-choice"
-             options="stage.soil"
-             multi-select-type="checkbox"
-             multi-select-id="soil">
-          </div>
-        </div>
-      </div>
-      <div class="row light">
-        <div class="columns small-12">
-          <label class="left"
-            for="how_much_light">
-             {{ texts.howMuchLight }}
-              <br/>
-          </label>
-        </div>
-        <div class="columns small-12">
-          <div multi-row-select
-             class="multi-choice"
-             options="stage.light"
-             multi-select-type="checkbox"
-             multi-select-id="light">
-          </div>
-        </div>
-      </div>
+    <div class="columns large-9">
+      <div guides-stage-overview
+        texts="texts"
+        stage="stage"
+        viewing-stage-overview="viewingStageOverview"></div>
     </div>
   </div>
+  <!--
   <div guides-actions
     stage="stage"
     texts="texts"
     >
-  </div>
+  </div> -->
 </div><!-- ng-form -->
 
 <div class="button-wrapper row">

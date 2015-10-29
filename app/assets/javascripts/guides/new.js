@@ -18,7 +18,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     'light': [],
     'soil': [],
     'practices': []
-  }
+  };
 
   var practices = [];
 
@@ -68,7 +68,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     localGuide.name = existingGuide.name;
     localGuide.location = existingGuide.location;
     localGuide.overview = existingGuide.overview;
-    console.log(existingGuide.stages[0])
     localGuide.loadedStages = existingGuide.stages;
 
     var transferTimeSpan = function(defaultTS, remoteTS){
@@ -101,13 +100,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       actionFunction: function(index){
         $scope.newGuide = guideService.utilities.buildBlankGuide(
             null,
-            $scope.stages,
+            [],
             practices
           );
+        console.log("after reset", $scope.newGuide.stages.length);
         $scope.alerts.splice(index, 1);
         $scope.switchToStep(1);
         localStorageService.remove('guide');
-        window.location.reload();
       }
     });
   };
@@ -129,7 +128,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
             reject(error);
           });
 
-      // else if we're found a localguide and it's not blank
+      // else if we've found a localguide and it's not blank
       } else if (localGuide !== undefined && localGuide !== null &&
           !guideService.utilities.isBlankGuide(localGuide, practices)) {
         // if it's local storage, we've been here before, but first
@@ -149,7 +148,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         resolve(guide);
       }
     });
-  }
+  };
 
   // First FIRST we need to get all of the defaults
   $q.all([
@@ -182,6 +181,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         'selected': false
       };
     });
+
     checkingGuideSource()
       .then(function(guide) {
         $scope.newGuide = guide;
@@ -205,7 +205,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       },
       function(error) {
         console.log('an error', error);
-      })
+      });
   }, function(error) {
     console.log('error', error);
   });
@@ -241,7 +241,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         featured_image = image.image_url;
       }
       return featured_image;
-    }
+    };
 
     var data = {
       'attributes': {
@@ -253,7 +253,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         practices: practices
       },
       'crop_id': $scope.newGuide.crop.id
-    }
+    };
 
     if (data.crop_id === null) {
       data.crop_name = $scope.newGuide.crop.name;
@@ -271,6 +271,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     $scope.sending++;
     var params = { 'data': buildParametersFromScope() };
 
+    var errorFunction = function() {
+      $scope.startedSending = false;
+      $scope.sending--;
+    };
+
     if ($scope.newGuide.id){
       // In this case the guide already existed,
       // so we need to put, not to post.
@@ -278,16 +283,11 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // so that it cancels things if things go wrong
       params.data.id = $scope.newGuide.id;
 
-      var errorFunction = function() {
-        $scope.startedSending = false;
-        $scope.sending--;
-      }
-
       guideService.updateGuideWithPromise(params.data.id, params)
         .then($scope.sendStages, errorFunction);
     } else {
       guideService.createGuideWithPromise(params)
-        .then($scope.sendStages, errorFunction)
+        .then($scope.sendStages, errorFunction);
     }
   };
 

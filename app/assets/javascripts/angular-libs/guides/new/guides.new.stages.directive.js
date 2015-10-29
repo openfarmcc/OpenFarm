@@ -83,7 +83,7 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
                 }
               }, true);
             });
-          }
+          };
 
           // We should only init stages if we have a guide.
           $scope.$watch('guide', function() {
@@ -140,6 +140,7 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
                 (preloadedStage.soil || [])
               );
             });
+            setDefaultStages(preloadedStages);
             return preloadedStages;
           };
 
@@ -153,8 +154,21 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             return existing;
           };
 
-          var buildFromExistingAndPreloadedStages = function(existing,
-                                                             preloaded){
+          var setDefaultStages = function(stages) {
+            // set default stages
+            console.log('setting default stages');
+            stages.forEach(function(stage) {
+              console.log(stage.name);
+              if (stage.name === 'Preparation' ||
+                  stage.name === 'Growing' ||
+                  stage.name === 'Harvest') {
+                stage.selected = true;
+              }
+            });
+          };
+
+          var buildFromExistingAndPreloadedStages = function (existing,
+                                                              preloaded){
             var stages = [];
             var existingStageNames = existing.map(function(s){
               return s.name;
@@ -174,7 +188,7 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
                 stages.push(preloadedStage);
               }
             });
-
+            console.log('setting default stages');
             return buildDetailsForStages(stages);
           };
 
@@ -202,6 +216,6 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
         }
       ],
       templateUrl: '/assets/angular-libs/guides/new/guides.new.stages.template.html'
-    }
+    };
   }
-])
+]);

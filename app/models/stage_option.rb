@@ -5,7 +5,7 @@ class StageOption
   field :default_value
   field :description
   field :name
-  field :order
+  field :order, type: Integer
 
   has_and_belongs_to_many :stage_action_options
 

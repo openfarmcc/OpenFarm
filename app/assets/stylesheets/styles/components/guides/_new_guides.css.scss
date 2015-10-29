@@ -142,7 +142,8 @@
     background-image: url("stages/sow_sm.png");
   }
 
-  &.germination {
+  &.germination,
+  &.growing {
     background-image: url("stages/germination_sm.png");
   }
 
@@ -162,7 +163,8 @@
     background-image: url("stages/flowering_sm.png");
   }
 
-  &.fruit {
+  &.fruit,
+  &.harvest {
     background-image: url("stages/fruiting_sm.png");
   }
 

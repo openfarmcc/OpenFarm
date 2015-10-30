@@ -10,15 +10,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
       },
       controller: ['$scope',
         function ($scope) {
-          $scope.placeStageUpload = function(stage, image){
-            if (!stage.pictures){
-              stage.pictures = [];
-            }
-            stage.pictures.push({
-              new: true,
-              image_url: image
-            });
-          };
+
+          $scope.viewingStageOverview = true;
 
           var transferStageValuesIfNoneExist = function(stage, nextStage) {
             if (!$scope.guideExists) {
@@ -26,7 +19,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
               nextStage.light = stage.light;
               nextStage.soil = stage.soil;
             }
-          }
+          };
+
           $scope.nextStage = function(stage){
             var nextStage = $scope.stages[stage.nextSelectedIndex];
             transferStageValuesIfNoneExist(stage, nextStage);
@@ -41,12 +35,11 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
                 stage.editing = true;
                 $scope.currentStage = chosenStage;
               }
-
             });
           };
         }
       ],
       templateUrl: '/assets/angular-libs/guides/new/guides.new.stage.template.html'
-    }
+    };
   }
-])
+]);

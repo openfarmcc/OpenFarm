@@ -287,7 +287,7 @@ en:
               create_a_growing_guide: "Create a Growing Guide"
               edit_a_growing_guide: "Edit a Growing Guide"
               the_basics: "The Basics"
-              life_stages: "Life Stages"
+              life_stages: "Timeline"
               stage_details: "Stage Details"
               final_touches: "Final Touches"
               preview_guide: "Preview Guide"
@@ -307,13 +307,15 @@ en:
                 How long does the plant live?
               when_should_you_start_growing_the_plant: |
                 When should you start growing the plant?
-              next_life_stages: "Next: Life Stages"
+              next_life_stages: "Next: Timeline"
               choose_a_crop_to_continue: "Choose a crop to continue"
           new_guide_step_2:
               choose_some_stages_to_continue: "Choose some stages to continue"
-              choose_the_life_stages: "Choose the Life Stages you want in your guide"
-              life_stages_description: "Life Stages are periods of the crop’s life when the grower will complete actions specific to that period."
-              next_stage_details: "Next: Stage Details"
+              choose_the_life_stages: "Create a Timeline"
+              life_stages_description: |
+                Let’s create a Timeline of Life Stages! We’ve selected a few to
+                get you started, but feel free to add or remove some.
+              next_stage_details: "Next"
           new_guide_step_3:
               next_final_touches: "Next: Final Touches"
               edit_next_stage: "Edit Next Stage"
@@ -335,7 +337,7 @@ en:
               actions_header: "Actions"
               actions_instructions: "What Actions do you recommend others to take during this stage?"
               add_actions: "Add Actions"
-              stage_overview: "Stage Overview"
+              stage_overview: "Stage"
               select_some_stages: "Please select some stages!"
               choose_action_photo: "Add a photo to this action"
           new_guide_step_4:

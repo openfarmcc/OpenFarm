@@ -1,6 +1,7 @@
 /* Step 2 */
 .life-stages {
   .all-stages-wrapper {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     @media #{$small-only} {
@@ -55,5 +56,10 @@
 
   input:checked + .stage-option {
     border: 3px solid $of-green;
+  }
+
+  .more-stages-toggle {
+    text-align: center;
+    clear: both;
   }
 }

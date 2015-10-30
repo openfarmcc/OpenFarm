@@ -1,30 +1,20 @@
 openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
   function defaultService($http, $q, alertsService) {
 
-    // Should return Stage model:
-    // {
-    //   id: '',
-    //   name: '',
-    //   location: '',
-    //   ...
-    //   stages: [],
-    //
-    // }
-
     var buildStageActionOption = function(data) {
       var stageActionOption = data.attributes
       return stageActionOption;
-    }
+    };
 
     var buildStageOption = function(data) {
       var stageOption = data.attributes
       return stageOption;
-    }
+    };
 
     var buildDetailOption = function(data) {
       var detailOption = data.attributes
       return detailOption;
-    }
+    };
 
     var getDetailOptions = function() {
       return $q(function(resolve, reject) {

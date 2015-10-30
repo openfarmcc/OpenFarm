@@ -9,9 +9,10 @@
       <div class="row">
         <div class="all-stages-wrapper">
 
-          <div class="columns large-3 medium-4 small-6 stage-wrapper"
-               ng-repeat="stage in newGuide.stages | orderBy : 'order' "
-               ng-class="{end: $last}">
+          <div class="columns large-3 medium-4 small-6 stage-wrapper large-centered medium-centered"
+               ng-repeat="stage in newGuide.stages | orderBy : order "
+               ng-class="{end: $last}"
+               ng-show="showingAllStages || stage.selected">
                <input name="{{ stage.name }}"
                       id="{{ stage.name }}"
                       type="checkbox"
@@ -21,6 +22,16 @@
                </label>
           </div>
         </div>
+        <div class="more-stages-toggle">
+          <a ng-click="showingAllStages = !showingAllStages">Show <span ng-if="showingAllStages">less</span><span ng-if="!showingAllStages">more</span> stage options</a>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="timeline-box large-12 columns large-centered"
+             create-timeline="newGuide.time_span"
+             ng-if="newGuide.time_span"
+             >
+        </div> -->
       </div>
       <div class="button-wrapper row">
         <div class="columns small-12">

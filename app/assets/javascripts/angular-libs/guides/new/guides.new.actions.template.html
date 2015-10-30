@@ -1,31 +1,6 @@
 <div class="row actions"
-   ng-init="stage.activeAction = stage.stage_action_options[0]">
-  <div class="columns small-12">
-    <div class="instructions text-center">
-      <h2>
-        {{ stage.name }} {{ texts.actionsHeader }}
-      </h2>
-      <h3>
-        {{ texts.actionsInstructions }}
-      </h3>
-    </div>
-  </div>
-  <hr/>
-  <div class="columns large-3 medium-4">
-    <ul ui-sortable ng-model="stage.stage_action_options">
-      <li ng-repeat="action in stage.stage_action_options"
-          ng-init="action.length_type = 'minutes'"
-          ng-click="stage.activeAction = action"
-          ng-class="{ selected : stage.activeAction.id == action.id, completed : action.overview }">
-          {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
-      </li>
-    </ul>
-    <button class="button expand add-actions-button"
-      ng-click="openAddActionModal(stage)"
-      name="add-action"
-      ><i class="fa fa-plus"></i> {{ texts.addActions }}
-    </button>
-  </div>
+  ng-show="viewingActions"
+  ng-init="stage.activeAction = stage.stage_action_options[0]">
   <div class="columns large-9 medium-8 small-12" ng-if="stage.activeAction">
     <div class="row">
       <div class="columns small-12">
@@ -40,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="columns small-12 medium-8 large-6">
+      <div class="columns small-12">
         <label>{{ texts.chooseActionPhoto }}</label>
 
         <div s3-upload
@@ -53,7 +28,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="columns small-12 medium-8 large-6">
+      <div class="columns small-12">
         <label class="left"
             for="how_long">{{ howLongAction }}<br/>
           <small>{{ doNotSweat }}</small>

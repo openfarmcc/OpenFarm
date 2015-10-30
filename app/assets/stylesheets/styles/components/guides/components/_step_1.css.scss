@@ -27,4 +27,12 @@
       color: #FF3366;
     }
   }
+
+  .crop-image {
+    width: 100%;
+    height: 200px;
+    background-color: $grey-bg;
+    background-size: cover;
+    background-position: center center;
+  }
 }

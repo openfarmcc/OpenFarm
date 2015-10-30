@@ -39,7 +39,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         start_time: moment().format('MMMM'),
         stagesToBuildFromLocalStoredGuide: false,
         stagesToBuildDefault: true
-      }
+      };
     };
 
     var isBlankGuide = function(guide, blankPractices) {
@@ -47,7 +47,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       var truthy = (JSON.stringify(blankGuide) === JSON.stringify(guide) &&
                     blankGuide.crop === null);
       return truthy;
-    }
+    };
 
     var buildGuide = function(data, included) {
       var stages,
@@ -61,7 +61,6 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         stages = included.filter(function(obj) {
           return obj.type === 'stages';
         }).map(function(stage) {
-          console.log(included);
           return stageService.utilities.buildStage(stage, included);
         });
 
@@ -84,40 +83,6 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
       return guide;
     };
 
-    // var buildGuideWithPromise = function(data, included) {
-    //   return $q(function (resolve, reject) {
-    //     var stages,
-    //         user,
-    //         crop;
-    //     var guide = data.attributes;
-    //     guide.id = data.id;
-    //     guide.relationships = data.relationships;
-    //     guide.links = data.links;
-    //     stages = included.filter(function(obj) {
-    //       return obj.type === 'stages';
-    //     }).map(function(stage) {
-    //       return stageService.utilities.buildStageWithPromise(stage);
-    //     });
-
-    //     user = included.filter(function(obj) {
-    //       return obj.type === 'users';
-    //     });
-
-    //     crop = included.filter(function(obj) {
-    //       return obj.type === 'crops';
-    //     });
-
-    //     if (user !== undefined && user.length > 0) {
-    //       guide.user = userService.utilities.buildUser(user[0]);
-    //     }
-    //     if (crop !== undefined && crop.length > 0) {
-    //       guide.crop = cropService.utilities.buildCrop(crop[0]);
-    //     }
-    //     guide.stages = stages;
-    //     return guide;
-    //   })
-    // }
-
     // Builds params according to JSON-API from the
     // front end Guide model.
     var buildParams = function(guideObject) {
@@ -125,9 +90,9 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         type: 'guides',
         id: guideObject.id,
         attributes: guideObject,
-      }
+      };
       return {'data': data}
-    }
+    };
 
     // get the guide specified. Out of Date. Use Promise Function
     // below
@@ -154,7 +119,6 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         } else {
           resolve();
         }
-
       });
     };
 

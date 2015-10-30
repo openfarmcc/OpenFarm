@@ -1,0 +1,13 @@
+<ul ui-sortable ng-model="stage.stage_action_options">
+  <li ng-repeat="action in stage.stage_action_options"
+      ng-init="action.length_type = 'minutes'"
+      ng-click="activateAction(action)"
+      ng-class="{ selected : stage.activeAction.id == action.id, completed : action.overview }">
+      {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
+  </li>
+</ul>
+<button class="button expand add-actions-button"
+  ng-click="openAddActionModal(stage)"
+  name="add-action"
+  ><i class="fa fa-plus"></i> {{ texts.addActions }}
+</button>

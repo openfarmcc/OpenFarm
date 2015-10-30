@@ -156,9 +156,7 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
 
           var setDefaultStages = function(stages) {
             // set default stages
-            console.log('setting default stages');
             stages.forEach(function(stage) {
-              console.log(stage.name);
               if (stage.name === 'Preparation' ||
                   stage.name === 'Growing' ||
                   stage.name === 'Harvest') {

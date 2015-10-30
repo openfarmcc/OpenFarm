@@ -10,12 +10,30 @@
     id="new-guide-step-2"
     method="post"
     >
+    <div class="row practices">
+      <div class="columns small-12">
+        <label class="left"
+          for="practices"><%= t('.which_practices') %><br/>
+          <small><%= t('.check_all_that_apply') %></small>
+        </label>
+      </div>
+      <div class="columns small-12 options">
+        <div multi-row-select
+             ng-if="newGuide.practices"
+             class="multi-choice"
+             options="newGuide.practices"
+             multi-select-overflow-count="3"
+             multi-select-type="checkbox"
+             multi-select-id="practices">
+        </div>
+      </div>
+    </div>
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns medium-4">
         <label for="guide_name"><%= t('.what_do_you_want_to_call_your_guide') %>
         </label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns medium-8">
         <input id="guide_name" name="guide[name]"
           type="text"
           ng-model="newGuide.name"
@@ -25,10 +43,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="columns large-4 medium-4">
+      <div class="columns medium-4">
         <label for="location"><%= t('.where_are_you_growing_it') %></label>
       </div>
-      <div class="columns large-8 medium-8">
+      <div class="columns medium-8">
         <span ng-model="newGuide.location"
               location
               name="location"
@@ -44,13 +62,6 @@
       <div class="columns large-8 medium-8">
         <textarea ng-model="newGuide.overview">
         </textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="timeline-box large-12 columns large-centered"
-           create-timeline="newGuide.time_span"
-           ng-if="newGuide.time_span"
-           >
       </div>
     </div>
     <div class="button-wrapper row">

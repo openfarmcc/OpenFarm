@@ -10,15 +10,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
       },
       controller: ['$scope',
         function ($scope) {
-          $scope.placeStageUpload = function(stage, image){
-            if (!stage.pictures){
-              stage.pictures = [];
-            }
-            stage.pictures.push({
-              new: true,
-              image_url: image
-            });
-          };
+
+          $scope.viewingStageOverview = true;
 
           var transferStageValuesIfNoneExist = function(stage, nextStage) {
             if (!$scope.guideExists) {
@@ -42,7 +35,6 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
                 stage.editing = true;
                 $scope.currentStage = chosenStage;
               }
-
             });
           };
         }

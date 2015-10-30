@@ -12,17 +12,19 @@
       <div class="stage-overview" ng-click="viewingStageOverview = true">
         <span class="check"></span>Stage Overview
       </div>
-      <ul class="ordered-stage-actions">
-        <li></li>
-      </ul>
-      <ul class="unordered-stage-actions">
-      </ul>
+      <div actions-control stage="stage" texts="texts"
+        viewing-stage-overview="viewingStageOverview"></div>
     </div>
     <div class="columns large-9">
-      <div guides-stage-overview
+      <div guide-stage-overview="viewingStageOverview"
         texts="texts"
+        stage="stage">
+      </div>
+      <div guides-actions
+        viewing-actions="!viewingStageOverview"
         stage="stage"
-        viewing-stage-overview="viewingStageOverview"></div>
+        texts="texts">
+      </div>
     </div>
   </div>
   <!--

@@ -26,6 +26,8 @@
 //= require ./angular-libs/guides/new/guides.new.stage.directive.js
 //= require ./angular-libs/guides/new/guides.new.chooseCrop.directive.js
 //= require ./angular-libs/guides/new/guides.new.actions.directive.js
+//= require ./angular-libs/guides/new/guides.new.actionsControl.directive.js
+//= require ./angular-libs/guides/new/guides.new.guideStageOverview.directive.js
 //= require ./angular-libs/guides/directives/guides.formChecker.directive.js
 
 //= require ./angular-libs/ngs3upload

@@ -103,7 +103,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
             [],
             practices
           );
-        console.log("after reset", $scope.newGuide.stages.length);
         $scope.alerts.splice(index, 1);
         $scope.switchToStep(1);
         localStorageService.remove('guide');
@@ -377,7 +376,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         $scope.sending++;
         stageService.createStageWithPromise({'data': data})
           .then(function(stage){
-            console.log(stage);
             stage.sent = true;
             $scope.sending--;
             $scope.checkNumberUpdated();

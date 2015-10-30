@@ -19,7 +19,6 @@ openFarmApp.directive('actionsControl', ['$http', '$modal', 'defaultService',
 
           $scope.openAddActionModal = function(stage){
 
-            var actionOptions = [];
             defaultService.getStageActionOptions()
               .then(function (actionOptions) {
                 // http://pineconellc.github.io/angular-foundation/#modal

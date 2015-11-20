@@ -1,0 +1,10 @@
+site "http://community.opscode.com/api/v1"
+
+cookbook 'apt'
+cookbook 'build-essential'
+# cookbook 'mongodb'
+cookbook 'ruby_build'
+cookbook 'curl'
+# cookbook 'elasticsearch', '~> 1.4.0'
+cookbook 'rbenv', git: 'https://github.com/aminin/chef-rbenv'
+cookbook 'vim'

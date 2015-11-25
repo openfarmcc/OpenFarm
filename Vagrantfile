@@ -21,9 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     chef.add_recipe "apt"
     chef.add_recipe "ruby_build"
-    chef.add_recipe "rbenv::default"
-    chef.add_recipe "rbenv::ruby_build"
-    chef.add_recipe "rbenv::rbenv_vars"
+    chef.add_recipe "rbenv::system"
+    chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "vim"
     # chef.add_recipe "mongodb"
     # chef.add_recipe "elasticsearch"

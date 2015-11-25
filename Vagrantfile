@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Use Chef Solo to provision our virtual machine
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+    chef.cookbooks_path = ["cookbooks"]
 
     chef.add_recipe "apt"
     chef.add_recipe "ruby_build"

@@ -1,0 +1,36 @@
+{
+  "name": "curl",
+  "version": "2.0.1",
+  "description": "Installs/Configures curl",
+  "long_description": "# Description\n\nInstalls/Configures curl\n\n# Requirements\n\n## Platform:\n\n* Centos\n* Debian\n* Fedora\n* Redhat\n* Ubuntu\n\n## Cookbooks:\n\n*No dependencies defined*\n\n# Attributes\n\n* `node['curl']['libcurl_packages']` -  Defaults to `%w(curl-devel)`.\n\n# Recipes\n\n* curl::default - Installs/Configures curl\n* curl::libcurl - Install/Configure libcurl packages\n\n# License and Maintainer\n\nMaintainer:: John Dewey (<john@dewey.ws>)\n\nLicense:: Apache 2.0\n",
+  "maintainer": "John Dewey",
+  "maintainer_email": "john@dewey.ws",
+  "license": "Apache 2.0",
+  "platforms": {
+    "centos": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "curl::default": "Installs/Configures curl",
+    "curl::libcurl": "Install/Configure libcurl packages"
+  }
+}

@@ -3,22 +3,33 @@ SITE
   specs:
     apt (2.9.2)
     build-essential (2.2.4)
+    chef_handler (1.2.0)
     curl (2.0.1)
+    dmg (2.3.0)
+    git (4.3.4)
+      build-essential (>= 0.0.0)
+      dmg (>= 0.0.0)
+      windows (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    ohai (2.0.4)
+    rbenv (1.7.1)
+      apt (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      git (>= 0.0.0)
+      ohai (>= 1.1)
     ruby_build (0.8.0)
     vim (2.0.0)
-
-GIT
-  remote: https://github.com/aminin/chef-rbenv
-  ref: master
-  sha: 9c8688dbffb79269385581b6aa518c5ba456f154
-  specs:
-    rbenv (0.7.3)
+    windows (1.38.4)
+      chef_handler (>= 0.0.0)
+    yum (3.8.2)
+    yum-epel (0.6.5)
+      yum (~> 3.2)
 
 DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
   curl (>= 0)
-  rbenv (>= 0)
+  rbenv (~> 1.7.1)
   ruby_build (>= 0)
   vim (>= 0)
 

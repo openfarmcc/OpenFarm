@@ -299,7 +299,6 @@ en:
               no_crop_selected: "No crop selected"
               lets_get_started: "Lets Get Started!"
               which_crop: "Which crop is this guide For?"
-              choose_photo: "Add a photo of this crop"
               common_or_scientific: "Common or scientific names are okay"
               which_practices: "Which practices will you be using?"
               check_all_that_apply: "Check all that apply."
@@ -341,6 +340,7 @@ en:
               select_some_stages: "Please select some stages!"
               choose_action_photo: "Add a photo to this action"
           new_guide_step_4:
+              choose_photo: "Upload a cover photo for this guide"
               give_an_overview: "Give a short overview of your guide."
               almost_done: "Almost done!"
               where_are_you_growing_it: "Where are you growing it"

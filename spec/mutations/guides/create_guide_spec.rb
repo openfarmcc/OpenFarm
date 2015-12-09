@@ -49,9 +49,11 @@ describe Guides::CreateGuide do
 
   it 'catches bad crop IDs but saves with a good crop name' do
     params[:crop_id] = 'wrong'
-    params[:crop_name] = FactoryGirl.create(:crop).name
+    new_crop_name = FactoryGirl.create(:crop).name
+    params[:crop_name] = new_crop_name
     result = cg.run(params).result
     expect(result).to be_a(Guide)
+    expect(result.crop.name).to eq(new_crop_name)
     expect(result.valid?).to be(true)
   end
 

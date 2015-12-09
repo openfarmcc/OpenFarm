@@ -9,6 +9,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
+    puts 'params', params
     @outcome = Guides::CreateGuide.run(params[:data],
                                        crop_id: params[:data][:crop_id],
                                        crop_name: params[:data][:crop_name],

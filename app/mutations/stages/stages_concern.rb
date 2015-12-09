@@ -41,7 +41,7 @@ module Stages
       # is enabled, because paperclip normally stores on system, not on URLs.
       @stage.pictures.delete_all
       images && images.each do |img|
-        Picture.from_url(img[:image_url],
+          Picture.from_url(img[:image_url],
                          @stage)
       end
     end

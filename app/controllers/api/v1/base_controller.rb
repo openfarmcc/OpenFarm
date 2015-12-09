@@ -21,6 +21,11 @@ class Api::V1::BaseController < ActionController::Base
     render json: json, status: 401
   end
 
+  rescue_from Mongoid::Errors::Validations do |exc|
+    json = { errors: [{ title: "Not valid. #{exc}"}]}
+    render json: json, status: 403
+  end
+
   # Convenience methods for serializing models:
   def serialize_model(model, options = {})
     options[:is_collection] = false

@@ -254,7 +254,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       'crop_id': $scope.newGuide.crop.id
     };
 
-    if (data.crop_id === null) {
+    if (data.crop_id === null || data.crop_id === undefined) {
       data.crop_name = $scope.newGuide.crop.name;
     }
 
@@ -274,6 +274,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       $scope.startedSending = false;
       $scope.sending--;
     };
+
+    console.log(params);
 
     if ($scope.newGuide.id){
       // In this case the guide already existed,

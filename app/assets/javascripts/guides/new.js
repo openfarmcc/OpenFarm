@@ -239,7 +239,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           image.image_url.indexOf('baren_field') === -1){
         featured_image = image.image_url;
       }
-      return featured_image;
+      return [{
+        'image_url': featured_image
+      }];
     };
 
     var data = {
@@ -248,9 +250,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         name: $scope.newGuide.name,
         overview: $scope.newGuide.overview || null,
         location: $scope.newGuide.location || null,
-        featured_image: defineFeaturedImage($scope.newGuide.featured_image),
         practices: practices
       },
+      'images': defineFeaturedImage($scope.newGuide.featured_image),
       'crop_id': $scope.newGuide.crop.id
     };
 
@@ -274,8 +276,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       $scope.startedSending = false;
       $scope.sending--;
     };
-
-    console.log(params);
 
     if ($scope.newGuide.id){
       // In this case the guide already existed,
@@ -317,6 +317,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   };
 
   $scope.sendStages = function(guide){
+
     $scope.sending--;
     $scope.newGuide.id = guide.id;
 

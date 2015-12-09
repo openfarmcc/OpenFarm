@@ -13,7 +13,6 @@ module Guides
         end
         optional do
           string :overview
-          string :featured_image
           string :location
           array :practices
           # There has to be a better way to do this.
@@ -38,20 +37,22 @@ module Guides
     optional do
       string :crop_id
       string :crop_name
+      array :images, class: Hash, arrayize: true
     end
 
     def validate
       validate_practices
-      validate_image_url
+      validate_images images
       validate_crop
     end
 
     def execute
       @guide ||= Guide.new(attributes)
+      set_images
       @guide.user = user
       @guide.crop = @crop
       set_time_span
-      set_featured_image_async
+      # set_featured_image_async
       @guide.save!
       @guide
     end

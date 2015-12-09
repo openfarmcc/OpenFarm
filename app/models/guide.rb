@@ -43,12 +43,18 @@ class Guide
 
   validates_presence_of :user, :crop, :name
 
-  has_mongoid_attached_file :featured_image,
-                            default_url: '/assets/baren_field.jpg'
-  validates_attachment_size :featured_image, in: 1.byte..25.megabytes
-  validates_attachment :featured_image,
-                       content_type: { content_type:
-                         ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
+  embeds_many :pictures, cascade_callbacks: true, as: :photographic
+  accepts_nested_attributes_for :pictures
+
+  field :featured_image, type: Integer # Points to the index of images which should
+  # be the featured image
+
+  # has_mongoid_attached_file :featured_image,
+  #                           default_url: '/assets/baren_field.jpg'
+  # validates_attachment_size :featured_image, in: 1.byte..25.megabytes
+  # validates_attachment :featured_image,
+  #                      content_type: { content_type:
+  #                        ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   slug :name
 

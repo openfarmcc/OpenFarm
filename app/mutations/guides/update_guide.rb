@@ -11,7 +11,7 @@ module Guides
           string :location
           string :name
           array :practices
-          string :featured_image
+          # string :featured_image
           # There has to be a better way to do this.
           hash :time_span do
             optional do
@@ -31,17 +31,21 @@ module Guides
       end
     end
 
+    optional do
+      array :images, class: Hash, arrayize: true
+    end
+
     def validate
       @guide = guide
       validate_time_span
       validate_permissions
-      validate_image_url
+      validate_images images
     end
 
     def execute
       @guide.update(attributes.select {|k| k != 'featured_image'})
       set_time_span
-      set_featured_image_async
+      set_images
       @guide.save
       @guide
     end

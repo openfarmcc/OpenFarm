@@ -10,8 +10,13 @@ class GuideSerializer < BaseSerializer
   attribute :featured_image do
     if object.featured_image
       {
-        image_url: object.featured_image.url,
-        thumbnail_url: object.featured_image.url(:small)
+        image_url: object.pictures[object.featured_image].attachment.url,
+        thumbnail_url: object.pictures[object.featured_image].attachment.url(:small)
+      }
+    elsif object.pictures.count > 0
+      {
+        image_url: object.pictures.first.attachment.url,
+        thumbnail_url: object.pictures.first.attachment.url(:small)
       }
     end
   end

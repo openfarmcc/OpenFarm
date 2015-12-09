@@ -66,8 +66,8 @@ describe Api::V1::GuidesController, type: :controller do
 
     it 'uploads a featured_image' do
       params = { attributes: { name: 'Just 1 pixel.',
-                               overview: 'A tiny pixel test image.',
-                               featured_image: 'http://placehold.it/1x1.jpg' },
+                               overview: 'A tiny pixel test image.' },
+                 images: [{ image_url: 'http://placehold.it/1x1.jpg' }],
                  crop_id: FactoryGirl.create(:crop).id.to_s }
       sign_in FactoryGirl.create(:user)
       VCR.use_cassette('controllers/api/api_guides_controller_spec') do
@@ -76,33 +76,61 @@ describe Api::V1::GuidesController, type: :controller do
       expect(response.status).to eq(201)
       img_url = json['data']['attributes']['featured_image']['image_url']
       expect(img_url).to include('.jpg')
-      expect(img_url).to include('featured_images')
+    end
+
+    it 'should give current_user a badge for creating a guide' do
+      sign_in user
+
+      assert user.badges.empty?
+
+      data = { attributes: { name: 'brocolini in the desert',
+                             overview: 'something exotic' },
+               crop_id: FactoryGirl.create(:crop).id.to_s }
+      post 'create', data: data, format: :json
+      expect(response.status).to eq(201)
+      user.reload
+
+      assert user.badges.count == 1
+
+      assert user.badges.first.name == 'guide-creator'
     end
   end
 
-  it 'should show a specific guide' do
-    guide = FactoryGirl.create(:guide)
-    get 'show', id: guide.id, format: :json
-    expect(response.status).to eq(200)
-    expect(json['data']['attributes']['name']).to eq(guide.name)
+  describe 'show' do
+    it 'should show a specific guide' do
+      guide = FactoryGirl.create(:guide)
+      get 'show', id: guide.id, format: :json
+      expect(response.status).to eq(200)
+      expect(json['data']['attributes']['name']).to eq(guide.name)
+    end
   end
 
-  it 'should update a guide' do
-    sign_in user
-    guide = FactoryGirl.create(:guide, user: user, overview: 'old')
-    params = { attributes: { overview: 'updated' } }
-    put 'update', id: guide.id, data: params
-    expect(response.status).to eq(200)
-    guide.reload
-    expect(guide.overview).to eq('updated')
-  end
+  describe 'update' do
 
-  it 'should not update someone elses guide' do
-    sign_in FactoryGirl.create(:user)
-    guide = FactoryGirl.create(:guide)
-    put :update, id: guide.id, data: { attributes: { overview: 'updated' } }
-    expect(response.status).to eq(401)
-    expect(response.body).to include('only modify guides that you created')
+    it 'should update a guide' do
+      sign_in user
+      guide = FactoryGirl.create(:guide, user: user, overview: 'old')
+      params = { attributes: { overview: 'updated' } }
+      put 'update', id: guide.id, data: params
+      expect(response.status).to eq(200)
+      guide.reload
+      expect(guide.overview).to eq('updated')
+    end
+
+    it 'should not update someone elses guide' do
+      sign_in FactoryGirl.create(:user)
+      guide = FactoryGirl.create(:guide)
+      put :update, id: guide.id, data: { attributes: { overview: 'updated' } }
+      expect(response.status).to eq(401)
+      expect(response.body).to include('only modify guides that you created')
+    end
+
+    it 'validates URL paramters' do
+      data = { attributes: {}, images: [{ image_url: 'not a real URL' }] }
+      put :update, id: guide.id, data: data
+      expect(response.status).to eq(422)
+      expect(json['errors'][0]['title']).to include('not a valid URL')
+    end
   end
 
   describe 'destroy' do
@@ -130,29 +158,5 @@ describe Api::V1::GuidesController, type: :controller do
         'can only destroy guides that belong to you.')
       expect(response.status).to eq(401)
     end
-  end
-
-  it 'validates URL paramters' do
-    data = { attributes: { featured_image: 'not a real URL' } }
-    put :update, id: guide.id, data: data
-    expect(response.status).to eq(422)
-    expect(json['errors'][0]['title']).to include('Must be a fully formed URL')
-  end
-
-  it 'should give current_user a badge for creating a guide' do
-    sign_in user
-
-    assert user.badges.empty?
-
-    data = { attributes: { name: 'brocolini in the desert',
-                           overview: 'something exotic' },
-             crop_id: FactoryGirl.create(:crop).id.to_s }
-    post 'create', data: data, format: :json
-    expect(response.status).to eq(201)
-    user.reload
-
-    assert user.badges.count == 1
-
-    assert user.badges.first.name == 'guide-creator'
   end
 end

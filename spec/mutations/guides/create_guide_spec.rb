@@ -24,11 +24,14 @@ describe Guides::CreateGuide do
   end
 
   it 'validates invalid URLs' do
+    image_hash = {
+      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
+    }
     attributes = params[:attributes]
-    attributes[:featured_image] = 'not/absoloute.png'
-    results = cg.run(params)
-    message = results.errors.message_list.first
-    expect(message).to include('Must be a fully formed URL')
+    image_params = params.merge(images: [image_hash])
+    results = cg.run(image_params)
+    expect(results.success?).to be_falsey
+    expect(results.errors.message[:images]).to include('not a valid URL')
   end
 
   it 'allows valid URLS' do

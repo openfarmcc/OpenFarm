@@ -9,30 +9,28 @@
   <hr/>
   <div class="row">
     <div class="stage-details-navigation columns large-3 medium-4">
-      <div class="stage-overview" ng-click="viewingStageOverview = true">
+      <div class="stage-overview stage-action-toggle" ng-click="viewingStageOverview = true"
+        ng-class="{'selected': viewingStageOverview}">
         <span class="check"></span>Stage Overview
       </div>
-      <div actions-control stage="stage" texts="texts"
+      <div actions-control
+        stage="stage"
+        texts="texts"
         viewing-stage-overview="viewingStageOverview"></div>
     </div>
     <div class="columns large-9">
-      <div guide-stage-overview="viewingStageOverview"
+      <div guide-stage-overview
         texts="texts"
-        stage="stage">
+        stage="stage"
+        ng-show="viewingStageOverview">
       </div>
       <div guides-actions
-        viewing-actions="!viewingStageOverview"
+        ng-hide="viewingStageOverview"
         stage="stage"
         texts="texts">
       </div>
     </div>
   </div>
-  <!--
-  <div guides-actions
-    stage="stage"
-    texts="texts"
-    >
-  </div> -->
 </div><!-- ng-form -->
 
 <div class="button-wrapper row">

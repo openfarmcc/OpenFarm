@@ -10,10 +10,10 @@
 @import "styles/ui/badges-list";
 @import "styles/ui/inputs/**/*";
 
-@import "styles/components/alerts";
-@import "styles/components/loader";
-@import "styles/components/crop_searches/**/*";
-@import "styles/components/crops/**/*";
+@import "styles/components/alerts",
+        "styles/components/loader",
+        "styles/components/crop_searches/**/*",
+        "styles/components/crops/**/*";
 @import "styles/components/guides/**/*";
 @import "styles/components/users/**/*";
 @import "styles/components/devise/**/*";

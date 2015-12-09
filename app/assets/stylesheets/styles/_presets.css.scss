@@ -41,10 +41,10 @@
 }
 
 @mixin grey-inset(){
-  background-color: whitesmoke;
+  background-color: $gray-bg;
   border-radius: 3px;
-  box-shadow: inset 0px 3px 0 rgb(239, 239, 239);
-  border: 1px solid rgb(239, 239, 239);
+  box-shadow: inset 0px 3px 0 darken($gray-bg, 10%);
+  border: darken($gray-bg, 10%);
 }
 
 

@@ -1,8 +1,10 @@
-<ul ui-sortable ng-model="stage.stage_action_options">
+<ul ui-sortable ng-model="stage.stage_action_options"
+  class="stage-actions-nav">
   <li ng-repeat="action in stage.stage_action_options"
+      class="stage-action-toggle"
       ng-init="action.length_type = 'minutes'"
       ng-click="activateAction(action)"
-      ng-class="{ selected : stage.activeAction.id == action.id, completed : action.overview }">
+      ng-class="{ selected : stage.activeAction.id == action.id && !viewingStageOverview, completed : action.overview }">
       {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
   </li>
 </ul>

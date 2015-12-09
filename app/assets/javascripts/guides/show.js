@@ -151,7 +151,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
           }
 
         }
-      })
+      });
 
     };
 

@@ -11,17 +11,18 @@ sudo service elasticsearch start
 
 echo "--- INSTALLING MONGODB - getting there! ---"
 
-sudo apt-get -y install mongodb
-sudo apt-get -y install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+# sudo apt-get -y install mongodb
 
 echo "--- OPEN FARM - getting there! ---"
 
+sudo apt-get -y install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+
 cd /vagrant
-rbenv global
+# rbenv global
 
 gem install bundler
 gem install activesupport -v '4.0.2'
-rbenv rehash
+# rbenv rehash
 bundle install
 rake db:setup
 echo "ENV['SECRET_KEY_BASE'] = '$(rake secret)'" >> config/app_environment_variables.rb

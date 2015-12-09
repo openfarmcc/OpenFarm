@@ -5,7 +5,6 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
       scope: {
         stage: '=',
         texts: '=',
-        viewingActions: '='
       },
       controller: ['$scope',
         function ($scope) {

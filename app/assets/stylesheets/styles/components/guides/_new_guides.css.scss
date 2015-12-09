@@ -104,6 +104,34 @@
   }
 }
 
+.stage-actions-nav {
+  list-style: none;
+  margin: 0;
+}
+
+.stage-action-toggle {
+  padding: .25rem;
+  padding-left: .75rem;
+  margin: .25rem 0;
+  cursor: pointer;
+  transition: $transition-speed background-color ;
+  @include grey-inset;
+
+  &:hover {
+    background-color: darken($gray-bg, 10%);
+    box-shadow-color: darken($gray-bg, 20%);
+  }
+
+  &.selected {
+    background-color: darken($gray-bg, 10%);
+    box-shadow-color: darken($gray-bg, 20%);
+  }
+
+  i {
+    margin-top: 0.3rem;
+  }
+}
+
 .life-stage-nav {
   background-color: darken($of-green, 10%);
   overflow-x: auto;

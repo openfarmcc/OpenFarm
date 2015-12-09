@@ -12,7 +12,6 @@ openFarmApp.directive('actionsControl', ['$http', '$modal', 'defaultService',
           $scope.stage.stage_action_options = [];
 
           $scope.activateAction = function(action) {
-            console.log('activating action');
             $scope.stage.activeAction = action;
             $scope.viewingStageOverview = false;
           };

@@ -414,7 +414,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if ($scope.sending === 0){
       localStorageService.remove('guide');
       $scope.startedSending = false;
-      window.location.href = '/guides/' + $scope.newGuide.id + '/';
+      // window.location.href = '/guides/' + $scope.newGuide.id + '/';
     }
   };
 

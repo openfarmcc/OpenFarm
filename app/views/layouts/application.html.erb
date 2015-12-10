@@ -61,17 +61,17 @@
               <!-- Right Nav Section -->
               <ul class="right">
                   <% if current_user %>
-                      <li class="has-dropdown show-for-medium-up">
-                          <a href="#"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
-                          <ul class="dropdown">
-                            <li>
-                              <%= render 'shared/header_links.html.erb' %>
-                            </li>
-                          </ul>
-                      </li>
-                      <li class="show-for-small-only">
-                        <%= render 'shared/header_links.html.erb' %>
-                      </li>
+                    <li class="has-dropdown show-for-medium-up">
+                        <a href="#"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
+                        <ul class="dropdown">
+                          <li>
+                            <%= render 'shared/header_links.html.erb' %>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="show-for-small-only">
+                      <%= render 'shared/header_links.html.erb' %>
+                    </li>
                   <% else %>
                       <li class="has-form">
                           <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>

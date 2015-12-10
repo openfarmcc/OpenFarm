@@ -60,14 +60,13 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         return obj.type === 'stage-actions';
       });
 
-      relevantStageActionIds = data.relationships.stage_actions.data.map(function(sa) {
-        return sa.id;
-      });
-
       if (data.relationships.stage_actions.data === undefined ||
           data.relationships.stage_actions.data.length === 0) {
         stage.stage_actions = [];
       } else if (stageActions.length > 0) {
+        relevantStageActionIds = data.relationships.stage_actions.data.map(function(sa) {
+          return sa.id;
+        });
         stage.stage_actions = stageActions.filter(function(stageAction) {
           return relevantStageActionIds.indexOf(stageAction.id) > -1
         }).map(function(stageAction) {

@@ -8,7 +8,7 @@
 <div class="guides row guides-list">
   <div class="small-12 columns">
     <table>
-      <% @user.guides.each do |guide| %>
+      <% @user.guides.order_by([['created_at', :desc]]).each do |guide| %>
         <tr>
           <td>
             <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>

@@ -354,13 +354,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
               }) || null,
           },
           'guide_id': guide.id,
-          'actions': stage.stage_action_options.filter(function(a){
-                return (a.overview ||
-                        a.time ||
-                        (a.pictures && a.pictures.length > 0));
-              }).map(function(action, index){
+          'actions': stage.stage_action_options.map(function(action, index){
                 var img = null;
-                if(action.pictures !== null) {
+                if(action.pictures !== null && action.picures !== undefined) {
                   img = action.pictures.filter(function(p){
                     return !p.deleted;
                    });

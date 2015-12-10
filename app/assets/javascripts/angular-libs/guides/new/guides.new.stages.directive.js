@@ -33,14 +33,14 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
                   }
                 });
 
-              $scope.$watch('guide.exists', function(afterValue) {
-                if (afterValue && $scope.guide.loadedStages) {
-                  $scope.guide.stages = buildFromExistingAndPreloadedStages(
-                    $scope.guide.loadedStages,
-                    $scope.stages
-                  );
-                }
-              });
+              // $scope.$watch('guide.exists', function(afterValue) {
+              //   if (afterValue && $scope.guide.loadedStages) {
+              //     $scope.guide.stages = buildFromExistingAndPreloadedStages(
+              //       $scope.guide.loadedStages,
+              //       $scope.stages
+              //     );
+              //   }
+              // });
               $scope.$watch('guide.stages', function(){
                 if ($scope.guide !== undefined && $scope.guide.stages) {
                   if ($scope.guide.stages.length === 0) {
@@ -165,30 +165,30 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             });
           };
 
-          var buildFromExistingAndPreloadedStages = function (existing,
-                                                              preloaded){
-            var stages = [];
-            var existingStageNames = existing.map(function(s){
-              return s.name;
-            });
-            preloaded.forEach(function(preloadedStage){
-              var existingStageIndex = existingStageNames
-                .indexOf(preloadedStage.name);
-              if (existingStageIndex !== -1){
-                var existingStage = existing[existingStageIndex];
-                existingStage.exists = true;
-                existingStage.selected = true;
-                existingStage = transferStageActions(existingStage,
-                                                     preloadedStage);
-                existingStage = calculateStageLengthType(existingStage);
-                stages.push(existingStage);
-              } else {
-                stages.push(preloadedStage);
-              }
-            });
-            console.log('setting default stages');
-            return buildDetailsForStages(stages);
-          };
+          // var buildFromExistingAndPreloadedStages = function (existing,
+          //                                                     preloaded){
+          //   var stages = [];
+          //   var existingStageNames = existing.map(function(s){
+          //     return s.name;
+          //   });
+          //   preloaded.forEach(function(preloadedStage){
+          //     var existingStageIndex = existingStageNames
+          //       .indexOf(preloadedStage.name);
+          //     if (existingStageIndex !== -1){
+          //       var existingStage = existing[existingStageIndex];
+          //       existingStage.exists = true;
+          //       existingStage.selected = true;
+          //       existingStage = transferStageActions(existingStage,
+          //                                            preloadedStage);
+          //       existingStage = calculateStageLengthType(existingStage);
+          //       stages.push(existingStage);
+          //     } else {
+          //       stages.push(preloadedStage);
+          //     }
+          //   });
+          //   console.log('setting default stages');
+          //   return buildDetailsForStages(stages);
+          // };
 
           var setEditingStage = function(){
             var selectedSet = false;

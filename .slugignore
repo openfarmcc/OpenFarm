@@ -1,5 +1,6 @@
 /test
 /spec
 /vcr
-/log
+/log/development.log
 /coverage
+/public

@@ -3,4 +3,4 @@
 /vcr
 /log/development.log
 /coverage
-/public
+/public/system

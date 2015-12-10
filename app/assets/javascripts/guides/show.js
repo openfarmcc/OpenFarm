@@ -11,10 +11,32 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     $scope.userId = USER_ID || undefined;
     $scope.gardenCrop = {};
 
+    $scope.toggleEditingGuide = function() {
+      $scope.editing = !$scope.editing;
+    };
+
     $scope.setGuideUser = function(success, object){
       if (success){
         $scope.guide.user = object;
       }
+    };
+
+    $scope.saveGuideChanges = function() {
+      var params = {'data':  {
+        'attributes': {
+          'overview': $scope.guide.overview,
+          'name': $scope.guide.name
+          }
+        }
+      };
+
+      guideService.updateGuideWithPromise($scope.guide.id, params)
+        .then(function(response) {
+          $scope.toggleEditingGuide();
+        }, function(response) {
+          console.log(response);
+        });
+
     };
 
     $scope.setCurrentUser = function(success, object){

@@ -136,7 +136,8 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         $http.post('/api/v1/guides/', params).success(function (response) {
           resolve(buildGuide(response.data, response.included));
         }).error(function (response, code) {
-          reject();
+          console.log(response, code);
+          reject(response, code);
           alertsService.pushToAlerts(response.errors, code);
         });
       });
@@ -159,7 +160,7 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
             return resolve(buildGuide(response.data, response.included));
           })
           .error(function (response, code) {
-            reject();
+            reject(response, code);
             alertsService.pushToAlerts(response.errors, code);
           });
       });

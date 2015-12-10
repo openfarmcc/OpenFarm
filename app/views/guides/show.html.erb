@@ -8,7 +8,8 @@
 
 <div ng-controller="showGuideCtrl"
      ng-cloak
-     class="guides show-guide">
+     class="guides show-guide"
+     ng-class="{'editing': editing}">
 
     <!-- These two 'Tops of Guides' for different screen sizes are pretty similar
     and it may be possible/worth DRYing it up. I'm not sure. I imagine that as the
@@ -20,7 +21,11 @@
     <!-- TODO: There's a lot of duplicate content here, we should try and minimize that. -->
     <div class="row wide-row large-guide show-for-large-up">
       <div class="large-12 columns header">
-        <h1 class="guide-name">{{ guide.name }}</h1>
+        <h1 class="guide-name">
+          <span ng-bind="guide.name" ng-hide="editing"></span>
+          <input ng-show="editing" ng-model="guide.name"/>
+        </h1>
+
 
         <h2 class="guide-relationships"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }} for <a href="/crops/{{ guide.crop.slug }}/" class="crop-name">{{ guide.crop.name }}</a></h2>
         <%= render "guides/show/guide_controllers" %>
@@ -33,10 +38,12 @@
       </div>
       <div class="columns large-5 margin-top">
         <h4 class="title" id="overview">
-          <%= t('.overview') %>
+          {{<%= t('.overview') %>}}
+
         </h4>
-        <div class="markdown" markdown="guide.overview">
+        <div class="markdown" markdown="guide.overview" ng-hide="editing">
         </div>
+        <textarea ng-model="guide.overview" ng-show="editing"></textarea>
       </div>
       <div class="columns large-2 margin-top">
         <h4 class="title text-center" id="compatibility">
@@ -67,7 +74,8 @@
         ng-attr-alt="{{ guide.name }}"
         style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
         <div class="large-12 columns">
-          <h1 class="guide-name">{{ guide.name }}</h1>
+          <h1 class="guide-name"><span ng-bind="guide.name" ng-hide="editing"></span>
+          <input ng-show="editing" ng-model="guide.name"/></h1>
         </div>
           <%= render "guides/show/guide_controllers" %>
       </div>
@@ -76,7 +84,9 @@
         <h4 class="title" id="overview">
           <%= t('.overview') %>
         </h4>
-        <div class="markdown" markdown="guide.overview">
+        <div class="markdown" markdown="guide.overview" ng-hide="editing">
+        </div>
+        <textarea ng-model="guide.overview" ng-show="editing"></textarea>
         </div>
       </div>
       <div class="columns small-4 margin-top">
@@ -116,6 +126,8 @@
     </div>
   </div>
 </div>
+
+<%= current_user %>
 
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>

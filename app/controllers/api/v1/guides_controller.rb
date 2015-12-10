@@ -14,6 +14,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                        crop_id: params[:data][:crop_id],
                                        crop_name: params[:data][:crop_name],
                                        user: current_user)
+
     respond_with_mutation(:created, include: ['stages',
                                               'stages.pictures',
                                               'stages.stage_actions',
@@ -41,6 +42,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
+    puts(params)
     @outcome = Guides::UpdateGuide.run(params[:data],
                                        user: current_user,
                                        guide: Guide.find(params[:id]))

@@ -116,6 +116,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       var guide = null;
       var localGuide = localStorageService.get('guide');
        if ($scope.guideExists) {
+        console.log('guide exists')
         // we're editing a guide. ignore local storage
         guideService.getGuideWithPromise(getIDFromURL('guides'))
           .then(function(data) {
@@ -130,6 +131,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // else if we've found a localguide and it's not blank
       } else if (localGuide !== undefined && localGuide !== null &&
           !guideService.utilities.isBlankGuide(localGuide, practices)) {
+        console.log('is localguide defined');
         // if it's local storage, we've been here before, but first
         // check that the guide in localStorage isn't just a blank guide.
         guide = localGuide;
@@ -143,6 +145,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
       // else, we start from scratch
       } else {
+        console.log('starting from scratch');
         guide = guideService.utilities.buildBlankGuide(null, [], practices);
         resolve(guide);
       }
@@ -239,9 +242,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           image.image_url.indexOf('baren_field') === -1){
         featured_image = image.image_url;
       }
-      return [{
-        'image_url': featured_image
-      }];
+      if (featured_image !== null) {
+        return [{
+          'image_url': featured_image
+        }];
+      } else {
+        return null
+      }
     };
 
     var data = {
@@ -277,19 +284,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       $scope.sending--;
     };
 
-    if ($scope.newGuide.id){
-      // In this case the guide already existed,
-      // so we need to put, not to post.
-      // TODO: refactor the $scope.alerts thing
-      // so that it cancels things if things go wrong
-      params.data.id = $scope.newGuide.id;
+    // if ($scope.newGuide.id){
+    //   // In this case the guide already existed,
+    //   // so we need to put, not to post.
+    //   // TODO: refactor the $scope.alerts thing
+    //   // so that it cancels things if things go wrong
+    //   params.data.id = $scope.newGuide.id;
 
-      guideService.updateGuideWithPromise(params.data.id, params)
-        .then($scope.sendStages, errorFunction);
-    } else {
+    //   guideService.updateGuideWithPromise(params.data.id, params)
+    //     .then($scope.sendStages, errorFunction);
+    // } else {
       guideService.createGuideWithPromise(params)
         .then($scope.sendStages, errorFunction);
-    }
+    // }
   };
 
   var calcTimeLength = function(length, length_type){
@@ -317,7 +324,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   };
 
   $scope.sendStages = function(guide){
-
+    console.log(guide);
     $scope.sending--;
     $scope.newGuide.id = guide.id;
 
@@ -412,7 +419,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if ($scope.sending === 0){
       localStorageService.remove('guide');
       $scope.startedSending = false;
-      window.location.href = '/guides/' + $scope.newGuide.id + '/';
+      // window.location.href = '/guides/' + $scope.newGuide.id + '/';
     }
   };
 

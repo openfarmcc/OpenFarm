@@ -29,6 +29,7 @@ module StageActions
 
     def execute
       @action = @stage.stage_actions.create(attributes)
+      @action.save
       set_images
       @action
     end

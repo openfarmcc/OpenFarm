@@ -24,6 +24,7 @@ gem 'rack-attack'
 gem 'impressionist', '~> 1.5.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
+gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
 gem 'searchkick', '~> 0.8.5'

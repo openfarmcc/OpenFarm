@@ -1,5 +1,6 @@
 module Users
   class UpdateUser < Mutations::Command
+    include PicturesMixin
 
     required do
       string :id

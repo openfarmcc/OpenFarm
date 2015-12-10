@@ -2,7 +2,7 @@ module Stages
   # TODO Start new naming convention: Stages::Update
   class UpdateStage < Mutations::Command
     attr_reader :pictures
-
+    include PicturesMixin
     include Stages::StagesConcern
 
     required do
@@ -34,7 +34,7 @@ module Stages
 
     def execute
       @stage.update(attributes)
-      set_images
+      set_images images, @stage
       set_actions
       @stage.save
       @stage.reload

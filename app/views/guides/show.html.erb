@@ -38,7 +38,7 @@
       </div>
       <div class="columns large-5 margin-top">
         <h4 class="title" id="overview">
-          {{<%= t('.overview') %>}}
+          <%= t('.overview') %>
 
         </h4>
         <div class="markdown" markdown="guide.overview" ng-hide="editing">
@@ -87,7 +87,6 @@
         <div class="markdown" markdown="guide.overview" ng-hide="editing">
         </div>
         <textarea ng-model="guide.overview" ng-show="editing"></textarea>
-        </div>
       </div>
       <div class="columns small-4 margin-top">
         <h4 class="title text-center" id="compatibility">
@@ -110,7 +109,6 @@
       </div>
     </div>
 
-
     <div class="row wide-row content">
     <div class="small-12 columns">
     <accordion close-others="false">
@@ -126,8 +124,6 @@
     </div>
   </div>
 </div>
-
-<%= current_user %>
 
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>

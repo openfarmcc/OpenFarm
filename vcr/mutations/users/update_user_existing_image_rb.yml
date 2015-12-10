@@ -24,6 +24,8 @@ http_interactions:
       - '"8346c4994b3382c1cf8930509c53e9f3"'
       Content-Type:
       - image/jpeg
+      Fastly-Debug-Digest:
+      - 032fb53eda4492f00ea14f24bb8b724218de877782e9967526129b9500fd3dbb
       Cache-Control:
       - public, max-age=31536000
       Content-Length:
@@ -31,19 +33,19 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 28 Jul 2015 19:16:02 GMT
+      - Thu, 10 Dec 2015 16:57:34 GMT
       Age:
-      - '1324453'
+      - '830893'
       Connection:
       - keep-alive
       X-Served-By:
-      - cache-iad2146-IAD, cache-sjc3133-SJC
+      - cache-iad2121-IAD, cache-lax1430-LAX
       X-Cache:
       - HIT, HIT
       X-Cache-Hits:
       - 1, 1
       X-Timer:
-      - S1438110962.808880,VS0,VE2
+      - S1449766654.326134,VS0,VE0
       Access-Control-Allow-Methods:
       - GET, OPTIONS
       Access-Control-Allow-Origin:
@@ -1217,7 +1219,7 @@ http_interactions:
         KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//
         2Q==
     http_version: 
-  recorded_at: Tue, 28 Jul 2015 19:16:03 GMT
+  recorded_at: Thu, 10 Dec 2015 16:57:34 GMT
 - request:
     method: get
     uri: http://i.imgur.com/2haLt4J.jpg
@@ -1242,6 +1244,8 @@ http_interactions:
       - '"8346c4994b3382c1cf8930509c53e9f3"'
       Content-Type:
       - image/jpeg
+      Fastly-Debug-Digest:
+      - 032fb53eda4492f00ea14f24bb8b724218de877782e9967526129b9500fd3dbb
       Cache-Control:
       - public, max-age=31536000
       Content-Length:
@@ -1249,19 +1253,19 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 28 Jul 2015 19:16:57 GMT
+      - Thu, 10 Dec 2015 16:57:34 GMT
       Age:
-      - '1324508'
+      - '830893'
       Connection:
       - keep-alive
       X-Served-By:
-      - cache-iad2148-IAD, cache-sjc3120-SJC
+      - cache-iad2121-IAD, cache-lax1422-LAX
       X-Cache:
       - HIT, HIT
       X-Cache-Hits:
-      - 1, 2
+      - 1, 1
       X-Timer:
-      - S1438111017.422372,VS0,VE0
+      - S1449766654.832438,VS0,VE0
       Access-Control-Allow-Methods:
       - GET, OPTIONS
       Access-Control-Allow-Origin:
@@ -2435,5 +2439,5 @@ http_interactions:
         KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//
         2Q==
     http_version: 
-  recorded_at: Tue, 28 Jul 2015 19:16:57 GMT
+  recorded_at: Thu, 10 Dec 2015 16:57:34 GMT
 recorded_with: VCR 2.9.3

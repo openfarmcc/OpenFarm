@@ -1,5 +1,6 @@
 module Guides
   class UpdateGuide < Mutations::Command
+    include PicturesMixin
     include Guides::GuidesConcern
 
     required do
@@ -39,13 +40,13 @@ module Guides
       @guide = guide
       validate_time_span
       validate_permissions
-      validate_images images
+      validate_images images, @guide
     end
 
     def execute
       @guide.update(attributes.select {|k| k != 'featured_image'})
       set_time_span
-      set_images
+      set_images images, @guide
       @guide.save
       @guide
     end

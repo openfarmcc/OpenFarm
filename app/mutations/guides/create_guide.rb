@@ -1,7 +1,7 @@
 module Guides
   class CreateGuide < Mutations::Command
     attr_writer :guide
-
+    include PicturesMixin
     include Guides::GuidesConcern
 
     required do
@@ -51,7 +51,7 @@ module Guides
       @guide.user = user
       @guide.crop = @crop
       @guide.save!
-      set_images
+      set_images images, @guide
       set_time_span
       # set_featured_image_async
       @guide.save!

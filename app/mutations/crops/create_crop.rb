@@ -1,7 +1,7 @@
 module Crops
   class CreateCrop < Mutations::Command
     attr_reader :pictures
-
+    include PicturesMixin
     include Crops::CropsConcern
 
     required do
@@ -31,13 +31,13 @@ module Crops
     def validate
       validate_permissions
 
-      validate_images
+      validate_images images
     end
 
     def execute
       @crop = Crop.new(attributes)
       @crop.save
-      set_pictures
+      set_images images, @crop
       @crop.save
       @crop
     end

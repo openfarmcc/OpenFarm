@@ -122,13 +122,13 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
     };
 
     $scope.setGuide = function(object){
+      $scope.guide = object;
 
       if ($scope.userId){
         userService.getUser($scope.userId,
                             $scope.setCurrentUser);
       }
 
-      $scope.guide = object;
       if($scope.guide.user !== undefined) {
         userService.getUser($scope.guide.user.id,
                             $scope.setGuideUser);
@@ -138,7 +138,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
                           function(success, crop) {
                             $scope.guide.crop = crop;
                           });
-      console.log($scope.guide);
       $scope.$watch('guide.stages', function() {
         if ($scope.guide.stages !== undefined) {
           $scope.guide.stages.forEach(function(stage) {

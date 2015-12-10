@@ -19,6 +19,7 @@
     </div>
   </div>
   <tabset class="tabs">
+
     <tab ng-repeat="stage in guide.stages | orderBy:'order'">
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>

@@ -22,7 +22,7 @@ describe Gardens::UpdateGarden do
   end
 
   it 'updates a garden image via URL' do
-    VCR.use_cassette('mutations/stages/update_stage') do
+    VCR.use_cassette('mutations/gardens/update_garden') do
       image_hash = {
         image_url: 'http://i.imgur.com/2haLt4J.jpg'
       }

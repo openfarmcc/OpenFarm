@@ -1,5 +1,7 @@
 module Gardens
   class CreateGarden < Mutations::Command
+    include PicturesMixin
+
     required do
       model :user
       hash :attributes do

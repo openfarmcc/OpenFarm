@@ -1,6 +1,7 @@
 module Stages
   class CreateStage < Mutations::Command
     include Stages::StagesConcern
+    include PicturesMixin
 
     required do
       model :user
@@ -37,7 +38,7 @@ module Stages
       @stage ||= Stage.new(attributes)
       @stage.guide = @guide
       @stage.save
-      set_images
+      set_images images, @stage
       set_actions
 
       @stage.save

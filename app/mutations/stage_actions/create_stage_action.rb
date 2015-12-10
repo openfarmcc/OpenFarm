@@ -1,6 +1,7 @@
 module StageActions
   class CreateStageAction < Mutations::Command
     include StageActions::StageActionsConcern
+    include PicturesMixin
 
     required do
       model :user
@@ -23,14 +24,14 @@ module StageActions
 
     def validate
       validate_stage
-      validate_images
+      validate_images images
       validate_permissions
     end
 
     def execute
       @action = @stage.stage_actions.create(attributes)
       @action.save
-      set_images
+      set_images images, @action
       @action
     end
 

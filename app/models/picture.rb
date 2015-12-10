@@ -21,7 +21,7 @@ class Picture
       pic = new(photographic: parent)
       if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
         pic.attachment = open(file_location)
-      else
+      else # it's a filesystem update
         pic.attachment = file_location
       end
       pic.save!

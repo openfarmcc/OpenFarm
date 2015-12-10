@@ -18,13 +18,13 @@ class GuidesController < ApplicationController
     @guide = Guide.new
   end
 
-  # def edit
-  #   @guide = Guide.find(params[:id])
+  def edit
+    @guide = Guide.find(params[:id])
 
-  #   if not @guide.user.id == current_user.id
-  #     redirect_to @guide
-  #   end
-  # end
+    # if not @guide.user.id == current_user.id
+    redirect_to @guide
+    # end
+  end
 
   def destroy
     @outcome = Guides::DestroyGuide.run(params,

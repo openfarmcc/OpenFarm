@@ -4,7 +4,7 @@ ruby '2.2.0'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '4.0.2' # TODO: Upgrade when Mongoid is compatible.
+gem 'rails', '4.1.9' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
@@ -33,6 +33,11 @@ gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'
 gem 'gibbon'
 gem 'jsonapi-serializers'
+
+gem 'bson_ext'
+gem 'mongoid', '~>4.0.2'
+# gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
+gem 'active_model_serializers'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -85,7 +90,3 @@ gem 'high_voltage'
 gem 'devise'
 gem 'rails_admin'
 gem 'ng-rails-csrf'
-
-gem 'bson_ext'
-gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
-gem 'active_model_serializers'

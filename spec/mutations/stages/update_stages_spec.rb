@@ -86,25 +86,4 @@ describe Stages::UpdateStage do
       expect(pics.count).to eq(0)
     end
   end
-
-  it 'does not edit existing images' do
-    VCR.use_cassette('mutations/stages/update_stage') do
-      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
-
-      image_params = params.merge(images: image_hash)
-      mutation.run(image_params)
-
-      stage.reload
-
-      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg',
-                      id: stage.pictures.first.id },
-                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
-
-      image_params[:images] = image_hash
-
-      results = mutation.run(image_params)
-      expect(results.success?).to be_falsey
-      expect(results.errors.message[:images]).to include('existing image')
-    end
-  end
 end

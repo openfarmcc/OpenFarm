@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'openfarm_errors'
 
 describe GuidesController do
   it 'directs to a new page' do
@@ -21,8 +22,8 @@ describe GuidesController do
     user = guide.user
     sign_in user
     get 'edit', id: guide.id
-    expect(response).to render_template(:edit)
-    expect(response.status).to eq(200)
+    expect(response).to redirect_to "/en/guides/#{guide.slug}"
+    expect(response.status).to eq(302)
   end
 
   it 'should redirect to the guide if the user does not own it' do

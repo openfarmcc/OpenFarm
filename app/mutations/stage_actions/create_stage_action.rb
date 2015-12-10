@@ -32,6 +32,7 @@ module StageActions
       @action = @stage.stage_actions.create(attributes)
       @action.save
       set_images images, @action
+      @action.reload
       @action
     end
 

@@ -31,10 +31,10 @@ module Gardens
     end
 
     def execute
-
       @existing_garden.update(attributes)
       set_images(images, @existing_garden)
       @existing_garden.save
+      @existing_garden.reload
       @existing_garden
     end
 

@@ -136,12 +136,11 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
         $http.post('/api/v1/guides/', params).success(function (response) {
           resolve(buildGuide(response.data, response.included));
         }).error(function (response, code) {
-          console.log(response, code);
           reject(response, code);
           alertsService.pushToAlerts(response.errors, code);
         });
       });
-    }
+    };
 
     var updateGuide = function(guideId, params, callback){
       $http.put('/api/v1/guides/' + guideId + '/', params)

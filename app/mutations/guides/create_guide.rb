@@ -55,6 +55,7 @@ module Guides
       set_time_span
       # set_featured_image_async
       @guide.save!
+      @guide.reload
       @guide
     end
 

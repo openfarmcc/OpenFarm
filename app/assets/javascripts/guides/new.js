@@ -116,17 +116,17 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       var guide = null;
       var localGuide = localStorageService.get('guide');
        if ($scope.guideExists) {
-        console.log('guide exists')
-        // we're editing a guide. ignore local storage
-        guideService.getGuideWithPromise(getIDFromURL('guides'))
-          .then(function(data) {
-            var externalGuide = data;
-            guide = guideService.utilities.buildBlankGuide();
-            guide = loadExternalGuide(guide, externalGuide, practices);
-            resolve(guide);
-          }, function(error) {
-            reject(error);
-          });
+        // console.log('guide exists')
+        // // we're editing a guide. ignore local storage
+        // guideService.getGuideWithPromise(getIDFromURL('guides'))
+        //   .then(function(data) {
+        //     var externalGuide = data;
+        //     guide = guideService.utilities.buildBlankGuide();
+        //     guide = loadExternalGuide(guide, externalGuide, practices);
+        //     resolve(guide);
+        //   }, function(error) {
+        //     reject(error);
+        //   });
 
       // else if we've found a localguide and it's not blank
       } else if (localGuide !== undefined && localGuide !== null &&
@@ -145,7 +145,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
       // else, we start from scratch
       } else {
-        console.log('starting from scratch');
         guide = guideService.utilities.buildBlankGuide(null, [], practices);
         resolve(guide);
       }

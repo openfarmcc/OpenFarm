@@ -1,5 +1,5 @@
 <!-- Google schema.org -->
-	<meta itemprop="name" content="OpenFarm - You Can Grow Anything">
+	<meta itemprop="name" content="OpenFarm - <%= content_for?(:title) ? yield(:title) : 'You can grow anything' %>">
 	<meta itemprop="description" content="<%= content_for?(:description) ? yield(:description) : t('application.site_description') %>">
 	<meta itemprop="image" content="<%= content_for?(:social_image) ? yield(:social_image) : image_url("openfarm-learn-to-grow-anything-with-community-created-guides.jpg") %>">
 
@@ -12,7 +12,7 @@
 	<meta property="og:url" content="<%= root_url %>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="OpenFarm" />
-	<meta property="og:title" content="<%= content_for?(:description) ? yield(:description) : t('application.site_title') %>" />
+	<meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : t('application.site_title') %>" />
 	<meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : t('application.site_description') %>" />
 
 	<!-- All given Images would be available on fb to choose from when using the link https://openfarm.cc -->

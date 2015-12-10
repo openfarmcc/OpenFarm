@@ -36,6 +36,7 @@ module Crops
 
     def execute
       @crop = Crop.new(attributes)
+      @crop.save
       set_pictures
       @crop.save
       @crop

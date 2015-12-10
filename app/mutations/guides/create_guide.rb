@@ -48,9 +48,10 @@ module Guides
 
     def execute
       @guide ||= Guide.new(attributes)
-      set_images
       @guide.user = user
       @guide.crop = @crop
+      @guide.save!
+      set_images
       set_time_span
       # set_featured_image_async
       @guide.save!

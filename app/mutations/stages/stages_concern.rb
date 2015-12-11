@@ -20,6 +20,7 @@ module Stages
     end
 
     def set_actions
+      puts 'setting actions', actions.to_json
       @stage.stage_actions.delete_all
 
       actions && actions.each do |action|

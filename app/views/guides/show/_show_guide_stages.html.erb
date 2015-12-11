@@ -26,7 +26,6 @@
       </tab-heading>
       <div class="columns small-12">
         <div class="row actions">
-
           <div class="columns small-6 medium-4 action-photos stage-wrapper"
             ng-class="{end: $last}">
             <label class="stage-option {{stage.name}}"
@@ -44,8 +43,9 @@
             <h4 class="action-name" ng-bind="action.name"></h4>
             <span ng-repeat="picture in action.pictures">
               <img ng-src="{{picture.medium_url}}"/>
-            </span
+            </span>
             <p class="action-description" ng-bind="action.overview"></p>
+            <p class="action-time" ng-bind="action.time"></p>
           </div>
         </div>
       </div>

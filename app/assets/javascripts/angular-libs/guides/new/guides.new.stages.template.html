@@ -2,10 +2,10 @@
 
 
 <section ng-repeat="stage in guide.stages | filter: { selected: true } | orderBy: 'order'"
-  ng-init="stageForms[$index] = stage.name"
-  ng-if="stage.editing">
+  ng-init="stageForms[$index] = stage.name">
 
   <div guides-stage
+    ng-show="stage.editing"
     stage="stage"
     stages="guide.stages"
     guide-exists="guide.exists"

@@ -14,6 +14,8 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
           $scope.viewingStageOverview = true;
 
           var transferStageValuesIfNoneExist = function(stage, nextStage) {
+
+            console.log(nextStage.environment);
             if (!$scope.guideExists) {
               nextStage.environment = stage.environment;
               nextStage.light = stage.light;

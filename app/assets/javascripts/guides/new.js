@@ -356,11 +356,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           'guide_id': guide.id,
           'actions': stage.stage_action_options.map(function(action, index){
                 var img = null;
-                if(action.pictures !== null && action.picures !== undefined) {
+                if (action.pictures !== null && action.pictures !== undefined) {
                   img = action.pictures.filter(function(p){
+                    console.log(p, !p.deleted)
                     return !p.deleted;
-                   });
+                  });
                 }
+                console.log(img);
                 return { name: action.name,
                          images: img,
                          overview: action.overview,
@@ -379,32 +381,35 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // each stage.
       if (stage.selected && !stage.exists){
         $scope.sending++;
+        console.log('sending stage');
         stageService.createStageWithPromise({'data': data})
-          .then(function(stage){
-            stage.sent = true;
-            $scope.sending--;
-            $scope.checkNumberUpdated();
-          });
-
-      } else if (stage.selected && stage.exists){
-        $scope.sending++;
-        stageService.updateStageWithPromise(stage.id, {'data': data})
-          .then(function(stage){
-            stage.sent = true;
-            $scope.sending--;
-            $scope.checkNumberUpdated();
-           });
-
-      } else if (stage.exists){
-        $scope.sending++;
-        stageService.deleteStageWithPromise(stage.id)
-          .then(function(){
-            stage.sent = true;
-            $scope.sent ++;
+          .then(function(createdStage){
+            console.log('created stage', createdStage)
+            createdStage.sent = true;
             $scope.sending--;
             $scope.checkNumberUpdated();
           });
       }
+
+      // } else if (stage.selected && stage.exists){
+      //   $scope.sending++;
+      //   stageService.updateStageWithPromise(stage.id, {'data': data})
+      //     .then(function(stage){
+      //       stage.sent = true;
+      //       $scope.sending--;
+      //       $scope.checkNumberUpdated();
+      //      });
+
+      // } else if (stage.exists){
+      //   $scope.sending++;
+      //   stageService.deleteStageWithPromise(stage.id)
+      //     .then(function(){
+      //       stage.sent = true;
+      //       $scope.sent ++;
+      //       $scope.sending--;
+      //       $scope.checkNumberUpdated();
+      //     });
+      // }
 
     });
   };
@@ -414,7 +419,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     if ($scope.sending === 0){
       localStorageService.remove('guide');
       $scope.startedSending = false;
-      window.location.href = '/guides/' + $scope.newGuide.id + '/';
+      // window.location.href = '/guides/' + $scope.newGuide.id + '/';
     }
   };
 

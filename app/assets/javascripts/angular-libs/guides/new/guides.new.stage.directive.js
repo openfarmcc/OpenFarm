@@ -15,11 +15,10 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
 
           var transferStageValuesIfNoneExist = function(stage, nextStage) {
 
-            console.log(nextStage.environment);
             if (!$scope.guideExists) {
-              nextStage.environment = stage.environment;
-              nextStage.light = stage.light;
-              nextStage.soil = stage.soil;
+              nextStage.environment = angular.copy(stage.environment);
+              nextStage.light = angular.copy(stage.light);
+              nextStage.soil = angular.copy(stage.soil);
             }
           };
 

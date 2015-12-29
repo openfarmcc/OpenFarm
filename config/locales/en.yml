@@ -352,6 +352,7 @@ en:
           delete_guide: " Delete Guide"
           print_guide: " Print Guide"
           guide_by: "Guide by"
+          compatibility: "Compatibility"
           compatibility_based_on: "Based on"
           show_guide_statistics:
               title: "Statistics"

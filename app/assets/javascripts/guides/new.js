@@ -116,22 +116,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       var guide = null;
       var localGuide = localStorageService.get('guide');
        if ($scope.guideExists) {
-        // console.log('guide exists')
-        // // we're editing a guide. ignore local storage
-        // guideService.getGuideWithPromise(getIDFromURL('guides'))
-        //   .then(function(data) {
-        //     var externalGuide = data;
-        //     guide = guideService.utilities.buildBlankGuide();
-        //     guide = loadExternalGuide(guide, externalGuide, practices);
-        //     resolve(guide);
-        //   }, function(error) {
-        //     reject(error);
-        //   });
 
       // else if we've found a localguide and it's not blank
       } else if (localGuide !== undefined && localGuide !== null &&
           !guideService.utilities.isBlankGuide(localGuide, practices)) {
-        console.log('is localguide defined');
         // if it's local storage, we've been here before, but first
         // check that the guide in localStorage isn't just a blank guide.
         guide = localGuide;
@@ -246,7 +234,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           'image_url': featured_image
         }];
       } else {
-        return null
+        return null;
       }
     };
 
@@ -283,19 +271,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       $scope.sending--;
     };
 
-    // if ($scope.newGuide.id){
-    //   // In this case the guide already existed,
-    //   // so we need to put, not to post.
-    //   // TODO: refactor the $scope.alerts thing
-    //   // so that it cancels things if things go wrong
-    //   params.data.id = $scope.newGuide.id;
-
-    //   guideService.updateGuideWithPromise(params.data.id, params)
-    //     .then($scope.sendStages, errorFunction);
-    // } else {
-      guideService.createGuideWithPromise(params)
-        .then($scope.sendStages, errorFunction);
-    // }
+    guideService.createGuideWithPromise(params)
+      .then($scope.sendStages, errorFunction);
   };
 
   var calcTimeLength = function(length, length_type){
@@ -323,13 +300,12 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   };
 
   $scope.sendStages = function(guide){
-    console.log(guide);
     $scope.sending--;
     $scope.newGuide.id = guide.id;
 
     $scope.newGuide.stages.forEach(function(stage){
 
-      var data;
+      var data = {};
       if (stage.selected) {
         data = {
           'attributes': {
@@ -358,11 +334,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
                 var img = null;
                 if (action.pictures !== null && action.pictures !== undefined) {
                   img = action.pictures.filter(function(p){
-                    console.log(p, !p.deleted)
                     return !p.deleted;
                   });
                 }
-                console.log(img);
                 return { name: action.name,
                          images: img,
                          overview: action.overview,
@@ -381,10 +355,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       // each stage.
       if (stage.selected && !stage.exists){
         $scope.sending++;
-        console.log('sending stage');
         stageService.createStageWithPromise({'data': data})
           .then(function(createdStage){
-            console.log('created stage', createdStage)
             createdStage.sent = true;
             $scope.sending--;
             $scope.checkNumberUpdated();

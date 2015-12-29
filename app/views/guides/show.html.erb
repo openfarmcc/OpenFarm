@@ -54,7 +54,7 @@
         </div>
         <textarea ng-model="guide.overview" ng-show="editing"></textarea>
       </div>
-      <div class="columns large-2 margin-top">
+      <div class="columns large-2 margin-top  compatibility" ng-class="{'editing': editing}">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>
@@ -97,7 +97,7 @@
         </div>
         <textarea ng-model="guide.overview" ng-show="editing"></textarea>
       </div>
-      <div class="columns small-4 margin-top">
+      <div class="columns small-4 margin-top compatibility" ng-class="{'editing': editing}">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>
@@ -124,7 +124,7 @@
 
     <%= render 'guides/show/show_guide_basic_needs' %>
 
-    <%= render 'guides/show/show_guide_timeline' %>
+    <!-- <%= render 'guides/show/show_guide_timeline' %> -->
 
     <%= render 'guides/show/show_guide_stages' %>
 

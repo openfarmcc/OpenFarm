@@ -1,4 +1,4 @@
-.edit-guide-app {
+/*.edit-guide-app {
   margin: 2rem 0 4rem;
 
   small.error {
@@ -59,7 +59,6 @@
   }
 
 
-
   input[type=text].hidden-edit-field {
     font-size: 2rem;
     height: 3.5rem;
@@ -75,11 +74,11 @@
     margin-top: 0;
   }
 
-  /****
-  *
-  * $BASIC NEEDS
-  *
-  ****/
+  //
+  //
+  // $BASIC NEEDS
+  //
+  //
 
   .basic-needs {
     .actual-basic-needs {
@@ -96,11 +95,9 @@
     margin: 0 1rem;
     display: inline-block;
     opacity: .5;
-    /*transition: .2s;*/
 
     &.active {
       background-color: scale-color($of-green, $lightness: 35%);
-      /*background-color: $of-green;*/
       opacity: 1;
 
       &:hover{
@@ -128,15 +125,13 @@
     }
 
     .columns {
-      /*padding: .5rem inherit;*/
     }
 
     .choices select {
       display: inline-block;
-      /*width: 35%;*/
       background-color: inherit;
       cursor: pointer;
-      /*margin-top: .1rem;*/
+
       margin-bottom: 0;
     }
   }
@@ -146,17 +141,14 @@
     margin-top: 1rem;
   }
 
-  /****
-  *
-  * $STAGES
-  *
-  ****/
+  //
+  //
+  // $STAGES
+  //
+  //
 
 
   .tabs {
-    dd a {
-      /*padding: .5rem 1rem;*/
-    }
     h3 {
       font-size: .8rem;
     }
@@ -167,14 +159,20 @@
   }
 
 
-  /*
+  //
+  //
+  // $SIZES
+  //
+  //
 
-  $SIZES
-
-  */
   @media only screen and (max-width: 40.063em) {
     .basic-needs .actual-basic-needs {
       @include columns(1);
     }
   }
+}*/
+
+.compatibility.editing {
+  opacity: .3;
+  pointer-events: none;
 }

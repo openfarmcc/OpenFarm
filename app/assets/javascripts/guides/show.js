@@ -1,12 +1,14 @@
-openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
-    'userService', 'gardenService', 'cropService', 'stageService',
+openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q',
+    'userService', 'gardenService', 'cropService', 'stageService', 'defaultService',
   function showGuideCtrl($scope,
                          $http,
                          guideService,
+                         $q,
                          userService,
                          gardenService,
                          cropService,
-                         stageService) {
+                         stageService,
+                         defaultService) {
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
     $scope.gardenCrop = {};
@@ -25,7 +27,12 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
       var params = {'data':  {
         'attributes': {
           'overview': $scope.guide.overview,
-          'name': $scope.guide.name
+          'name': $scope.guide.name,
+          'practices': $scope.practices.filter(function(practice) {
+                         return practice.selected === true;
+                       }).map(function(practice) {
+                         return practice.slug;
+                       })
           }
         }
       };
@@ -134,20 +141,31 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
                             $scope.setGuideUser);
       }
 
-      cropService.getCrop($scope.guide.relationships.crop.data.id,
-                          function(success, crop) {
-                            $scope.guide.crop = crop;
-                          });
+      $q.all([
+        defaultService.processedDetailOptions(),
+        cropService.getCropWithPromise($scope.guide.relationships.crop.data.id)
+      ]).then(function(data) {
+        $scope.practices = data[0].multiSelectPractices;
+        $scope.practices.forEach(function(practice) {
+          if ($scope.guide.practices.indexOf(practice.slug.toLowerCase()) > -1) {
+            practice.selected = true;
+          }
+        });
+
+        $scope.guide.crop = data[1];
+      });
+
       $scope.$watch('guide.stages', function() {
         if ($scope.guide.stages !== undefined) {
+
           $scope.guide.stages.forEach(function(stage) {
+
             stageService.getPictures(stage)
               .then(function(pictures) {
-                // console.log('in show', pictures);
+
                 stage.pictures = pictures.map(function(pic) {
                   return pic.attributes;
                 });
-                // console.log(stage.pictures, $scope.guide.stages[0].pictures);
               });
           });
           // This is a hack because stages get built from the
@@ -173,7 +191,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService',
 
         }
       });
-
     };
 
     guideService.getGuideWithPromise($scope.guideId)

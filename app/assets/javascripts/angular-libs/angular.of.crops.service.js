@@ -69,7 +69,7 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
           resolve();
         }
       });
-    }
+    };
 
     var createCropWithPromise = function(cropObject) {
       var url = '/api/v1/crops/';

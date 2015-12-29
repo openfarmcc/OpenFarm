@@ -16,6 +16,42 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
       return detailOption;
     };
 
+    var processedDetailOptions = function() {
+      return $q(function(resolve, reject) {
+        getDetailOptions()
+          .then(function(detail_options) {
+            var options = {
+              'environment': [],
+              'light': [],
+              'soil': [],
+              'practices': [],
+              'multiSelectPractices': []
+            };
+
+            detail_options.forEach(function(detail) {
+              if (options[detail.category] !== undefined) {
+                options[detail.category].push(detail.name);
+              }
+            });
+
+            options.multiSelectPractices = options.practices.map(function(practice) {
+              return {
+                // TODO: make the slug creation more robust.
+                'slug': practice.toLowerCase(),
+                'label': practice,
+                'selected': false
+              };
+            });
+
+            resolve(options)
+          }, function(error) {
+            console.log('error');
+            reject(error)
+          });
+
+      });
+    };
+
     var getDetailOptions = function() {
       return $q(function(resolve, reject) {
         $http.get('/api/v1/detail_options/')
@@ -26,6 +62,7 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
           })
           .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
+            reject(response);
           })
       })
     };
@@ -63,6 +100,7 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
         'buildDetailOption': buildDetailOption,
         'buildStageOption': buildStageOption
       },
+      'processedDetailOptions': processedDetailOptions,
       'getDetailOptions': getDetailOptions,
       'getStageOptions': getStageOptions,
       'getStageActionOptions': getStageActionOptions

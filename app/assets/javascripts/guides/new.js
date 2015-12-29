@@ -141,35 +141,22 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
   // First FIRST we need to get all of the defaults
   $q.all([
-      defaultService.getDetailOptions(),
+      defaultService.processedDetailOptions(),
       cropService.getCropWithPromise(getUrlVar('crop_id')),
       userService.getUserWithPromise(USER_ID),
     ])
   .then(function(data){
     var crop;
+
     var detail_options = data[0];
+    $scope.options = detail_options;
+    practices = detail_options.multiSelectPractices;
 
     if (data[1]) {
       crop = data[1];
       $scope.query = crop.name;
     }
     $scope.user = data[2];
-
-    detail_options.forEach(function(detail) {
-      // var category = detail.category + 'Options';
-      if ($scope.options[detail.category] !== undefined) {
-        $scope.options[detail.category].push(detail.name);
-      }
-    });
-
-    practices = $scope.options.practices.map(function(practice) {
-      return {
-        // TODO: make the slug creation more robust.
-        'slug': practice.toLowerCase(),
-        'label': practice,
-        'selected': false
-      };
-    });
 
     checkingGuideSource()
       .then(function(guide) {
@@ -362,27 +349,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
             $scope.checkNumberUpdated();
           });
       }
-
-      // } else if (stage.selected && stage.exists){
-      //   $scope.sending++;
-      //   stageService.updateStageWithPromise(stage.id, {'data': data})
-      //     .then(function(stage){
-      //       stage.sent = true;
-      //       $scope.sending--;
-      //       $scope.checkNumberUpdated();
-      //      });
-
-      // } else if (stage.exists){
-      //   $scope.sending++;
-      //   stageService.deleteStageWithPromise(stage.id)
-      //     .then(function(){
-      //       stage.sent = true;
-      //       $scope.sent ++;
-      //       $scope.sending--;
-      //       $scope.checkNumberUpdated();
-      //     });
-      // }
-
     });
   };
 

@@ -39,22 +39,39 @@
         <h2 class="guide-relationships"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }} for <a href="/crops/{{ guide.crop.slug }}/" class="crop-name">{{ guide.crop.name }}</a></h2>
         <%= render "guides/show/guide_controllers" %>
       </div>
+
       <div class="columns large-5">
         <div class="canopy"
           ng-attr-alt="{{ guide.name }}"
           style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
         </div>
       </div>
+
       <div class="columns large-5 margin-top">
         <h4 class="title" id="overview">
           <%= t('.overview') %>
-
         </h4>
+
+        <div multi-row-select
+             ng-show="editing"
+             class="multi-choice"
+             options="practices"
+             multi-select-overflow-count="3"
+             multi-select-type="checkbox"
+             multi-select-id="practices">
+        </div>
+        <br/>
+
         <div class="markdown" markdown="guide.overview" ng-hide="editing">
         </div>
-        <textarea ng-model="guide.overview" ng-show="editing"></textarea>
+        <textarea
+          ng-model="guide.overview"
+          ng-show="editing">
+        </textarea>
+
       </div>
-      <div class="columns large-2 margin-top  compatibility" ng-class="{'editing': editing}">
+
+      <div class="columns large-2 margin-top  compatibility">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>
@@ -63,6 +80,7 @@
           tooltip="<%= t('.compatibility_based_on') %> &quot;{{ garden.name }}&quot;">
           <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
         </div>
+
         <div class="add-to-garden center">
           <% if current_user && current_user.confirmed? %>
             <div add-to-gardens
@@ -72,6 +90,7 @@
             </div>
           <% end %>
         </div>
+
       </div>
     </div>
 
@@ -93,19 +112,32 @@
         <h4 class="title" id="overview">
           <%= t('.overview') %>
         </h4>
+
+        <div multi-row-select
+             ng-show="editing"
+             class="multi-choice"
+             options="practices"
+             multi-select-overflow-count="3"
+             multi-select-type="checkbox"
+             multi-select-id="practices">
+        </div>
+        <br/>
         <div class="markdown" markdown="guide.overview" ng-hide="editing">
         </div>
         <textarea ng-model="guide.overview" ng-show="editing"></textarea>
       </div>
+
       <div class="columns small-4 margin-top compatibility" ng-class="{'editing': editing}">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>
+
         <div class="compatibility-circle-container"
           ng-repeat="garden in currentUser.gardens"
           tooltip="<%= t('.compatibility_based_on') %> &quot;{{ garden.name }}&quot;">
           <%= render partial:'/guides/compatibility_circle', locals:{guide: @guide} %>
         </div>
+
         <div class="add-to-garden center">
           <% if current_user %>
             <div add-to-gardens

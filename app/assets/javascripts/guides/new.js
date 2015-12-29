@@ -315,6 +315,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
               }).map(function(s){
                 return s.label;
               }) || null,
+            'overview': stage.overview
           },
           'guide_id': guide.id,
           'actions': stage.stage_action_options.map(function(action, index){
@@ -337,6 +338,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           });
         }
       }
+
+      console.log(data);
 
       // Go through all the possible changes on
       // each stage.

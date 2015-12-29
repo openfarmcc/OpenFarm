@@ -5,6 +5,7 @@ class StageSerializer < BaseSerializer
   attribute :light
   attribute :order
   attribute :stage_length
+  attribute :overview
 
   has_one :guide
   has_many :pictures

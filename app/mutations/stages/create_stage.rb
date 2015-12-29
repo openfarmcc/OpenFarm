@@ -14,6 +14,7 @@ module Stages
         end
 
         optional do
+          string :overview
           array :environment
           array :soil
           array :light

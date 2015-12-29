@@ -25,7 +25,13 @@
         <h3>{{ stage.name }}</h3>
       </tab-heading>
 
-      <div of-show-guide-stages stage="stage" class="columns small-12">
+      <div of-show-guide-stages
+        stage="stage"
+        saved="saved"
+        trigger-guide-update="guideUpdate"
+        editing="editing"
+        options="options"
+        class="columns small-12">
 
       </div>
     </tab>

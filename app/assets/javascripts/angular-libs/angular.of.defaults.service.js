@@ -25,7 +25,10 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
               'light': [],
               'soil': [],
               'practices': [],
-              'multiSelectPractices': []
+              'multiSelectPractices': [],
+              'multiSelectEnvironment': [],
+              'multiSelectLight': [],
+              'multiSelectSoil': []
             };
 
             detail_options.forEach(function(detail) {
@@ -34,11 +37,41 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
               }
             });
 
+            // TODO: so much code repetition here, how can we bring
+            // that down?
+
             options.multiSelectPractices = options.practices.map(function(practice) {
               return {
                 // TODO: make the slug creation more robust.
                 'slug': practice.toLowerCase(),
                 'label': practice,
+                'selected': false
+              };
+            });
+
+            options.multiSelectSoil = options.soil.map(function(soil) {
+              return {
+                // TODO: make the slug creation more robust.
+                'slug': soil.toLowerCase(),
+                'label': soil,
+                'selected': false
+              };
+            });
+
+            options.multiSelectEnvironment = options.environment.map(function(env) {
+              return {
+                // TODO: make the slug creation more robust.
+                'slug': env.toLowerCase(),
+                'label': env,
+                'selected': false
+              };
+            });
+
+            options.multiSelectLight = options.light.map(function(light) {
+              return {
+                // TODO: make the slug creation more robust.
+                'slug': light.toLowerCase(),
+                'label': light,
                 'selected': false
               };
             });

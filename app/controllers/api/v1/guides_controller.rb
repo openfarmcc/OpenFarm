@@ -40,7 +40,6 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    puts(params)
     @outcome = Guides::UpdateGuide.run(params[:data],
                                        user: current_user,
                                        guide: Guide.find(params[:id]))

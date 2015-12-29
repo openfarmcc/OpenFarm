@@ -8,8 +8,61 @@
   </div>
 
   <div class="columns small-6 medium-8 action-content">
-    <h4 class="action-name">{{ stage.name }} Overview</h4>
-    <p class="action-description"></p>
+    <h4 class="stage-name">{{ stage.name }} Overview</h4>
+
+    <div
+      class="markdown"
+      markdown="stage.overview"
+      ng-hide="editing">
+    </div>
+    <textarea
+      ng-model="stage.overview"
+      ng-show="editing">
+    </textarea>
+
+    <p class="stage-description"></p>
+
+    <table ng-hide="editing">
+      <tr>
+        <th>Environment</th><td>{{ stage.environment.join(', ') }}</td>
+      </tr>
+      <tr>
+        <th>Light</th><td>{{ stage.light.join(', ') }}</td>
+      </tr>
+      <tr>
+        <th>Soil</th><td>{{ stage.soil.join(', ') }}</td>
+      </tr>
+    </table>
+
+    <div ng-show="editing">
+
+      <label>Environment</label>
+      <div multi-row-select
+           class="multi-choice"
+           options="environment"
+           multi-select-overflow-count="3"
+           multi-select-type="checkbox"
+           multi-select-id="environment">
+      </div>
+
+      <label>Light</label>
+      <div multi-row-select
+           class="multi-choice"
+           options="light"
+           multi-select-overflow-count="3"
+           multi-select-type="checkbox"
+           multi-select-id="light">
+      </div>
+
+      <label>Soil</label>
+      <div multi-row-select
+           class="multi-choice"
+           options="soil"
+           multi-select-overflow-count="3"
+           multi-select-type="checkbox"
+           multi-select-id="soil">
+      </div>
+    </div>
   </div>
   <div class="columns small-6 medium-8 action-content"
     ng-repeat="action in stage.stage_actions">

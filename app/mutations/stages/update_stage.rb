@@ -11,6 +11,7 @@ module Stages
       hash :attributes do
         optional do
           string :name
+          string :overview
           array :environment
           array :soil
           array :light

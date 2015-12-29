@@ -23,7 +23,7 @@ class Api::V1::StagesController < Api::V1::BaseController
     # According to JSON-API params must be structured like this:
     # {
     #  'data': {
-    #     'type': 'crops',
+    #     'type': 'stages',
     #     'id': '<id>',
     #     'attributes': {},
     #     'actions',

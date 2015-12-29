@@ -85,7 +85,7 @@
     .right {
       position: absolute;
       right: 2.5rem;
-      top: 3rem;
+      margin-top: .5rem;
     }
   }
 
@@ -139,7 +139,7 @@
     // angle icon
     i.fa {
       @include single-transition(transform, 0.2s, ease-out);
-      opacity: 0;
+      opacity: 1;
 
       &.open {
         @include transform(rotate(180deg));

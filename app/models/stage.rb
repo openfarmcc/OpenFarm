@@ -11,6 +11,7 @@ class Stage
   field :environment, type: Array
   field :soil, type: Array
   field :light, type: Array
+  field :overview
 
   field :order, type: Integer # Inherited from the stage_option
 

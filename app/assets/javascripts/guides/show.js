@@ -15,6 +15,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
     $scope.toggleEditingGuide = function() {
       $scope.editing = !$scope.editing;
+      $scope.saved = false;
     };
 
     $scope.setGuideUser = function(success, object){
@@ -39,12 +40,24 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
       guideService.updateGuideWithPromise($scope.guide.id, params)
         .then(function(response) {
+
           $scope.toggleEditingGuide();
+
+          // Setting this to true will trigger the watches in the show.stage
+          // directives, which cause those stages to update as well.
+          $scope.saved = true;
+
+          // $scope.setGuide(response);
+
         }, function(response) {
           console.log(response);
         });
-
     };
+
+    $scope.guideUpdate = function() {
+      guideService.getGuideWithPromise($scope.guideId)
+        .then($scope.setGuide);
+    }
 
     $scope.setCurrentUser = function(success, object){
       if (success){
@@ -145,6 +158,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         defaultService.processedDetailOptions(),
         cropService.getCropWithPromise($scope.guide.relationships.crop.data.id)
       ]).then(function(data) {
+        $scope.options = data[0];
         $scope.practices = data[0].multiSelectPractices;
         $scope.practices.forEach(function(practice) {
           if ($scope.guide.practices.indexOf(practice.slug.toLowerCase()) > -1) {

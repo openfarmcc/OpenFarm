@@ -26,7 +26,6 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
             var nextStage = $scope.stages[stage.nextSelectedIndex];
             transferStageValuesIfNoneExist(stage, nextStage);
             $scope.editSelectedStage(nextStage);
-            // scrollToTop();
           };
 
           $scope.editSelectedStage = function(chosenStage){

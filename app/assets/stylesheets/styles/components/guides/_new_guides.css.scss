@@ -114,17 +114,22 @@
   padding-left: .75rem;
   margin: .25rem 0;
   cursor: pointer;
-  transition: $transition-speed background-color ;
+  transition: $transition-speed background-color, $transition-speed box-shadow;
   @include grey-inset;
 
   &:hover {
     background-color: darken($gray-bg, 10%);
-    box-shadow-color: darken($gray-bg, 20%);
+    box-shadow: darken($gray-bg, 20%);
   }
 
   &.selected {
     background-color: darken($gray-bg, 10%);
-    box-shadow-color: darken($gray-bg, 20%);
+    box-shadow: darken($gray-bg, 20%);
+  }
+
+  &.completed {
+    @include inset($of-green);
+    color: $white;
   }
 
   i {

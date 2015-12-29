@@ -4,7 +4,7 @@
       class="stage-action-toggle"
       ng-init="action.length_type = 'minutes'"
       ng-click="activateAction(action)"
-      ng-class="{ selected : stage.activeAction.id == action.id && !viewingStageOverview, completed : action.overview }">
+      ng-class="{ selected : stage.activeAction.name == action.name && !viewingStageOverview, completed : action.overview }">
       {{ $index+1 }}. {{ action.name }} <i class="fa fa-arrows-v pull-right"></i>
   </li>
 </ul>

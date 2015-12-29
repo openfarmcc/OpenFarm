@@ -41,12 +41,15 @@
 }
 
 @mixin grey-inset(){
-  background-color: $gray-bg;
-  border-radius: 3px;
-  box-shadow: inset 0px 3px 0 darken($gray-bg, 10%);
-  border: darken($gray-bg, 10%);
+  @include inset($gray-bg);
 }
 
+@mixin inset($background){
+  background-color: $background;
+  border-radius: 3px;
+  box-shadow: inset 0px 3px 0 darken($background, 10%);
+  border: darken($background, 10%);
+}
 
 /*
 

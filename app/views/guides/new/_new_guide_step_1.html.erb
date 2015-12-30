@@ -1,4 +1,8 @@
-<section name="step-1" class="step" ng-show="step === 1" ng-if="!$scope.loadingEverything">
+<section name="step-1"
+  class="step"
+  ng-show="step === 1"
+  ng-if="!$scope.loadingEverything"
+  ng-class="{'from-right': step < 1, 'from-left': step > 1}">
   <form accept-charset="UTF-8"
     class="getting-started"
     id="new-guide-step-1"

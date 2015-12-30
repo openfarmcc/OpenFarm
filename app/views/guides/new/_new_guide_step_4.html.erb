@@ -1,4 +1,7 @@
-<section name="step-4" class="step" ng-if="step === 4">
+<section name="step-4"
+  class="step"
+  ng-show="step === 4"
+  ng-class="{'from-right': 4 < previousStep, 'from-left': step > 4}">
   <div class="instructions text-center">
     <h1>
       <%= t('.almost_done') %>

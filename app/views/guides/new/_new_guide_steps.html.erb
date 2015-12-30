@@ -33,7 +33,7 @@
             </a>
           </li>
           <li>
-            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !selectedStagesCount > 0, 'check' : newGuide.name }"
+            <a ng-class="{ 'active' : step === 4, 'disabled' : !newGuide.crop || !newGuide.selectedStagesCount > 0, 'check' : newGuide.name }"
             ng-click="switchToStep(4)">
               <%= t('.final_touches') %>
             </a>
@@ -43,11 +43,12 @@
     </div>
   </div>
 
-  <div class="bar-header life-stage-nav stage-details" ng-show="step === 3">
+  <section class="bar-header life-stage-nav stage-details" ng-show="step === 3"
+    ng-class="{'from-right': step < 3, 'from-left': step > 3}">
     <div class="container">
       <div class="row">
         <%= render 'guides/new/stage_details/chosen_stages' %>
       </div>
     </div>
-  </div>
+  </section>
 </div>

@@ -22,8 +22,16 @@
 }
 
 .new-guide {
+  position: relative;
+  height: 100%;
+
   section.step {
     margin-bottom: 4rem;
+    transition: transform 1s, opacity 1s;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
 
     h1 {
       font-size: 2rem;
@@ -37,7 +45,42 @@
       font-size: 1.2rem;
       font-family: $body-font-family;
     }
+
+    &.ng-hide {
+      display: block !important;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(180px);
+      opacity: 0;
+    }
+
+
+    // coming from the left, appearing
+    &.from-left:not(.ng-hide) {
+      transform: translate(0px);
+      opacity: 1;
+    }
+
+    // coming from the left, disappearing
+    &.ng-hide.from-left {
+      transform: translateX(-180px);
+      opacity: 0;
+    }
+
+    // coming from the right, appearing
+    &.from-right:not(.ng-hide) {
+      transform: translate(0px);
+      opacity: 1;
+    }
+
+    // coming from the right, disappearing
+    &.ng-hide.from-right {
+      transform: translateX(180px);
+      opacity: 0;
+    }
   }
+
+
 
   .button-wrapper {
     margin-top: 2rem;

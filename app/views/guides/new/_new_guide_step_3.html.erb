@@ -1,4 +1,7 @@
-<section name="step-3" class="step stage-details" ng-show="step === 3">
+<section name="step-3"
+  class="step stage-details"
+  ng-show="step === 3"
+  ng-class="{'from-right': step < 3, 'from-left': step > 3}">
 
   <div ng-show="newGuide.selectedStagesCount === 0">
     <%= t('.select_some_stages') %>

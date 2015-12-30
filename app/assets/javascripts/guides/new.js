@@ -188,10 +188,30 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
   // Methods to switch between steps
 
+  var recalcHeight = function() {
+    var $viewing = $('.step:not(.ng-hide)')
+
+    var maxHeight = Math.max.apply(null, $(".step").map(function () {
+        return $(this).height();
+    }).get());
+
+    if (maxHeight < 850) {
+      maxHeight = 850;
+    }
+
+    $viewing.parent().height(maxHeight);
+  };
+
   $scope.switchToStep = function(step){
+    $rootScope.previousStep = $rootScope.step;
     $rootScope.step = step;
+
+    recalcHeight();
+
     $location.hash($rootScope.step);
   };
+
+  recalcHeight();
 
   // Sending methods
 

@@ -1,4 +1,7 @@
-<section name="step-2" class="step" ng-show="step === 2">
+<section name="step-2"
+  class="step"
+  ng-show="step === 2"
+  ng-class="{'from-right': step < 2, 'from-left': step > 2}">
     <form class="life-stages">
       <div class="instructions text-center">
         <h2><%= t('.choose_the_life_stages') %></h2>

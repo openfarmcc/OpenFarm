@@ -75,7 +75,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
 
             stageService.updateStageWithPromise(stage.id, {'data': data})
               .then(function(response) {
-                // $scope.triggerGuideUpdate();
+                $scope.triggerGuideUpdate();
                 console.log('success', response);
               }, function(error) {
                 console.log('error', error)

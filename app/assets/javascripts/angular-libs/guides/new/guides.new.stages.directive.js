@@ -186,7 +186,6 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
           //       stages.push(preloadedStage);
           //     }
           //   });
-          //   console.log('setting default stages');
           //   return buildDetailsForStages(stages);
           // };
 

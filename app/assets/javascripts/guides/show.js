@@ -192,7 +192,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
           // $scope.isNotUndefined = $scope.guide.stages.filter(function(s) {
           //   return undefined !== s
           // }).length === $scope.guide.stages.length;
-          // console.log($scope.isNotUndefined);
           if (true) {
             $scope.haveTimes = $scope.guide.stages
               .sort(function(a, b){ return a.order > b.order; })

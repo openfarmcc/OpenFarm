@@ -75,7 +75,7 @@ describe Api::V1::GuidesController, type: :controller do
       end
       expect(response.status).to eq(201)
       img_url = json['data']['attributes']['featured_image']['image_url']
-      expect(img_url).to include('.jpg')
+      expect(img_url).to include('/system/')
     end
 
     it 'should give current_user a badge for creating a guide' do

@@ -29,7 +29,6 @@ class Picture
         # end
 
       end
-      puts pic
       pic.save!
       pic
     end

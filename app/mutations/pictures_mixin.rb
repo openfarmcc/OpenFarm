@@ -6,6 +6,7 @@ module PicturesMixin
     images && images.each do |pic|
       pic_id = "#{pic[:id]}" if pic[:id].present?
       pictures = obj.pictures if obj
+
       outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
                                                  id: pic_id,
                                                  pictures: pictures)
@@ -22,10 +23,26 @@ module PicturesMixin
     # This is much simpler, less ping pong than what it was
     # and probably okay for now. However, this only works when S3
     # is enabled, because paperclip normally stores on system, not on URLs.
-    obj.pictures.delete_all
-    images && images.each do |img|
-      Picture.from_url(img[:image_url],
-                     obj)
+    if images
+
+      new_images = choose_images_to_delete images, obj
+
+      new_images && new_images.each do |img|
+        Picture.from_url(img[:image_url],
+                       obj)
+      end
     end
+  end
+
+  def choose_images_to_delete (images, obj)
+    image_ids = images.map { |img| img[:id].to_s }
+
+    obj.pictures.each do |pic|
+      if !image_ids.include? pic[:id].to_s
+        pic.delete
+      end
+    end
+
+    images.select { |img| !img[:id] }
   end
 end

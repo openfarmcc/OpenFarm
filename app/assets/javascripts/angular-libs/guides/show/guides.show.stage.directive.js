@@ -37,6 +37,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           });
 
           $scope.saveStage = function(stage) {
+
             var data = {
               'attributes': {
                 name: stage.name,
@@ -57,13 +58,24 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                         return soil.label
                       }),
                 stage_length: stage.stage_length,
-                order: stage.order
-              }
+                order: stage.order,
+              },
+              actions: stage.stage_actions.map(function(sa, index) {
+                        return {
+                          name: sa.name,
+                          images: sa.pictures,
+                          overview: sa.overview,
+                          order: index
+                        };
+                      }),
+              images: stage.pictures
             };
-            console.log('saving stage', data);
+
+            console.log(data);
+
             stageService.updateStageWithPromise(stage.id, {'data': data})
               .then(function(response) {
-                $scope.triggerGuideUpdate();
+                // $scope.triggerGuideUpdate();
                 console.log('success', response);
               }, function(error) {
                 console.log('error', error)
@@ -71,9 +83,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           }
 
           $scope.$watch('saved', function(after, before) {
-            console.log('saved triggered', after, before);
             if (after === true && before === false) {
-              console.log('send for save stage');
               $scope.saveStage($scope.stage)
             }
           })

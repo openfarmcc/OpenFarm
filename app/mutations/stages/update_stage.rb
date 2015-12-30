@@ -29,12 +29,12 @@ module Stages
     def validate
       @stage = stage
       validate_permissions
-      validate_images(images)
+      validate_images images, @stage
       validate_actions
     end
 
     def execute
-      @stage.update(attributes)
+      @stage.update attributes
       set_images images, @stage
       set_actions
       @stage.save

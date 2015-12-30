@@ -339,8 +339,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
         }
       }
 
-      console.log(data);
-
       // Go through all the possible changes on
       // each stage.
       if (stage.selected && !stage.exists){

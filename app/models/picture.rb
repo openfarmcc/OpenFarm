@@ -22,8 +22,14 @@ class Picture
       if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
         pic.attachment = open(file_location)
       else # it's a filesystem update
-        pic.attachment = file_location
+        # if it's already on the system, we don't need to update it.
+        # if !file_location.include?('/system/')
+
+          pic.attachment = open(file_location)
+        # end
+
       end
+      puts pic
       pic.save!
       pic
     end

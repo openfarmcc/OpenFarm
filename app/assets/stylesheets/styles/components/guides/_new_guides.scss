@@ -1,0 +1,202 @@
+// TODO: This should not be here. This makes me unhappy.
+@-webkit-keyframes fa-spin-image-load {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+@keyframes fa-spin-image-load {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(359deg);
+            transform: translate(-50%, -50%) rotate(359deg);
+  }
+}
+
+.new-guide {
+  section.step {
+    margin-bottom: 4rem;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0;
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-family: $body-font-family;
+    }
+  }
+
+  .button-wrapper {
+    margin-top: 2rem;
+
+    .loading-button {
+      margin: 1rem;
+    }
+  }
+
+  .feature-image .click-to-upload-image {
+    cursor: pointer;
+    background: #fff;
+    width: 100%;
+    height: 200px;
+    border-radius: 2px;
+    border: 0px solid #979797;
+    -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    display: inline-block;
+    margin-bottom: 1rem;
+    @include font-awesome-mixin();
+
+    &:before {
+      content: "\f06c";
+      font-size: 4rem;
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.ng-valid-succeeded:before {
+      content: '';
+    }
+
+    &.ng-invalid-uploading:before {
+      content: "\f110";
+      -webkit-animation: fa-spin-image-load 2s infinite linear;
+      animation: fa-spin-image-load 2s infinite linear;
+    }
+
+    .wrapper {
+      height: 100%;
+    }
+
+    img.no-image {
+      transform: translate(-50%, -50%);
+      position: relative;
+      top: 50%;
+      left: 50%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      position: relative;
+    }
+  }
+
+  .instructions {
+    margin: 1.5rem 0;
+  }
+}
+
+.stage-actions-nav {
+  list-style: none;
+  margin: 0;
+}
+
+.stage-action-toggle {
+  padding: .25rem;
+  padding-left: .75rem;
+  margin: .25rem 0;
+  cursor: pointer;
+  transition: $transition-speed background-color ;
+  @include grey-inset;
+
+  &:hover {
+    background-color: darken($gray-bg, 10%);
+    box-shadow-color: darken($gray-bg, 20%);
+  }
+
+  &.selected {
+    background-color: darken($gray-bg, 10%);
+    box-shadow-color: darken($gray-bg, 20%);
+  }
+
+  i {
+    margin-top: 0.3rem;
+  }
+}
+
+.life-stage-nav {
+  background-color: darken($of-green, 10%);
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &.bar-header {
+    height: auto;
+  }
+
+  ul.chosen-stages {
+    white-space: nowrap;
+
+    span {
+      color: $white;
+      font-weight: 600;
+    }
+
+    li {
+      white-space: normal;
+    }
+  }
+}
+
+.stage-option,
+.chosen-stage > .bubble {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("stages/other_sm.png");
+
+  &.preparation {
+    background-image: url("stages/prep_sm.png");
+  }
+
+  &.sow {
+    background-image: url("stages/sow_sm.png");
+  }
+
+  &.germination,
+  &.growing {
+    background-image: url("stages/germination_sm.png");
+  }
+
+  &.seedling {
+    background-image: url("stages/sprouting_sm.png");
+  }
+
+  &.juvenile {
+    background-image: url("stages/juvenile_sm.png");
+  }
+
+  &.adult {
+    background-image: url("stages/adult_sm.png");
+  }
+
+  &.flowering {
+    background-image: url("stages/flowering_sm.png");
+  }
+
+  &.fruit,
+  &.harvest {
+    background-image: url("stages/fruiting_sm.png");
+  }
+
+  &.dormant {
+    background-image: url("stages/dormant_sm.png");
+  }
+}

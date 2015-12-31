@@ -6,7 +6,9 @@ Bundler.require(:default, Rails.env)
 
 module OpenFarm
   class Application < Rails::Application
-    I18n.enforce_available_locales = false
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = ["en"]
+    config.i18n.default_locale = :'en'
     config.i18n.fallbacks = [:en]
 
     config.assets.initialize_on_precompile = false

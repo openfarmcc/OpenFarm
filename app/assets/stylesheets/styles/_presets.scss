@@ -1,0 +1,251 @@
+@import "compass/layout/sticky-footer";
+
+/*
+
+  Custom mixins
+
+*/
+
+@mixin background-gradient($from, $to){
+  background-image: -o-linear-gradient(to top, $from, $to);
+  background-image: -moz-linear-gradient(to top, $from, $to);
+  background-image: -ms-linear-gradient(to top, $from, $to);
+  background-image: linear-gradient(to top, $from, $to);
+}
+
+@mixin accordion-header-color($color){
+  & > a, & > a.title-wrapper{
+    background-color: $color;
+    transition: .5s;
+    &:hover{
+      background-color: $color + 20;
+    }
+  }
+}
+
+@mixin font-awesome-mixin(){
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
+
+@mixin manual-font-awesome($glyph) {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: $glyph;
+}
+
+@mixin grey-inset(){
+  background-color: $gray-bg;
+  border-radius: 3px;
+  box-shadow: inset 0px 3px 0 darken($gray-bg, 10%);
+  border: darken($gray-bg, 10%);
+}
+
+
+/*
+
+  Prevent Angular loading flicker
+
+*/
+
+.ng-cloak {
+    opacity: 0;
+}
+
+
+/*
+
+  Global Styles
+  (think long and hard before adding anything here!)
+
+*/
+
+html,
+body,
+#content {
+  min-height: 100%;
+}
+
+p {
+  letter-spacing: 0.025rem;
+}
+
+textarea {
+  max-width: 100%
+}
+
+.center {
+  text-align: center;
+}
+
+.full-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Title bars that sit beneath the nav */
+.bar-header {
+  $height: 45px;
+
+  height: $height;
+  background: $of-green;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 3rem;
+
+  .title {
+    margin: 0;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: $height;
+    vertical-align: middle;
+    color: white;
+    text-align: center;
+  }
+}
+
+/* When we have multiple stacked headers, we'll remove their bottom margin and let the parent handle it */
+.multi-bar-header {
+  .bar-header {
+    margin-bottom: 0;
+  }
+  margin-bottom: 1.8rem;
+}
+
+/* For "full-screen" rows that shouldn't be edge to edge on huge screens (~1440px) */
+.row.wide-row {
+  // TODO(warpling): replace magic number
+  max-width: 90rem;
+}
+
+/* Apply to columns that should have the same bottom padding as left/right */
+.columns.bottom-padding {
+  // TODO(warpling): replace magic number
+  padding-bottom: .9375rem;
+}
+
+/* Apply this to a row that will vertically center a column */
+.row.row-table {
+  display: table;
+  table-layout: fixed;
+}
+
+.row.row-full-height {
+  height: 100%;
+}
+
+/* Apply this to the column that should be vertically centered */
+.columns.column-middle {
+  display: table-cell;
+  vertical-align: middle;
+  float: none;
+}
+
+// Must reside in the top level of stylesheets
+@include sticky-footer($footer-height, "#content", "#layout_footer", "#footer");
+
+// For covering content in partial blackness
+.the-blackness {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .25);
+}
+
+/*
+
+ Site-wide button style.
+
+*/
+
+.button, input[type=submit] {
+  font-weight: 600;
+  background: $of-green;
+  @include box-shadow(0px 4px 0px 0px darken($of-green, 10%));
+  /* We shouldn't need vendor prefixed border-radius, but because of a bug in foundation-rails we do.
+  At the time of writing our version is 5.4.5 (known to be fixed in 5.5.0) */
+  @include border-radius($global-radius);
+  transition: all 0.2s ease-in-out;
+
+  &.tiny {
+    // Helps avoid keming readability problems
+    letter-spacing: 0.025rem;
+  }
+
+  &.no-shadow {
+    @include box-shadow(none);
+  }
+
+  &:hover {
+    background: $of-green2;
+  }
+
+  &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover{
+    background-image: url(ajax-loader-button-disabled.gif);
+    background-position: 4px center;
+    background-repeat: no-repeat;
+  }
+
+  &.alert {
+    background-image: none;
+    @include box-shadow(0px 4px 0px 0px darken($of-red, 10%));
+  }
+
+  &.secondary {
+    background: $secondary-color;
+    @include box-shadow(0px 3px 0px 0px darken($secondary-color, 8%));
+  }
+
+  &.success {
+    background-image: none;
+  }
+}
+
+/*
+
+  This is the default style for the "Save", "Accept" "Change" styles
+  present across the site.
+
+*/
+
+.form-buttons {
+  margin-bottom: 1rem;
+}
+
+@mixin add-new-button() {
+  @include transition(all 0.15s ease-out);
+
+  background: none;
+  background-color: transparent;
+  border: 2px dashed #DDD;
+  border-radius: 20px;
+  font-size: 1.2em;
+  display: table;
+  width: 100%;
+  cursor: pointer;
+  color: #DDD;
+
+  &:hover {
+    border-style: solid;
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  &:active {
+    background-color: rgba(0,0,0,0.1);
+    color: white;
+  }
+}
+
+
+

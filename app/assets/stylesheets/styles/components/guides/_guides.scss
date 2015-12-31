@@ -1,0 +1,371 @@
+/* presets */
+
+.guides-list {
+  margin-top: 2rem;
+  list-style: none;
+
+  table {
+    width: 100%;
+  }
+}
+
+.new-guide-button {
+  @include add-new-button();
+  @include box-shadow(none);
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 12px;
+  margin: 0 0 30px 0;
+  padding: 26px;
+  position: relative;
+  border-radius: 10px;
+  color: #999;
+  font-size: 1em;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+// TODO: Remove/refactor out generic selectors like this!
+.box {
+  border-radius: 2px;
+  background: rgba(198,159,96,0.04);
+  border: 1px solid rgba(0,0,0,0.25);
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Styles for guides index, show, edit, new, etc */
+
+.guides {
+  position: relative;
+
+  .guide-controls {
+    float: right;
+    margin: 1rem;
+  }
+
+  .margin-top {
+    margin-top: 0.7rem;
+  }
+
+  .box {
+    padding-top: 1rem;
+  }
+
+  .empty {
+    text-align: center;
+    padding-bottom: 1rem;
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  .canopy {
+    /* 20% works well for baren_field.jpg, but we may want to adjust to center for user photos */
+    background-position: center 20%;
+    background-size: cover;
+    height: 400px;
+  }
+
+  .title {
+    h2 {
+      font-weight: 100;
+      color: $secondary-color;
+
+      span {
+        color: $of-green;
+        font-weight: 300;
+      }
+    }
+
+    .right {
+      position: absolute;
+      right: 2.5rem;
+      top: 3rem;
+    }
+  }
+
+  .actual-basic-needs {
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      tr {
+        border-bottom: #cdcdcd 2px solid;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+
+      td:nth-child(1) {
+        border-right: #cdcdcd 2px solid;
+      }
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+    }
+
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  .edit-link {
+    float: right;
+    margin-left: .9rem;
+  }
+
+  .overview {
+    margin: 1rem auto;
+  }
+  .content {
+    padding-bottom: 8rem;
+  }
+
+  dd.accordion-navigation > a {
+    background-color: transparent;
+    border-bottom: rgb(148, 148, 148) 3px solid;
+    transition: 0.2s background-color;
+
+    // angle icon
+    i.fa {
+      @include single-transition(transform, 0.2s, ease-out);
+      opacity: 0;
+
+      &.open {
+        @include transform(rotate(180deg));
+      }
+    }
+  }
+
+  // Show Arrow on Hover
+  .accordion > .accordion-navigation > a:hover i.fa {
+    opacity: 100;
+  }
+
+  /* Section accordion styling */
+  .accordion > dd.accordion-navigation > a,
+  .accordion > dd.active > a,
+  .accordion > dd.active > a.title-wrapper {
+    display: block;
+    padding: 0.2rem 1rem;
+
+    @include accordion-header-color($of-orange);
+
+    h2, h5 {
+      color: #333;
+      display: inline-block;
+      font-weight: 600;
+      margin: 0.3rem 0;
+    }
+
+    .title {
+      font-size: 1.8rem;
+    }
+
+    .author {
+      display: inline-block;
+      margin-left: 20px;
+    }
+  }
+
+  .accordion dd > .content {
+    padding: 0;
+  }
+
+  .accordion dd.accordion-navigation {
+    margin-top: 2rem;
+  }
+
+  .actions {
+    margin-top: 1rem;
+
+    .action {
+      border-top: 1px solid rgb(148, 148, 148);
+      padding: 1.5rem;
+    }
+  }
+
+  /* Stages in completed guides */
+  .stages {
+
+    // This is shared with guide creation steps, and should be DRYed up
+
+    .stage-wrapper {
+      display: inline-block;
+      height: 300px;
+      margin-bottom: 3%;
+      overflow: hidden;
+    }
+
+    .stage-option {
+      border: solid 1px #dfdfdf;
+      border-radius: 4px;
+      display: block;
+      height: 100%;
+      padding: 0.25rem;
+      width: 100%;
+    }
+
+    // End need DRYing
+
+    .action-content {
+      border-bottom: #cdcdcd 2px solid;
+      margin-top: 1rem;
+    }
+
+    .action-content:last-child {
+      border-bottom: none;
+    }
+
+    .image img {
+      background-position: center;
+      background-size: cover;
+      height: 170px;
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .tabs {
+      background-color: #efefef;
+    }
+
+    .tabs-content {
+      background-color: #f6f6f6;
+    }
+
+    .tabs dd > a {
+      padding: 0.75rem 1.5rem;
+    }
+
+    .tabs > dd.active > a,
+    .tabs > dd.active > a > tab-heading > h3 {
+      background-color: #4a4a4a;
+      color: #ffffff;
+    }
+
+    // Allow horizontal scrolling of Life Stage tabs
+    dl.tabs {
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    .tabs dd {
+      display: inline-block;
+      float: none;
+    }
+
+    // Action labels in completed guides look different
+    .actions li {
+      color: #333333;
+      border-color: #333333;
+
+      &.selected {
+        color: white;
+        background: $of-green;
+        border-color: $of-green;
+      }
+    }
+  }
+}
+
+.show-guide {
+
+  background-color: #f6f6f6;
+
+  .compatibility-circle-container {
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    width: 50px;
+  }
+
+  .basic-needs {
+    padding: 0;
+
+    table {
+      border: none;
+      height: 100%;
+      margin: 0;
+      width: 100%;
+
+      tr {
+
+        &.low {
+          background: $compatibility-low-color-bg;
+        }
+
+        &.medium {
+          background: $compatibility-medium-color-bg;
+        }
+
+        &.high {
+          background: $compatibility-high-color-bg;
+        }
+
+        td {
+          padding: 16px;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .basic-need-name {
+        span {
+          font-weight: 600;
+          padding-left: 10px;
+        }
+      }
+
+      .icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+/*
+
+  Markdown corrections
+
+*/
+
+.markdown-help-text {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  margin-top: 0.25rem;
+}
+
+.markdown {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.1rem;
+  }
+  h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  h4, h5, h6 {
+    font-size: 0.8rem;
+  }
+}

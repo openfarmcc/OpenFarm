@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
 #!/usr/bin/env bash
 
+sudo apt-get update
+
 aptitude    update
 aptitude -y -qq upgrade
 aptitude install -y -qq build-essential
@@ -16,13 +18,10 @@ echo "--- INSTALLING RVM ---"
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 
-# curl -L get.rvm.io | bash -s stable
 curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=2.2.0
 source /etc/profile.d/rvm.sh
 
 echo "--- INSTALLING RUBY 2.2.0 ---"
-
-# rvm install 2.2.0
 
 source /home/vagrant/.rvm/scripts/rvm
 
@@ -33,7 +32,7 @@ echo "--- INSTALLING ELASTICSEARCH ---"
 
 sudo apt-get -y -qq install openjdk-7-jre-headless -y
 
-wget –quiet https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.0.0/elasticsearch-2.0.0.deb
+wget –-quiet https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.0.0/elasticsearch-2.0.0.deb
 sudo dpkg -i elasticsearch-2.0.0.deb
 sudo service elasticsearch start
 

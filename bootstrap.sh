@@ -51,7 +51,6 @@ cd /vagrant
 gem install bundler
 gem install activesupport -v '4.0.2'
 
-bundle update
 bundle install
 rake db:setup
 echo "ENV['SECRET_KEY_BASE'] = '$(rake secret)'" >> config/app_environment_variables.rb

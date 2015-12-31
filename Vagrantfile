@@ -15,28 +15,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Forward the Rails server default port to the host
   config.vm.network :forwarded_port, guest: 3000, host: 3000
 
-  # Use Chef Solo to provision our virtual machine
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
-
-    chef.add_recipe "apt"
-    chef.add_recipe "rbenv"
-    chef.add_recipe "ruby_build"
-    chef.add_recipe "vim"
-    chef.add_recipe "mongodb"
-    # chef.add_recipe "elasticsearch"
-
-    # Install Ruby 2.2.0 and Bundler
-    chef.json = {
-      rbenv: {
-        user_installs: [{
-          user: 'vagrant',
-          rubies: ["2.2.0"],
-          global: "2.2.0"
-        }]
-      },
-    }
-  end
-
   config.vm.provision :shell, path: "bootstrap.sh", privileged: false
 end

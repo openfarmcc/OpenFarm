@@ -1,8 +1,0 @@
-site "https://supermarket.getchef.com/api/v1"
-
-cookbook 'apt'
-cookbook 'build-essential'
-cookbook 'ruby_build'
-cookbook 'curl'
-cookbook 'rbenv', '~> 1.7.1'
-cookbook 'vim'

@@ -6,6 +6,8 @@ aptitude -y upgrade
 aptitude install -y build-essential
 aptitude install -y cvs git-core
 
+sudo apt-get install -y git
+
 echo "--- INSTALLING RVM ---"
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3

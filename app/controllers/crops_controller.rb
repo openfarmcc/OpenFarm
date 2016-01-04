@@ -12,7 +12,7 @@ class CropsController < ApplicationController
 
   def show
     @crop = Crop.find(params[:id])
-    impressionist(@crop, '', unique: [:session_hash])
+    impressionist(@crop, unique: [:session_hash])
     @guides = GuideSearch.search.for_crops(@crop).with_user(current_user)
   end
 

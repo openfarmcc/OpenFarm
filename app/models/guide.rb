@@ -26,7 +26,7 @@ class Guide
                     column_name: :impressions_field,
                     unique: :session_hash
 
-  field :impressions_field, default: 0
+  field :impressions_field, default: 0, type: Integer
 
   belongs_to :crop, counter_cache: true
   belongs_to :user
@@ -41,7 +41,7 @@ class Guide
   field :completeness_score, default: 0
   field :popularity_score, default: 0
 
-  validates_presence_of :user, :crop, :name
+  validates_presence_of :crop, :name
 
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures

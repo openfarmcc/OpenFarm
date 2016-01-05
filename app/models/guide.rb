@@ -50,13 +50,6 @@ class Guide
   # be the featured image
   field :featured_image, type: Integer
 
-  # has_mongoid_attached_file :featured_image,
-  #                           default_url: '/assets/baren_field.jpg'
-  # validates_attachment_size :featured_image, in: 1.byte..25.megabytes
-  # validates_attachment :featured_image,
-  #                      content_type: { content_type:
-  #                        ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
-
   slug :name
 
   after_save :calculate_completeness_score
@@ -70,12 +63,17 @@ class Guide
   end
 
   def search_data
-    {
-      name: name,
-      overview: overview,
-      crop_id: crop_id,
-      compatibilities: compatibilities
-    }
+    as_json only: [:name, :overview, :crop_id, :compatibilities]
+    # We changed this to as_json ^ because it was causing weird nesting.
+    # Not sure that this should be a problem though, it's been filed:
+    # https://github.com/ankane/searchkick/issues/595
+
+    # {
+    #   name: name,
+    #   overview: overview,
+    #   crop_id: crop_id,
+    #   compatibilities: compatibilities
+    # }
   end
 
   def compatibilities

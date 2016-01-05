@@ -78,7 +78,7 @@ openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
 
             resolve(options)
           }, function(error) {
-            console.log('error');
+            console.log('error fetching processed detail options');
             reject(error)
           });
 

@@ -5,7 +5,6 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
     $scope.setUser = function(success, object){
       if (success){
         $scope.user = object;
-        console.log($scope.user);
       }
     };
 

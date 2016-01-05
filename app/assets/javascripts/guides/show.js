@@ -50,7 +50,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
           // $scope.setGuide(response);
 
         }, function(response) {
-          console.log(response);
+          console.log("error updating guide", response);
         });
     };
 

@@ -46,8 +46,9 @@ class Guide
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures
 
-  field :featured_image, type: Integer # Points to the index of images which should
+  # Points to the index of images which should
   # be the featured image
+  field :featured_image, type: Integer
 
   # has_mongoid_attached_file :featured_image,
   #                           default_url: '/assets/baren_field.jpg'

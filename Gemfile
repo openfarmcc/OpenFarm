@@ -27,7 +27,7 @@ gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
-gem 'searchkick', '~> 0.8.5'
+gem 'searchkick', '~> 1.1.2'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'

@@ -110,12 +110,12 @@ GEM
     diff-lcs (1.2.5)
     doc_yo_self (0.0.2)
     docile (1.1.5)
-    elasticsearch (1.0.6)
-      elasticsearch-api (= 1.0.6)
-      elasticsearch-transport (= 1.0.6)
-    elasticsearch-api (1.0.6)
+    elasticsearch (1.0.15)
+      elasticsearch-api (= 1.0.15)
+      elasticsearch-transport (= 1.0.15)
+    elasticsearch-api (1.0.15)
       multi_json
-    elasticsearch-transport (1.0.6)
+    elasticsearch-transport (1.0.15)
       faraday
       multi_json
     erubis (2.7.0)
@@ -131,7 +131,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
-    faraday (0.9.1)
+    faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
@@ -146,7 +146,7 @@ GEM
       multi_json (>= 1.9.0)
     haml (4.0.6)
       tilt
-    hashie (3.3.2)
+    hashie (3.4.3)
     high_voltage (2.2.1)
     hike (1.2.3)
     httparty (0.13.3)
@@ -162,7 +162,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
-    json (1.8.2)
+    json (1.8.3)
     jsonapi-serializers (0.2.4)
       activesupport
     kaminari (0.16.2)
@@ -252,7 +252,7 @@ GEM
       railties (= 4.1.9)
       sprockets-rails (~> 2.0)
     rails-assets-angular (1.4.8)
-    rails-assets-angular-dragdrop (1.0.12)
+    rails-assets-angular-dragdrop (1.0.13)
       rails-assets-angular
       rails-assets-jquery-ui
     rails-assets-angular-foundation (0.6.0)
@@ -331,7 +331,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
-    searchkick (0.8.5)
+    searchkick (1.1.2)
       activemodel
       elasticsearch (>= 1)
       hashie
@@ -444,7 +444,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0)
   rubocop
   sass-rails
-  searchkick (~> 0.8.5)
+  searchkick (~> 1.1.2)
   simplecov
   test-unit
   therubyracer

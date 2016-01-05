@@ -9,8 +9,6 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     $scope.addingGarden = false;
     $scope.newGarden = {};
 
-    // console.log($rootScope.profileUser);
-
     // $scope.profileUser = $rootScope.profileUser;
     // $scope.currentUser = $rootScope.currentUser;
 

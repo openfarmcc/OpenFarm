@@ -50,7 +50,7 @@ class Guide
   # be the featured image
   field :featured_image, type: Integer
 
-  slug :name
+  slug :name, history: true
 
   after_save :calculate_completeness_score
   # Maybe Popularity Score should be updated more frequently?

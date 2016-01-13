@@ -94,7 +94,6 @@ angular.module('ngS3upload.services', []).
         var xhr = e.srcElement || e.target;
         scope.$apply(function () {
           self.uploads--;
-          scope.uploading = false;
           if ((xhr.status === 201) || (xhr.status === 204)) { // successful upload
             scope.success = true;
             deferred.resolve(xhr);
@@ -188,13 +187,15 @@ angular.module('ngS3upload.directives', []).
             var bucket = scope.$eval(attrs.bucket);
             // Bind the button click event
             var button = angular.element(element.children()[0]),
-              file = angular.element(element.find("input")[0]);
+                file = angular.element(element.find("input")[0]);
+
             element.children().on('dragover', function(){
               element.addClass('dragging');
             });
+
             element.on('dragleave', function(){
               element.removeClass('dragging');
-            })
+            });
 
             scope.$watch('s3UploadExistingPictures', function(){
               var objType = Object.prototype.toString.call(
@@ -221,14 +222,14 @@ angular.module('ngS3upload.directives', []).
               }
             };
 
-            var uploadFile = function () {
-              var selectedFile = file[0].files[0];
+            var uploadFile = function (selectedFile) {
               var filename = selectedFile.name;
               var ext = filename.split('.').pop();
 
               scope.$apply(function () {
                 S3Uploader.getUploadOptions(opts.getOptionsUri)
                   .then(function (s3Options) {
+
                     ngModel.$setValidity('uploading', false);
                     var s3Uri = 'https://' + bucket + '.s3.amazonaws.com/';
                     var key = opts.folder + (new Date()).getTime() + '-' +
@@ -246,9 +247,13 @@ angular.module('ngS3upload.directives', []).
                         ngModel.$setViewValue(s3Uri + key);
                         console.log(s3Uri + key)
                         scope.s3UploadPlacePic({image: s3Uri + key});
+                        scope.uploaded += 1;
+                        if (scope.uploaded === scope.numOfFiles) {
+                          scope.uploading = false;
+                          ngModel.$setValidity('uploading', true);
+                          ngModel.$setValidity('succeeded', true);
+                        }
 
-                        ngModel.$setValidity('uploading', true);
-                        ngModel.$setValidity('succeeded', true);
                       }, function (resp) {
                         alert('There was an error uploading your image. ' +
                               'Developers: See JS console for details.');
@@ -271,7 +276,9 @@ angular.module('ngS3upload.directives', []).
             element.bind('change', function (nVal) {
               element.removeClass('dragging');
               if (opts.submitOnChange) {
-                uploadFile();
+                scope.numOfFiles = file[0].files.length;
+                scope.uploaded = 0;
+                angular.forEach(file[0].files, uploadFile);
               }
             });
           }

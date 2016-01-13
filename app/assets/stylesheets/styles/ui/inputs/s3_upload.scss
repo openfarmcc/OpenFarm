@@ -7,47 +7,23 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
+  text-align: center;
   transition: .2s opacity, .2s background-color;
-
-  &:before {
-    content: "\f1f8";
-    font-family: "FontAwesome";
-    position: absolute;
-    color: $white;
-    text-shadow: 0px 0px 4px $off-black;
-    margin: 2.25rem auto;
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    opacity: 0;
-    transition: .2s opacity;
-  };
-
-  &:hover {
-    opacity: .7;
-  }
-
-  &:hover:before {
-    opacity: 1;
-  }
-
-  &.deleted {
-    background-color: $alert-color;
-
-    img {
-      opacity: .5;
-    }
-
-    &:before {
-      opacity: 1;
-    }
-  }
 
   img {
     width: 100px;
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: cover;
+    display: block;
+  }
+
+  small {
+    color: lighten($of-red, 10%);
+  }
+
+  small:hover {
+    color: $of-red;
   }
 }
 

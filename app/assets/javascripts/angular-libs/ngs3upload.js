@@ -164,6 +164,9 @@ angular.module('ngS3upload.directives', []).
                              $scope.success
             };
           };
+          $scope.deletePicture = function(idx, picture) {
+            $scope.s3UploadExistingPictures.splice(idx, 1);
+          };
         }],
       compile: function (element, attr, linker) {
         return {

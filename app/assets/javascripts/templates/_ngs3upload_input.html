@@ -4,9 +4,10 @@
           class="thumbnails"
           ng-class="{ 'deleted' : pic.deleted }"
           ng-init="pic.deleted = false"
-          ng-click="pic.deleted = !pic.deleted">
+          ng-click="deletePicture($index, pic)">
       <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" width="100"
            ng-model="pic"/>
+      <small ng-click="deletePicture($index, pic)">delete</small>
     </span>
   </div>
 

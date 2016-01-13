@@ -7,6 +7,12 @@
     </label>
   </div>
 
+  <div class="images">
+    <img ng-repeat="pic in stage.pictures"
+      src="{{pic.image_url}}"
+      />
+  </div>
+
   <div class="columns small-6 medium-8 action-content">
     <h4 class="stage-name">{{ stage.name }} Overview</h4>
 

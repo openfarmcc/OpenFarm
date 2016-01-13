@@ -44,7 +44,8 @@
   margin-top: 1rem;
 
   .add-actions-button {
-    margin-bottom: 1.5rem;
+    @include add-new-button();
+    @include box-shadow(none);
   }
 
   textarea {

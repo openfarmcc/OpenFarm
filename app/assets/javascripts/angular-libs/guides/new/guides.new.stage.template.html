@@ -9,8 +9,10 @@
   <hr/>
   <div class="row">
     <div class="stage-details-navigation columns large-3 medium-4">
-      <div class="stage-overview stage-action-toggle" ng-click="viewingStageOverview = true"
-        ng-class="{'selected': viewingStageOverview}">
+      <div
+        class="stage-overview stage-action-toggle"
+        ng-click="viewingStageOverview = true"
+        ng-class="{'selected': viewingStageOverview, 'completed': stage.edited}">
         <span class="check"></span>Stage Overview
       </div>
       <div actions-control

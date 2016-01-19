@@ -141,9 +141,9 @@ GEM
       railties (>= 3.1.0)
       sass (>= 3.2.0)
     fssm (0.2.10)
-    gibbon (0.4.6)
+    gibbon (1.1.5)
       httparty
-      multi_json (>= 1.3.4)
+      multi_json (>= 1.9.0)
     haml (4.0.6)
       tilt
     hashie (3.4.3)
@@ -410,7 +410,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   foundation-rails (~> 5.4.5)
-  gibbon (~> 0.4.6)
+  gibbon (~> 1.1.5)
   high_voltage
   impressionist (~> 1.5.0)
   jquery-rails

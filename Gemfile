@@ -31,7 +31,7 @@ gem 'searchkick', '~> 1.1.2'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit'
-gem 'gibbon'
+gem 'gibbon', '~> 0.4.6'
 gem 'jsonapi-serializers'
 
 gem 'bson_ext'

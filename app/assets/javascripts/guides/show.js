@@ -43,12 +43,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
           $scope.toggleEditingGuide();
 
-          // Setting this to true will trigger the watches in the show.stage
-          // directives, which cause those stages to update as well.
-          $scope.saved = true;
-
-          // $scope.setGuide(response);
-
         }, function(response) {
           console.log("error updating guide", response);
         });
@@ -142,7 +136,22 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     };
 
     $scope.setGuide = function(object){
+
+      // if ($scope.guide && $scope.guide.stages !== undefined) {
+      //   console.log('guide stages exist')
+      //   // We're doing this because we don't want to overwrite the
+      //   // freshly edited stages. This is pretty dark magic though,
+      //   // maybe we don't need it?
+      //   var stages = angular.copy($scope.guide.stages)
+      //   delete object.stages;
+      //   console.log(object.stages, JSON.stringify(stages))
+      //   $scope.guide = object;
+      //   $scope.guide.stages = stages;
+      // } else {
       $scope.guide = object;
+      // }
+
+
 
       if ($scope.userId){
         userService.getUser($scope.userId,
@@ -192,16 +201,13 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
           // $scope.isNotUndefined = $scope.guide.stages.filter(function(s) {
           //   return undefined !== s
           // }).length === $scope.guide.stages.length;
-          if (true) {
-            $scope.haveTimes = $scope.guide.stages
-              .sort(function(a, b){ return a.order > b.order; })
-              .filter(function(s){ return s.stage_length; });
+          // $scope.haveTimes = $scope.guide.stages
+          //   .sort(function(a, b){ return a.order > b.order; })
+          //   .filter(function(s){ return s.stage_length; });
 
-            $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
-              return pV + cV.stage_length;
-            }, 0);
-          }
-
+          // $scope.plantLifetime = $scope.haveTimes.reduce(function(pV, cV){
+          //   return pV + cV.stage_length;
+          // }, 0);
         }
       });
     };

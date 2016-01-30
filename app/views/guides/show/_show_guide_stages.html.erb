@@ -23,14 +23,14 @@
     <tab ng-repeat="stage in guide.stages | orderBy:'order'">
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>
+        {{ stage.active }}
       </tab-heading>
 
       <div of-show-guide-stages
         stage="stage"
-        saved="saved"
         trigger-guide-update="guideUpdate"
         editing="editing"
-        options="options"
+        detail-options="options"
         class="columns small-12">
 
       </div>

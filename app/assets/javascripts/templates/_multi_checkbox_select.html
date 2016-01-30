@@ -1,14 +1,15 @@
-<label for="{{ option.slug }}"
-  ng-repeat="option in options.slice(0, multiSelectOverflowCount)"><input type="{{ multiSelectType }}"
-  id="{{ option.slug }}"
+<label for="{{ option.slug + relativeId }}"
+  ng-repeat="option in optionsArray.slice(0, multiSelectOverflowCount)"><input type="{{ multiSelectType }}"
+  id="{{ option.slug + relativeId }}"
   name="{{ multiSelectType=='checkbox' ? option.slug : multiSelectId }}"
+  ng-click="clickTest()"
   ng-model="option.selected"
-  ng-checked="option.selected"/><span class="button tiny secondary"> {{ option.label }} </span></label><button dropdown-toggle="#other-{{ multiSelectId }}"
+  ng-checked="option.selected"/><span ng-click="clickTest()" class="button tiny secondary"> {{ option.label }} </span></label><button dropdown-toggle="#other-{{ multiSelectId }}"
       class="other button tiny secondary"
       ng-class="{ selected : othered }"
       aria-controls="other"
       aria-expanded="false"
-      ng-show="options.length > multiSelectOverflowCount">
+      ng-show="optionsArray.length > multiSelectOverflowCount">
       <i class="fa fa-caret-down"></i>
         Other
       </button>
@@ -17,8 +18,8 @@
     data-dropdown-content
     aria-hidden="true"
     tabindex="-1"
-    ng-show="options.length > multiSelectOverflowCount">
-  <li ng-repeat="option in options.slice(multiSelectOverflowCount)"
+    ng-show="optionsArray.length > multiSelectOverflowCount">
+  <li ng-repeat="option in optionsArray.slice(multiSelectOverflowCount)"
       ng-click="option.selected = !option.selected">
     <a>
       <i ng-show="option.selected" class="fa fa-check"></i> {{ option.label }}

@@ -35,7 +35,6 @@
           <input ng-show="editing" ng-model="guide.name"/>
         </h1>
 
-
         <h2 class="guide-relationships"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }} for <a href="/crops/{{ guide.crop.slug }}/" class="crop-name">{{ guide.crop.name }}</a></h2>
         <%= render "guides/show/guide_controllers" %>
       </div>
@@ -55,7 +54,7 @@
         <div multi-row-select
              ng-show="editing"
              class="multi-choice"
-             options="practices"
+             options-array="practices"
              multi-select-overflow-count="3"
              multi-select-type="checkbox"
              multi-select-id="practices">
@@ -116,7 +115,7 @@
         <div multi-row-select
              ng-show="editing"
              class="multi-choice"
-             options="practices"
+             options-array="practices"
              multi-select-overflow-count="3"
              multi-select-type="checkbox"
              multi-select-id="practices">

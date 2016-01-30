@@ -72,7 +72,8 @@ openFarmModule.directive('multiRowSelect', [
     return {
       restrict: 'A',
       scope: {
-        options: '=',
+        optionsArray: '=',
+        relativeId: '=?'
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
@@ -80,9 +81,9 @@ openFarmModule.directive('multiRowSelect', [
           $scope.multiSelectOverflowCount = $attrs
             .multiSelectOverflowCount || 3;
           $scope.multiSelectId = $attrs.multiSelectId;
-          $scope.$watch('options', function(){
-            if ($scope.options !== undefined && $scope.options !== []){
-              $scope.othered = $scope.options
+          $scope.$watch('optionsArray', function(){
+            if ($scope.optionsArray !== undefined && $scope.optionsArray !== []){
+              $scope.othered = $scope.optionsArray
                 .reduce(function(returned, current, index){
                   if (index > $scope.multiSelectOverflowCount){
                     return returned || current.selected;
@@ -91,7 +92,6 @@ openFarmModule.directive('multiRowSelect', [
                   }
                 });
             }
-
           }, true);
       }],
       templateUrl: '/assets/templates/_multi_checkbox_select.html',

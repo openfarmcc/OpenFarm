@@ -7,6 +7,19 @@
     </label>
   </div>
 
+  <div class="actions">
+    <a ng-hide="editingStage"
+      class="button tiny secondary edit-link"
+      ng-click="toggleEditingStage()">
+      <i class="fa fa-edit"></i> Edit Stage
+    </a>
+    <a ng-show="editingStage"
+      class="button tiny primary edit-link"
+      ng-click="saveStageChanges(stage)">
+      <i class="fa fa-save"></i> Save Changes To Stage
+    </a>
+  </div>
+
   <div class="images">
     <img ng-repeat="pic in stage.pictures"
       src="{{pic.image_url}}"
@@ -19,33 +32,46 @@
     <div
       class="markdown"
       markdown="stage.overview"
-      ng-hide="editing">
+      ng-hide="editingStage">
     </div>
     <textarea
       ng-model="stage.overview"
-      ng-show="editing">
+      ng-show="editingStage">
     </textarea>
 
     <p class="stage-description"></p>
 
-    <table ng-hide="editing">
+    <table ng-hide="editingStage">
       <tr>
-        <th>Environment</th><td>{{ stage.environment.join(', ') }}</td>
+        <th>Environment</th><td>
+          <span ng-repeat="env in environment | filter:{selected: true}"
+
+            > {{ env.label }}<span ng-if="!$last">, </span>
+          </span>
+
+        </td>
       </tr>
       <tr>
-        <th>Light</th><td>{{ stage.light.join(', ') }}</td>
+        <th>Light</th><td><span ng-repeat="li in light | filter:{selected: true}"
+
+            > {{ li.label }}<span ng-if="!$last">, </span>
+          </span></td>
       </tr>
       <tr>
-        <th>Soil</th><td>{{ stage.soil.join(', ') }}</td>
+        <th>Soil</th><td><span ng-repeat="env in soil | filter:{selected: true}"
+
+            > {{ env.label }}<span ng-if="!$last">, </span>
+          </span></td>
       </tr>
     </table>
 
-    <div ng-show="editing">
+    <div ng-show="editingStage">
 
       <label>Environment</label>
       <div multi-row-select
            class="multi-choice"
-           options="environment"
+           relative-id="'stage' + stage.id"
+           options-array="environment"
            multi-select-overflow-count="3"
            multi-select-type="checkbox"
            multi-select-id="environment">
@@ -54,7 +80,8 @@
       <label>Light</label>
       <div multi-row-select
            class="multi-choice"
-           options="light"
+           relative-id="'stage' + stage.id"
+           options-array="light"
            multi-select-overflow-count="3"
            multi-select-type="checkbox"
            multi-select-id="light">
@@ -63,7 +90,8 @@
       <label>Soil</label>
       <div multi-row-select
            class="multi-choice"
-           options="soil"
+           relative-id="'stage' + stage.id"
+           options-array="soil"
            multi-select-overflow-count="3"
            multi-select-type="checkbox"
            multi-select-id="soil">

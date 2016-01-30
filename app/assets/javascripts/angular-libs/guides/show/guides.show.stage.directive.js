@@ -4,20 +4,18 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
       restrict: 'A',
       scope: {
         stage: '=',
-        options: '=',
-        saved: '=?',
+        detailOptions: '=',
         texts: '=?',
         triggerGuideUpdate: '=?',
-        editing: '=?'
       },
       controller: ['$scope',
         function ($scope) {
 
-          $scope.$watch('options', function(val) {
+          $scope.$watch('detailOptions', function(val) {
             if (val !== undefined) {
-              $scope.environment = angular.copy($scope.options.multiSelectEnvironment);
-              $scope.soil = angular.copy($scope.options.multiSelectSoil);
-              $scope.light = angular.copy($scope.options.multiSelectLight);
+              $scope.environment = angular.copy($scope.detailOptions.multiSelectEnvironment);
+              $scope.soil = angular.copy($scope.detailOptions.multiSelectSoil);
+              $scope.light = angular.copy($scope.detailOptions.multiSelectLight);
               $scope.environment.forEach(function(env) {
                 if ($scope.stage.environment !== null && $scope.stage.environment.indexOf(env.label) > -1) {
                   env.selected = true;
@@ -36,7 +34,11 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
             }
           });
 
-          $scope.saveStage = function(stage) {
+          $scope.toggleEditingStage = function() {
+            $scope.editingStage = !$scope.editingStage;
+          }
+
+          $scope.saveStageChanges = function(stage) {
 
             var data = {
               'attributes': {
@@ -71,20 +73,14 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
               images: stage.pictures
             };
 
-
             stageService.updateStageWithPromise(stage.id, {'data': data})
               .then(function(response) {
-                $scope.triggerGuideUpdate();
+                // $scope.triggerGuideUpdate();
+                $scope.toggleEditingStage();
               }, function(error) {
                 console.log('error', error)
               });
           }
-
-          $scope.$watch('saved', function(after, before) {
-            if (after === true && before === false) {
-              $scope.saveStage($scope.stage)
-            }
-          })
         }
       ],
       templateUrl: '/assets/angular-libs/guides/show/guides.show.stage.template.html'

@@ -7,11 +7,17 @@
     </label>
   </div>
 
-  <div class="actions">
+  <div class="actions" ng-if="canEdit">
+
     <a ng-hide="editingStage"
       class="button tiny secondary edit-link"
       ng-click="toggleEditingStage()">
       <i class="fa fa-edit"></i> Edit Stage
+    </a>
+    <a ng-hide="editingStage"
+      class="button tiny secondary edit-link"
+      ng-click="deleteStage(stage)">
+      <i class="fa fa-trash"></i> Delete Stage
     </a>
     <a ng-show="editingStage"
       class="button tiny primary edit-link"

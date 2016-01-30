@@ -6,6 +6,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
         stage: '=',
         detailOptions: '=',
         texts: '=?',
+        canEdit: '=',
         triggerGuideUpdate: '=?',
       },
       controller: ['$scope',
@@ -36,6 +37,17 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
 
           $scope.toggleEditingStage = function() {
             $scope.editingStage = !$scope.editingStage;
+          }
+
+          $scope.deleteStage = function(stage) {
+            var con = confirm('Are you sure you want to delete this stage?');
+            if (con) {
+              stageService.deleteStageWithPromise(stage.id)
+                .then(function() {
+                  console.log('deleted');
+                  $scope.triggerGuideUpdate();
+                })
+            }
           }
 
           $scope.saveStageChanges = function(stage) {

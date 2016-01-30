@@ -28,8 +28,8 @@
 
       <div of-show-guide-stages
         stage="stage"
+        can-edit="currentUser.id === guide.user.id"
         trigger-guide-update="guideUpdate"
-        editing="editing"
         detail-options="options"
         class="columns small-12">
 

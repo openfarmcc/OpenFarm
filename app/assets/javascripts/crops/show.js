@@ -1,5 +1,5 @@
-openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService', '$timeout',
-  'gardenService', 'userService',
+openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
+  'gardenService', 'userService', '$interval',
   function newGuideCtrl($scope,
                         $http,
                         cropService,
@@ -36,6 +36,8 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService', '$time
               }
             });
         }, 2000)
+      } else {
+        console.log('got all crop pictures')
       }
     };
 

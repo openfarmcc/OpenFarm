@@ -8,8 +8,8 @@ gem 'rails', '4.1.9' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
-gem 'sass-rails'
-gem 'compass-rails'
+gem 'sass-rails', '~> 4.0.4'
+gem 'compass-rails', '~> 2.0.0'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
@@ -25,14 +25,15 @@ gem 'impressionist', '~> 1.5.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
+gem 'progress_job', '~> 0.0.4'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
 gem 'searchkick', '~> 1.1.2'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
-gem 'merit'
+gem 'merit', '~> 2.3.1'
 gem 'gibbon', '~> 1.1.5'
-gem 'jsonapi-serializers'
+gem 'jsonapi-serializers', '~> 0.2.4'
 
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
@@ -66,8 +67,8 @@ end
 group :test do
   gem 'test-unit'
   gem 'doc_yo_self'
-  gem 'capybara'
-  gem 'capybara-angular'
+  gem 'capybara', '~> 2.4.4'
+  gem 'capybara-angular', '~> 0.1.0'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'

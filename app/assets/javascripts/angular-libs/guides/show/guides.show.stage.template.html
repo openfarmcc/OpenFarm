@@ -1,10 +1,14 @@
 <div class="row actions">
   <div class="columns small-6 medium-4 action-photos stage-wrapper"
     ng-class="{end: $last}">
-    <label class="stage-option {{stage.name}}"
+    <div ng-if="stage.pictures[0].image_url"
+        class="stage-option {{stage.name}}"
         style="background-image: url({{stage.pictures[0].image_url}})"
         ng-class="{stage.name : stage.pictures.length === 0}" for="{{ stage.name }}">
-    </label>
+    </div>
+    <div ng-if="!stage.pictures[0].image_url">
+      No image yet.
+    </div>
   </div>
 
   <div class="actions" ng-if="canEdit">

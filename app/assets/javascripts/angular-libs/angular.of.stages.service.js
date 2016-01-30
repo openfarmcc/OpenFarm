@@ -155,8 +155,8 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             reject();
             alertsService.pushToAlerts(response.errors, code);
           });
-      })
-    }
+      });
+    };
 
     var deleteStage = function(stageId, callback){
       $http.delete('/api/v1/stages/' + stageId + '/')
@@ -177,8 +177,8 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             reject();
             alertsService.pushToAlerts(response.errors, code);
           });
-      })
-    }
+      });
+    };
 
     return {
       // 'getGuide': getStage,

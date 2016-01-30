@@ -28,8 +28,9 @@ module PicturesMixin
       new_images = choose_images_to_delete images, obj
 
       new_images && new_images.each do |img|
-        Picture.from_url(img[:image_url],
-                       obj)
+        Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
+        # Picture.from_url(img[:image_url],
+        #                obj)
       end
     end
   end

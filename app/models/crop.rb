@@ -41,7 +41,7 @@ class Crop
   belongs_to :parent, class_name: 'Crop', inverse_of: :varieties
 
   # embeds_many :crop_times
-
+  field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures
 

@@ -17,6 +17,7 @@
               user="currentUser">
             </div>
       <% end %>
+
     </div>
     <table class="crop">
         <tbody>
@@ -24,6 +25,9 @@
           <td colspan="2"><% @crop.pictures.each do |pic, index| %>
             <img src="<%= pic.attachment.url(:small).sub(/(https|http):/, '') %>"/>
           <% end %>
+          <span ng-show="processingPictures" class="still-uploading-crop-images">
+            <i class="fa fa-spin fa-spinner"></i>
+          </span>
           </td>
         </tr>
         <tr>

@@ -222,8 +222,6 @@ GEM
       websocket-driver (>= 0.2.0)
     power_assert (0.2.2)
     powerpack (0.0.9)
-    progress_job (0.0.4)
-      delayed_job
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -427,7 +425,6 @@ DEPENDENCIES
   patron
   phantomjs (>= 1.8.1)
   poltergeist
-  progress_job (~> 0.0.4)
   pry
   pry-nav
   pundit

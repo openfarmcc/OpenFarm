@@ -32,7 +32,6 @@ class Picture
       pic.save!
       pic
     end
-
-    handle_asynchronously :from_url
+    # handle_asynchronously :from_url
   end
 end

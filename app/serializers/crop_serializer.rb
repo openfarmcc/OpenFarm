@@ -9,6 +9,7 @@ class CropSerializer < BaseSerializer
   attribute :spread
   attribute :row_spacing
   attribute :height
+  attribute :processing_pictures
 
   has_many :pictures, serializer: PictureSerializer
 end

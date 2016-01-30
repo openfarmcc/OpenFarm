@@ -28,7 +28,8 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
         queryingFunction = $interval(function() {
           $http.get('/api/v1/progress/pictures/crop/' + crop.id)
             .then(function(result) {
-              if (result === 0) {
+              console.log('query result', result)
+              if (result.processing === 0) {
                 console.log('stop querying')
                 $scope.stopQuerying();
               } else {

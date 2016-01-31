@@ -18,7 +18,7 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
 
     var queryingFunction;
     $scope.setCrop = function(success, crop){
-      console.log('setting crop');
+      console.log('setting crop', crop);
       userService.getUserWithPromise($scope.userId)
         .then($scope.setCurrentUser);
 

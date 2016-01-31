@@ -22,9 +22,9 @@
     <table class="crop">
         <tbody>
         <tr>
-          <td colspan="2"><% @crop.pictures.each do |pic, index| %>
-            <img src="<%= pic.attachment.url(:small).sub(/(https|http):/, '') %>"/>
-          <% end %>
+          <td colspan="2">
+          <img ng-repeat="picture in crop.pictures"
+              ng-src="{{picture.thumbnail_url}}"/>
           <span ng-show="processingPictures" class="still-uploading-crop-images">
             <i class="fa fa-spin fa-spinner"></i>
           </span>

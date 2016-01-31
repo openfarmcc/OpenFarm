@@ -47,9 +47,10 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
           return !d.deleted;
         });
       }
+      console.log($scope.crop.pictures);
 
       var cropCallback = function(success, crop){
-        $scope.crop.sending = false;
+        // $scope.crop.sending = false;
         if (success) {
           window.location.href = '/crops/' + $scope.crop.id + '/';
         }
@@ -58,7 +59,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       if ($scope.crop.is_new) {
         cropService.createCropWithPromise(crop)
           .then(function(crop) {
-            $scope.crop.sending = false;
+            // $scope.crop.sending = false;
             window.location.href = '/crops/' + $scope.crop.id + '/';
           })
       } else {

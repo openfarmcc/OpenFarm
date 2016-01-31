@@ -23,26 +23,33 @@ module PicturesMixin
     # This is much simpler, less ping pong than what it was
     # and probably okay for now. However, this only works when S3
     # is enabled, because paperclip normally stores on system, not on URLs.
-    if images
+    new_images = choose_images_to_delete images, obj
 
-      new_images = choose_images_to_delete images, obj
-
-      new_images && new_images.each do |img|
-        Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
-        # Picture.from_url(img[:image_url],
-        #                obj)
-      end
+    new_images && new_images.each do |img|
+      Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
+      # Picture.from_url(img[:image_url],
+      #                obj)
     end
   end
 
   def choose_images_to_delete (images, obj)
-    image_ids = images.map { |img| img[:id].to_s }
+    unless images
+      images = []
+    end
+
+    image_ids = images.map do |img|
+      puts img[:id]
+      img[:id].to_s
+    end
+
+    delete_ids_array = []
 
     obj.pictures.each do |pic|
       if !image_ids.include? pic[:id].to_s
-        pic.delete
+        delete_ids_array.push(pic[:id])
       end
     end
+    obj.pictures.where(:id.in => delete_ids_array).delete
 
     images.select { |img| !img[:id] }
   end

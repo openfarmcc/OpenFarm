@@ -51,7 +51,6 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       var cropCallback = function(success, crop){
         $scope.crop.sending = false;
         if (success) {
-          $scope.crop = crop;
           window.location.href = '/crops/' + $scope.crop.id + '/';
         }
       };
@@ -60,7 +59,6 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         cropService.createCropWithPromise(crop)
           .then(function(crop) {
             $scope.crop.sending = false;
-            $scope.crop = crop;
             window.location.href = '/crops/' + $scope.crop.id + '/';
           })
       } else {

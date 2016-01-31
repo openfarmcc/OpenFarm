@@ -18,6 +18,7 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
 
     var queryingFunction;
     $scope.setCrop = function(success, crop){
+      console.log('setting crop');
       userService.getUserWithPromise($scope.userId)
         .then($scope.setCurrentUser);
 
@@ -46,6 +47,7 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
       console.log('canceling interval');
       $interval.cancel(queryingFunction);
       $scope.processingPictures = false;
+      console.log('getting crop again', $scope.crop.id)
       cropService.getCrop($scope.crop.id, $scope.setCrop);
     }
 

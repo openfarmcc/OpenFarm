@@ -25,6 +25,9 @@ module PicturesMixin
     # is enabled, because paperclip normally stores on system, not on URLs.
     new_images = choose_images_to_delete images, obj
 
+    obj.processing_pictures = new_images.count
+    obj.save
+
     new_images && new_images.each do |img|
       Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
       # Picture.from_url(img[:image_url],

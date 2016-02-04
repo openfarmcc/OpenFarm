@@ -40,15 +40,18 @@
       .still-uploading-crop-images {
         display: inline-block;
         text-align: center;
-        font-size: 1.8em;
         vertical-align: top;
-        line-height: 3.6;
         height: 100px;
         width: 100px;
         border: 2px solid $light-gray;
         border-radius: 10px;
         color: $light-gray;
         background-color: lighten($light-gray, 10%);
+
+        i {
+          margin-top: 25px;
+          font-size: 1.8em;
+        }
       }
     }
 

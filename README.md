@@ -19,7 +19,23 @@ Sign up to [our Slack room](http://slack.openfarm.cc/)! We strongly recommend jo
 
 To discuss features, feature requests, and ideas, and to interface with our users at large (and contributors not on GitHub), please check out our public [discussion forum](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group).
 
-### Getting Started (Setup)
+## Development
+
+### Getting Started (The Easy Way)
+
+You should use Vagrant to get the OpenFarm system running on your computer. It will avoid having to install the things listed in The Hard Way below. 
+
+1. Install [Vagrant](https://www.vagrantup.com/docs/installation/).
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). 
+3. Open your terminal.
+4. `$ git clone https://github.com/openfarmcc/OpenFarm.git`
+5. `$ cd OpenFarm`
+6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. If something goes wrong at this point, reach out to Simon directly at [slack.openfarm.cc](http://slack.openfarm.cc/). 
+7. Once vagrant has set up your system, you should be able to access OpenFarm on your local system at http://localhost:3000. If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`. 
+
+The above is still being patched, so please reach out to us if something went wrong!
+
+### Getting Started (The Hard Way)
 
 You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
 

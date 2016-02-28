@@ -28,14 +28,14 @@ openFarmModule.factory('alertsService', ['$rootScope',
           msg_type = 'success'
         }
 
-        var msg = '';
-        angular.forEach(response, function(obj){
-            if (obj.title) {
-              msg += obj.title;
-            } else {
-              msg += obj
-            }
-          });
+        console.log(response)
+        var msg = response.map(function(obj){
+          if (obj.title) {
+            return obj.title;
+          } else {
+            return obj
+          }
+        }).join(', ');
         $rootScope.alerts.push({
           msg: msg,
           type: msg_type

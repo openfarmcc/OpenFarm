@@ -14,17 +14,6 @@ class GardenSerializer < BaseSerializer
   # 'stack level too deep', so. Maybe we need a 'ShortUserSerializer'? ToDo
   # has_one :user
 
-  # TODO. I tried really hard to make this conform to JSONApi,
-  # but I'm getting an error saying that the hash can not be concattenated
-  # Might have to wait until AMS 0.10.0, which looks like it will
-  # conform to JSONApi out of the box.
-  # There might be a solution here:
-  # https://github.com/rails-api/active_model_serializers/issues/646
-  # embeds_many :garden_crops # ,
-  # embed: :ids,
-  # key: :garden_crops,
-  # embed_namespace: :links
-
   has_many :garden_crops
-  has_many :pictures
+  has_many :pictures, serializer: PictureSerializer
 end

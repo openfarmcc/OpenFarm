@@ -66,10 +66,7 @@
         </p>
         <span ng-repeat="pic in garden.pictures"
               class="thumbnails"
-              ng-class="{ 'deleted' : pic.deleted }"
-              ng-if="garden.editing || !pic.deleted"
-              ng-init="pic.deleted = false"
-              ng-click="pic.deleted = !pic.deleted">
+              ng-hide="garden.editing">
           <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
                ng-model="pic"/>
         </span>
@@ -77,6 +74,7 @@
             bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
             ng-if="garden.editing"
             ng-model="s3upload"
+            s3-upload-existing-pictures="garden.pictures"
             s3-upload-place-pic="handleNewGardenImage(garden, image)"
             s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
         </div>

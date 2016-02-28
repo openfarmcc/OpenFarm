@@ -3,7 +3,7 @@ class Api::V1::GardensController < Api::V1::BaseController
 
   def index
     render json: serialize_models(User.find(params[:user_id]).gardens,
-                                  include: 'garden_crops')
+                                  include: ['garden_crops', 'pictures'])
   end
 
   def create
@@ -16,7 +16,7 @@ class Api::V1::GardensController < Api::V1::BaseController
   def show
     garden = Garden.find(params[:id])
     if Pundit.policy(current_user, garden).show?
-      render json: serialize_model(garden)
+      render json: serialize_model(garden, include: ['pictures'])
     else
       raise OpenfarmErrors::NotAuthorized
     end

@@ -21,6 +21,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
         gardenService.getGardensForUser($rootScope.profileUser,
           function(success, response) {
             if(success) {
+              console.log(response)
               $scope.profileUser.gardens = response;
 
               $scope.profileUser.gardens.forEach(function(garden){
@@ -79,6 +80,11 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     };
 
     $scope.saveGarden = function(garden){
+      garden.location = garden.location === '' ? null : garden.location
+      garden.location = garden.description === '' ? null : garden.description
+      garden.location = garden.average_sun === '' ? null : garden.average_sun
+      garden.location = garden.soil_type === '' ? null : garden.soil_type
+      garden.location = garden.type === '' ? null : garden.type
       gardenService.saveGarden(garden);
     };
 

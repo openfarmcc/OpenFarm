@@ -267,8 +267,6 @@ GEM
     rails-assets-jquery (2.2.1)
     rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
-    rails-assets-lightbox (2.8.2)
-      rails-assets-jquery (~> 2)
     rails-assets-typeahead.js (0.11.1)
       rails-assets-jquery (>= 1.7)
     rails_12factor (0.0.3)
@@ -442,7 +440,6 @@ DEPENDENCIES
   rails-assets-angular-typeahead (~> 0.3.1)!
   rails-assets-angular-ui-sortable (~> 0.13.4)!
   rails-assets-jquery-ui (~> 1.11.4)!
-  rails-assets-lightbox (~> 2.8.2)!
   rails_12factor
   rails_admin
   rspec-rails (~> 3.0.0)

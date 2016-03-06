@@ -47,7 +47,7 @@ openFarmApp.directive('ofLightboxModal', ['$http', '$modal', 'stageService',
           }
         }
       ],
-      template: "<img ng-src={{picture.thumbnail_url}}/ ng-click='open()'>"
+      template: "<img ng-src={{picture.medium_url}}/ ng-click='open()'>"
     }
   }
 ])

@@ -6,6 +6,9 @@ class PictureSerializer < BaseSerializer
   attribute :thumbnail_url do
     object.attachment.url(:medium)
   end
+  attribute :medium_url do
+    object.attachment.url(:medium)
+  end
 
   # It doesn't make sense to reference pictures
   # because they're nested within the respective object,

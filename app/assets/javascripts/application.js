@@ -12,6 +12,7 @@
 //= require ./libs/moment.min
 //= require ./angular-libs/angular.openfarm
 //= require ./angular-libs/angular.of.directives
+//= require ./angular-libs/angular.of.directives.lightbox-modal
 //= require ./angular-libs/angular.of.users.service
 //= require ./angular-libs/angular.of.defaults.service
 //= require ./angular-libs/angular.of.gardens.service

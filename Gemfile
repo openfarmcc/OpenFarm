@@ -42,13 +42,13 @@ gem 'active_model_serializers'
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery-ui'
-  gem 'rails-assets-angular'
-  gem 'rails-assets-angular-dragdrop'
+  gem 'rails-assets-jquery-ui', '~> 1.11.4'
+  gem 'rails-assets-angular', '~> 1.5.0'
+  gem 'rails-assets-angular-dragdrop', '~> 1.0.13'
   gem 'rails-assets-angular-foundation', '~> 0.8.0'
-  gem 'rails-assets-angular-ui-sortable'
-  gem 'rails-assets-angular-local-storage'
-  gem 'rails-assets-angular-typeahead'
+  gem 'rails-assets-angular-ui-sortable', '~> 0.13.4'
+  gem 'rails-assets-angular-local-storage', '~> 0.2.5'
+  gem 'rails-assets-angular-typeahead', '~> 0.3.1'
 end
 
 group :development, :test do

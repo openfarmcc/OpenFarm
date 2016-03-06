@@ -1,5 +1,5 @@
 <div class="row actions">
-  <div class="columns small-6 medium-4 action-photos stage-wrapper"
+  <!-- <div class="columns small-6 medium-4 action-photos stage-wrapper"
     ng-class="{end: $last}">
     <div ng-if="stage.pictures[0].image_url"
         class="stage-option {{stage.name}}"
@@ -9,7 +9,7 @@
     <div ng-if="!stage.pictures[0].image_url">
       No image yet.
     </div>
-  </div>
+  </div> -->
 
   <div class="actions" ng-if="canEdit">
 
@@ -31,9 +31,10 @@
   </div>
 
   <div class="images">
-    <img ng-repeat="pic in stage.pictures"
-      src="{{pic.image_url}}"
-      />
+    <span ng-repeat="pic in stage.pictures">
+    <span of-lightbox-modal="pic"
+       description="$parent.name"></span>
+    </span>
   </div>
 
   <div class="columns small-6 medium-8 action-content">
@@ -109,12 +110,16 @@
     </div>
   </div>
   <div class="columns small-6 medium-8 action-content"
+    ng-class="{end: $last}"
     ng-repeat="action in stage.stage_actions">
     <h4 class="action-name" ng-bind="action.name"></h4>
     <span ng-repeat="picture in action.pictures">
-      <img ng-src="{{picture.medium_url}}"/>
+      <script type="text/ng-template" id="popover-{{$parent._id}}-{{$index}}">
+        <img ng-src={{picture.image_url}}></h3>
+      </script>
+      <a of-lightbox-modal="picture" description="$parent.name"></a>
     </span>
     <p class="action-description" ng-bind="action.overview"></p>
-    <p class="action-time" ng-bind="action.time"></p>
+    <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
   </div>
 </div>

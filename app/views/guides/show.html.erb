@@ -35,14 +35,14 @@
           <input ng-show="editing" ng-model="guide.name"/>
         </h1>
 
-        <h2 class="guide-relationships"><%= t('.guide_by') %> {{ guide.user.display_name || 'a past member' }} for <a href="/crops/{{ guide.crop.slug }}/" class="crop-name">{{ guide.crop.name }}</a></h2>
+        <h2 class="guide-relationships"><%= t('.guide_by') %> <a href="/users/{{ guide.user.id }}" ng-bind="guide.user.display_name || 'a past member'"></a> for <a href="/crops/{{ guide.crop.slug }}/" class="crop-name">{{ guide.crop.name }}</a></h2>
         <%= render "guides/show/guide_controllers" %>
       </div>
 
       <div class="columns large-5">
         <div class="canopy"
           ng-attr-alt="{{ guide.name }}"
-          style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
+          style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].medium_url }})">
         </div>
       </div>
 

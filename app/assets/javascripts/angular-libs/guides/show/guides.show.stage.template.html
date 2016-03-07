@@ -32,18 +32,20 @@
 
   <div class="images">
     <span ng-repeat="pic in stage.pictures">
-    <span of-lightbox-modal="pic"
-       description="$parent.name"></span>
+      <a of-lightbox-modal="pic"
+         description="$parent.name"></a>
     </span>
   </div>
 
-  <div class="columns small-6 medium-8 action-content">
+  <div class="columns small-12 action-content">
     <h4 class="stage-name">{{ stage.name }} Overview</h4>
 
-    <div
-      class="markdown"
-      markdown="stage.overview"
-      ng-hide="editingStage">
+    <div class="row">
+      <div
+        class="markdown columns small-8"
+        markdown="stage.overview"
+        ng-hide="editingStage">
+      </div>
     </div>
     <textarea
       ng-model="stage.overview"
@@ -109,17 +111,19 @@
       </div>
     </div>
   </div>
-  <div class="columns small-6 medium-8 action-content"
+
+  <div class="columns small-12 action-content"
     ng-class="{end: $last}"
     ng-repeat="action in stage.stage_actions">
     <h4 class="action-name" ng-bind="action.name"></h4>
     <span ng-repeat="picture in action.pictures">
-      <script type="text/ng-template" id="popover-{{$parent._id}}-{{$index}}">
-        <img ng-src={{picture.image_url}}></h3>
-      </script>
       <a of-lightbox-modal="picture" description="$parent.name"></a>
     </span>
-    <p class="action-description" ng-bind="action.overview"></p>
+    <div class="row">
+      <p class="action-description columns small-8"
+        ng-bind="action.overview">
+      </p>
+    </div>
     <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
   </div>
 </div>

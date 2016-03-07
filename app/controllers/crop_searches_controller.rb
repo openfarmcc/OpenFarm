@@ -19,6 +19,21 @@ class CropSearchesController < ApplicationController
 
     @guides = GuideSearch.search('*').for_crops(@crops).with_user(current_user)
 
+    @guides = sort_guides(current_user)
+
     render :show
+  end
+
+  private
+
+  def sort_guides(current_user)
+    if current_user
+      @guides = @guides.sort_by do |guide|
+        guide.compatibility_score(current_user)
+      end
+      @guides.reverse
+    else
+      @guides
+    end
   end
 end

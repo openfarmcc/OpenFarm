@@ -16,6 +16,9 @@
 /log/*.log
 /tmp
 
+# Ignore anything in .vagrant
+.vagrant/*
+
 # Ignore paperclip image uploads
 /public/system
 

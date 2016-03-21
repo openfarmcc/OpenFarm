@@ -71,13 +71,7 @@
   </div>
   <div data-equalizer-watch class="guide-results-container columns medium-6 small-12">
     <h2 class="text-center"><%= @guides.empty? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
-    <p><i class="fa fa-plus add"></i><%= link_to("Make your own!", new_guide_path, :class => "add-new") %></p>
-
-    <!-- Not Needed 
-    <!% if @guides.empty? %>
-      <p class="text-center">Please consider <!%= link_to("creating one", new_guide_path) %> if you can!</p>
-    <!% end %> -->
-
+    <p><i class="fa fa-plus symbol-add"></i><%= link_to("Make your own!", new_guide_path, :class => "add-guide") %></p>
     <%= render partial: '/guides/guide_results_list', object: @guides %>
   </div>
 </div>

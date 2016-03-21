@@ -50,9 +50,9 @@ class Crop
                    :guides_count]
   end
 
-  def main_image_path
+  def main_image_path(size=:large)
     if pictures.present?
-      pictures.first.attachment.url
+      pictures.first.attachment.url(size)
     else
       # WARNING! MVC VIOLATION AHEAD!!!! =======================================
       # The fact that we are using polymorphic embedded documents means we would
@@ -65,7 +65,7 @@ class Crop
       # having less code to maintain. The current solution lets us keep the file
       # in source control instead of expecting the developer to upload it to an
       # S3 bucket when setting up new boxes.
-      ActionController::Base.helpers.asset_path('baren_field.jpg')
+      ActionController::Base.helpers.asset_path('baren_field_large.jpg')
     end
   end
 

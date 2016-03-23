@@ -30,7 +30,7 @@ video { display: block; }
     right: 0;
     min-width: 100%; min-height: 10%;
     width: auto; height: auto; z-index: -100;
-    background: image-url('home_video_first_frame.jpeg') no-repeat center center;
+    /*background: image-url('home_video_first_frame.jpeg') no-repeat center center;*/
     background-size: cover;
   }
 }

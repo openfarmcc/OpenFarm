@@ -7,7 +7,8 @@ class Picture
   has_mongoid_attached_file :attachment,
     styles: { small:  ['100x100^', :jpg],
               medium: ['250x250',  :jpg],
-              large:    ['500x500>', :jpg] },
+              large:  ['500x500>', :jpg],
+              canopy: ['1200', :jpg] },
     convert_options: { all: '-background transparent -flatten +matte',
                        small: '-gravity center -extent 100x100' }
   validates_attachment_size :attachment, in: 1.byte..25.megabytes

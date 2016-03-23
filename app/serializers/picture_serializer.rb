@@ -3,11 +3,20 @@ class PictureSerializer < BaseSerializer
   attribute :image_url do
     object.attachment.url
   end
+  attribute :small_url do
+    object.attachment.url(:small)
+  end
   attribute :thumbnail_url do
-    object.attachment.url(:medium)
+    object.attachment.url(:small)
   end
   attribute :medium_url do
     object.attachment.url(:medium)
+  end
+  attribute :large_url do
+    object.attachment.url(:large)
+  end
+  attribute :canopy_url do
+    object.attachment.url(:canopy)
   end
 
   # It doesn't make sense to reference pictures

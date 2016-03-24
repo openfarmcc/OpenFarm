@@ -47,7 +47,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-dragdrop', '~> 1.0.13'
   gem 'rails-assets-angular-foundation', '~> 0.8.0'
   gem 'rails-assets-angular-ui-sortable', '~> 0.13.4'
-  gem 'rails-assets-angular-local-storage', '~> 0.2.5'
+  gem 'rails-assets-angular-local-storage', '~> 0.2.3'
   gem 'rails-assets-angular-typeahead', '~> 0.3.1'
 end
 

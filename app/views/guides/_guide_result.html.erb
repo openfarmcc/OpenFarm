@@ -6,7 +6,7 @@
         <p class="guide-author">by <% if guide.user %><%= guide.user.display_name %><% else %>a past member<% end %></p>
       </div>
       <div class="guide-description">
-        <p><%= guide.overview %></p>
+        <p><%= truncate(guide.overview, length: 160)%></p>
       </div>
     </div>
     <div class="compatibility-circle-container">

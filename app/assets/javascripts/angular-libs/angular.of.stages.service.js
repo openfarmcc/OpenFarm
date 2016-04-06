@@ -124,11 +124,14 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
     };
 
     var createStageWithPromise = function(params) {
+      console.log('params', params)
       return $q(function (resolve, reject) {
         $http.post('/api/v1/stages/', params)
           .success(function (response) {
+            console.log('success', response)
             resolve(buildStage(response.data, response.included));
           }).error(function (response, code) {
+            console.log(response)
             reject();
             alertsService.pushToAlerts(response.errors, code);
           });

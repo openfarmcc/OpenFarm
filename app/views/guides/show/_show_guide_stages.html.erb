@@ -34,8 +34,10 @@
         class="columns small-12">
 
       </div>
-    </tab><tab heading="+ Add New Stage" ng-if="currentUser.id === guide.user.id">
-      <div of-show-add-stage-to-guide>
+    </tab><tab heading="+ Add New Stages" ng-if="currentUser.id === guide.user.id">
+      <div of-show-add-stage-to-guide
+        existing-stages="guide.stages"
+        guide-id="guide.id">
       </div>
     </tab>
   </tabset>

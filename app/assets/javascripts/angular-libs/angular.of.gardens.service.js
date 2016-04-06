@@ -21,7 +21,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
       })
       garden.relationships = data.relationships;
       garden.garden_crops = findGardenCrops(gardenCropIds, included) || [];
-      console.log('inlcluded', included)
       if (included) {
         pictures = included.filter(function(obj) {
           return obj.type === 'pictures';
@@ -56,7 +55,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
     var buildParams = function(gardenObject) {
       gardenObject.relationships = null;
       gardenObject.links = null;
-      console.log('building params')
       var data = {
         type: 'gardens',
         id: gardenObject.id,
@@ -65,16 +63,13 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           return !p.deleted;
         }) : [],
       }
-      console.log(data)
       return data;
     }
 
     var getGardensForUser = function(user, callback) {
       var url = user.relationships.gardens.links.related;
-      console.log(url)
       $http.get(url)
         .success(function (response, code) {
-          console.log('response', response)
           var gardens = response.data.map(function(garden) {
             return buildGarden(garden, response.included);
           });
@@ -90,7 +85,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
 
     var saveGarden = function(garden, callback){
       var url = '/api/v1/gardens/' + garden.id;
-      console.log(garden)
       var data = buildParams(garden);
       // var data = {
       //   images: garden.pictures ? garden.pictures.filter(function(p){
@@ -105,7 +99,6 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
       //     soil_type: garden.soil_type || null
       //   }
       // };
-      console.log('about to save')
       $http.put(url, {'data': data})
         .success(function (response, object) {
           alertsService.pushToAlerts(['Updated your garden!'], '200')
@@ -114,7 +107,7 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
           }
         })
         .error(function (response, code){
-          console.log()
+          console.log('error saving garden', response)
           alertsService.pushToAlerts(response.errors, code)
           if (callback){
             return callback(false, response, code);

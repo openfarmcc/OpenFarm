@@ -90,8 +90,10 @@
   }
 }
 
+.stages,
 .actions {
   .images {
+    margin-top: 1rem;
     display: inline-block;
   }
 }
@@ -107,4 +109,85 @@
   font-family: $header-font-family;
 }
 
+.stage {
+  .stage-default-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    display: block;
+  }
+}
 
+.management-actions {
+  padding: .75rem;
+  display: block;
+  height: 4rem;
+  width: 100%;
+  background-color: $light-gray;
+}
+
+// TODO: this needs to be cleaned up, have no idea what effect this has:
+
+.stages {
+  .action-content {
+    border-bottom: #cdcdcd 2px solid;
+    margin-top: 1rem;
+  }
+
+  .action-content:last-child {
+    border-bottom: none;
+  }
+
+  .image img {
+    background-position: center;
+    background-size: cover;
+    height: 170px;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .tabs {
+    background-color: #efefef;
+  }
+
+  .tabs-content {
+    background-color: #f6f6f6;
+  }
+
+  .tabs dd > a {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .tabs > dd.active > a,
+  .tabs > dd.active > a > tab-heading > h3 {
+    background-color: #4a4a4a;
+    color: #ffffff;
+  }
+
+  // Allow horizontal scrolling of Life Stage tabs
+  dl.tabs {
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .tabs dd {
+    display: inline-block;
+    float: none;
+  }
+
+  // Action labels in completed guides look different
+  .actions li {
+    color: #333333;
+    border-color: #333333;
+
+    &.selected {
+      color: white;
+      background: $of-green;
+      border-color: $of-green;
+    }
+  }
+}

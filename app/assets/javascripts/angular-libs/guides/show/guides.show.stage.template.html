@@ -1,4 +1,4 @@
-<div class="row actions">
+<div class="row stage">
   <!-- <div class="columns small-6 medium-4 action-photos stage-wrapper"
     ng-class="{end: $last}">
     <div ng-if="stage.pictures[0].image_url"
@@ -11,7 +11,7 @@
     </div>
   </div> -->
 
-  <div class="actions" ng-if="canEdit">
+  <div class="management-actions" ng-if="canEdit">
 
     <a ng-hide="editingStage"
       class="button tiny secondary edit-link"
@@ -30,11 +30,15 @@
     </a>
   </div>
 
-  <div class="images">
+  <div class="columns images"
+    ng-class="{ 'small-3': stage.pictures.length === 0 }">
     <span ng-repeat="pic in stage.pictures"
       ng-if="!editingStage">
       <a of-lightbox-modal="pic"
          description="$parent.name"></a>
+    </span>
+    <span ng-if="stage.pictures.length === 0"
+      class="stage-default-picture stage-option {{ stage.name | lowercase }}">
     </span>
 
     <div class="upload-stage-picture"
@@ -48,7 +52,8 @@
     </div>
   </div>
 
-  <div class="columns small-12 action-content">
+  <div class="columns small-8 action-content end"
+    ng-class="{ 'small-12': stage.pictures.length > 0 }">
     <h4 class="stage-name">{{ stage.name }} Overview</h4>
 
     <div class="row" ng-hide="editingStage">

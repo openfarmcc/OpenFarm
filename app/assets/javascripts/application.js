@@ -31,6 +31,7 @@
 //= require ./angular-libs/guides/new/guides.new.actionsControl.directive.js
 //= require ./angular-libs/guides/new/guides.new.guideStageOverview.directive.js
 //= require ./angular-libs/guides/show/guides.show.stage.directive.js
+//= require ./angular-libs/guides/show/guides.show.stage.environmental-overview.directive.js
 //= require ./angular-libs/guides/show/guides.show.add-stage-to-guide.directive.js
 //= require ./angular-libs/guides/directives/guides.formChecker.directive.js
 

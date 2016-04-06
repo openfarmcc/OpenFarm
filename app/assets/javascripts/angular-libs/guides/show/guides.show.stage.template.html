@@ -31,20 +31,35 @@
   </div>
 
   <div class="images">
-    <span ng-repeat="pic in stage.pictures">
+    <span ng-repeat="pic in stage.pictures"
+      ng-if="!editingStage">
       <a of-lightbox-modal="pic"
          description="$parent.name"></a>
     </span>
+
+    <div class="upload-stage-picture"
+        s3-upload
+        bucket="s3Bucket"
+        ng-model="s3upload"
+        s3-upload-existing-pictures="stage.pictures"
+        s3-upload-place-pic="placeImageUpload(image)"
+        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}"
+        ng-show="editingStage">
+    </div>
   </div>
 
   <div class="columns small-12 action-content">
     <h4 class="stage-name">{{ stage.name }} Overview</h4>
 
-    <div class="row">
-      <div
-        class="markdown columns small-8"
+    <div class="row" ng-hide="editingStage">
+      <div class="markdown columns small-8"
         markdown="stage.overview"
-        ng-hide="editingStage">
+        ng-if="stage.overview"
+        >
+      </div>
+      <div ng-hide="stage.overview"
+        class="columns small-8 empty-details">
+        <p>No stage overview given</p>
       </div>
     </div>
     <textarea
@@ -52,29 +67,19 @@
       ng-show="editingStage">
     </textarea>
 
-    <p class="stage-description"></p>
-
     <table ng-hide="editingStage">
       <tr>
         <th>Environment</th><td>
-          <span ng-repeat="env in environment | filter:{selected: true}"
-
-            > {{ env.label }}<span ng-if="!$last">, </span>
-          </span>
-
+          <span of-environmental-overview="environment"></span>
         </td>
       </tr>
       <tr>
-        <th>Light</th><td><span ng-repeat="li in light | filter:{selected: true}"
-
-            > {{ li.label }}<span ng-if="!$last">, </span>
-          </span></td>
+        <th>Light</th><td>
+          <span of-environmental-overview="light"></span>
+        </td>
       </tr>
       <tr>
-        <th>Soil</th><td><span ng-repeat="env in soil | filter:{selected: true}"
-
-            > {{ env.label }}<span ng-if="!$last">, </span>
-          </span></td>
+        <th>Soil</th><td><span of-environmental-overview="soil"></span></td>
       </tr>
     </table>
 

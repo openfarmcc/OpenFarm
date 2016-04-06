@@ -8,6 +8,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
         texts: '=?',
         canEdit: '=',
         triggerGuideUpdate: '=?',
+        s3Bucket: '='
       },
       controller: ['$scope',
         function ($scope) {
@@ -48,6 +49,13 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                   $scope.triggerGuideUpdate();
                 })
             }
+          }
+
+          $scope.placeImageUpload = function (image) {
+            $scope.stage.pictures.push({
+              new: true,
+              image_url: image
+            })
           }
 
           $scope.saveStageChanges = function(stage) {

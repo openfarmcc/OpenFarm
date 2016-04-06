@@ -96,4 +96,15 @@
   }
 }
 
+.action-content {
+  .empty-details {
+    color: $light-gray;
+  }
+}
+
+.tabs.stages .add-stage a {
+  font-size: 14px;
+  font-family: $header-font-family;
+}
+
 

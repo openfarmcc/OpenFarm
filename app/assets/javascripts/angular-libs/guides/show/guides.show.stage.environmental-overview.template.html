@@ -1,0 +1,6 @@
+
+<span ng-repeat="env in factors | filter:{selected: true}"
+
+  > {{ env.label }}<span ng-if="!$last">, </span>
+</span>
+<span class="empty-details" ng-if="(factors | filter:{selected: true}).length === 0">No details given yet</span>

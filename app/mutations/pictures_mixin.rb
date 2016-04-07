@@ -41,7 +41,6 @@ module PicturesMixin
     end
 
     image_ids = images.map do |img|
-      puts img[:id]
       img[:id].to_s
     end
 

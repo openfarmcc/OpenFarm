@@ -33,6 +33,7 @@
 //= require ./angular-libs/guides/show/guides.show.stage.directive.js
 //= require ./angular-libs/guides/show/guides.show.stage.environmental-overview.directive.js
 //= require ./angular-libs/guides/show/guides.show.add-stage-to-guide.directive.js
+//= require ./angular-libs/guides/show/guides.show.stage-action.directive.js
 //= require ./angular-libs/guides/directives/guides.formChecker.directive.js
 
 //= require ./angular-libs/ngs3upload

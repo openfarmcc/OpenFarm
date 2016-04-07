@@ -131,16 +131,9 @@
   </div>
   <div class="columns small-12 action-content"
     ng-class="{end: $last}"
-    ng-repeat="action in stage.stage_actions">
-    <h4 class="action-name" ng-bind="action.name"></h4>
-    <span ng-repeat="picture in action.pictures">
-      <a of-lightbox-modal="picture" description="$parent.name"></a>
-    </span>
-    <div class="row">
-      <p class="action-description columns small-8"
-        ng-bind="action.overview">
-      </p>
-    </div>
-    <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
+    ng-repeat="action in stage.stage_actions"
+    of-show-stage-action="action"
+    editing-stage="editingStage"
+    s3-bucket="s3Bucket">
   </div>
 </div>

@@ -43,13 +43,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 // stage-actions? Probably a jsonAPI serializer thing.
                 $scope.stage.stage_actions = obj['stage-actions']
                 $scope.stage.pictures = obj['pictures']
-                console.log($scope.stage.pictures)
               })
-
-            // stageService.getPictures($scope.stage.id)
-            //   .then(function (obj) {
-            //     $scope.stage.pictures = obj
-            //   })
           }
 
 
@@ -70,7 +64,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           }
 
           $scope.placeImageUpload = function (image) {
-            $scope.stage.attributes.pictures.push({
+            $scope.stage.pictures.push({
               new: true,
               image_url: image
             })
@@ -113,8 +107,8 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
 
             stageService.updateStageWithPromise(stage.id, {'data': data})
               .then(function(response) {
-                // $scope.triggerGuideUpdate();
                 $scope.toggleEditingStage();
+                window.location.reload()
               }, function(error) {
                 console.log('error', error)
               });

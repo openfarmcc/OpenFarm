@@ -8,7 +8,8 @@ class StageSerializer < BaseSerializer
   attribute :overview
 
   has_one :guide
-  has_many :pictures
   has_one :time_span
+
+  has_many :pictures
   has_many :stage_actions
 end

@@ -190,4 +190,25 @@
       border-color: $of-green;
     }
   }
+
+  // Editing Stage Information
+
+  textarea {
+    height: 10rem;
+    font-size: 1rem;
+    padding: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .editing-stage-environment {
+    margin-bottom: 2rem;
+
+    > label {
+      margin-top: 1rem;
+    }
+
+    :first-child {
+      margin-top: 0;
+    }
+  }
 }

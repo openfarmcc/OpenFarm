@@ -36,6 +36,24 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
             }
           });
 
+          if ($scope.stage) {
+            stageService.getStage($scope.stage.id)
+              .then(function (obj) {
+                // TODO: We probably want to keep this more consistent
+                // stage-actions? Probably a jsonAPI serializer thing.
+                $scope.stage.stage_actions = obj['stage-actions']
+                $scope.stage.pictures = obj['pictures']
+                console.log($scope.stage.pictures)
+              })
+
+            // stageService.getPictures($scope.stage.id)
+            //   .then(function (obj) {
+            //     $scope.stage.pictures = obj
+            //   })
+          }
+
+
+
           $scope.toggleEditingStage = function() {
             $scope.editingStage = !$scope.editingStage;
           }
@@ -52,7 +70,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           }
 
           $scope.placeImageUpload = function (image) {
-            $scope.stage.pictures.push({
+            $scope.stage.attributes.pictures.push({
               new: true,
               image_url: image
             })

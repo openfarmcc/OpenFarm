@@ -25,27 +25,37 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             data.relationships.stage_actions.data.length === 0) {
           stage.stage_actions = [];
         } else {
-          // TODO: we'll need to go fetch these from the
-          // server.
-          stage.stage_actions = [];
+          toExecute.push($q(function (resolve, reject) {
+            $http.get(data.relationships.stage_actions.links.related)
+              .success(function (data) {
+                resolve(data)
+              })
+              .error(function (err) {
+                console.log(err);
+              })
+          }))
         }
 
         if (data.relationships.pictures.data === undefined &&
             data.relationships.pictures.data.length === 0) {
           stage.pictures = [];
         } else {
-          toExecute.push($q( function(resolve, reject) {
-                $http.get(data.relationships.pictures.links.related)
-                  .success(function(data) {
-                    resolve(data);
-                  });
-              }));
+          toExecute.push($q( function (resolve, reject) {
+            $http.get(data.relationships.pictures.links.related)
+              .success(function (data) {
+                resolve(data);
+              });
+          }));
         }
         $q.all(toExecute).then(function(data){
             data.forEach(function(datum) {
               // if we need to get really meta here
               // we can get services based on their name
-              stage[datum.data[0].type] = datum.data;
+              if (datum.data.length > 0) {
+                stage[datum.data[0].type] = datum.data.map(function (obj) {
+                  return obj.attributes
+                });
+              }
             })
             resolve(stage);
         });
@@ -96,18 +106,18 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       return data.attributes;
     }
 
-    var getStageWithPromise = function(id) {
+    var getStage = function(id) {
       return $q(function (resolve, reject) {
-        $http.get('/api/v1/stages/' + stage.id + '/pictures')
-          .success(function(pictures) {
-            resolve(pictures.data);
+        $http.get('/api/v1/stages/' + id + '/')
+          .success(function (stage) {
+            resolve(buildStageWithPromise(stage.data));
           })
       });
     }
 
-    var getPictures = function(stage) {
+    var getPictures = function(id) {
       return $q(function (resolve, reject) {
-        $http.get('/api/v1/stages/' + stage.id + '/pictures')
+        $http.get('/api/v1/stages/' + id + '/pictures')
           .success(function(pictures) {
             resolve(pictures.data);
           })
@@ -124,14 +134,11 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
     };
 
     var createStageWithPromise = function(params) {
-      console.log('params', params)
       return $q(function (resolve, reject) {
         $http.post('/api/v1/stages/', params)
           .success(function (response) {
-            console.log('success', response)
             resolve(buildStage(response.data, response.included));
           }).error(function (response, code) {
-            console.log(response)
             reject();
             alertsService.pushToAlerts(response.errors, code);
           });
@@ -189,13 +196,13 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         'buildStage': buildStage,
         'buildStageWithPromise': buildStageWithPromise
       },
-      'getStageWithPromise': getStageWithPromise,
+      'getStage': getStage,
       'createStageWithPromise': createStageWithPromise,
       'updateStageWithPromise': updateStageWithPromise,
       'deleteStageWithPromise': deleteStageWithPromise,
       'deleteStage': deleteStage,
       'createStage': createStage,
       'updateStage': updateStage,
-      'getPictures': getPictures,
+      'getPictures': getPictures
     };
 }]);

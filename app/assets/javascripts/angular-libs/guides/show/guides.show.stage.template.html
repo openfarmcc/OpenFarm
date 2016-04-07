@@ -43,7 +43,7 @@
 
     <div class="upload-stage-picture"
         s3-upload
-        bucket="s3Bucket"
+        bucket="'{{s3Bucket}}'"
         ng-model="s3upload"
         s3-upload-existing-pictures="stage.pictures"
         s3-upload-place-pic="placeImageUpload(image)"
@@ -67,10 +67,18 @@
         <p>No stage overview given</p>
       </div>
     </div>
-    <textarea
-      ng-model="stage.overview"
+    <div class="row"
       ng-show="editingStage">
-    </textarea>
+      <div class="columns small-12">
+        <label for="textarea">Describe what you did during this stage</label>
+        <textarea
+          id="textarea"
+          class="columns small-6"
+          ng-model="stage.overview"
+          ng-show="editingStage">
+        </textarea>
+      </div>
+    </div>
 
     <table ng-hide="editingStage">
       <tr>
@@ -88,7 +96,7 @@
       </tr>
     </table>
 
-    <div ng-show="editingStage">
+    <div ng-show="editingStage" class="editing-stage-environment">
 
       <label>Environment</label>
       <div multi-row-select
@@ -121,7 +129,6 @@
       </div>
     </div>
   </div>
-
   <div class="columns small-12 action-content"
     ng-class="{end: $last}"
     ng-repeat="action in stage.stage_actions">

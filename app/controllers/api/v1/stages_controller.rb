@@ -16,7 +16,7 @@ class Api::V1::StagesController < Api::V1::BaseController
 
   def show
     stage = Stage.find(params[:id])
-    render json: serialize_model(stage, include: ['pictures'])
+    render json: serialize_model(stage, include: ['pictures', 'stage_actions'])
   end
 
   def update
@@ -48,5 +48,10 @@ class Api::V1::StagesController < Api::V1::BaseController
   def pictures
     stage = Stage.find(params[:stage_id])
     render json: serialize_models(stage.pictures)
+  end
+
+  def stage_actions
+    stage = Stage.find(params[:stage_id])
+    render json: serialize_models(stage.stage_actions)
   end
 end

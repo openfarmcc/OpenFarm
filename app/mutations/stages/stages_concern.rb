@@ -20,13 +20,24 @@ module Stages
     end
 
     def set_actions
-      @stage.stage_actions.delete_all
-
+      puts 'setting actions'
       actions && actions.each do |action|
-        @outcome = StageActions::CreateStageAction.run(user: user,
-                                                       attributes: action,
-                                                       images: action[:images],
-                                                       id: "#{@stage.id}")
+        puts 'action has an id?'
+        puts action.to_json
+        if action[:id]
+          puts 'yes!'
+          @outcome = StageActions::UpdateStageAction.run(user: user,
+                                                         attributes: action,
+                                                         images: action[:images],
+                                                         stage_id: "#{@stage.id}",
+                                                         id: action[:id])
+        else
+          puts 'no?'
+          @outcome = StageActions::CreateStageAction.run(user: user,
+                                                         attributes: action,
+                                                         images: action[:images],
+                                                         id: "#{@stage.id}")
+        end
       end
     end
   end

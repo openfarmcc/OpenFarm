@@ -1,16 +1,4 @@
 <div class="row stage">
-  <!-- <div class="columns small-6 medium-4 action-photos stage-wrapper"
-    ng-class="{end: $last}">
-    <div ng-if="stage.pictures[0].image_url"
-        class="stage-option {{stage.name}}"
-        style="background-image: url({{stage.pictures[0].image_url}})"
-        ng-class="{stage.name : stage.pictures.length === 0}" for="{{ stage.name }}">
-    </div>
-    <div ng-if="!stage.pictures[0].image_url">
-      No image yet.
-    </div>
-  </div> -->
-
   <div class="management-actions" ng-if="canEdit">
 
     <a ng-hide="editingStage"
@@ -130,10 +118,19 @@
     </div>
   </div>
   <div class="columns small-12 action-content"
-    ng-class="{end: $last}"
-    ng-repeat="action in stage.stage_actions"
+    ng-class="{end: $last, new: action.new}"
+    ng-repeat="action in stage.stage_actions | orderBy: 'order'"
     of-show-stage-action="action"
     editing-stage="editingStage"
-    s3-bucket="s3Bucket">
+    stage="stage"
+    s3-bucket="s3Bucket"
+    ng-hide="action.hide">
+  </div>
+
+  <div class="columns small-12 add-action">
+    Want to add another action?<br/>
+    <button ng-click="openAddActionModal(stage)"
+      class="button primary"> Add Action
+    </button>
   </div>
 </div>

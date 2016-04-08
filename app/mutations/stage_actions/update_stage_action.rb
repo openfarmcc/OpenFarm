@@ -1,16 +1,15 @@
 module StageActions
-  class CreateStageAction < Mutations::Command
+  class UpdateStageAction < Mutations::Command
     include StageActions::StageActionsConcern
     include PicturesMixin
 
     required do
       model :user
+      string :stage_id
       string :id
       hash :attributes do
-        required do
-          string :name
-        end
         optional do
+          string :name
           string :overview
           integer :order
           integer :time
@@ -23,24 +22,25 @@ module StageActions
     end
 
     def validate
-      validate_stage id
+      validate_stage stage_id
       validate_images images
       validate_permissions
     end
 
     def execute
-      @action = @stage.stage_actions.create(attributes)
+      puts "action: #{id}, stage: #{stage_id}"
+      @action = @stage.stage_actions.find(id)
+      @action.update_attributes(attributes)
       @action.save
+
       set_images images, @action
       @action.reload
       @action
     end
 
-    private
-
     def validate_permissions
       if @stage && (@stage.guide.user != user)
-        msg = 'You can only create actions for stages that belong to your '\
+        msg = 'You can only update actions for stages that belong to your '\
               'guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end

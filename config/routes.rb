@@ -61,9 +61,9 @@ OpenFarm::Application.routes.draw do
                   controller: 'stages',
                   action: 'pictures'
         resources :stage_actions,
-                  only: [:index],
-                  controller: 'stages',
-                  action: 'stage_actions'
+                  only: [:index, :destroy]
+                  # controller: 'stages',
+                  # action: 'stage_actions'
       end
 
       # TODO Figure out why I can't use a singular resource route here.

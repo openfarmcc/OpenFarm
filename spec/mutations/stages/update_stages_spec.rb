@@ -70,6 +70,17 @@ describe Stages::UpdateStage do
     expect(results.errors.message[:actions]).to include('valid name')
   end
 
+  it 'allows updating of existing stage actions' do
+    stage_action = FactoryGirl.create(:stage_action, stage: stage)
+    actions = [{ name: stage_action.name,
+                 overview: stage_action.overview,
+                 id: stage_action.id }]
+    actions_params = params.merge(actions: actions)
+    results = mutation.run(actions_params)
+    expect(results.result.stage_actions[0].id).to eq(stage_action.id)
+    expect(results.success?).to be_truthy
+  end
+
   it 'deletes images marked for deletion' do
     VCR.use_cassette('mutations/stages/update_stage') do
       image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]

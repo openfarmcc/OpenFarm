@@ -1,20 +1,28 @@
-openFarmApp.directive('ofShowStageAction', ['$http', '$modal',
-  function ofShowStageAction($http, $modal) {
+openFarmApp.directive('ofShowStageAction', ['$http', 'stageService',
+  function ofShowStageAction($http, stageService) {
     return {
       restrict: 'A',
       scope: {
         action: '=ofShowStageAction',
         editingStage: '=',
-        s3Bucket: '='
+        s3Bucket: '=',
+        stage: '='
       },
       controller: ['$scope',
         function ($scope) {
           $scope.placeStageActionImageUpload = function (image) {
-            console.log('scoping this stage action image')
             $scope.action.pictures.push({
               new: true,
               image_url: image
             })
+          }
+
+          $scope.deleteStageAction = function () {
+            stageService
+              .deleteStageAction($scope.stage.id, $scope.action.id)
+                .then(function () {
+                  $scope.action.hide = true;
+                })
           }
         }
       ],

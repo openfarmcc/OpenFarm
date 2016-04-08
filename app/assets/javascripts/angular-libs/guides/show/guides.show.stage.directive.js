@@ -1,5 +1,6 @@
 openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
-  function ofShowGuideStages($http, $modal, stageService) {
+  'defaultService',
+  function ofShowGuideStages($http, $modal, stageService, defaultService) {
     return {
       restrict: 'A',
       scope: {
@@ -45,8 +46,6 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 $scope.stage.pictures = obj['pictures']
               })
           }
-
-
 
           $scope.toggleEditingStage = function() {
             $scope.editingStage = !$scope.editingStage;
@@ -95,12 +94,15 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 order: stage.order,
               },
               actions: stage.stage_actions.map(function(sa, index) {
-                        return {
+                        var actionData = {
                           name: sa.name,
                           images: sa.pictures,
                           overview: sa.overview,
-                          order: index
+                          order: index,
+                          id: sa.id || null
                         };
+                        console.log(sa, actionData)
+                        return actionData
                       }),
               images: stage.pictures
             };
@@ -113,6 +115,64 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 console.log('error', error)
               });
           }
+
+          $scope.openAddActionModal = function(stage){
+
+            defaultService.getStageActionOptions()
+              .then(function (actionOptions) {
+                // http://pineconellc.github.io/angular-foundation/#modal
+                var modalInstance = $modal.open({
+                  templateUrl: '/assets/templates/_add_action_modal.html',
+                  controller: ['$scope', '$modalInstance', 'stage',
+                    'actionOptions',
+                    function ($scope, $modalInstance, stage, actionOptions) {
+                      $scope.actionOptions = actionOptions;
+                      $scope.existingActions = stage.stage_action_options || [];
+
+                      $scope.actionOptions.forEach(function(action){
+                        $scope.existingActions.forEach(function(existingAction){
+                          if (existingAction.name === action.name){
+                            action.overview = existingAction.overview;
+                            action.selected = true;
+                            action.pictures = [];
+                          }
+                        });
+                      });
+
+                      $scope.ok = function () {
+                        var selectedActions = $scope.actionOptions
+                                                .filter(function(action){
+                                                  return action.selected;
+                                                });
+                        $modalInstance.close(selectedActions);
+                      };
+
+                      $scope.cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                      };
+                    }],
+                  keyboard: false,
+                  resolve: {
+                    stage: function(){
+                      return stage;
+                    },
+                    actionOptions: function(){
+                      return actionOptions;
+                    }
+                  }
+                });
+
+                modalInstance.result.then(function (selectedActions) {
+                  console.log('selected actions', selectedActions);
+                  selectedActions.forEach(function (action) {
+                    action.new = true;
+                    stage.stage_actions.push(action)
+                  })
+                }, function () {
+                  console.info('Modal dismissed at: ' + new Date());
+                });
+              });
+          };
         }
       ],
       templateUrl: '/assets/angular-libs/guides/show/guides.show.stage.template.html'

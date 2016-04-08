@@ -1,29 +1,36 @@
 <h4 class="action-name" ng-bind="action.name"></h4>
-    <span ng-repeat="picture in action.pictures"
+<div class="empty-details" ng-if="action.new">This is a new action - be sure to save your stage first!</div>
+  <div class="management-actions" ng-show="editingStage">
+    <a class="button tiny primary edit-link"
+      ng-click="deleteStageAction(stage)">
+      <i class="fa fa-trash"></i> Delete Stage Action
+    </a>
+  </div>
+  <span ng-repeat="picture in action.pictures"
+    ng-hide="editingStage">
+    <a of-lightbox-modal="picture" description="$parent.name"></a>
+  </span>
+  <div class="upload-stage-picture"
+      s3-upload
+      bucket="'{{s3Bucket}}'"
+      ng-model="s3upload"
+      s3-upload-existing-pictures="action.pictures"
+      s3-upload-place-pic="placeStageActionImageUpload(image)"
+      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}"
+      ng-show="editingStage">
+  </div>
+  <div class="row" ng-hide="editingStage">
+    <p class="action-description columns small-8"
+      ng-bind="action.overview"
       ng-hide="editingStage">
-      <a of-lightbox-modal="picture" description="$parent.name"></a>
-    </span>
-    <div class="upload-stage-picture"
-        s3-upload
-        bucket="'{{s3Bucket}}'"
-        ng-model="s3upload"
-        s3-upload-existing-pictures="action.pictures"
-        s3-upload-place-pic="placeStageActionImageUpload(image)"
-        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}"
-        ng-show="editingStage">
-    </div>
-    <div class="row" ng-hide="editingStage">
-      <p class="action-description columns small-8"
-        ng-bind="action.overview"
-        ng-hide="editingStage">
-      </p>
-    </div>
-    <div class="row" ng-show="editingStage">
+    </p>
+  </div>
+  <div class="row" ng-show="editingStage">
+    <div class="columns small-6">
       <textarea
-        id="textarea"
-        class="columns small-6"
         ng-model="action.overview">
       </textarea>
     </div>
-    <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
   </div>
+  <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
+</div>

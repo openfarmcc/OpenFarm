@@ -190,6 +190,18 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       });
     };
 
+    var deleteStageAction = function(stageId, actionId) {
+      return $q(function (resolve, reject) {
+        $http.delete('/api/v1/stages/' + stageId + '/stage_actions/' + actionId)
+          .success(function (response) {
+            resolve();
+          }).error(function (response, code) {
+            reject();
+            alertsService.pushToAlerts(response.errors, code);
+          });
+      });
+    };
+
     return {
       // 'getGuide': getStage,
       'utilities': {
@@ -200,6 +212,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       'createStageWithPromise': createStageWithPromise,
       'updateStageWithPromise': updateStageWithPromise,
       'deleteStageWithPromise': deleteStageWithPromise,
+      'deleteStageAction': deleteStageAction,
       'deleteStage': deleteStage,
       'createStage': createStage,
       'updateStage': updateStage,

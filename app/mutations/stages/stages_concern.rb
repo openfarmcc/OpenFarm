@@ -20,19 +20,14 @@ module Stages
     end
 
     def set_actions
-      puts 'setting actions'
       actions && actions.each do |action|
-        puts 'action has an id?'
-        puts action.to_json
         if action[:id]
-          puts 'yes!'
           @outcome = StageActions::UpdateStageAction.run(user: user,
                                                          attributes: action,
                                                          images: action[:images],
                                                          stage_id: "#{@stage.id}",
                                                          id: action[:id])
         else
-          puts 'no?'
           @outcome = StageActions::CreateStageAction.run(user: user,
                                                          attributes: action,
                                                          images: action[:images],

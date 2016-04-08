@@ -127,7 +127,7 @@
     ng-hide="action.hide">
   </div>
 
-  <div class="columns small-12 add-action">
+  <div class="columns small-12 add-action" ng-show="editingStage">
     Want to add another action?<br/>
     <button ng-click="openAddActionModal(stage)"
       class="button primary"> Add Action

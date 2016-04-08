@@ -11,18 +11,22 @@ openFarmApp.directive('ofShowStageAction', ['$http', 'stageService',
       controller: ['$scope',
         function ($scope) {
           $scope.placeStageActionImageUpload = function (image) {
-            $scope.action.pictures.push({
+            var newPicture = {
               new: true,
               image_url: image
-            })
+            }
+            if ($scope.action.pictures) {
+              $scope.action.pictures.push(newPicture)
+            } else {
+              $scope.action.pictures = [newPicture]
+            }
           }
 
           $scope.deleteStageAction = function () {
-            stageService
-              .deleteStageAction($scope.stage.id, $scope.action.id)
-                .then(function () {
-                  $scope.action.hide = true;
-                })
+            stageService.deleteStageAction($scope.stage.id, $scope.action.id)
+              .then(function () {
+                $scope.action.hide = true;
+              })
           }
         }
       ],

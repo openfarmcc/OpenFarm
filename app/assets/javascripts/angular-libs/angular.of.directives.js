@@ -142,7 +142,7 @@ openFarmApp.directive('ofSticky', [function () {
           })
 
           var update_sticky_positioning = function () {
-            var $parent = $('[of-sticky]')
+            var $parent = $($element)
             var $toHang =  $parent.children($attributes.ofStickyChild)
             var offset = $parent.offset().top - +$attributes.ofStickyOffset
             if ($window.scrollTop() - offset > 0) {

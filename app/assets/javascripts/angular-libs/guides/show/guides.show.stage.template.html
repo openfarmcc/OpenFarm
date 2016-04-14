@@ -124,11 +124,13 @@
     editing-stage="editingStage"
     stage="stage"
     s3-bucket="s3Bucket"
-    ng-hide="action.hide">
+    ng-hide="action.hide"
+    save-stage-changes="saveStageChanges"
+    index="$index">
   </div>
 
   <div class="columns small-12 add-action" ng-show="editingStage">
-    Want to add another action?<br/>
+    Want to add an action to this stage?<br/>
     <button ng-click="openAddActionModal(stage)"
       class="button primary"> Add Action
     </button>

@@ -12,9 +12,9 @@ module Stages
         optional do
           string :name
           string :overview
-          array :environment
-          array :soil
-          array :light
+          array :environment, nils: true
+          array :soil, nils: true
+          array :light, nils: true
           integer :stage_length
           integer :order
         end
@@ -34,7 +34,8 @@ module Stages
     end
 
     def execute
-      @stage.update attributes
+      @stage.update! attributes
+
       set_images images, @stage
       set_actions
       @stage.save

@@ -6,7 +6,9 @@ openFarmApp.directive('ofShowStageAction', ['$http', 'stageService',
         action: '=ofShowStageAction',
         editingStage: '=',
         s3Bucket: '=',
-        stage: '='
+        stage: '=',
+        saveStageChanges: '=',
+        index: '='
       },
       controller: ['$scope',
         function ($scope) {
@@ -22,10 +24,12 @@ openFarmApp.directive('ofShowStageAction', ['$http', 'stageService',
             }
           }
 
-          $scope.deleteStageAction = function () {
+          $scope.deleteStageAction = function (idx) {
+            console.log(idx)
             stageService.deleteStageAction($scope.stage.id, $scope.action.id)
               .then(function () {
-                $scope.action.hide = true;
+                // $scope.action.hide = true;
+                $scope.stage.stage_actions.splice(idx, 1);
               })
           }
         }

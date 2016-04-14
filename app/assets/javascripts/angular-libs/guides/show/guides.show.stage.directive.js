@@ -75,6 +75,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           }
 
           $scope.saveStageChanges = function(stage) {
+            console.log('saving stage changes')
             var actions = stage.stage_actions || [];
             var data = {
               'attributes': {
@@ -111,10 +112,12 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
               images: stage.pictures || null
             };
 
+            console.log(data);
+
             stageService.updateStageWithPromise(stage.id, {'data': data})
               .then(function(response) {
                 $scope.toggleEditingStage();
-                window.location.reload()
+                // window.location.reload()
               }, function(error) {
                 console.log('error updating stage', error)
               });
@@ -172,6 +175,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                     action.new = true;
                     action.pictures = [];
                     action.overview = null;
+                    stage.stage_actions = stage.stage_actions || [];
                     stage.stage_actions.push(action)
                   })
                 }, function () {

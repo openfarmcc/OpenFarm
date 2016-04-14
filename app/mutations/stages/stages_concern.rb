@@ -11,8 +11,14 @@ module Stages
         # using some mutation settings. If you're refactoring this
         # feel free to remove this comment!
         if !action[:name] || !action[:name].is_a?(String) || action[:name] == ''
-
-          add_error :actions, :invalid_name, 'Please provide a valid name.'
+          add_error :actions,
+                    :invalid_name,
+                    "Please provide a valid name for #{action[:name]}"
+        end
+        if !action[:overview] || !action[:overview].is_a?(String) || action[:overview] == ''
+          add_error :actions,
+                    :invalid_name,
+                    "Please provide an action overview for #{action[:name]}"
         end
 
         validate_images(action[:images])
@@ -27,6 +33,7 @@ module Stages
                                                          images: action[:images],
                                                          stage_id: "#{@stage.id}",
                                                          id: action[:id])
+
         else
           @outcome = StageActions::CreateStageAction.run(user: user,
                                                          attributes: action,

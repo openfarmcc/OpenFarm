@@ -2,7 +2,11 @@
 <div class="empty-details" ng-if="action.new">This is a new action - be sure to save your stage first!</div>
   <div class="management-actions" ng-show="editingStage">
     <a class="button tiny primary edit-link"
-      ng-click="deleteStageAction(stage)">
+      ng-click="saveStageChanges(stage)">
+      <i class="fa fa-trash"></i> Save Stage
+    </a>
+    <a class="button tiny secondary edit-link"
+      ng-click="deleteStageAction(index)">
       <i class="fa fa-trash"></i> Delete Stage Action
     </a>
   </div>
@@ -21,8 +25,11 @@
   </div>
   <div class="row" ng-hide="editingStage">
     <p class="action-description columns small-8"
-      ng-bind="action.overview"
-      ng-hide="editingStage">
+      ng-bind="action.overview">
+    </p>
+    <p class="action-description columns empty-details"
+      ng-if="!action.overview">
+      The author of this guide hasn't added any details to this step.
     </p>
   </div>
   <div class="row" ng-show="editingStage">

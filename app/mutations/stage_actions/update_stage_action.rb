@@ -28,7 +28,6 @@ module StageActions
     end
 
     def execute
-      puts "action: #{id}, stage: #{stage_id}"
       @action = @stage.stage_actions.find(id)
       @action.update_attributes(attributes)
       @action.save

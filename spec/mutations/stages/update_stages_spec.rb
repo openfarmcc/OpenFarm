@@ -67,7 +67,7 @@ describe Stages::UpdateStage do
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_falsey
-    expect(results.errors.message[:actions]).to include('valid name')
+    expect(results.errors.message[:actions]).to include('not a valid action name')
   end
 
   it 'allows updating of existing stage actions' do

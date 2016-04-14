@@ -136,7 +136,7 @@ describe Api::V1::StagesController, type: :controller do
 
   it 'should remove actions from stages'
 
-  it 'should reject badly formed actions' do
+  it 'should reject stage actions without a name' do
     data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
                            name: 'hello',
                            order: 0 },
@@ -144,7 +144,18 @@ describe Api::V1::StagesController, type: :controller do
              guide_id: guide.id.to_s }
     post 'create', data: data, format: :json
     expect(response.status).to eq(422)
-    expect(response.body).to include('provide a valid name')
+    expect(response.body).to include('not a valid action name')
+  end
+
+  it 'should reject stage actions without an overview' do
+    data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
+                           name: 'hello',
+                           order: 0 },
+             actions: [{ name: 'hello' }],
+             guide_id: guide.id.to_s }
+    post 'create', data: data, format: :json
+    expect(response.status).to eq(422)
+    expect(response.body).to include('provide an action overview for \'hello\'')
   end
 
   it 'should only add actions to stages that the user owns the guide of'

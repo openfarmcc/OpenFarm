@@ -132,6 +132,31 @@ openFarmApp.directive('autoFocus', ['$timeout',
     };
 }]);
 
+openFarmApp.directive('ofSticky', [function () {
+    return {
+        restrict: 'A',
+        link: function ($scope, $element, $attributes) {
+          $window = $(window)
+          $window.on('scroll', function() {
+            update_sticky_positioning()
+          })
+
+          var update_sticky_positioning = function () {
+            var $parent = $('[of-sticky]')
+            var $toHang =  $parent.children($attributes.ofStickyChild)
+            var offset = $parent.offset().top - +$attributes.ofStickyOffset
+            if ($window.scrollTop() - offset > 0) {
+              $toHang.addClass('fixed')
+              $toHang.css('top', $attributes.ofStickyOffset + 'px')
+            } else {
+              $toHang.removeClass('fixed')
+            }
+
+          }
+        }
+    };
+}]);
+
 openFarmModule.directive('alerts', ['$timeout',
   function alerts($timeout) {
     return {

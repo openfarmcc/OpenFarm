@@ -13,12 +13,11 @@ module Stages
         if !action[:name] || !action[:name].is_a?(String) || action[:name] == ''
           add_error :actions,
                     :invalid_name,
-                    "Please provide a valid name for #{action[:name]}"
-        end
-        if !action[:overview] || !action[:overview].is_a?(String) || action[:overview] == ''
+                    "'#{action[:name]}' is not a valid action name"
+        elsif !action[:overview] || !action[:overview].is_a?(String) || action[:overview] == ''
           add_error :actions,
-                    :invalid_name,
-                    "Please provide an action overview for #{action[:name]}"
+                    :invalid_overview,
+                    "Please provide an action overview for '#{action[:name]}'"
         end
 
         validate_images(action[:images])

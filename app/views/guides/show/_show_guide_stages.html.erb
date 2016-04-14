@@ -18,12 +18,14 @@
       </div>
     </div>
   </div>
-  <tabset class="tabs stages">
+  <tabset class="tabs stages"
+    of-sticky
+    of-sticky-child=".tabs"
+    of-sticky-offset="45">
 
     <tab ng-repeat="stage in guide.stages | orderBy:'order'">
       <tab-heading href="#instructions-{{ stage.slug }}" class="tab-heading">
         <h3>{{ stage.name }}</h3>
-        {{ stage.active }}
       </tab-heading>
 
       <div of-show-guide-stages

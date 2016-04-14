@@ -179,6 +179,10 @@
     float: none;
   }
 
+  .tabs.fixed {
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+  }
+
   // Action labels in completed guides look different
   .actions li {
     color: #333333;

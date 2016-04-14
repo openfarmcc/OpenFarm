@@ -31,6 +31,9 @@
       ng-if="!action.overview">
       The author of this guide hasn't added any details to this step.
     </p>
+    <p ng-show="action.time">
+      This stage takes <span ng-bind="action.time"></span> <span ng-bind="action.time_unit">.
+    </p>
   </div>
   <div class="row" ng-show="editingStage">
     <div class="columns small-6">
@@ -38,6 +41,21 @@
         ng-model="action.overview">
       </textarea>
     </div>
+    <div class="columns small-6">
+      <label class="left"
+          for="how_long">How long does this stage take?<br/>
+        <small>Don't sweat about it!</small>
+      </label>
+      <div class="vertical-input-select-group">
+        <input ng-model="action.time"
+               type="number"/>
+        <select ng-model="action.time_unit">
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+          <option value="days">Days</option>
+        </select>
+      </div>
+    </div>
+    </div>
   </div>
-  <p ng-show="action.time" class="action-time">This stage took <span ng-bind="action.time"></span> minutes.</p>
 </div>

@@ -2,6 +2,7 @@ class StageActionSerializer < BaseSerializer
   attribute :name
   attribute :overview
   attribute :time
+  attribute :time_unit
   attribute :order
   attribute :id
 

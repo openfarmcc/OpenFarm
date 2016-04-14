@@ -11,6 +11,31 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
     //
     // }
 
+
+    var calcTimeLength = function(length, length_type){
+      if (length && length_type){
+        switch (length_type){
+          case 'minutes':
+          return length;
+          case 'hours':
+          return length * 60;
+          case 'action_days': // A special case of days,
+          // for actions we're measuring in minutes, not days;
+          return length * 60 * 24;
+          case 'months':
+          return length * 30;
+          case 'years':
+          return length * 365;
+          case 'weeks':
+          return length * 7;
+          default:
+          return length;
+        }
+      } else {
+        return null;
+      }
+    };
+
     var buildStageWithPromise = function(data, included) {
       return $q(function (resolve, reject) {
         var stage = data.attributes;
@@ -216,6 +241,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       'deleteStage': deleteStage,
       'createStage': createStage,
       'updateStage': updateStage,
-      'getPictures': getPictures
+      'getPictures': getPictures,
+      'calcTimeLength': calcTimeLength
     };
 }]);

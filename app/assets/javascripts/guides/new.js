@@ -282,30 +282,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       .then($scope.sendStages, errorFunction);
   };
 
-  var calcTimeLength = function(length, length_type){
-    if (length && length_type){
-      switch (length_type){
-        case 'minutes':
-        return length;
-        case 'hours':
-        return length * 60;
-        case 'action_days': // A special case of days,
-        // for actions we're measuring in minutes, not days;
-        return length * 60 * 24;
-        case 'months':
-        return length * 30;
-        case 'years':
-        return length * 365;
-        case 'weeks':
-        return length * 7;
-        default:
-        return length;
-      }
-    } else {
-      return null;
-    }
-  };
-
   $scope.sendStages = function(guide){
     $scope.sending--;
     $scope.newGuide.id = guide.id;
@@ -318,7 +294,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           'attributes': {
             'name': stage.name,
             'order': stage.order,
-            'stage_length': calcTimeLength(stage.stage_length,
+            'stage_length': stageService.calcTimeLength(stage.stage_length,
                                            stage.length_type),
             'environment': stage.environment.filter(function(s){
                 return s.selected;
@@ -348,7 +324,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
                 return { name: action.name,
                          images: img,
                          overview: action.overview,
-                         time: calcTimeLength(action.time, action.length_type),
+                         time: stageService.calcTimeLength(action.time, action.length_type),
                          order: index };
               }) || null
         };

@@ -5,6 +5,7 @@ class StageAction
   field :name
   field :overview
   field :time
+  field :time_unit
   field :order
 
   field :processing_pictures, type: Integer, default: 0

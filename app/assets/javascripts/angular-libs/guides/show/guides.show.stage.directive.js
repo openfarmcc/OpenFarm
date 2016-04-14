@@ -103,6 +103,8 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                         var actionData = {
                           name: sa.name,
                           images: sa.pictures,
+                          time: sa.time,
+                          time_unit: sa.time_unit,
                           overview: sa.overview,
                           order: index,
                           id: sa.id || null

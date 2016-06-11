@@ -2,7 +2,6 @@ class Api::V1::UsersController < Api::V1::BaseController
   skip_before_action :authenticate_from_token!, only: [:show]
 
   def gardens_index
-    puts('getting the gardens index')
     render json: serialize_models(User.find(params[:id]).gardens,
                                   include: ['garden_crops', 'pictures'])
   end

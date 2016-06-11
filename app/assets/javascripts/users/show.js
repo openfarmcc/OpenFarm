@@ -8,6 +8,7 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
 
     $scope.setProfileUser = function(success, object){
       if (success){
+        console.log('user', object);
         $rootScope.profileUser = $scope.profileUser = object;
         $rootScope.ofPageLoading = false;
         if((!object.user_setting ||

@@ -8,7 +8,7 @@ class UserPolicy < ApplicationPolicy
 
   def show?
     if @current_user
-      if @current_user == @viewed_user || @current_user.admin
+      if @current_user == @viewed_user || @current_user.admin?
         true
       else @viewed_user.is_private?
         false

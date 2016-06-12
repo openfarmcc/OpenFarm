@@ -8,7 +8,6 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
 
     $scope.setProfileUser = function(success, object){
       if (success){
-        console.log('user', object);
         $rootScope.profileUser = $scope.profileUser = object;
         $rootScope.ofPageLoading = false;
         if((!object.user_setting ||
@@ -33,7 +32,6 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
         var favCrop = item;
 
         var callback = function(success, user) {
-          console.log('user', user);
           if(user) {
             $scope.profileUser = user;
             $scope.editing = false;
@@ -52,7 +50,11 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
     userService.getUser($scope.userId, function(success, user) {
       $rootScope.currentUser = $scope.currentUser = user;
 
-      userService.getUser($scope.profileId,
+      if ($scope.profileId === $scope.userId) {
+        $scope.setProfileUser(true, user);
+      } else {
+        userService.getUser($scope.profileId,
                         $scope.setProfileUser);
+      }
     });
 }]);

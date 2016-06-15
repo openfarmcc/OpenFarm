@@ -1,7 +1,7 @@
 class Stage
   include Mongoid::Document
-
   embeds_one :time_span, cascade_callbacks: true, as: :timed
+  accepts_nested_attributes_for :time_span
 
   belongs_to :guide
 
@@ -15,6 +15,7 @@ class Stage
   field :order, type: Integer # Inherited from the stage_option
 
   embeds_many :stage_actions
+  accepts_nested_attributes_for :stage_actions
 
   field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, cascade_callbacks: true, as: :photographic

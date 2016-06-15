@@ -51,7 +51,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.guideUpdate = function() {
       guideService.getGuideWithPromise($scope.guideId)
         .then($scope.setGuide);
-    }
+    };
 
     $scope.setCurrentUser = function(success, object){
       if (success){
@@ -65,6 +65,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
             }
           });
         });
+
         if ($scope.guide.basic_needs){
           $scope.guide.basic_needs.forEach(function(b){
             if (b.percent < 0.5){
@@ -136,22 +137,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     };
 
     $scope.setGuide = function(object){
-
-      // if ($scope.guide && $scope.guide.stages !== undefined) {
-      //   console.log('guide stages exist')
-      //   // We're doing this because we don't want to overwrite the
-      //   // freshly edited stages. This is pretty dark magic though,
-      //   // maybe we don't need it?
-      //   var stages = angular.copy($scope.guide.stages)
-      //   delete object.stages;
-      //   console.log(object.stages, JSON.stringify(stages))
-      //   $scope.guide = object;
-      //   $scope.guide.stages = stages;
-      // } else {
       $scope.guide = object;
-      // }
-
-
 
       if ($scope.userId){
         userService.getUser($scope.userId,
@@ -163,20 +149,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
                             $scope.setGuideUser);
       }
 
-      $q.all([
-        defaultService.processedDetailOptions(),
-        cropService.getCropWithPromise($scope.guide.relationships.crop.data.id)
-      ]).then(function(data) {
-        $scope.options = data[0];
-        $scope.practices = data[0].multiSelectPractices;
-        $scope.practices.forEach(function(practice) {
-          if ($scope.guide.practices !== null && $scope.guide.practices.indexOf(practice.slug.toLowerCase()) > -1) {
-            practice.selected = true;
-          }
-        });
-
-        $scope.guide.crop = data[1];
-      });
+      setPractices($scope.guide.practices);
 
       $scope.$watch('guide.stages', function() {
         if ($scope.guide.stages !== undefined) {
@@ -211,6 +184,31 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         }
       });
     };
+
+    $scope.practicesList = function () {
+      if ($scope.practices) {
+        return $scope.practices.filter(function (p) { return p.selected; })
+                               .map(function (p) { return p.slug; })
+                               .join(', ');
+      }
+    };
+
+    function setPractices (guidePractices) {
+      $q.all([
+        defaultService.processedDetailOptions(),
+        cropService.getCropWithPromise($scope.guide.relationships.crop.data.id)
+      ]).then(function(data) {
+        $scope.options = data[0];
+        $scope.practices = data[0].multiSelectPractices;
+        $scope.practices.forEach(function(practice) {
+          if ($scope.guide.practices !== null && guidePractices.indexOf(practice.slug.toLowerCase()) > -1) {
+            practice.selected = true;
+          }
+        });
+
+        $scope.guide.crop = data[1];
+      });
+    }
 
     guideService.getGuideWithPromise($scope.guideId)
       .then($scope.setGuide);

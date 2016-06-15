@@ -38,8 +38,10 @@ module Guides
 
     def validate
       @guide = guide
+
       validate_time_span
       validate_permissions
+      validate_practices
       validate_images images, @guide
     end
 
@@ -47,11 +49,18 @@ module Guides
       @guide.update(attributes.select {|k| k != 'featured_image'})
       set_time_span
       set_images images, @guide
+      set_empty_practices
       @guide.save
       @guide
     end
 
     private
+
+    def set_empty_practices
+      if attributes[:practices] == nil
+        @guide.practices = []
+      end
+    end
 
     def validate_permissions
       if @guide.user != user

@@ -1,6 +1,6 @@
 openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
   'gardenService', 'userService', '$interval',
-  function newGuideCtrl($scope,
+  function showCropCtrl($scope,
                         $http,
                         cropService,
                         gardenService,

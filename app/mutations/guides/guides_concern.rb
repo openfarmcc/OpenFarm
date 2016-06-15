@@ -10,5 +10,16 @@ module Guides
         @guide.time_span = TimeSpan.new(attributes[:time_span])
       end
     end
+
+    def validate_practices
+      if attributes[:practices]
+        attributes[:practices].each do |p|
+          unless p.is_a? String
+            msg = "#{p} is not a valid practice."
+            add_error :practices, :invalid, msg
+          end
+        end
+      end
+    end
   end
 end

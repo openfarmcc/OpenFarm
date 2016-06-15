@@ -47,21 +47,33 @@
       </div>
 
       <div class="columns large-5 margin-top">
+
         <h4 class="title" id="overview">
           <%= t('.overview') %>
         </h4>
+        <p ng-show="!editing && practicesList().length > 0">
+          This guide uses {{ practicesList() }} practices.
+        </p>
+        <p ng-show="!editing && practicesList().length === 0">
+          This guide has listed no specific practices.
+        </p>
 
         <div multi-row-select
-             ng-show="editing"
-             class="multi-choice"
-             options-array="practices"
-             multi-select-overflow-count="3"
-             multi-select-type="checkbox"
-             multi-select-id="practices">
+          ng-show="editing"
+          class="multi-choice"
+          options-array="practices"
+          multi-select-overflow-count="3"
+          multi-select-type="checkbox"
+          multi-select-id="practices">
         </div>
         <br/>
 
-        <div class="markdown" markdown="guide.overview" ng-hide="editing">
+        <div class="markdown"
+          markdown="guide.overview"
+          ng-hide="editing">
+        </div>
+        <div ng-show="!editing && !guide.overview">
+          The author of this guide hasn't given an overview of it yet.
         </div>
         <textarea
           ng-model="guide.overview"
@@ -111,6 +123,10 @@
         <h4 class="title" id="overview">
           <%= t('.overview') %>
         </h4>
+
+        <p ng-show="!editing && guide.practices.length > 0">
+          This guide uses {{ guide.practices.join(', ') }} practices.
+        </p>
 
         <div multi-row-select
              ng-show="editing"

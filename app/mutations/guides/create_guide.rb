@@ -53,21 +53,9 @@ module Guides
       @guide.save!
       set_images images, @guide
       set_time_span
-      # set_featured_image_async
       @guide.save!
       @guide.reload
       @guide
-    end
-
-    def validate_practices
-      if attributes[:practices]
-        attributes[:practices].each do |p|
-          unless p.is_a? String
-            msg = "#{p} is not a valid practice."
-            add_error :practices, :invalid, msg
-          end
-        end
-      end
     end
 
     def validate_crop

@@ -11,8 +11,8 @@
   <% end %>
 <% end %>
 
-<%= content_for(:start_js) do %>
-
+<% content_for(:start_js) do %>
+  <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
 <% end %>
 
 <div ng-controller="showGuideCtrl"
@@ -80,6 +80,15 @@
           ng-show="editing">
         </textarea>
 
+        <span ng-model="guide.location"
+              location
+              ng-show="editing"
+              name="location"
+              loading-text="<%= t('application.loading_locations') %>">
+        </span>
+        <em>In:</em> <span ng-bind="guide.location">
+        </span>
+
       </div>
 
       <div class="columns large-2 margin-top  compatibility">
@@ -140,6 +149,9 @@
         <div class="markdown" markdown="guide.overview" ng-hide="editing">
         </div>
         <textarea ng-model="guide.overview" ng-show="editing"></textarea>
+
+        <em>In:</em> <span ng-bind="guide.location">
+        </span>
       </div>
 
       <div class="columns small-4 margin-top compatibility" ng-class="{'editing': editing}">

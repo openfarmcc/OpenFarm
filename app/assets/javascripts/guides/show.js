@@ -29,6 +29,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         'attributes': {
           'overview': $scope.guide.overview,
           'name': $scope.guide.name,
+          'location': $scope.guide.location,
           'practices': $scope.practices.filter(function(practice) {
                          return practice.selected === true;
                        }).map(function(practice) {

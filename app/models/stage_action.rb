@@ -21,26 +21,8 @@ class StageAction
   def self.find(id)
     return nil if id.nil? || id.blank?
 
-    id = Moped::BSON::ObjectId.from_string(id) if id.is_a?(String)
-    relation = 'stage_actions'
+    id = BSON::ObjectId.from_string(id) if id.is_a?(String)
 
-    relation_parts = relation.split('.')
-    parent = 'Stage'
-
-    while relation_parts.length > 0
-      item = if parent.is_a?(Mongoid::Criteria) || parent.is_a?(Array)
-        parent.where("#{relation_parts.join('.')}._id" => id).first
-      else
-        parent
-      end
-      return nil if item.nil?
-      parent = item.send(relation_parts.shift)
-    end
-
-    if parent.is_a?(Mongoid::Criteria) || parent.is_a?(Array)
-      parent.where('_id' => id).first
-    else
-      parent
-    end
+    Stage.where("stage_actions._id" => id).first
   end
 end

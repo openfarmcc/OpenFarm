@@ -14,6 +14,7 @@
     ng-hide="editingStage">
     <a of-lightbox-modal="picture" description="$parent.name"></a>
   </span>
+  {{ action.id }}
   <div class="upload-stage-picture"
       s3-upload
       bucket="'{{s3Bucket}}'"

@@ -129,25 +129,25 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
 
     var buildStageAction = function(data) {
       return data.attributes;
-    }
+    };
 
     var getStage = function(id) {
       return $q(function (resolve, reject) {
         $http.get('/api/v1/stages/' + id + '/')
           .success(function (stage) {
             resolve(buildStageWithPromise(stage.data));
-          })
+          });
       });
-    }
+    };
 
     var getPictures = function(id) {
       return $q(function (resolve, reject) {
         $http.get('/api/v1/stages/' + id + '/pictures')
           .success(function(pictures) {
             resolve(pictures.data);
-          })
+          });
       });
-    }
+    };
 
     var createStage = function(params, callback){
       $http.post('/api/v1/stages/', params)
@@ -167,8 +167,8 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
             reject();
             alertsService.pushToAlerts(response.errors, code);
           });
-      })
-    }
+      });
+    };
 
     var updateStage = function(stageId, params, callback){
       $http.put('/api/v1/stages/' + stageId + '/', params)

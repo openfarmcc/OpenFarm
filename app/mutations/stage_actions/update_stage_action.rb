@@ -31,11 +31,22 @@ module StageActions
     def execute
       @action = @stage.stage_actions.find(id)
       @action.update_attributes(attributes)
+      set_empty_time
+
       @action.save
 
       set_images images, @action
       @action.reload
       @action
+    end
+
+    def set_empty_time
+      if attributes[:time] == nil
+        @action.time = nil
+      end
+      if attributes[:time_unit] == nil
+        @action.time_unit = nil
+      end
     end
 
     def validate_permissions

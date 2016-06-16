@@ -25,7 +25,6 @@ class Picture
       else # it's a filesystem update
         # if it's already on the system, we don't need to update it.
         # if !file_location.include?('/system/')
-
           pic.attachment = open(file_location)
         # end
 

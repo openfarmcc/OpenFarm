@@ -10,11 +10,6 @@ class CreatePicFromUrlJob
     Picture.from_url(@url, @obj)
   end
 
-  # def before(job)
-  #   @obj.processing_pictures = @obj.processing_pictures + 1
-  #   @obj.save
-  # end
-
   def after(job)
     @obj.processing_pictures = @obj.processing_pictures - 1
     @obj.save

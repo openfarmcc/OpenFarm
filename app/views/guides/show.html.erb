@@ -86,7 +86,7 @@
               name="location"
               loading-text="<%= t('application.loading_locations') %>">
         </span>
-        <em>In:</em> <span ng-bind="guide.location">
+        <em ng-if="guide.location">In:</em> <span ng-bind="guide.location">
         </span>
 
       </div>

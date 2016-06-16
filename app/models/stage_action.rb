@@ -24,6 +24,5 @@ class StageAction
     id = BSON::ObjectId.from_string(id) if id.is_a?(String)
 
     Stage.where("stage_actions._id" => id).first.stage_actions.where({_id: id}).first
-
   end
 end

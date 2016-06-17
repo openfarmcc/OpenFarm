@@ -51,6 +51,17 @@ describe Api::V1::UsersController, type: :controller do
     expect(json['included'][0]['attributes']).to have_key('favorite_crop')
   end
 
+  it 'shows favorited_guides for a user' do
+    guide = FactoryGirl.create(:guide)
+    viewing_user.favorited_guides.push(guide)
+    viewing_user.save
+    sign_in viewing_user
+    get 'show', id: viewing_user.id, format: :json
+    expect(response.status).to eq(200)
+    expect(json['data']['relationships']['favorited_guides']['data'].length).to be(1)
+    expect(json['included'][1]['attributes']['name']).to eq(guide.name)
+  end
+
   it 'shows a favorite crop with images for a user' do
     VCR.use_cassette('controllers/api/api_users_controller_spec') do
       crop = FactoryGirl.create(:crop)

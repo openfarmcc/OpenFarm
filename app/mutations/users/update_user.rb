@@ -11,6 +11,7 @@ module Users
           string :mailing_list
           string :help_list
           string :is_private
+          array :favorited_guide_ids
         end
       end
     end
@@ -29,6 +30,7 @@ module Users
     def validate
       validate_user
       validate_favorite_crop
+      validate_favorite_guides
       validate_image
     end
 
@@ -36,6 +38,7 @@ module Users
       @user = User.find(id)
       set_user_setting
       set_image
+      set_favorited_guides
       @user.update_attributes(attributes)
       @user.save
       @user
@@ -65,6 +68,27 @@ module Users
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a crop with id #{user_setting[:favorite_crop]}"
       add_error user_setting[:favorite_crop], :crop_not_found, msg
+    end
+
+    def validate_favorite_guides
+      current_guide_id = ''
+      if attributes[:favorited_guide_ids]
+        @favorited_guides = []
+        attributes[:favorited_guide_ids].each do |guide_id|
+          current_guide_id = guide_id
+          @favorited_guides.push(Guide.find(guide_id))
+        end
+        attributes.delete 'favorited_guide_ids'
+      end
+    rescue Mongoid::Errors::DocumentNotFound => e
+      # How disappointing that Mongoid::Errors:DocumentNotFound doesn't
+      # return a reference to the ID looked for.
+      msg = "There is no guide with id #{current_guide_id}"
+      add_error 'favorited_guide_ids', :guide_not_found, msg
+    end
+
+    def set_favorited_guides
+      @user.favorited_guides = @favorited_guides
     end
 
     def validate_user

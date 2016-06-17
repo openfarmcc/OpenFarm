@@ -2,6 +2,9 @@ class User
   include Mongoid::Document
   has_many :guides
   has_many :gardens
+
+  has_and_belongs_to_many :favorited_guides, class_name: 'Guide', inverse_of: nil
+
   has_one :token, dependent: :delete
   has_one :user_setting
   ## Database authenticatable

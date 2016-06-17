@@ -55,6 +55,23 @@ describe Users::UpdateUser do
     expect(result.valid?).to be(true)
   end
 
+  it 'adds valid favorite guides' do
+    guide = FactoryGirl.create(:guide)
+    params[:attributes][:favorited_guide_ids] = ["#{guide._id}"]
+    result = mutation.run(params)
+    expect(result.success?).to be(true)
+    expect(result.result.favorited_guide_ids.length).to be(1)
+    expect("#{result.result.favorited_guide_ids[0]}").to eq("#{guide._id}")
+  end
+
+  it 'rejects invalid favorite guides' do
+    params[:attributes][:favorited_guide_ids] = ['123']
+    result = mutation.run(params)
+    expect(result.success?).to be(false)
+    expect(result.errors).to include('favorited_guide_ids')
+    expect(result.errors['favorited_guide_ids'].message).to include('123')
+  end
+
   it 'updates valid favorite_crop' do
     params[:user_setting] = {
       favorite_crop: "#{crop.id}"
@@ -69,7 +86,6 @@ describe Users::UpdateUser do
     params[:user_setting] = {
       favorite_crop: 'bla'
     }
-
     result = mutation.run(params)
     expect(result.success?).to be(false)
     expect(result.errors.message_list).to include('Could not find a crop with id ')

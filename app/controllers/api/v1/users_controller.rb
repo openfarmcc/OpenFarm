@@ -10,7 +10,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     user = User.find(params[:id])
     if Pundit.policy(current_user, user).show?
       render json: serialize_model(user, include: ['user_setting',
-                                                   'guides'])
+                                                   'guides',
+                                                   'favorited_guides'])
     else
       raise OpenfarmErrors::NotAuthorized
     end

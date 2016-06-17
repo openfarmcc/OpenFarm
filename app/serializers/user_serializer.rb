@@ -41,6 +41,10 @@ class UserSerializer < BaseSerializer
     end
   end
 
+  has_many :favorited_guides do
+    object.favorited_guides
+  end
+
   has_one :user_setting do
     # TODO: Why is the policy on this being silly?
     # For now it is okay to show this data, but we probably

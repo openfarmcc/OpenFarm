@@ -72,6 +72,15 @@ describe Users::UpdateUser do
     expect(result.errors['favorited_guide_ids'].message).to include('123')
   end
 
+  it 'does not add favorited guides that are already favorited' do
+    guide = FactoryGirl.create(:guide)
+    params[:attributes][:favorited_guide_ids] = ["#{guide._id}", "#{guide._id}"]
+    result = mutation.run(params)
+    expect(result.success?).to be(true)
+    expect(result.result.favorited_guide_ids.length).to be(1)
+    expect("#{result.result.favorited_guide_ids[0]}").to eq("#{guide._id}")
+  end
+
   it 'updates valid favorite_crop' do
     params[:user_setting] = {
       favorite_crop: "#{crop.id}"

@@ -14,14 +14,13 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
 
     $scope.toggleAddGarden = function() {
       $scope.addingGarden = !$scope.addingGarden;
-    }
+    };
 
     $scope.$watch('profileUser', function(){
       if($rootScope.profileUser) {
         gardenService.getGardensForUser($rootScope.profileUser,
           function(success, response) {
             if(success) {
-              console.log(response)
               $scope.profileUser.gardens = response;
 
               $scope.profileUser.gardens.forEach(function(garden){

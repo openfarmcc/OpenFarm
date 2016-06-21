@@ -74,9 +74,12 @@ module Users
       current_guide_id = ''
       if attributes[:favorited_guide_ids]
         @favorited_guides = []
-        attributes[:favorited_guide_ids].each do |guide_id|
+        attributes[:favorited_guide_ids].uniq.each do |guide_id|
           current_guide_id = guide_id
-          @favorited_guides.push(Guide.find(guide_id))
+          guide = Guide.find(guide_id)
+          unless @favorited_guides.include? guide
+            @favorited_guides.push(guide)
+          end
         end
         attributes.delete 'favorited_guide_ids'
       end
@@ -88,7 +91,9 @@ module Users
     end
 
     def set_favorited_guides
-      @user.favorited_guides = @favorited_guides
+      if @favorited_guides
+        @user.favorited_guides = @favorited_guides
+      end
     end
 
     def validate_user

@@ -38,12 +38,12 @@ openFarmApp.controller('profileCtrl', ['$scope', '$rootScope', '$http',
             $scope.cropNotSet = false;
             $scope.favoriteCrop = user.user_setting.favorite_crop;
           }
-        }
+        };
         userService.setFavoriteCrop($scope.currentUser.id,
                                     favCrop.id,
-                                    callback)
+                                    callback);
       }
-    }
+    };
 
 
     //

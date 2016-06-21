@@ -13,6 +13,8 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.userId = USER_ID || undefined;
     $scope.gardenCrop = {};
 
+    $scope.favoriteGuide = favoriteGuide;
+
     $scope.toggleEditingGuide = function() {
       $scope.editing = !$scope.editing;
       $scope.saved = false;
@@ -134,6 +136,12 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
             }
           });
         }
+
+        $scope.currentUser.favorited_guides.forEach(function (g) {
+          if (g.id === $scope.guide.id) {
+            $scope.inFavorites = true;
+          }
+        });
       }
     };
 
@@ -208,6 +216,27 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         });
 
         $scope.guide.crop = data[1];
+      });
+    }
+
+    function favoriteGuide (guideId) {
+      var favorited_guide_ids = $scope.currentUser.favorited_guides.map(function (g) { return g.id; }) || [];
+      var addFavorite = true;
+      var index = favorited_guide_ids.indexOf(guideId);
+      if (index === -1) {
+        favorited_guide_ids.push(guideId);
+        addFavorite = true;
+      } else {
+        favorited_guide_ids.splice(index, 1);
+        addFavorite = false;
+      }
+      userService.updateUserWithPromise($scope.currentUser.id, {
+        'favorited_guide_ids': favorited_guide_ids
+      }).then(function (user) {
+        $scope.inFavorites = addFavorite;
+        $scope.currentUser.favorited_guides = user.favorited_guides;
+      }).catch(function (response, code) {
+
       });
     }
 

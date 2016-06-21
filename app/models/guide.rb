@@ -41,6 +41,8 @@ class Guide
   field :completeness_score, default: 0
   field :popularity_score, default: 0
 
+  field :times_favorited, type: Integer, default: 0
+
   validates_presence_of :crop, :name
 
   field :processing_pictures, type: Integer, default: 0

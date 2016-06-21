@@ -37,9 +37,9 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
                 console.log('do nothing');
               }
             });
-        }, 2000)
+        }, 2000);
       } else {
-        console.log('got all crop pictures')
+        console.log('got all crop pictures');
       }
     };
 

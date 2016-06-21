@@ -25,6 +25,8 @@ class Api::V1::UsersController < Api::V1::BaseController
       user_setting: params[:data][:user_setting],
       id: "#{current_user._id}")
 
-    respond_with_mutation(:ok, include: ['user_setting', 'guides'])
+    respond_with_mutation(:ok, include: ['user_setting',
+                                         'guides',
+                                         'favorited_guides'])
   end
 end

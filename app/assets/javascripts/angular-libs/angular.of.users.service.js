@@ -78,8 +78,8 @@ openFarmModule.factory('userService', ['$http', '$q', 'gardenService',
         }
 
       }
-      if (user_setting && user_setting.length > 0) {
-        user.user_setting = buildUserSetting(user_setting[0]);
+      if (user.user_setting && user.user_setting.length > 0) {
+        user.user_setting = buildUserSetting(user.user_setting[0]);
       }
       user.gardens = gardens || [];
 

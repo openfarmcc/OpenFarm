@@ -2,6 +2,9 @@
 [![Code Climate](https://codeclimate.com/github/openfarmcc/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
 [![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/pr)](http://issuestats.com/github/openfarmcc/openfarm)
 [![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/issue)](http://issuestats.com/github/openfarmcc/openfarm)
+[![OpenCollective](https://opencollective.com/openfarm/backers/badge.svg)](#backers) 
+[![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
+
 OpenFarm
 ========
 
@@ -84,6 +87,77 @@ To view the most recent mockups, click [here](https://drive.google.com/open?id=0
 We encourage everyone to contribute! From newbies, to pros, to people who don&#8217;t write software, to those with just a few ideas to share &mdash; we greatly appreciate everyone&#8217;s input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
 
 Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub. But that's just people who contribute code. There's a whole host of people who contributed financially, and people contribute guides on the actual website too!
+
+### Backers
+
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/openfarm#backer)]
+
+<a href="https://opencollective.com/openfarm/backer/0/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/1/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/2/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/3/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/4/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/5/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/6/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/7/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/8/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/9/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/10/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/11/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/12/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/13/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/14/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/15/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/16/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/17/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/18/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/19/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/20/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/21/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/22/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/23/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/24/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/25/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/26/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/27/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/28/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/backer/29/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/29/avatar.svg"></a>
+
+
+### Sponsors
+
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/openfarm#sponsor)]
+
+<a href="https://opencollective.com/openfarm/sponsor/0/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/1/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/2/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/3/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/4/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/5/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/6/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/7/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/8/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/9/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/10/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/11/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/12/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/13/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/14/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/15/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/16/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/17/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/18/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/19/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/20/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/21/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/22/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/23/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/24/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/25/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/26/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/27/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/28/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/openfarm/sponsor/29/website" target="_blank"><img src="https://opencollective.com/openfarm/sponsor/29/avatar.svg"></a>
 
 ### Software License
 

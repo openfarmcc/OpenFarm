@@ -4,6 +4,7 @@
 [![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/issue)](http://issuestats.com/github/openfarmcc/openfarm)
 [![OpenCollective](https://opencollective.com/openfarm/backers/badge.svg)](#backers) 
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
+[![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
 OpenFarm
 ========

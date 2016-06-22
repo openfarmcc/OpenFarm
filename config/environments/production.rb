@@ -1,4 +1,7 @@
 OpenFarm::Application.configure do
+  # This would be fixed in rails 5 or maybe even 4.2?
+  # http://stackoverflow.com/a/25428800/154392
+  config.action_dispatch.perform_deep_munge = false
   config.cache_classes = true
   config.eager_load = true
   config.consider_all_requests_local       = false

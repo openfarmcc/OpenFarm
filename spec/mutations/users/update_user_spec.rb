@@ -72,6 +72,8 @@ describe Users::UpdateUser do
     expect(result.errors['favorited_guide_ids'].message).to include('123')
   end
 
+  it 'doesnt remove user featured image when sending no featured_image'
+
   it 'does not add favorited guides that are already favorited' do
     guide = FactoryGirl.create(:guide)
     params[:attributes][:favorited_guide_ids] = ["#{guide._id}", "#{guide._id}"]

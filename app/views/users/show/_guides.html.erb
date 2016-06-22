@@ -37,30 +37,32 @@
         <% end %>
       </div>
     <% end %>
-    <div>
-      <h3 ng-show="showFavoritedGuides">Your Favorited Guides</h3>
+    <% if current_user == @user && current_user.favorited_guides.length > 0 %>
+      <div>
+        <h3 ng-show="showFavoritedGuides">Your Favorited Guides</h3>
 
-      <a ng-click="showFavoritedGuides = !showFavoritedGuides"
-        ng-hide="showFavoritedGuides">View your favorited guides <%= icon('chevron-down') %></a>
-      <a ng-click="showFavoritedGuides = !showFavoritedGuides"
-        ng-show="showFavoritedGuides">Hide your favorited guides <%= icon('chevron-up') %></a>
-      <div ng-show="showFavoritedGuides">
-        <table>
-          <% @user.favorited_guides.order_by([['created_at', :desc]]).each do |guide| %>
-            <tr>
-              <td>
-                <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
-                <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
-              </td>
-              <td>
-                <%= link_to(guide.crop.name, { controller: 'crops',
-                  action: 'show',
-                  id: guide.crop.id }, :class => 'action show crop-name') %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+        <a ng-click="showFavoritedGuides = !showFavoritedGuides"
+          ng-hide="showFavoritedGuides">View your favorited guides <%= icon('chevron-down') %></a>
+        <a ng-click="showFavoritedGuides = !showFavoritedGuides"
+          ng-show="showFavoritedGuides">Hide your favorited guides <%= icon('chevron-up') %></a>
+        <div ng-show="showFavoritedGuides">
+          <table>
+            <% @user.favorited_guides.order_by([['created_at', :desc]]).each do |guide| %>
+              <tr>
+                <td>
+                  <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
+                  <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
+                </td>
+                <td>
+                  <%= link_to(guide.crop.name, { controller: 'crops',
+                    action: 'show',
+                    id: guide.crop.id }, :class => 'action show crop-name') %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

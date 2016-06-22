@@ -72,7 +72,7 @@ module Users
 
     def validate_favorite_guides
       current_guide_id = ''
-      if attributes[:favorited_guide_ids]
+      unless attributes[:favorited_guide_ids].nil?
         @favorited_guides = []
         attributes[:favorited_guide_ids].uniq.each do |guide_id|
           current_guide_id = guide_id
@@ -123,8 +123,9 @@ module Users
       if featured_image && featured_image != existing_url
         UserSetting.from_url(featured_image, @user.user_setting)
       end
-      unless featured_image || @user.user_setting.picture == nil
+      if featured_image.nil? && !@user.user_setting.picture.nil?
         @user.user_setting.picture.remove
+        puts "featured image is nil"
       end
     end
   end

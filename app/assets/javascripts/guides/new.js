@@ -246,6 +246,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     };
 
     var data = {
+      'id': $scope.newGuide.id || undefined,
       'attributes': {
         time_span: $scope.newGuide.time_span,
         name: $scope.newGuide.name,
@@ -278,9 +279,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       $scope.sending--;
     };
 
-    guideService.createGuideWithPromise(params)
-      .then($scope.sendStages, errorFunction);
+    if (params.data.id) {
+      guideService.updateGuideWithPromise($scope.newGuide.id, params)
+        .then($scope.sendStages, errorFunction);
+    } else {
+      guideService.createGuideWithPromise(params)
+        .then($scope.sendStages, errorFunction);
+    }
+
   };
+
+  function createStageData (stage) {
+    // TODO - this method
+  }
 
   $scope.sendStages = function(guide){
     $scope.sending--;
@@ -340,10 +351,13 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       if (stage.selected && !stage.exists){
         $scope.sending++;
         stageService.createStageWithPromise({'data': data})
-          .then(function(createdStage){
+          .then(function (createdStage){
             createdStage.sent = true;
             $scope.sending--;
             $scope.checkNumberUpdated();
+          })
+          .catch(function (err) {
+
           });
       }
     });

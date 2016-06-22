@@ -36,6 +36,10 @@ OpenFarm::Application.configure do
   config.active_support.deprecation = :stderr
   config.quiet_assets = true
 
+  # This would be fixed in rails 5 or maybe even 4.2?
+  # http://stackoverflow.com/a/25428800/154392
+  config.action_dispatch.perform_deep_munge = false
+
   Paperclip::Attachment.default_options.merge!(path: 'tmp/paperclip_junk/'\
                                                      ':class/:attachment/:id.'\
                                                      ':extension')

@@ -151,7 +151,8 @@ textarea {
 }
 
 // Must reside in the top level of stylesheets
-@include sticky-footer($footer-height, "#content", "#layout_footer", "#footer");
+// This was causing quite a few problems
+// @include sticky-footer($footer-height, "#content", "#layout_footer", "#footer");
 
 // For covering content in partial blackness
 .the-blackness {

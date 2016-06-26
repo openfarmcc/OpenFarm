@@ -21,4 +21,30 @@
 </div>
 <% content_for(:end_js) do %>
 <%= javascript_tag "var USER_ID = '#{current_user ? current_user.id : nil}';" %>
+<script>
+var TRANSLATIONS = {
+  'actionsHeader': "<%= t('guides.new.new_guide_step_3.actions_header') %>",
+  'actionsInstructions': "<%= t('guides.new.new_guide_step_3.actions_instructions') %>",
+  'addActions': "<%= t('guides.new.new_guide_step_3.add_actions') %>",
+  'describeAction': "<%= t('guides.new.new_guide_step_3.describe_action') %>",
+  'chooseActionPhoto': "<%= t('guides.new.new_guide_step_3.choose_action_photo') %>",
+  's3Bucket': "<%= ENV['S3_BUCKET_NAME'] %>",
+  'howLongAction': "<%= t('guides.new.new_guide_step_3.how_long_action') %>",
+  'doNotSweat': "<%= t('guides.new.new_guide_step_3.do_not_sweat') %>",
+  'stageOverview': "<%= t('guides.new.new_guide_step_3.stage_overview') %>",
+  'chooseStagePhoto': "<%= t('application.choose_stage_photo') %>",
+  'onlyUploadWhatYouOwn': "<%= t('application.only_upload_what_you_own') %>",
+  'howLong': "<%= t('guides.new.new_guide_step_3.how_long') %>",
+  'whereHappen': "<%= t('guides.new.new_guide_step_3.where_does_this_stage_happen') %>",
+  'chooseMoreThanOne': "<%= t('guides.new.new_guide_step_3.choose_more_than_one') %>",
+  'whatTypeOfSoil': "<%= t('guides.new.new_guide_step_3.what_type_of_soil') %>",
+  'notSureSoil': "<%= t('guides.new.new_guide_step_3.not_sure_about_soil_types_html') %>",
+  'howMuchLight': "<%= t('guides.new.new_guide_step_3.how_much_light') %>",
+  'cancel': "<%= t('guides.new.cancel_and_go_to_home') %>",
+  'back': "<%= t('guides.new.back') %>",
+  'editNextStage': "<%= t('guides.new.new_guide_step_3.edit_next_stage') %>",
+  'finishStageToContinue': "<%= t('guides.new.new_guide_step_3.finish_stage_to_continue') %>",
+  'nextFinalTouches': "<%= t('guides.new.new_guide_step_3.next_final_touches') %>"
+}
+</script>
 <% end %>

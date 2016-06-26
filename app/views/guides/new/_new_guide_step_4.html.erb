@@ -40,7 +40,6 @@
         <input id="guide_name" name="guide[name]"
           type="text"
           ng-model="newGuide.name"
-
           placeholder="<%= current_user.display_name %>'s {{ newGuide.crop.name }}"
           >
       </div>
@@ -96,7 +95,7 @@
              back-text="<%= t('guides.new.back') %>"
              next-function="submitForm"
              abled-bool="newGuide.name && !newGuide.sending"
-             processing="sending !== 0 && startedSending"
+             processing="startedSending"
              abled-text="<%= t('.done') %>"
              disabled-text="<%= t('.call_your_guide_something') %>">
         </div>

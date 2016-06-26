@@ -1,5 +1,5 @@
 <ul class="guide-results">
-  <% @guides.each do |guide| %>
+  <% @guides.sort { |guide| -guide.compatibility_score(current_user) }.each do |guide| %>
     <%= render partial: "/guides/guide_result", locals: {guide: guide} %>
   <% end %>
   <% if @guides.count >= 10 %>

@@ -101,6 +101,11 @@
 
   .instructions {
     margin: 1.5rem 0;
+
+    legend {
+      max-width: 640px;
+      margin: 0 auto;
+    }
   }
 }
 

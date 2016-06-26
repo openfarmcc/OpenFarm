@@ -7,25 +7,42 @@ openFarmApp.directive('formChecker', function(){
     link: function(scope, element, attr){
       // loop through each stage
       scope.$watch('stage', function(){
+
+        var checked = {};
+
+        var elements = ['environment', 'light', 'soil'];
+
         if (scope.stage.selected){
           scope.stage.edited = false;
-          scope.stage.environment.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
-          });
-          scope.stage.light.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
-          });
-          scope.stage.soil.forEach(function(opt){
-            if (opt.selected){
-              scope.stage.edited = true;
-            }
+
+          elements.forEach(function (element) {
+            scope.stage[element].forEach(function (opt) {
+              if (opt.selected) {
+                scope.stage.edited = true;
+                checked[element] = true;
+              }
+            });
           });
         }
+
+        if (scope.stage.stageActions) {
+          scope.stage.stageActions.forEach(function (stageAction) {
+            // validate actions.
+            checked.stageActions = true;
+          });
+        }
+
+        var flag = true;
+        angular.forEach(checked, function (value, key) {
+          if (!value)
+            flag = false;
+        });
+
+        scope.stage.valid = flag;
+
       }, true);
+
+
     }
   };
 });

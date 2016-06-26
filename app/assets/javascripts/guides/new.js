@@ -13,6 +13,9 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     $rootScope.step = +$location.hash() || 1;
   });
 
+  $scope.translations = TRANSLATIONS;
+
+
   $scope.options = {
     'environment': [],
     'light': [],
@@ -251,105 +254,100 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
   $scope.submitForm = function () {
     $scope.startedSending = true;
-    $scope.sending++;
     var params = { 'data': buildParametersFromScope() };
 
-    var errorFunction = function() {
-      $scope.startedSending = false;
-      $scope.sending--;
-    };
+    var promisesToFulfill = [];
 
     if (params.data.id) {
-      guideService.updateGuideWithPromise($scope.newGuide.id, params)
-        .then($scope.sendStages, errorFunction);
+      promisesToFulfill.push(guideService.updateGuideWithPromise($scope.newGuide.id, params));
     } else {
-      guideService.createGuideWithPromise(params)
-        .then($scope.sendStages, errorFunction);
+      promisesToFulfill.push(guideService.createGuideWithPromise(params));
     }
+    $q.all(promisesToFulfill)
+      .then($scope.sendStages)
+      .catch(function (err) {
+        $scope.startedSending = false;
+      });
 
   };
 
-  function createStageData (stage) {
-    // TODO - this method
+  function createStageData (stage, guide) {
+    var data = {};
+    if (stage.selected) {
+      data = {
+        'attributes': {
+          'name': stage.name,
+          'order': stage.order,
+          'stage_length': stageService.calcTimeLength(stage.stage_length,
+                                         stage.length_type),
+          'environment': stage.environment.filter(function(s){
+              return s.selected;
+            }).map(function(s){
+              return s.label;
+            }) || null,
+          'soil': stage.soil.filter(function(s){
+              return s.selected;
+            }).map(function(s){
+              return s.label;
+            }) || null,
+          'light': stage.light.filter(function(s){
+              return s.selected;
+            }).map(function(s){
+              return s.label;
+            }) || null,
+          'overview': stage.overview
+        },
+        'guide_id': guide.id,
+        'actions': stage.stage_action_options.map(function(action, index){
+              var img = null;
+              if (action.pictures !== null && action.pictures !== undefined) {
+                img = action.pictures.filter(function(p){
+                  return !p.deleted;
+                });
+              }
+              return { name: action.name,
+                       images: img,
+                       overview: action.overview,
+                       time: stageService.calcTimeLength(action.time, action.length_type),
+                       order: index };
+            }) || null
+      };
+      if (stage.pictures){
+        data.images = stage.pictures.filter(function(p){
+          return !p.deleted;
+        });
+      }
+    }
+
+    return data;
   }
 
   $scope.sendStages = function(guide){
-    $scope.sending--;
-    $scope.newGuide.id = guide.id;
+
+    var promisesToFulfill = [];
+
+    $scope.newGuide.id = guide[0].id;
 
     $scope.newGuide.stages.forEach(function(stage){
 
-      var data = {};
-      if (stage.selected) {
-        data = {
-          'attributes': {
-            'name': stage.name,
-            'order': stage.order,
-            'stage_length': stageService.calcTimeLength(stage.stage_length,
-                                           stage.length_type),
-            'environment': stage.environment.filter(function(s){
-                return s.selected;
-              }).map(function(s){
-                return s.label;
-              }) || null,
-            'soil': stage.soil.filter(function(s){
-                return s.selected;
-              }).map(function(s){
-                return s.label;
-              }) || null,
-            'light': stage.light.filter(function(s){
-                return s.selected;
-              }).map(function(s){
-                return s.label;
-              }) || null,
-            'overview': stage.overview
-          },
-          'guide_id': guide.id,
-          'actions': stage.stage_action_options.map(function(action, index){
-                var img = null;
-                if (action.pictures !== null && action.pictures !== undefined) {
-                  img = action.pictures.filter(function(p){
-                    return !p.deleted;
-                  });
-                }
-                return { name: action.name,
-                         images: img,
-                         overview: action.overview,
-                         time: stageService.calcTimeLength(action.time, action.length_type),
-                         order: index };
-              }) || null
-        };
-        if (stage.pictures){
-          data.images = stage.pictures.filter(function(p){
-            return !p.deleted;
-          });
-        }
-      }
+      var data = createStageData(stage, guide[0]);
 
       // Go through all the possible changes on
       // each stage.
       if (stage.selected && !stage.exists){
-        $scope.sending++;
-        stageService.createStageWithPromise({'data': data})
-          .then(function (createdStage){
-            createdStage.sent = true;
-            $scope.sending--;
-            $scope.checkNumberUpdated();
-          })
-          .catch(function (err) {
-
-          });
+        promisesToFulfill.push(stageService.createStageWithPromise({'data': data}));
       }
     });
-  };
 
-  // Only redirect when everything is done processing.
-  $scope.checkNumberUpdated = function(){
-    if ($scope.sending === 0){
-      localStorageService.remove('guide');
-      $scope.startedSending = false;
-      window.location.href = '/guides/' + $scope.newGuide.id + '/';
-    }
+    $q.all(promisesToFulfill)
+      .then(function (results) {
+        localStorageService.remove('guide');
+        $scope.startedSending = false;
+        window.location.href = '/guides/' + $scope.newGuide.id + '/';
+      })
+      .catch(function (err) {
+        $scope.startedSending = false;
+      });
   };
 
   $scope.placeGuideUpload = function(image){

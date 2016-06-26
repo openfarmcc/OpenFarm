@@ -14,10 +14,6 @@ module Stages
           add_error :actions,
                     :invalid_name,
                     "'#{action[:name]}' is not a valid action name"
-        elsif !action[:overview] || !action[:overview].is_a?(String) || action[:overview] == ''
-          add_error :actions,
-                    :invalid_overview,
-                    "Please provide an action overview for '#{action[:name]}'"
         end
 
         validate_images(action[:images])

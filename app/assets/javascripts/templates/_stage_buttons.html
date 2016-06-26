@@ -24,7 +24,7 @@
           name="commit"
           type="submit"
           value="{{ stage.edited ? texts.nextFinalTouches : texts.finishStageToContinue }}"
-          ng-disabled="!(stage.edited)"
+          ng-disabled="!(stage.edited && stage.valid)"
           ng-click="nextStep()"/>
     </span>
 

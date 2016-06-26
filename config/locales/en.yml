@@ -43,6 +43,7 @@ en:
     forgot_your_password: "Forgot your password?"
     did_not_receive_confirmation_instructions_html: "Didn't receive confirmation<br/> instructions?"
     my_profile: "My Profile"
+    read_more: "Read More"
   meta:
     about: "About"
     blog: "Blog"
@@ -298,6 +299,9 @@ en:
               not_found: "We couldn’t find that crop in our database."
               no_crop_selected: "No crop selected"
               lets_get_started: "Lets Get Started!"
+              guide_creation_tip: |
+                Throughout the process of creating this guide, if you're ever unsure of something
+                don't worry too much about it. You can always edit your guide later!
               which_crop: "Which crop is this guide For?"
               common_or_scientific: "Common or scientific names are okay"
               which_practices: "Which practices will you be using?"
@@ -324,8 +328,7 @@ en:
               where_does_this_stage_happen: "Where does this stage happen?"
               choose_more_than_one: "You can choose more than one."
               what_type_of_soil: "What type of soil should be used?"
-              not_sure_about_soil_types_html: |
-                Not sure about soil types?
+              not_sure_about_soil_types_html: Not sure about soil types?
               how_much_light: "How much light should be in this area?"
               how_long: "About how long does this stage take?"
               how_long_action: "About how long does it take to complete this action?"

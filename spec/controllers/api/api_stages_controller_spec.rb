@@ -147,15 +147,14 @@ describe Api::V1::StagesController, type: :controller do
     expect(response.body).to include('not a valid action name')
   end
 
-  it 'should reject stage actions without an overview' do
+  it 'should accept stage actions without an overview' do
     data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
                            name: 'hello',
                            order: 0 },
              actions: [{ name: 'hello' }],
              guide_id: guide.id.to_s }
     post 'create', data: data, format: :json
-    expect(response.status).to eq(422)
-    expect(response.body).to include('provide an action overview for \'hello\'')
+    expect(response.status).to eq(201)
   end
 
   it 'should only add actions to stages that the user owns the guide of'

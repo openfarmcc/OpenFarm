@@ -3,14 +3,14 @@
 
 sudo apt-get update
 
-aptitude    update
-aptitude -y -qq upgrade
-aptitude install -y -qq build-essential
-aptitude install -y -qq cvs git-core
+sudo aptitude    update
+sudo aptitude -y -q=2 upgrade
+sudo aptitude install -y -q=2 build-essential
+sudo aptitude install -y -q=2 cvs git-core
 
-sudo apt-get -y -qq install git
+sudo apt-get -y -q=2 install git
 
-sudo apt-get -y -qq install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
+sudo apt-get -y -q=2 install libcurl3 libcurl3-gnutls libcurl4-openssl-dev
 
 echo "OKAY - GOING TO INSTALL OUR OWN THINGS NOW"
 
@@ -19,7 +19,6 @@ echo "--- INSTALLING RVM ---"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 
 curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=2.2.0
-source /etc/profile.d/rvm.sh
 
 echo "--- INSTALLING RUBY 2.2.0 ---"
 
@@ -30,15 +29,15 @@ rvm --default use 2.2.0
 
 echo "--- INSTALLING ELASTICSEARCH ---"
 
-sudo apt-get -y -qq install openjdk-7-jre-headless -y
+sudo apt-get -y -q=2 install openjdk-7-jre-headless -y
 
-wget –-quiet https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.0.0/elasticsearch-2.0.0.deb
+wget --quiet https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.0.0/elasticsearch-2.0.0.deb
 sudo dpkg -i elasticsearch-2.0.0.deb
 sudo service elasticsearch start
 
 echo "--- INSTALLING MONGODB ---"
 
-sudo apt-get -y -qq install mongodb
+sudo apt-get -y -q=2 install mongodb
 
 sudo mkdir /data/ && sudo mkdir /data/db/
 sudo chown -R vagrant /data/db

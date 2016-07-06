@@ -13,15 +13,16 @@ class ConfirmationsController < Devise::ConfirmationsController
         type: 'Outside',
         soil_type: 'Loam'
       )
-      respond_with_navigational(resource) {
-        if resource.has_filled_required_settings?   
+      respond_with_navigational(resource) do
+        if resource.has_filled_required_settings?
           redirect_to url_for(controller: 'users',
-          action: 'show', id: resource)
+                              action: 'show',
+                              id: resource)
         else
           redirect_to url_for(controller: 'users',
-          action: 'finish')
+                              action: 'finish')
         end
-      }
+      end
     else
       respond_with_navigational(
         resource.errors,

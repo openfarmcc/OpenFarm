@@ -61,6 +61,10 @@ class User
     UserSetting.find_or_create_by(user: self)
   end
 
+  def has_filled_required_settings?
+    user_setting.location.present? && user_setting.units.present?
+  end
+
   protected
 
   def confirmation_required?

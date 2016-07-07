@@ -11,6 +11,34 @@ describe User do
     expect(FactoryGirl.build(:confirmed_user, display_name: nil)).to_not be_valid
   end
 
+  it 'should be valid to have both location and units in user_setting' do
+    user = User.create
+    usetting = UserSetting.create(location: 'India', units: 'Imperial')
+    usetting.user = user
+    expect(user.has_filled_required_settings?).to be true
+  end
+
+  it 'should be invalid to have only location and not units in user_setting' do
+    user = User.create
+    usetting = UserSetting.create(location: 'India', units: nil)
+    usetting.user = user
+    expect(user.has_filled_required_settings?).to be false
+  end
+
+  it 'should be invalid to have only units and not location in user_setting' do
+    user = User.create
+    usetting = UserSetting.create(location: nil, units: 'Imperial')
+    usetting.user = user
+    expect(user.has_filled_required_settings?).to be false
+  end
+
+  it 'should be invalid to have neither location nor units in user_setting' do
+    user = User.create
+    usetting = UserSetting.create(location: nil, units: nil)
+    usetting.user = user
+    expect(user.has_filled_required_settings?).to be false
+  end
+
   it 'should connect to mailchimp if mailing list and confirmed' do
     stub_request(:post, "https://api.mailchimp.com/2.0/lists/list")
       .to_return(:body => '{"total":1,"data":[{"id":"7ec999ba49","web_id":540717,"name":"OpenFarm Helpers","date_created":"2015-04-03 08:25:15","email_type_option":false,"use_awesomebar":true,"default_from_name":"The OpenFarm Team","default_from_email":"kevin@openfarm.cc","default_subject":"","default_language":"en","list_rating":0,"subscribe_url_short":"http:\/\/eepurl.com\/biTabv","subscribe_url_long":"http:\/\/openfarm.us8.list-manage.com\/subscribe?u=&id=7ec999ba49","beamer_address":"us8@inbound.mailchimp.com","visibility":"pub","stats":{"member_count":24,"unsubscribe_count":0,"cleaned_count":0,"member_count_since_send":27,"unsubscribe_count_since_send":0,"cleaned_count_since_send":0,"campaign_count":0,"grouping_count":0,"group_count":0,"merge_var_count":1,"avg_sub_rate":0,"avg_unsub_rate":0,"target_sub_rate":0,"open_rate":0,"click_rate":0,"date_last_campaign":null},"modules":[]}],"errors":[]}')

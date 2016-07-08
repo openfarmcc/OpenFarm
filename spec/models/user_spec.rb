@@ -12,31 +12,15 @@ describe User do
   end
 
   it 'should be valid to have both location and units in user_setting' do
-    user = User.create
-    usetting = UserSetting.create(location: 'India', units: 'Imperial')
-    usetting.user = user
+    user = FactoryGirl.create(:user, :with_user_setting)
     expect(user.has_filled_required_settings?).to be true
   end
 
-  it 'should be invalid to have only location and not units in user_setting' do
-    user = User.create
-    usetting = UserSetting.create(location: 'India', units: nil)
-    usetting.user = user
-    expect(user.has_filled_required_settings?).to be false
-  end
-
-  it 'should be invalid to have only units and not location in user_setting' do
-    user = User.create
-    usetting = UserSetting.create(location: nil, units: 'Imperial')
-    usetting.user = user
-    expect(user.has_filled_required_settings?).to be false
-  end
-
-  it 'should be invalid to have neither location nor units in user_setting' do
-    user = User.create
-    usetting = UserSetting.create(location: nil, units: nil)
-    usetting.user = user
-    expect(user.has_filled_required_settings?).to be false
+  context "should be invalid to not fill in required settings" do
+    it 'should be invalid to have either of location or units missing' do
+      user = FactoryGirl.create(:user)
+      expect(user.has_filled_required_settings?).to be false
+    end
   end
 
   it 'should connect to mailchimp if mailing list and confirmed' do

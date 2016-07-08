@@ -16,7 +16,7 @@ describe User do
     expect(user.has_filled_required_settings?).to be true
   end
 
-  context "should be invalid to not fill in required settings" do
+  context 'should be invalid to not fill in required settings' do
     it 'should be invalid to have either of location or units missing' do
       user = FactoryGirl.create(:user)
       expect(user.has_filled_required_settings?).to be false

@@ -1,10 +1,11 @@
-<!--[if lt IE 9]>
-document.createElement('video');
-<!--[endif]-->
+// <!--[if lt IE 9]>
+// document.createElement('video');
+// <!--[endif]-->
 
-$(window).unload(function() {
-  $.rails.enableFormElements($($.rails.formSubmitSelector));
-});
+// TODO: what is the point of this? unload is deprecated in jquery > 1.8
+// $(window).unload(function() {
+//   $.rails.enableFormElements($($.rails.formSubmitSelector));
+// });
 
 // Cool title effect for "community favorites"
 $(window).load(function() {

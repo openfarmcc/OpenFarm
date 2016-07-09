@@ -264,7 +264,7 @@ GEM
     rails-assets-angular-ui-sortable (0.13.4)
       rails-assets-angular (>= 1.2)
       rails-assets-jquery-ui (>= 1.9)
-    rails-assets-jquery (3.1.0)
+    rails-assets-jquery (2.2.1)
     rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
     rails-assets-typeahead.js (0.11.1)
@@ -441,6 +441,7 @@ DEPENDENCIES
   rails-assets-angular-local-storage (~> 0.2.3)!
   rails-assets-angular-typeahead (~> 0.3.1)!
   rails-assets-angular-ui-sortable (~> 0.13.4)!
+  rails-assets-jquery (~> 2.2.1)!
   rails-assets-jquery-ui (~> 1.11.4)!
   rails_12factor
   rails_admin

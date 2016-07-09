@@ -125,7 +125,6 @@ module Users
       end
       if featured_image.nil? && !@user.user_setting.picture.nil?
         @user.user_setting.picture.remove
-        puts "featured image is nil"
       end
     end
   end

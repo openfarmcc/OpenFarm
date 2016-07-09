@@ -18,7 +18,6 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
 
     var queryingFunction;
     $scope.setCrop = function(success, crop){
-      console.log('setting crop', crop);
       userService.getUserWithPromise($scope.userId)
         .then($scope.setCurrentUser);
 
@@ -29,27 +28,19 @@ openFarmApp.controller('showCropCtrl', ['$scope', '$http', 'cropService',
         queryingFunction = $interval(function() {
           $http.get('/api/v1/progress/pictures/crop/' + crop.id)
             .then(function(result) {
-              console.log('query result', result)
               if (result.data.processing === 0) {
-                console.log('stop querying')
                 $scope.stopQuerying();
-              } else {
-                console.log('do nothing');
               }
             });
         }, 2000);
-      } else {
-        console.log('got all crop pictures');
       }
     };
 
     $scope.stopQuerying = function() {
-      console.log('canceling interval');
       $interval.cancel(queryingFunction);
       $scope.processingPictures = false;
-      console.log('getting crop again', $scope.crop.id)
       cropService.getCrop($scope.crop.id, $scope.setCrop);
-    }
+    };
 
     cropService.getCrop(getIDFromURL('crops'), $scope.setCrop);
   }]);

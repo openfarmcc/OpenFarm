@@ -44,6 +44,7 @@ gem 'active_model_serializers'
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '~> 2.2.1'
   gem 'rails-assets-jquery-ui', '~> 1.11.4'
   gem 'rails-assets-angular', '~> 1.5.0'
   gem 'rails-assets-angular-dragdrop', '~> 1.0.13'

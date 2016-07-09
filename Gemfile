@@ -34,6 +34,8 @@ gem 'merit', '~> 2.3.1'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 
+gem 'utf8-cleaner'
+
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
 # gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'

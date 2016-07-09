@@ -20,6 +20,7 @@ OpenFarm::Application.configure do
                                          user_name: ENV['MANDRILL_USERNAME'],
                                          password:  ENV['MANDRILL_APIKEY'] }
 
+  config.middleware.insert_before ActionDispatch::ParamsParser, "CatchRequestErrors"
   config.middleware.use ExceptionNotification::Rack,
     email: {
       email_prefix: '[OpenFarm Errors] ',

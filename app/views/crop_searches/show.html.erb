@@ -1,6 +1,6 @@
-<%= content_for(:title) do %>
-  <%= t('.title') %>
-<% end %>
+<%= content_for(:title) do %><%= @crops.first.name %><% end %>
+<%= content_for(:social_image) do %><%= image_url(@crops.first.main_image_path) %><% end %>
+<%= content_for(:description) do %><%= truncate(@crops.first.description, length: 140, separator: ' ') %><% end %>
 
 <div class="crop-search-results row wide-row">
   <div class="crop-results-container columns medium-6 small-12">

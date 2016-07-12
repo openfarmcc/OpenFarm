@@ -14,6 +14,10 @@ class UserSetting
   embeds_one :picture, as: :photographic
   accepts_nested_attributes_for :picture
 
+  def get_favorite_crop_image
+    favorite_crops.first.main_image_path
+  end
+
   class << self
     def from_url(url, parent)
       parent.picture = Picture.new(

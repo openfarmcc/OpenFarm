@@ -1,4 +1,6 @@
 <%= content_for(:title) do %><% @user.display_name %> Profile<% end %>
+<% binding.pry %>
+<%= content_for(:social_image) do %><%= image_url(@user.get_user_favorite_crop_image_from_user_setting) %><% end %>
 
 <div loader
   ng-show="ofPageLoading">

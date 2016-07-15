@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe 'Crop search', type: :controller do
+  def asset_url(relative_path)
+    "#{current_host}:#{Capybara.current_session.server.port}#{Rails.application.config.assets.prefix}/#{relative_path}"
+  end
+
   let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
   it 'finds individual crops', js: true do
@@ -30,6 +34,12 @@ describe 'Crop search', type: :controller do
     Crop.searchkick_index.refresh
     click_button 'Search'
     expect(page).to have_content("Sorry, we don't have any crops matching")
+    description = I18n.t('application.site_description')
+    title = I18n.t('crop_searches.show.title')
+    image = "openfarm-learn-to-grow-anything-with-community-created-guides.jpg"
+    expect(page).to have_css "meta[property='og:description'][content='#{description}']", visible: false
+    expect(page).to have_css "meta[property='og:title'][content='#{title}']", visible: false
+    expect(page).to have_css "meta[property='og:image'][content='#{asset_url(image)}']", visible: false
   end
 
   it 'handles plurals', js: true do

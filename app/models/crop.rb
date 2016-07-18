@@ -31,6 +31,12 @@ class Crop
   field :genus
   field :species
 
+  field :taxon, type: String
+  validates_inclusion_of :taxon,
+                         in: %w(Species Genus Family Order Class Phylum Kingdom Domain Life Other),
+                         message: "%{value} is not a valid taxon",
+                         allow_nil: true
+
   field :cultivar_name
 
   field :name

@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe 'Crop search', type: :controller do
   def asset_url(relative_path)
-    "#{current_host}:#{Capybara.current_session.server.port}#{Rails.application.config.assets.prefix}/#{relative_path}"
+    "#{host_with_port}#{Rails.application.config.assets.prefix}/#{relative_path}"
+  end
+
+  def host_with_port
+    "#{current_host}:#{Capybara.current_session.server.port}"
   end
 
   let!(:crop) { FactoryGirl.create(:crop, :radish) }
@@ -25,6 +29,12 @@ describe 'Crop search', type: :controller do
     Crop.searchkick_index.refresh
     click_button 'Search'
     expect(page).to have_content(Crop.last.name)
+    title = Crop.first.name
+    description = Crop.first.description
+    image = Crop.first.main_image_path
+    expect(page).to have_css "meta[property='og:title'][content='#{title}']", visible: false
+    expect(page).to have_css "meta[property='og:description'][content='#{description}']", visible: false
+    expect(page).to have_css "meta[property='og:image'][content='#{host_with_port}#{image}']", visible: false
   end
 
   it 'handles empty search results', js: true do

@@ -40,7 +40,8 @@ describe 'User features', type: :feature do
     context 'when favorite_crop is not present' do
       let(:user) { FactoryGirl.create(:user, :with_user_setting) }
       it 'returns OpenFarm image' do
-        image = 'openfarm-learn-to-grow-anything-with-community-created-guides.jpg'
+        image = 'openfarm-learn-to-grow-anything
+                 -with-community-created-guides.jpg'
         login_as user
         visit user_path(:en, user.id)
         expect(page).to have_css "meta[property='og:image']

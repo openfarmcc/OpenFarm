@@ -60,7 +60,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         cropService.createCropWithPromise(crop)
           .then(function(crop) {
             // $scope.crop.sending = false;
-            window.location.href = '/crops/' + $scope.crop.id + '/';
+            window.location.href = '/crops/' + crop.id + '/';
           })
       } else {
         cropService.updateCrop($scope.crop.id,

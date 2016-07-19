@@ -14,8 +14,10 @@ class UserSetting
   embeds_one :picture, as: :photographic
   accepts_nested_attributes_for :picture
 
-  def get_favorite_crop_image
-    favorite_crops.first.main_image_path
+  def favorite_crop_image
+    if favorite_crops.first.present? 
+      favorite_crops.first.main_image_path
+    end
   end
 
   class << self

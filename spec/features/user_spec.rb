@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "User features", type: :feature do
+describe 'User features', type: :feature do
   def host_with_port
     host_with_port = current_host
     if Capybara.current_session.server
@@ -10,7 +10,8 @@ describe "User features", type: :feature do
   end
 
   def asset_url(relative_path)
-    "#{host_with_port}#{Rails.application.config.assets.prefix}/#{relative_path}"
+    "#{host_with_port}#{Rails.application.config.assets.prefix}/
+      #{relative_path}"
   end
 
   it 'should return the user profile name when sharing user profile' do
@@ -18,10 +19,11 @@ describe "User features", type: :feature do
     login_as user
     visit user_path(:en, user.id)
     title = user.display_name + ' Profile'
-    expect(page).to have_css "meta[property='og:title'][content='#{title}']", visible: false
+    expect(page).to have_css "meta[property='og:title']
+      [content='#{title}']", visible: false
   end
 
-  context 'should handle returning appropriate image when sharing user profile' do
+  context 'should return appropriate image when sharing user profile' do
     context 'when favorite_crop is present' do
       let(:user) { FactoryGirl.create(:user, :with_user_setting) }
       it 'returns favorite_crop image' do
@@ -30,17 +32,19 @@ describe "User features", type: :feature do
         user.user_setting.favorite_crops << favorite_crop
         login_as user
         visit user_path(:en, user.id)
-        expect(page).to have_css "meta[property='og:image'][content='#{host_with_port}#{favorite_crop_path}']", visible: false
+        expect(page).to have_css "meta[property='og:image']
+          [content='#{host_with_port}#{favorite_crop_path}']", visible: false
       end
     end
 
     context 'when favorite_crop is not present' do
       let(:user) { FactoryGirl.create(:user, :with_user_setting) }
       it 'returns OpenFarm image' do
-        image = "openfarm-learn-to-grow-anything-with-community-created-guides.jpg"
+        image = 'openfarm-learn-to-grow-anything-with-community-created-guides.jpg'
         login_as user
         visit user_path(:en, user.id)
-        expect(page).to have_css "meta[property='og:image'][content='#{asset_url(image)}']", visible: false
+        expect(page).to have_css "meta[property='og:image']
+          [content='#{asset_url(image)}']", visible: false
       end
     end
   end

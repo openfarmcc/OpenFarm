@@ -15,7 +15,7 @@ class UserSetting
   accepts_nested_attributes_for :picture
 
   def favorite_crop_image
-    if favorite_crops.first.present? 
+    if favorite_crops.first.present?
       favorite_crops.first.main_image_path
     end
   end

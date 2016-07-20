@@ -241,6 +241,7 @@ GEM
       rack (~> 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
     rails (4.1.9)
       actionmailer (= 4.1.9)
       actionpack (= 4.1.9)
@@ -264,7 +265,7 @@ GEM
     rails-assets-angular-ui-sortable (0.13.4)
       rails-assets-angular (>= 1.2)
       rails-assets-jquery-ui (>= 1.9)
-    rails-assets-jquery (2.2.1)
+    rails-assets-jquery (2.2.4)
     rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
     rails-assets-typeahead.js (0.11.1)
@@ -434,6 +435,7 @@ DEPENDENCIES
   quiet_assets
   rack-attack
   rack-cors
+  rack-timeout
   rails (= 4.1.9)
   rails-assets-angular (~> 1.5.0)!
   rails-assets-angular-dragdrop (~> 1.0.13)!

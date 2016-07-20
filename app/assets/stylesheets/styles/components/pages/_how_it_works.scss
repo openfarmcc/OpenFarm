@@ -10,7 +10,7 @@
   top: -200%;
   transition: 0.3s top;
   width: 100%;
-  z-index: 5;
+  z-index: 11;
 
   // Keep how-it-works large enough on large screens
   @media #{$medium-up} {

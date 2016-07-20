@@ -11,6 +11,20 @@ describe User do
     expect(FactoryGirl.build(:confirmed_user, display_name: nil)).to_not be_valid
   end
 
+  it 'should return the favorite_crop image_path from user_setting' do
+    user = FactoryGirl.create(:confirmed_user, :with_user_setting)
+    favorite_crop = FactoryGirl.create(:crop, :radish)
+    favorite_crop_path = favorite_crop.main_image_path
+    user.user_setting.favorite_crops << favorite_crop
+    expect(user.favorite_crop_image_from_user_setting).to eq(favorite_crop_path)
+  end
+
+  it 'should return nil is favorite_crop is not present' do
+    user = FactoryGirl.create(:confirmed_user, :with_user_setting)
+    expect(user.user_setting.favorite_crops).to eq([])
+    expect(user.favorite_crop_image_from_user_setting).to eq(nil)
+  end
+
   it 'should be valid to have both location and units in user_setting' do
     user = FactoryGirl.create(:user, :with_user_setting)
     expect(user.has_filled_required_settings?).to be true

@@ -44,6 +44,7 @@ OpenFarm::Application.routes.draw do
       resources :guides, only: [:create, :show, :update, :destroy]
       resources :users, only: [:show, :update] do
         resources :gardens, only: [:index]
+        resources :compatibility_score, only: [:show]
       end
       resources :gardens, only: [:create, :show, :update, :destroy] do
         resources :garden_crops, only: [:index,

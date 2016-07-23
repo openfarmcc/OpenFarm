@@ -2,6 +2,8 @@ class Guide
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
+  attr_accessor :current_user_compatibility_score
+
   searchkick callbacks: :async, merge_mappings: true, mappings: {
     guide: {
       properties: {
@@ -142,6 +144,8 @@ class Guide
     return nil unless current_user
     return nil if current_user.gardens.empty?
 
+    return current_user_compatibility_score if current_user_compatibility_score
+
     count = 0
 
     sum = basic_needs(current_user).inject(0) do |memo, n|
@@ -153,7 +157,11 @@ class Guide
   end
 
   def compatibility_label(current_user)
-    score = compatibility_score(current_user)
+    if current_user_compatibility_score
+      score = current_user_compatibility_score
+    else
+      score = compatibility_score(current_user)
+    end
 
     if score.nil?
       return ''

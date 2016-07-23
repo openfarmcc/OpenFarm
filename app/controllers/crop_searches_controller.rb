@@ -30,6 +30,8 @@ class CropSearchesController < ApplicationController
     if current_user
       @guides = @guides.sort_by do |guide|
         guide.compatibility_score(current_user)
+        guide.current_user_compatibility_score = guide.compatibility_score(current_user)
+        guide.current_user_compatibility_score
       end
       @guides.reverse
     else

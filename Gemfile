@@ -42,7 +42,7 @@ gem 'mongoid', '~>4.0.2'
 gem 'active_model_serializers'
 
 # https://github.com/heroku/rack-timeout
-gem "rack-timeout"
+gem 'rack-timeout'
 
 # Asset management using bower
 # https://rails-assets.org/

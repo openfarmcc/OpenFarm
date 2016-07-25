@@ -53,32 +53,35 @@ describe GuidesController do
     expect(response.status).to eq(302)
   end
 
-  it 'should add an impression if a user shows the guide' do
-    guide = FactoryGirl.create(:guide)
-    user = FactoryGirl.create(:user)
-    sign_in user
-    get 'show', id: guide.id
-    guide.reload
-    expect(guide.impressions_field).to eq(1)
-    expect(response.status).to eq(200)
-  end
+  # disabling impressionist for now because it's a likely
+  # culprit for slowing everything really down on the server.
+  # ~ Simon 07/2016
+  # it 'should add an impression if a user shows the guide' do
+  #   guide = FactoryGirl.create(:guide)
+  #   user = FactoryGirl.create(:user)
+  #   sign_in user
+  #   get 'show', id: guide.id
+  #   guide.reload
+  #   expect(guide.impressions_field).to eq(1)
+  #   expect(response.status).to eq(200)
+  # end
 
-  it 'should add an impression if a guide is shown without a session' do
-    guide = FactoryGirl.create(:guide)
-    get 'show', id: guide.id
-    guide.reload
-    expect(guide.impressions_field).to eq(1)
-    expect(response.status).to eq(200)
-  end
+  # it 'should add an impression if a guide is shown without a session' do
+  #   guide = FactoryGirl.create(:guide)
+  #   get 'show', id: guide.id
+  #   guide.reload
+  #   expect(guide.impressions_field).to eq(1)
+  #   expect(response.status).to eq(200)
+  # end
 
-  it 'should not add an impression if a guide is shown with same session' do
-    guide = FactoryGirl.create(:guide)
-    get 'show', id: guide.id
-    get 'show', id: guide.id
-    guide.reload
-    expect(guide.impressions_field).to eq(1)
-    expect(response.status).to eq(200)
-  end
+  # it 'should not add an impression if a guide is shown with same session' do
+  #   guide = FactoryGirl.create(:guide)
+  #   get 'show', id: guide.id
+  #   get 'show', id: guide.id
+  #   guide.reload
+  #   expect(guide.impressions_field).to eq(1)
+  #   expect(response.status).to eq(200)
+  # end
 
   it 'should delete a guide' do
     user = FactoryGirl.create(:user)

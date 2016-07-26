@@ -110,6 +110,7 @@ GEM
     diff-lcs (1.2.5)
     doc_yo_self (0.0.2)
     docile (1.1.5)
+    easy_diff (1.0.0)
     elasticsearch (1.0.15)
       elasticsearch-api (= 1.0.15)
       elasticsearch-transport (= 1.0.15)
@@ -184,6 +185,14 @@ GEM
       moped (~> 2.0.0)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
+    mongoid-compatibility (0.4.0)
+      activesupport
+      mongoid (>= 2.0)
+    mongoid-history (0.5.0)
+      activesupport
+      easy_diff
+      mongoid (>= 3.0)
+      mongoid-compatibility
     mongoid-paperclip (0.0.9)
       paperclip (>= 2.3.6)
     mongoid_slug (4.0.0)
@@ -421,6 +430,7 @@ DEPENDENCIES
   launchy
   merit (~> 2.3.1)
   mongoid (~> 4.0.2)
+  mongoid-history
   mongoid-paperclip
   mongoid_slug
   mutations
@@ -457,3 +467,6 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
+
+BUNDLED WITH
+   1.11.2

@@ -33,6 +33,7 @@ gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit', '~> 2.3.1'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
+gem 'mongoid-history'
 
 gem 'utf8-cleaner'
 

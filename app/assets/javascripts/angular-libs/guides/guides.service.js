@@ -133,12 +133,14 @@ openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
 
     var createGuideWithPromise = function(params) {
       return $q(function(resolve, reject) {
-        $http.post('/api/v1/guides/', params).success(function (response) {
-          resolve(buildGuide(response.data, response.included));
-        }).error(function (response, code) {
-          reject(response, code);
-          alertsService.pushToAlerts(response.errors, code);
-        });
+        $http.post('/api/v1/guides/', params)
+          .success(function (response) {
+            resolve(buildGuide(response.data, response.included));
+          })
+          .error(function (response, code) {
+            reject(response, code);
+            alertsService.pushToAlerts(response.errors, code);
+          });
       });
     };
 

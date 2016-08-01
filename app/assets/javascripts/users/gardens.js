@@ -22,6 +22,8 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
           function(success, response) {
             if(success) {
               $scope.profileUser.gardens = response;
+              console.log(response);
+              console.log($scope.profileUser.gardens);
 
               $scope.profileUser.gardens.forEach(function(garden){
                 // set the pH if it hasn't been set.
@@ -69,7 +71,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
       var callback = function(success, garden){
         if (success){
           // way easier for now
-          $scope.currentUser.gardens.push(garden);
+          // $scope.currentUser.gardens.push(garden);
           $scope.profileUser.gardens.push(garden);
           $scope.newGarden = {};
           $scope.addingGarden = false;

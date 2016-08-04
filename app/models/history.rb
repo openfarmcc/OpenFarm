@@ -1,3 +1,3 @@
 class History
-    include Mongoid::History::Tracker
+  include Mongoid::History::Tracker
 end

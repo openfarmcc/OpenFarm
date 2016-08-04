@@ -469,6 +469,3 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
-
-BUNDLED WITH
-   1.11.2

@@ -228,6 +228,9 @@
             <th>
               <%= t('.quantity') %>
             </th>
+            <th>
+              <%= t('.history') %>
+            </th>
           </tr>
           <tr ng-repeat="crop in garden.garden_crops"
               ng-init="crop.hide = false"
@@ -273,6 +276,9 @@
               <input type="number"
                      ng-model="crop.quantity"
                      ng-show="crop.selected && garden.editing_crops"/>
+            </td>
+            <td>
+              {{ crop.history.length }} change(s)
             </td>
           </tr>
           <tr>

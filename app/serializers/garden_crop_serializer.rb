@@ -21,6 +21,10 @@ class GardenCropSerializer < BaseSerializer
   attribute :stage
   attribute :quantity
 
+  attribute :history do
+    object.history_tracks
+  end
+
   def self_link
     {
       'api': "/api/v1/gardens/#{object.garden.id}/garden_crops/#{object.id}",

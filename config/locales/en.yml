@@ -196,6 +196,7 @@ en:
           sowed: "Sowed"
           life_stage: "Life Stage"
           quantity: "Quantity"
+          history: "History"
           add_crop: "To add another crop to this garden, explore the guides"
       finish:
           welcome: "Welcome %{user}!"

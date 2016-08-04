@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     # Fetch history trackers
     @trackers = History.limit(25)
     # get change set for the first tracker
-    @changes = @trackers.first.tracked_changes
+    @changes = @trackers.first.tracked_changes if @trackers.first else {}
     #=> {field: {to: val1, from: val2}}
   end
 

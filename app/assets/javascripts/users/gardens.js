@@ -69,7 +69,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
       var callback = function(success, garden){
         if (success){
           // way easier for now
-          $scope.currentUser.gardens.push(garden);
+          // $scope.currentUser.gardens.push(garden);
           $scope.profileUser.gardens.push(garden);
           $scope.newGarden = {};
           $scope.addingGarden = false;

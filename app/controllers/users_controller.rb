@@ -27,11 +27,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     authorize @user
-    # Fetch history trackers
-    @trackers = History.limit(25)
-    # get change set for the first tracker
-    @changes = @trackers.first.tracked_changes if @trackers.first else {}
-    #=> {field: {to: val1, from: val2}}
   end
 
   def index

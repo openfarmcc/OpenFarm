@@ -14,7 +14,7 @@ class GuidesController < ApplicationController
     # disabling impressionist for now because it's a likely
     # culprit for slowing everything really down on the server.
     # ~ Simon 07/2016
-    # impressionist(@guide, unique: [:session_hash])
+    impressionist(@guide, unique: [:session_hash])
   end
 
   def new

@@ -26,6 +26,14 @@ describe Crops::UpdateCrop do
     expect(result.valid?).to be(true)
   end
 
+  it 'updates a crop taxon' do
+    params[:attributes][:taxon] = 'Genus'
+    result = mutation.run(params).result
+    expect(result).to be_a(Crop)
+    expect(result.valid?).to be(true)
+    expect(result.taxon).to eq('Genus')
+  end
+
   # it 'updates a crop image via URL' do
   #   VCR.use_cassette('mutations/crops/update_crop') do
   #     image_hash = {

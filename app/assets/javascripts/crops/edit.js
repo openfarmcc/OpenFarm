@@ -40,6 +40,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         spread: $scope.crop.spread || null,
         row_spacing: $scope.crop.row_spacing || null,
         height: $scope.crop.height || null,
+        taxon: $scope.crop.taxon || null
       }
 
       if ($scope.crop.pictures !== undefined){

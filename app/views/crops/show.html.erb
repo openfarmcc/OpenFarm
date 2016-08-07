@@ -17,7 +17,7 @@
               user="currentUser">
             </div>
       <% end %>
-      
+
     </div>
     <table class="crop">
         <tbody>
@@ -34,6 +34,10 @@
         <tr>
           <td><%= I18n.t('crops.binomial_name') %></td>
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.binomial_name} %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t('crops.taxon') %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.taxon} %></td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.description') %></td>

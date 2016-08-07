@@ -221,6 +221,7 @@ en:
         save: "Save Changes"
   crops:
     edit_crop: "Edit crop"
+    taxon: "Taxon"
     add_this_information: "Add this information"
     name: "Name"
     binomial_name: "Binomial Name"
@@ -239,6 +240,17 @@ en:
       save_crop_and_create_guide: "Save Crop Information and Create Guide"
     edit:
       save_crop: "Save Crop"
+      taxon: "Taxon"
+      species: "Species"
+      genus: "Genus"
+      family: "Family"
+      order: "Order"
+      class: "Class"
+      phylum: "Phylum"
+      kingdom: "Kingdom"
+      domain: "Domain"
+      life: "Life"
+      other: "Other"
   crop_searches:
     show:
       loading_crops: "loading crops"

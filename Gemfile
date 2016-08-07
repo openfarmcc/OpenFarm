@@ -85,7 +85,9 @@ end
 
 group :development do
   gem 'rubocop'
+  gem "letter_opener"
 end
+
 group :production, :staging do
   gem 'thin'
   gem 'exception_notification'

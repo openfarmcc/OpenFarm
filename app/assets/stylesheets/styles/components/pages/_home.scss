@@ -107,7 +107,6 @@ video { display: block; }
       // Typeahead dropdown
       .f-dropdown {
         margin-top: 0;
-        padding-left: 0.5rem;
         text-align: left;
 
         // dropdown carrat
@@ -170,4 +169,22 @@ video { display: block; }
     right: 0;
     z-index: 2;
   }
+}
+
+.guide-count {
+  float: right;
+  font-weight: bold;
+  line-height: 3em;
+}
+
+.crop-list-item {
+  font-size: 16px;
+}
+
+.crop-name {
+  padding-left: 1em;
+}
+
+.guide-count {
+  padding-right: 1em;
 }

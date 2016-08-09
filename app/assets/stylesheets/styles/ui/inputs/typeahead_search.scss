@@ -9,7 +9,11 @@
       max-width: 100%;
 
       &.active {
-        background-color: lighten($of-green, 40%);
+        background-color: $of-green;
+
+        a {
+          color: $white;
+        }
       }
     }
   }

@@ -9,11 +9,11 @@
       max-width: 100%;
 
       &.active {
-        background-color: #6aa84f;
+        background-color: $of-green;
 
-      a{
-        color: white !important;
-      }
+        a {
+          color: #ffffff;
+        }
       }
     }
   }

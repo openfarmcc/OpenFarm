@@ -238,6 +238,7 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
                 crops.push({ attributes: {
                   name: val,
                   guides_count: val.guides_count,
+                  main_image_path: val.main_image_path,
                   is_new: true
                 } });
               }

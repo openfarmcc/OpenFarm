@@ -1,7 +1,7 @@
+![OpenFarm](https://cloud.githubusercontent.com/assets/10438537/13198846/445ddeb2-d7d1-11e5-8e11-163e0545909a.jpg)
+
 [![Coverage Status](https://img.shields.io/coveralls/openfarmcc/OpenFarm.svg)](https://coveralls.io/r/openfarmcc/OpenFarm)
 [![Code Climate](https://codeclimate.com/github/openfarmcc/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
-[![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/pr)](http://issuestats.com/github/openfarmcc/openfarm)
-[![Issue Stats](http://issuestats.com/github/openfarmcc/openfarm/badge/issue)](http://issuestats.com/github/openfarmcc/openfarm)
 [![OpenCollective](https://opencollective.com/openfarm/backers/badge.svg)](#backers) 
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
 [![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)

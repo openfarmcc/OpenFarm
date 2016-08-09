@@ -36,5 +36,16 @@ describe Crop do
       expect(fancy_crop.main_image_path).to be_kind_of(String)
       expect(fancy_crop.main_image_path).to include("pictures/attachments")
     end
+
+    it 'checks that taxon is one of 10 options if included' do
+      crop.taxon = 'Species'
+      expect(crop.save).to be(true)
+      expect(crop.taxon).to eq('Species')
+    end
+
+    it 'rejects taxon that is not one of 10 options if included' do
+      crop.taxon = 'Pokemon'
+      expect(crop.save).to be(false)
+    end
   end
 end

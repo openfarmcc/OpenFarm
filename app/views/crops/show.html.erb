@@ -36,6 +36,10 @@
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.binomial_name} %></td>
         </tr>
         <tr>
+          <td><%= I18n.t('crops.taxon') %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.taxon} %></td>
+        </tr>
+        <tr>
           <td><%= I18n.t('crops.description') %></td>
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.description} %></td>
         </tr>

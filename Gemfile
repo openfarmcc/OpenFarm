@@ -33,6 +33,7 @@ gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
 gem 'merit', '~> 2.3.1'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
+gem 'mongoid-history'
 
 gem 'utf8-cleaner'
 
@@ -40,6 +41,9 @@ gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
 # gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
 gem 'active_model_serializers'
+
+# https://github.com/heroku/rack-timeout
+gem 'rack-timeout'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -81,7 +85,9 @@ end
 
 group :development do
   gem 'rubocop'
+  gem "letter_opener"
 end
+
 group :production, :staging do
   gem 'thin'
   gem 'exception_notification'

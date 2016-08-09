@@ -31,6 +31,10 @@ module OpenFarm
       end
     end
     config.middleware.use Rack::Attack
+
+    config.generators do |g|
+      g.orm :mongoid
+    end
   end
 end
 

@@ -68,6 +68,10 @@ class User
     user_setting.location.present? && user_setting.units.present?
   end
 
+  def favorite_crop_image_from_user_setting
+    user_setting.favorite_crop_image
+  end
+
   protected
 
   def confirmation_required?

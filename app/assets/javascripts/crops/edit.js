@@ -40,6 +40,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         spread: $scope.crop.spread || null,
         row_spacing: $scope.crop.row_spacing || null,
         height: $scope.crop.height || null,
+        taxon: $scope.crop.taxon || null
       }
 
       if ($scope.crop.pictures !== undefined){
@@ -60,7 +61,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         cropService.createCropWithPromise(crop)
           .then(function(crop) {
             // $scope.crop.sending = false;
-            window.location.href = '/crops/' + $scope.crop.id + '/';
+            window.location.href = '/crops/' + crop.id + '/';
           })
       } else {
         cropService.updateCrop($scope.crop.id,

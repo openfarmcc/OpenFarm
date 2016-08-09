@@ -73,4 +73,14 @@ describe Api::V1::CropsController, type: :controller do
     crop.reload
     expect(crop.description).to eq(old_description)
   end
+
+  it 'should add a taxon to a crop' do
+    crop = FactoryGirl.create(:crop)
+    sign_in user
+    put :update,
+        id: crop.id,
+        data: { attributes: { taxon: 'Genus' } }
+    expect(response.status).to eq(200)
+    expect(crop.reload.taxon).to eq('Genus')
+  end
 end

@@ -33,7 +33,7 @@
       <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_your_gardens') %>
     </div>
   </div>
-  <div class="garden" ng-repeat="garden in profileUser.gardens" ng-cloak ng-show="!garden.hide">
+  <div class="garden" ng-repeat="garden in profileUser.gardens track by $index" ng-cloak ng-show="!garden.hide">
     <div class="row header">
       <% if params[:manage] %>
         <div class="columns large-6 large-centered">
@@ -226,6 +226,9 @@
             <th>
               <%= t('.quantity') %>
             </th>
+            <th>
+              <%= t('.history') %>
+            </th>
           </tr>
           <tr ng-repeat="crop in garden.garden_crops"
               ng-init="crop.hide = false"
@@ -271,6 +274,9 @@
               <input type="number"
                      ng-model="crop.quantity"
                      ng-show="crop.selected && garden.editing_crops"/>
+            </td>
+            <td>
+              {{ crop.history.length }} change(s)
             </td>
           </tr>
           <tr>

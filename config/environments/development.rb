@@ -12,6 +12,7 @@ OpenFarm::Application.configure do
   config.active_support.deprecation = :log
   config.assets.debug = true
   config.quiet_assets = true
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.after_initialize do
     Crop.reindex

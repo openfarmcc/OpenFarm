@@ -6,7 +6,8 @@
       type="text"
       placeholder="{{ options.placeholder || 'Search for a crop' }}"
       ng-model="cropQuery"
-      typeahead="crop as crop.name + ' ' + crop.guides_count + ' guides' for crop in getCrops($viewValue) | filter:$viewValue"
+      typeahead="crop as crop.name for crop in getCrops($viewValue) | filter:$viewValue"
+      typeahead-template-url="/crop_search_custom.html"
       typeahead-on-select='cropOnSelect($item, $model, $label, options)'
       typeahead-loading="loadingCrops"
       typeahead-wait-ms="500"

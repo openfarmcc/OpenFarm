@@ -237,8 +237,6 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
               if (crops.length === 0 && $scope.allowNew) {
                 crops.push({ attributes: {
                   name: val,
-                  guides_count: val.guides_count,
-                  main_image_path: val.main_image_path,
                   is_new: true
                 } });
               }
@@ -246,7 +244,6 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
                 return cropService.utilities.buildCrop(crop, res.data.included);
               });
               $scope.firstCrop = crops[0];
-              console.log(crops);
               return crops;
             })
           };

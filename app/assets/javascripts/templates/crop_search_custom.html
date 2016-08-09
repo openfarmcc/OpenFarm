@@ -1,4 +1,5 @@
-<a><div>
-    <span style="display:block;" class="crop-search" bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span>
-    <span bind-html-unsafe="match.model.guides_count"></span>
-</div></a>
+<a tabindex="-1">
+      <img ng-src="{{match.model.main_image_path}}" height="50px" width="50px"/>
+      <span bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span>
+      <span style="float: right; font-weight: bold; line-height: 3.5em;" bind-html-unsafe="match.model.guides_count + ' guides'"></span>
+  </a>

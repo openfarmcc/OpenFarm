@@ -227,6 +227,7 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
           $scope.getCrops = function (val) {
             // be nice and only hit the server if
             // length >= 3
+            console.log('hey');
             return $http.get('/api/v1/crops', {
               params: {
                 filter: val
@@ -237,6 +238,7 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
               if (crops.length === 0 && $scope.allowNew) {
                 crops.push({ attributes: {
                   name: val,
+                  guides_count: val.guides_count,
                   is_new: true
                 } });
               }
@@ -244,6 +246,7 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
                 return cropService.utilities.buildCrop(crop, res.data.included);
               });
               $scope.firstCrop = crops[0];
+              console.log(crops, res.data.included);
               return crops;
             })
           };

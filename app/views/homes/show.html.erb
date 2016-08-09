@@ -24,15 +24,14 @@
           <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
             <div class="search-bar-container">
               <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
-
                 <div class="search-input-container">
                   <div crop-search
                     query="cropQuery"
                     loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                     crop-on-select="goToCrop"
                     options="{  'fieldName': 'q',
-                    'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }"
-                  ></div>
+                    'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }">
+                  </div>
                 </div>
               </div>
             </div>

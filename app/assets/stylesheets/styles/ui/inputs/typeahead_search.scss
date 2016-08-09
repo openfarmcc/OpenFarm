@@ -9,8 +9,11 @@
       max-width: 100%;
 
       &.active {
-        background-color: #69A84F;
-        color: white;
+        background-color: #6aa84f;
+
+      a{
+        color: white !important;
+      }
       }
     }
   }

@@ -9,13 +9,8 @@
       max-width: 100%;
 
       &.active {
-        background-color: lighten($of-green, 10%);
-
-        &.a{
-            &.span{
-            color: #fff;
-            }
-        }
+        background-color: #69A84F;
+        color: white;
       }
     }
   }

@@ -188,3 +188,8 @@ video { display: block; }
 .guide-count {
   padding-right: 1em;
 }
+
+.crop-img {
+  height: 50px;
+  object-fit: cover;
+}

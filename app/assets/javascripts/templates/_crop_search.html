@@ -7,6 +7,7 @@
       placeholder="{{ options.placeholder || 'Search for a crop' }}"
       ng-model="cropQuery"
       typeahead="crop as crop.name for crop in getCrops($viewValue) | filter:$viewValue"
+      typeahead-template-url="custom.html"
       typeahead-on-select='cropOnSelect($item, $model, $label, options)'
       typeahead-loading="loadingCrops"
       typeahead-wait-ms="500"
@@ -25,3 +26,11 @@
     <input type="button" class="button postfix search-button" value="{{ options.buttonValue || 'Search' }}" ng-click="submitCrop()" id="submit_crop"/>
   </div>
 </div>
+
+<script type="text/ng-template" id="custom.html">
+  <a class="crop-list-item" tabindex="-1">
+      <img class="crop-img" ng-src="{{match.model.main_image_path}}" height="50px" width="50px"/>
+      <span class="crop-name" bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span>
+      <span class="guide-count" bind-html-unsafe="match.model.guides_count + ' guides'"></span>
+  </a>
+</script>

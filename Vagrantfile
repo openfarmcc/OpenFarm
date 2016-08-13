@@ -15,6 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Forward the Rails server default port to the host
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 9200, host: 9201
 
-  config.vm.provision :shell, path: "bootstrap.sh", privileged: false
+  config.vm.provision :shell, path: "scripts/bootstrap.sh", privileged: false
+
+  config.trigger.after :up do
+    run_remote "bash /vagrant/scripts/up.sh"
+  end
 end

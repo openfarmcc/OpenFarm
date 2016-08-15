@@ -92,8 +92,5 @@
 	}],
 	"related_applications": [{
 	"platform": "web"
-	}, {
-	"platform": "play",
-	"url": ""
 	}]
 }

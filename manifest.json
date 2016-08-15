@@ -39,7 +39,7 @@
 	"type": "image/png"
 	}, {
 	"src": "app/assets/images/icons/apple-touch-icon-precomposed.png",
-	/*"sizes": "144x144",*/
+	"sizes": "144x144",
 	"type": "image/png"
 	}, {
 	"src": "app/assets/images/icons/apple-touch-icon-180x180.png",
@@ -66,8 +66,8 @@
 	"sizes": "96x96",
 	"type": "image/png"
 	}, {
-	"src": "app/assets/images/icons/favico.ico",
-	/*"sizes": "16x16",*/
+	"src": "app/assets/images/icons/favicon.ico",
+	"sizes": "16x16",
 	"type": "image/ico"
 	}, {
 	"src": "app/assets/images/icons/mstile-144x144.png",
@@ -89,11 +89,11 @@
 	"src": "app/assets/images/icons/mstile-70x70.png",
 	"sizes": "70x70",
 	"type": "image/png"
-	}]/*,
+	}],
 	"related_applications": [{
 	"platform": "web"
 	}, {
 	"platform": "play",
-	"url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
-	}]*/
+	"url": ""
+	}]
 }

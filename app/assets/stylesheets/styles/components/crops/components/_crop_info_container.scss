@@ -10,16 +10,18 @@
     background-size: cover;
     background-position: center;
     background-image: image-url("leaf-grey-canopy.png");
-      &:hover {
+
+    &:hover {
         .blackness {
           opacity: 1;
           @include single-transition(opacity, 200ms, ease-in-out);
         }
-      }
+    }
+
     .blackness {
         background-color: rgba(0, 0, 0, .45);
         opacity: .5;
-      }
+    }
 
     .crop-name {
       position: absolute;
@@ -42,15 +44,18 @@
 }
 
 .small-crop img {
-  -webkit-filter: grayscale(50%);
-  filter: grayscale(50%);
-  -webkit-transition: .3s ease-in-out;
-  transition: .3s ease-in-out;
+  /*-webkit-filter: grayscale(50%);
+  filter: grayscale(50%);*/
+  @include filter(grayscale(50%));
+  @include single-transition(0.3s,ease-in-out);
+  /*-webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;*/
 }
 
 .small-crop-img:hover {
-  -webkit-filter: grayscale(0);
-  filter: grayscale(0);
+  /*-webkit-filter: grayscale(0);
+  filter: grayscale(0);*/
+  @include filter(grayscale(0));
 }
 
 // Shrink the new crop button on small screens

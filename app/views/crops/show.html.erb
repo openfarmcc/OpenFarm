@@ -23,8 +23,8 @@
         <tbody>
         <tr>
           <td colspan="2">
-          <a ng-repeat="picture in crop.pictures" thumbnail-url="{{picture.small_url}}"
-              display-url="{{picture.image_url}}">
+          <a of-lightbox-modal ng-repeat="picture in crop.pictures"
+            thumbnail-url="{{picture.small_url}}" display-url="{{picture.image_url}}">
           </a>
           <span ng-show="processingPictures" class="still-uploading-crop-images">
             <i class="fa fa-spin fa-spinner"></i>

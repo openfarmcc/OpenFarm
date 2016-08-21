@@ -22,8 +22,9 @@
     ng-class="{ 'small-3': stage.pictures.length === 0 }">
     <span ng-repeat="pic in stage.pictures"
       ng-if="!editingStage">
-      <a of-lightbox-modal="pic"
-         description="$parent.name"></a>
+      <a of-lightbox-modal thumbnail-url="{{pic.medium_url}}"
+        display-url="{{pic.image_url}}" description="$parent.name">
+      </a>
     </span>
     <span ng-if="stage.pictures.length === 0"
       class="stage-default-picture stage-option {{ stage.name | lowercase }}">

@@ -12,7 +12,9 @@
   </div>
   <span ng-repeat="picture in action.pictures"
     ng-hide="editingStage">
-    <a of-lightbox-modal="picture" description="$parent.name"></a>
+    <a of-lightbox-modal thumbnail-url="{{picture.medium_url}}"
+      display-url="{{picture.image_url}}" description="$parent.name">
+    </a>
   </span>
   <div class="upload-stage-picture"
       s3-upload

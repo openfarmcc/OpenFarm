@@ -3,17 +3,18 @@ openFarmApp.directive('ofLightboxModal', ['$http', '$modal', 'stageService',
     return {
       restrict: 'A',
       scope: {
-        picture: '=ofLightboxModal',
-        description: '='
+        thumbnailUrl: '@',
+        displayUrl: '@',
+        description: '<?'
       },
       controller: ['$scope',
         function ($scope) {
           $scope.open = function () {
             var modalInstance = $modal.open({
-              template: '<img ng-src="{{picture.image_url}}"/><span ng-bind="description"></span>',
+              template: '<img ng-src="{{displayUrl}}" /><span ng-bind="description"></span>',
               controller: ['$scope', '$modalInstance', 'picture', 'description',
-              function ($scope, $modalInstance, picture, description) {
-                $scope.picture = picture
+              function ($scope, $modalInstance, displayUrl, description) {
+                $scope.displayUrl = displayUrl
                 $scope.description = description
 
                 $scope.reposition = function () {
@@ -30,8 +31,8 @@ openFarmApp.directive('ofLightboxModal', ['$http', '$modal', 'stageService',
 
               }],
               resolve: {
-                picture: function () {
-                  return $scope.picture
+                displayUrl: function() {
+                  return $scope.displayUrl
                 },
                 description: function () {
                   return $scope.description
@@ -47,7 +48,7 @@ openFarmApp.directive('ofLightboxModal', ['$http', '$modal', 'stageService',
           }
         }
       ],
-      template: "<img class='lightbox-thumbnail' ng-src='{{picture.medium_url}}' ng-click='open()'/>"
+      template: "<img class='lightbox-thumbnail' ng-src='{{thumbnailUrl}}' ng-click='open()'/>"
     }
   }
 ])

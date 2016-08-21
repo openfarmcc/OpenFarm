@@ -5,14 +5,14 @@ openFarmApp.directive('ofLightboxModal', ['$http', '$modal', 'stageService',
       scope: {
         thumbnailUrl: '@',
         displayUrl: '@',
-        description: '<?'
+        description: '@?'
       },
       controller: ['$scope',
         function ($scope) {
           $scope.open = function () {
             var modalInstance = $modal.open({
               template: '<img ng-src="{{displayUrl}}" /><span ng-bind="description"></span>',
-              controller: ['$scope', '$modalInstance', 'picture', 'description',
+              controller: ['$scope', '$modalInstance', 'displayUrl', 'description',
               function ($scope, $modalInstance, displayUrl, description) {
                 $scope.displayUrl = displayUrl
                 $scope.description = description

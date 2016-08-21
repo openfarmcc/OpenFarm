@@ -23,8 +23,9 @@
         <tbody>
         <tr>
           <td colspan="2">
-          <img ng-repeat="picture in crop.pictures"
-              ng-src="{{picture.small_url}}"/>
+          <a ng-repeat="picture in crop.pictures" thumbnail-url="{{picture.small_url}}"
+              display-url="{{picture.image_url}}">
+          </a>
           <span ng-show="processingPictures" class="still-uploading-crop-images">
             <i class="fa fa-spin fa-spinner"></i>
             processing images...

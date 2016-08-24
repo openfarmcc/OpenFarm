@@ -27,6 +27,9 @@ openFarmModule.factory('alertsService', ['$rootScope',
         if (['200','201','202'].indexOf(code) !== -1) {
           msg_type = 'success'
         }
+        if (code % 400 > 0 && code % 400 < 100) {
+          msg_type = 'alert'
+        }
 
         console.log(response)
         var msg = response.map(function(obj){

@@ -222,7 +222,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
       });
     }
     function favoriteGuide (guideId) {
-      if ($scope.currentUser == null){
+      if ($scope.currentUser === undefined){
         alertsService.pushToAlerts(["You need to log in to mark your favorite"], 401);
       }
       else{

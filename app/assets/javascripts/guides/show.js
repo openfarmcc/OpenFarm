@@ -1,5 +1,6 @@
 openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q',
     'userService', 'gardenService', 'cropService', 'stageService', 'defaultService',
+    'alertsService',
   function showGuideCtrl($scope,
                          $http,
                          guideService,
@@ -8,7 +9,8 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
                          gardenService,
                          cropService,
                          stageService,
-                         defaultService) {
+                         defaultService,
+                         alertsService) {
     $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
     $scope.gardenCrop = {};
@@ -219,34 +221,38 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         $scope.guide.crop = data[1];
       });
     }
-
     function favoriteGuide (guideId) {
-      $scope.updatingFavoritedGuides = true;
-      var favorited_guide_ids = $scope.currentUser.favorited_guides.map(function (g) { return g.id; }) || [];
-      var index = favorited_guide_ids.indexOf(guideId);
-      if (index === -1) {
-        favorited_guide_ids.push(guideId);
-      } else {
-        favorited_guide_ids.splice(index, 1);
+      if (!$scope.currentUser){
+        alertsService.pushToAlerts(["You need to log in to mark your favorite"], 401);
       }
+      else{
+        $scope.updatingFavoritedGuides = true;
+        var favorited_guide_ids = $scope.currentUser.favorited_guides.map(function (g) { return g.id; }) || [];
+        var index = favorited_guide_ids.indexOf(guideId);
+        if (index === -1) {
+          favorited_guide_ids.push(guideId);
+        } else {
+          favorited_guide_ids.splice(index, 1);
+        }
 
-      var params = {
-        'favorited_guide_ids': favorited_guide_ids
-      };
+        var params = {
+          'favorited_guide_ids': favorited_guide_ids
+        };
 
-      if ($scope.currentUser.user_setting.picture &&
-          !$scope.currentUser.user_setting.picture.deleted) {
-        params.featured_image = $scope.currentUser.user_setting.picture.image_url || null;
-      } else {
-        params.featured_image = null;
+        if ($scope.currentUser.user_setting.picture &&
+            !$scope.currentUser.user_setting.picture.deleted) {
+          params.featured_image = $scope.currentUser.user_setting.picture.image_url || null;
+        } else {
+          params.featured_image = null;
+        }
+
+        userService.updateUserWithPromise($scope.currentUser.id, params).then(function (user) {
+          $scope.updatingFavoritedGuides = false;
+          $scope.setCurrentUser(true, user);
+        }).catch(function (response, code) {
+
+        });
       }
-
-      userService.updateUserWithPromise($scope.currentUser.id, params).then(function (user) {
-        $scope.updatingFavoritedGuides = false;
-        $scope.setCurrentUser(true, user);
-      }).catch(function (response, code) {
-
-      });
     }
 
     guideService.getGuideWithPromise($scope.guideId)

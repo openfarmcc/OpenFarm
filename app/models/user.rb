@@ -1,5 +1,10 @@
 class User
   include Mongoid::Document
+
+  def encrypted_password=(value)
+    self[:encrypted_password] = value
+  end
+
   has_many :guides
   has_many :gardens
 

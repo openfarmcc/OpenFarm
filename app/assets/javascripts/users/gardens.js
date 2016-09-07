@@ -7,6 +7,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
                       gardenService,
                       cropService) {
     $scope.addingGarden = false;
+    $scope.addingCrop = false;
     $scope.newGarden = {};
 
     // $scope.profileUser = $rootScope.profileUser;
@@ -14,6 +15,9 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
 
     $scope.toggleAddGarden = function() {
       $scope.addingGarden = !$scope.addingGarden;
+    };
+    $scope.toggleAddCrop = function() {
+      $scope.addingCrop = !$scope.addingCrop;
     };
 
     $scope.$watch('profileUser', function(){

@@ -275,7 +275,40 @@
           </tr>
           <tr>
             <td colspan="6">
-              <%= t('.add_crop') %>
+              <div class="row row-table row-full-height">
+                <div class="search text-center">
+                  <form action="<%= crop_search_via_get_path %>" method="get">
+                  <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
+                    <div class="search-bar-container">
+                      <div class="search-bar" ng-app="cropApp" ng-controller="cropCtrl">
+
+                        <div class="search-input-container">
+                          <div crop-search
+                            query="cropQuery"
+                            loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
+                            crop-on-select="addCropToGarden"
+                            options="{  'fieldName': 'q',
+                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }"
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+            <!-- 
+              <!%= t('.add_crop') %
+              <!%= stylesheet_link_tag 'javascirpts/templates/_add_crop_to_garden' %-->
+              <!-- <div class="add-to-garden right"> -->
+              <!-- <div>
+                <!% if current_user %>
+                  <div add-to-gardens
+                    crop-object="guide"
+                    object-type="'guide'"
+                    user="currentUser">
+                  </div>
+                <!% end %-->
+              
             </td>
           </tr>
         </table>
@@ -285,7 +318,7 @@
   <div ng-if="profileUser && profileUser.gardens.length === 0" class="loading-content">
     This user hasn't created any gardens yet.
   </div>
-</div>
+<
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user.id}';" %>
   <%= javascript_include_tag 'users/gardens' %>

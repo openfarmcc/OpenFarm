@@ -46,4 +46,7 @@ class Api::V1::CropsController < Api::V1::BaseController
                                      id: params[:id])
     respond_with_mutation(:ok, include: ['pictures'])
   end
+  def tag
+    Crop.find(params[:id]).update_attributes(tags: params[:tags])
+  end
 end

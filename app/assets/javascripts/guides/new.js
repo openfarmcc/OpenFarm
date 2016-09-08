@@ -149,7 +149,6 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       userService.getUserWithPromise(USER_ID),
     ])
   .then(function(data){
-    var crop;
 
     var detail_options = data[0];
     $scope.options = detail_options;

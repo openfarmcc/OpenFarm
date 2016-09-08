@@ -200,6 +200,9 @@ GEM
     mongoid_slug (4.0.0)
       mongoid (>= 3.0)
       stringex (~> 2.0)
+    mongoid_taggable (1.1.1)
+      mongoid (>= 3)
+      rake
     moped (2.0.7)
       bson (~> 3.0)
       connection_pool (~> 2.0)
@@ -437,6 +440,7 @@ DEPENDENCIES
   mongoid-history
   mongoid-paperclip
   mongoid_slug
+  mongoid_taggable
   mutations
   ng-rails-csrf
   patron
@@ -472,3 +476,6 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
+
+BUNDLED WITH
+   1.11.2

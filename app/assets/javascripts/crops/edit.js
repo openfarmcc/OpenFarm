@@ -15,6 +15,11 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       };
     }
 
+    $scope.loadTags = function(query) {
+      return $http.get('/api/v1/tags/' + query).then(function(tag_data){
+        return tag_data.data.tags;
+      });
+    };
 
     $scope.submitForm = function(){
       $scope.crop.sending = true;
@@ -30,6 +35,8 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         }
       }
 
+      var tags_array = $.map($scope.crop.tags_array, function(obj) { return obj.text; })
+
       var crop = {
         common_names: commonNames,
         name: $scope.crop.name,
@@ -40,7 +47,8 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         spread: $scope.crop.spread || null,
         row_spacing: $scope.crop.row_spacing || null,
         height: $scope.crop.height || null,
-        taxon: $scope.crop.taxon || null
+        taxon: $scope.crop.taxon || null,
+        tags_array: tags_array,
       }
 
       if ($scope.crop.pictures !== undefined){
@@ -69,6 +77,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
                                cropCallback, function(err) {
                                 console.log('err', err)
                                });
+        console.log(crop);
       }
     };
 

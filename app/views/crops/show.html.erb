@@ -33,6 +33,10 @@
           </td>
         </tr>
         <tr>
+          <td><%= I18n.t('crops.tags') %></td>
+          <td><%= @crop.tags.gsub(',',', ')%></td>
+        </tr>
+        <tr>
           <td><%= I18n.t('crops.binomial_name') %></td>
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.binomial_name} %></td>
         </tr>

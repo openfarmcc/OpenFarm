@@ -35,6 +35,7 @@ gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'mongoid-history'
+gem 'mongoid_taggable'
 
 gem 'utf8-cleaner'
 

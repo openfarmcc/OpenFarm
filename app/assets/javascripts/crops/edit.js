@@ -1,4 +1,4 @@
-openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService', 'ngTagsInput',
+openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
   function cropCtrl($scope, $http, cropService) {
     $scope.s3upload = '';
     $scope.crop = {};
@@ -14,19 +14,6 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService', 'ngTagsInp
         'pictures': []
       };
     }
-
-    $scope.tags = [
-      { text: 'just' },
-      { text: 'some' },
-      { text: 'cool' },
-      { text: 'tags' }
-    ];
-
-    $scope.loadTags = function(query) {
-      return $http.get('/tags/'+ query);
-      //console.log(query);
-      //return [];
-    };
 
     $scope.submitForm = function(){
       $scope.crop.sending = true;

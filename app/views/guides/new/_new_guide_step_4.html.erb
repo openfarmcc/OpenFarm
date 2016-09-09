@@ -87,6 +87,12 @@
       </div>
     </div>
 
+    <div class="row">
+      <tags-input ng-model="tags">
+          <auto-complete source="loadTags($query)"></auto-complete>
+      </tags-input>
+    </div>
+
     <div class="button-wrapper row">
       <div class="columns small-12">
         <p class="right"><%= t('.finish_draft') %></p>

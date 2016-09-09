@@ -2,7 +2,7 @@ openFarmApp.config(['$locationProvider', function($locationProvider) {
   $locationProvider.html5Mode(false).hashPrefix('!');
 }]);
 
-openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
+openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q', 'ngTagsInput',
   'guideService', 'stageService', '$location', 'localStorageService',
   'alertsService', '$rootScope', 'cropService', 'defaultService', 'userService',
   function newGuideCtrl($scope, $http, $q, guideService, stageService,
@@ -22,6 +22,19 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     'soil': [],
     'practices': []
   };
+
+  $scope.tags = [
+      { text: 'just' },
+      { text: 'some' },
+      { text: 'cool' },
+      { text: 'tags' }
+    ];
+
+    $scope.loadTags = function(query) {
+      return $http.get('/tags/'+ query);
+      //console.log(query);
+      //return [];
+    };
 
   var practices = [];
 

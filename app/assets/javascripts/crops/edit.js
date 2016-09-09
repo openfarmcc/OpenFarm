@@ -15,10 +15,17 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService', 'ngTagsInp
       };
     }
 
+    $scope.tags = [
+      { text: 'just' },
+      { text: 'some' },
+      { text: 'cool' },
+      { text: 'tags' }
+    ];
+
     $scope.loadTags = function(query) {
-      //return $http.get('/tags/'+ query);
-      console.log(query);
-      return [];
+      return $http.get('/tags/'+ query);
+      //console.log(query);
+      //return [];
     };
 
     $scope.submitForm = function(){

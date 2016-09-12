@@ -63,6 +63,20 @@ class Guide
 
   accepts_nested_attributes_for :time_span
 
+  def self.sorted_for_user(guides, user)
+    if user
+      guides = guides.sort_by do |guide|
+        guide.compatibility_score(user)
+        guide.current_user_compatibility_score = guide.compatibility_score(user)
+        guide.current_user_compatibility_score
+      end
+      guides.reverse
+    else
+      guides
+    end
+  end
+
+
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end

@@ -18,6 +18,8 @@ class CropsController < ApplicationController
     # ~ Simon 07/2016
     impressionist(@crop, unique: [:session_hash])
     @guides = GuideSearch.search.for_crops(@crop).with_user(current_user)
+
+    @guides = Guide.sorted_for_user(@guides, current_user)
   end
 
   def create

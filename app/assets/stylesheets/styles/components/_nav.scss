@@ -17,12 +17,12 @@
   }
 
   @media #{$small-only}{
-
+    input {
+      height: 2.5rem;
+    }
     // This is a bit hacky.
     .header-search{
       width: 100%;
-      margin-top: -2rem;
-      margin-left: 1rem;
     }
   }
 
@@ -82,11 +82,4 @@
       margin-top: 10px;
     }
   }
-
-    &.expanded .title-area {
-      // I'm not sure why this was included.
-      // It seems to make the top nav not visible when
-      // the screen is small.
-      /*background-color: transparent;*/
-    }
 }

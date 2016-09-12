@@ -5,8 +5,15 @@ footer {
   @include transition(all .5s);
   padding: 2.5em 0;
 
+  @media #{$small-only} {
+    & {
+      height: auto;
+    }
+  }
+
   .row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
   }
 

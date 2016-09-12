@@ -318,7 +318,7 @@
   <div ng-if="profileUser && profileUser.gardens.length === 0" class="loading-content">
     This user hasn't created any gardens yet.
   </div>
-<
+
 <% content_for(:end_js) do %>
   <%= javascript_tag "var USER_ID = '#{current_user.id}';" %>
   <%= javascript_include_tag 'users/gardens' %>

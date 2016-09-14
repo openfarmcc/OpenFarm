@@ -19,7 +19,7 @@ describe StageActions::CreateStageAction do
   it 'disallows making actions for stages that are not a users' do
     user = FactoryGirl.create(:user)
     params[:user] = user
-    expect { mutation.run(params) }.to raise_exception
+    expect { mutation.run(params) }.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
 
   it 'uploads multiple images' do

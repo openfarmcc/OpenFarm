@@ -69,16 +69,16 @@ RSpec.configure do |config|
   config.fail_fast = false
   config.order = "random"
   if ENV['DOCS'] == 'true'
-    DocYoSelf.config do |c|
+    SmarfDoc.config do |c|
       c.template_file = 'spec/template.md.erb'
       c.output_file   = 'api_docs.md'
     end
 
     config.after(:each, type: :controller) do
-      DocYoSelf.run!(request, response) if request.url.include?('/api/')
+      SmarfDoc.run!(request, response) if request.url.include?('/api/')
     end
 
-    config.after(:suite) { DocYoSelf.finish! }
+    config.after(:suite) { SmarfDoc.finish! }
   end
   config.before :each do
     Guide.reindex

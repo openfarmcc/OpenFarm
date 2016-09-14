@@ -15,6 +15,6 @@ module ApiHelpers
   end
 
   def note(msg)
-    DocYoSelf.note msg.squish
+    SmarfDoc.note msg.squish
   end
 end

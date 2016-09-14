@@ -109,12 +109,12 @@ GEM
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
     easy_diff (1.0.0)
-    elasticsearch (1.0.15)
-      elasticsearch-api (= 1.0.15)
-      elasticsearch-transport (= 1.0.15)
-    elasticsearch-api (1.0.15)
+    elasticsearch (2.0.0)
+      elasticsearch-api (= 2.0.0)
+      elasticsearch-transport (= 2.0.0)
+    elasticsearch-api (2.0.0)
       multi_json
-    elasticsearch-transport (1.0.15)
+    elasticsearch-transport (2.0.0)
       faraday
       multi_json
     erubis (2.7.0)

@@ -58,7 +58,7 @@ Mongoid.logger.level = 2
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include Rails.application.routes.url_helpers
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ApiHelpers, type: :controller
   config.include IntegrationHelper, type: :feature
   config.include Capybara::DSL
@@ -93,5 +93,5 @@ RSpec.configure do |config|
 end
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end

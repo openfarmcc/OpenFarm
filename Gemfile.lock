@@ -435,7 +435,7 @@ DEPENDENCIES
   foundation-rails
   gibbon (~> 1.1.5)
   high_voltage
-  impressionist (~> 1.5.0)
+  impressionist
   jquery-rails
   jsonapi-serializers (~> 0.2.4)
   launchy

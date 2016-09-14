@@ -30,11 +30,11 @@ class ApplicationController < ActionController::Base
   # This method allows devise to pass non standard attributes through and
   # thereby comply with 'strong parameters'.
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) do |params|
+    devise_parameter_sanitizer.permit(:sign_up) do |params|
       params.permit *safe_user_attrs
     end
 
-    devise_parameter_sanitizer.for(:account_update) do |params|
+    devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit *(safe_user_attrs << :current_password)
     end
   end

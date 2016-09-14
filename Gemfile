@@ -17,20 +17,20 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'bcrypt'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
-gem 'mongoid_slug'
-gem 'aws-sdk', '~> 1.55.0'
+gem 'mongoid-slug'
+gem 'aws-sdk', '~> 1.55'
 gem 'mutations'
 gem 'rack-attack'
-gem 'impressionist', '~> 1.5.0'
+gem 'impressionist'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
-gem 'searchkick', '~> 1.1.2'
+gem 'searchkick'
 gem 'pundit'
-gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
-gem 'merit', '~> 2.3.1'
+gem 'eventmachine'
+gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'mongoid-history'
@@ -39,7 +39,6 @@ gem 'utf8-cleaner'
 
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
-# gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
 gem 'active_model_serializers'
 
 # https://github.com/heroku/rack-timeout
@@ -62,7 +61,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'quiet_assets'
   gem 'better_errors'
-  gem 'rspec-rails', '~> 3.4.0'
+  gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
@@ -72,9 +71,9 @@ end
 
 group :test do
   gem 'test-unit'
-  gem 'doc_yo_self'
-  gem 'capybara', '~> 2.4.4'
-  gem 'capybara-angular', '~> 0.1.0'
+  gem 'smarf_doc'
+  gem 'capybara'
+  gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'
@@ -96,6 +95,6 @@ end
 
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
-gem 'devise', '~> 3.5.0'
+gem 'devise', '~> 4.2.0'
 gem 'rails_admin'
 gem 'ng-rails-csrf'

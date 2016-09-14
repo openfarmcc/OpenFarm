@@ -19,7 +19,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'returns [] for tiny searches' do
-    DocYoSelf.skip
+    SmarfDoc.skip
     get 'index', format: :json, query: 'mu'
     expect(response.status).to eq(200)
     expect(json).to eq('data' => [])

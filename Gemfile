@@ -29,7 +29,7 @@ gem 'activejob_backport'
 gem 'patron' # For searchKick
 gem 'searchkick'
 gem 'pundit'
-gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
+gem 'eventmachine'
 gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
@@ -39,7 +39,6 @@ gem 'utf8-cleaner'
 
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
-# gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
 gem 'active_model_serializers'
 
 # https://github.com/heroku/rack-timeout

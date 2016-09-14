@@ -393,7 +393,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode-display_width (1.1.1)
-    utf8-cleaner (0.2.4)
+    utf8-cleaner (0.2.5)
       activesupport
     vcr (2.9.3)
     warden (1.2.6)

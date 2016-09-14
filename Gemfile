@@ -72,8 +72,8 @@ end
 group :test do
   gem 'test-unit'
   gem 'smarf_doc'
-  gem 'capybara', '~> 2.4.4'
-  gem 'capybara-angular', '~> 0.1.0'
+  gem 'capybara'
+  gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'

@@ -18,7 +18,7 @@ describe Stages::CreateStage do
   it 'disallows making stages for guides that are not a users' do
     user = FactoryGirl.create(:user)
     params[:user] = user
-    expect { mutation.run(params) }.to raise_exception
+    expect { mutation.run(params) }.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
 
   it 'creates a stage image via URL' do

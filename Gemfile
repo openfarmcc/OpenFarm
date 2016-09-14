@@ -4,7 +4,7 @@ ruby '2.2.0'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '4.1.9' # TODO: Upgrade when Mongoid is compatible.
+gem 'rails', '~> 4.1.9' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
@@ -62,7 +62,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'quiet_assets'
   gem 'better_errors'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.4.0'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
@@ -96,6 +96,6 @@ end
 
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
-gem 'devise'
+gem 'devise', '~> 3.5.0'
 gem 'rails_admin'
 gem 'ng-rails-csrf'

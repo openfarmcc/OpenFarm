@@ -433,7 +433,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-sass
-  foundation-rails
+  foundation-rails (~> 5.5.0)
   gibbon (~> 1.1.5)
   high_voltage
   impressionist

@@ -7,7 +7,7 @@ gem 'bundler', '>= 1.7.0'
 gem 'rails', '~> 4.1.9' # TODO: Upgrade when Mongoid is compatible.
 
 # Foundation
-gem 'foundation-rails', '~> 5.5.0'
+gem 'foundation-rails', '~> 5.4.5'
 gem 'sass-rails', '~> 4.0.4'
 gem 'compass-rails', '~> 2.0.0'
 gem 'font-awesome-sass'

@@ -139,9 +139,9 @@ GEM
       railties (>= 3.2, < 5.1)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
-    foundation-rails (5.5.0.0)
+    foundation-rails (5.4.5.0)
       railties (>= 3.1.0)
-      sass (>= 3.2.0, < 3.4)
+      sass (>= 3.2.0)
     fssm (0.2.10)
     gibbon (1.1.5)
       httparty
@@ -433,7 +433,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-sass
-  foundation-rails (~> 5.5.0)
+  foundation-rails (~> 5.4.5)
   gibbon (~> 1.1.5)
   high_voltage
   impressionist

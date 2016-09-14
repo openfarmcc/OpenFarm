@@ -201,6 +201,7 @@ DELETE /api/v1/stages/<id>/
         'images', [] # TODO: read the section on images
     }
 }
+```
 
 ## Gardens
 

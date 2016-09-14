@@ -36,7 +36,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    ambry (0.3.1)
+    ambry (1.0.0)
     arel (5.0.1.20140414130214)
     ast (2.3.0)
     aws-sdk (1.66.0)
@@ -178,8 +178,8 @@ GEM
     libv8 (3.16.14.15)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    merit (2.3.4)
-      ambry (~> 0.3.0)
+    merit (2.4.0)
+      ambry (~> 1.0.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -440,7 +440,7 @@ DEPENDENCIES
   jsonapi-serializers (~> 0.2.4)
   launchy
   letter_opener
-  merit (~> 2.3.1)
+  merit
   mongoid (~> 4.0.2)
   mongoid-history
   mongoid-paperclip

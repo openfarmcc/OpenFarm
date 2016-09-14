@@ -30,7 +30,7 @@ gem 'patron' # For searchKick
 gem 'searchkick', '~> 1.1.2'
 gem 'pundit'
 gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
-gem 'merit', '~> 2.3.1'
+gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'mongoid-history'

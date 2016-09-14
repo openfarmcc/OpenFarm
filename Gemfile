@@ -72,7 +72,7 @@ end
 
 group :test do
   gem 'test-unit'
-  gem 'doc_yo_self'
+  gem 'smarf_doc'
   gem 'capybara', '~> 2.4.4'
   gem 'capybara-angular', '~> 0.1.0'
   gem 'poltergeist'

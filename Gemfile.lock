@@ -105,7 +105,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    doc_yo_self (0.0.2)
     docile (1.1.5)
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
@@ -360,6 +359,7 @@ GEM
       simplecov-html (~> 0.9.0)
     simplecov-html (0.9.0)
     slop (3.6.0)
+    smarf_doc (1.0.0)
     sprockets (2.11.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -427,7 +427,6 @@ DEPENDENCIES
   delayed_job_mongoid
   delayed_job_shallow_mongoid
   devise (~> 4.2.0)
-  doc_yo_self
   eventmachine (~> 1.0.4)
   exception_notification
   factory_girl_rails
@@ -474,6 +473,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.4)
   searchkick (~> 1.1.2)
   simplecov
+  smarf_doc
   test-unit
   therubyracer
   thin

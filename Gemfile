@@ -96,6 +96,6 @@ end
 
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
-gem 'devise', '~> 4.1.0'
+gem 'devise', '~> 4.2.0'
 gem 'rails_admin'
 gem 'ng-rails-csrf'

@@ -211,7 +211,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mutations (0.7.2)
+    mutations (0.8.0)
       activesupport
     nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
@@ -245,7 +245,7 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
-    pundit (0.3.0)
+    pundit (1.1.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)

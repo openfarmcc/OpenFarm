@@ -280,15 +280,15 @@
                   <form action="<%= crop_search_via_get_path %>" method="get">
                   <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
                     <div class="search-bar-container">
-                      <div class="search-bar" ng-app="cropApp" ng-controller="cropCtrl">
+                      <div class="search-bar" ng-app="openFarmApp" ng-controller="cropCtrl">
 
                         <div class="search-input-container">
-                          <div crop-search
-                            query="cropQuery"
+                          <div add-crop
+                            query=cropQuery garden-query=garden
                             loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                             crop-on-select="addCropToGarden"
                             options="{  'fieldName': 'q',
-                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }"
+                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }" user=currentUser
                           ></div>
                         </div>
                       </div>

@@ -306,4 +306,71 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
       },
       templateUrl: '/assets/templates/_add_to_gardens.html'
     }
-  }])
+  }]);
+
+openFarmApp.directive('addCrop', ['$http', 'cropService', 'gardenService',
+  function addCrop($http, cropService, gardenService) {
+    return {
+      restrict: 'A',
+      scope: {
+        cropOnSelect: '=',
+        gardenQuery: '=',
+        query: '=',
+        user: '=',
+      },
+      controller: ['$scope', '$element', '$attrs',
+        function ($scope, $element, $attrs) {
+          $scope.placeholder = $attrs.placeholder || 'Search crops';
+          $scope.buttonValue = $attrs.buttonValue || 'Submit';
+          $scope.cropQuery = undefined;
+          $scope.firstCrop = undefined;
+          $scope.finalCrop = undefined;
+          $scope.crops = undefined;
+
+          //Typeahead search for crops
+          $scope.getCrops = function (val) {
+            // be nice and only hit the server if
+            // length >= 3
+            return $http.get('/api/v1/crops', {
+              params: {
+                filter: val
+              }
+            }).then(function(res) {
+              var crops = [];
+              crops = res.data.data;
+              if (crops.length === 0 && $scope.allowNew) {
+                crops.push({ attributes: {
+                  name: val,
+                  is_new: true
+                } });
+              }
+              crops = crops.map(function(crop) {
+                return cropService.utilities.buildCrop(crop, res.data.included);
+              });
+              $scope.firstCrop = crops[0];
+              $scope.crops = crops;
+              return crops;
+            })
+          };
+
+
+
+          //Typeahead search for crops
+          //cropSearch.getCrops("tomato");
+          $scope.addCropToGarden = function () {
+            $scope.getCrops($scope.cropQuery);
+            for (crop in $scope.crops) {
+              if(crop.attributes.name == $scope.cropQuery)
+                $scope.finalCrop = cropService.utilities.buildCrop(crop, res.data.included);
+            }
+            console.log($scope.finalCrop);
+            console.log($scope.gardenQuery);
+            console.log($scope.user);
+            
+            
+          }
+        }
+      ],
+      templateUrl: '/assets/templates/_add_crop_to_garden.html',
+    };
+}])

@@ -1,4 +1,4 @@
-openFarmApp.controller('cropCtrl', ['$scope', '$http',
+openFarmApp.controller('addCropCtrl', ['$scope', '$http',
   function cropCtrl($scope, $http) {
   $scope.crops = [];
 

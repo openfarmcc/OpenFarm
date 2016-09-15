@@ -48,6 +48,8 @@ GEM
     ambry (1.0.0)
     arel (6.0.3)
     ast (2.3.0)
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
     aws-sdk-core (2.6.0)
       jmespath (~> 1.0)
     aws-sdk-rails (1.0.1)
@@ -55,6 +57,9 @@ GEM
       railties (>= 3)
     aws-sdk-resources (2.6.0)
       aws-sdk-core (= 2.6.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -439,6 +444,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activejob_backport
+  aws-sdk
   aws-sdk-rails
   bcrypt
   better_errors

@@ -4,7 +4,7 @@ ruby '2.2.0'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '~> 4.1.9' # TODO: Upgrade when Mongoid is compatible.
+gem 'rails', '~> 4.2.0'
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'

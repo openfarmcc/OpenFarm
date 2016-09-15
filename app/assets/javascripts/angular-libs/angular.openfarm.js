@@ -5,7 +5,8 @@ var openFarmApp = angular.module('openFarmApp', [
   'ngDragDrop',
   'ui.sortable',
   'LocalStorageModule',
-  'openFarmModule'
+  'openFarmModule',
+  'ngTagsInput'
 ]);
 
 var openFarmModule = angular.module('openFarmModule', [

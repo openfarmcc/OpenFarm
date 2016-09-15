@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-controller="newGuideCtrl">
       <tags-input ng-model="tags">
           <auto-complete source="loadTags($query)"></auto-complete>
       </tags-input>

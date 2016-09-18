@@ -10,6 +10,7 @@ class GuideSerializer < BaseSerializer
   attribute :featured_image do
     if object.featured_image
       {
+        canopy_url: object.pictures[object.featured_image].attachment.url(:canopy),
         image_url: object.pictures[object.featured_image].attachment.url,
         thumbnail_url: object.pictures[object.featured_image].attachment.url(:small)
       }

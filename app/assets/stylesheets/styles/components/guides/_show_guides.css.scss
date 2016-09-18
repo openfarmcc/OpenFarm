@@ -64,6 +64,13 @@
   }
 }
 
+textarea {
+  height: 10rem;
+  font-size: 1rem;
+  padding: 1rem;
+  line-height: 1.5rem;
+}
+
 /*
 
   Markdown corrections
@@ -200,13 +207,6 @@
   }
 
   // Editing Stage Information
-
-  textarea {
-    height: 10rem;
-    font-size: 1rem;
-    padding: 1rem;
-    line-height: 1.5rem;
-  }
 
   .editing-stage-environment {
     margin-bottom: 2rem;

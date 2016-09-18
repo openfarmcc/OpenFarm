@@ -34,6 +34,8 @@ class Guide
   belongs_to :user
   has_many :stages
 
+  field :draft, type: Boolean, default: true
+
   embeds_one :time_span, cascade_callbacks: true, as: :timed
 
   field :name

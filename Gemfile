@@ -42,9 +42,6 @@ gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
 gem 'active_model_serializers'
 
-# https://github.com/heroku/rack-timeout
-gem 'rack-timeout'
-
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
@@ -92,6 +89,8 @@ group :production, :staging do
   gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor'
+  # https://github.com/heroku/rack-timeout
+  gem 'rack-timeout'
 end
 
 #Used for static pages in /app/views/pages

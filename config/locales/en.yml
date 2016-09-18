@@ -84,8 +84,8 @@ en:
       You need to supply your password to delete your account
     generated_this_garden: |
       We created this garden automatically to get
-      you started. You can edit it to better suit
-      your needs!
+       you started. You can edit it to better suit
+       your needs!
   users:
       create_your_openfarm_profile: "Become a Member of OpenFarm"
       community: "Community"

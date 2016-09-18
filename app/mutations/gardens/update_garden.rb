@@ -31,7 +31,6 @@ module Gardens
     end
 
     def execute
-      puts attributes
       @existing_garden.update!(attributes)
       set_images(images, @existing_garden)
       @existing_garden.save

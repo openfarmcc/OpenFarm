@@ -1,7 +1,5 @@
 OpenFarm::Application.routes.draw do
 
-  get 'tags/index'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
@@ -43,7 +41,11 @@ OpenFarm::Application.routes.draw do
       resources :crops, only: [:create, :index, :show, :update] do
         resources :pictures, only: [:index, :show]
       end
-      resources :tags, only: :index
+      resources :crops do
+        member do
+          post :tag
+        end
+      end
       resources :guides, only: [:create, :show, :update, :destroy]
       resources :users, only: [:show, :update] do
         resources :gardens, only: [:index]

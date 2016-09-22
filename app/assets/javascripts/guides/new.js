@@ -31,7 +31,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
                 ];
 
   $scope.loadTags = function(query) {
-    return $http.get('/api/v1/tags?'+ query);
+    return $http.get('/api/v1/tag?'+ query);
     //console.log(query);
     //return [];
   };

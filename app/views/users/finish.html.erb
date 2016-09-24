@@ -1,5 +1,5 @@
 <% content_for(:start_js) do %>
-<%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+  <%= javascript_include_tag '//maps.google.com/maps/api/js?key=' + ENV['GOOGLE_MAPS_API_KEY'].to_string %>
 <% end %>
 
 <div class="finish"

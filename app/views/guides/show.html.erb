@@ -20,6 +20,18 @@
      class="guides show-guide"
      ng-class="{'editing': editing}">
 
+    <div ng-if="guide.draft"
+      class="draft-banner">
+      <h2><%= t('.this_guide_is_a_draft') %></h2>
+      <% if @guide.owned_by?(current_user) %>
+      <button
+        ng-click="publish()">
+        <%= t('.publish_this_guide') %>
+      </button>
+      <p><%= t('.draft_not_in_search_results') %></p>
+      <% end %>
+    </div>
+
     <!-- These two 'Tops of Guides' for different screen sizes are pretty similar
     and it may be possible/worth DRYing it up. I'm not sure. I imagine that as the
     site gets more complex, it is easier to develop fairly separated HTML in order

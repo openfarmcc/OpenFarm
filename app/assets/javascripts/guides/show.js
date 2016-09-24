@@ -17,8 +17,12 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
     $scope.favoriteGuide = favoriteGuide;
 
-    $scope.toggleEditingGuide = function() {
-      $scope.editing = !$scope.editing;
+    $scope.toggleEditingGuide = function(optionalSetToValue) {
+      if (optionalSetToValue === undefined) {
+        $scope.editing = !$scope.editing;
+      } else {
+        $scope.editing = optionalSetToValue;
+      }
       $scope.saved = false;
     };
 
@@ -28,12 +32,18 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
       }
     };
 
+    $scope.publish = function () {
+      $scope.guide.draft = false;
+      $scope.saveGuideChanges();
+    };
+
     $scope.saveGuideChanges = function() {
       var params = {'data':  {
         'attributes': {
           'overview': $scope.guide.overview,
           'name': $scope.guide.name,
           'location': $scope.guide.location,
+          'draft': $scope.guide.draft,
           'practices': $scope.practices.filter(function(practice) {
                          return practice.selected === true;
                        }).map(function(practice) {
@@ -46,7 +56,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
       guideService.updateGuideWithPromise($scope.guide.id, params)
         .then(function(response) {
 
-          $scope.toggleEditingGuide();
+          $scope.toggleEditingGuide(false);
 
         }, function(response) {
           console.log("error updating guide", response);
@@ -150,7 +160,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
     $scope.setGuide = function(object){
       $scope.guide = object;
-
       if ($scope.userId){
         userService.getUser($scope.userId,
                             $scope.setCurrentUser);

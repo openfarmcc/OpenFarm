@@ -7,6 +7,7 @@ class GuideSearch
     @filter = {}
     @order = { _score: :desc }
     @query = '*'
+
   end
 
   def self.search(query = '*')
@@ -15,6 +16,12 @@ class GuideSearch
 
   def search(query = '*')
     @query = query
+
+    self
+  end
+
+  def ignore_drafts()
+    filter[:draft] = false
 
     self
   end
@@ -44,7 +51,10 @@ class GuideSearch
 
   # Methods for Enumeration.
   def results
-    Guide.search(query, where: filter, order: order)
+
+
+    results = Guide.search(query, where: filter, order: order)
+    results
   end
 
   def method_missing(meth, *args, &block)

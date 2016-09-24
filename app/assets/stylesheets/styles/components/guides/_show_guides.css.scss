@@ -2,6 +2,23 @@
 
   background-color: #f6f6f6;
 
+  .draft-banner {
+    color: $white;
+    background-color: $of-green2;
+    padding: 2rem 0 1.5rem;
+    text-align: center;
+
+    h2 {
+      color: $white;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-top: .5rem;
+      margin-bottom: 0;
+    }
+  }
+
   .guide-name input {
     font-size: 2rem;
   }

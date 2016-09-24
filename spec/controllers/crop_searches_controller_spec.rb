@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe CropSearchesController, type: 'controller' do
-  it 'should search associated guides' do
+  it 'should search associated guides and return published guides' do
     crop = FactoryGirl.create(:crop, name: 'Carrot')
-    guide = FactoryGirl.create(:guide, crop: crop)
+    guide = FactoryGirl.create(:guide, crop: crop, draft: false)
     other_guide = FactoryGirl.create(:guide)
 
     Crop.reindex
@@ -12,6 +12,20 @@ describe CropSearchesController, type: 'controller' do
     get 'search', q: 'carrot'
 
     expect(assigns[:guides].results).to include(guide)
+    expect(assigns[:guides].results).to_not include(other_guide)
+  end
+
+  it 'should not find draft guides' do
+    crop = FactoryGirl.create(:crop, name: 'Carrot')
+    guide = FactoryGirl.create(:guide, crop: crop, draft: true)
+    other_guide = FactoryGirl.create(:guide)
+
+    Crop.reindex
+    Guide.reindex
+
+    get 'search', q: 'carrot'
+
+    expect(assigns[:guides].results).to_not include(guide)
     expect(assigns[:guides].results).to_not include(other_guide)
   end
 
@@ -26,13 +40,13 @@ describe CropSearchesController, type: 'controller' do
 
     crop = FactoryGirl.create(:crop, name: 'Carrot')
 
-    uncompatible_guide = FactoryGirl.create(:guide, crop: crop)
+    uncompatible_guide = FactoryGirl.create(:guide, crop: crop, draft: false)
     Stage.create(guide: uncompatible_guide,
                  environment: ['Potted'],
                  soil: ['Clay'],
                  light: ['Partial Sun'])
 
-    compatible_guide = FactoryGirl.create(:guide, crop: crop)
+    compatible_guide = FactoryGirl.create(:guide, crop: crop, draft: false)
     Stage.create(guide: compatible_guide,
                  environment: ['Outside'],
                  soil: ['Loam'],

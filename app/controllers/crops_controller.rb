@@ -17,7 +17,7 @@ class CropsController < ApplicationController
     # darned large. This will start being a problem at around 10k impressions.
     # ~ Simon 07/2016
     impressionist(@crop, unique: [:session_hash])
-    @guides = GuideSearch.search.for_crops(@crop).with_user(current_user)
+    @guides = GuideSearch.search.ignore_drafts.for_crops(@crop).with_user(current_user)
 
     @guides = Guide.sorted_for_user(@guides, current_user)
   end

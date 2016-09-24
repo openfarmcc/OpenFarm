@@ -5,6 +5,7 @@ class GuideSerializer < BaseSerializer
   # end
   has_one :crop
   has_one :user
+  attribute :draft
   attribute :name
   attribute :overview
   attribute :featured_image do

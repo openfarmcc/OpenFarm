@@ -84,7 +84,7 @@ class Guide
   end
 
   def search_data
-    as_json only: [:name, :overview, :crop_id, :compatibilities]
+    as_json only: [:name, :overview, :crop_id, :draft, :compatibilities]
     # We changed this to as_json ^ because it was causing weird nesting.
     # Not sure that this should be a problem though, it's been filed:
     # https://github.com/ankane/searchkick/issues/595
@@ -93,6 +93,7 @@ class Guide
     #   name: name,
     #   overview: overview,
     #   crop_id: crop_id,
+    #   draft: draft,
     #   compatibilities: compatibilities
     # }
   end
@@ -173,7 +174,6 @@ class Guide
 
     (sum.to_f / count * 100).round
   end
-
   def compatibility_label(current_user)
     if current_user_compatibility_score
       score = current_user_compatibility_score

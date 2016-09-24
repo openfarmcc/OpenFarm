@@ -361,13 +361,17 @@ en:
               almost_done: "Almost done!"
               where_are_you_growing_it: "Where are you growing it"
               what_do_you_want_to_call_your_guide: "What do you want to call your guide?"
-              done: "Done! View your Guide"
+              finish_draft: "Alright, you've finished your guide - lets see what it will look like!"
+              done: "Review your Guide"
               call_your_guide_something: "Call your guide something"
       show:
           edit_guide: " Edit Guide"
           delete_guide: " Delete Guide"
           print_guide: " Print Guide"
           guide_by: "Guide by"
+          this_guide_is_a_draft: This guide is a draft!
+          publish_this_guide: Publish this guide.
+          draft_not_in_search_results: A draft guide won't show up in search results.
           compatibility: "Compatibility"
           compatibility_based_on: "Based on"
           show_guide_statistics:

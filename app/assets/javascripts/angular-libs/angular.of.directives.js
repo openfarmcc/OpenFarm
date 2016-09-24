@@ -52,7 +52,7 @@ openFarmModule.directive('location', [
                   $scope.addresses = addresses;
                  }
                  else {
-                    console.log('Geocoding failed: ' + status);
+                    console.error('Geocoding failed: ' + status);
                  }
               });
             }

@@ -199,7 +199,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
           $scope.guide.stages.forEach(function(stage) {
 
-            stageService.getPictures(stage)
+            stageService.getPictures(stage.id)
               .then(function(pictures) {
 
                 stage.pictures = pictures.map(function(pic) {

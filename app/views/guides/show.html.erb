@@ -12,7 +12,7 @@
 <% end %>
 
 <% content_for(:start_js) do %>
-  <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+  <%= javascript_include_tag '//maps.google.com/maps/api/js?key=' + ENV['GOOGLE_MAPS_API_KEY'] %>
 <% end %>
 
 <div ng-controller="showGuideCtrl"
@@ -100,6 +100,17 @@
         </span>
         <em ng-if="guide.location">In:</em> <span ng-bind="guide.location">
         </span>
+
+        <div ng-show="editing"
+            id="guide_image_upload"
+            name="guide_image_upload"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="guide.featured_image"
+            s3-upload-place-pic="placeGuideUpload(image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
 
       </div>
 

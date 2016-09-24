@@ -16,6 +16,27 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.gardenCrop = {};
 
     $scope.favoriteGuide = favoriteGuide;
+    $scope.placeGuideUpload = placeGuideUpload;
+
+    function placeGuideUpload (image){
+      $scope.guide.featured_image = {'image_url': image};
+    }
+
+    function defineFeaturedImage (image){
+      var featured_image = null;
+      if (image !== undefined &&
+          image.image_url !== undefined &&
+          image.image_url.indexOf('baren_field') === -1){
+        featured_image = image.image_url;
+      }
+      if (featured_image !== null) {
+        return [{
+          'image_url': featured_image
+        }];
+      } else {
+        return null;
+      }
+    }
 
     $scope.toggleEditingGuide = function(optionalSetToValue) {
       if (optionalSetToValue === undefined) {
@@ -49,8 +70,9 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
                        }).map(function(practice) {
                          return practice.slug;
                        })
-          }
-        }
+          },
+        'images': defineFeaturedImage($scope.guide.featured_image)
+        },
       };
 
       guideService.updateGuideWithPromise($scope.guide.id, params)

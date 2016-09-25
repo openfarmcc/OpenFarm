@@ -1,7 +1,7 @@
 <%= content_for(:author) do %><% if @guide.user %><%= @guide.user.display_name %><% else %> a past member <% end %><% end %>
 <%= content_for(:title) do %> - <%= @guide.name %><% end %>
 <%= content_for(:description) do %><%= @guide.overview %><% end %>
-<%= content_for(:keywords) do %><% if @guide.practices %><%= @guide.practices.join(', ') %><% end %>, <%= @guide.crop.name %><% end %>
+<%= content_for(:keywords) do %><% if @guide.practices %><%= @guide.practices.join(', ') %><% end %>, <%= @guide.crop.name if @guide.crop else '' %><% end %>
 
 <%= content_for(:social_image) do%>
   <% if @guide.pictures.first %>

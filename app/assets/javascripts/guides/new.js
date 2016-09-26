@@ -23,17 +23,14 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     'practices': []
   };
 
-  $scope.tags = [
-                    { text: 'just' },
-                    { text: 'some' },
-                    { text: 'cool' },
-                    { text: 'tags' }
-                ];
-
   $scope.loadTags = function(query) {
-    return $http.get('/api/v1/tag?'+ query);
+    //cropId = cropService.getCropWithPromise(getUrlVar('crop_id'));
+    //return $http.get('/api/v1/tag/'+ query);
     //console.log(query);
-    //return [];
+    return $http.get('/api/v1/tags/').then(function(tag_data){
+      console.log(tag_data.data);
+      return tag_data.data.tags;
+    });
   };
 
   var practices = [];
@@ -162,6 +159,10 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
       userService.getUserWithPromise(USER_ID),
     ])
   .then(function(data){
+    //console.log(data);
+    $scope.$watch('newGuide',function(data){
+      //console.log(data.crop.id);
+    });
     var crop;
 
     var detail_options = data[0];

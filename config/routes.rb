@@ -41,6 +41,7 @@ OpenFarm::Application.routes.draw do
       resources :crops, only: [:create, :index, :show, :update] do
         resources :pictures, only: [:index, :show]
       end
+      resources :tags, only: :index
       resources :crops do
         member do
           post :tag

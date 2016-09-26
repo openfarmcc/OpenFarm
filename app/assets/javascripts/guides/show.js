@@ -25,6 +25,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     function defineFeaturedImage (image){
       var featured_image = null;
       if (image !== undefined &&
+          image !== null &&
           image.image_url !== undefined &&
           image.image_url.indexOf('baren_field') === -1){
         featured_image = image.image_url;
@@ -71,7 +72,8 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
                          return practice.slug;
                        })
           },
-        'images': defineFeaturedImage($scope.guide.featured_image)
+          // only add the images thing if it exists eh.
+        'images': $scope.guide.featured_image ? defineFeaturedImage($scope.guide.featured_image) : null
         },
       };
 

@@ -201,7 +201,7 @@
     </div>
 
     <div class="row" ng-controller="cropCtrl">
-      <tags-input ng-model="tags">
+      <tags-input ng-model="tags" add-on-paste="true">
           <auto-complete source="loadTags($query)"></auto-complete>
       </tags-input>
     </div>

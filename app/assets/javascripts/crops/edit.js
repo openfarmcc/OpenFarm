@@ -15,9 +15,12 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       };
     }
 
-    $scope.loadTags = function(query){
-      return $http.get('/api/v1/tags/');
-    }
+    $scope.loadTags = function(query) {
+      return $http.get('/api/v1/tags/').then(function(tag_data){
+        console.log(tag_data.data.tags);
+        return tag_data.data.tags;
+      });
+    };
 
     $scope.submitForm = function(){
       $scope.crop.sending = true;

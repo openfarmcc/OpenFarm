@@ -23,7 +23,7 @@ tags-input .tags {
   overflow: hidden;
   word-wrap: break-word;
   cursor: text;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid darkgray;
   box-shadow: 1px 1px 1px 0 lightgray inset;
   height: 100%;
@@ -67,7 +67,7 @@ tags-input .tags .tag-item .remove-button {
   color: #585858;
 }
 tags-input .tags .tag-item .remove-button:active {
-  color: #ff0000;
+  color: red;
 }
 tags-input .tags .input {
   border: 0;
@@ -80,7 +80,7 @@ tags-input .tags .input {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 tags-input .tags .input.invalid-tag {
-  color: #ff0000;
+  color: red;
 }
 tags-input .tags .input::-ms-clear {
   display: none;
@@ -94,7 +94,7 @@ tags-input[disabled] .host:focus {
   outline: none;
 }
 tags-input[disabled] .tags {
-  background-color: #eee;
+  background-color: #eeeeee;
   cursor: default;
 }
 tags-input[disabled] .tags .tag-item {
@@ -109,7 +109,7 @@ tags-input[disabled] .tags .tag-item .remove-button:active {
   color: #585858;
 }
 tags-input[disabled] .tags .input {
-  background-color: #eee;
+  background-color: #eeeeee;
   cursor: default;
 }
 
@@ -119,7 +119,7 @@ tags-input .autocomplete {
   padding: 5px 0;
   z-index: 999;
   width: 100%;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -140,21 +140,19 @@ tags-input .autocomplete .suggestion-item {
   overflow: hidden;
   text-overflow: ellipsis;
   font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #000;
-  background-color: #fff;
+  color: black;
+  background-color: white;
 }
 tags-input .autocomplete .suggestion-item.selected {
-  color: #fff;
+  color: white;
   background-color: #0097cf;
 }
 tags-input .autocomplete .suggestion-item.selected em {
-  color: #fff;
+  color: white;
   background-color: #0097cf;
 }
 tags-input .autocomplete .suggestion-item em {
   font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #000;
-  background-color: #fff;
+  color: black;
+  background-color: white;
 }
-
-/*# sourceMappingURL=ng-tags-input.css.map */

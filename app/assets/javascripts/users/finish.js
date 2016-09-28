@@ -37,7 +37,7 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
         params.featured_image = $scope
           .user.user_setting.picture.image_url || null;
       } else {
-        params.featured_image = null
+        params.featured_image = null;
       }
 
       var userCallback = function(success, user){

@@ -13,6 +13,7 @@ class CropSerializer < BaseSerializer
   attribute :guides_count
   attribute :main_image_path
   attribute :taxon
+  attribute :tags_array
 
   has_many :pictures, serializer: PictureSerializer
 end

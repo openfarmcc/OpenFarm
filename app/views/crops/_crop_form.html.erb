@@ -200,10 +200,15 @@
       </div>
     </div>
 
-    <div class="row" ng-controller="cropCtrl">
-      <tags-input ng-model="tags" add-on-paste="true">
-          <auto-complete source="loadTags($query)"></auto-complete>
-      </tags-input>
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label for="crop[tags]" class="right">Keywords</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <tags-input data-ng-model="crop.tags_array" name="crop[tags]">
+            <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+      </div>
     </div>
 
     <div class="row form-buttons">

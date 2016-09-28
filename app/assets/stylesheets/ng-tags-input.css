@@ -1,6 +1,19 @@
 tags-input {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border: 0px solid #cccccc;
+  border-bottom: 0.5px solid #f3f3f3;
+  border-right: 0.5px solid #f3f3f3;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.75);
   display: block;
+  margin: 0 0 1rem 0;
+  height: 2.3125rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
 }
+
 tags-input *, tags-input *:before, tags-input *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -11,6 +24,19 @@ tags-input .host {
   margin-top: 5px;
   margin-bottom: 5px;
   height: 100%;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border: 0px solid #cccccc;
+  border-bottom: 0.5px solid #f3f3f3;
+  border-right: 0.5px solid #f3f3f3;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  margin: 0 0 1rem 0;
+  height: 2.3125rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
 }
 tags-input .host:active {
   outline: none;
@@ -19,20 +45,20 @@ tags-input .host:active {
 tags-input .tags {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
-  padding: 1px;
+  padding: 3px;
   overflow: hidden;
   word-wrap: break-word;
   cursor: text;
   background-color: white;
-  border: 1px solid darkgray;
+  border: 0px solid #cccccc;
   box-shadow: 1px 1px 1px 0 lightgray inset;
   height: 100%;
 }
 tags-input .tags.focused {
-  outline: none;
-  -webkit-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
-  -moz-box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
-  box-shadow: 0 0 3px 1px rgba(5, 139, 242, 0.6);
+  box-shadow: 0 0 5px #999999;
+  border-color: #999999;
+  background: #fafafa;
+  outline: none
 }
 tags-input .tags .tag-list {
   margin: 0;
@@ -47,10 +73,10 @@ tags-input .tags .tag-item {
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 26px;
   line-height: 25px;
-  border: 1px solid #acacac;
-  border-radius: 3px;
-  background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
-  background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+  border: 0px solid #cccccc;
+  border-radius: 0px;
+  background: -webkit-linear-gradient(top, #f3f3f3 0%, #f3f3f3 47%, #f3f3f3 100%);
+  background: linear-gradient(to bottom, #f3f3f3 0%, #f3f3f3 47%, #f3f3f3 100%);
 }
 tags-input .tags .tag-item.selected {
   background: -webkit-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
@@ -77,7 +103,7 @@ tags-input .tags .input {
   padding-left: 5px;
   float: left;
   height: 26px;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: inherit
 }
 tags-input .tags .input.invalid-tag {
   color: red;
@@ -119,8 +145,8 @@ tags-input .autocomplete {
   padding: 5px 0;
   z-index: 999;
   width: 100%;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #fafafa;
+  border: 0px solid #cccccc;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -139,7 +165,7 @@ tags-input .autocomplete .suggestion-item {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: inherit
   color: black;
   background-color: white;
 }
@@ -152,7 +178,7 @@ tags-input .autocomplete .suggestion-item.selected em {
   background-color: #0097cf;
 }
 tags-input .autocomplete .suggestion-item em {
-  font: normal bold 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: inherit;
   color: black;
   background-color: white;
 }

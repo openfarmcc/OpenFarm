@@ -1,0 +1,4 @@
+app/assets/javascripts/lib*
+app/assets/javascripts/foundation*
+app/assets/javascripts/angular*
+app/assets/javascripts/application.js

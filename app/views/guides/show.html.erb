@@ -6,7 +6,7 @@
 <%= content_for(:social_image) do%>
   <% if @guide.pictures.first %>
     <%= @guide.pictures.first.attachment.url %>
-  <% elsif @guide.crop.pictures.first %>
+  <% elsif @guide.crop && @guide.crop.pictures && @guide.crop.pictures.first %>
     <%= @guide.crop.pictures.first.attachment.url %>
   <% end %>
 <% end %>

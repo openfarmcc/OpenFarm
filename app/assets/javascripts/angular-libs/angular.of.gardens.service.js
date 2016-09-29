@@ -359,13 +359,9 @@ openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenS
           //cropSearch.getCrops("tomato");
           $scope.addCropToGarden = function () {
             $scope.crops1 = $scope.getCrops($scope.cropQuery);
+            var cropi;
             for (cropi in $scope.crops) {
-              console.log("yo");
-              var crop = $scope.crops[cropi];
-              var cropname = $scope.crops[cropi].name; 
-              var cropquery = $scope.cropQuery;
               if($scope.crops[cropi].name == $scope.cropQuery.name) {
-                console.log("hey");
                 gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.cropQuery,
                   function(success, response, code) {
                    $scope.user.gardens.forEach(function(garden){
@@ -377,11 +373,7 @@ openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenS
                   });
               }
               if($scope.crops[cropi].name == $scope.cropQuery) {
-                console.log("hey");
-                var croparray = [];
                 $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
-                $scope.adding="crop";
-                console.log("hey");
                 gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.finalCrop,
                   function(success, response, code) {
                     $scope.user.gardens.forEach(function(garden){

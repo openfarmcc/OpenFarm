@@ -77,7 +77,6 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
                                cropCallback, function(err) {
                                 console.log('err', err);
                                });
-        console.log(crop);
       }
     };
 

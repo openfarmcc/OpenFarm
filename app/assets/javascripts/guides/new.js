@@ -150,6 +150,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     ])
   .then(function(data){
 
+    var crop;
+
     var detail_options = data[0];
     $scope.options = detail_options;
     practices = detail_options.multiSelectPractices;

@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'openfarm_errors'
 
 describe Api::V1::TagsController, type: :controller do
-
   let(:user) { FactoryGirl.create(:user) }
 
   before do

@@ -250,7 +250,6 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
 
           $scope.submitCrop = function() {
             if ($scope.firstCrop !== undefined) {
-              console.log($scope.firstCrop);
               $scope.cropOnSelect($scope.firstCrop);
             } else {
               $scope.cropOnSelect($scope.cropQuery);

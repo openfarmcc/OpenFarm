@@ -43,7 +43,7 @@
       <div class="columns large-9">
         <h2>
           <span ng-bind="garden.name" ng-if="!garden.editing"></span>
-          <label ng-if="garden.editing"><%= t('.garden_name') %></label><input type="text" ng-model="garden.name" ng-if="garden.editing"/>
+          <label ng-if="garden.editing"><%= t('.garden_name') %></label><input type="text" ng-model="garden.name" ng-if="garden.editing" ng-model="gardenName"/>
         </h2>
       </div>
       <div class="columns large-3 edit" ng-if="profileUser.id == profileUser.id">
@@ -284,11 +284,11 @@
 
                         <div class="search-input-container">
                           <div add-crop
-                            query=cropQuery garden-query=garden
+                            query=cropQuery 
                             loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                             crop-on-select="addCropToGarden"
                             options="{  'fieldName': 'q',
-                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }" user=currentUser
+                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }" user=currentUser garden-query=garden object-type="'crop'"
                           ></div>
                         </div>
                       </div>

@@ -11,6 +11,7 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
 
     var buildCrop = function(data, included) {
       var pictures;
+      //var crop = {};
       var crop = data.attributes;
       crop.id = data.id;
       crop.relationships = data.relationships;
@@ -25,6 +26,8 @@ openFarmModule.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       }
 
       crop.pictures = pictures || [];
+      //console.log("yay");
+      //console.log(crop);
       return crop;
     };
 

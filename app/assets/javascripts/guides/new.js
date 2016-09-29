@@ -272,7 +272,28 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
 
   function createStageData (stage, guide) {
     var data = {};
+    var stageActions = [];
     if (stage.selected) {
+
+      if (stage.stage_action_options) {
+        stageActions = stage.stage_action_options.map(function(action, index){
+          var img = null;
+          if (action.pictures !== null && action.pictures !== undefined) {
+            img = action.pictures.filter(function(p){
+              return !p.deleted;
+            });
+          }
+          return { name: action.name,
+                   images: img,
+                   overview: action.overview,
+                   time: stageService.calcTimeLength(action.time, action.length_type),
+                   order: index };
+        });
+
+        stageActions = stageActions.length ? stageActions : null;
+      }
+
+
       data = {
         'attributes': {
           'name': stage.name,
@@ -297,19 +318,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
           'overview': stage.overview
         },
         'guide_id': guide.id,
-        'actions': stage.stage_action_options.map(function(action, index){
-              var img = null;
-              if (action.pictures !== null && action.pictures !== undefined) {
-                img = action.pictures.filter(function(p){
-                  return !p.deleted;
-                });
-              }
-              return { name: action.name,
-                       images: img,
-                       overview: action.overview,
-                       time: stageService.calcTimeLength(action.time, action.length_type),
-                       order: index };
-            }) || null
+        'actions': stageActions
       };
       if (stage.pictures){
         data.images = stage.pictures.filter(function(p){

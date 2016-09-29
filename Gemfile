@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.2.5'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '4.1.9' # TODO: Upgrade when Mongoid is compatible.
+gem 'rails', '~> 4.2.0'
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
@@ -17,20 +17,21 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'bcrypt'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
-gem 'mongoid_slug'
-gem 'aws-sdk', '~> 1.55.0'
+gem 'mongoid-slug'
+gem 'aws-sdk'
+gem 'aws-sdk-rails'
 gem 'mutations'
 gem 'rack-attack'
-gem 'impressionist', '~> 1.5.0'
+gem 'impressionist'
 gem 'rack-cors', require: 'rack/cors'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
-gem 'searchkick', '~> 1.1.2'
+gem 'searchkick'
 gem 'pundit'
-gem 'eventmachine', '~> 1.0.4' # Temp fix for failing Linux builds.
-gem 'merit', '~> 2.3.1'
+gem 'eventmachine'
+gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'mongoid-history'
@@ -40,11 +41,7 @@ gem 'utf8-cleaner'
 
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
-# gem 'mongoid', :github => 'mongoid/mongoid', tag: 'v4.0.2'
 gem 'active_model_serializers'
-
-# https://github.com/heroku/rack-timeout
-gem 'rack-timeout'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -63,7 +60,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'quiet_assets'
   gem 'better_errors'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
@@ -73,9 +70,9 @@ end
 
 group :test do
   gem 'test-unit'
-  gem 'doc_yo_self'
-  gem 'capybara', '~> 2.4.4'
-  gem 'capybara-angular', '~> 0.1.0'
+  gem 'smarf_doc'
+  gem 'capybara'
+  gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
   gem 'simplecov'
@@ -93,10 +90,12 @@ group :production, :staging do
   gem 'thin'
   gem 'exception_notification'
   gem 'rails_12factor'
+  # https://github.com/heroku/rack-timeout
+  gem 'rack-timeout'
 end
 
 #Used for static pages in /app/views/pages
 gem 'high_voltage'
-gem 'devise'
+gem 'devise', '~> 4.2.0'
 gem 'rails_admin'
 gem 'ng-rails-csrf'

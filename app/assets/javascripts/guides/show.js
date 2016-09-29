@@ -16,9 +16,35 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.gardenCrop = {};
 
     $scope.favoriteGuide = favoriteGuide;
+    $scope.placeGuideUpload = placeGuideUpload;
 
-    $scope.toggleEditingGuide = function() {
-      $scope.editing = !$scope.editing;
+    function placeGuideUpload (image){
+      $scope.guide.featured_image = {'image_url': image};
+    }
+
+    function defineFeaturedImage (image){
+      var featured_image = null;
+      if (image !== undefined &&
+          image !== null &&
+          image.image_url !== undefined &&
+          image.image_url.indexOf('baren_field') === -1){
+        featured_image = image.image_url;
+      }
+      if (featured_image !== null) {
+        return [{
+          'image_url': featured_image
+        }];
+      } else {
+        return null;
+      }
+    }
+
+    $scope.toggleEditingGuide = function(optionalSetToValue) {
+      if (optionalSetToValue === undefined) {
+        $scope.editing = !$scope.editing;
+      } else {
+        $scope.editing = optionalSetToValue;
+      }
       $scope.saved = false;
     };
 
@@ -28,25 +54,33 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
       }
     };
 
+    $scope.publish = function () {
+      $scope.guide.draft = false;
+      $scope.saveGuideChanges();
+    };
+
     $scope.saveGuideChanges = function() {
       var params = {'data':  {
         'attributes': {
           'overview': $scope.guide.overview,
           'name': $scope.guide.name,
           'location': $scope.guide.location,
+          'draft': $scope.guide.draft,
           'practices': $scope.practices.filter(function(practice) {
                          return practice.selected === true;
                        }).map(function(practice) {
                          return practice.slug;
                        })
-          }
-        }
+          },
+          // only add the images thing if it exists eh.
+        'images': $scope.guide.featured_image ? defineFeaturedImage($scope.guide.featured_image) : null
+        },
       };
 
       guideService.updateGuideWithPromise($scope.guide.id, params)
         .then(function(response) {
 
-          $scope.toggleEditingGuide();
+          $scope.toggleEditingGuide(false);
 
         }, function(response) {
           console.log("error updating guide", response);
@@ -150,7 +184,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
     $scope.setGuide = function(object){
       $scope.guide = object;
-
       if ($scope.userId){
         userService.getUser($scope.userId,
                             $scope.setCurrentUser);
@@ -168,7 +201,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
           $scope.guide.stages.forEach(function(stage) {
 
-            stageService.getPictures(stage)
+            stageService.getPictures(stage.id)
               .then(function(pictures) {
 
                 stage.pictures = pictures.map(function(pic) {

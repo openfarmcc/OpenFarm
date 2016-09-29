@@ -1,24 +1,36 @@
 <%= content_for(:author) do %><% if @guide.user %><%= @guide.user.display_name %><% else %> a past member <% end %><% end %>
-<%= content_for(:title) do %><%= @guide.name %><% end %>
+<%= content_for(:title) do %> - <%= @guide.name %><% end %>
 <%= content_for(:description) do %><%= @guide.overview %><% end %>
-<%= content_for(:keywords) do %><% if @guide.practices %><%= @guide.practices.join(', ') %><% end %>, <%= @guide.crop.name %><% end %>
+<%= content_for(:keywords) do %><% if @guide.practices %><%= @guide.practices.join(', ') %><% end %>, <% if @guide.crop %><%= @guide.crop.name %><% end %><% end %>
 
 <%= content_for(:social_image) do%>
   <% if @guide.pictures.first %>
     <%= @guide.pictures.first.attachment.url %>
-  <% elsif @guide.crop.pictures.first %>
+  <% elsif @guide.crop && @guide.crop.pictures && @guide.crop.pictures.first %>
     <%= @guide.crop.pictures.first.attachment.url %>
   <% end %>
 <% end %>
 
 <% content_for(:start_js) do %>
-  <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false' %>
+  <%= javascript_include_tag '//maps.google.com/maps/api/js?key=' + ENV['GOOGLE_MAPS_API_KEY'] %>
 <% end %>
 
 <div ng-controller="showGuideCtrl"
      ng-cloak
      class="guides show-guide"
      ng-class="{'editing': editing}">
+
+    <div ng-if="guide.draft"
+      class="draft-banner">
+      <h2><%= t('.this_guide_is_a_draft') %></h2>
+      <% if @guide.owned_by?(current_user) %>
+      <button
+        ng-click="publish()">
+        <%= t('.publish_this_guide') %>
+      </button>
+      <p><%= t('.draft_not_in_search_results') %></p>
+      <% end %>
+    </div>
 
     <!-- These two 'Tops of Guides' for different screen sizes are pretty similar
     and it may be possible/worth DRYing it up. I'm not sure. I imagine that as the
@@ -42,7 +54,7 @@
       <div class="columns large-5">
         <div class="canopy"
           ng-attr-alt="{{ guide.name }}"
-          style="background-image: url({{ guide.featured_image.canopy_url || guide.crop.pictures[0].medium_url }})">
+          style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].medium_url }})">
         </div>
       </div>
 
@@ -88,6 +100,17 @@
         </span>
         <em ng-if="guide.location">In:</em> <span ng-bind="guide.location">
         </span>
+
+        <div ng-show="editing"
+            id="guide_image_upload"
+            name="guide_image_upload"
+            s3-upload
+            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
+            ng-model="s3upload"
+            s3-upload-existing-pictures="guide.featured_image"
+            s3-upload-place-pic="placeGuideUpload(image)"
+            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
+        </div>
 
       </div>
 

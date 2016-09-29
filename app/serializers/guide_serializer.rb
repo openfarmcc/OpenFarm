@@ -5,11 +5,13 @@ class GuideSerializer < BaseSerializer
   # end
   has_one :crop
   has_one :user
+  attribute :draft
   attribute :name
   attribute :overview
   attribute :featured_image do
     if object.featured_image
       {
+        canopy_url: object.pictures[object.featured_image].attachment.url(:canopy),
         image_url: object.pictures[object.featured_image].attachment.url,
         thumbnail_url: object.pictures[object.featured_image].attachment.url(:small)
       }

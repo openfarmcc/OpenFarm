@@ -52,13 +52,13 @@ Paperclip.options[:log] = false
 require 'database_cleaner'
 
 Capybara.javascript_driver = :poltergeist
-Capybara.default_wait_time = 10
+Capybara.default_max_wait_time = 10
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include Rails.application.routes.url_helpers
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ApiHelpers, type: :controller
   config.include IntegrationHelper, type: :feature
   config.include Capybara::DSL
@@ -69,16 +69,16 @@ RSpec.configure do |config|
   config.fail_fast = false
   config.order = "random"
   if ENV['DOCS'] == 'true'
-    DocYoSelf.config do |c|
+    SmarfDoc.config do |c|
       c.template_file = 'spec/template.md.erb'
       c.output_file   = 'api_docs.md'
     end
 
     config.after(:each, type: :controller) do
-      DocYoSelf.run!(request, response) if request.url.include?('/api/')
+      SmarfDoc.run!(request, response) if request.url.include?('/api/')
     end
 
-    config.after(:suite) { DocYoSelf.finish! }
+    config.after(:suite) { SmarfDoc.finish! }
   end
   config.before :each do
     Guide.reindex
@@ -93,5 +93,5 @@ RSpec.configure do |config|
 end
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end

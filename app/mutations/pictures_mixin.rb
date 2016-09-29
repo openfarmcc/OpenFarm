@@ -27,8 +27,8 @@ module PicturesMixin
 
     obj.processing_pictures = new_images.count
     obj.save
-
     new_images && new_images.each do |img|
+
       Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
       # Picture.from_url(img[:image_url],
       #                obj)

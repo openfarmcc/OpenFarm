@@ -53,14 +53,13 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           toExecute.push($q(function (resolve, reject) {
             $http.get(data.relationships.stage_actions.links.related)
               .success(function (data) {
-                resolve(data)
+                resolve(data);
               })
               .error(function (err) {
-                console.log(err);
-              })
-          }))
+                console.error(err);
+              });
+          }));
         }
-
         if (data.relationships.pictures.data === undefined &&
             data.relationships.pictures.data.length === 0) {
           stage.pictures = [];
@@ -78,14 +77,14 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
               // we can get services based on their name
               if (datum.data.length > 0) {
                 stage[datum.data[0].type] = datum.data.map(function (obj) {
-                  return obj.attributes
+                  return obj.attributes;
                 });
               }
-            })
+            });
             resolve(stage);
         });
       });
-    }
+    };
 
     var buildStage = function(data, included) {
       var stage = data.attributes;
@@ -103,7 +102,7 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
           return sa.id;
         });
         stage.stage_actions = stageActions.filter(function(stageAction) {
-          return relevantStageActionIds.indexOf(stageAction.id) > -1
+          return relevantStageActionIds.indexOf(stageAction.id) > -1;
         }).map(function(stageAction) {
           return buildStageAction(stageAction);
         });
@@ -115,17 +114,17 @@ openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
       } else {
         var mappedIds = data.relationships.pictures.data.map(function (pic) {
           return pic.id;
-        })
+        });
         if (included) {
           stage.pictures = included.filter(function (pic) {
             return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'pictures';
           }).map(function(pic) {
             return pic.attributes;
-          })
+          });
         }
       }
-      return stage
-    }
+      return stage;
+    };
 
     var buildStageAction = function(data) {
       return data.attributes;

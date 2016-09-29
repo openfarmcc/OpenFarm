@@ -12,6 +12,7 @@ module Guides
           string :location
           string :name
           array :practices
+          boolean :draft
           # string :featured_image
           # There has to be a better way to do this.
           hash :time_span do

@@ -18,14 +18,14 @@ echo "--- INSTALLING RVM ---"
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
 
-curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=2.2.0
+curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=2.2.5
 
-echo "--- INSTALLING RUBY 2.2.0 ---"
+echo "--- INSTALLING RUBY 2.2.5 ---"
 
 source /home/vagrant/.rvm/scripts/rvm
 
 rvm reload
-rvm --default use 2.2.0
+rvm --default use 2.2.5
 
 echo "--- INSTALLING ELASTICSEARCH ---"
 

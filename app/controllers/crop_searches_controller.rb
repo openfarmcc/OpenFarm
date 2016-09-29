@@ -3,6 +3,7 @@ class CropSearchesController < ApplicationController
 
   def search
     query = params[:q].to_s.encode('utf-8', 'iso-8859-1')
+
     @crops = Crop.search(query,
                          limit: 25,
                          partial: true,
@@ -17,9 +18,9 @@ class CropSearchesController < ApplicationController
       @crops = Crop.search('*', limit: 25, boost_by: [:guides_count])
     end
 
-    @guides = GuideSearch.search('*').for_crops(@crops).with_user(current_user)
+    @guides = GuideSearch.search('*').ignore_drafts.for_crops(@crops).with_user(current_user)
 
-    @guides = sort_guides(current_user)
+    @guides = Guide.sorted_for_user(@guides, current_user)
 
     render :show
   end
@@ -27,15 +28,6 @@ class CropSearchesController < ApplicationController
   private
 
   def sort_guides(current_user)
-    if current_user
-      @guides = @guides.sort_by do |guide|
-        guide.compatibility_score(current_user)
-        guide.current_user_compatibility_score = guide.compatibility_score(current_user)
-        guide.current_user_compatibility_score
-      end
-      @guides.reverse
-    else
-      @guides
-    end
+
   end
 end

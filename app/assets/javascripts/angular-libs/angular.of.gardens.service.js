@@ -101,14 +101,14 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
       // };
       $http.put(url, {'data': data})
         .success(function (response, object) {
-          alertsService.pushToAlerts(['Updated your garden!'], '200')
+          alertsService.pushToAlerts(['Updated your garden!'], '200');
           if (callback) {
             return callback(true, response, object);
           }
         })
         .error(function (response, code){
-          console.log('error saving garden', response)
-          alertsService.pushToAlerts(response.errors, code)
+          console.error('error saving garden', response);
+          alertsService.pushToAlerts(response.errors, code);
           if (callback){
             return callback(false, response, code);
           }

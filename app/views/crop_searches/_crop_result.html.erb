@@ -4,7 +4,8 @@
     <div class="crop-info">
       <h3 class="crop-name"><%= crop.name %></h3>
       <!-- TODO(@warpling): pluralization/translation -->
-      <p class="guide-count"><%= t 'guides.num_guides', :count=>crop.guides_count %></p>
+      <!-- TODO our counter cache doesn't work anymore because we have draft guides. Our cache should reflect how many drafts are true -->
+      <!-- <p class="guide-count"><%= t 'guides.num_guides', :count=>crop.guides_count %></p> -->
     </div>
   </div>
 <% end %>

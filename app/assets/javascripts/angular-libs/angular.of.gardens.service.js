@@ -169,8 +169,10 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
 
     // Because garden crops can be added as a guide or as a crop
     // the `object` is the ambigious choice of either.
-    var addGardenCropToGarden = function(garden, adding, object, callback){
-      console.log("adding");
+    var addGardenCropToGarden = function(garden, 
+                                          adding, 
+                                          object, 
+                                          callback){
       var data = { 'data': {'attributes': {}}};
       data.data.attributes[adding] = object.id;
       var url = garden.relationships.garden_crops.links.related;

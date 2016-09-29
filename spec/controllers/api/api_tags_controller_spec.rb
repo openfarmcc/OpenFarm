@@ -14,14 +14,14 @@ describe Api::V1::TagsController, type: :controller do
   it 'lists tags' do
     get 'index', format: :json
     expect(response.status).to eq(200)
-    expect(json['tags'].length).to eq(2)
-    expect(json['tags'][0]).to eq('tagOne')
+    expect(json.length).to eq(2)
+    expect(json[0]).to eq('tagOne')
   end
 
   it 'returns the tag matching the query' do
     get 'index', format: :json, query: 'on'
     expect(response.status).to eq(200)
-    expect(json['tags'].length).to eq(1)
-    expect(json['tags'][0]).to eq('tagOne')
+    expect(json.length).to eq(1)
+    expect(json[0]).to eq('tagOne')
   end
 end

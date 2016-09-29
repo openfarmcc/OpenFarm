@@ -21,12 +21,15 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     };
 
     $scope.$watch('profileUser', function(){
+      console.log("ghfj");
       if($rootScope.profileUser) {
+
+        console.log($rootScope.profileUser);
         gardenService.getGardensForUser($rootScope.profileUser,
           function(success, response) {
             if(success) {
               $scope.profileUser.gardens = response;
-
+              console.log(response);
               $scope.profileUser.gardens.forEach(function(garden){
                 // set the pH if it hasn't been set.
                 if (!garden.ph){

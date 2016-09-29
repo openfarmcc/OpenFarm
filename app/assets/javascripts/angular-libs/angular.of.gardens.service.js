@@ -307,8 +307,8 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
     }
   }]);
 
-openFarmApp.directive('addCrop', ['$http', 'cropService', 'gardenService',
-  function addCrop($http, cropService, gardenService) {
+openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenService',
+  function addCrop($http, $rootScope, cropService, gardenService) {
     return {
       restrict: 'A',
       scope: {
@@ -322,8 +322,6 @@ openFarmApp.directive('addCrop', ['$http', 'cropService', 'gardenService',
         function ($scope, $element, $attrs) {
           $scope.placeholder = $attrs.placeholder || 'Search crops';
           $scope.buttonValue = $attrs.buttonValue || 'Submit';
-          //$scope.gardenQuery = $attrs.gardenQuery;
-          //$scope.cropQuery = undefined;
           $scope.firstCrop = undefined;
           $scope.finalCrop = undefined;
           $scope.crops = undefined;
@@ -347,7 +345,6 @@ openFarmApp.directive('addCrop', ['$http', 'cropService', 'gardenService',
                 } });
               }
               crops = crops.map(function(crop) {
-                //console.log(res.data.included);
                 return cropService.utilities.buildCrop(crop, res.data.included);
               });
               $scope.firstCrop = crops[0];
@@ -360,51 +357,43 @@ openFarmApp.directive('addCrop', ['$http', 'cropService', 'gardenService',
           //cropSearch.getCrops("tomato");
           $scope.addCropToGarden = function () {
             $scope.crops1 = $scope.getCrops($scope.cropQuery);
-            /*console.log($scope.cropQuery);
-            console.log($scope.gardenQuery);*/
-            
             for (cropi in $scope.crops) {
-              //console.log($scope.crops[cropi].name.toUpperCase());
-              //console.log($scope.crops[cropi].name);
               console.log("yo");
               var crop = $scope.crops[cropi];
               var cropname = $scope.crops[cropi].name; 
               var cropquery = $scope.cropQuery;
               if($scope.crops[cropi].name == $scope.cropQuery.name) {
                 console.log("hey");
-                //$scope.finalCrop = cropService.utilities.buildCrop(crop);
-                //$scope.finalGarden = buildGarden(data, included)
-                /*$scope.adding="crop";
-                console.log("hey");*/
-                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.cropQuery, true);
-                //console.log("heyf");
+                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.cropQuery,
+                  function(success, response, code) {
+                   $scope.user.gardens.forEach(function(garden){
+                        if(garden === $scope.gardenQuery) {
+                          garden.garden_crops.push({ 'crop':response.crop, 'guide': response.guide, 'sowed':response.sowed, 'stage':response.stage, 'quantity':response.quantity });
+                          console.log("Pushed");
+                        }
+                   });
+                  });
               }
               if($scope.crops[cropi].name == $scope.cropQuery) {
                 console.log("hey");
-                //console.log($scope.crops[cropi]);
                 var croparray = [];
                 $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
-                //$scope.finalGarden = buildGarden(data, included);
                 $scope.adding="crop";
                 console.log("hey");
-                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.finalCrop, callback);
-                //break;
-                //console.log("heyf");
+                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.finalCrop,
+                  function(success, response, code) {
+                    $scope.user.gardens.forEach(function(garden){
+                        if(garden === $scope.gardenQuery) {
+                          garden.garden_crops.push({ 'crop':response.crop, 'guide': response.guide, 'sowed':response.sowed, 'stage':response.stage, 'quantity':response.quantity });
+                          console.log("Pushed");
+                        }
+                   }); 
+                  }
+                  );
               }
             }
-            //console.log($scope.finalCrop);
-            //console.log($scope.gardenQuery);
-            //console.log($scope.user);
-            $scope.finalCropList = 
             
           }
-
-           $scope.$watch(
-                    "vm.fooCount",
-                    function handleFooChange( newValue, oldValue ) {
-                        console.log( "vm.fooCount:", newValue );
-                    }
-                );
 
         }
       ],

@@ -48,10 +48,23 @@ describe Api::V1::CropsController, type: :controller do
   it 'should update a crop' do
     sign_in user
     crop = FactoryGirl.create(:crop)
-    put :update, id: crop.id, data: { attributes: { description: 'Updated' } }
+    put :update,
+        id: crop.id,
+        data: { attributes: { description: 'Updated', tags_array: ['tag'] } }
     expect(response.status).to eq(200)
     crop.reload
     expect(crop.description).to eq('Updated')
+    expect(crop.tags).to eq('tag')
+  end
+
+  it 'tests whether tags get added as an array', js: true do
+    crop = FactoryGirl.create(:crop)
+    sign_in user
+    put :update,
+        id: crop.id,
+        data: { attributes: { tags_array: ['just', 'some', 'tags'] } }
+    expect(response.status).to eq(200)
+    expect(crop.reload.tags_array.length).to eq(3)
   end
 
   it 'tests whether common names get added as an array', js: true do

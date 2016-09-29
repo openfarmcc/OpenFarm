@@ -82,7 +82,7 @@ describe CropsController, :type => :controller do
     sign_in user
     put 'update',
         id: crop.id,
-        attributes: { name: 'Updated name' }
+        attributes: { name: 'Updated name'}
     expect(crop.reload.name).to eq('Updated name')
     expect(response.status).to eq(302)
   end

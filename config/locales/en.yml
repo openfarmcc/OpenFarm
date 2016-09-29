@@ -231,6 +231,7 @@ en:
     spread: "Spread"
     row_spacing: "Row Spacing"
     height: "Height"
+    tags: "Tags"
     num_crops:
       zero: "No crops"
       one: "1 crop"

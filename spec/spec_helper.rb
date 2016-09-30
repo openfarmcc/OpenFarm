@@ -1,5 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
+
+# We provide an empty google maps api key for the tests to complete successfully.
+# We largely set this here so that tests from travisCI won't fail with this
+# variable missing.
+ENV["GOOGLE_MAPS_API_KEY"] = 'test-key'
 require 'simplecov'
 require 'coveralls'
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[

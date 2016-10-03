@@ -288,10 +288,10 @@
         vertical-align: middle;
         font: bold 16px Arial, sans-serif;
         color: #585858;
+      }
 
-        &:active {
-          color: #ff0000;
-        }
+      .remove-button:active {
+          color: $red;
       }
     }
 
@@ -314,7 +314,7 @@
     background-color: $lighter-gray;
 
     .tag-item {
-      background: #337ab7;
+      background: $taglist-blue;
       opacity: .65;
     }
 

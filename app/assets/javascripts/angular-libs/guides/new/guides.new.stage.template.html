@@ -13,7 +13,7 @@
         class="stage-overview stage-action-toggle"
         ng-click="viewingStageOverview = true"
         ng-class="{'selected': viewingStageOverview, 'completed': stage.edited}">
-        <span ng-if="stage.edited" class="fa fa-check"></span> Stage Overview
+        <span class="fa fa-check"></span> Stage Overview
       </div>
       <div actions-control
         stage="stage"
@@ -38,6 +38,7 @@
 <div class="button-wrapper row">
   <div class="columns small-12">
     <div stage-buttons
+      hint="'Tell us a little more about this stage before continuing.'"
       stage="stage"
       next-stage="nextStage"
       texts="texts"

@@ -84,6 +84,8 @@ openFarmApp.directive('guidesStages', ['$http', '$q', '$rootScope', '$filter',
             }
           });
 
+          $scope.seenStagesIntro = false;
+
           var buildStageDetails = function(array, selectedArray){
             var returnArray = [];
             array.forEach(function(d){

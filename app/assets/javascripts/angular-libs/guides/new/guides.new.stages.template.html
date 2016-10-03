@@ -1,6 +1,5 @@
 <!-- {{ (guide.stages | filter: { selected: true })}} -->
 
-
 <section ng-repeat="stage in guide.stages | filter: { selected: true, editing: true } | orderBy: 'order'"
   ng-init="stageForms[$index] = stage.name"
   guides-stage

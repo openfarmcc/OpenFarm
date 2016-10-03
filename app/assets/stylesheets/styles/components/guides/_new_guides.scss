@@ -127,9 +127,19 @@
     box-shadow-color: darken($gray-bg, 20%);
   }
 
+  .fa-check {
+    color: $white;
+  }
+
   &.selected {
     background-color: darken($gray-bg, 10%);
     box-shadow-color: darken($gray-bg, 20%);
+  }
+
+  &.completed {
+    .fa-check {
+      color: $off-black;
+    }
   }
 
   i {

@@ -1,4 +1,8 @@
 <div class="button-wrapper row">
+  <div class="columns large-12 text-center"
+    ng-if="!(stage.edited && stage.valid)">
+    <small class="right" ng-bind="hint"></small>
+  </div>
   <div class="columns large-12">
     <!-- <a class="button small secondary left"
         name="back"
@@ -27,7 +31,6 @@
           ng-disabled="!(stage.edited && stage.valid)"
           ng-click="nextStep()"/>
     </span>
-
     <input class="button small right"
       ng-if="!stage"
       name="commit"
@@ -37,5 +40,6 @@
       ng-click="nextStep()"/>
     <i ng-if="processing"
        class="fa fa-spinner fa-spin right loading-button"></i>
+
   </div>
 </div>

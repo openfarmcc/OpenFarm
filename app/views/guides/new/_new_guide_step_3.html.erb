@@ -15,10 +15,23 @@
     </form>
     <!--  -->
     <!-- There has to be a better way to send all of these internationalizations to Angular JS -->
+
+    <div class="text-center"
+    ng-hide="seenStagesIntro">
+    <h2>Filling out Stage details</h2>
+    <p>This is where you can tell everyone how you like to care for your Crop during each Life Stage. Start with the <strong>Stage Overview</strong>, and then add Actions such as <em>Prune</em>, <em>Water</em>, or <em>Add Fertilizer</em>.</p>
+
+    <a class="button" ng-click="seenStagesIntro = true">
+      Sounds good!
+    </a><br/>
+    <small>Clicking that button will make this intro text disappear</small>
+  </div>
+
     <div guides-stages
       guide="newGuide"
       options="options"
-      texts="translations">
+      texts="translations"
+      >
     </div>
   </div>
 </section>

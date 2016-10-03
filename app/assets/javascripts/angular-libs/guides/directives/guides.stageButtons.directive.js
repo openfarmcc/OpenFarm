@@ -8,7 +8,8 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
           processing: '=',
           stage: '=',
           nextStage: '=',
-          texts: '='
+          texts: '=',
+          hint: '='
       },
       controller: ['$scope', '$element', '$attrs',
        function ($scope, $element, $attrs){

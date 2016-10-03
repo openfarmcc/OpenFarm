@@ -6,7 +6,7 @@ openFarmApp.directive('guidesStage', ['$http', '$location', '$rootScope',
         stage: '=',
         stages: '=',
         guideExists: '=',
-        texts: '='
+        texts: '=',
       },
       controller: ['$scope',
         function ($scope) {

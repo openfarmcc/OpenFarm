@@ -18,9 +18,6 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                               'stages.stage_actions',
                                               'crop',
                                               'user'])
-    unless @outcome.errors
-      flash[:notice] = t('guides.edit.successful_creation')
-    end
   end
 
   def show

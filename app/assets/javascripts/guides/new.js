@@ -316,7 +316,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
             }).map(function(s){
               return s.label;
             }) || null,
-          'overview': stage.overview
+          'overview': stage.overview && stage.overview.length ? stage.overview : null
         },
         'guide_id': guide.id,
         'actions': stageActions

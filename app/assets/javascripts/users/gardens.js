@@ -21,7 +21,6 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     };
 
     $scope.$watch('profileUser', function(){
-      console.log("ghfj");
       if($rootScope.profileUser) {
 
         console.log($rootScope.profileUser);

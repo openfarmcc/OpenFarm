@@ -35,7 +35,8 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         }
       }
 
-      var tags_array = $.map($scope.crop.tags_array, function(obj) { return obj.text; })
+      var tags_array = $.map($scope.crop.tags_array,
+        function(obj) { return obj.text; })
 
       var crop = {
         common_names: commonNames,

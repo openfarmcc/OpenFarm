@@ -372,12 +372,13 @@ openFarmApp.directive('addCrop', ['$http',
                   function(success, response) {
                    $scope.user.gardens.forEach(function(garden){
                         if(garden === $scope.gardenQuery) {
-                          garden.garden_crops.push({ 'crop':response.crop, 
-                                                    'guide': response.guide, 
-                                                    'sowed':response.sowed, 
-                                                    'stage':response.stage, 
-                                                    'quantity':response.quantity });
-                          console.log(code);
+                          garden.garden_crops.push({ 
+                            'crop':response.crop, 
+                            'guide': response.guide, 
+                            'sowed':response.sowed, 
+                            'stage':response.stage, 
+                            'quantity':response.quantity 
+                          });
                         }
                    });
                   });
@@ -388,12 +389,13 @@ openFarmApp.directive('addCrop', ['$http',
                     function(success, response) {
                       $scope.user.gardens.forEach(function(garden){
                           if(garden === $scope.gardenQuery) {
-                            garden.garden_crops.push({ 'crop':response.crop, 
-                                                      'guide': response.guide, 
-                                                      'sowed':response.sowed, 
-                                                      'stage':response.stage, 
-                                                      'quantity':response.quantity });
-                            console.log(code);
+                            garden.garden_crops.push({ 
+                            'crop':response.crop, 
+                            'guide': response.guide, 
+                            'sowed':response.sowed, 
+                            'stage':response.stage, 
+                            'quantity':response.quantity 
+                          });
                           }
                      }); 
                     });

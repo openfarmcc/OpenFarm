@@ -1,13 +1,29 @@
 <footer id="footer">
     <div class="row">
-        <%= link_to(t('meta.about'),page_path('about')) %>
-
-        <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
-        <%= link_to(t('meta.slack'), 'http://slack.openfarm.cc') %>
-        <%= link_to(t('meta.mailing_list'), page_path('mailing-list')) %>
-        <%= link_to(t('meta.privacy'),page_path('privacy') ) %>
-        <%= link_to(t('meta.tos'),page_path('tos') ) %>
-        <%= link_to(t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
-        <%= link_to(t('meta.faq'),page_path('faq')) %>
+      <div class="about">
+        <h3 class="crop-name"> About </h3>
+        <%= link_to(icon('info-circle') +
+          t('meta.about'),page_path('about')) %>
+        <%= link_to(icon('question-circle') +
+          t('meta.faq'),page_path('faq')) %>
+        <%= link_to(icon('rss-square') +
+          t('meta.blog'), 'http://blog.openfarm.cc') %>
+      </div>
+      <div class="contact">
+        <h3 class="crop-name"> Contact </h3>
+        <%= link_to(icon('comments-o') +
+          t('meta.slack'), 'http://slack.openfarm.cc') %>
+        <%= link_to(icon('envelope') +
+          t('meta.mailing_list'), page_path('mailing-list')) %>
+      </div>
+      <div class="legal">
+        <h3 class="crop-name"> Legal </h3>
+        <%= link_to(icon('lock') +
+          t('meta.privacy'),page_path('privacy')) %>
+        <%= link_to(icon('file-text-o') +
+          t('meta.tos'),page_path('tos')) %>
+        <%= link_to(icon('book') +
+          t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
+      </div>
     </div>
 </footer>

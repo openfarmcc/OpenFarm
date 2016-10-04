@@ -7,6 +7,7 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
                       gardenService,
                       cropService) {
     $scope.addingGarden = false;
+    $scope.addingCrop = false;
     $scope.newGarden = {};
 
     // $scope.profileUser = $rootScope.profileUser;
@@ -15,14 +16,19 @@ openFarmApp.controller('gardenCtrl', ['$scope', '$http', '$rootScope',
     $scope.toggleAddGarden = function() {
       $scope.addingGarden = !$scope.addingGarden;
     };
+    $scope.toggleAddCrop = function() {
+      $scope.addingCrop = !$scope.addingCrop;
+    };
 
     $scope.$watch('profileUser', function(){
       if($rootScope.profileUser) {
+
+        console.log($rootScope.profileUser);
         gardenService.getGardensForUser($rootScope.profileUser,
           function(success, response) {
             if(success) {
               $scope.profileUser.gardens = response;
-
+              console.log(response);
               $scope.profileUser.gardens.forEach(function(garden){
                 // set the pH if it hasn't been set.
                 if (!garden.ph){

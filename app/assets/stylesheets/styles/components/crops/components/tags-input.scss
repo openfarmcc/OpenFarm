@@ -176,32 +176,33 @@
 
 .keywords > .tags {
 
-    .tag-list {
-      padding: .07em;
+  .tag-list {
+    padding: .07em;
+  }
+
+  .input {
+    margin: 1px;
+    font: inherit;
+    font-size: .88rem;
+    border-radius: 0;
+  }
+
+  .remove-button {
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 16px;
+    color: $dark-gray;
+
+    &:active {
+      color: $of-red;
     }
-
-    .input {
-      margin: 1px;
-      font: inherit;
-      font-size: .88rem;
-      border-radius: 0;
-    }
-
-    .remove-button {
-      margin: 0;
-      margin-left: 5px;
-      padding: 0;
-      border: none;
-      background: none;
-      cursor: pointer;
-      vertical-align: middle;
-      font-weight: bold;
-      font-size: 16px;
-      color: $dark-gray;
-
-      &:active {
-        color: $of-red;
-      }
+  }
 }
 
 .keywords[disabled] > .tags {

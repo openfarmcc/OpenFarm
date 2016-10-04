@@ -205,7 +205,10 @@
         <label for="crop[tags]" class="right">Keywords</label>
       </div>
       <div class="columns small-8 medium-8">
-        <tags-input data-ng-model="crop.tags_array" class="keywords" name="crop[tags]">
+        <tags-input
+          ng-model="crop.tags_array"
+          class="keywords"
+          name="crop[tags]">
             <auto-complete source="loadTags($query)"></auto-complete>
         </tags-input>
       </div>

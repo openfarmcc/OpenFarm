@@ -55,7 +55,8 @@
         color: $black;
         background: $of-red;
         border: 0 solid $form-gray;
-
+        background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
+          lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);
       }
 
       .remove-button:hover {
@@ -107,190 +108,73 @@
 
   &.ti-input-lg {
 
-    .input-group-lg {
-
-      .keywords {
-        min-height: 46px;
-      }
+    .input-group-lg .keywords {
+      min-height: 46px;
     }
 
     .tags {
 
-      .input-group-lg {
-
-        .keywords {
-
-          .tags {
-            border-radius: 0;
-          }
-        }
+      .input-group-lg .keywords .tags {
+        border-radius: 0;
       }
 
       .tag-item {
 
-        .input-group-lg {
-
-          .keywords {
-
-            .tags {
-
-              .tag-item {
-                height: 38px;
-                line-height: 37px;
-                font-size: 18px;
-                border-radius: 0;
-              }
-            }
-          }
+        .input-group-lg .keywords .tags .tag-item {
+          height: 38px;
+          line-height: 37px;
+          font-size: 18px;
+          border-radius: 0;
         }
 
-        .remove-button {
-
-          .input-group-lg {
-
-            .keywords {
-
-              .tags {
-
-                .tag-item {
-
-                  .remove-button {
-                    font-size: 20;
-                  }
-                }
-              }
-            }
-          }
+        .remove-button .input-group-lg .keywords
+        .tags .tag-item .remove-button {
+          font-size: 20;
         }
       }
 
-      .input {
-
-        .input-group-lg {
-
-          .keywords {
-
-            .tags {
-
-              .input {
-                height: 38px;
-                font-size: 18px;
-              }
-            }
-          }
-        }
+      .input .tags .input {
+        height: 38px;
+        font-size: 18px;
       }
     }
 
     &.ti-input-sm {
 
-      .input-group-sm {
-
-        .keywords {
-          min-height: 30;
-        }
+      .input-group-sm > .keywords {
+        min-height: 30;
       }
 
       .tags {
 
-        .input-group-sm {
-
-          .keywords {
-
-            .tags {
-              border-radius: 0;
-            }
-          }
+        .input-group-sm > keywords > .tags{
+          border-radius: 0;
         }
 
         .tag-item {
 
-          .input-group-sm {
-
-            .keywords {
-
-              .tags {
-
-                .tag-item {
-                  height: 22px;
-                  line-height: 21px;
-                  font-size: 12px;
-                  border-radius: 0;
-                }
-              }
-            }
+          .input-group-sm > .keywords > .tags > .tag-item {
+            height: 22px;
+            line-height: 21px;
+            font-size: 12px;
+            border-radius: 0;
           }
 
-          .remove-button {
-
-            .input-group-sm {
-
-              .keywords {
-
-                .tags {
-
-                  .tag-item {
-
-                    .remove-item {
-
+          .remove-button .remove-item {
                       font-size: 16px;
-                    }
-                  }
-                }
-              }
-            }
           }
         }
 
-        .input {
-
-          .input-group-sm {
-
-            .keywords {
-
-              .tags {
-
-                .input {
-                  height: 22px;
-                  font-size: 12px;
-                }
-              }
-            }
-          }
+        .input .input-group-sm .input {
+          height: 22px;
+          font-size: 12px;
         }
       }
     }
   }
 }
 
-.keywords {
-
-  .tags {
-
-    .tag-item {
-
-      &.selected {
-        background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
-          lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);
-      }
-
-      .remove-button {
-        margin: 0;
-        margin-left: 5px;
-        padding: 0;
-        border: none;
-        background: none;
-        cursor: pointer;
-        vertical-align: middle;
-        font-weight: bold;
-        font-size: 16px;
-        color: $dark-gray;
-      }
-
-      .remove-button:active {
-        color: $of-red;
-      }
-    }
+.keywords > .tags {
 
     .tag-list {
       padding: .07em;
@@ -302,60 +186,59 @@
       font-size: .88rem;
       border-radius: 0;
     }
-  }
+
+    .remove-button {
+      margin: 0;
+      margin-left: 5px;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      vertical-align: middle;
+      font-weight: bold;
+      font-size: 16px;
+      color: $dark-gray;
+
+      &:active {
+        color: $of-red;
+      }
 }
 
-.keywords[disabled] {
+.keywords[disabled] > .tags {
+  background-color: lighten($light-gray, 10%);
 
-  .tags {
+  .tag-item {
+    background: $of-blue;
+    opacity: .65;
+  }
+
+  .input {
     background-color: lighten($light-gray, 10%);
-
-    .tag-item {
-      background: $of-blue;
-      opacity: .65;
-    }
-
-    .input {
-      background-color: lighten($light-gray, 10%);
-    }
   }
 }
 
-.input-group {
+.input-group > .keywords {
+  padding: 0;
+  display: table-cell;
 
-  .keywords {
-    padding: 0;
-    display: table-cell;
+  &:not(:first-child) .tags {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
-    &:not(:first-child) .tags {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+  &:not(:last-child) .tags {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
-    &:not(:last-child) .tags {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+  &:first-child .tags {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
-    &:first-child .tags {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    &:last-child .tags {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    &:first-child .tags {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    &:last-child .tags {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+  &:last-child .tags {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 

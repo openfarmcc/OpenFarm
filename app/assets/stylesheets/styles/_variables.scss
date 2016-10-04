@@ -29,6 +29,7 @@ $of-red:    #cc0000;
 $of-yellow: #f1c232;
 $of-dark:   #4a4a4a;
 $of-light:  hsl(0, 0, 87%);
+$background-color: rgba(0, 0, 0, .075);
 
 // Grays
 $white:           #ffffff;
@@ -36,7 +37,9 @@ $gray-bg:         #f9f9f9;
 $light-gray:      #cecece;
 $gray:            #999999;
 $dark-gray:       #666666;
+$form-gray:       #cccccc;
 $off-black:       #333333;
+$black:           #000000;
 
 // We use these as default colors throughout
 $primary-color:   #99b36c; // #008CBA;

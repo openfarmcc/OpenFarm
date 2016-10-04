@@ -229,6 +229,9 @@ GEM
       mongoid (>= 3.0)
       mongoid-compatibility
       stringex (~> 2.0)
+    mongoid_taggable (1.1.1)
+      mongoid (>= 3)
+      rake
     moped (2.0.7)
       bson (~> 3.0)
       connection_pool (~> 2.0)
@@ -311,6 +314,8 @@ GEM
     rails-assets-jquery (2.2.4)
     rails-assets-jquery-ui (1.11.4)
       rails-assets-jquery (>= 1.6)
+    rails-assets-ng-tags-input (2.3.0)
+      rails-assets-angular (>= 1.2.1)
     rails-assets-typeahead.js (0.11.1)
       rails-assets-jquery (>= 1.7)
     rails-deprecated_sanitizer (1.0.3)
@@ -477,6 +482,7 @@ DEPENDENCIES
   mongoid-history
   mongoid-paperclip
   mongoid-slug
+  mongoid_taggable
   mutations
   ng-rails-csrf
   patron
@@ -498,6 +504,7 @@ DEPENDENCIES
   rails-assets-angular-ui-sortable (~> 0.13.4)!
   rails-assets-jquery (~> 2.2.1)!
   rails-assets-jquery-ui (~> 1.11.4)!
+  rails-assets-ng-tags-input (~> 2.3.0)!
   rails_12factor
   rails_admin
   rspec-rails

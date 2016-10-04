@@ -35,6 +35,7 @@ gem 'merit'
 gem 'gibbon', '~> 1.1.5'
 gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'mongoid-history'
+gem 'mongoid_taggable'
 
 gem 'utf8-cleaner'
 
@@ -53,6 +54,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-ui-sortable', '~> 0.13.4'
   gem 'rails-assets-angular-local-storage', '~> 0.2.3'
   gem 'rails-assets-angular-typeahead', '~> 0.3.1'
+  gem 'rails-assets-ng-tags-input', '~>2.3.0'
 end
 
 group :development, :test do

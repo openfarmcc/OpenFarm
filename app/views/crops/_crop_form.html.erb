@@ -200,6 +200,17 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label for="crop[tags]" class="right">Keywords</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <tags-input data-ng-model="crop.tags_array" class="keywords" name="crop[tags]">
+            <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+      </div>
+    </div>
+
     <div class="row form-buttons">
       <div class="columns small-12 medium-12">
         <span class="right">

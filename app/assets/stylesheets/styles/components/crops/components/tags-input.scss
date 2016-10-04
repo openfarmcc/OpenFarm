@@ -1,0 +1,275 @@
+.keywords {
+  appearance: none;
+  border-radius: 0;
+  border: 0 solid $form-gray;
+  border-bottom: .5px solid darken($gray-bg, 10%);
+  border-right: .5px solid darken($gray-bg, 10%);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, .2);
+  color: $background-color;
+  display: block;
+  margin: 0;
+  margin-bottom: 1rem;
+  height: 2.3125rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow .45s, border-color .45s ease-in-out;
+
+ .host {
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 100%;
+    appearance: none;
+    border-radius: 0;
+    border: 0 solid $form-gray;
+    border-bottom: .5px solid darken($gray-bg, 10%);
+    border-right: .5px solid darken($gray-bg, 10%);
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, .2);
+    color: $background-color;
+    display: block;
+    margin: 0;
+    margin-bottom: 1rem;
+    height: 2.3125rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: box-shadow .45s, border-color .45s ease-in-out;
+
+    &:active {
+      outline: none;
+    }
+  }
+  .tags {
+    appearance: none;
+    border: 0 solid $form-gray;
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px $background-color;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    .tag-item {
+      color: $black;
+      background: darken($gray-bg, 15%);
+      border: 0 solid $form-gray;
+      border-radius: 0;
+
+      &.selected {
+        color: $black;
+        background: $of-red;
+        border: 0 solid $form-gray;
+        background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
+          lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);
+      }
+
+      .remove-button:hover {
+        text-decoration: none;
+      }
+    }
+
+    &.focused {
+      box-shadow: 0 0 5px $gray;
+      border-color: $gray;
+      background: darken($gray-bg, 1%);
+      outline: none;
+
+      .tag-item {
+        background: darken($light-gray, 10%);
+      }
+    }
+  }
+
+  .autocomplete {
+    border-radius: 0;
+    background-color: darken($gray-bg, 1%);
+
+    .suggestion-item {
+      &.selected {
+        color: darken($off-black, 10%);
+        background-color: whitesmoke;
+
+        em {
+          color: darken($off-black, 10%);
+          background-color: whitesmoke;
+        }
+      }
+
+      em {
+        color: black;
+        background-color: $white;
+      }
+    }
+  }
+
+  &.ng-invalid {
+
+    .tags {
+      border-color: $of-red;
+      box-shadow: inset 0 1px 1px $background-color, 0 0 6px $of-red;
+    }
+  }
+
+  &.ti-input-lg {
+
+    .input-group-lg .keywords {
+      min-height: 46px;
+    }
+
+    .tags {
+
+      .input-group-lg .keywords .tags {
+        border-radius: 0;
+      }
+
+      .tag-item {
+
+        .input-group-lg .keywords .tags .tag-item {
+          height: 38px;
+          line-height: 37px;
+          font-size: 18px;
+          border-radius: 0;
+        }
+
+        .remove-button .input-group-lg .keywords
+        .tags .tag-item .remove-button {
+          font-size: 20;
+        }
+      }
+
+      .input .tags .input {
+        height: 38px;
+        font-size: 18px;
+      }
+    }
+
+    &.ti-input-sm {
+
+      .input-group-sm > .keywords {
+        min-height: 30;
+      }
+
+      .tags {
+
+        .input-group-sm > .keywords > .tags{
+          border-radius: 0;
+        }
+
+        .tag-item {
+
+          .input-group-sm > .keywords > .tags > .tag-item {
+            height: 22px;
+            line-height: 21px;
+            font-size: 12px;
+            border-radius: 0;
+          }
+
+          .remove-button .remove-item {
+                      font-size: 16px;
+          }
+        }
+
+        .input .input-group-sm .input {
+          height: 22px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.keywords > .tags {
+
+  .tag-list {
+    padding: .07em;
+  }
+
+  .input {
+    margin: 1px;
+    font: inherit;
+    font-size: .88rem;
+    border-radius: 0;
+  }
+
+  .remove-button {
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 16px;
+    color: $dark-gray;
+
+    &:active {
+      color: $of-red;
+    }
+  }
+}
+
+.keywords[disabled] > .tags {
+  background-color: lighten($light-gray, 10%);
+
+  .tag-item {
+    background: $of-blue;
+    opacity: .65;
+  }
+
+  .input {
+    background-color: lighten($light-gray, 10%);
+  }
+}
+
+.input-group > .keywords {
+  padding: 0;
+  display: table-cell;
+
+  &:not(:first-child) .tags {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:not(:last-child) .tags {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &:first-child .tags {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:last-child .tags {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.has-feedback .keywords .tags {
+  padding-right: 30;
+}
+
+.has-success .keywords .tags {
+  border-color: $form-gray;
+
+  &.focused {
+    border-color: $form-gray;
+    box-shadow: inset 0 1px 1px $background-color, 0 0 6px $of-green;
+  }
+}
+
+.has-error .keywords .tags {
+  border-color: $of-red;
+
+  &.focused {
+    border-color: $of-red;
+    box-shadow: inset 0 1px 1px $background-color, 0 0 6px $of-red;
+  }
+}
+
+.has-warning .keywords .tags {
+  border-color: $primary-color;
+
+  &.focused {
+    border-color: $of-yellow;
+    box-shadow: inset 0 1px 1px $background-color, 0 0 6px $of-orange;
+  }
+}

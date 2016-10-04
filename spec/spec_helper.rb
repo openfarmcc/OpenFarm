@@ -7,10 +7,10 @@ ENV["RAILS_ENV"] ||= 'test'
 ENV["GOOGLE_MAPS_API_KEY"] = 'test-key'
 require 'simplecov'
 require 'coveralls'
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
-)
+])
 SimpleCov.start do
   add_filter 'config/initializers/rack-attack.rb'
   add_filter 'config/environment.rb'

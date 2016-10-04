@@ -94,6 +94,22 @@ We encourage everyone to contribute! From newbies, to pros, to people who don&#8
 
 Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub. But that's just people who contribute code. There's a whole host of people who contributed financially, and people contribute guides on the actual website too!
 
+#### Core Contributors
+
+If you've made two PRs, we'll add you as a core contributor.
+
+For core-code contributors: here are a few basic ground-rules:
+
+No --force pushes or modifying the Git history in any way.
+Non-master branches ought to be used for ongoing work.
+External API changes and significant modifications ought to be subject to an internal pull-request to solicit feedback from other contributors.
+Internal pull-requests to solicit feedback are encouraged for any other non-trivial contribution but left to the discretion of the contributor.
+Contributors should attempt to adhere to the prevailing code-style.
+
+([based on the OPEN open source model](https://github.com/Level/community/blob/master/CONTRIBUTING.md))
+
+[Further reading](https://medium.com/the-javascript-collection/healthy-open-source-967fa8be7951#.alkpecsnd)
+
 ### Backers
 
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/openfarm#backer)]

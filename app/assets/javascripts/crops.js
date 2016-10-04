@@ -1,5 +1,5 @@
-openFarmApp.controller('addCropCtrl', ['$scope', '$http',
-  function cropCtrl($scope, $http) {
+openFarmApp.controller('addCropCtrl', ['$scope',
+  function cropCtrl($scope) {
   $scope.crops = [];
 
   // Redirect the browser to a specified crop

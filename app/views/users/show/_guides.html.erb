@@ -20,10 +20,10 @@
               id: guide.crop.id }, :class => 'action show crop-name') %>
           </td>
           <td>
-            <%= link_to('<i class="fa fa-edit"></i> Edit'.html_safe, { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show') %>
+            <%= link_to(icon('edit') + ' ' + t('application.edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show') %>
           </td>
           <td>
-            <%= link_to('<i class="fa fa-trash"></i> Delete'.html_safe, guide_path(guide), :method => 'delete', :class => 'action show', data: {confirm: "Are you sure?"}) %>
+            <%= link_to(icon('trash') + ' ' + t('application.delete'), guide_path(guide), :method => 'delete', :class => 'action show', data: {confirm: "Are you sure?"}) %>
           </td>
         </tr>
       <% end %>

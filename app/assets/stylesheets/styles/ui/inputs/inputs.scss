@@ -15,3 +15,7 @@ input[type="color"],
 textarea {
   border-radius: $global-radius;
 }
+
+input.ng-invalid {
+  border: 1px solid red;
+}

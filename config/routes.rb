@@ -41,6 +41,11 @@ OpenFarm::Application.routes.draw do
       resources :crops, only: [:create, :index, :show, :update] do
         resources :pictures, only: [:index, :show]
       end
+      resources :tags, only: :index do
+        collection do
+          get '/:query', to: :index
+        end
+      end
       resources :guides, only: [:create, :show, :update, :destroy]
       resources :users, only: [:show, :update] do
         resources :gardens, only: [:index]

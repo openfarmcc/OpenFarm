@@ -100,11 +100,11 @@ If you've made two PRs, we'll add you as a core contributor.
 
 For core-code contributors: here are a few basic ground-rules:
 
-No --force pushes or modifying the Git history in any way.
-Non-master branches ought to be used for ongoing work.
-External API changes and significant modifications ought to be subject to an internal pull-request to solicit feedback from other contributors.
-Internal pull-requests to solicit feedback are encouraged for any other non-trivial contribution but left to the discretion of the contributor.
-Contributors should attempt to adhere to the prevailing code-style.
+* No --force pushes or modifying the Git history in any way.
+* Non-master branches ought to be used for ongoing work.
+* External API changes and significant modifications ought to be subject to an internal pull-request to solicit feedback from other contributors.
+* Internal pull-requests to solicit feedback are encouraged for any other non-trivial contribution but left to the discretion of the contributor.
+* Contributors should attempt to adhere to the prevailing code-style.
 
 ([based on the OPEN open source model](https://github.com/Level/community/blob/master/CONTRIBUTING.md))
 

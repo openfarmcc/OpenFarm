@@ -358,18 +358,7 @@ openFarmApp.directive('addCrop', ['$http',
             })
           };
 
-          //Typeahead search for crops
-          //cropSearch.getCrops("tomato");
-          $scope.addCropToGarden = function () {
-            $scope.crops1 = $scope.getCrops($scope.cropQuery);
-            var cropi;
-            if($scope.crops1) {
-            for (cropi in $scope.crops) {
-              if($scope.crops[cropi].name == $scope.cropQuery.name) {
-                gardenService.addGardenCropToGarden($scope.gardenQuery, 
-                                                    $scope.objectType, 
-                                                    $scope.cropQuery,
-                  function(success, response) {
+                  function acallback(success, response) {
                    $scope.user.gardens.forEach(function(garden){
                         if(garden === $scope.gardenQuery) {
                           garden.garden_crops.push({ 
@@ -381,24 +370,25 @@ openFarmApp.directive('addCrop', ['$http',
                           });
                         }
                    });
-                  });
+                  }
+
+          //Typeahead search for crops
+          //cropSearch.getCrops("tomato");
+          $scope.addCropToGarden = function () {
+            $scope.crops1 = $scope.getCrops($scope.cropQuery);
+            var cropi;
+            if($scope.crops1) {
+            for (cropi in $scope.crops) {
+              if($scope.crops[cropi].name == $scope.cropQuery.name) {
+                gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
                 }
                 if($scope.crops[cropi].name == $scope.cropQuery) {
                   $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
-                  gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.finalCrop,
-                    function(success, response) {
-                      $scope.user.gardens.forEach(function(garden){
-                          if(garden === $scope.gardenQuery) {
-                            garden.garden_crops.push({ 
-                            'crop':response.crop, 
-                            'guide': response.guide, 
-                            'sowed':response.sowed, 
-                            'stage':response.stage, 
-                            'quantity':response.quantity 
-                          });
-                          }
-                     }); 
-                    });
+                  gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
                   }
                 }
             }

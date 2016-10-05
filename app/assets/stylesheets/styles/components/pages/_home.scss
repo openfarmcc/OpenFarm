@@ -193,3 +193,37 @@ video { display: block; }
   height: 50px;
   object-fit: cover;
 }
+
+.survey {
+  background-color: #dadfda;
+  padding: 1.25em 0 1.5em;
+  text-align: center;
+}
+
+.survey-heading {
+  margin-bottom: 1em;
+
+  @media #{$medium-up} {
+    display: inline-block;
+    margin-right: 2em;
+    margin-bottom: 0;
+  }
+}
+
+.survey-button {
+  color: #fff;
+  background-color: #4d4c4b;
+  padding: .75em 2.25em;
+  font-size: .875em;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+  }
+}
+
+.survey-button-img {
+  margin-top: -2px;
+}
+

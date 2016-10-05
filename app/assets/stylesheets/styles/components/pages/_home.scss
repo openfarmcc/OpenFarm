@@ -195,7 +195,7 @@ video { display: block; }
 }
 
 .survey {
-  background-color: #dadfda;
+  background-color: $gray-green;
   padding: 1.25em 0 1.5em;
   text-align: center;
 }
@@ -211,15 +211,15 @@ video { display: block; }
 }
 
 .survey-button {
-  color: #fff;
-  background-color: #4d4c4b;
+  color: $white;
+  background-color: $brown;
   padding: .75em 2.25em;
   font-size: .875em;
 
   &:hover,
   &:focus,
   &:active {
-    color: #fff;
+    color: $white;
   }
 }
 

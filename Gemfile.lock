@@ -1,7 +1,17 @@
+GIT
+  remote: git://github.com/jalada/platform-api.git
+  revision: 45ddb3c1a7e2c7f85d979c0791db18e99affb237
+  branch: master
+  specs:
+    platform-api (0.8.0)
+      heroics (~> 0.0.17)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    acme-client (0.4.1)
+      faraday (~> 0.9, >= 0.9.1)
     actionmailer (4.2.7.1)
       actionpack (= 4.2.7.1)
       actionview (= 4.2.7.1)
@@ -141,6 +151,7 @@ GEM
     exception_notification (4.2.1)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
+    excon (0.53.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -168,6 +179,12 @@ GEM
       tilt
     hashdiff (0.3.0)
     hashie (3.4.4)
+    heroics (0.0.17)
+      erubis (~> 2.0)
+      excon
+      moneta
+      multi_json (>= 1.9.2)
+      netrc
     high_voltage (3.0.0)
     hike (1.2.3)
     httparty (0.14.0)
@@ -193,6 +210,9 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letsencrypt-rails-heroku (0.2.7)
+      acme-client (~> 0.4.0)
+      platform-api
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.15)
@@ -209,6 +229,7 @@ GEM
     mimemagic (0.3.0)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    moneta (0.8.0)
     mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -242,6 +263,7 @@ GEM
     mutations (0.8.0)
       activesupport
     nested_form (0.3.2)
+    netrc (0.11.0)
     ng-rails-csrf (0.1.0)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -476,6 +498,7 @@ DEPENDENCIES
   jquery-rails
   jsonapi-serializers (~> 0.2.4)
   launchy
+  letsencrypt-rails-heroku
   letter_opener
   merit
   mongoid (~> 4.0.2)
@@ -487,6 +510,7 @@ DEPENDENCIES
   ng-rails-csrf
   patron
   phantomjs (>= 1.8.1)
+  platform-api!
   poltergeist
   pry
   pry-nav

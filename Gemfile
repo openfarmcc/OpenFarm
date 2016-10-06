@@ -43,6 +43,8 @@ gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
 gem 'active_model_serializers'
 
+
+
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
@@ -100,3 +102,10 @@ gem 'high_voltage'
 gem 'devise', '~> 4.2.0'
 gem 'rails_admin'
 gem 'ng-rails-csrf'
+
+# LETSENCRYPT
+# Until the new API calls are generally available, you must manually specify my fork
+# of the Heroku API gem:
+gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+
+gem 'letsencrypt-rails-heroku', group: 'production'

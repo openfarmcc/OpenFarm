@@ -12,6 +12,7 @@ OpenFarm::Application.configure do
   config.assets.digest = true
   config.assets.version = '1.0'
   config.force_ssl = true
+  config.middleware.insert_before ActionDispatch::SSL, Letsencrypt::Middleware
   config.log_level = :info
   config.action_mailer.smtp_settings = {  address:   'smtp.mandrillapp.com',
                                           port:      587,

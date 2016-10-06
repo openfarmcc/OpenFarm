@@ -13,18 +13,20 @@
           Add a new crop
         <% end %>
       </h1>
+      <p><span class="form-required">* Required</span></p>
     </div>
   </div>
-  <form>
+  <form name="cropForm">
     <div class="row">
       <div class="columns small-4 medium-4">
-        <label class="right" for="crop_name">OpenFarm Crop Name</label>
+        <label class="right" for="crop_name">OpenFarm Crop Name <span class="form-required">*</span></label>
       </div>
       <div class="columns small-8 medium-8">
         <input data-ng-model="crop.name"
                id="crop_name"
                name="crop[name]"
-               type="text"/>
+               type="text"
+               required/>
       </div>
     </div>
 
@@ -124,7 +126,7 @@
             <input data-ng-model="crop.spread"
                    id="crop_spread"
                    name="crop[spread]"
-                  type="text"/>
+                  type="number"/>
           </div>
           <div class="columns small-2">
             <span class="postfix">cm</small>
@@ -224,7 +226,7 @@
             name="commit"
             value="<%= t('crops.edit.save_crop') %>"
             data-disable-with="Saving..."
-            ng-disabled="crop.sending"
+            ng-disabled="crop.sending || cropForm.$invalid""
             ng-click="submitForm()"/>
         </span>
       </div>

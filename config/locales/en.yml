@@ -44,6 +44,8 @@ en:
     did_not_receive_confirmation_instructions_html: "Didn't receive confirmation<br/> instructions?"
     my_profile: "My Profile"
     read_more: "Read More"
+    edit: "Edit"
+    delete: "Delete"
   meta:
     about: "About"
     blog: "Blog"
@@ -146,6 +148,8 @@ en:
         guides:
           no_guides_yet: "This user hasn't created a guide yet."
           you_have_not_created_a_guide: You haven't created a guide yet!
+          edit_title: "Edit this guide"
+          delete_title: "Delete this guide"
         gardens:
           create_your_first_garden: "Create your first garden"
           create_another_garden: "Create new garden"

@@ -380,16 +380,15 @@ openFarmApp.directive('addCrop', ['$http',
             if($scope.crops1) {
             for (cropi in $scope.crops) {
               if($scope.crops[cropi].name == $scope.cropQuery.name) {
-                gardenService.addGardenCropToGarden(
-                  $scope.gardenQuery, $scope.objectType, 
-                  $scope.cropQuery, acallback);
+                gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
                 }
                 if($scope.crops[cropi].name == $scope.cropQuery) {
-                  $scope.finalCrop = 
-                  cropService.utilities.buildParams($scope.crops[cropi]);
-                  gardenService.addGardenCropToGarden(
-                    $scope.gardenQuery, $scope.objectType, 
-                    $scope.cropQuery, acallback);
+                  $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
+                  gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
                   }
                 }
             }

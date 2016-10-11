@@ -101,14 +101,14 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
       // };
       $http.put(url, {'data': data})
         .success(function (response, object) {
-          alertsService.pushToAlerts(['Updated your garden!'], '200')
+          alertsService.pushToAlerts(['Updated your garden!'], '200');
           if (callback) {
             return callback(true, response, object);
           }
         })
         .error(function (response, code){
-          console.log('error saving garden', response)
-          alertsService.pushToAlerts(response.errors, code)
+          console.error('error saving garden', response);
+          alertsService.pushToAlerts(response.errors, code);
           if (callback){
             return callback(false, response, code);
           }
@@ -169,8 +169,10 @@ openFarmModule.factory('gardenService', ['$http','alertsService',
 
     // Because garden crops can be added as a guide or as a crop
     // the `object` is the ambigious choice of either.
-    var addGardenCropToGarden = function(garden, adding, object, callback){
-      console.log("adding");
+    var addGardenCropToGarden = function(garden, 
+                                          adding, 
+                                          object, 
+                                          callback){
       var data = { 'data': {'attributes': {}}};
       data.data.attributes[adding] = object.id;
       var url = garden.relationships.garden_crops.links.related;
@@ -307,7 +309,10 @@ openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
     }
   }]);
 
-openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenService',
+openFarmApp.directive('addCrop', ['$http', 
+                                  '$rootScope', 
+                                  'cropService', 
+                                  'gardenService',
   function addCrop($http, $rootScope, cropService, gardenService) {
     return {
       restrict: 'A',
@@ -353,11 +358,16 @@ openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenS
             })
           };
 
-          function acallback(success, response) {
+                  function acallback(success, response) {
                    $scope.user.gardens.forEach(function(garden){
                         if(garden === $scope.gardenQuery) {
-                          garden.garden_crops.push({ 'crop':response.crop, 'guide': response.guide, 'sowed':response.sowed, 'stage':response.stage, 'quantity':response.quantity });
-                          console.log("Pushed");
+                          garden.garden_crops.push({ 
+                            'crop':response.crop, 
+                            'guide': response.guide, 
+                            'sowed':response.sowed, 
+                            'stage':response.stage, 
+                            'quantity':response.quantity 
+                          });
                         }
                    });
                   }
@@ -366,22 +376,21 @@ openFarmApp.directive('addCrop', ['$http', '$rootScope', 'cropService', 'gardenS
           //cropSearch.getCrops("tomato");
           $scope.addCropToGarden = function () {
             $scope.crops1 = $scope.getCrops($scope.cropQuery);
+            var cropi;
             if($scope.crops1) {
             for (cropi in $scope.crops) {
-              var cropquery = $scope.cropQuery;
               if($scope.crops[cropi].name == $scope.cropQuery.name) {
-                console.log("hey");
-                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.cropQuery, acallback);
-              }
-              if($scope.crops[cropi].name == $scope.cropQuery) {
-                console.log("hey");
-                var croparray = [];
-                $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
-                $scope.adding="crop";
-                console.log("hey");
-                gardenService.addGardenCropToGarden($scope.gardenQuery, $scope.objectType, $scope.finalCrop, acallback);
-              }
-            }
+                gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
+                }
+                if($scope.crops[cropi].name == $scope.cropQuery) {
+                  $scope.finalCrop = cropService.utilities.buildParams($scope.crops[cropi]);
+                  gardenService.addGardenCropToGarden($scope.gardenQuery, 
+                                                    $scope.objectType, 
+                                                    $scope.cropQuery, acallback);
+                  }
+                }
             }
           }
 

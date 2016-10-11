@@ -16,7 +16,7 @@ echo "OKAY - GOING TO INSTALL OUR OWN THINGS NOW"
 
 echo "--- INSTALLING RVM ---"
 
-gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+gpg --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys D39DC0E3
 
 curl -sSL https://get.rvm.io | bash -s stable --quiet-curl --ruby=2.2.5
 

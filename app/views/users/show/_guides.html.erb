@@ -13,6 +13,9 @@
           <td>
             <%= render partial:'/guides/compatibility_circle', locals:{guide: guide} %>
             <%= link_to(guide.name, { :controller => 'guides', :action => 'show', :id => guide.id}, :class => 'action show guide-name') %>
+            <% if guide.draft %>
+               &nbsp<span class="label label-warning">Draft</span>
+            <% end %>
           </td>
           <td>
             <%= link_to(guide.crop.name, { controller: 'crops',

@@ -49,7 +49,7 @@ The above is still being patched, so please reach out to us if something went wr
 
 ### Getting Started (The Hard Way)
 
-You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
+You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) [v1.4.5](https://www.elastic.co/downloads/past-releases/elasticsearch-1-4-5), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
 
 ```bash
 $ git clone https://github.com/openfarmcc/OpenFarm.git

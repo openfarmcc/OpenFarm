@@ -28,6 +28,6 @@ class TimeSpan
   field :length
 
   # This is a way of sanely keeping a check on what functionality
-  # we support at the moment. Weeks is what support for now.
+  # we support at the moment. Weeks is what is supported for now.
   validates :length_units, inclusion: { in: ['weeks'] }
 end

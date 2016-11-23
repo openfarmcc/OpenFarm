@@ -54,10 +54,12 @@ video { display: block; }
     margin-top: -150px;
   }
 
-  .logo {
-    display: block;
-    margin: 0 auto 10px auto;
-    max-width: 70%;
+  h1 {
+    color: $white;
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);  
   }
 
   h2 {

@@ -46,9 +46,14 @@
       <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
               <li class="name">
-                <% unless current_page?(root_path) or current_page?("/") %>
+                <% if current_page?(root_path) or current_page?("/") %>
                   <h1>
-                    <%= link_to(image_tag('openfarm_logo_w110.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
+                    <!-- The logo on the home page is not clickable. The logo on the other pages links to the home page. -->
+                    <img class="logo" src="<%= image_path 'openfarm_logo_small.png' %>" width="110px">                    
+                  </h1>
+                <% else %>
+                  <h1>
+                    <%= link_to(image_tag('openfarm_logo_small.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
                   </h1>
                 <% end %>
               </li>

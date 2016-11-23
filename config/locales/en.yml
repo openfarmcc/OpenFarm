@@ -406,6 +406,7 @@ en:
       edit:
           successful_creation: "You’ve successfully created a stage."
   home:
+      call_to_action: "Farm and garden through knowledge sharing"  
       placeholder: "What do you want to grow?"
       search: "Search"
       hero_header: "Learn to farm or garden with community created guides"

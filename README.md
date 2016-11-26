@@ -6,28 +6,63 @@
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
 [![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
-OpenFarm
+Open Source community of contributors: how it works
 ========
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia or Freebase for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc.
+### Shortcuts
+Already contributing to OpenFarm? You're welcome to [introduce yourself]((https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform))!
+Want to dig head first into our todo list of Github tasks? [Make yourself at home](https://github.com/openfarmcc/OpenFarm/projects)!
 
-Other use cases: a mobile app for home gardeners, Google providing &ldquo;One Box&rdquo; answers to search queries such as &ldquo;How do I grow tomatoes?&rdquo;, smart garden sensors, automated farming machines.
 
-### Core Contributor Group
+### About
 
-If you have any quick questions, ask them on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). If the room looks empty it's because our core team uses Slack, we have a bot piping messages back and forth - read on if you want to join that!
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo; 
 
-Sign up to [our Slack room](http://slack.openfarm.cc/)! We strongly recommend joining this group if you want to get involved and meet the other contributors.
+### Start by joining the discussion of existing Contributors
 
-### Community Discussion Group
+To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)!. This is where you'll find the latest conversation about Openfarm and the core. 
 
-To discuss features, feature requests, and ideas, and to interface with our users at large (and contributors not on GitHub), please check out our public [discussion forum](https://www.loomio.org/g/yWm14fG6/openfarm-community-development-group).
+As an alternative, you can ask quick questions on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). The room might look empty but we have a bot piping messages back and forth with Slack.
+
+Check also the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
+
+Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) to be built first.
+
+### Look for something you want to work on
+
+For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end] (https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects) 
+
+Need to use OpenFarm Assets? [Here they are](https://drive.google.com/open?id=0B-wExYzQcnp3cGphOGZQS1lBRFk)!
+
+We have few more languages missing for the website content to be translated: help us [translate the website](https://www.transifex.com/projects/p/openfarm/)!
+
+### Who can contribute
+
+Everyone is welcome to bring value to the Open Source community of OpenFarm. Time is our most valuable assets here, so any minute of your time counts to make things happen! "Better done, than perfect!"
+We strive for diversity in our community and want to ensure we provide a safe and inclusive space for everyone by adopting a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
+
+Our community is composed of tech and non-tech folks, newbie as well as experts in gardening, overall great people willing to take actions for a better future and sharing knowledge and growing our own food.
+
+### Our problem-solving process
+
+On the way we work together, we aim at:
+- having transparency in reasoning behind actions: taking time for documentation, questions and answers
+- prefering done, than perfect: breaking down tasks so that anyone can contribute few min of their time on a regular basis
+- taking shortcuts: what's the most obvious for a better usability? what's the shortest way to build a feature? What's the most valuable inputs for a feedback?
+
+### User Flow
+
+Update in progress
+
+### Mockups
+
+Update in progress
 
 ## Development
 
 ### Getting Started (The Easy Way)
 
-You should use Vagrant to get the OpenFarm system running on your computer. It will avoid having to install the things listed in The Hard Way below. Read more [on our blog](http://blog.openfarm.cc/2016/01/18/a-new-year-a-new-dev-update/#vagrant).
+You should use Vagrant to get the OpenFarm system running on your computer. It will avoid having to install the things listed in The Hard Way below.
 
 1. Install [Vagrant](https://www.vagrantup.com/docs/installation/).
 2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
@@ -36,7 +71,7 @@ You should use Vagrant to get the OpenFarm system running on your computer. It w
 5. `$ cd OpenFarm` - change to the OpenFarm directory
 6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. Go make yourself a pot of coffee, or brew some tea. If something goes wrong at this point, reach out to Simon directly at [slack.openfarm.cc](http://slack.openfarm.cc/).
 
-#### Accessing Vagrant.
+#### Accessing Vagrant
 
 Once Vagrant is set up on your system, you might want to actually access it. For example, if you want to start up the server (though vagrant up should run `rails s` for you):
 
@@ -64,37 +99,9 @@ Then, visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to 
 
 Remember that `/vagrant` folder in the Vagrant VM is largely for convenience, and working in it can cause unexpected behavior with other tools - you should do your work in your own non-vagrant environment. Use the environment you're most familiar with to program, and Vagrant will do the rest.
 
-**If you had any problems** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/openfarmcc/OpenFarm/wiki/Common-Issues).
+**If you had any problem** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/openfarmcc/OpenFarm/wiki/Common-Issues).
 
-#### How to Contribute
-
-Help us [translate the website](https://www.transifex.com/projects/p/openfarm/).
-
-For code, have a look at our [contribution guidelines](https://github.com/openfarmcc/OpenFarm/blob/master/CONTRIBUTING.md).
-
-Want to see the big picture? We have a [project roadmap](https://docs.google.com/spreadsheets/d/13_VQDOm8HpM49Ql3HyNfL9ut5JlqbLEDA9yEk5OqgqU/edit?usp=sharing) for that!
-
-### FAQ
-
-Have a look at the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
-
-### User Flow
-
-![User Flow Diagram] (http://i.imgur.com/YowIq1N.jpg)
-
-![Information Architecture Diagram] (http://i.imgur.com/qZzF4OZ.jpg)
-
-### Mockups
-
-To view the most recent mockups, click [here](https://drive.google.com/open?id=0B-wExYzQcnp3cVZvZ3JXb3FDZTg&authuser=0).
-
-### Contributors
-
-We encourage everyone to contribute! From newbies, to pros, to people who don&#8217;t write software, to those with just a few ideas to share &mdash; we greatly appreciate everyone&#8217;s input and are happy to help you help us. We strive for diversity on our team and are dedicated to making a safe space and community for everyone. To help us ensure this, We have created and adopted a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
-
-Here are our [current contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors) here on GitHub. But that's just people who contribute code. There's a whole host of people who contributed financially, and people contribute guides on the actual website too!
-
-#### Core Contributors
+#### Become a Core Contributors
 
 If you've made two PRs, we'll add you as a core contributor.
 
@@ -110,7 +117,15 @@ For core-code contributors: here are a few basic ground-rules:
 
 [Further reading](https://medium.com/the-javascript-collection/healthy-open-source-967fa8be7951#.alkpecsnd)
 
-### Backers
+### Actual Code Contributors
+
+Here are some of the [Github contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors). 
+
+Outside of Github, there's a whole host of people who also contributed financially, by building gardening content on the website, on providing more visibility for OpenFarm in any ways!
+
+You've been contributing to OpenFarm already? We invite you to introduce yourself in this 2-min [Welcoming Form]!(https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)
+
+### Donate to OpenFarm as a Backer
 
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/openfarm#backer)]
 
@@ -146,7 +161,7 @@ Support us with a monthly donation and help us continue our activities. [[Become
 <a href="https://opencollective.com/openfarm/backer/29/website" target="_blank"><img src="https://opencollective.com/openfarm/backer/29/avatar.svg"></a>
 
 
-### Sponsors
+### Support OpenFarm as a Sponsor
 
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/openfarm#sponsor)]
 

@@ -15,17 +15,17 @@
   <head>
     <meta charset="utf-8" />
 
-	<%= render 'meta/global' %>
-	<%= render 'meta/page' %>
-	<%= render 'meta/social_network' %>
+  <%= render 'meta/global' %>
+  <%= render 'meta/page' %>
+  <%= render 'meta/social_network' %>
 
     <!-- Uncomment to make IE8 render like IE7 -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
 
-  	<title>
+    <title>
         <%= t('application.site_title') %>
         <%= content_for?(:title) ? yield(:title) : ' - ' + t('application.site_byline') %>
     </title>
@@ -46,16 +46,9 @@
       <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
               <li class="name">
-                <% if current_page?(root_path) or current_page?("/") %>
                   <h1>
-                    <!-- The logo on the home page is not clickable. The logo on the other pages links to the home page. -->
-                    <img class="logo" src="<%= image_path 'openfarm_logo_small.png' %>" width="110px">                    
+                    <%= link_to(image_tag('openfarm_logo_small.png', :width => '210px', :alt => 'Open Farm', :class => 'logo'), root_path) %>
                   </h1>
-                <% else %>
-                  <h1>
-                    <%= link_to(image_tag('openfarm_logo_small.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
-                  </h1>
-                <% end %>
               </li>
               <li class="toggle-topbar">
                   <a href="#"><span>Menu</span></a>

@@ -200,7 +200,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Farmbot Project, et. al. [(http://go.farmbot.it/)](http://go.farmbot.it/).
+Copyright (c) 2014 Farmbot Project, et. al. [(http://farmbot.io/)](http://farmbot.io/).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -210,4 +210,4 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 ### Data License
 
-All data within the OpenFarm.cc database is in the [Public Domain (CC0)](creativecommons.org/publicdomain/zero/1.0/).
+All data within the OpenFarm.cc database is in the [Public Domain (CC0)](http://creativecommons.org/publicdomain/zero/1.0/).

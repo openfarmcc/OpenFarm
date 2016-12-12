@@ -19,3 +19,7 @@ textarea {
 input.ng-invalid {
   border: 1px solid $alert-color;
 }
+
+input#search_crop_name.ng-invalid {
+  border: none;
+}

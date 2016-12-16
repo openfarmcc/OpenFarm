@@ -5,7 +5,10 @@
   box-shadow: 0 0 4px rgba(0, 0, 0, .5);
 
   .logo {
-    margin: 20px 10px 10px 30px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
   }
 
   input[type='submit']{
@@ -61,41 +64,41 @@
     background-color: transparent !important;
     box-shadow: none;
 
-    .name a {
-    background: transparent !important;
-      
-      &:hover {
-          background-color: transparent !important;
-      }   
-    }
-
     li {
       background: transparent !important;
 
       &.divider {
         display: none;
       }
-
-      a {
-        background: rgba(0, 0, 0, .6) !important;
-        font-size: 0.8em;
-        color: white;
-        font-weight: 800;
-
-        // Special case
-        &#logout {
-          padding-right: 15px;
-        }
-
-        &:hover {
-          background-color: rgba(0, 0, 0, .8) !important;
-        }
-      }
-
-      // &.toggle-topbar.menu-icon a {
-      //  padding: 0 15px;
-      // }
     }
 
+    .grey-to-black-link {
+      background: rgba(0, 0, 0, .6) !important;
+      font-size: 0.8em;
+      color: white;
+      font-weight: 800;
+
+      // Special case
+      &#logout {
+        padding-right: 15px;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .8) !important;
+      }
+    }
+
+    // &.toggle-topbar.menu-icon a {
+    //  padding: 0 15px;
+    // }
+  }
+
+}
+
+#logo-link {
+  background: transparent;
+
+  &:hover {
+    background-color: transparent;
   }
 }

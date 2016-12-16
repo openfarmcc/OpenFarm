@@ -45,7 +45,7 @@
     <div class="<%= if (current_page?(root_path) or current_page?("/")) then 'home-nav' else 'fixed' end %>">
       <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
-              <li id="logo-link">
+              <li class="logo-link">
                 <%= link_to(image_tag('openfarm_logo_small.png', :width => '210px', :alt => 'Open Farm', :class => 'logo'), root_path) %>
               </li>
               <li class="toggle-topbar">
@@ -59,7 +59,7 @@
               <ul class="right">
                   <% if current_user %>
                     <li class="has-dropdown show-for-medium-up">
-                        <a href="#" class="grey-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
+                        <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                           <li>
                             <%= render 'shared/header_links.html.erb' %>
@@ -71,11 +71,11 @@
                     </li>
                   <% else %>
                       <li class="has-form">
-                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button grey-to-black-link', id: 'register') %>
+                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button gray-to-black-link', id: 'register') %>
                       </li>
                       <li class="divider"></li>
                       <li class="has-form">
-                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button grey-to-black-link', id: 'login') %>
+                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button gray-to-black-link', id: 'login') %>
                       </li>
                   <% end %>
               </ul>

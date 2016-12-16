@@ -72,10 +72,10 @@
       }
     }
 
-    .grey-to-black-link {
-      background: rgba(0, 0, 0, .6) !important;
-      font-size: 0.8em;
-      color: white;
+    .gray-to-black-link {
+      background: $translucent-gray !important;
+      font-size: .8em;
+      color: $white;
       font-weight: 800;
 
       // Special case
@@ -84,7 +84,7 @@
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, .8) !important;
+        background-color: $translucent-black !important;
       }
     }
 
@@ -95,7 +95,7 @@
 
 }
 
-#logo-link {
+.logo-link {
   background: transparent;
 
   &:hover {

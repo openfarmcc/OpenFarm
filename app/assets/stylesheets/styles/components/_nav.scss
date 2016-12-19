@@ -1,11 +1,15 @@
 .top-bar {
 
-  .logo {
-    margin: 10px;
-  }
-
+  height: 71px;
   z-index: 9999;
   box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+
+  .logo {
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+  }
 
   input[type='submit']{
     padding: 0;
@@ -19,6 +23,7 @@
   .header-search{
     max-width: 400px;
     width: 47%;
+    margin-top: 17.5px;
   }
 
   @media #{$small-only}{
@@ -42,6 +47,11 @@
     }
   }
 
+  // nudge the right menu down and over
+  ul.right {
+    margin-top: 13px;
+  }
+
   // Special home nav style
   // Confused by the backwards ampersand?
   // http://thesassway.com/intermediate/referencing-parent-selectors-using-ampersand
@@ -60,31 +70,35 @@
       &.divider {
         display: none;
       }
+    }
 
-      a {
-        background: rgba(0, 0, 0, .6) !important;
-        font-size: 0.8em;
-        color: white;
-        font-weight: 800;
+    .gray-to-black-link {
+      background: $translucent-gray !important;
+      font-size: .8em;
+      color: $white;
+      font-weight: 800;
 
-        // Special case
-        &#logout {
-          padding-right: 15px;
-        }
-
-        &:hover {
-          background-color: rgba(0, 0, 0, .8) !important;
-        }
+      // Special case
+      &#logout {
+        padding-right: 15px;
       }
 
-      // &.toggle-topbar.menu-icon a {
-      //  padding: 0 15px;
-      // }
+      &:hover {
+        background-color: $translucent-black !important;
+      }
     }
 
-    // nudge the right menu down and over
-    ul.right {
-      margin-top: 10px;
-    }
+    // &.toggle-topbar.menu-icon a {
+    //  padding: 0 15px;
+    // }
+  }
+
+}
+
+.logo-link {
+  background: transparent;
+
+  &:hover {
+    background-color: transparent;
   }
 }

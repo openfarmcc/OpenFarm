@@ -15,17 +15,17 @@
   <head>
     <meta charset="utf-8" />
 
-	<%= render 'meta/global' %>
-	<%= render 'meta/page' %>
-	<%= render 'meta/social_network' %>
+  <%= render 'meta/global' %>
+  <%= render 'meta/page' %>
+  <%= render 'meta/social_network' %>
 
     <!-- Uncomment to make IE8 render like IE7 -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.82, minimum-scale=0.10, maximum-scale=10.0, user-scalable=yes" />
 
-  	<title>
+    <title>
         <%= t('application.site_title') %>
         <%= content_for?(:title) ? yield(:title) : ' - ' + t('application.site_byline') %>
     </title>
@@ -45,17 +45,8 @@
     <div class="<%= if (current_page?(root_path) or current_page?("/")) then 'home-nav' else 'fixed' end %>">
       <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
-              <li class="name">
-                <% if current_page?(root_path) or current_page?("/") %>
-                  <h1>
-                    <!-- The logo on the home page is not clickable. The logo on the other pages links to the home page. -->
-                    <img class="logo" src="<%= image_path 'openfarm_logo_small.png' %>" width="110px">                    
-                  </h1>
-                <% else %>
-                  <h1>
-                    <%= link_to(image_tag('openfarm_logo_small.png', :width => '110px', :alt => 'Open Farm'), root_path) %>
-                  </h1>
-                <% end %>
+              <li class="logo-link">
+                <%= link_to(image_tag('openfarm_logo_small.png', :width => '210px', :alt => 'Open Farm', :class => 'logo'), root_path) %>
               </li>
               <li class="toggle-topbar">
                   <a href="#"><span>Menu</span></a>
@@ -68,7 +59,7 @@
               <ul class="right">
                   <% if current_user %>
                     <li class="has-dropdown show-for-medium-up">
-                        <a href="#"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
+                        <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
                         <ul class="dropdown">
                           <li>
                             <%= render 'shared/header_links.html.erb' %>
@@ -80,11 +71,11 @@
                     </li>
                   <% else %>
                       <li class="has-form">
-                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button', id: 'register') %>
+                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button gray-to-black-link', id: 'register') %>
                       </li>
                       <li class="divider"></li>
                       <li class="has-form">
-                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button', id: 'login') %>
+                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button gray-to-black-link', id: 'login') %>
                       </li>
                   <% end %>
               </ul>

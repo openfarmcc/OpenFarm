@@ -18,5 +18,45 @@
       ng-class="{'fa-spin':updatingFavoritedGuides}"></i>
     <%= t('.favorite') %>
   </a>
-
+  <button href="#"
+          dropdown-toggle="#share"
+          aria-controls="share"
+          aria-expanded="false"
+          class="button tiny secondary dropdown">Share
+  </button>
+  <br>
+  <ul id="share"
+      class="f-dropdown"
+      aria-hidden="true"
+      tabindex="-1">
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="facebook"
+         socialshare-title="OpenFarm Guide: <%= @guide.name %>"
+         socialshare-hashtags="openfarm"
+         socialshare-url="<%= guide_url(@guide) %>">
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="twitter"
+         socialshare-text="OpenFarm Guide: <%= @guide.name %>"
+         socialshare-hashtags="openfarm"
+         socialshare-url="<%= guide_url(@guide) %>">
+        Twitter
+      </a>
+    </li>
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="email"
+         socialshare-subject="OpenFarm Guide: <%= @guide.name %>"
+         socialshare-body="<%= guide_url(@guide) %>">
+        Email
+      </a>
+    </li>
+  </ul>
 </div>

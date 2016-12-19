@@ -15,9 +15,11 @@ input[type="color"],
 textarea {
   border-radius: $global-radius;
 }
-input-invalid-notify{
-	border: none;
+
+input-invalid-notify {
+  border: none;
 }
+
 .input-invalid-notify.ng-invalid {
   border: 1px solid $alert-color;
 }

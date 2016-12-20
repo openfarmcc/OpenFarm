@@ -19,3 +19,7 @@ textarea {
 input.ng-invalid {
   border: 1px solid $alert-color;
 }
+
+input.invalid-notify.ng-invalid {
+  border: none;
+}

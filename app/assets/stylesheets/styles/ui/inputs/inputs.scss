@@ -20,6 +20,6 @@ input.ng-invalid {
   border: 1px solid $alert-color;
 }
 
-input.invalid-notify.ng-invalid {
+input.invalid-ignore.ng-invalid {
   border: none;
 }

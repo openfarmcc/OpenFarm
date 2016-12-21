@@ -33,8 +33,8 @@
       <a href="#"
          socialshare
          socialshare-provider="facebook"
-         socialshare-title="OpenFarm Guide: <%= @guide.name %>"
-         socialshare-hashtags="openfarm"
+         socialshare-title="<%= @guide.name %>"
+         socialshare-media="<%= (@guide.featured_image && @guide.featured_image.image_url) || @guide.crop.main_image_path({:medium => true}) %>"
          socialshare-url="<%= guide_url(@guide) %>">
         Facebook
       </a>
@@ -43,8 +43,9 @@
       <a href="#"
          socialshare
          socialshare-provider="twitter"
-         socialshare-text="OpenFarm Guide: <%= @guide.name %>"
-         socialshare-hashtags="openfarm"
+         socialshare-text="<%= @guide.name %>"
+         socialshare-via="OpenFarmCC"
+         socialshare-hashtags="farming,opensource"
          socialshare-url="<%= guide_url(@guide) %>">
         Twitter
       </a>
@@ -53,8 +54,8 @@
       <a href="#"
          socialshare
          socialshare-provider="email"
-         socialshare-subject="OpenFarm Guide: <%= @guide.name %>"
-         socialshare-body="<%= guide_url(@guide) %>">
+         socialshare-subject="<%= @guide.name %>"
+         socialshare-body="We thought you'd like these instructions on how to grow <%= @guide.crop.name %>: <%= guide_url(@guide) %>">
         Email
       </a>
     </li>

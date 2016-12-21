@@ -38,6 +38,7 @@
 //= require ./angular-libs/guides/directives/guides.formChecker.directive.js
 
 //= require ./angular-libs/ngs3upload
+//= require url-helpers.js
 //= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation
@@ -84,18 +85,3 @@ if (!isDNT) {
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
 }
-
-// TODO: move these somewhere actually meaningful.
-
-var getUrlVar = function(key) {
-  var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
-  return result && unescape(result[1]) || "";
-};
-
-var getIDFromURL = function(key) {
-  var result = new RegExp(key + "/([0-9a-zA-Z\-]*)", "i").exec(window.location.pathname);
-  if (result === 'new') {
-    return '';
-  }
-  return result && unescape(result[1]) || '';
-};

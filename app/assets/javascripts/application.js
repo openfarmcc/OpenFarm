@@ -9,8 +9,8 @@
 //= require angular-local-storage
 //= require ng-rails-csrf
 //= require ng-tags-input
-//= require ./libs/showdown
-//= require ./libs/moment.min
+//= require showdown
+//= require moment
 //= require ./angular-libs/angular.openfarm
 //= require ./angular-libs/angular.of.directives
 //= require ./angular-libs/angular.of.directives.lightbox-modal

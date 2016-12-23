@@ -39,7 +39,8 @@ describe CropsController, :type => :controller do
     crop.update(source: 'guide')
     post 'create', crop: crop
     expect(response.status).to eq(302)
-    expect(response).to redirect_to new_guide_path(:en, crop_id: assigns(:crop).id)
+    expect(response).to redirect_to new_guide_path(:en,
+                                                   crop_id: assigns(:crop).id)
   end
 
   it 'Should redirect back to form after unsuccessful crop creation' do

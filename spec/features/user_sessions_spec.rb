@@ -42,7 +42,7 @@ describe 'User sessions' do
   end
 
   it 'should redirect the user to the page they were viewing after sign up' do
-    visit '/en/guides/new/'
+    visit new_guide_path
     see ('You need to sign in or sign up before continuing.')
     page.first(:link, 'Become a Member').click
     fill_in :user_display_name, with: 'Rick'

@@ -29,9 +29,7 @@ describe CropsController, :type => :controller do
     sign_in user
     post 'create', crop: crop
     expect(response.status).to eq(302)
-    expect(response).to redirect_to(controller: 'crops',
-                                    action: 'show',
-                                    id: assigns(:crop).id)
+    expect(response).to redirect_to crop_path(:en, id: assigns(:crop).id)
   end
 
   it 'should redirect to create guide page when source is guide page' do
@@ -41,8 +39,7 @@ describe CropsController, :type => :controller do
     crop.update(source: 'guide')
     post 'create', crop: crop
     expect(response.status).to eq(302)
-    expect(response).to redirect_to(
-      "/en/guides/new?crop_id=#{assigns(:crop).id}")
+    expect(response).to redirect_to new_guide_path(:en, crop_id: assigns(:crop).id)
   end
 
   it 'Should redirect back to form after unsuccessful crop creation' do

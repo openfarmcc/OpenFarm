@@ -22,7 +22,7 @@ describe GuidesController do
     user = guide.user
     sign_in user
     get 'edit', id: guide.id
-    expect(response).to redirect_to "/en/guides/#{guide.slug}"
+    expect(response).to redirect_to guide_path(:en, guide)
     expect(response.status).to eq(302)
   end
 
@@ -31,8 +31,7 @@ describe GuidesController do
     user = FactoryGirl.create(:user)
     sign_in user
     get 'edit', id: guide.id
-    # TODO This is wrong. Should be `redirect_to guides_path(guide)`.
-    expect(response).to redirect_to "/en/guides/#{guide.slug}"
+    expect(response).to redirect_to guide_path(:en, guide)
     expect(response.status).to eq(302)
   end
 
@@ -40,16 +39,13 @@ describe GuidesController do
     user = FactoryGirl.create(:user)
     sign_in user
     get 'index'
-    expect(response).to redirect_to ({ controller: 'users',
-                                       action: 'show',
-                                       id: user.id,
-                                       locale: 'en' })
+    expect(response).to redirect_to user_path(:en, user)
     expect(response.status).to eq(302)
   end
 
   it 'should access root page when accessing index not logged in' do
     get 'index'
-    expect(response).to redirect_to "/en"
+    expect(response).to redirect_to root_path(:en)
     expect(response.status).to eq(302)
   end
 

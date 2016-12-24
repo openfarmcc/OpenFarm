@@ -23,7 +23,7 @@ describe UsersController do
     private_user = FactoryGirl.create(:user, is_private: true)
     sign_in user
     get :show, id: private_user.id
-    expect(response).to redirect_to root_path(locale: 'en')
+    expect(response).to redirect_to root_path(:en)
   end
 
   it 'should show the user the edit page' do
@@ -52,16 +52,14 @@ describe UsersController do
   it 'should not update with incomplete information' do
     sign_in user
     put :update, location: '', units: 'metric'
-    expect(response).to redirect_to({controller: 'users', action: 'finish'})
+    expect(response).to redirect_to controller: 'users', action: 'finish'
     expect(flash[:alert]).to include("Location can't be blank")
   end
 
   it 'should update with complete information' do
     sign_in user
     put :update, location: 'Hanoi', units: 'metric'
-    expect(response).to redirect_to({ controller: 'users',
-                                      action: 'show',
-                                      id: user.id })
+    expect(response).to redirect_to user_path(:en, user)
     expect(user.reload.user_setting.location).to eq('Hanoi')
   end
 
@@ -69,8 +67,6 @@ describe UsersController do
     sign_in user
     get :gardens
     expect(response.status).to eq(302)
-    expect(response).to redirect_to({ controller: 'users',
-                                      action: 'show',
-                                      id: user.id})
+    expect(response).to redirect_to user_path(:en, user)
   end
 end

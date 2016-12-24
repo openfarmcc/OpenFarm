@@ -39,6 +39,7 @@
 
 //= require ./angular-libs/ngs3upload
 //= require url-helpers.js
+//= require ./angular-libs/angular-socialshare
 //= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation

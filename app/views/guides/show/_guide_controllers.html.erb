@@ -18,5 +18,46 @@
       ng-class="{'fa-spin':updatingFavoritedGuides}"></i>
     <%= t('.favorite') %>
   </a>
-
+  <button href="#"
+          dropdown-toggle="#share"
+          aria-controls="share"
+          aria-expanded="false"
+          class="button tiny secondary dropdown">Share
+  </button>
+  <br>
+  <ul id="share"
+      class="f-dropdown"
+      aria-hidden="true"
+      tabindex="-1">
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="facebook"
+         socialshare-title="<%= @guide.name %>"
+         socialshare-media="<%= (@guide.featured_image && @guide.featured_image.image_url) || @guide.crop.main_image_path({:medium => true}) %>"
+         socialshare-url="<%= guide_url(@guide) %>">
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="twitter"
+         socialshare-text="<%= @guide.name %>"
+         socialshare-via="OpenFarmCC"
+         socialshare-hashtags="farming,opensource"
+         socialshare-url="<%= guide_url(@guide) %>">
+        Twitter
+      </a>
+    </li>
+    <li>
+      <a href="#"
+         socialshare
+         socialshare-provider="email"
+         socialshare-subject="<%= @guide.name %>"
+         socialshare-body="We thought you'd like these instructions on how to grow <%= @guide.crop.name %>: <%= guide_url(@guide) %>">
+        Email
+      </a>
+    </li>
+  </ul>
 </div>

@@ -38,6 +38,7 @@
 //= require ./angular-libs/guides/directives/guides.formChecker.directive.js
 
 //= require ./angular-libs/ngs3upload
+//= require ./angular-libs/angular-socialshare
 //= require foundation
 //= require foundation/custom.modernizr
 //= require foundation/foundation

@@ -57,7 +57,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-local-storage', '~> 0.2.3'
   gem 'rails-assets-angular-typeahead', '~> 0.3.1'
   gem 'rails-assets-ng-tags-input', '~>2.3.0'
-  gem 'rails-assets-moment', '~>2.17.1'
+  gem 'rails-assets-moment', '~>2.8.3'
   gem 'rails-assets-showdown', '~>0.5.4'
 end
 

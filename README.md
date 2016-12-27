@@ -92,6 +92,7 @@ $ cd OpenFarm
 $ bundle install
 $ rake db:setup
 $ echo "ENV['SECRET_KEY_BASE'] = '$(rake secret)'" >> config/app_environment_variables.rb
+$ echo "ENV['GOOGLE_MAPS_API_KEY'] = ''" >> config/app_environment_variables.rb # or get an actual API key at https://console.developers.google.com/flows/enableapi?apiid=maps_backend&keyType=CLIENT_SIDE&reusekey=true&pli=1
 $ rails s
 ```
 

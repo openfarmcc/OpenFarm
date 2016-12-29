@@ -72,9 +72,11 @@ OpenFarm::Application.routes.draw do
                   # action: 'stage_actions'
       end
 
-      # TODO Figure out why I can't use a singular resource route here.
-      post 'token', to: 'tokens#create'
-      delete 'token', to: 'tokens#destroy'
+      resources :tokens, path: 'token', only: [:create] do
+        collection do
+          delete :destroy
+        end
+      end
     end
   end
 

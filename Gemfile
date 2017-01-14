@@ -28,6 +28,7 @@ gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
+gem 'elasticsearch', '~> 2' # The project doesn't use semver, so this should only be upgraded on the jump to elasticsearch 5
 gem 'searchkick'
 gem 'pundit'
 gem 'eventmachine'

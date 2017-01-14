@@ -488,6 +488,7 @@ DEPENDENCIES
   delayed_job_mongoid
   delayed_job_shallow_mongoid
   devise (~> 4.2.0)
+  elasticsearch (~> 2)
   eventmachine
   exception_notification
   factory_girl_rails
@@ -550,4 +551,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.6
+   1.13.7

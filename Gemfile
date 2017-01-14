@@ -29,7 +29,7 @@ gem 'delayed_job_shallow_mongoid'
 gem 'activejob_backport'
 gem 'patron' # For searchKick
 gem 'elasticsearch', '~> 2' # The project doesn't use semver, so this should only be upgraded on the jump to elasticsearch 5
-gem 'searchkick'
+gem 'searchkick', '~> 1.5.1' # Have to evaluate the breaking changes in https://github.com/ankane/searchkick/blob/master/CHANGELOG.md
 gem 'pundit'
 gem 'eventmachine'
 gem 'merit'

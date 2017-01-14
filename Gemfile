@@ -104,6 +104,7 @@ end
 gem 'high_voltage'
 gem 'devise', '~> 4.2.0'
 gem 'rails_admin'
+gem 'kaminari-mongoid'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT

@@ -1,6 +1,7 @@
 class UserSetting
   include Mongoid::Document
   include Mongoid::Paperclip
+  include Mongoid::Timestamps
 
   belongs_to :user
 

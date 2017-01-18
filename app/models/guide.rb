@@ -2,6 +2,8 @@ class Guide
   include Mongoid::Document
   include Mongoid::Paperclip
   include Mongoid::Slug
+  include Mongoid::Timestamps
+
   attr_accessor :current_user_compatibility_score
 
   searchkick callbacks: :async, merge_mappings: true, mappings: {

@@ -1,5 +1,6 @@
 class Token
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   before_validation :generate_access_token
 

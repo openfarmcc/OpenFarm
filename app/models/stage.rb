@@ -1,5 +1,7 @@
 class Stage
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   embeds_one :time_span, cascade_callbacks: true, as: :timed
   accepts_nested_attributes_for :time_span
 

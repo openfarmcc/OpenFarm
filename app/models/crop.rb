@@ -5,6 +5,7 @@ class Crop
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Taggable
+
   searchkick
 
   is_impressionable counter_cache: true,

@@ -1,5 +1,6 @@
 class TimeSpan
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   # This is a hell of a class.
 

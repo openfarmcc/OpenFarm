@@ -1,5 +1,7 @@
 class StageAction
   include Mongoid::Document
+  include Mongoid::Timestamps
+
   embedded_in :stage
 
   field :name

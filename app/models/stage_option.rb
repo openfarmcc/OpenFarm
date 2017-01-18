@@ -1,6 +1,7 @@
 class StageOption
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Timestamps
 
   field :default_value
   field :description

@@ -1,5 +1,6 @@
 class Garden
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   belongs_to :user
   validates_presence_of :user

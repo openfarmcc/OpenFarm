@@ -1,6 +1,8 @@
 class GardenCrop
   include Mongoid::Document
   include Mongoid::History::Trackable
+  include Mongoid::Timestamps
+
   embedded_in :garden
   embeds_one :guide, class_name: 'Guide', inverse_of: nil
   embeds_one :crop, class_name: 'Crop', inverse_of: nil

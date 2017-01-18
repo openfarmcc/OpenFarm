@@ -10,27 +10,28 @@ Open Source community of contributors: how it works
 ========
 
 ### Shortcuts
-Already contributing to OpenFarm? You're welcome to [introduce yourself]((https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform))!
+Already contributing to OpenFarm? You're welcome to [introduce yourself](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!
+
 Want to dig head first into our todo list of Github tasks? [Make yourself at home](https://github.com/openfarmcc/OpenFarm/projects)!
 
 
 ### About
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site. The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo; 
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site. 
+
+The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo; 
 
 ### Start by joining the discussion of existing Contributors
 
-To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)!. This is where you'll find the latest conversation about Openfarm and the core. 
-
-As an alternative, you can ask quick questions on [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc). The room might look empty but we have a bot piping messages back and forth with Slack.
+To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)! This is where you'll find the latest conversation about Openfarm and the most active contributors. 
 
 Check also the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
-Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) to be built first.
+Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) that need work on in the priority list.
 
 ### Look for something you want to work on
 
-For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end] (https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects) 
+For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end] (https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects).
 
 Need to use OpenFarm Assets? [Here they are](https://drive.google.com/open?id=0B-wExYzQcnp3cGphOGZQS1lBRFk)!
 
@@ -124,7 +125,7 @@ Here are some of the [Github contributors](https://github.com/openfarmcc/OpenFar
 
 Outside of Github, there's a whole host of people who also contributed financially, by building gardening content on the website, on providing more visibility for OpenFarm in any ways!
 
-You've been contributing to OpenFarm already? We invite you to introduce yourself in this 2-min [Welcoming Form]!(https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)
+You've been contributing to OpenFarm already? We invite you to introduce yourself in this 2-min [Welcoming Form](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!
 
 ### Donate to OpenFarm as a Backer
 

@@ -25,8 +25,6 @@ The main content are Growing Guides: creative, crowd-sourced, single-author, str
 
 To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)! This is where you'll find the latest conversation about Openfarm and the most active contributors. 
 
-As a not-as-good-as Slack alternative, you can go to [IRC on Freenode #openfarmcc](https://webchat.freenode.net/?channels=openfarmcc) ; The room must look empty but we have a bot piping messages back and forth with Slack.
-
 Check also the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
 Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) that need work on in the priority list.

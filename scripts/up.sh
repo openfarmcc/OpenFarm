@@ -4,7 +4,7 @@
 echo "--- STARTING UP SERVER ---"
 
 sudo service elasticsearch start
-#PATH=~/home/vagrant/.rvm/gems/ruby-2.2.5@openfarm/bin/:$PATH
+#PATH=~/home/vagrant/.rvm/gems/ruby-2.3.3@openfarm/bin/:$PATH
 source /home/vagrant/.rvm/scripts/rvm
 
 rvm reload

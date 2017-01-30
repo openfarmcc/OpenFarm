@@ -138,12 +138,12 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     easy_diff (1.0.0)
-    elasticsearch (2.0.0)
-      elasticsearch-api (= 2.0.0)
-      elasticsearch-transport (= 2.0.0)
-    elasticsearch-api (2.0.0)
+    elasticsearch (2.0.1)
+      elasticsearch-api (= 2.0.1)
+      elasticsearch-transport (= 2.0.1)
+    elasticsearch-api (2.0.1)
       multi_json
-    elasticsearch-transport (2.0.0)
+    elasticsearch-transport (2.0.1)
       faraday
       multi_json
     erubis (2.7.0)

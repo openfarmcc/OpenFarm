@@ -89,6 +89,7 @@ end
 
 group :development do
   gem 'rubocop'
+  gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
   gem "letter_opener"
 end
 

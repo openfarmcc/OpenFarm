@@ -377,7 +377,7 @@ GEM
       activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rainbow (2.2.1)
+    rainbow (2.1.0)
     rake (12.0.0)
     ref (2.0.0)
     remotipart (1.2.1)
@@ -539,6 +539,7 @@ DEPENDENCIES
   rails-assets-showdown (~> 0.5.4)!
   rails_12factor
   rails_admin
+  rainbow (~> 2.1.0)
   rspec-rails
   rubocop
   sass-rails (~> 4.0.4)

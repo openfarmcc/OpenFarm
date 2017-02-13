@@ -43,7 +43,7 @@ OpenFarm::Application.routes.draw do
       end
       resources :tags, only: :index do
         collection do
-          get '/:query', to: :index
+          get '/:query', action: :index
         end
       end
       resources :guides, only: [:create, :show, :update, :destroy]

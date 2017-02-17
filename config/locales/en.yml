@@ -69,6 +69,11 @@ en:
     privacy_policy: "Privacy Policy"
     tos: "Terms of Service"
   measurements:
+    time:
+      days:
+        zero: "days"
+        one: "day"
+        other: "days"
     cm: "cm"
     centimeters:
       zero: "centimeters"
@@ -226,6 +231,7 @@ en:
   crops:
     edit_crop: "Edit crop"
     taxon: "Taxon"
+    growing_degree_days: "Growing Degree Days"
     add_this_information: "Add this information"
     name: "Name"
     binomial_name: "Binomial Name"
@@ -406,7 +412,7 @@ en:
       edit:
           successful_creation: "You’ve successfully created a stage."
   home:
-      call_to_action: "Grow Your Food"  
+      call_to_action: "Grow Your Food"
       placeholder: "What do you want to grow?"
       search: "Search"
       hero_header: "Farm and garden through knowledge sharing"

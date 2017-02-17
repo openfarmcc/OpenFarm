@@ -20,6 +20,7 @@ module Crops
           integer :days_to_maturity
           integer :row_spacing
           integer :height
+          integer :growing_degree_days
         end
       end
     end

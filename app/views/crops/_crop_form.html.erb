@@ -106,6 +106,18 @@
 
     <div class="row">
       <div class="columns small-4 medium-4">
+        <label class="right" for="crop_growing_degree_days">Growing Degree Days</label>
+      </div>
+      <div class="columns small-8 medium-8">
+        <input data-ng-model="crop.growing_degree_days"
+               id="crop_growing_degree_days"
+               name="crop[growing_degree_days]"
+               type="number"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
         <label class="right" for="sowing_method">Sowing Method</label>
       </div>
       <div class="columns small-8 medium-8">
@@ -134,18 +146,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="row">
-      <div class="columns small-4 medium-4">
-        <label class="right" for="days_to_maturity">Days to Maturity</label>
-      </div>
-      <div class="columns small-8 medium-8">
-        <input data-ng-model="crop.days_to_maturity"
-               id="crop_days_to_maturity"
-               name="crop[days_to_maturity]"
-               type="number"/>
-      </div>
-    </div> -->
 
     <div class="row">
       <div class="columns small-4 medium-4">

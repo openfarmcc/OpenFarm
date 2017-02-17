@@ -14,6 +14,7 @@ class CropSerializer < BaseSerializer
   attribute :main_image_path
   attribute :taxon
   attribute :tags_array
+  attribute :growing_degree_days
 
   has_many :pictures, serializer: PictureSerializer
 end

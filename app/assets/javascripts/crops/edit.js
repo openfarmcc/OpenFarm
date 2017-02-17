@@ -45,6 +45,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         description: $scope.crop.description || null,
         binomial_name: $scope.crop.binomial_name || null,
         sun_requirements: $scope.crop.sun_requirements || null,
+        growing_degree_days: $scope.crop.growing_degree_days || null,
         sowing_method: $scope.crop.sowing_method || null,
         spread: $scope.crop.spread || null,
         row_spacing: $scope.crop.row_spacing || null,
@@ -52,6 +53,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
         taxon: $scope.crop.taxon || null,
         tags_array: tags_array,
       };
+      console.log('crop', crop);
 
       if ($scope.crop.pictures !== undefined){
         crop.images = $scope.crop.pictures.filter(function(d){
@@ -60,7 +62,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       }
 
       var cropCallback = function(success, crop){
-        // $scope.crop.sending = false;
+        $scope.crop.sending = false;
         if (success) {
           window.location.href = '/crops/' + $scope.crop.id + '/';
         }
@@ -69,7 +71,7 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       if ($scope.crop.is_new) {
         cropService.createCropWithPromise(crop)
           .then(function(crop) {
-            // $scope.crop.sending = false;
+            $scope.crop.sending = false;
             window.location.href = '/crops/' + crop.id + '/';
           });
       } else {

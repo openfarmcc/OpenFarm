@@ -4,7 +4,7 @@ OpenFarm::Application.configure do
   # http://stackoverflow.com/a/25428800/154392
   config.action_dispatch.perform_deep_munge = false
   config.cache_classes = false
-  config.log_level = :debug
+  config.log_level = :warn
   config.eager_load = false
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false

@@ -54,6 +54,10 @@
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.sun_requirements} %></td>
         </tr>
         <tr>
+          <td><%= I18n.t('crops.growing_degree_days') %></td>
+          <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.growing_degree_days, unit_type: 'time'} %></td>
+        </tr>
+        <tr>
           <td><%= I18n.t('crops.sowing_method') %></td>
           <td>
           <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.sowing_method} %></td>
@@ -61,19 +65,19 @@
         <tr>
           <td><%= I18n.t('crops.spread') %></td>
           <td>
-            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.spread} %>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.spread, unit_type: 'distance'} %>
           </td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.row_spacing') %></td>
           <td>
-            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.row_spacing} %>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.row_spacing, unit_type: 'distance'} %>
           </td>
         </tr>
         <tr>
           <td><%= I18n.t('crops.height') %></td>
           <td>
-            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.height} %>
+            <%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.height, unit_type: 'distance'} %>
           </td>
         </tr>
         </tbody>

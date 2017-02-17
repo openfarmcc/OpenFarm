@@ -1,5 +1,7 @@
-<% if obj.is_a?(Numeric) %>
+<% if local_assigns[:unit_type] == 'distance' %>
   <%= obj %> <small class="measurement-unit"><%= I18n.t('measurements.centimeters', count: obj) %></small>
+<% elsif local_assigns[:unit_type] == 'time' %>
+  <%= obj %> <small class="measurement-unit"><%= I18n.t('measurements.time.days', count: obj) %></small>
 <% elsif obj != '' %>
   <%= obj %>
 <% else %>

@@ -1,6 +1,6 @@
 <footer id="footer">
     <div class="row">
-      <div class="about">
+      <div class="about columns medium-4 small-12">
         <h3 class="crop-name"> About </h3>
         <%= link_to(icon('info-circle') +
           t('meta.about'),page_path('about')) %>
@@ -9,14 +9,14 @@
         <%= link_to(icon('rss-square') +
           t('meta.blog'), 'http://blog.openfarm.cc') %>
       </div>
-      <div class="contact">
+      <div class="contact columns medium-4 small-12">
         <h3 class="crop-name"> Contact </h3>
         <%= link_to(icon('comments-o') +
           t('meta.slack'), 'http://slack.openfarm.cc') %>
         <%= link_to(icon('envelope') +
           t('meta.mailing_list'), page_path('mailing-list')) %>
       </div>
-      <div class="legal">
+      <div class="legal columns medium-4 small-12">
         <h3 class="crop-name"> Legal </h3>
         <%= link_to(icon('lock') +
           t('meta.privacy'),page_path('privacy')) %>

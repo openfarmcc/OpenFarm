@@ -1,4 +1,5 @@
 class GardenCropSerializer < BaseSerializer
+  include Rails.application.routes.url_helpers
   attribute :garden do
     object.garden.id
   end
@@ -23,6 +24,27 @@ class GardenCropSerializer < BaseSerializer
 
   attribute :history do
     object.history_tracks
+  end
+
+  def links
+
+    data = {}
+    data['self'] = self_link if self_link
+    if object.guide
+      data[:guide] = {
+        'api': "/api/v1/guides/#{object.guide.id}/",
+        'website': guide_url(id: object.guide.id, only_path: true)
+      }
+    end
+
+    if object.crop
+      data[:crop] = {
+        'api': "/api/v1/crops/#{object.crop.id}/",
+        'website': crop_url(id: object.crop.id, only_path: true)
+      }
+    end
+
+    data
   end
 
   def self_link

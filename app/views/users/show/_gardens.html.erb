@@ -242,12 +242,14 @@
                      />
             </td>
             <td>
-              <span ng-bind="crop.crop.name || crop.guide.crop.name">
-              </span>
+              <a ng-bind="crop.crop.name || crop.guide.crop.name"
+                ng-href="{{crop.links.crop.website}}">
+              </a>
             </td>
             <td>
-              <span ng-bind="crop.guide.name">
-              </span>
+              <a ng-bind="crop.guide.name"
+                ng-href="{{crop.links.guide.website}}">
+              </a>
             </td>
             <td>
               <span ng-bind="crop.sowed|date:'yyyy-MM-dd'"
@@ -290,7 +292,7 @@
 
                         <div class="search-input-container">
                           <div add-crop
-                            query=cropQuery 
+                            query=cropQuery
                             loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                             crop-on-select="addCropToGarden"
                             options="{  'fieldName': 'q',
@@ -302,7 +304,7 @@
                   </form>
                 </div>
             </div>
-            <!-- 
+            <!--
               <!%= t('.add_crop') %
               <!%= stylesheet_link_tag 'javascirpts/templates/_add_crop_to_garden' %-->
               <!-- <div class="add-to-garden right"> -->
@@ -314,7 +316,7 @@
                     user="currentUser">
                   </div>
                 <!% end %-->
-              
+
             </td>
           </tr>
         </table>

@@ -17,6 +17,7 @@
 //= require ./angular-libs/angular.of.users.service
 //= require ./angular-libs/angular.of.defaults.service
 //= require ./angular-libs/angular.of.gardens.service
+//= require_tree ./angular-libs/gardens
 //= require ./angular-libs/angular.of.stages.service
 //= require ./angular-libs/angular.of.crops.service
 //= require ./angular-libs/guides/guides.service

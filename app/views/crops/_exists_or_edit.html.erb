@@ -1,6 +1,6 @@
-<% if local_assigns[:unit_type] == 'distance' %>
+<% if local_assigns[:unit_type] == 'distance' && obj %>
   <%= obj %> <small class="measurement-unit"><%= I18n.t('measurements.centimeters', count: obj) %></small>
-<% elsif local_assigns[:unit_type] == 'time' %>
+<% elsif local_assigns[:unit_type] == 'time' && obj %>
   <%= obj %> <small class="measurement-unit"><%= I18n.t('measurements.time.days', count: obj) %></small>
 <% elsif obj != '' %>
   <%= obj %>

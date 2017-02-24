@@ -17,6 +17,13 @@ class Picture
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
+
+  field :type, type: String
+  validates_inclusion_of :type,
+                         in: %w(icon picture),
+                         message: "%{value} is not a valid picture type",
+                         allow_nil: true
+
   # SEE: http://stackoverflow.com/a/23141483/1064917
   class << self
     def from_url(file_location, parent)

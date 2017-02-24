@@ -2,6 +2,7 @@ var openFarmApp = angular.module('openFarmApp', [
   'mm.foundation',
   'ng-rails-csrf',
   'ngS3upload',
+  'ngFileUpload',
   '720kb.socialshare',
   'ngDragDrop',
   'ui.sortable',

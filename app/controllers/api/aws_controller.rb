@@ -8,23 +8,26 @@ module Api
       render json: {
         policy:    s3_upload_policy,
         signature: s3_upload_signature,
-        key:       ENV['S3_ACCESS_KEY']
+        key:       ENV['S3_ACCESS_KEY'],
+        bucket:    ENV['S3_BUCKET_NAME']
       }
     end
 
     private
 
     def s3_upload_policy
-      @p ||= Base64.encode64(
-        { 'expiration' => 1.hour.from_now.utc.xmlschema,
-          'conditions' => [
+      policy_document = {
+        'expiration' => 1.hour.from_now.utc.xmlschema,
+        'conditions' => [
            { 'bucket' =>  ENV['S3_BUCKET_NAME'] },
            ['starts-with', '$key', ''],
            { 'acl' => 'public-read' },
-           { success_action_status: '201' },
+           # { success_action_status: '201' },
            ['starts-with', '$Content-Type', ''],
+           ['starts-with', '$filename', ''],
            ['content-length-range', 1, 25.megabytes]
-         ]}.to_json).gsub(/\n/, '')
+       ]}.to_json
+      @p ||= Base64.encode64(policy_document).gsub(/\n/, '')
     end
 
     def s3_upload_signature

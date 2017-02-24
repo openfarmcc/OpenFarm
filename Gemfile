@@ -44,20 +44,20 @@ gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
 gem 'active_model_serializers'
 
-
-
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '~> 2.2.1'
   gem 'rails-assets-jquery-ui', '~> 1.11.4'
   gem 'rails-assets-angular', '~> 1.5.0'
+  gem 'rails-assets-angular-sanitize', '~> 1.5.0'
   gem 'rails-assets-angular-dragdrop', '~> 1.0.13'
   gem 'rails-assets-angular-foundation', '~> 0.8.0'
   gem 'rails-assets-angular-ui-sortable', '~> 0.13.4'
   gem 'rails-assets-angular-local-storage', '~> 0.2.3'
   gem 'rails-assets-angular-typeahead', '~> 0.3.1'
   gem 'rails-assets-ng-tags-input', '~>2.3.0'
+  gem 'rails-assets-ng-file-upload', '~>12.2.13'
   gem 'rails-assets-moment', '~>2.8.3'
   gem 'rails-assets-showdown', '~>0.5.4'
 end

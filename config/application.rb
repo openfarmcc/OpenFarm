@@ -23,7 +23,7 @@ module OpenFarm
     config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
       allow do
         origins '*'
-        resource '/api/*',
+        resource '/api/v1/*',
                  headers: :any,
                  methods: [:get, :post, :delete, :put, :patch, :options, :head],
                  credentials: false, # No cookies.

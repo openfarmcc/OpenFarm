@@ -6,7 +6,7 @@ module Api
   class AwsController < Api::V1::BaseController
     def s3_access_token
       render json: {
-        random_uuid: "#{SecureRandom.uuid}",
+        random_uuid: SecureRandom.uuid.to_s,
         policy:    s3_upload_policy,
         signature: s3_upload_signature,
         key:       ENV['S3_ACCESS_KEY'],
@@ -27,7 +27,8 @@ module Api
            ['starts-with', '$Content-Type', ''],
            ['starts-with', '$filename', ''],
            ['content-length-range', 1, 25.megabytes]
-       ]}.to_json
+        ]
+      }.to_json
       @p ||= Base64.encode64(policy_document).gsub(/\n/, '')
     end
 

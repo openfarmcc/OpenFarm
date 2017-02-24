@@ -17,13 +17,6 @@ class Picture
                        content_type: { content_type:
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
-
-  field :type, type: String
-  validates_inclusion_of :type,
-                         in: %w(icon picture),
-                         message: "%{value} is not a valid picture type",
-                         allow_nil: true
-
   # SEE: http://stackoverflow.com/a/23141483/1064917
   class << self
     def from_url(file_location, parent)
@@ -32,7 +25,8 @@ class Picture
         pic.attachment = open(file_location)
       else # it's a filesystem update
         # if it's already on the system, we don't need to update it.
-        unless file_location.include?('/system/') || file_location.include?('missing.png')
+        unless file_location.include?('/system/') ||
+               file_location.include?('missing.png')
           pic.attachment = open(file_location)
         end
 

@@ -1,5 +1,5 @@
-openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService', 'Upload',
-  function cropCtrl($scope, $http, cropService, Upload) {
+openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
+  function cropCtrl($scope, $http, cropService) {
     $scope.s3upload = '';
     $scope.crop = {};
     var cropId = getIDFromURL('crops');

@@ -6,6 +6,15 @@
   margin-bottom: 1rem;
 }
 
+.dragover {
+  border: 4px dotted $of-green;
+}
+
+.deleted {
+  opacity: .4;
+  background-color: $gray-bg;
+}
+
 .thumbnails {
   margin: 0 .5rem .5rem 0;
   display: inline-block;

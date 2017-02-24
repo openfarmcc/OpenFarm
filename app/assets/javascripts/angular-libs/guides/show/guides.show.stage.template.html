@@ -30,15 +30,12 @@
       class="stage-default-picture stage-option {{ stage.name | lowercase }}">
     </span>
 
-    <div class="upload-stage-picture"
-        s3-upload
-        bucket="'{{s3Bucket}}'"
-        ng-model="s3upload"
-        s3-upload-existing-pictures="stage.pictures"
-        s3-upload-place-pic="placeImageUpload(image)"
-        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}"
-        ng-show="editingStage">
-    </div>
+    <of-images-upload
+      class="upload-stage-picture"
+      item="stage"
+      images-key="'pictures'"
+      ng-show="editingStage">
+    </of-images-upload>
   </div>
 
   <div class="columns small-8 action-content end"

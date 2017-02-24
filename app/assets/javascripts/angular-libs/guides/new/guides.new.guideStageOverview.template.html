@@ -17,31 +17,12 @@
       <small>{{ texts.onlyUploadWhatYouOwn }}</small>
     </label>
   </div>
-  <div class="columns small-12">
-    <div s3-upload
-        bucket="'{{ texts.s3Bucket }}'"
-        ng-model="s3upload"
-        s3-upload-existing-pictures="stage.pictures"
-        s3-upload-place-pic="placeStageUpload(stage, image)"
-        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-    </div>
-  </div>
+  <of-images-upload
+    class="columns small-12"
+    item="stage"
+    images-key="'pictures'">
+  </of-images-upload>
 </div>
-<!-- TODO -->
-<!--
-
-
-<div class="row annual">
-  <div class="columns small-12">
-    <label class="right"
-        for="repeat_annually"><%= t('.repeat_annually') %><br/>
-      <small><%= t('.not_sure_html') %></small>
-    </label>
-  </div>
-  <div class="columns small-12">
-    Coming Soon
-  </div>
-</div> -->
 </div>
 <div class="row environment">
   <div class="columns small-12">

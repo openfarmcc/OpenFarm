@@ -6,6 +6,7 @@ module Api
   class AwsController < Api::V1::BaseController
     def s3_access_token
       render json: {
+        random_uuid: "#{SecureRandom.uuid}",
         policy:    s3_upload_policy,
         signature: s3_upload_signature,
         key:       ENV['S3_ACCESS_KEY'],

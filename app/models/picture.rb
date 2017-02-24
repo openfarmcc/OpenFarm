@@ -32,9 +32,9 @@ class Picture
         pic.attachment = open(file_location)
       else # it's a filesystem update
         # if it's already on the system, we don't need to update it.
-        # if !file_location.include?('/system/')
+        unless file_location.include?('/system/') || file_location.include?('missing.png')
           pic.attachment = open(file_location)
-        # end
+        end
 
       end
       pic.save!

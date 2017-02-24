@@ -11,7 +11,11 @@
         <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
              width="100"
              ng-model="pic"/>
-        <small ng-click="vm.deletePicture($index, pic)">delete</small>
+        <small
+          ng-click="pic.deleted = !pic.deleted">
+          <span ng-show="pic.deleted">undo</span>
+          delete
+        </small>
       </span>
     </div>
     <div class="button"

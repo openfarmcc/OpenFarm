@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    display_name    { Faker::Name.name }
+    display_name { Faker::Name.name }
     password_confirmation { |u| u.password }
     admin false
     password 'password'

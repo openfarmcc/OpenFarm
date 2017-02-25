@@ -18,7 +18,7 @@ describe 'User features', type: :feature do
     login_as user
     visit user_path(:en, user.id)
     title = user.display_name + ' Profile'
-    expect(page).to have_css "meta[property='og:title'][content='#{title}']",
+    expect(page).to have_css "meta[property='og:title'][content=\"#{title}\"]",
                               visible: false
   end
 

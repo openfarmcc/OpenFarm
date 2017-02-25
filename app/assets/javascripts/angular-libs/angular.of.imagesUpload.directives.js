@@ -13,7 +13,8 @@
       replace: true,
       scope: {
         item: '=',
-        imagesKey: '='
+        imagesKey: '=',
+        itemType: '='
       },
       controller: ImagesUploadController,
       controllerAs: 'vm',
@@ -35,32 +36,31 @@
     // upload on file select or drop
     function upload (file) {
       vm.uploading = true;
-      var s3Uri;
+      var destinationUri;
       var cropReference = '';
       var fileKey;
 
       $http.get('/api/aws/s3_access_token')
         .then(function (token_details) {
-          s3Uri = 'https://' + token_details.data.bucket + '.s3.amazonaws.com/';
+
           var extension = file.name.split('.').pop();
           fileKey = 'temp/' + token_details.data.random_uuid + '.' + extension;
-          return Upload.upload({
-              url: s3Uri,
-              method: 'POST',
-              data: {
-                key: fileKey, // the key to store the file on S3, could be file name or customized
-                AWSAccessKeyId: token_details.data.key,
-                acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
-                policy: token_details.data.policy, // base64-encoded json policy (see article below)
-                signature: token_details.data.signature, // base64-encoded signature based on policy string (see article below)
-                "Content-Type": file.type !== '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-                filename: file.name, // this is needed for Flash polyfill IE8-9
-                file: file
-              }
-            });
+          if (token_details.data.bucket) {
+            destinationUri = 'https://' + token_details.data.bucket + '.s3.amazonaws.com/';
+            return uploadUsingS3(file, fileKey, token_details, destinationUri);
+          } else {
+            destinationUri = '/api/upload_file';
+            return uploadToLocalSystem(file, vm.item, vm.itemType, destinationUri);
+          }
         }).then(function (resp) {
+          console.log(resp);
           vm.uploading = false;
-          var imageUrl = s3Uri + fileKey;
+          var imageUrl;
+          if (resp.data.local) {
+            imageUrl = resp.data.uri;
+          } else {
+            imageUrl = destinationUri + fileKey;
+          }
 
           var newImage = {
             new: true,
@@ -91,6 +91,33 @@
 
     function deletePicture($index, pic) {
       pic.deleted = true;
+    }
+
+    function uploadToLocalSystem (file, item, itemType, destinationUri) {
+      return Upload.upload({
+        url: '/api/local/upload_file',
+        method: 'POST',
+        // fields: { 'id': item.id, 'object_type': itemType },
+        file: file,
+        fileFormDataName: 'object[image]'
+      });
+    }
+
+    function uploadUsingS3 (file, fileKey, token_details, s3Uri) {
+      return Upload.upload({
+        url: s3Uri,
+        method: 'POST',
+        data: {
+          key: fileKey, // the key to store the file on S3, could be file name or customized
+          AWSAccessKeyId: token_details.data.key,
+          acl: 'public-read', // sets the access to the uploaded file in the bucket: private, public-read, ...
+          policy: token_details.data.policy, // base64-encoded json policy (see article below)
+          signature: token_details.data.signature, // base64-encoded signature based on policy string (see article below)
+          "Content-Type": file.type !== '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+          filename: file.name, // this is needed for Flash polyfill IE8-9
+          file: file
+        }
+      });
     }
   }
 })(angular, window.appConfig);

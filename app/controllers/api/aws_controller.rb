@@ -1,6 +1,6 @@
 module Api
-  # TODO: This needs to be understood and brought into the
-  # V1 API.
+  # This generates a policy and signature for an s3 bucket
+  # based on requirements as specified by Amazon.
 
   # A controller that handles all the non-restful stuff for AWS.
   class AwsController < Api::V1::BaseController

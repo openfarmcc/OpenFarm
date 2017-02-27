@@ -21,6 +21,11 @@ class Icon
   belongs_to :user
   validates_presence_of :user
 
+  after_save :reindex_icons
+
+  def reindex_icons
+    ReindexIconsJob.perform_later
+  end
 
   def search_data
     as_json only: [:name, :description]

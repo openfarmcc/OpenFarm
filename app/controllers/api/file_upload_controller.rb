@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'fileutils'
 
 module Api
@@ -15,7 +16,7 @@ module Api
 
         file_location = dir_path.join(new_file_name)
         rel_file_location = '/temp-uploads/' + new_file_name
-        FileUtils::mkdir_p dir_path
+        FileUtils.mkdir_p dir_path
 
         File.open(dir_path.join(file_location), 'wb') do |f|
           f.write(file.read)
@@ -25,7 +26,7 @@ module Api
           'uri': rel_file_location
         }
       else
-        render json: {'error': 'S3 Bucket Name exists, please use S3'}
+        render json: { 'error': 'S3 Bucket Name exists, please use S3' }
       end
     end
   end

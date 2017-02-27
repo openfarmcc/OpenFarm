@@ -28,11 +28,7 @@ module PicturesMixin
     obj.processing_pictures = new_images.count
     obj.save
     new_images && new_images.each do |img|
-      # if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
-        Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
-      # else
-      #   puts 'handling things locally'
-      # end
+      Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
     end
   end
 

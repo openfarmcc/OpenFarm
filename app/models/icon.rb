@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # an *SVG* Icon used by OpenFarm and other apps that feed into the OpenFarm API.
 class Icon
   include Mongoid::Document

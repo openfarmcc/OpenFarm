@@ -5,7 +5,7 @@ module Api
   # A controller that handles file uploading if AWS is not available.
   class FileUploadController < Api::V1::BaseController
     def upload_file
-      if ENV['S3_BUCKET_NAME'] == ''
+      if ENV['S3_BUCKET_NAME'].blank?
         file = params[:file]
 
         rel_path = 'public/temp-uploads/'

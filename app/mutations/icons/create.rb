@@ -1,5 +1,5 @@
 module Icons
-  class Create
+  class Create < Mutations::Command
     required do
       model :user
       hash :attributes do

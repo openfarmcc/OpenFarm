@@ -1,4 +1,4 @@
-openFarmModule.directive('timeline', ['guideService',
+openFarmApp.directive('timeline', ['guideService',
   function timeline(guideService){
     return {
       restrict: 'A',

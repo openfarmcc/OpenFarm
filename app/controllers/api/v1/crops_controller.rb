@@ -41,7 +41,6 @@ class Api::V1::CropsController < Api::V1::BaseController
     #     },
     #   }
     # }
-    puts params[:data]
     @outcome = Crops::UpdateCrop.run(params[:data],
                                      user: current_user,
                                      id: params[:id])

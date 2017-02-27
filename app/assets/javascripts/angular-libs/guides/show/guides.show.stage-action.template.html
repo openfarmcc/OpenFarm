@@ -16,15 +16,13 @@
       display-url="{{picture.image_url}}" description="$parent.name">
     </a>
   </span>
-  <div class="upload-stage-picture"
-      s3-upload
-      bucket="'{{s3Bucket}}'"
-      ng-model="s3upload"
-      s3-upload-existing-pictures="action.pictures"
-      s3-upload-place-pic="placeStageActionImageUpload(image)"
-      s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}"
-      ng-show="editingStage">
-  </div>
+  <of-images-upload
+    ng-show="editingStage"
+    class="columns small-8 medium-8"
+    item="action"
+    images-key="'pictures'"
+    item-type="'action'">
+  </of-images-upload>
   <div class="row" ng-hide="editingStage">
     <p class="action-description columns small-8"
       ng-bind="action.overview">

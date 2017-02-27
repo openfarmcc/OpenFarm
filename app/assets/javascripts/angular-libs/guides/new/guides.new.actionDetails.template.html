@@ -13,14 +13,12 @@
 <div class="row">
   <div class="columns small-12">
     <label>{{ texts.chooseActionPhoto }}</label>
-
-    <div s3-upload
-        bucket="'{{ texts.s3Bucket }}'"
-        ng-model="s3upload"
-        s3-upload-existing-pictures="action.pictures"
-        s3-upload-place-pic="placeStageActionUpload(action, image)"
-        s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-    </div>
+    <of-images-upload
+      class="columns small-8 medium-8"
+      item="action"
+      images-key="'pictures'"
+      item-type="'action'">
+    </of-images-upload>
   </div>
 </div>
 <div class="row">

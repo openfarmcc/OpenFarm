@@ -1,4 +1,4 @@
-openFarmModule.factory('defaultService', ['$http', '$q', 'alertsService',
+openFarmApp.factory('defaultService', ['$http', '$q', 'alertsService',
   function defaultService($http, $q, alertsService) {
 
     var buildStageActionOption = function(data) {

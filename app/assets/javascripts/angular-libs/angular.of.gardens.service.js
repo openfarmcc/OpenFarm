@@ -1,4 +1,4 @@
-openFarmModule.factory('gardenService', ['$http','alertsService',
+openFarmApp.factory('gardenService', ['$http','alertsService',
   function gardenService($http, alertsService) {
 
     // Should return Garden model:

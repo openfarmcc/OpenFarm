@@ -37,7 +37,7 @@ OpenFarm::Application.routes.draw do
 
     namespace :v1 do
       get '/progress/pictures/:obj_type/:obj_id' => 'progress_job#show'
-
+      resources :icons, only: [:create, :index, :show]
       resources :crops, only: [:create, :index, :show, :update] do
         resources :pictures, only: [:index, :show]
       end

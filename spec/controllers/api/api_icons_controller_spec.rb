@@ -42,7 +42,7 @@ describe Api::V1::IconsController, type: :controller do
 
     it "views a specific icon" do
       get "show", id: icon._id.to_s, format: :json
-      binding.pry
+      expect(json["data"]["id"]).to eq(icon._id.to_s)
     end
   end
 end

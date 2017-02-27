@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Icons
   class Create < Mutations::Command
     required do

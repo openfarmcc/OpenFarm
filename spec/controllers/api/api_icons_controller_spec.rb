@@ -12,10 +12,9 @@ describe Api::V1::IconsController, type: :controller do
   describe 'create' do
     it 'makes icons' do
       sign_in user
-      old_length = Icon.all.length
       ATTRS = { name: 'My icon.',
                 description: 'lorem ipsum',
-                svg: svg }
+                svg: svg }.freeze
       data = { attributes: ATTRS }
       post 'create', data: data, format: :json
       expect(response.status).to eq(200)
@@ -29,9 +28,10 @@ describe Api::V1::IconsController, type: :controller do
       yes = FactoryGirl.create(:icon, description: 'This is a huge bunch of'\
         ' text that contains the text `foo bar baz` so I can (hopefully) find'\
         ' it via ElasticSearch.')
-      no = FactoryGirl.create(:icon, description: 'Won\'t show up in search results.')
+      no = FactoryGirl.create(:icon, description: 'Won\'t show up in search '\
+        'results.')
       get 'index', filter: 'foo bar baz', format: :json
-      results = json['data'].map{|x| x['id']}
+      results = json['data'].map { |x| x['id'] }
       expect(results).to include(yes._id.to_s)
       expect(results).not_to include(no._id.to_s)
     end

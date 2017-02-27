@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Api::V1::IconsController < Api::V1::BaseController
   skip_before_action :authenticate_from_token!, only: [:index, :show]
 
   ICON_QUERY = { limit: 25,
                  partial: true,
                  misspellings: { distance: 1 },
-                 fields: ['name', 'description'] }
+                 fields: %w('name', 'description') }.freeze
 
   def index
     q = params[:filter]

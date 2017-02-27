@@ -1,4 +1,4 @@
-openFarmModule.directive('addToGardens', ['$rootScope', 'gardenService',
+openFarmApp.directive('addToGardens', ['$rootScope', 'gardenService',
   function($rootScope, gardenService) {
     return {
       restrict: 'A',

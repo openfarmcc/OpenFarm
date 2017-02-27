@@ -1,16 +1,12 @@
 var openFarmApp = angular.module('openFarmApp', [
   'mm.foundation',
   'ng-rails-csrf',
-  'ngS3upload',
+  'ngFileUpload',
   '720kb.socialshare',
   'ngDragDrop',
   'ui.sortable',
   'LocalStorageModule',
-  'openFarmModule',
-  'ngTagsInput'
-]);
-
-var openFarmModule = angular.module('openFarmModule', [
+  'ngTagsInput',
   'ngSanitize'
 ]);
 
@@ -20,7 +16,7 @@ openFarmApp.config(['localStorageServiceProvider',
       .setPrefix('openFarm');
 }]);
 
-openFarmModule.factory('alertsService', ['$rootScope',
+openFarmApp.factory('alertsService', ['$rootScope',
   function alertsService($rootScope) {
     $rootScope.alerts = [];
     return {

@@ -30,6 +30,6 @@ openFarmApp.directive('guidesChooseCrop' ,[
         }
       ],
       templateUrl: '/assets/angular-libs/guides/new/guides.new.chooseCrop.template.html'
-    }
+    };
   }
-])
+]);

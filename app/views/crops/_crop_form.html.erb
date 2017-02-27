@@ -189,17 +189,12 @@
       <div class="columns small-4 medium-4">
         <label for="crop[images]" class="right">Manage images</label>
       </div>
-      <div class="columns small-8 medium-8">
-        <div id="crop_image_upload"
-            name="crop[images]"
-            s3-upload
-            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-            ng-model="s3upload"
-            s3-upload-existing-pictures="crop.pictures"
-            s3-upload-place-pic="placeCropUpload(image)"
-            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-        </div>
-      </div>
+      <of-images-upload
+        class="columns small-8 medium-8"
+        item="crop"
+        images-key="'pictures'"
+        item-type="'crop'">
+      </of-images-upload>
     </div>
 
     <div class="row">
@@ -211,7 +206,7 @@
           ng-model="crop.tags_array"
           class="keywords"
           name="crop[tags]">
-            <auto-complete source="loadTags($query)"></auto-complete>
+          <auto-complete source="loadTags($query)"></auto-complete>
         </tags-input>
       </div>
     </div>

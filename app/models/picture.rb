@@ -24,15 +24,19 @@ class Picture
       if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
         pic.attachment = open(file_location)
       else # it's a filesystem update
-        # if it's already on the system, we don't need to update it.
-        # if !file_location.include?('/system/')
+        # if it's already on the system, or it's missing,
+        # we don't need to update it.
+        unless file_location.include?('/system/') ||
+               file_location.include?('missing.png')
+          unless file_location.include?('http')
+            file_location = "#{Rails.root.join('public')}/#{file_location}"
+          end
+          puts file_location
           pic.attachment = open(file_location)
-        # end
-
+        end
       end
       pic.save!
       pic
     end
-    # handle_asynchronously :from_url
   end
 end

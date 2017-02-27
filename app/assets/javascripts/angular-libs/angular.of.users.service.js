@@ -1,4 +1,4 @@
-openFarmModule.factory('userService', ['$http', '$q', 'gardenService',
+openFarmApp.factory('userService', ['$http', '$q', 'gardenService',
   'alertsService',
   function userService($http, $q, gardenService, alertsService) {
     // get the user specified.

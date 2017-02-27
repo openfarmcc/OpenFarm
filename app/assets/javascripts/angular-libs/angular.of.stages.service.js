@@ -1,4 +1,4 @@
-openFarmModule.factory('stageService', ['$http', '$log', '$q', 'alertsService',
+openFarmApp.factory('stageService', ['$http', '$log', '$q', 'alertsService',
   function stageService($http, $log, $q, alertsService) {
 
     // Should return Stage model:

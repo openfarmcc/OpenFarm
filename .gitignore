@@ -21,6 +21,8 @@
 
 # Ignore paperclip image uploads
 /public/system
+/public/temp-uploads
+/external-data
 
 #Wtf??
 /coverage/*

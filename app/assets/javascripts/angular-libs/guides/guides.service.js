@@ -1,4 +1,4 @@
-openFarmModule.factory('guideService', ['$http', '$q', 'alertsService',
+openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
   'stageService', 'userService', 'cropService',
   function guideService($http, $q, alertsService, stageService, userService,
     cropService) {

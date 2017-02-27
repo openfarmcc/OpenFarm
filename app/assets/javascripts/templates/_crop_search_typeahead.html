@@ -1,0 +1,5 @@
+<a class="crop-list-item" tabindex="-1">
+    <img class="crop-img" ng-src="{{match.model.main_image_path}}" height="50px" width="50px"/>
+    <span class="crop-name" bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span>
+    <span class="guide-count" bind-html-unsafe="match.model.guides_count + ' guides'"></span>
+</a>

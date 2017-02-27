@@ -34,6 +34,7 @@ OpenFarm::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     get '/aws/s3_access_token' => 'aws#s3_access_token'
+    post '/local/upload_file' => 'file_upload#upload_file'
 
     namespace :v1 do
       get '/progress/pictures/:obj_type/:obj_id' => 'progress_job#show'

@@ -30,6 +30,7 @@ describe Api::V1::IconsController, type: :controller do
         ' it via ElasticSearch.')
       no = FactoryGirl.create(:icon, description: 'Won\'t show up in search '\
         'results.')
+      Icon.reindex
       get 'index', filter: 'foo bar baz', format: :json
       results = json['data'].map { |x| x['id'] }
       expect(results).to include(yes._id.to_s)

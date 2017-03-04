@@ -42,12 +42,14 @@ module PicturesMixin
     end
 
     delete_ids_array = []
-
+    puts "length #{obj.pictures.count}"
     obj.pictures.each do |pic|
       if !image_ids.include? pic[:id].to_s
+        puts "deleting #{pic}"
         delete_ids_array.push(pic[:id])
       end
     end
+
     obj.pictures.where(:id.in => delete_ids_array).delete
 
     images.select { |img| !img[:id] }

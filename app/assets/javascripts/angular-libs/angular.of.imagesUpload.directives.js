@@ -14,7 +14,8 @@
       scope: {
         item: '=',
         imagesKey: '=',
-        itemType: '='
+        itemType: '=',
+        single: '=?'
       },
       controller: ImagesUploadController,
       controllerAs: 'vm',
@@ -53,7 +54,7 @@
             return uploadToLocalSystem(file, vm.item, vm.itemType, destinationUri);
           }
         }).then(function (resp) {
-          console.log(resp);
+
           vm.uploading = false;
           var imageUrl;
           if (resp.data.local) {
@@ -67,11 +68,12 @@
             image_url: imageUrl
           };
 
-          if (vm.item[vm.imagesKey]) {
+          if (vm.item[vm.imagesKey] && !vm.single) {
             vm.item[vm.imagesKey].push(newImage);
           } else {
             vm.item[vm.imagesKey] = [newImage];
           }
+
         }, function (resp) {
           vm.uploading = false;
           console.log('Error status: ' + resp.status);

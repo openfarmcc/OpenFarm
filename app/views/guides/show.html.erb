@@ -59,59 +59,7 @@
       </div>
 
       <div class="columns large-5 margin-top">
-
-        <h4 class="title" id="overview">
-          <%= t('.overview') %>
-        </h4>
-        <p ng-show="!editing && practicesList().length > 0">
-          This guide uses {{ practicesList() }} practices.
-        </p>
-        <p ng-show="!editing && practicesList().length === 0">
-          This guide has listed no specific practices.
-        </p>
-
-        <div multi-row-select
-          ng-show="editing"
-          class="multi-choice"
-          options-array="practices"
-          multi-select-overflow-count="3"
-          multi-select-type="checkbox"
-          multi-select-id="practices">
-        </div>
-        <br/>
-
-        <div class="markdown"
-          markdown="guide.overview"
-          ng-hide="editing">
-        </div>
-        <div ng-show="!editing && !guide.overview">
-          The author of this guide hasn't given an overview of it yet.
-        </div>
-        <textarea
-          ng-model="guide.overview"
-          ng-show="editing">
-        </textarea>
-
-        <span ng-model="guide.location"
-              location
-              ng-show="editing"
-              name="location"
-              loading-text="<%= t('application.loading_locations') %>">
-        </span>
-        <em ng-if="guide.location">In:</em> <span ng-bind="guide.location">
-        </span>
-
-        <div ng-show="editing"
-            id="guide_image_upload"
-            name="guide_image_upload"
-            s3-upload
-            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-            ng-model="s3upload"
-            s3-upload-existing-pictures="guide.featured_image"
-            s3-upload-place-pic="placeGuideUpload(image)"
-            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-        </div>
-
+        <%= render 'guides/show/show_guide_overview' %>
       </div>
 
       <div class="columns large-2 margin-top  compatibility">
@@ -140,10 +88,9 @@
     <!-- Top of Guide for small screens -->
     <!-- TODO: There's a lot of duplicate content here, we should try and minimize that. -->
     <div class="row wide-row small-guide show-for-medium-down">
-
       <div class="canopy"
         ng-attr-alt="{{ guide.name }}"
-        style="background-image: url({{ guide.featured_image.image_url || guide.crop.pictures[0].image_url }})">
+        style="background-image: url({{ guide.featured_image.medium_url || guide.crop.pictures[0].medium_url }})">
         <div class="large-12 columns">
           <h1 class="guide-name"><span ng-bind="guide.name" ng-hide="editing"></span>
           <input ng-show="editing" ng-model="guide.name"/></h1>
@@ -151,33 +98,11 @@
           <%= render "guides/show/guide_controllers" %>
       </div>
 
-      <div class="columns small-8 margin-top">
-        <h4 class="title" id="overview">
-          <%= t('.overview') %>
-        </h4>
-
-        <p ng-show="!editing && guide.practices.length > 0">
-          This guide uses {{ guide.practices.join(', ') }} practices.
-        </p>
-
-        <div multi-row-select
-             ng-show="editing"
-             class="multi-choice"
-             options-array="practices"
-             multi-select-overflow-count="3"
-             multi-select-type="checkbox"
-             multi-select-id="practices">
-        </div>
-        <br/>
-        <div class="markdown" markdown="guide.overview" ng-hide="editing">
-        </div>
-        <textarea ng-model="guide.overview" ng-show="editing"></textarea>
-
-        <em>In:</em> <span ng-bind="guide.location">
-        </span>
+      <div class="columns small-12 margin-top">
+        <%= render 'guides/show/show_guide_overview' %>
       </div>
 
-      <div class="columns small-4 margin-top compatibility" ng-class="{'editing': editing}">
+      <div class="columns small-12 margin-top compatibility" ng-class="{'editing': editing}">
         <h4 class="title text-center" id="compatibility">
           <%= t('.compatibility') %>
         </h4>

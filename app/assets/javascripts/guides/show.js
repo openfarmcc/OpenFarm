@@ -18,27 +18,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.favoriteGuide = favoriteGuide;
     $scope.placeGuideUpload = placeGuideUpload;
 
-    function placeGuideUpload (image){
-      $scope.guide.featured_image = {'image_url': image};
-    }
-
-    function defineFeaturedImage (image){
-      var featured_image = null;
-      if (image !== undefined &&
-          image !== null &&
-          image.image_url !== undefined &&
-          image.image_url.indexOf('baren_field') === -1){
-        featured_image = image.image_url;
-      }
-      if (featured_image !== null) {
-        return [{
-          'image_url': featured_image
-        }];
-      } else {
-        return null;
-      }
-    }
-
     $scope.toggleEditingGuide = function(optionalSetToValue) {
       if (optionalSetToValue === undefined) {
         $scope.editing = !$scope.editing;
@@ -66,19 +45,21 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
           'name': $scope.guide.name,
           'location': $scope.guide.location,
           'draft': $scope.guide.draft,
+          'featured_image': 0,
           'practices': $scope.practices.filter(function(practice) {
                          return practice.selected === true;
                        }).map(function(practice) {
                          return practice.slug;
                        })
           },
-          // only add the images thing if it exists eh.
-        'images': $scope.guide.featured_image ? defineFeaturedImage($scope.guide.featured_image) : null
+        'images': $scope.guide.pictures
         },
       };
 
       guideService.updateGuideWithPromise($scope.guide.id, params)
         .then(function(response) {
+
+          $scope.setGuide(response);
 
           $scope.toggleEditingGuide(false);
 
@@ -184,6 +165,9 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
     $scope.setGuide = function(object){
       $scope.guide = object;
+
+      console.log(object);
+
       if ($scope.userId){
         userService.getUser($scope.userId,
                             $scope.setCurrentUser);
@@ -198,17 +182,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
       $scope.$watch('guide.stages', function() {
         if ($scope.guide.stages !== undefined) {
-
-          $scope.guide.stages.forEach(function(stage) {
-
-            stageService.getPictures(stage.id)
-              .then(function(pictures) {
-
-                stage.pictures = pictures.map(function(pic) {
-                  return pic.attributes;
-                });
-              });
-          });
           // This is a hack because stages get built from the
           // API. This is kind of flawed still at the moment,
           // and probably a suitable place to do the next refactor.
@@ -254,6 +227,7 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
         $scope.guide.crop = data[1];
       });
     }
+
     function favoriteGuide (guideId) {
       if (!$scope.currentUser){
         alertsService.pushToAlerts(["You need to log in to mark your favorite"], 401);
@@ -286,6 +260,10 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
 
         });
       }
+    }
+
+    function placeGuideUpload (image){
+      $scope.guide.featured_image = {'image_url': image};
     }
 
     guideService.getGuideWithPromise($scope.guideId)

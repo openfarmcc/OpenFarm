@@ -13,11 +13,14 @@ class GuideSerializer < BaseSerializer
       {
         canopy_url: object.pictures[object.featured_image].attachment.url(:canopy),
         image_url: object.pictures[object.featured_image].attachment.url,
+        medium_url: object.pictures[object.featured_image].attachment.url(:medium),
         thumbnail_url: object.pictures[object.featured_image].attachment.url(:small)
       }
     elsif object.pictures.count > 0
       {
+        canopy_url: object.pictures.first.attachment.url(:canopy),
         image_url: object.pictures.first.attachment.url,
+        medium_url: object.pictures.first.attachment.url(:medium),
         thumbnail_url: object.pictures.first.attachment.url(:small)
       }
     end
@@ -35,4 +38,6 @@ class GuideSerializer < BaseSerializer
 
   has_many :stages
   has_one :time_span
+
+  has_many :pictures, serializer: PictureSerializer
 end

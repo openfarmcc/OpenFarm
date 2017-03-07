@@ -1,0 +1,52 @@
+<h4 class="title" id="overview">
+  <%= t('.overview') %>
+</h4>
+
+<p ng-show="!editing && practicesList().length > 0">
+  This guide uses {{ practicesList() }} practices.
+</p>
+<p ng-show="!editing && practicesList().length === 0">
+  This guide has listed no specific practices.
+</p>
+
+<div multi-row-select
+     ng-show="editing"
+     class="multi-choice"
+     options-array="practices"
+     multi-select-overflow-count="3"
+     multi-select-type="checkbox"
+     multi-select-id="practices">
+</div>
+<br/>
+
+<div class="markdown"
+  markdown="guide.overview"
+  ng-hide="editing">
+</div>
+<div ng-show="!editing && !guide.overview">
+  The author of this guide hasn't given an overview of it yet.
+</div>
+
+<textarea
+  ng-model="guide.overview"
+  ng-show="editing">
+</textarea>
+
+<span ng-model="guide.location"
+      location
+      ng-show="editing"
+      name="location"
+      loading-text="<%= t('application.loading_locations') %>">
+</span>
+
+<em ng-if="guide.location">In:</em> <span ng-bind="guide.location">
+</span>
+
+<of-images-upload
+  ng-show="editing"
+  single="true"
+  class="upload-stage-picture"
+  item="guide"
+  images-key="'pictures'"
+  item-type="'guide'">
+</of-images-upload>

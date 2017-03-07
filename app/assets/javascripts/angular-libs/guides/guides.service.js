@@ -57,6 +57,7 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
       guide.id = data.id;
       guide.relationships = data.relationships;
       guide.links = data.links;
+
       if (included) {
         stages = included.filter(function(obj) {
           return obj.type === 'stages';
@@ -71,6 +72,12 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
         crop = included.filter(function(obj) {
           return obj.type === 'crops';
         });
+
+        pictures = included.filter(function(obj) {
+          return obj.type === 'guides-pictures';
+        }).map(function(pic) {
+          return pic.attributes;
+        });
       }
 
       if (user !== undefined && user.length > 0) {
@@ -79,6 +86,8 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
       if (crop !== undefined && crop.length > 0) {
         guide.crop = cropService.utilities.buildCrop(crop[0]);
       }
+
+      guide.pictures = pictures || [];
       guide.stages = stages;
       return guide;
     };
@@ -91,7 +100,7 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
         id: guideObject.id,
         attributes: guideObject,
       };
-      return {'data': data}
+      return {'data': data};
     };
 
     // get the guide specified. Out of Date. Use Promise Function
@@ -111,6 +120,7 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
         if (guideId !== "" && guideId !== "new") {
           $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
+            console.log(response.data, response.included);
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {
             alertsService.pushToAlerts(response.errors, code);

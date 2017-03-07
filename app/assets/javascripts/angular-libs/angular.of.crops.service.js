@@ -21,7 +21,7 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
           return obj.type === 'pictures';
         }).map(function(pic) {
           return pic.attributes;
-        })
+        });
       }
 
       crop.pictures = pictures || [];

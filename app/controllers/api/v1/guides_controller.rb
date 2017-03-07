@@ -17,6 +17,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                               'stages.pictures',
                                               'stages.stage_actions',
                                               'crop',
+                                              'pictures',
                                               'user'])
   end
 
@@ -26,6 +27,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                                   'stages.pictures',
                                                   'stages.stage_actions',
                                                   'crop',
+                                                  'pictures',
                                                   'user'])
   end
 
@@ -44,6 +46,7 @@ class Api::V1::GuidesController < Api::V1::BaseController
                                          'stages.pictures',
                                          'stages.stage_actions',
                                          'crop',
+                                         'pictures',
                                          'user'])
   end
 

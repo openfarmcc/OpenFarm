@@ -43,8 +43,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 // TODO: We probably want to keep this more consistent
                 // stage-actions? Probably a jsonAPI serializer thing.
                 $scope.stage.stage_actions = obj['stage-actions']
-                $scope.stage.pictures = obj['pictures']
-              })
+              });
           }
 
           $scope.toggleEditingStage = function() {

@@ -27,4 +27,10 @@ class PictureSerializer < BaseSerializer
   def self_link
     nil
   end
+
+  def type
+    parent_name = object.photographic.class.name.demodulize.tableize.dasherize
+    object_name = object.class.name.demodulize.tableize.dasherize
+    "#{parent_name}-#{object_name}"
+  end
 end

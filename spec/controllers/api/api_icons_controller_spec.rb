@@ -24,19 +24,6 @@ describe Api::V1::IconsController, type: :controller do
       expect(resp['svg'].first(40)).to eq(svg.first(40))
     end
 
-    it 'searches icons' do
-      yes = FactoryGirl.create(:icon, description: 'This is a huge bunch of'\
-        ' text that contains the text `foo bar baz` so I can (hopefully) find'\
-        ' it via ElasticSearch.')
-      no = FactoryGirl.create(:icon, description: 'Won\'t show up in search '\
-        'results.')
-      Icon.reindex
-      get 'index', filter: 'foo bar baz', format: :json
-      results = json['data'].map { |x| x['id'] }
-      expect(results).to include(yes._id.to_s)
-      expect(results).not_to include(no._id.to_s)
-    end
-
     it 'ignores short queries' do
       get 'index', filter: 'no', format: :json
       expect(json['data']).to be_kind_of(Array)

@@ -17,8 +17,9 @@ class Crop
   field :guides_count, type: Fixnum, default: 0
   field :svg_icon
   validates_length_of :svg_icon,
-     minimum: 11,          # Size of empty "<svg></svg>" tag.
-     maximum: 75.kilobytes # 3x larger than largest icon.
+     minimum: 11,           # Size of empty "<svg></svg>" tag.
+     maximum: 75.kilobytes, # 3x larger than largest icon.
+     allow_blank: true
   field :description
   belongs_to :crop_data_source
   field :sun_requirements

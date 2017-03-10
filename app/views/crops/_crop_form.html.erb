@@ -199,6 +199,19 @@
 
     <div class="row">
       <div class="columns small-4 medium-4">
+        <label for="crop[icon]" class="right">Manage icon</label>
+      </div>
+      <img
+      width="64"
+      height="64"
+      ng-src="data:image/svg+xml;utf8,{{ crop.svg_icon }}">
+      </img>
+      <svg-button on-change="addSvg($svg)">
+      </svg-button>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
         <label for="crop[tags]" class="right">Keywords</label>
       </div>
       <div class="columns small-8 medium-8">

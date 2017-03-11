@@ -26,7 +26,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     @outcome = Users::UpdateUser.run(
       attributes: params[:data],
       current_user: current_user,
-      featured_image: params[:data][:featured_image],
+      pictures: params[:data][:pictures],
       user_setting: params[:data][:user_setting],
       id: "#{current_user._id}")
 

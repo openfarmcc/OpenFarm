@@ -23,7 +23,8 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
       garden.garden_crops = findGardenCrops(gardenCropIds, included) || [];
       if (included) {
         pictures = included.filter(function(obj) {
-          return obj.type === 'pictures';
+          return obj.type === 'gardens-pictures' &&
+                 obj.attributes.photographic_id === garden.id;
         }).map(function(pic) {
           return pic.attributes;
         })

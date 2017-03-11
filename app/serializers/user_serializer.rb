@@ -45,14 +45,7 @@ class UserSerializer < BaseSerializer
     object.favorited_guides
   end
 
-  has_one :user_setting do
-    # TODO: Why is the policy on this being silly?
-    # For now it is okay to show this data, but we probably
-    # shouldn't.
-    # if Pundit.policy(current_user, object).show?
-      object.user_setting
-    # end
-  end
+  has_one :user_setting, serializer: UserSettingSerializer
 
   # This was from before the JSON-API refactor, I'm not sure that
   # this is still necessary.

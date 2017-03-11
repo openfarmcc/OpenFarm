@@ -166,8 +166,6 @@ openFarmApp.controller('showGuideCtrl', ['$scope', '$http', 'guideService', '$q'
     $scope.setGuide = function(object){
       $scope.guide = object;
 
-      console.log(object);
-
       if ($scope.userId){
         userService.getUser($scope.userId,
                             $scope.setCurrentUser);

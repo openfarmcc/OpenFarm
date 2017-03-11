@@ -20,6 +20,7 @@ class Picture
   # SEE: http://stackoverflow.com/a/23141483/1064917
   class << self
     def from_url(file_location, parent)
+      puts parent
       pic = new(photographic: parent)
       if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
         pic.attachment = open(file_location)

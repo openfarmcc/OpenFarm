@@ -24,20 +24,20 @@ module Users
           string :favorite_crop
         end
       end
-      string :featured_image
+      array :pictures, class: Hash, arrayize: true
     end
 
     def validate
       validate_user
       validate_favorite_crop
       validate_favorite_guides
-      validate_image
+      validate_images pictures, current_user.user_setting
     end
 
     def execute
       @user = User.find(id)
       set_user_setting
-      set_image
+      set_images pictures, current_user.user_setting
       set_favorited_guides
       @user.update_attributes(attributes)
       @user.save
@@ -101,30 +101,6 @@ module Users
       if current_user.id.to_s != id.to_s
         msg = 'You can only update your own profile'
         raise OpenfarmErrors::NotAuthorized, msg
-      end
-    end
-
-    def validate_image
-      if featured_image
-        outcome = Pictures::CreatePicture.validate(url: featured_image)
-        unless outcome.success?
-          add_error :images,
-                    :bad_format,
-                    outcome.errors.message_list.to_sentence
-        end
-      end
-    end
-
-    def set_image
-      existing_url = nil
-      if @user.user_setting.picture
-        existing_url = @user.user_setting.picture.attachment.url
-      end
-      if featured_image && featured_image != existing_url
-        UserSetting.from_url(featured_image, @user.user_setting)
-      end
-      if featured_image.nil? && !@user.user_setting.picture.nil?
-        @user.user_setting.picture.remove
       end
     end
   end

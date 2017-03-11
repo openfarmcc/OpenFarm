@@ -62,7 +62,6 @@ openFarmApp.directive('ofShowAddStageToGuide', ['$q', 'defaultService', 'stageSe
             })
             $q.all(promises)
               .then(function (data) {
-                console.log('should reload')
                 window.location.reload()
               }, function (error) {
                 console.log('error', err)

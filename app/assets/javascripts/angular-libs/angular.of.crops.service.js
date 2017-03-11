@@ -18,7 +18,8 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
 
       if (included) {
         pictures = included.filter(function(obj) {
-          return obj.type === 'pictures';
+          return obj.type === 'crops-pictures' &&
+                 obj.attributes.photographic_id === crop.id;
         }).map(function(pic) {
           return pic.attributes;
         });

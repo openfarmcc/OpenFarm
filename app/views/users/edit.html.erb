@@ -44,15 +44,13 @@
         <label for="user[images]">Choose a profile image!</label>
       </div>
       <div class="columns large-8">
-        <div id="user_image_upload"
-            name="user[images]"
-            s3-upload
-            bucket="'<%= ENV['S3_BUCKET_NAME'] %>'"
-            ng-model="s3upload"
-            s3-upload-existing-pictures="user.user_setting.picture"
-            s3-upload-place-pic="placeUserUpload(image)"
-            s3-upload-options="{getOptionsUri: '/api/aws/s3_access_token', folder: 'temp/'}">
-        </div>
+        <of-images-upload
+          class="columns small-8 medium-8"
+          item="user.user_setting"
+          single="true"
+          images-key="'pictures'"
+          item-type="'user_setting'">
+        </of-images-upload>
       </div>
     </div>
 

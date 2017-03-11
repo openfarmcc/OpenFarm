@@ -1,5 +1,9 @@
 class PictureSerializer < BaseSerializer
   attribute :id
+  attribute :photographic_id do
+    object.photographic._id
+  end
+
   attribute :image_url do
     object.attachment.url
   end

@@ -22,23 +22,16 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
       $scope.user.sending = true;
 
       var params = {
-        attributes: {
+        'attributes': {
           'help_list': $scope.user.help_list,
           'mailing_list': $scope.user.mailing_list
         },
-        user_setting: {
+        'user_setting': {
           'location': $scope.user.user_setting.location,
           'units': $scope.user.user_setting.units,
-        }
+        },
+        'pictures': $scope.user.user_setting.pictures || null
       };
-
-      if ($scope.user.user_setting.picture &&
-          !$scope.user.user_setting.picture.deleted) {
-        params.featured_image = $scope
-          .user.user_setting.picture.image_url || null;
-      } else {
-        params.featured_image = null;
-      }
 
       var userCallback = function(success, user){
         $scope.user.sending = false;
@@ -50,7 +43,7 @@ openFarmApp.controller('finishCtrl', ['$scope', '$http', 'userService',
         }
       };
 
-      userService.updateUser($scope.user._id,
+      userService.updateUser($scope.user.id,
                              params,
                              userCallback);
     };

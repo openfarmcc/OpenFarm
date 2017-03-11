@@ -30,7 +30,6 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
                 filter: val
               }
             }).then(function(res) {
-              console.log(res);
               var crops = [];
               crops = res.data.data;
               if (crops.length === 0 && $scope.allowNew) {

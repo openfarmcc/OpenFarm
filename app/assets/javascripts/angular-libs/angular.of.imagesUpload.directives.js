@@ -9,7 +9,7 @@
   function ofImagesUpload() {
     return {
       restrict: 'E',
-      templateUrl: '/assets/templates/angular.of.image_upload.template.html',
+      templateUrl: '/assets/templates/angular.of.images_upload.template.html',
       replace: true,
       scope: {
         item: '=',

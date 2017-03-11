@@ -74,7 +74,8 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
         });
 
         pictures = included.filter(function(obj) {
-          return obj.type === 'guides-pictures';
+          return obj.type === 'guides-pictures' &&
+                 obj.attributes.photographic_id === guide.id;
         }).map(function(pic) {
           return pic.attributes;
         });
@@ -120,7 +121,6 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
         if (guideId !== "" && guideId !== "new") {
           $http.get('/api/v1/guides/' + guideId)
           .success(function (response) {
-            console.log(response.data, response.included);
             resolve(buildGuide(response.data, response.included));
           }).error(function (response, code) {
             alertsService.pushToAlerts(response.errors, code);

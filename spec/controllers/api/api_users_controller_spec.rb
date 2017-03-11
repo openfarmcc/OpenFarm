@@ -83,14 +83,14 @@ describe Api::V1::UsersController, type: :controller do
 
   it 'adds a featured image' do
     VCR.use_cassette('controllers/api/api_users_controller_spec') do
-      public_user.user_setting.picture = FactoryGirl.create(:user_picture)
+      public_user.user_setting.pictures = [FactoryGirl.create(:user_picture)]
       public_user.user_setting.save
       sign_in viewing_user
       get 'show', id: public_user.id, format: :json
-      expect(json['included'][0]['attributes']).to have_key('picture')
+      expect(json['included'][0]['attributes']).to have_key('pictures')
       # cat.jpg is the name created in the factorygirl for user_picture
       # (fixture file)
-      pic_json = json['included'][0]['attributes']['picture']
+      pic_json = json['included'][0]['attributes']['pictures'][0]
       expect(pic_json['image_url']).to include('cat.jpg')
     end
   end

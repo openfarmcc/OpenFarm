@@ -117,13 +117,14 @@ openFarmApp.factory('stageService', ['$http', '$log', '$q', 'alertsService',
         });
         if (included) {
           stage.pictures = included.filter(function (pic) {
-            return mappedIds.indexOf(pic.id) !== -1 && pic.type === 'stages-pictures';
+            return mappedIds.indexOf(pic.id) !== -1 &&
+                   pic.type === 'stages-pictures' &&
+                   pic.attributes.id === stage.id;
           }).map(function(pic) {
             return pic.attributes;
           });
         }
       }
-      console.log('stage', stage.name, stage.pictures);
       return stage;
     };
 

@@ -19,11 +19,14 @@ class UserSettingSerializer < BaseSerializer
     end
   end
 
-  attribute :picture do
-    if object.picture
-      { image_url: object.picture.attachment.url,
-        medium_url: object.picture.attachment.url(:medium),
-        thumbnail_url: object.picture.attachment.url(:small) }
+  attribute :pictures do
+    object.pictures.map do |picture|
+      { id: picture.id,
+        image_url: picture.attachment.url,
+        thumbnail_url: picture.attachment.url(:small),
+        medium_url: picture.attachment.url(:medium),
+        canopy_url: picture.attachment.url(:canopy)
+      }
     end
   end
 end

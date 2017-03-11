@@ -46,7 +46,7 @@
           <div ng-if="!editing" class="small-12 medium-4 columns">
             <!-- Make this a thing -->
             <div class="member-picture"
-              style="background-image: url({{ profileUser.user_setting.picture.medium_url || '/assets/baren_field.jpg' }})">
+              style="background-image: url({{ profileUser.user_setting.pictures[0].medium_url || '/assets/baren_field.jpg' }})">
             </div>
           </div>
           <div ng-if="!editing" class="small-12 medium-8 columns member-infos">

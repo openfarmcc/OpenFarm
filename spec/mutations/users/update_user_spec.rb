@@ -35,8 +35,10 @@ describe Users::UpdateUser do
 
   it 'updates user featured image via URL' do
     VCR.use_cassette('mutations/users/update_user') do
-      featured_image = 'http://i.imgur.com/2haLt4J.jpg'
-      image_params = params.merge(featured_image: featured_image)
+      featured_image = {
+        image_url: 'http://i.imgur.com/2haLt4J.jpg'
+      }
+      image_params = params.merge(pictures: [featured_image])
       results = mutation.run(image_params)
       expect(results.success?).to eq(true)
     end
@@ -110,16 +112,9 @@ describe Users::UpdateUser do
   end
 
   it 'rejects users without a valid featured image' do
-    params[:featured_image] = 'not/absoloute.png'
-    VCR.use_cassette('mutations/users/update_user_invalid_pic.rb') do
-      result = mutation.run(params)
-      expect(result.success?).to be(false)
-      expect(result.errors.message_list.first).to include('is not a valid URL')
-    end
-  end
-
-  it 'rejects users without a valid featured image' do
-    params[:featured_image] = 'not/absoloute.png'
+    params[:pictures] = [{
+      image_url: 'not/absoloute.png'
+    }]
     VCR.use_cassette('mutations/users/update_user_invalid_pic.rb') do
       result = mutation.run(params)
       expect(result.success?).to be(false)
@@ -129,10 +124,10 @@ describe Users::UpdateUser do
 
   it 'handles users that have an existing image when image already exists' do
     VCR.use_cassette('mutations/users/update_user_existing_image.rb') do
-      current_user.user_setting.picture = Picture.new(
+      current_user.user_setting.pictures = [Picture.new(
         attachment: open('http://i.imgur.com/2haLt4J.jpg')
-      )
-      featured_image = 'http://i.imgur.com/2haLt4J.jpg'
+      )]
+      featured_image = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }]
       image_params = params.merge(featured_image: featured_image)
       results = mutation.run(image_params)
       expect(results.success?).to eq(true)
@@ -141,14 +136,14 @@ describe Users::UpdateUser do
 
   it 'handles sending an empty user featured_image' do
     VCR.use_cassette('mutations/users/update_user_remove_image.rb') do
-      current_user.user_setting.picture = Picture.new(
+      current_user.user_setting.pictures = [Picture.new(
         attachment: open('http://i.imgur.com/2haLt4J.jpg')
-      )
-      featured_image = nil
+      )]
+      featured_image = []
       image_params = params.merge(featured_image: featured_image)
       results = mutation.run(image_params)
       expect(results.success?).to eq(true)
-      expect(current_user.reload.user_setting.picture).to eq(nil)
+      expect(current_user.reload.user_setting.pictures.first).to eq(nil)
     end
   end
 end

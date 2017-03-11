@@ -25,7 +25,6 @@ openFarmApp.directive('ofShowStageAction', ['$http', 'stageService',
           }
 
           $scope.deleteStageAction = function (idx) {
-            console.log(idx)
             stageService.deleteStageAction($scope.stage.id, $scope.action.id)
               .then(function () {
                 // $scope.action.hide = true;

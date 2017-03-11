@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       attributes: params,
       current_user: current_user,
       user_setting: user_settings,
+      pictures: params[:pictures],
       id: "#{current_user._id}")
 
     if @outcome.errors

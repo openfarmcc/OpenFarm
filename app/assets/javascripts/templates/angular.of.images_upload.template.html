@@ -6,6 +6,7 @@
     ngf-pattern="'image/*'">
     <div class="existing-images">
       <span ng-repeat="pic in vm.item[vm.imagesKey]"
+        ng-if="vm.item[vm.imagesKey].length"
         class="thumbnails"
         ng-class="{ 'deleted' : pic.deleted }">
         <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
@@ -17,7 +18,6 @@
           delete
         </small>
       </span>
-    </div>
     <div class="button"
       ngf-select="vm.uploadFiles($files)"
       multiple="multiple">

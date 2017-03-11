@@ -12,22 +12,12 @@ class UserSetting
   has_and_belongs_to_many :favorite_crops, class_name: 'Crop', inverse_of: nil
 
   field :processing_pictures, type: Integer, default: 0
-  embeds_one :picture, as: :photographic
-  accepts_nested_attributes_for :picture
+  embeds_many :pictures, as: :photographic
+  accepts_nested_attributes_for :pictures
 
   def favorite_crop_image
     if favorite_crops.first.present?
       favorite_crops.first.main_image_path
     end
-  end
-
-  class << self
-    def from_url(url, parent)
-      parent.picture = Picture.new(
-        attachment: open(url)
-      )
-    end
-
-    handle_asynchronously :from_url
   end
 end

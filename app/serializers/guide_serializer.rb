@@ -1,8 +1,5 @@
 class GuideSerializer < BaseSerializer
-  # attribute :crop_id
-  # attribute :crop_name do
-  #   object.crop.name
-  # end
+
   has_one :crop
   has_one :user
   attribute :draft

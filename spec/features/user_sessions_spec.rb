@@ -130,7 +130,6 @@ describe 'User sessions' do
   #   wait_for_ajax
   #   click_button :submit_crop
   #   see('Tomato')
-  #   puts user.reload.user_setting.to_json
   # end
 
   def extract_url_from_email(email)

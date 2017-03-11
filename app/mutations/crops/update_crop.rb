@@ -13,6 +13,7 @@ module Crops
           array :common_names
           string :binomial_name
           string :taxon
+          string :svg_icon
           string :description
           string :sun_requirements
           string :sowing_method

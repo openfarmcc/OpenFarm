@@ -13,6 +13,7 @@ module Crops
         optional do
           array :common_names
           string :binomial_name
+          string :svg_icon
           string :description
           string :sun_requirements
           string :sowing_method

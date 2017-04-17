@@ -1,6 +1,5 @@
 module Crops
   module CropsConcern
-
     def validate_companions
       if attributes[:companions]
         attributes[:companions] = attributes[:companions].uniq

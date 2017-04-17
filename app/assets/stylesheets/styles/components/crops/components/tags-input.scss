@@ -7,8 +7,7 @@
   box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, .2);
   color: $background-color;
   display: block;
-  margin: 0;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   height: 2.3125rem;
   width: 100%;
   box-sizing: border-box;
@@ -16,12 +15,9 @@
 
   .host {
     position: relative;
-    margin-top: 5px;
-    margin-bottom: 5px;
     height: 100%;
     display: block;
-    margin: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem 0;
     height: 2.3125rem;
     width: 100%;
     box-sizing: border-box;

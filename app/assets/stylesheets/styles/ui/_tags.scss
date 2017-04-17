@@ -23,7 +23,6 @@ $tag-radius: $global-radius;
 
     &.selected {
       color: $off-black;
-      background: $of-red;
       border: 0 solid $form-gray;
       background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
         lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);

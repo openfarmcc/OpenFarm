@@ -52,7 +52,9 @@ class Crop
   has_many :varieties, class_name: 'Crop', inverse_of: :parent
   belongs_to :parent, class_name: 'Crop', inverse_of: :varieties
 
-  has_and_belongs_to_many :companions, class_name: 'Crop', inverse_of: :companions
+  has_and_belongs_to_many :companions,
+                          class_name: 'Crop',
+                          inverse_of: :companions
 
   # embeds_many :crop_times
   field :processing_pictures, type: Integer, default: 0
@@ -108,8 +110,8 @@ class Crop
     end
 
     # now link these things
-    if self.companions.present?
-      self.companions.each do |new_companion|
+    if companions.present?
+      companions.each do |new_companion|
         new_companions = new_companion.companions + [self]
         # We explicitely skip this backlink validation here
         # again otherwise we'll loop indefinitely.

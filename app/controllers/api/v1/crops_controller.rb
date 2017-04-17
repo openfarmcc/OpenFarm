@@ -22,7 +22,7 @@ class Api::V1::CropsController < Api::V1::BaseController
 
   def show
     crop = Crop.find(params[:id])
-    render json: serialize_model(crop, include: ['pictures'])
+    render json: serialize_model(crop, include: ['pictures', 'companions'])
   end
 
   def create

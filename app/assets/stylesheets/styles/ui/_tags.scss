@@ -1,0 +1,47 @@
+$tag-radius: $global-radius;
+
+.tags {
+
+  .tag-list {
+    margin-left: 0;
+  }
+
+  .tag-item {
+    color: $off-black;
+    background: $tag-background-color;
+    border: 0 solid $form-gray;
+    border-radius: $tag-radius;
+    padding: 1px 6px;
+    list-style: none;
+    display: inline-block;
+    margin-right: 6px;
+
+
+    &.focused {
+      background-color: darken($tag-background-color, .05);
+    }
+
+    &.selected {
+      color: $off-black;
+      background: $of-red;
+      border: 0 solid $form-gray;
+      background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
+        lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);
+    }
+
+    .remove-button:hover {
+      text-decoration: none;
+    }
+  }
+
+  &.focused {
+    box-shadow: 0 0 5px $gray;
+    border-color: $gray;
+    background: darken($gray-bg, 1%);
+    outline: none;
+
+    .tag-item {
+      background: darken($light-gray, 10%);
+    }
+  }
+}

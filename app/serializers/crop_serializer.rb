@@ -17,5 +17,7 @@ class CropSerializer < BaseSerializer
   attribute :growing_degree_days
   attribute :svg_icon
 
+  has_many :companions, serializer: CropSerializer
+
   has_many :pictures, serializer: PictureSerializer
 end

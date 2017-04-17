@@ -14,7 +14,7 @@
   box-sizing: border-box;
   transition: box-shadow .45s, border-color .45s ease-in-out;
 
- .host {
+  .host {
     position: relative;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -29,44 +29,6 @@
 
     &:active {
       outline: none;
-    }
-  }
-
-  .tags {
-    border: $input-border-width solid $input-border-color;
-    border-radius: $input-border-radius;
-    box-shadow: $input-box-shadow;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    padding: 4px;
-
-    .tag-item {
-      color: $off-black;
-      background: darken($gray-bg, 15%);
-      border: 0 solid $form-gray;
-      border-radius: 0;
-
-      &.selected {
-        color: $off-black;
-        background: $of-red;
-        border: 0 solid $form-gray;
-        background: linear-gradient(to bottom, lighten($of-red, 20%) 0%,
-          lighten($of-red, 30%) 45%, lighten($of-red, 40%) 100%);
-      }
-
-      .remove-button:hover {
-        text-decoration: none;
-      }
-    }
-
-    &.focused {
-      box-shadow: 0 0 5px $gray;
-      border-color: $gray;
-      background: darken($gray-bg, 1%);
-      outline: none;
-
-      .tag-item {
-        background: darken($light-gray, 10%);
-      }
     }
   }
 
@@ -102,6 +64,11 @@
 }
 
 .keywords > .tags {
+  border: $input-border-width solid $input-border-color;
+  border-radius: $input-border-radius;
+  box-shadow: $input-box-shadow;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  padding: 4px;
 
   .tag-list {
     padding: .07em;

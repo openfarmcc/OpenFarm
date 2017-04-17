@@ -5,10 +5,10 @@
       name="{{ options.fieldName || 'search_crop_name '}}"
       type="text"
       placeholder="{{ options.placeholder || 'Search for a crop' }}"
-      ng-model="cropQuery"
+      ng-model="query"
       typeahead="crop as crop.name for crop in getCrops($viewValue)"
       typeahead-template-url="/assets/templates/_crop_search_typeahead.html"
-      typeahead-on-select='cropOnSelect($item, $model, $label, options)'
+      typeahead-on-select='submitCrop($item, $model, $label, options)'
       typeahead-loading="loadingCrops"
       typeahead-wait-ms="500"
       typeahead-min-length="3"
@@ -17,7 +17,7 @@
       clear-on="cropSelectionCanceled"
       focus-on="cropSelectionCanceled"
       class="form-control typeahead search-input invalid-ignore"
-      required/>
+      ng-required="required"/>
     <span ng-show="loadingCrops" class="crops-loading-spinner">
       <i class="fa fa-spinner fa-spin"></i> {{ loadingCropsText || 'loading crops' }}
     </span>

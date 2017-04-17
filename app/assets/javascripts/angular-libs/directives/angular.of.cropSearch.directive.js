@@ -11,14 +11,17 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
         loadingCropsText: '=',
         options: '=',
         allowNew: '=',
-        query: '=',
+        query: '=?',
         doesNotHaveButton: '=',
+        required: '=?'
       },
       controller: ['$scope', '$element', '$attrs',
         function ($scope, $element, $attrs) {
           $scope.placeholder = $attrs.placeholder || 'Search crops';
           $scope.buttonValue = $attrs.buttonValue || 'Submit';
-          $scope.cropQuery = undefined;
+          $scope.query = '';
+
+          $scope.required = $scope.required !== undefined ? $scope.required : true;
 
           $scope.firstCrop = undefined;
           //Typeahead search for crops
@@ -46,12 +49,14 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
             });
           };
 
-          $scope.submitCrop = function() {
+          $scope.submitCrop = function($item, $model, $label, options) {
+
             if ($scope.firstCrop !== undefined) {
               $scope.cropOnSelect($scope.firstCrop);
             } else {
-              $scope.cropOnSelect($scope.cropQuery);
+              $scope.cropOnSelect($scope.query);
             }
+            $scope.query = '';
           };
         }
       ],

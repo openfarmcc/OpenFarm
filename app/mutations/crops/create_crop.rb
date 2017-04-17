@@ -22,6 +22,7 @@ module Crops
           integer :row_spacing
           integer :height
           integer :growing_degree_days
+          array :companions
         end
       end
     end
@@ -32,7 +33,7 @@ module Crops
 
     def validate
       validate_permissions
-
+      validate_companions
       validate_images images
     end
 

@@ -36,7 +36,7 @@ describe Crops::UpdateCrop do
   end
 
   it 'updates crop companions' do
-    params[:attributes][:companions] = [companion_crop].map &:id
+    params[:attributes][:companions] = [companion_crop].map(&:id)
     result = mutation.run(params).result
     expect(result).to be_a(Crop)
     expect(result.valid?).to be(true)

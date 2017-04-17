@@ -1,29 +1,44 @@
 <footer id="footer">
     <div class="row">
-      <div class="about columns medium-4 small-12">
-        <h3 class="crop-name"> About </h3>
-        <%= link_to(icon('info-circle') +
-          t('meta.about'),page_path('about')) %>
-        <%= link_to(icon('question-circle') +
-          t('meta.faq'),page_path('faq')) %>
-        <%= link_to(icon('rss-square') +
-          t('meta.blog'), 'http://blog.openfarm.cc') %>
+      <div class="about columns medium-3 small-12">
+        <h3> Openfarm </h3>
+
+        <%= link_to(t('meta.about'), page_path('about')) %>
+        <%= link_to(t('meta.contact'), page_path('contact')) %>
+        <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
       </div>
-      <div class="contact columns medium-4 small-12">
-        <h3 class="crop-name"> Contact </h3>
-        <%= link_to(icon('comments-o') +
-          t('meta.slack'), 'http://slack.openfarm.cc') %>
+
+      <div class="contribute columns medium-3 small-12">
+        <h3> Contribute </h3>
+
+        <%= link_to(t('meta.getting_started'), 'https://github.com/openfarmcc/OpenFarm/#development') %>
+
+        <%= link_to(t('meta.slack'), 'http://slack.openfarm.cc') %>
+        <%= link_to(t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
+      </div>
+
+      <div class="legal columns medium-3 small-12">
+        <h3> Openfarmers </h3>
+
+        <%= link_to(t('meta.faq'),page_path('faq')) %>
+        <%= link_to(t('meta.how_it_works'), '/en#how-it-works') %>
+        <%= link_to(t('meta.help'), page_path('contact')) %>
+
+      </div>
+
+      <div class="contact columns medium-3 small-12">
+        <h3> Stay in touch </h3>
+        <%= link_to(icon('twitter'), 'https://twitter.com/openfarmcc/', class: 'social') %>
+        <%= link_to(icon('facebook'), 'https://www.facebook.com/OpenFarmCC/', class: 'social') %>
+        <%= link_to(icon('github'), 'https://github.com/OpenFarmCC/openfarm/', class: 'social') %>
         <%= link_to(icon('envelope') +
           t('meta.mailing_list'), page_path('mailing-list')) %>
       </div>
-      <div class="legal columns medium-4 small-12">
-        <h3 class="crop-name"> Legal </h3>
-        <%= link_to(icon('lock') +
-          t('meta.privacy'),page_path('privacy')) %>
-        <%= link_to(icon('file-text-o') +
-          t('meta.tos'),page_path('tos')) %>
-        <%= link_to(icon('book') +
-          t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
-      </div>
+    </div>
+    <div class="row logo-and-terms">
+      <h1>Openfarm</h1>
+      <p><%= link_to(t('meta.tos'),page_path('tos')) %> &amp; <%= link_to(t('meta.privacy'), page_path('privacy')) %>
+
+      </p>
     </div>
 </footer>

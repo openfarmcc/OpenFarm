@@ -1,9 +1,10 @@
 
 footer {
   height: $footer-height;
-  background: rgb(32, 25, 23);
+  background: $gray-bg;
   @include transition(all .5s);
   padding: 2.5em 0;
+  border-top: 1px solid $dark-gray;
 
   @media #{$small-only} {
     & {
@@ -24,26 +25,22 @@ footer {
   }
 
   h3 {
-    color: $white;
+    color: $off-black;
   }
 
   a {
     display: flex;
-    $button-height: 2em;
-    $line-height: 1em;
-    margin-bottom: .5em;
-    padding: 1.5em;
-    font-weight: 600;
+    padding: .5rem;
+    margin-left: -.5rem;
+    font-weight: 300;
     line-height: 1.6;
-    letter-spacing: .08em;
-    color: rgba(255, 255, 255, .5);
-    vertical-align: middle;
-    font-size: .8em;
+    color: $off-black;
+    font-size: 1rem;
     @include transition(all .65s ease-out);
 
     &:hover {
-      background: rgba(255, 255, 255, .25);
-      color: rgba(255, 255, 255, .75);
+      background: transparentize($off-black, .8);
+      color: $off-black;
     }
 
     i {
@@ -54,6 +51,32 @@ footer {
     &:active {
       @include transition(none);
       background: rgba(255, 255, 255, .15);
+    }
+
+    &.social {
+      display: inline-block;
+      padding: 0 .5rem;
+      font-size: 1.5rem;
+      margin-right: .5rem;
+
+      i {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .logo-and-terms {
+    margin-top: 1rem;
+    text-align: center;
+
+    h1 {
+      color: $of-green;
+      text-transform: lowercase;
+      font-weight: 600;
+    }
+
+    a {
+      display: inline-block;
     }
   }
 }

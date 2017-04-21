@@ -52,10 +52,18 @@ class Crop
   has_many :varieties, class_name: 'Crop', inverse_of: :parent
   belongs_to :parent, class_name: 'Crop', inverse_of: :varieties
 
+  has_and_belongs_to_many :companions,
+                          class_name: 'Crop',
+                          inverse_of: :companions
+
   # embeds_many :crop_times
   field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
   accepts_nested_attributes_for :pictures
+
+  slug :name
+
+  after_save :backlink_companion_crops
 
   def search_data
     as_json only: [:name, :common_names, :binomial_name, :description,
@@ -85,5 +93,32 @@ class Crop
     end
   end
 
-  slug :name
+  # This is nasty, but it's because mongoid doesn't do
+  # Has And Belongs To Many relationships that point to
+  # self very well.
+  def backlink_companion_crops
+    # clean up what was
+    if companion_ids_was.present?
+      companion_ids_was.each do |oldcomp|
+        oldcomp = Crop.find(oldcomp)
+        # We explicitely skip this backlink validation here
+        # again otherwise we'll loop indefinitely.
+        Crop.skip_callback(:save, :after, :backlink_companion_crops)
+        oldcomp.companions.delete(self)
+        Crop.set_callback(:save, :after, :backlink_companion_crops)
+      end
+    end
+
+    # now link these things
+    if companions.present?
+      companions.each do |new_companion|
+        new_companions = new_companion.companions + [self]
+        # We explicitely skip this backlink validation here
+        # again otherwise we'll loop indefinitely.
+        Crop.skip_callback(:save, :after, :backlink_companion_crops)
+        new_companion.set(companions: new_companions.uniq)
+        Crop.set_callback(:save, :after, :backlink_companion_crops)
+      end
+    end
+  end
 end

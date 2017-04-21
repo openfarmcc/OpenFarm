@@ -3,3 +3,5 @@ Style/StringLiterals:
   EnforcedStyle: single_quotes
 InlineComment:
   Enabled: false
+Style/WordArray:
+  Enabled: false

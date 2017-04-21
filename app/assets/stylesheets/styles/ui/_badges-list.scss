@@ -1,6 +1,6 @@
 .badges-list {
   .badge {
-    background-color: transparentize($openfarm-green-muted, .8);
+    background-color: $tag-background-color;
     display: inline-block;
     text-transform: capitalize;
     border-radius: 3px;

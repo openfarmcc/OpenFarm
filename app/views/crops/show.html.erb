@@ -50,6 +50,15 @@
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.description} %></td>
         </tr>
         <tr>
+          <td><%= I18n.t('crops.companions') %></td>
+          <td>
+            <% @crop.companions.all.each do |comp| %>
+              <%= link_to comp do %>
+                <%= comp.svg_icon %> <%= comp.name %>
+              <% end %>
+            <% end  %></td>
+        </tr>
+        <tr>
           <td><%= I18n.t('crops.sun_requirements') %></td>
           <td><%= render partial: '/crops/exists_or_edit', locals: {obj: @crop.sun_requirements} %></td>
         </tr>

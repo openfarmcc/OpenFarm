@@ -70,4 +70,7 @@ $compatibility-high-color-bg: lighten($compatibility-high-color, 40%);
 $brown: #4d4c4b;
 $gray-green: #dadfda;
 
+// semantic colors
+$tag-background-color: transparentize($openfarm-green-muted, .8);
+
 $transition-speed: .5s;

@@ -245,6 +245,7 @@ en:
     row_spacing: "Row Spacing"
     height: "Height"
     tags: "Tags"
+    companions: "Companions"
     num_crops:
       zero: "No crops"
       one: "1 crop"
@@ -265,6 +266,8 @@ en:
       domain: "Domain"
       life: "Life"
       other: "Other"
+      companions: "Companions"
+      description: "Description"
   crop_searches:
     show:
       loading_crops: "loading crops"

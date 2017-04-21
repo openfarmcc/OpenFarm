@@ -23,6 +23,7 @@ module Crops
           integer :height
           integer :growing_degree_days
           array :tags_array
+          array :companions
         end
       end
     end
@@ -33,6 +34,7 @@ module Crops
 
     def validate
       validate_permissions
+      validate_companions
       @crop = Crop.find(id)
       validate_images images, @crop
     end

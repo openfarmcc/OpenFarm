@@ -42,6 +42,7 @@ gem 'utf8-cleaner'
 
 gem 'bson_ext'
 gem 'mongoid', '~>4.0.2'
+gem 'kaminari-mongoid'
 gem 'active_model_serializers'
 
 # Asset management using bower

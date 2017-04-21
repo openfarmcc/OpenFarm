@@ -11,6 +11,7 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
 
     var buildCrop = function(data, included) {
       var pictures;
+      var companions;
       var crop = data.attributes;
       crop.id = data.id;
       crop.relationships = data.relationships;
@@ -23,9 +24,14 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
         }).map(function(pic) {
           return pic.attributes;
         });
+
+        companions = included.filter(function(obj) {
+          return obj.type === 'crops';
+        });
       }
 
       crop.pictures = pictures || [];
+      crop.companions = companions || [];
       return crop;
     };
 
@@ -40,7 +46,7 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       };
       cropObject.images = null;
       return {'data': data};
-    }
+    };
 
     // get the guide specified.
     var getCrop = function(cropId, callback){

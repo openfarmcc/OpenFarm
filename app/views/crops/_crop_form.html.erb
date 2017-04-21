@@ -8,7 +8,7 @@
 
       <h1>
         <% if @crop.name %>
-          Edit <%= @crop.name %>
+          Edit <%= link_to @crop.name, @crop %>
         <% else %>
           Add a new crop
         <% end %>
@@ -79,7 +79,30 @@
 
     <div class="row">
       <div class="columns small-4 medium-4">
-        <label class="right" for="description">Description</label>
+        <label class="right" for="description"><%= t('crops.edit.companions') %>:</label>
+      </div>
+
+      <div class="columns small-8 medium-8 tags">
+        <ul class="companions tag-list">
+          <li ng-repeat="crop in crop.companions track by crop.slug" class="tag-item">
+            {{ crop.name }}
+            <i class="delete fa fa-times"
+              ng-click="removeCompanionCrop($index)">
+            </i>
+          </li>
+        </ul>
+        <div crop-search
+          loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
+          crop-on-select="addCompanionCrop"
+          required="iscompanionrequired"
+          does-not-have-button="true">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns small-4 medium-4">
+        <label class="right" for="description"><%= t('crops.edit.description') %></label>
       </div>
       <div class="columns small-8 medium-8">
         <textarea ng-model="crop.description"
@@ -201,13 +224,15 @@
       <div class="columns small-4 medium-4">
         <label for="crop[icon]" class="right">Manage icon</label>
       </div>
-      <img
-      width="64"
-      height="64"
-      ng-src="data:image/svg+xml;utf8,{{ crop.svg_icon }}">
-      </img>
-      <svg-button on-change="addSvg($svg)">
-      </svg-button>
+      <div class="columns small-8 medium-8">
+        <img
+        width="64"
+        height="64"
+        ng-src="data:image/svg+xml;utf8,{{ crop.svg_icon }}">
+        </img>
+        <svg-button on-change="addSvg($svg)">
+        </svg-button>
+      </div>
     </div>
 
     <div class="row">

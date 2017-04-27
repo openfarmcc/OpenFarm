@@ -124,10 +124,12 @@ openFarmApp.directive('autoFocus', ['$timeout',
   function($timeout) {
     return {
         restrict: 'AC',
-        link: function(_scope, _element) {
+        link: function($scope, $element) {
+          if ($scope.autoFocus) {
             $timeout(function(){
-                _element[0].focus();
+                $element[0].focus();
             }, 0);
+          }
         }
     };
 }]);

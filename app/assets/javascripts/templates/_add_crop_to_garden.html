@@ -7,11 +7,10 @@
       placeholder="{{ options.placeholder || 'Search for a crop' }}"
       ng-model="cropQuery"
       typeahead="crop as crop.name for crop in getCrops($viewValue) | filter:$viewValue"
-      
+
       typeahead-loading="loadingCrops"
       typeahead-wait-ms="500"
       typeahead-min-length="3"
-      auto-focus
       autocomplete="off"
       clear-on="cropSelectionCanceled"
       focus-on="cropSelectionCanceled"

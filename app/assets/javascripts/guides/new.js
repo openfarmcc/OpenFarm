@@ -37,6 +37,8 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
   $scope.guideExists = ($scope.existingGuideID &&
                         $scope.existingGuideID !== 'new');
 
+  activate();
+
   // Ideally we'll find a way of including this function in
   // the stages directive.
   $scope.editSelectedStage = function(chosenStage){
@@ -142,52 +144,56 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
     });
   };
 
-  // First FIRST we need to get all of the defaults
-  $q.all([
-      defaultService.processedDetailOptions(),
-      cropService.getCropWithPromise(getUrlVar('crop_id')),
-      userService.getUserWithPromise(USER_ID),
-    ])
-  .then(function(data){
-    var crop;
+  function activate() {
+    // First FIRST we need to get all of the defaults
+    $q.all([
+        defaultService.processedDetailOptions(),
+        cropService.getCropWithPromise(getUrlVar('crop_id')),
+        userService.getUserWithPromise(USER_ID),
+      ])
+    .then(function(data){
+      var crop;
 
-    var detail_options = data[0];
-    $scope.options = detail_options;
-    practices = detail_options.multiSelectPractices;
+      var detail_options = data[0];
+      $scope.options = detail_options;
+      practices = detail_options.multiSelectPractices;
 
-    if (data[1]) {
-      crop = data[1];
-      $scope.query = crop.name;
-    }
-    $scope.user = data[2];
+      if (data[1]) {
+        crop = data[1];
+        $scope.query = crop.name;
+      }
+      $scope.user = data[2];
 
-    checkingGuideSource()
-      .then(function(guide) {
-        $scope.newGuide = guide;
+      checkingGuideSource()
+        .then(function(guide) {
+          $scope.newGuide = guide;
 
-        $scope.$watch('newGuide', function() {
-          if (!$scope.guideExists){
-            localStorageService.set('guide', $scope.newGuide);
-          }
-        }, true);
+          $scope.newGuide.crop = crop;
 
-        $scope.$watch('newGuide.crop', function(afterValue){
-          if (afterValue !== undefined && afterValue !== null &&
-              ($scope.newGuide.name === undefined ||
-               $scope.newGuide.name === '')) {
-            $scope.newGuide.name = $scope.user.display_name +
-                                   '\'s ' +
-                                   $scope.newGuide.crop.name;
-          }
+          $scope.$watch('newGuide', function() {
+            if (!$scope.guideExists){
+              localStorageService.set('guide', $scope.newGuide);
+            }
+          }, true);
+
+          $scope.$watch('newGuide.crop', function(afterValue){
+            if (afterValue !== undefined && afterValue !== null &&
+                ($scope.newGuide.name === undefined ||
+                 $scope.newGuide.name === '')) {
+              $scope.newGuide.name = $scope.user.display_name +
+                                     '\'s ' +
+                                     $scope.newGuide.crop.name;
+            }
+          });
+          $scope.newGuide.location = $scope.user.user_setting.location;
+        },
+        function(error) {
+          console.log('an error', error);
         });
-        $scope.newGuide.location = $scope.user.user_setting.location;
-      },
-      function(error) {
-        console.log('an error', error);
-      });
-  }, function(error) {
-    console.log('error', error);
-  });
+    }, function(error) {
+      console.log('error', error);
+    });
+  }
 
   $scope.switchToStep = function(step){
     $rootScope.previousStep = $rootScope.step;

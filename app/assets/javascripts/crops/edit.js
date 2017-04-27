@@ -16,7 +16,9 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
     activate();
 
     function activate() {
-      if (cropId !== 'new' && cropId !== undefined) {
+      if (cropId !== 'new' &&
+          cropId !== undefined &&
+          cropId !== '') {
         cropService.getCropWithPromise(cropId)
           .then(function (crop) {
 
@@ -73,6 +75,8 @@ openFarmApp.controller('cropCtrl', ['$scope', '$http', 'cropService',
       var tags_array = $scope.crop.tags_array.map(function (obj) {
         return obj.text;
       });
+
+      $scope.crop.companions = $scope.crop.companions || [];
 
       var crop = {
         common_names: commonNames,

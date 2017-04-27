@@ -30,7 +30,6 @@ openFarmApp.factory('alertsService', ['$rootScope',
           msg_type = 'alert';
         }
 
-        console.log(response, code);
         if (response) {
           msg = response.map(function(obj){
             if (obj.title) {

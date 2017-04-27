@@ -62,13 +62,11 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
 
     var getCropWithPromise = function(cropId) {
       return $q(function (resolve, reject) {
-        console.log(cropId);
         if (cropId !== undefined && cropId !== '') {
           $http({
             url: '/api/v1/crops/' + cropId,
             method: 'GET'
           }).success(function (response) {
-            console.log(response);
             resolve(buildCrop(response.data, response.included));
           }).error(function (response, code) {
             reject();

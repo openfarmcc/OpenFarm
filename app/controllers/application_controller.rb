@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Mongoid::Errors::DocumentNotFound, with: :record_not_found
   protect_from_forgery with: :exception
-
   helper :all
-  
   # Allow certain fields for devise - needed in Rails 4.0+
   before_filter :update_sanitized_params, if: :devise_controller?
 

@@ -57,7 +57,7 @@
                 <img
                   width="24"
                   height="24"
-                  ng-src="data:image/svg+xml;utf8,<%= comp.svg_icon %>">
+                  ng-src="data:image/svg+xml;utf8,<%= comp.svg_icon ? comp.svg_icon : load_generic_plant_icon %>">
                   </img>
                 <%= comp.name %>
               <% end %>

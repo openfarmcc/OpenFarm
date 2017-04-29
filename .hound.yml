@@ -1,12 +1,8 @@
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-InlineComment:
-  Enabled: false
 java_script:
   enabled: true
   config_file: config/.jshint.json
 ruby:
   enabled: true
-  config: .rubocop.yml
+  config_file: .rubocop.yml
 scss:
   config_file: config/.scss-style.yml

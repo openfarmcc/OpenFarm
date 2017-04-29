@@ -1,5 +1,10 @@
 RailsAdmin.config do |config|
 
+  # We need this because Karminari doesn't seem to work
+  # too well alongside RailsAdmin. Maybe it's a conflict
+  # of which gets defined first?
+  Kaminari::Hooks.init
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -7,7 +12,15 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :admin
   # end
 
-  config.current_user_method(&:current_admin)
+  config.current_user_method do
+    if current_user && current_user.admin?
+      current_user
+    else
+      flash[:notice] = 'I told you kids to get out of here!'
+      redirect_to '/'
+      nil
+    end
+  end
 
   ## == Cancan ==
   # config.authorize_with :cancan

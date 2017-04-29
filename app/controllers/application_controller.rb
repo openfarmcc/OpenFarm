@@ -45,15 +45,6 @@ class ApplicationController < ActionController::Base
      :years_experience, :mailing_list, :is_private, :agree]
   end
 
-  def current_admin
-    if current_user && current_user.admin?
-      return current_user
-    else
-      flash[:notice] = 'I told you kids to get out of here!'
-      redirect_to '/' and return
-    end
-  end
-
   private
 
   def record_not_found

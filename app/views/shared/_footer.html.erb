@@ -28,17 +28,24 @@
 
       <div class="contact columns medium-3 small-12">
         <h3> Stay in touch </h3>
+        <%= link_to(icon('facebook-official'), 'https://www.facebook.com/OpenFarmCC/', class: 'social') %>
         <%= link_to(icon('twitter'), 'https://twitter.com/openfarmcc/', class: 'social') %>
-        <%= link_to(icon('facebook'), 'https://www.facebook.com/OpenFarmCC/', class: 'social') %>
         <%= link_to(icon('github'), 'https://github.com/OpenFarmCC/openfarm/', class: 'social') %>
-        <%= link_to(icon('envelope') +
-          t('meta.mailing_list'), page_path('mailing-list')) %>
+        <%= link_to(icon('envelope'), page_path('contact'), class: 'social') %>
+
+        <form action="//openfarm.us8.list-manage.com/subscribe/post?u=d41f97f612d606f032a884227&amp;id=8b8c94b1c5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate class="">
+          <label for="mce-EMAIL">Newsletter:
+          </label>
+          <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+          <div style="position: absolute; left: -5000px;"><input type="text" name="b_d41f97f612d606f032a884227_8b8c94b1c5" tabindex="-1" value=""></div>
+          <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </form>
       </div>
     </div>
     <div class="row logo-and-terms">
       <h1>Openfarm</h1>
       <p><%= link_to(t('meta.tos'),page_path('tos')) %> &amp; <%= link_to(t('meta.privacy'), page_path('privacy')) %>
-
       </p>
     </div>
 </footer>

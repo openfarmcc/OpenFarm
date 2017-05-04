@@ -26,6 +26,7 @@ footer {
 
   h3 {
     color: $off-black;
+    font-size: 1.25rem;
   }
 
   a {
@@ -78,5 +79,24 @@ footer {
     a {
       display: inline-block;
     }
+  }
+
+  label {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: $dark-gray;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: .25rem;
+    background: transparent;
+    color: $of-green;
+    border: 1px solid $of-green;
+    box-shadow: none;
+  }
+
+  input[type="email"] {
+    margin-bottom: .25rem;
   }
 }

@@ -40,15 +40,17 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
           if ($scope.stage) {
             stageService.getStage($scope.stage.id)
               .then(function (obj) {
+                console.log('got stage', obj);
                 // TODO: We probably want to keep this more consistent
                 // stage-actions? Probably a jsonAPI serializer thing.
-                $scope.stage.stage_actions = obj['stage-actions']
+                $scope.stage = obj;
+                // $scope.stage.stage_actions = obj['stage-actions']
               });
           }
 
           $scope.toggleEditingStage = function() {
             $scope.editingStage = !$scope.editingStage;
-          }
+          };
 
           $scope.deleteStage = function(stage) {
             var con = confirm('Are you sure you want to delete this stage?');
@@ -81,17 +83,17 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 environment: $scope.environment.filter(function(env) {
                                 return env.selected;
                               }).map(function(env) {
-                                return env.label
+                                return env.label;
                               }),
                 light: $scope.light.filter(function(light) {
                           return light.selected;
                         }).map(function(light) {
-                          return light.label
+                          return light.label;
                         }),
                 soil: $scope.soil.filter(function(soil) {
                         return soil.selected;
                       }).map(function(soil) {
-                        return soil.label
+                        return soil.label;
                       }),
                 stage_length: stage.stage_length,
                 order: stage.order,

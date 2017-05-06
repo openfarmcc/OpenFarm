@@ -19,13 +19,13 @@
 
   .crop-name {
     margin-right: 20px;
+    padding-left: 0;
   }
 
   .guide-relationships {
     color: $dark-gray;
     font-size: 1rem;
-    margin-top: 2rem;
-    margin-right: .5rem;
+    margin: 2rem .5rem 0;
     display: inline-block;
   }
 }

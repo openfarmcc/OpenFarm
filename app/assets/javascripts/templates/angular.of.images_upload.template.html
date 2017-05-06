@@ -21,7 +21,12 @@
     <div class="button"
       ngf-select="vm.uploadFiles($files)"
       multiple="multiple">
-      Choose files to upload
+      <span ng-if="vm.single">
+        Choose file to upload
+      </span>
+      <span ng-if="!vm.single">
+        Choose files to upload
+      </span>
     </div>
 
     <div ng-show="uploading" class="progress primary round">

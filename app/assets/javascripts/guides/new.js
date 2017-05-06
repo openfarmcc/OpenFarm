@@ -181,7 +181,7 @@ openFarmApp.controller('newGuideCtrl', ['$scope', '$http', '$q',
                 ($scope.newGuide.name === undefined ||
                  $scope.newGuide.name === '')) {
               $scope.newGuide.name = $scope.user.display_name +
-                                     '\'s ' +
+                                     '’s ' +
                                      $scope.newGuide.crop.name;
             }
           });

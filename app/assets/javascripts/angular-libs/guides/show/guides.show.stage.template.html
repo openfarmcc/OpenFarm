@@ -18,15 +18,16 @@
     </a>
   </div>
 
-  <div class="columns images"
-    ng-class="{ 'small-3': stage.pictures.length === 0 }">
+  <div class="columns images small-3"
+    ng-class="{ 'small-3': !stage.pictures || stage.pictures.length <= 1 }">
     <span ng-repeat="pic in stage.pictures"
       ng-if="!editingStage">
       <a of-lightbox-modal thumbnail-url="{{pic.medium_url}}"
         display-url="{{pic.image_url}}" description="{{$parent.name}}">
       </a>
     </span>
-    <span ng-if="stage.pictures.length === 0"
+
+    <span ng-if="!stage.pictures || stage.pictures.length === 0"
       class="stage-default-picture stage-option {{ stage.name | lowercase }}">
     </span>
 
@@ -40,7 +41,7 @@
   </div>
 
   <div class="columns small-8 action-content end"
-    ng-class="{ 'small-12': stage.pictures.length > 0 }">
+    ng-class="{ 'small-12': stage.pictures.length > 1 }">
     <h4 class="stage-name">{{ stage.name }} Overview</h4>
 
     <div class="row" ng-hide="editingStage">

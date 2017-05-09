@@ -1,0 +1,132 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cxqzuch7wk:j3viuw99pt@first-cluster-9979923279.us-east-1.bonsaisearch.net/_bulk
+    body:
+      encoding: UTF-8
+      string: |
+        {"index":{"_index":"guides_test","_id":"58bec92772683d2b2f000047","_type":"guide"}}
+        {"crop_id":"58bec90772683d2b2f000041","draft":true,"name":"hi.","overview":null}
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic Y3hxenVjaDd3azpqM3ZpdXc5OXB0
+      Content-Type:
+      - application/json
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Server:
+      - Nespr 1.1
+      X-Bonsai-Backend:
+      - 172.31.23.130
+      X-Queue-Duration:
+      - '0'
+      X-Request-Duration:
+      - '5'
+      X-Request-Id:
+      - bd95b108-6f26-499a-8a31-15f57f11226b
+      Content-Length:
+      - '211'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"took":4,"errors":false,"items":[{"index":{"_index":"guides_test_20170307085115334","_type":"guide","_id":"58bec92772683d2b2f000047","_version":1,"_shards":{"total":1,"successful":1,"failed":0},"status":201}}]}'
+    http_version: 
+  recorded_at: Tue, 07 Mar 2017 14:52:23 GMT
+- request:
+    method: post
+    uri: https://cxqzuch7wk:j3viuw99pt@first-cluster-9979923279.us-east-1.bonsaisearch.net/_bulk
+    body:
+      encoding: UTF-8
+      string: |
+        {"index":{"_index":"guides_test","_id":"58bec92772683d2b2f000047","_type":"guide"}}
+        {"crop_id":"58bec90772683d2b2f000041","draft":true,"name":"hi.","overview":null}
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic Y3hxenVjaDd3azpqM3ZpdXc5OXB0
+      Content-Type:
+      - application/json
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Server:
+      - Nespr 1.1
+      X-Bonsai-Backend:
+      - 172.31.23.130
+      X-Queue-Duration:
+      - '0'
+      X-Request-Duration:
+      - '22'
+      X-Request-Id:
+      - d9fb3515-114e-4d05-842b-0a4e202a2f59
+      Content-Length:
+      - '212'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"took":19,"errors":false,"items":[{"index":{"_index":"guides_test_20170307085115334","_type":"guide","_id":"58bec92772683d2b2f000047","_version":2,"_shards":{"total":1,"successful":1,"failed":0},"status":200}}]}'
+    http_version: 
+  recorded_at: Tue, 07 Mar 2017 14:52:23 GMT
+- request:
+    method: post
+    uri: https://cxqzuch7wk:j3viuw99pt@first-cluster-9979923279.us-east-1.bonsaisearch.net/_bulk
+    body:
+      encoding: UTF-8
+      string: |
+        {"index":{"_index":"guides_test","_id":"58bec92772683d2b2f000047","_type":"guide"}}
+        {"crop_id":"58bec90772683d2b2f000041","draft":true,"name":"hi.","overview":null}
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Authorization:
+      - Basic Y3hxenVjaDd3azpqM3ZpdXc5OXB0
+      Content-Type:
+      - application/json
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Server:
+      - Nespr 1.1
+      X-Bonsai-Backend:
+      - 172.31.23.130
+      X-Queue-Duration:
+      - '0'
+      X-Request-Duration:
+      - '8'
+      X-Request-Id:
+      - ab400110-93ff-4e9a-bfa1-820f7c6b32d3
+      Content-Length:
+      - '211'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"took":6,"errors":false,"items":[{"index":{"_index":"guides_test_20170307085115334","_type":"guide","_id":"58bec92772683d2b2f000047","_version":3,"_shards":{"total":1,"successful":1,"failed":0},"status":200}}]}'
+    http_version: 
+  recorded_at: Tue, 07 Mar 2017 14:52:23 GMT
+recorded_with: VCR 3.0.3

@@ -1,4 +1,4 @@
-![OpenFarm](https://cloud.githubusercontent.com/assets/10438537/13198846/445ddeb2-d7d1-11e5-8e11-163e0545909a.jpg)
+![OpenFarm](https://github.com/openfarmcc/OpenFarm/blob/master/app/assets/images/OpenFarm%20f%20logo%20-%20green%20%23219653.svg)
 
 [![Coverage Status](https://img.shields.io/coveralls/openfarmcc/OpenFarm.svg)](https://coveralls.io/r/openfarmcc/OpenFarm)
 [![Code Climate](https://codeclimate.com/github/openfarmcc/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
@@ -31,7 +31,7 @@ Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) that
 
 ### Look for something you want to work on
 
-For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end] (https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects).
+For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end](https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects).
 
 Need to use OpenFarm Assets? [Here they are](https://drive.google.com/open?id=0B-wExYzQcnp3cGphOGZQS1lBRFk)!
 

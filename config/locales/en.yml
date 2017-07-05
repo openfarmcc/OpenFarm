@@ -66,11 +66,13 @@ en:
     project_history: "Project History"
     code_of_conduct: "Code of Conduct"
     faq: FAQ
+    ask_questions: "Ask questions"
+    how_it_works: How it works
     email_newsletter: "Subscribe to our Email Newsletter"
     privacy: "Privacy"
     privacy_policy: "Privacy Policy"
     tos: "Terms of Service"
-    how_it_works: How it works
+    how_it_works: Ask questions
   measurements:
     time:
       days:

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.3.3'
 
 gem 'bundler', '>= 1.7.0'
 
@@ -111,8 +111,6 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT
-# Until the new API calls are generally available, you must manually specify my fork
-# of the Heroku API gem:
-gem 'platform-api' #, github: 'jalada/platform-api', branch: 'master'
+gem 'platform-api' 
 
 gem 'letsencrypt-rails-heroku', group: 'production'

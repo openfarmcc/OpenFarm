@@ -50,7 +50,7 @@ en:
     about: "About Us"
     blog: "Blog"
     help: Help
-    slack: Slack Group
+    slack: Join Slack
     getting_started: Getting Started
     mailing_list: Mailing List
     our_mission: "Our Mission"
@@ -66,11 +66,12 @@ en:
     project_history: "Project History"
     code_of_conduct: "Code of Conduct"
     faq: FAQ
+    ask_questions: "Ask questions"
+    how_it_works: How it works
     email_newsletter: "Subscribe to our Email Newsletter"
     privacy: "Privacy"
     privacy_policy: "Privacy Policy"
     tos: "Terms of Service"
-    how_it_works: How it works
   measurements:
     time:
       days:

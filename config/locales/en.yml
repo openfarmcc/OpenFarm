@@ -419,10 +419,10 @@ en:
       edit:
           successful_creation: "You’ve successfully created a stage."
   home:
-      call_to_action: "Grow Your Food"
+      call_to_action: "GROW YOUR OWN FOOD"
       placeholder: "What do you want to grow?"
       search: "Search"
-      hero_header: "Farm and garden through knowledge sharing"
+      hero_header: "Plant edible crops like farmers and gardeners around you"
       community_favorites: "Community Favorites"
       explore_community_favorites: "Explore community favorites"
       step_1: "Choose a Crop"

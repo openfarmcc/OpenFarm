@@ -6,20 +6,69 @@
 <%= content_for(:title) do %><%= t('.title') %><% end %>
 <% end %>
 
-<div class="crop-search-results row wide-row">
-  <div class="crop-results-container columns medium-6 small-12">
-    <h2 class="text-center"><%= t('.choose_a_crop') %></h2>
-    <% if @crops.empty? %>
-    <p class="no-results, text-center"><%= t('.no_crops') %> "<%= params[:q].to_s %>."<br/><%= t('.would_you_like_to') %> <%= link_to t('.add_this_crop'), new_crop_path %>?</p>
-    <% end %>
-    <%= render partial: 'crop_results', object: @crops %>
-  </div>
-  <div class="guide-results-container columns medium-6 small-12">
-    <h2 class="text-center"><%= t('.explore_the_guides') %></h2>
-    <% if @guides.empty? %>
+ <div class="crop-search-wrapper">
+    <div class="row">
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Guide search</label>
+            <input type="text" class="form-control fa fa-user" placeholder="Tomatoes" />
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">When</label>
+            <div class="form-component input--medium input--search">
+                <input type="text" placeholder="Search">
+            </div>
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Climate zone</label>
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Climate zone" />
+                </div>
 
-      <p class="no-results, text-center"><%= t('.no_guides') %><br/><%= t('.perhaps_you_could') %> <%= link_to t('.create_one'), new_guide_path %>?</p>
-    <% end %>
-    <%= render partial: 'guides/guide_results_list', object: @guides %>
-  </div>
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Search</label>
+        <button type="submit" class="btn" style="padding: 10px; float: left;" padding-bottom:0px;><i class="fa fa-search"></i>
+        </button>
+        </div>
+
+    </div>
+<div class="row" style="text-align: left;">
+            <label class="control-label">Stages</label>
+            <button class="btn btn-xs crop-search-button">PREPARE</button>
+            <button class="btn btn-sm crop-search-button">SOW</button>
+            <button class="btn btn-sm crop-search-button">GERMINATE</button>
+            <button class="btn btn-sm crop-search-button">BLOSSOM</button>
+            <button class="btn btn-sm crop-search-button">HARVEST</button>
+            <button class="btn btn-sm crop-search-button">POST PROCESS</button>
+        </div>
+    </div>
+
+        <div class="crop-search-outer-wrapper">
+
+<!-- Sidebar -->
+        <div class="crop-search-siderbar-nav col-sm-3 col-md-3 col-lg-3" style="display: inline-flex;">
+            <ul class="">
+                    <div class="md-checkbox" >
+
+                        <input id="i2" type="checkbox" checked>
+                        <label class="">balcony</label>
+
+                      </div>
+                      <div class="md-checkbox" style="display: inline-flex;">
+                        <input id="i1" type="checkbox">
+                        <label for="i1" class="">backyard</label>
+                      </div>
+                      </hr>
+          
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div class="crop-search-inner-wrapper" style="border: 1px solid grey;">
+          Search stuff will populate here
+        </div>
+        </div>
+ </div>
+
+</div>
 </div>

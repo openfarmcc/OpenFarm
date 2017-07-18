@@ -1,0 +1,146 @@
+// The search bar is laid out with tables.
+// Yes this makes sense...for backwards compatability and feeling bad
+// Eventually we will have the sweet, sweet flexbox.
+.search-bar-container {
+  display: table;
+  margin: 1.5rem auto;
+  max-width: 750px;
+  width: 100%;
+  height: 50px;
+}
+
+.date-time-container {
+  display: table;
+  margin: 1.5rem auto;
+  max-width: 450px;
+  width: 100%;
+  height: 50px;
+}
+.date-time {
+  padding: 0 1rem;
+  position: relative;
+  $search-bar-height: 50px;
+  }
+
+  .date-time-input-container {
+    // Typeahead dropdown
+    .f-dropdown {
+      margin-top: 0;
+      text-align: left;
+
+      // dropdown carrat
+      &:before, &:after {
+        display: none;
+      }
+    }
+  }
+
+.search-bar {
+  padding: 0 1rem;
+  position: relative;
+  $search-bar-height: 50px;
+
+  .search-input-container {
+    // display: table-cell;
+    // width: 100%;
+
+    // Typeahead dropdown
+    .f-dropdown {
+      margin-top: 0;
+      text-align: left;
+
+      // dropdown carrat
+      &:before, &:after {
+        display: none;
+      }
+    }
+  }
+  .crops-loading-spinner {
+    position: absolute;
+    background: $white;
+    width: 100%;
+    padding: 4px;
+    display: block;
+  }
+
+  .search-input {
+    background-color: $white;
+    color: $off-black;
+    display: table-cell;
+    font-size: 1.2em;
+    height: $search-bar-height;
+    margin: 0;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .search-button-container {
+    display: table-cell;
+    width: auto;
+  }
+  .errspan {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: red;
+}
+
+  .search-button {
+    border-radius: 0;
+    color: $white;
+    display: table-cell;
+    font-size: 1.2em;
+    height: $search-bar-height;
+    padding: 0 35px;
+    right: 0;
+    top: 0;
+    box-shadow: none;
+
+    &:hover {
+      background-color: rgba(106, 168, 79, 1);
+    }
+
+    // Make the search button take up less room on mobile
+    @media #{$small-only} {
+      padding: 0 15px;
+    }
+  }
+}
+
+.search {
+  background-color: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+/* Sidebar Styles */
+
+.sidebar-search-wrapper {
+    border: 2px solid black; 
+    padding: 20px;
+}

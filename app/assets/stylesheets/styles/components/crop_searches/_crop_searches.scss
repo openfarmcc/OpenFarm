@@ -1,17 +1,95 @@
 .crop-search-wrapper {
-  background-color: $gray-green;
+  background-color: #F6F6F6;
   padding: 1.25em 0 1.5em;
   text-align: center;
   margin-left:0px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  padding-left: 30px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.3), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 .crop-search-outer-wrapper {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-background-color: whitesmoke;
+  background-color: #fdfdfd;
   width:100%;
+  min-height: 300px;
+}
+.crop-search-more {
+  
+}
+.crop-search-footer {
+margin-top:100px;
+  margin-left: 15rem;
+}
+.crop-search-image {
+  margin: 5em;
+
+}
+.crop-search-footer-button-style01 {
+    background-color: #fafafa;
+    border-radius: 3px;
+    border: 1px solid green;
+
+    color: green;
+    font-weight: 800;
+    font-size: 0.6em;
+    box-shadow: 0px 2px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+  
+}
+.crop-search-footer-button-style02 {
+    background-color: green;
+
+    border-radius: 3px;
+    color: #fafafa;
+    font-weight: 800;
+    font-size: 0.6em;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  
+}
+.crop-search-header-lbl-3 {
+margin-left: 30px;
+text-align: left;
+padding: 10px;
+ font-weight: 800;
+color: grey;
+}
+.crop-search-image-circle{
+
+  width:450px;height:450px;
+  background-color: #eed;
+  border-radius:300px;
+
+}
+.crop-search-body {
+  height: 800px;
+}
+.crop-search-header {
+width: 100%;
+padding: 20px;
+  
+}
+.crop-search-header-lbl {
+padding: 10px;
+text-align: center;
+  
+}
+.crop-search-header-lbl-right {
+text-align: right;
+padding: 10px;
+
+  
+}
+.crop-search-background-image {
+  min-width: 300px;
+  height: auto;
+  margin-top: 7rem;
+  margin-left: 10rem;
+  opacity: 0.5;
+}
+.crop-search-sidebar-label {
+  font-weight: 800px;
 }
 .crop-search-sidebar-nav {
   width: 21%;
+  padding: 30px;
 }
 .crop-search-inner-wrapper {
   width: 70%;
@@ -19,12 +97,11 @@ background-color: whitesmoke;
 }
  .crop-search-button {
 
-    background-color: rgba(153, 153, 153, 0.5);
+    background-color: #e3e3e3;
     border-radius: 3px;
     color: grey;
     font-weight: 800;
     font-size: 0.6em;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
  }
 .crop-search-results {
@@ -45,20 +122,19 @@ background-color: whitesmoke;
   }
 }
 
+$search-checkbox-margin: 16px 0;
+$search-checkbox-checked-color: #99b36c;
+$search-checkbox-border-color: #7d974e;;
 
-$md-checkbox-margin: 16px 0;
-$md-checkbox-checked-color: rgb(51, 122, 183);
-$md-checkbox-border-color: rgba(0, 0, 0, 0.54);
+$search-checkbox-size: 20px;
+$search-checkbox-padding: 4px;
 
-$md-checkbox-size: 20px;
-$md-checkbox-padding: 4px;
-
-$md-checkmark-width: 2px;
-$md-checkmark-color: #fff;
-.md-checkbox {
+$search-checkmark-width: 2px;
+$search-checkmark-color: #fff;
+.search-checkbox {
   position: relative;
-  height: $md-checkbox-size;
-  margin: $md-checkbox-margin;
+  height: $search-checkbox-size;
+  margin: $search-checkbox-margin;
 
   label {
     cursor: pointer;
@@ -71,10 +147,10 @@ $md-checkmark-color: #fff;
     
     &:before {
       // box
-      width: $md-checkbox-size;
-      height: $md-checkbox-size;
+      width: $search-checkbox-size;
+      height: $search-checkbox-size;
       background: #fff;
-      border: 2px solid $md-checkbox-border-color;
+      border: 2px solid $search-checkbox-border-color;
       border-radius: 2px;
       cursor: pointer;
       transition: background .3s;
@@ -87,25 +163,25 @@ $md-checkmark-color: #fff;
   
   input[type="checkbox"] {
     outline: 0;
-    margin-right: $md-checkbox-size - 10px;
+    margin-right: $search-checkbox-size - 10px;
     
     &:checked {
        + label:before{
-        background: $md-checkbox-checked-color;
+        background: $search-checkbox-checked-color;
         border:none;
       }
       + label:after {
         
-        $md-checkmark-size: $md-checkbox-size - 2*$md-checkbox-padding;
+        $search-checkmark-size: $search-checkbox-size - 2*$search-checkbox-padding;
 
         transform: rotate(-45deg);
 
-        top: ($md-checkbox-size / 2) - ($md-checkmark-size / 4) - $md-checkbox-size/10;
-        left: $md-checkbox-padding;
-        width: $md-checkmark-size;
-        height: $md-checkmark-size / 2;
+        top: ($search-checkbox-size / 2) - ($search-checkmark-size / 4) - $search-checkbox-size/10;
+        left: $search-checkbox-padding;
+        width: $search-checkmark-size;
+        height: $search-checkmark-size / 2;
         
-        border: $md-checkmark-width solid $md-checkmark-color;
+        border: $search-checkmark-width solid $search-checkmark-color;
         border-top-style: none;
         border-right-style: none;
       } 

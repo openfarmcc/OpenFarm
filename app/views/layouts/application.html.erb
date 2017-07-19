@@ -83,7 +83,7 @@
               <!-- Search box Section -->
               <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
               <% unless current_page?(root_path) or current_page?("/") %>
-                <div class="left header-search">
+                <!-- <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
                     <div class="row collapse postfix-round">
                       <div class="small-8 columns">
@@ -95,7 +95,7 @@
                       </div>
                     </div>
                   </form>
-                </div>
+                </div> -->
               <% end %>
 
           </section>

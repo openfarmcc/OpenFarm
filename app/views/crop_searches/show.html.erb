@@ -46,29 +46,149 @@
         <div class="crop-search-outer-wrapper">
 
 <!-- Sidebar -->
-        <div class="crop-search-siderbar-nav col-sm-3 col-md-3 col-lg-3" style="display: inline-flex;">
-            <ul class="">
-                    <div class="md-checkbox" >
+        <div class="crop-search-sidebar-nav col-sm-3 col-search-3 col-lg-3" style="display: inline-flex;">
+            <div class="col-sm-12 col-md-12" >
+
+              <!-- Garden format -->
+                  <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input id="i2" type="checkbox" checked>
+                              <label class="">balcony</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input id="i1" type="checkbox">
+                              <label for="i1" class="">backyard</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 11 More</a>
+                              
+                            </div>
+                            <hr>
+                  </div>
+
+             <!-- Garden Style -->
+                    <div class="siderbar-block col-sm-12 col-md-12">
+                           <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                    <div class="search-checkbox" >
 
                         <input id="i2" type="checkbox" checked>
-                        <label class="">balcony</label>
+                        <label class="">organic</label>
 
                       </div>
-                      <div class="md-checkbox" style="display: inline-flex;">
+                      <div class="search-checkbox" style="display: inline-flex;">
                         <input id="i1" type="checkbox">
-                        <label for="i1" class="">backyard</label>
+                        <label for="i1" class="">hydroponic</label>
                       </div>
-                      </hr>
-          
-            </ul>
+                   
+                      <div class="crop-search-more">
+                      <i class="fa fa-plus"></i>
+                      <a href="#"> Show 4 More</a>
+                        
+                      </div>
+                      <hr>
+                 </div>
+                 <!-- Soil Variety -->
+
+              <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input id="i2" type="checkbox" checked>
+                              <label class="">loam</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input id="i1" type="checkbox">
+                              <label for="i1" class="">clay</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 3 More</a>
+                              
+                            </div>
+                            <hr>
+                  </div>
+                  <!-- Light exposure -->
+                  <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input type="checkbox" checked>
+                              <label class="">sunlight</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input  type="checkbox">
+                              <label for="i1" class="">bright</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 3 More</a>
+                            <button class="btn btn-xs" style="padding: 10px;"">UPDATE SEARCH</i></button>
+
+                              
+                            </div>
+                            <hr>
+                  </div>
+            </div>
         </div>
         <!-- /#sidebar-wrapper -->
 
-        <div class="crop-search-inner-wrapper" style="border: 1px solid grey;">
-          Search stuff will populate here
-        </div>
-        </div>
- </div>
+        <div class="crop-search-inner-wrapper small-6 medium-6 large-6">
+          <div class="crop-search-header" style="border: 1px; display: inline-flex;">
+          <!-- header -->
+          <div class="crop-search-header-lbl columns small-12 medium-4 large-4">
+            <label class="crop-search-sidebar-label">0 guide found</label>
+            
+          </div>
+           <div class="crop-search-header-lbl columns small-12 medium-4 large-4">
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-left"></i></button>
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-right"></i></button>
 
-</div>
-</div>
+            
+          </div>
+           <div class="crop-search-header-lbl-right columns small-6 medium-4 large-4" style="display: inline-flex; text-align: right">
+            <div class="crop-search-header-lbl-3">NAME</div>
+            <div class="crop-search-header-lbl-3"><i class="fa fa-chevron-up"></i></div>
+            <div class="crop-search-header-lbl-3"><i class="fa fa-th"></i></div>
+            
+          </div>
+
+        </div>
+        <!-- Search body -->
+           <div class="crop-search-body small-6 medium-6" style="">
+            <div class="crop-search-background-image small-6 medium-4 large-4 hide-for-medium-down">
+            <div class="crop-search-image-circle">
+              <%= image_tag('openfarm_bee_small_mirror.png',class: "crop-search-image", alt: t('users.community')) %>
+            <label style="text-align: left;font-size: 1.3em; font-weight: 800; margin-left: 5rem;" class="crop-search-sidebar-label">No guide matches your search</label>
+
+              
+            </div>
+      
+          </div>
+          <!-- Footer -->
+            <div class="crop-search-footer small-12 medium-12">
+            <button class="btn btn-xs crop-search-footer-button-style01">Create a guide</button>
+            <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
+
+              
+            </div>
+        </div>
+        </div>
+
+        </div>
+

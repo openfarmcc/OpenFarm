@@ -30,7 +30,7 @@ video { display: block; }
     right: 0;
     min-width: 100%; min-height: 10%;
     width: auto; height: auto; z-index: -100;
-    /*background: image-url('home_video_first_frame.jpeg') no-repeat center center;*/
+    /*background: image-url('new-header-image.jpg') no-repeat center center;*/
     background-size: cover;
   }
 }
@@ -164,7 +164,6 @@ video { display: block; }
   }
 
   .search {
-    background-color: rgba(0, 0, 0, 0.6);
     bottom: 0;
     left: 0;
     position: absolute;

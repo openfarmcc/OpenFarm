@@ -57,6 +57,15 @@
 
               <!-- Right Nav Section -->
               <ul class="right">
+                      <li class="has-form components">
+                          <%= link_to(t('meta.how_it_works'), '/en#how-it-works') %>
+                      </li>
+                      <li class="has-form ">
+                          <%= link_to(t('meta.about'), page_path('about')) %>
+                      </li>
+                      <li class="has-form">
+                          <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
+                      </li>
                   <% if current_user %>
                     <li class="has-dropdown show-for-medium-up">
                         <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
@@ -86,11 +95,14 @@
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
                     <div class="row collapse postfix-round">
-                      <div class="small-8 columns">
+                      <div class="columns small-4">
+                        <label style="text-align: left;" class="control-label">Guide search</label>
                         <input class="search" id="q" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text" value="<%= params[:q] %>">
-
                       </div>
-                      <div class="small-4 columns end">
+                      <div class="columns small-4">
+                        <input class="search" id="q" maxlength="120" name="q" placeholder="December" size="120" type="text" value="<%= params[:q] %>">
+                      </div>
+                      <div class="columns small-4" >
                         <input class="small button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
                       </div>
                     </div>

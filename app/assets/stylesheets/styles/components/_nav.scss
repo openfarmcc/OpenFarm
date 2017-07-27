@@ -73,10 +73,10 @@
     }
 
     .gray-to-black-link {
-      background: $translucent-gray !important;
+      background-color: transparent !important;
       font-size: .8em;
       color: $white;
-      font-weight: 800;
+      font-weight: 200;
 
       // Special case
       &#logout {
@@ -84,8 +84,12 @@
       }
 
       &:hover {
-        background-color: $translucent-black !important;
+        background-color: #6aa84f !important;
       }
+    }
+
+    .components{
+      text-transform: uppercase;
     }
 
     // &.toggle-topbar.menu-icon a {

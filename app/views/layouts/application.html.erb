@@ -57,13 +57,13 @@
 
               <!-- Right Nav Section -->
               <ul class="right">
-                      <li class="has-form components">
+                      <li class="has-form gray-to-black-link">
                           <%= link_to(t('meta.how_it_works'), '/en#how-it-works') %>
                       </li>
-                      <li class="has-form ">
+                      <li class="has-form gray-to-black-link">
                           <%= link_to(t('meta.about'), page_path('about')) %>
                       </li>
-                      <li class="has-form">
+                      <li class="has-form gray-to-black-link">
                           <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
                       </li>
                   <% if current_user %>
@@ -90,7 +90,7 @@
               </ul>
 
               <!-- Search box Section -->
-              <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
+              <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %><!-- 
               <% unless current_page?(root_path) or current_page?("/") %>
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
@@ -100,7 +100,8 @@
                         <input class="search" id="q" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text" value="<%= params[:q] %>">
                       </div>
                       <div class="columns small-4">
-                        <input class="search" id="q" maxlength="120" name="q" placeholder="December" size="120" type="text" value="<%= params[:q] %>">
+                        <label style="text-align: left;" class="control-label">When</label>
+                        <input class="search" id="q" maxlength="120" name="q" placeholder="December" size="120" type="text">
                       </div>
                       <div class="columns small-4" >
                         <input class="small button no-shadow postfix" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>">
@@ -108,8 +109,7 @@
                     </div>
                   </form>
                 </div>
-              <% end %>
-
+              <% end %> -->
           </section>
       </nav>
     </div>

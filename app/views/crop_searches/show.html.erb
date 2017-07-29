@@ -138,7 +138,7 @@
                             <div class="crop-search-more">
                             <i class="fa fa-plus"></i>
                             <a href="#"> Show 3 More</a>
-                            <button class="btn btn-xs" style="padding: 10px;"">UPDATE SEARCH</i></button>
+                            <button class="btn btn-xs" style="padding: 10px;">UPDATE SEARCH</button>
 
                               
                             </div>
@@ -155,9 +155,9 @@
             <label class="crop-search-sidebar-label">0 guide found</label>
             
           </div>
-           <div class="crop-search-header-lbl columns small-12 medium-4 large-4">
-            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-left"></i></button>
-            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-right"></i></button>
+           <div class="crop-search-header-lbl columns small-12 medium-4  large-4">
+            <button class="btn btn-xs crop-search-footer-button-style01" style="padding: 5px;"><i class="fa fa-chevron-left"></i></button>
+            <button class="btn btn-xs crop-search-footer-button-style01" style="padding: 5px;"><i class="fa fa-chevron-right"></i></button>
 
             
           </div>
@@ -170,25 +170,51 @@
 
         </div>
         <!-- Search body -->
-           <div class="crop-search-body small-6 medium-6" style="">
-            <div class="crop-search-background-image small-6 medium-4 large-4 hide-for-medium-down">
-            <div class="crop-search-image-circle">
-              <%= image_tag('openfarm_bee_small_mirror.png',class: "crop-search-image", alt: t('users.community')) %>
-            <label style="text-align: left;font-size: 1.3em; font-weight: 800; margin-left: 5rem;" class="crop-search-sidebar-label">No guide matches your search</label>
+           <div class="crop-search-body small-12 medium-12" style="">
+                <%if @crops%>
+            <div class="crop-search-background-image-results small-6 medium-12 large-12">
 
-              
+                <% @crops.each do |crop|%>
+                <div class="card columns small-12 medium-6 large-12-3" style="width: 20rem; float: left;">
+                    <h4 class="card-title"><%= crop.name%></h4>
+
+                <%= link_to(image_tag('baren_field_310x310.jpg', :width => '100%', :alt => 'Open Farm', :class => 'logo'), root_path) %>
+
+                  <div class="card-block">
+                    <h6 class="card-title"><%= crop.common_names%></h6>
+                    <p class="card-text"><%= crop.description%></p>
+                    <a href="#" class="btn btn-primary">View crop</a>
+                  </div>
+                </div>
+                
+
+            <% end %>
             </div>
+                <% else %>
+
+            <!-- Background image -  of the bee -->
+            <div class="crop-search-image-circle">
+
+              <%= image_tag('openfarm_bee_small_mirror.png',class: "crop-search-image", style:'display: relative', alt: t('users.community')) %>
+            <label style="text-align: left;font-size: 1.3em; font-weight: 800; margin-left: 5rem;" class="crop-search-sidebar-label">No guide matches your search</label>
       
-          </div>
-          <!-- Footer -->
-            <div class="crop-search-footer small-12 medium-12">
+            <% end %>
+                                     <!--Crop Results Footer -->
+           <div class="small-12 medium-12 large-12" style="clear: both; margin-top: 10em;">
+            <div class="crop-search-footer small-12 medium-12 large-12">
             <button class="btn btn-xs crop-search-footer-button-style01">Create a guide</button>
             <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
 
               
             </div>
-        </div>
-        </div>
+        
+          </div>
+              
+            </div>
+      
+          </div>
 
         </div>
+  </div>
+
 

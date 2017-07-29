@@ -23,10 +23,29 @@ margin-top:100px;
   margin: 5em;
 
 }
+.card-img-top {
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
 .crop-search-footer-button-style01 {
     background-color: #fafafa;
     border-radius: 3px;
-    border: 1px solid green;
+    border: 1px solid #a9a9a9;
 
     color: green;
     font-weight: 800;
@@ -82,6 +101,11 @@ padding: 10px;
   height: auto;
   margin-top: 7rem;
   margin-left: 10rem;
+  opacity: 0.5;
+}
+.crop-search-background-image-results{
+   min-width: 300px;
+  height: auto;
   opacity: 0.5;
 }
 .crop-search-sidebar-label {

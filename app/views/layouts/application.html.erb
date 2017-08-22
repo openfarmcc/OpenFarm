@@ -56,29 +56,32 @@
           <section class="top-bar-section">
 
               <!-- Right Nav Section -->
-              <ul class="right">
-                  <% if current_user %>
-                    <li class="has-dropdown show-for-medium-up">
-                        <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
-                        <ul class="dropdown">
-                          <li>
-                            <%= render 'shared/header_links.html.erb' %>
-                          </li>
-                        </ul>
-                    </li>
-                    <li class="show-for-small-only">
-                      <%= render 'shared/header_links.html.erb' %>
-                    </li>
-                  <% else %>
-                      <li class="has-form">
-                          <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button gray-to-black-link', id: 'register') %>
+             <% unless params[:controller] != 'crop_search' %>  <!-- Hide the login and become a member buttons in crop_search-->
+                <ul class="right">
+                    <% if current_user %>
+                      <li class="has-dropdown show-for-medium-up">
+                          <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>
+                          <ul class="dropdown">
+                            <li>
+                              <%= render 'shared/header_links.html.erb' %>
+                            </li>
+                          </ul>
                       </li>
-                      <li class="divider"></li>
-                      <li class="has-form">
-                          <%= link_to( t("application.log_in"), new_user_session_path, class: 'button gray-to-black-link', id: 'login') %>
+                      <li class="show-for-small-only">
+                        <%= render 'shared/header_links.html.erb' %>
                       </li>
-                  <% end %>
-              </ul>
+                    <% else %>
+                        <li class="has-form">
+                            <%= link_to( t("application.create_account"), new_user_registration_path, class: 'button gray-to-black-link', id: 'register') %>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-form">
+                            <%= link_to( t("application.log_in"), new_user_session_path, class: 'button gray-to-black-link', id: 'login') %>
+                        </li>
+                    <% end %>
+                </ul>
+              <% end %>
+
 
               <!-- Search box Section -->
               <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>

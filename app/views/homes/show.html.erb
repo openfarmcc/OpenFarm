@@ -25,12 +25,31 @@
             <div class="search-bar-container">
               <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
                 <div class="search-input-container">
-                  <div crop-search
+                            <div class="row">
+                              <div class="columns medium-3 small-12 search-bar">
+                                  <input type="text" class="form-control fa fa-user" placeholder="Tomatoes" />
+                              </div>
+                              <div class="columns medium-3 small-12">
+                                  <div class="form-component input--medium input--search">
+                                    <input type="text" placeholder="December">
+                                  </div>
+                              </div>
+                              <div class="columns medium-3 small-12">
+                                  <div class="form-group has-feedback">
+                                      <input type="text" class="form-control" placeholder="Climate zone" />
+                                  </div>
+                              </div>
+                      <div class="columns medium-3 small-12">
+                      <button type="submit" class="btn button"><i class="fa fa-search"></i>
+                      </button>
+                      </div>
+                  </div>
+                  <!-- <div crop-search
                     query="cropQuery"
                     loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                     crop-on-select="goToCrop"
                     options="{  'fieldName': 'q',
-                    'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }">
+                    'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }"> -->
                   </div>
                 </div>
               </div>

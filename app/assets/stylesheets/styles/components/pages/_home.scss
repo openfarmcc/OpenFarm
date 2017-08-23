@@ -30,6 +30,7 @@ video { display: block; }
     right: 0;
     min-width: 100%; min-height: 10%;
     width: auto; height: auto; z-index: -100;
+    //background: image-url('new-header-image.jpg') no-repeat center center;
     background-size: cover;
   }
 }

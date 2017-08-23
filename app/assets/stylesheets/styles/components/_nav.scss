@@ -77,20 +77,18 @@
       font-size: .8em;
       color: $white;
       font-weight: 200;
-      text-transform: uppercase;
+      font-weight: 200;
+}
+
 
       // Special case
       &#logout {
         padding-right: 15px;
       }
 
-      &:hover {
-        background-color: #6aa84f !important;
-      }
-    }
-
-    .components{
-      text-transform: uppercase;
+     // &:hover {
+      //  background-color: #6aa84f;
+     // }
     }
 
     // &.toggle-topbar.menu-icon a {
@@ -98,7 +96,7 @@
     // }
   }
 
-}
+
 
 .logo-link {
   background: transparent;

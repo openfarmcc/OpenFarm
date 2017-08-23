@@ -10,18 +10,23 @@
     <div class="row">
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">Guide search</label>
-            <input type="text" class="form-control fa fa-user" placeholder="Tomatoes" />
+            <i class="crop-search-icon fa fa-search"></i>
+            <input type="text" class="crop-search-input form-control" placeholder="Tomatoes" />
         </div>
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">When</label>
             <div class="form-component input--medium input--search">
-                <input type="text" placeholder="Search">
+            <i class="crop-search-icon fa fa-calendar"></i>
+
+                <input type="text" class="crop-search-input" placeholder="Search">
             </div>
         </div>
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">Climate zone</label>
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Climate zone" />
+            <i class="crop-search-icon fa fa-map-marker"></i>
+
+                    <input type="text" class="crop-search-input form-control" placeholder="Climate zone" />
                 </div>
 
         </div>
@@ -56,13 +61,13 @@
 
                           <div class="search-checkbox" >
 
-                              <input id="i2" type="checkbox" checked>
-                              <label class="">balcony</label>
+                              <input id="balcony" type="checkbox">
+                              <label for="balcony">balcony</label>
 
                             </div>
                             <div class="search-checkbox" style="display: inline-flex;">
-                              <input id="i1" type="checkbox">
-                              <label for="i1" class="">backyard</label>
+                              <input id="backyard" type="checkbox">
+                              <label for="backyard">backyard</label>
                             </div>
                          
                             <div class="crop-search-more">
@@ -79,13 +84,13 @@
 
                     <div class="search-checkbox" >
 
-                        <input id="i2" type="checkbox" checked>
-                        <label class="">organic</label>
+                        <input id="organic" type="checkbox" >
+                        <label for="organic">organic</label>
 
                       </div>
                       <div class="search-checkbox" style="display: inline-flex;">
-                        <input id="i1" type="checkbox">
-                        <label for="i1" class="">hydroponic</label>
+                        <input id="i3" type="checkbox">
+                        <label for="i3" class="">hydroponic</label>
                       </div>
                    
                       <div class="crop-search-more">
@@ -103,13 +108,13 @@
 
                           <div class="search-checkbox" >
 
-                              <input id="i2" type="checkbox" checked>
-                              <label class="">loam</label>
+                              <input id="loam" type="checkbox">
+                              <label for="loam">loam</label>
 
                             </div>
                             <div class="search-checkbox" style="display: inline-flex;">
-                              <input id="i1" type="checkbox">
-                              <label for="i1" class="">clay</label>
+                              <input id="clay" type="checkbox">
+                              <label for="clay" class="">clay</label>
                             </div>
                          
                             <div class="crop-search-more">
@@ -126,13 +131,13 @@
 
                           <div class="search-checkbox" >
 
-                              <input type="checkbox" checked>
-                              <label class="">sunlight</label>
+                              <input id="sunlight" type="checkbox" checked>
+                              <label for="sunlight">sunlight</label>
 
                             </div>
                             <div class="search-checkbox" style="display: inline-flex;">
-                              <input  type="checkbox">
-                              <label for="i1" class="">bright</label>
+                              <input  id="bright" type="checkbox">
+                              <label for="bright" class="">bright</label>
                             </div>
                          
                             <div class="crop-search-more">
@@ -161,7 +166,7 @@
 
             
           </div>
-           <div class="crop-search-header-lbl-right columns small-6 medium-4 large-4" style="display: inline-flex; text-align: right">
+           <div class="crop-search-header-lbl-right columns small-6 medium-6 large-4 hide-for-small" style="display: inline-flex; text-align: right">
             <div class="crop-search-header-lbl-3">NAME</div>
             <div class="crop-search-header-lbl-3"><i class="fa fa-chevron-up"></i></div>
             <div class="crop-search-header-lbl-3"><i class="fa fa-th"></i></div>
@@ -200,13 +205,13 @@
       
             <% end %>
                                      <!--Crop Results Footer -->
-           <div class="small-12 medium-12 large-12" style="clear: both; margin-top: 10em;">
-            <div class="crop-search-footer small-12 medium-12 large-12">
-            <button class="btn btn-xs crop-search-footer-button-style01">Create a guide</button>
-            <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
+           <div class="small-12 medium-12 large-12" style="clear: both; ">
+              <div class="crop-search-footer ">
+                <button class="btn btn-xs crop-search-footer-button-style01">Create a guide</button>
+                <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
 
-              
-            </div>
+                  
+              </div>
         
           </div>
               

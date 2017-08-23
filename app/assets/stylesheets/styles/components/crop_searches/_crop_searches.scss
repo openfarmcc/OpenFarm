@@ -1,13 +1,25 @@
+.crop-search-icon {
+    position: absolute;
+    top: 1.9em;
+    left: 1.5em;
+    color: #cecece;
+}
+.crop-search-input {
+  padding-left: 2.5em !important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2) !important;
+}
+
+
 .crop-search-wrapper {
   background-color: #F6F6F6;
   padding: 1.25em 0 1.5em;
   text-align: center;
   margin-left:0px;
   padding-left: 30px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.3), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.3), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12) !important;
 }
 .crop-search-outer-wrapper {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12) !important;
   background-color: #fdfdfd;
   width:100%;
   min-height: 300px;
@@ -16,7 +28,7 @@
   
 }
 .crop-search-footer {
-margin-top:100px;
+margin-top:30em;
   margin-left: 15rem;
 }
 .crop-search-image {
@@ -113,7 +125,7 @@ padding: 10px;
 }
 .crop-search-sidebar-nav {
   width: 21%;
-  padding: 30px;
+  padding: 5%;
 }
 .crop-search-inner-wrapper {
   width: 70%;
@@ -126,6 +138,7 @@ padding: 10px;
     color: grey;
     font-weight: 800;
     font-size: 0.6em;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.14), 0 1px 1px 0 rgba(0,0,0,0.12), 0 1px 1px -2px rgba(0,0,0,0.2) !important;
 
  }
 .crop-search-results {

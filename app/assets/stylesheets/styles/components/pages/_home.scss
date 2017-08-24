@@ -100,7 +100,7 @@ video { display: block; }
   .search-bar {
     padding: 0 1rem;
     position: relative;
-    $search-bar-height: 50px;
+    $search-bar-height: 40px;
 
     .search-input-container {
       // display: table-cell;
@@ -129,7 +129,7 @@ video { display: block; }
       background-color: $white;
       color: $off-black;
       display: table-cell;
-      font-size: 1.2em;
+      font-size: 0.8em;
       height: $search-bar-height;
       margin: 0;
       padding: 0 1rem;
@@ -139,6 +139,11 @@ video { display: block; }
     .search-button-container {
       display: table-cell;
       width: auto;
+    }
+
+    .searches {
+      padding-right: 10px;
+      height: $search-bar-height;
     }
 
     .search-button {

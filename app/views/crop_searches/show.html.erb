@@ -37,7 +37,7 @@
         </div>
 
     </div>
-<div class="row" style="text-align: left;">
+<div class="search-buttons-row row" style="">
             <label class="control-label">Stages</label>
             <button class="btn btn-xs crop-search-button">PREPARE</button>
             <button class="btn btn-sm crop-search-button">SOW</button>
@@ -143,7 +143,7 @@
                             <div class="crop-search-more">
                             <i class="fa fa-plus"></i>
                             <a href="#"> Show 3 More</a>
-                            <button class="btn btn-xs" style="padding: 10px;">UPDATE SEARCH</button>
+                            <button class="crop-search-button btn btn-xs" style="padding:15px; size: 19px">UPDATE SEARCH</button>
 
                               
                             </div>
@@ -161,8 +161,8 @@
             
           </div>
            <div class="crop-search-header-lbl columns small-12 medium-4  large-4">
-            <button class="btn btn-xs crop-search-footer-button-style01" style="padding: 5px;"><i class="fa fa-chevron-left"></i></button>
-            <button class="btn btn-xs crop-search-footer-button-style01" style="padding: 5px;"><i class="fa fa-chevron-right"></i></button>
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-left"></i></button>
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-right"></i></button>
 
             
           </div>
@@ -176,6 +176,12 @@
         </div>
         <!-- Search body -->
            <div class="crop-search-body small-12 medium-12" style="">
+                <% @guides.each do |crop|%>
+
+                <%= puts crop%>
+
+                <% end%>
+
                 <%if @crops%>
             <div class="crop-search-background-image-results small-6 medium-12 large-12">
 
@@ -207,7 +213,7 @@
                                      <!--Crop Results Footer -->
            <div class="small-12 medium-12 large-12" style="clear: both; ">
               <div class="crop-search-footer ">
-                <button class="btn btn-xs crop-search-footer-button-style01">Create a guide</button>
+                <button class="btn btn-xs crop-search-footer-button-style03">Create a guide</button>
                 <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
 
                   

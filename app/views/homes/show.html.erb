@@ -1,81 +1,51 @@
 <% content_for (:start_js) do %>
-  <%= javascript_include_tag "home" %>
-  <%= javascript_include_tag "search" %>
+<%= javascript_include_tag "home" %>
+<%= javascript_include_tag "search" %>
 <% end %>
-
 <%= render partial: 'how_it_works' %>
 <div class="hero the-blackness">
-    <div class="video-background">
-        <!-- <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
-            <source src="<%= asset_path 'home_video.webm' %>" type="video/webm">
-            <source src="<%= asset_path 'home_video.mp4' %>" type="video/mp4">
-        </video> -->
-    </div>
-    <div class="row row-table row-full-height">
-        <div class="small-12 small-centered column-middle columns">
-            <h1 class="text-center"><%=t 'home.call_to_action' %></h1>
-            <h2 class="text-center"><%=t 'home.hero_header' %></h2>
-<!--             <a href="#how-it-works"><button class="how-it-works-button">
-                <%= t 'home.how_it_works' %>
-            </button></a> -->
-        </div>
-        <div class="search text-center">
-          <form action="<%= crop_search_via_get_path %>" method="get">
-          <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
+   <div class="video-background">
+      <!-- <video autoplay loop poster="<%= image_path 'home_video_first_frame.jpeg' %>">
+         <source src="<%= asset_path 'home_video.webm' %>" type="video/webm">
+         <source src="<%= asset_path 'home_video.mp4' %>" type="video/mp4">
+         </video> -->
+   </div>
+   <div class="row row-table row-full-height">
+      <div class="small-12 small-centered column-middle columns">
+         <h1 class="text-center"><%=t 'home.call_to_action' %></h1>
+         <h2 class="text-center"><%=t 'home.hero_header' %></h2>
+      </div>
+      <div class="search text-center">
+         <form action="<%= crop_search_via_get_path %>" method="get">
+            <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
             <div class="search-bar-container">
-              <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
-                <div class="search-input-container">
-                            <div class="row">
-                              <div class="columns medium-3 small-12 search-bar">
-                                  <input type="text" class="form-control fa fa-user" placeholder="Tomatoes" />
-                              </div>
-                              <div class="columns medium-3 small-12">
-                                  <div class="form-component input--medium input--search">
-                                    <input type="text" placeholder="December">
-                                  </div>
-                              </div>
-                              <div class="columns medium-3 small-12">
-                                  <div class="form-group has-feedback">
-                                      <input type="text" class="form-control" placeholder="Climate zone" />
-                                  </div>
-                              </div>
-                      <div class="columns medium-3 small-12">
-                      <button type="submit" class="btn button"><i class="fa fa-search"></i>
-                      </button>
-                      </div>
+               <div class="search-bar" ng-app="searchApp" ng-controller="searchCtrl">
+                  <div class="search-input-container">
+                     <div class="small-12">
+                        <div crop-search
+                           query="cropQuery"
+                           loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
+                           crop-on-select="goToCrop"
+                           options="{  'fieldName': 'q',
+                           'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }">
+                        </div>
+                     </div>
                   </div>
-                  <!-- <div crop-search
-                    query="cropQuery"
-                    loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
-                    crop-on-select="goToCrop"
-                    options="{  'fieldName': 'q',
-                    'buttonValue': '<%= t('home.search') %>', 'placeholder': '<%= t('home.placeholder') %>' }"> -->
-                  </div>
-                </div>
-              </div>
+               </div>
             </div>
-          </form>
-        </div>
-    </div>
+      </div>
+      </form>
+   </div>
 </div>
-
-<!-- <div class="survey">
-  <div class="row">
-    <h4 class="survey-heading">What kind of gardener are you?</h4>
-    <a href="https://sophiakc.typeform.com/to/VPRAoz" class="survey-button" target="_blank" rel="noopener noreferrer">
-      <img class="survey-button-img" src="<%= image_path 'farmer.png' %>" width="20px">
-      Take Our Survey
-    </a>
-  </div>
-</div> -->
-
+</div>
 <div class="featured-crops">
-    <div id="community-favorites" class="explore-community-favorites text-center">
-        <h2><%= t('home.community_favorites') %></h2>
-    </div>
-    <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
+   <div id="community-favorites" class="explore-community-favorites text-center">
+      <h2><%= t('home.community_favorites') %></h2>
+   </div>
+   <%= render partial: 'featured_crops_grid', object:@featured_crops, locals:{rows:3, cols:3} %>
 </div>
 <% content_for(:end_js) do %>
-    <%= javascript_include_tag "home" %>
-    <%= javascript_include_tag "search" %>
+<%= javascript_include_tag "home" %>
+<%= javascript_include_tag "search" %>
 <% end %>
+

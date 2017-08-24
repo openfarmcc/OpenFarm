@@ -57,15 +57,18 @@
 
               <!-- Right Nav Section -->
               <ul class="right">
-                      <li class="has-form gray-to-black-link">
+                      <li class="has-form button gray-to-black-link">
                           <%= link_to(t('meta.how_it_works'), '/en#how-it-works') %>
                       </li>
-                      <li class="has-form gray-to-black-link">
+                      <li class="divider"></li>
+                      <li class="has-form button gray-to-black-link">
                           <%= link_to(t('meta.about'), page_path('about')) %>
                       </li>
-                      <li class="has-form gray-to-black-link">
+                      <li class="divider"></li>
+                      <li class="has-form button gray-to-black-link">
                           <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
                       </li>
+                      <li class="divider"></li>
                   <% if current_user %>
                     <li class="has-dropdown show-for-medium-up">
                         <a href="#" class="gray-to-black-link"><%= I18n.t('application.greeting', user: current_user.display_name) %></a>

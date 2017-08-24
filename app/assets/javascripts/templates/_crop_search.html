@@ -1,5 +1,5 @@
 <div class="row collapse postfix-radius">
-  <div class="columns small-8" ng-class="{ 'small-12': doesNotHaveButton}">
+  <div class="columns small-3 searches" ng-class="{ 'small-12': doesNotHaveButton}">
     <input
       id="search_crop_name"
       name="{{ options.fieldName || 'search_crop_name '}}"
@@ -22,7 +22,13 @@
       <i class="fa fa-spinner fa-spin"></i> {{ loadingCropsText || 'loading crops' }}
     </span>
   </div>
-  <div class="columns small-4" ng-if="!doesNotHaveButton">
+  <div class="columns small-3 searches" ng-if="!doesNotHaveButton">
+    <input class="search-input" type="text" placeholder="December">
+  </div>
+  <div class="columns small-3 searches" ng-if="!doesNotHaveButton">
+    <input class="search-input" type="text" placeholder="San Fransisco,CA,USA">
+  </div>
+  <div class="columns small-3 searches" ng-if="!doesNotHaveButton">
     <input type="button" class="button postfix search-button" value="{{ options.buttonValue || 'Search' }}" ng-click="submitCrop()" id="submit_crop"/>
   </div>
 </div>

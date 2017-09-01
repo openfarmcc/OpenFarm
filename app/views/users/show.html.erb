@@ -26,13 +26,15 @@
             </p>
           </div>
           <form class="set-crop" ng-show="editing">
-            <div class="row collapse">
-              <div class="columns small-4">
-                <label class="right inline">
+            <div class="row">
+              <div class="columns small-12">
+                <label class="center inline">
                 <%= t('.what_is_your_favorite_crop') %>
                 </label>
               </div>
-              <div class="columns small-6">
+              </div>
+              <div class="row collapse">
+              <div class="columns small-12">
                 <div crop-search
                   loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
                   crop-on-select="setFavoriteCrop"

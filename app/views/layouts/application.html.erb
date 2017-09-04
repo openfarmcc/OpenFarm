@@ -82,10 +82,35 @@
                 </ul>
               <% end %>
 
+                <!-- Search bar menu -->
+                <% if current_page?("/crop_search")%>
+                    <div class="crop-search-bar-menu-nav pull-right">
+                        <ul class="navbar-nav">
+                          <li class="crop-search-nav-item">
+                            <a class="crop-search-nav-link" href="#">HOW IT WORKS <span class="sr-only">(current)</span></a>
+                          </li>
+                          <li class="crop-search-nav-item">
+                            <a class="crop-search-nav-link" href="#">ABOUT</a>
+                          </li>
+                          <li class="crop-search-nav-item">
+                            <a class="crop-search-nav-link" href="#">BLOG</a>
+                          </li>
+                           <li class="crop-search-nav-item">
+                            <a class="crop-search-nav-link" href="#">LOGIN</a>
+                          </li>
+                           <li class="crop-search-nav-item">
+                            <a class="crop-search-nav-link-guide" href="#">Create a Guide</a>
+                          </li>
+                        </ul>
+                      
+                      </div>
+                <% end %>
+
 
               <!-- Search box Section -->
               <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
-              <% unless current_page?(root_path) or current_page?("/") %>
+              <% unless current_page?(root_path) or current_page?("/") or current_page?("/crop_search") %>
+                
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">
                     <div class="row collapse postfix-round">

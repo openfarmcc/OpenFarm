@@ -15,10 +15,15 @@ describe 'Crop search', type: :controller do
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
-    parent = page.find('div#container')
-    # expect(page).to have_content(Crop.last.name)
     title = Crop.first.name
+    #first test - look for title
+    expect(page).to have_content(title)
+    #first test - look for description
+
     description = Crop.first.description
+    expect(page).to have_content(title)
+
+    image = Crop.first.main_image_path #image fix to come after configuration is set up
 
   end
 

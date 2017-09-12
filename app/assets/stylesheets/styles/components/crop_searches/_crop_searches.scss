@@ -160,20 +160,21 @@ padding: 10px;
     border-radius: 1px;
     color: #989898;
     font-weight: 800;
-    font-size: 0.6em;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.14), 0 1px 1px 0 rgba(0,0,0,0.12), 0 1px 1px -2px rgba(0,0,0,0.2) !important;
+    font-size: .6em;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .14), 0 1px 1px 0 rgba(0, 0, 0, .12), 0 1px 1px -2px rgba(0, 0, 0, .2) !important;
 
  }
-  .crop-search-button:hover {
+.crop-search-button:hover {
 
-    background-color: #f3eeee;
-    border-radius: 1px;
-    color: green;
-    font-weight: 800;
-    font-size: .6em;
+  background-color: #f3eeee;
+  border-radius: 1px;
+  color: #008000;
+  font-weight: 800;
+  font-size: .6em;
 
  }
 .crop-search-results {
+
   height: 100%;
 
   h2 {
@@ -202,6 +203,7 @@ $search-checkmark-width: 2px;
 $search-checkmark-color: #fff;
 
 .search-checkbox {
+
   position: relative;
   height: $search-checkbox-size;
   margin: $search-checkbox-margin;
@@ -212,7 +214,7 @@ $search-checkmark-color: #fff;
 
     &::before,
      &::after {
-      content: "" ;
+      content: "";
       position: absolute;
       left: 0;
       top: 0;
@@ -229,6 +231,7 @@ $search-checkmark-color: #fff;
       transition: background .3s;
     }
     &::after {
+
       // checkmark
     }
   }

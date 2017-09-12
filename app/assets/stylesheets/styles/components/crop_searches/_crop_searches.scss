@@ -214,7 +214,7 @@ $search-checkmark-color: #fff;
       top: 0;
     }
     
-    &:before {
+    &::before {
       // box
       width: $search-checkbox-size;
       height: $search-checkbox-size;
@@ -224,32 +224,28 @@ $search-checkmark-color: #fff;
       cursor: pointer;
       transition: background .3s;
     }
-  
-    &:after {
+    &::after {
       // checkmark
     }    
   }
-  
   input[type="checkbox"] {
     outline: 0;
     margin-right: $search-checkbox-size - 10px;
-    
     &:checked {
-       + label:before{
-        background: $search-checkbox-checked-color;
-        border:none;
-      }
-      + label:after {
+     + label::before {
+      background: $search-checkbox-checked-color;
+
+      border: none;
+    }
+      + label::after {
         
-        $search-checkmark-size: $search-checkbox-size - 2*$search-checkbox-padding;
+        $search-checkmark-size: $search-checkbox-size - 2 * $search-checkbox-padding;
 
         transform: rotate(-45deg);
-
-        top: ($search-checkbox-size / 2) - ($search-checkmark-size / 4) - $search-checkbox-size/10;
+        top: ($search-checkbox-size / 2) - ($search-checkmark-size / 4) - $search-checkbox-size / 10;
         left: $search-checkbox-padding;
         width: $search-checkmark-size;
         height: $search-checkmark-size / 2;
-        
         border: $search-checkmark-width solid $search-checkmark-color;
         border-top-style: none;
         border-right-style: none;

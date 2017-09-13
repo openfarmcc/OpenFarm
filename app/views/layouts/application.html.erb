@@ -109,7 +109,7 @@
 
               <!-- Search box Section -->
               <%# Added the reference to "/" because root_path was being redefined to have /en|nl/ whichever way I put it. %>
-              <% unless current_page?(root_path) or current_page?("/") or current_page?("/crop_search") %>
+              <% unless current_page?(root_path) or current_page?("/") or current_page?("/crop_search") or current_page?("/en/en/crop_search") %>
                 
                 <div class="left header-search">
                   <form action="<%= crop_search_via_get_path %>" method="get">

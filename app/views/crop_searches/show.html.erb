@@ -8,10 +8,12 @@
 
  <div class="crop-search-wrapper">
     <div class="row">
+          <form action="<%= crop_search_via_get_path %>" method="get">
+
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">Guide search</label>
             <i class="crop-search-icon fa fa-search"></i>
-            <input type="text" class="crop-search-input form-control" placeholder="Tomatoes" />
+            <input id="q" type="text" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text" value="<%= params[:q] %>" class="crop-search-input form-control" placeholder="Tomatoes" />
         </div>
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">When</label>
@@ -32,9 +34,12 @@
         </div>
         <div class="columns medium-3 small-12">
             <label style="text-align: left;" class="control-label">Search</label>
-        <button type="submit" class="btn" style="padding: 10px; float: left;" padding-bottom:0px;><i class="fa fa-search"></i>
+        <button type="submit" class="btn" style="padding: 10px; float: left;" padding-bottom:0px;><i class="fa fa-search" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>"></i>
+           
         </button>
         </div>
+   </form>
+
 
     </div>
 <div class="search-buttons-row row" style="">
@@ -213,7 +218,8 @@
                                      <!--Crop Results Footer -->
            <div class="small-12 medium-12 large-12" style="clear: both; ">
               <div class="crop-search-footer ">
-                <button class="btn btn-xs crop-search-footer-button-style03">Create a guide</button>
+                <button class="btn btn-xs crop-search-footer-button-style03"><%= link_to new_guide_path do %>
+      <i class="fa fa-plus symbol-add"></i>Create a guide    <%end%></button>
                 <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
 
                   

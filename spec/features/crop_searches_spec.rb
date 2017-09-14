@@ -16,14 +16,15 @@ describe 'Crop search', type: :controller do
     Crop.searchkick_index.refresh
     click_button 'Search'
     title = Crop.first.name
-    #first test - look for title
+    # Look for crop title
     expect(page).to have_content(title)
-    #first test - look for description
+    # Look for crop description
 
     description = Crop.first.description
     expect(page).to have_content(title)
+    # Image fix to come after configuration is set up
 
-    image = Crop.first.main_image_path #image fix to come after configuration is set up
+    image = Crop.first.main_image_path 
 
   end
 

@@ -183,11 +183,16 @@
            <div class="crop-search-body small-12 medium-12" style="">
                 <% @guides.each do |crop|%>
 
-                <%= puts crop%>
 
                 <% end%>
 
                 <%if @crops%>
+                <%= @crops.each do |c|%>
+
+                  <%=  c %>
+
+                <% end %>
+
             <div class="crop-search-background-image-results small-6 medium-12 large-12">
 
                 <% @crops.each do |crop|%>

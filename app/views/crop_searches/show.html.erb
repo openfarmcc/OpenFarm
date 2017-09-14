@@ -20,7 +20,7 @@
             <div class="form-component input--medium input--search">
             <i class="crop-search-icon fa fa-calendar"></i>
 
-                <input type="text" class="crop-search-input" placeholder="Search">
+                <input type="text" class="crop-search-input" placeholder="Search" disabled>
             </div>
         </div>
         <div class="columns medium-3 small-12">
@@ -28,7 +28,7 @@
                 <div class="form-group has-feedback">
             <i class="crop-search-icon fa fa-map-marker"></i>
 
-                    <input type="text" class="crop-search-input form-control" placeholder="Climate zone" />
+                    <input type="text" class="crop-search-input form-control" placeholder="Climate zone"  disabled/>
                 </div>
 
         </div>
@@ -191,6 +191,8 @@
             <div class="crop-search-background-image-results small-6 medium-12 large-12">
 
                 <% @crops.each do |crop|%>
+                <%= link_to crop%>
+                
                 <div class="card columns small-12 medium-6 large-12-3" style="width: 20rem; float: left;">
                     <h4 class="card-title"><%= crop.name%></h4>
 

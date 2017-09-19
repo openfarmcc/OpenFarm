@@ -8,8 +8,7 @@ describe 'Announcements' do
                         starts_at: Time.zone.now.to_date.prev_day,
                         ends_at: Time.zone.now.to_date.next_day)
     visit root_path
-    # Pending tests
-    
+    # Pending tests   
   end
 
   it 'shows permanent announcements' do

@@ -13,17 +13,6 @@ describe Crop do
 
     let!(:crop) { FactoryGirl.create(:crop, :potato) }
 
-    # it 'searches by name' do
-    #   Crop.searchkick_index.refresh
-    #   result = Crop.search('potato').first
-    #   expect(result).to eq(crop)
-    # end
-
-    # it 'searches by binomial name' do
-    #   Crop.searchkick_index.refresh
-    #   expect(Crop.search('Solanum tuberosum').first).to eq(crop)
-    # end
-
-   
+    # ipending tests
   end
 end

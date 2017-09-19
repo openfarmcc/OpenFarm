@@ -13,6 +13,6 @@ describe Crop do
 
     let!(:crop) { FactoryGirl.create(:crop, :potato) }
 
-    # ipending tests
+    # Pending tests
   end
 end

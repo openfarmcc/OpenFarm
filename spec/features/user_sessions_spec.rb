@@ -5,7 +5,7 @@ describe 'User sessions' do
 
   let(:user) { FactoryGirl.create(:user) }
   # To generate test cases after merging new homepage UI - WIP
-    pending 'registers for an account should not be confirmed' do
+  pending 'registers for an account should not be confirmed' do
     visit root_path
     click_link 'register'
     fill_in :user_display_name, with: 'Rick'
@@ -41,7 +41,7 @@ describe 'User sessions' do
     expect(page).to have_content('Thanks for joining!')
   end
 
-  pending 'should redirect the user to the page they were viewing after sign up' do
+  pending 'should redirect user to the page they were viewing after sign up' do
     visit new_guide_path
     see ('You need to sign in or sign up before continuing.')
     page.first(:link, 'Become a Member').click
@@ -119,7 +119,8 @@ describe 'User sessions' do
     expect(page).to have_content('Resend confirmation instructions')
   end
 
-  pending 'should let the user set favorite crop on profile page' # , js: true do
+  pending 'should let the user set favorite crop on profile page' 
+  # , js: true do
   #   FactoryGirl.create(:crop, name: 'Tomato')
   #   login_as user
   #   visit user_path('en', user)

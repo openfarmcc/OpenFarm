@@ -132,7 +132,6 @@ describe 'User sessions' do
   #   click_button :submit_crop
   #   see('Tomato')
   # end
-
   def extract_url_from_email(email)
     doc = Nokogiri::HTML(email.to_s)
 

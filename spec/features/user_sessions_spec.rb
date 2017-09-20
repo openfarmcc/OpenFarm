@@ -160,4 +160,5 @@ describe 'User sessions' do
 
     visit href
     usr
+  end
 end

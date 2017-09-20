@@ -27,7 +27,7 @@ describe 'User sessions' do
     see('Signed out successfully.')
   end
 
-  pending 'does not let the user access the admin panel' do
+  it 'does not let the user access the admin panel' do
     visit rails_admin.dashboard_path
     expect(page).to have_content('I told you kids to get out of here!')
   end
@@ -68,7 +68,7 @@ describe 'User sessions' do
     expect(page).to have_content('Gardens')
   end
 
-  pending 'should register the user location', js: true do
+  it 'should register the user location', js: true do
     login_as user
     visit users_finish_path
     wait_for_ajax
@@ -78,7 +78,7 @@ describe 'User sessions' do
     expect(user.reload.user_setting.location).to eq('Chicago')
   end
 
-  pending 'should register the user unit preference', js: true do
+  it 'should register the user unit preference', js: true do
     login_as user
     visit users_finish_path
     wait_for_ajax
@@ -119,19 +119,18 @@ describe 'User sessions' do
     expect(page).to have_content('Resend confirmation instructions')
   end
 
-  pending 'should let the user set favorite crop on profile page' 
-  # , js: true do
-  #   FactoryGirl.create(:crop, name: 'Tomato')
-  #   login_as user
-  #   visit user_path('en', user)
-  #   see('Success!')
-  #   see('This is your Member Profile page.')
-  #   wait_for_ajax
-  #   fill_in :search_crop_name, with: 'tomat'
-  #   wait_for_ajax
-  #   click_button :submit_crop
-  #   see('Tomato')
-  # end
+  pending 'should let the user set favorite crop on profile page' , js: true do
+    FactoryGirl.create(:crop, name: 'Tomato')
+    login_as user
+    visit user_path('en', user)
+    see('Success!')
+    see('This is your Member Profile page.')
+    wait_for_ajax
+    fill_in :search_crop_name, with: 'tomat'
+    wait_for_ajax
+    click_button :submit_crop
+    see('Tomato')
+  end
   def extract_url_from_email(email)
     doc = Nokogiri::HTML(email.to_s)
 

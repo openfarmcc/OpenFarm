@@ -9,7 +9,7 @@ describe 'Crop search', type: :controller do
     "#{current_host}:#{Capybara.current_session.server.port}"
   end
   
-  pending 'finds individual crops', js: true do
+  it 'finds individual crops', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
     FactoryGirl.create(:crop, name: 'radish')
@@ -66,7 +66,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  pending 'handles misspellings', js: true do
+  it 'handles misspellings', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
     FactoryGirl.create(:crop, name: 'radish')
@@ -77,7 +77,7 @@ describe 'Crop search', type: :controller do
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  pending 'handles multiple words', js: true do
+  it 'handles multiple words', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)
     FactoryGirl.create(:crop, name: 'radish')

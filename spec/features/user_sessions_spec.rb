@@ -32,27 +32,6 @@ describe 'User sessions' do
     expect(page).to have_content('I told you kids to get out of here!')
   end
 
-  it 'should redirect the user to their finish page after sign up' do
-    visit new_user_registration_path
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    click_button 'Join OpenFarm'
-    expect(page).to have_content('Thanks for joining!')
-  end
-
-  pending 'should redirect user to the page they were viewing after sign up' do
-    visit new_guide_path
-    see ('You need to sign in or sign up before continuing.')
-    page.first(:link, 'Become a Member').click
-    fill_in :user_display_name, with: 'Rick'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_email, with: 'm@il.com'
-    click_button 'Join OpenFarm'
-    string_ref = 'guides.new.new_guide_steps.create_a_growing_guide'
-    expect(page).to have_content(I18n::t(string_ref))
-  end
-
   pending 'should create a new garden for a newly registered user' do
     usr = sign_up_procedure
 

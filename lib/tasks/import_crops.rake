@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'csv'
 namespace :import_crops do
   desc 'import crops from the csv file provided'

@@ -12,8 +12,10 @@ namespace :import_crops do
   end
 
   def save_crop(crop)
-    return if Crop.where(binomial_name: crop.first).exists?
-    Crop.create!(name: crop[0], binomial_name: crop[0], description: crop[1])
+    binomial_name = crop[0]
+    common_name = crop[1] ? crop[1] : binomial_name
+    return if Crop.where(binomial_name: binomial_name).exists?
+    Crop.create!(name: common_name, binomial_name: binomial_name)
     print '.'
   end
 end

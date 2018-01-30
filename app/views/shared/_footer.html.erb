@@ -4,7 +4,7 @@
         <h3> Openfarm </h3>
 
         <%= link_to(t('meta.about'), page_path('about')) %>
-        <%= link_to(t('meta.contact'), page_path('contact')) %>
+        <%= link_to(t('meta.faq'), page_path('faq')) %>
         <%= link_to(t('meta.blog'), 'http://blog.openfarm.cc') %>
       </div>
 
@@ -13,16 +13,16 @@
 
         <%= link_to(t('meta.getting_started'), 'https://github.com/openfarmcc/OpenFarm/#development') %>
 
-        <%= link_to(t('meta.slack'), 'http://slack.openfarm.cc') %>
+        <%= link_to(t('meta.slack'), 'https://goo.gl/forms/ATCZcU6Ohsy57wuI3') %>
         <%= link_to(t('meta.code_of_conduct'),page_path('code_of_conduct')) %>
       </div>
 
       <div class="legal columns medium-3 small-12">
         <h3> Openfarmers </h3>
 
-        <%= link_to(t('meta.faq'),page_path('faq')) %>
         <%= link_to(t('meta.how_it_works'), '/en#how-it-works') %>
-        <%= link_to(t('meta.help'), page_path('contact')) %>
+        <%= link_to(t('meta.ask_questions'), 'https://goo.gl/forms/ATCZcU6Ohsy57wuI3') %>
+
 
       </div>
 
@@ -32,6 +32,7 @@
         <%= link_to(icon('twitter'), 'https://twitter.com/openfarmcc/', class: 'social') %>
         <%= link_to(icon('github'), 'https://github.com/OpenFarmCC/openfarm/', class: 'social') %>
         <%= link_to(icon('envelope'), page_path('contact'), class: 'social') %>
+        <%= link_to(icon('slack'), 'http://slack.openfarm.cc/', class: 'social') %>
 
         <form action="//openfarm.us8.list-manage.com/subscribe/post?u=d41f97f612d606f032a884227&amp;id=8b8c94b1c5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate class="">
           <label for="mce-EMAIL">Newsletter:

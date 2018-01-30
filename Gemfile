@@ -90,7 +90,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.49.0'
   gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
   gem "letter_opener"
 end
@@ -111,8 +111,6 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT
-# Until the new API calls are generally available, you must manually specify my fork
-# of the Heroku API gem:
-gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+gem 'platform-api' 
 
 gem 'letsencrypt-rails-heroku', group: 'production'

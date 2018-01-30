@@ -2,17 +2,17 @@ openFarmApp.factory('defaultService', ['$http', '$q', 'alertsService',
   function defaultService($http, $q, alertsService) {
 
     var buildStageActionOption = function(data) {
-      var stageActionOption = data.attributes
+      var stageActionOption = data.attributes;
       return stageActionOption;
     };
 
     var buildStageOption = function(data) {
-      var stageOption = data.attributes
+      var stageOption = data.attributes;
       return stageOption;
     };
 
     var buildDetailOption = function(data) {
-      var detailOption = data.attributes
+      var detailOption = data.attributes;
       return detailOption;
     };
 
@@ -42,10 +42,10 @@ openFarmApp.factory('defaultService', ['$http', '$q', 'alertsService',
             options.multiSelectEnvironment = options.environment.map(nameToMultiSelect);
             options.multiSelectLight = options.light.map(nameToMultiSelect);
 
-            resolve(options)
+            resolve(options);
           }, function(error) {
             console.error('error fetching processed detail options');
-            reject(error)
+            reject(error);
           });
 
       });
@@ -65,14 +65,14 @@ openFarmApp.factory('defaultService', ['$http', '$q', 'alertsService',
         $http.get('/api/v1/detail_options/')
           .success(function (response, code) {
             resolve(response.data.map(function(obj) {
-              return buildDetailOption(obj)
+              return buildDetailOption(obj);
             }));
           })
           .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
             reject(response);
-          })
-      })
+          });
+      });
     };
 
     var getStageOptions = function() {
@@ -80,28 +80,28 @@ openFarmApp.factory('defaultService', ['$http', '$q', 'alertsService',
         $http.get('/api/v1/stage_options/')
           .success(function (response, code) {
             resolve(response.data.map(function(obj) {
-              return buildStageOption(obj)
+              return buildStageOption(obj);
             }));
           })
           .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
-          })
-      })
-    }
+          });
+      });
+    };
 
     var getStageActionOptions = function() {
       return $q(function(resolve, reject) {
         $http.get('/api/v1/stage_action_options/')
           .success(function (response, code) {
             resolve(response.data.map(function(obj) {
-              return buildStageActionOption(obj)
+              return buildStageActionOption(obj);
             }));
           })
           .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
-          })
-      })
-    }
+          });
+      });
+    };
 
     return {
       'utilities': {

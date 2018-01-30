@@ -38,11 +38,11 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
           $rootScope.step -= 1;
           $location.hash($rootScope.step);
           scrollToTop();
-        }
+        };
 
         var scrollToTop = function(){
           window.scrollTo($('.guides').scrollTop(), 0);
-        }
+        };
 
         $scope.previousStep = function(){
           $rootScope.previousStep = $rootScope.step;
@@ -54,14 +54,14 @@ openFarmApp.directive('stageButtons', ['$rootScope', '$location',
         $scope.tunnelToNextStage = function(stage) {
           $scope.nextStage(stage);
           scrollToTop();
-        }
+        };
 
         $scope.nextStep = function(){
           $rootScope.previousStep = $rootScope.step;
           $rootScope.step += 1;
           $location.hash($rootScope.step);
           scrollToTop();
-        }
+        };
 
         $scope.nextStep = $scope.nextFunction || $scope.nextStep;
 

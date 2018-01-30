@@ -18,7 +18,7 @@ openFarmApp
             } else {
               console.error(MISSING_PROP);
             }
-          }
+          };
 
           reader.readAsText(file);
         });

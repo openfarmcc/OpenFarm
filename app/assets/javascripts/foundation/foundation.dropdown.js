@@ -119,7 +119,7 @@
     closeall: function() {
       var self = this;
       $.each(self.S('[' + this.attr_name() + '-content]'), function() {
-        self.close.call(self, self.S(this))
+        self.close.call(self, self.S(this));
       });
     },
 

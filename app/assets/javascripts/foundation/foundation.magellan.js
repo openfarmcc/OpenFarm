@@ -149,7 +149,7 @@
             arrival : $(this),
             top_offset : top_offset,
             viewport_offset : viewport_offset
-          }
+          };
         }
       }).sort(function(a, b) {
         if (a.top_offset < b.top_offset) return -1;

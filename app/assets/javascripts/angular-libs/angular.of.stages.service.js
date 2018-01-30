@@ -126,10 +126,10 @@ openFarmApp.factory('stageService', ['$http', '$log', '$q', 'alertsService',
     var getStage = function(id) {
       return $http.get('/api/v1/stages/' + id + '/')
         .then(function (stage) {
-          console.log('retrieved data', stage.data.data)
+          console.log('retrieved data', stage.data.data);
           return buildStageWithPromise(stage.data.data);
         }).then(function (stage) {
-          console.log('finished with', stage)
+          console.log('finished with', stage);
           return stage;
         });
     };

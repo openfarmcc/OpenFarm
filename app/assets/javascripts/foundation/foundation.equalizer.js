@@ -46,7 +46,7 @@
         if (isStacked) return;
       };
 
-      var heights = vals.map(function(){ return $(this).outerHeight(false) }).get();
+      var heights = vals.map(function(){ return $(this).outerHeight(false); }).get();
 
       if (settings.use_tallest) {
         var max = Math.max.apply(null, heights);
@@ -65,7 +65,7 @@
       this.S('[' + this.attr_name() + ']', this.scope).each(function(){
         var $eq_target = $(this);
         self.image_loaded(self.S('img', this), function(){
-          self.equalize($eq_target)
+          self.equalize($eq_target);
         });
       });
     }

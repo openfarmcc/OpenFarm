@@ -261,7 +261,7 @@ $search-checkmark-color: #fff;
     &:checked {
       + label:before {
         background: $search-checkbox-checked-color;
-        border:none;
+        border: none;
       }
 
       + label:after {
@@ -269,7 +269,7 @@ $search-checkmark-color: #fff;
 
         transform: rotate(-45deg);
 
-        top: ($search-checkbox-size / 2) - ($search-checkmark-size / 4) - $search-checkbox-size/10;
+        top: ($search-checkbox-size / 2) - ($search-checkmark-size / 4) - $search-checkbox-size / 10;
         left: $search-checkbox-padding;
         width: $search-checkmark-size;
         height: $search-checkmark-size / 2;

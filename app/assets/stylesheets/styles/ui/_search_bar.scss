@@ -127,7 +127,7 @@
 
 // enable absolute positioning
 .inner-addon {
-    position: relative;
+  position: relative;
 }
 
 // style icon
@@ -138,9 +138,9 @@
 }
 
 // align icon
-.left-addon .glyphicon  { left:  0;}
+.left-addon .glyphicon { left:  0;}
 .right-addon .glyphicon { right: 0;}
 
 // add padding
-.left-addon input  { padding-left:  30px; }
+.left-addon input { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }

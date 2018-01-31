@@ -259,12 +259,12 @@ $search-checkmark-color: #fff;
     margin-right: $search-checkbox-size - 10px;
 
     &:checked {
-       + label:before{
+      + label:before {
         background: $search-checkbox-checked-color;
         border:none;
       }
-      + label:after {
 
+      + label:after {
         $search-checkmark-size: $search-checkbox-size - 2*$search-checkbox-padding;
 
         transform: rotate(-45deg);

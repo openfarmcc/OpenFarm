@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Api::V1::TokensController, type: :controller do
-
   include ApiHelpers
 
   let(:user) { FactoryGirl.create(:confirmed_user) }

@@ -10,7 +10,6 @@ describe Crop do
   end
 
   context '#search' do
-
     let!(:crop) { FactoryGirl.create(:crop, :potato) }
 
     # Pending tests

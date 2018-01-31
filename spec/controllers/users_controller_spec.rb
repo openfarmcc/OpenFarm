@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe UsersController do
-
   let(:user) { FactoryGirl.create(:confirmed_user) }
   let(:public_user) { FactoryGirl.create(:confirmed_user) }
   let(:private_user) { FactoryGirl.create(:confirmed_user, is_private: true) }

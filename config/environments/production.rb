@@ -46,5 +46,4 @@ OpenFarm::Application.configure do
                                 secret_access_key: ENV['SERVER_S3_SECRET_KEY'] } }
 
   Paperclip::Attachment.default_options.merge!(options)
-
 end

@@ -98,5 +98,4 @@ describe 'Crop search', type: :controller do
   end
 
   pending 'handles pressing enter'
-
 end

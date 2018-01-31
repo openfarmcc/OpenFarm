@@ -106,7 +106,6 @@ describe Api::V1::GuidesController, type: :controller do
   end
 
   describe 'update' do
-
     it 'should update a guide' do
       sign_in user
       guide = FactoryGirl.create(:guide, user: user, overview: 'old')

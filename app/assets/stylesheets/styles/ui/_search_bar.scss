@@ -2,8 +2,8 @@
 // Yes this makes sense...for backwards compatability and feeling bad
 // Eventually we will have the sweet, sweet flexbox.
 .search-bar-wrapper {
-    background-color: $gray-green;
-    padding: 1.25em 0 1.5em;
+  background-color: $gray-green;
+  padding: 1.25em 0 1.5em;
 }
 .search-bar-container {
   display: table;
@@ -59,6 +59,7 @@
       }
     }
   }
+
   .crops-loading-spinner {
     position: absolute;
     background: $white;

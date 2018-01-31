@@ -6,20 +6,230 @@
 <%= content_for(:title) do %><%= t('.title') %><% end %>
 <% end %>
 
-<div class="crop-search-results row wide-row">
-  <div class="crop-results-container columns medium-6 small-12">
-    <h2 class="text-center"><%= t('.choose_a_crop') %></h2>
-    <% if @crops.empty? %>
-    <p class="no-results, text-center"><%= t('.no_crops') %> "<%= params[:q].to_s %>."<br/><%= t('.would_you_like_to') %> <%= link_to t('.add_this_crop'), new_crop_path %>?</p>
-    <% end %>
-    <%= render partial: 'crop_results', object: @crops %>
-  </div>
-  <div class="guide-results-container columns medium-6 small-12">
-    <h2 class="text-center"><%= t('.explore_the_guides') %></h2>
-    <% if @guides.empty? %>
+ <div class="crop-search-wrapper">
+    <div class="row">
+          <form action="<%= crop_search_via_get_path %>" method="get">
 
-      <p class="no-results, text-center"><%= t('.no_guides') %><br/><%= t('.perhaps_you_could') %> <%= link_to t('.create_one'), new_guide_path %>?</p>
-    <% end %>
-    <%= render partial: 'guides/guide_results_list', object: @guides %>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Guide search</label>
+            <i class="crop-search-icon fa fa-search"></i>
+            <input id="q" type="text" maxlength="120" name="q" placeholder="<%= t('home.placeholder') %>" size="120" type="text" value="<%= params[:q] %>" class="crop-search-input form-control" placeholder="Tomatoes" />
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">When</label>
+            <div class="form-component input--medium input--search">
+            <i class="crop-search-icon fa fa-calendar"></i>
+
+                <input type="text" class="crop-search-input" placeholder="Search" disabled>
+            </div>
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Climate zone</label>
+                <div class="form-group has-feedback">
+            <i class="crop-search-icon fa fa-map-marker"></i>
+
+                    <input type="text" class="crop-search-input form-control" placeholder="Climate zone"  disabled/>
+                </div>
+
+        </div>
+        <div class="columns medium-3 small-12">
+            <label style="text-align: left;" class="control-label">Search</label>
+        <button type="submit" class="btn" style="padding: 10px; float: left;" padding-bottom:0px;><i class="fa fa-search" data-disable-with="Searching..." type="submit" value="<%= t('home.search') %>"></i>
+           
+        </button>
+        </div>
+   </form>
+
+
+    </div>
+<div class="search-buttons-row row" style="">
+            <label class="control-label">Stages</label>
+            <button class="btn btn-xs crop-search-button">PREPARE</button>
+            <button class="btn btn-sm crop-search-button">SOW</button>
+            <button class="btn btn-sm crop-search-button">GERMINATE</button>
+            <button class="btn btn-sm crop-search-button">BLOSSOM</button>
+            <button class="btn btn-sm crop-search-button">HARVEST</button>
+            <button class="btn btn-sm crop-search-button">POST PROCESS</button>
+        </div>
+    </div>
+
+        <div class="crop-search-outer-wrapper">
+
+<!-- Sidebar -->
+        <div class="crop-search-sidebar-nav col-sm-3 col-search-3 col-lg-3" style="display: inline-flex;">
+            <div class="col-sm-12 col-md-12" >
+
+              <!-- Garden format -->
+                  <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input id="balcony" type="checkbox">
+                              <label for="balcony">balcony</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input id="backyard" type="checkbox">
+                              <label for="backyard">backyard</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 11 More</a>
+                              
+                            </div>
+                            <hr>
+                  </div>
+
+             <!-- Garden Style -->
+                    <div class="siderbar-block col-sm-12 col-md-12">
+                           <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                    <div class="search-checkbox" >
+
+                        <input id="organic" type="checkbox" >
+                        <label for="organic">organic</label>
+
+                      </div>
+                      <div class="search-checkbox" style="display: inline-flex;">
+                        <input id="i3" type="checkbox">
+                        <label for="i3" class="">hydroponic</label>
+                      </div>
+                   
+                      <div class="crop-search-more">
+                      <i class="fa fa-plus"></i>
+                      <a href="#"> Show 4 More</a>
+                        
+                      </div>
+                      <hr>
+                 </div>
+                 <!-- Soil Variety -->
+
+              <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input id="loam" type="checkbox">
+                              <label for="loam">loam</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input id="clay" type="checkbox">
+                              <label for="clay" class="">clay</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 3 More</a>
+                              
+                            </div>
+                            <hr>
+                  </div>
+                  <!-- Light exposure -->
+                  <div class=" sidebar-block col-sm-12 col-md-12" >
+
+                  <label style="text-align: left; font-weight: 800;" class="crop-search-sidebar-label">Garden format</label>
+
+                          <div class="search-checkbox" >
+
+                              <input id="sunlight" type="checkbox" checked>
+                              <label for="sunlight">sunlight</label>
+
+                            </div>
+                            <div class="search-checkbox" style="display: inline-flex;">
+                              <input  id="bright" type="checkbox">
+                              <label for="bright" class="">bright</label>
+                            </div>
+                         
+                            <div class="crop-search-more">
+                            <i class="fa fa-plus"></i>
+                            <a href="#"> Show 3 More</a>
+                            <button class="crop-search-button btn btn-xs" style="padding:15px; size: 19px">UPDATE SEARCH</button>
+
+                              
+                            </div>
+                            <hr>
+                  </div>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <div class="crop-search-inner-wrapper small-6 medium-6 large-6">
+          <div class="crop-search-header" style="border: 1px; display: inline-flex;">
+          <!-- header -->
+          <div class="crop-search-header-lbl columns small-12 medium-4 large-4">
+            <label class="crop-search-sidebar-label">0 guide found</label>
+            
+          </div>
+           <div class="crop-search-header-lbl columns small-12 medium-4  large-4">
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-left"></i></button>
+            <button class="btn btn-xs crop-search-footer-button-style01"><i class="fa fa-chevron-right"></i></button>
+
+            
+          </div>
+           <div class="crop-search-header-lbl-right columns small-6 medium-6 large-4 hide-for-small" style="display: inline-flex; text-align: right">
+            <div class="crop-search-header-lbl-3">NAME</div>
+            <div class="crop-search-header-lbl-3"><i class="fa fa-chevron-up"></i></div>
+            <div class="crop-search-header-lbl-3"><i class="fa fa-th"></i></div>
+            
+          </div>
+
+        </div>
+        <!-- Search body -->
+           <div class="crop-search-body small-12 medium-12" style="">
+                
+
+                <%if @crops%>
+            <div class="crop-search-background-image-results small-6 medium-12 large-12">
+
+                <% @crops.each do |crop|%>
+                <%= link_to crop%>
+                
+                <div class="card columns small-12 medium-6 large-12-3" style="width: 20rem; float: left;">
+                    <h4 class="card-title"><%= crop.name%></h4>
+
+                <%= link_to(image_tag('baren_field_310x310.jpg', :width => '100%', :alt => 'Open Farm', :class => 'logo'), root_path) %>
+
+                  <div class="card-block">
+                    <h6 class="card-title"><%= crop.common_names%></h6>
+                    <p class="card-text"><%= crop.description%></p>
+                    <a href="#" class="btn btn-primary">View crop</a>
+                  </div>
+                </div>
+                
+
+            <% end %>
+            </div>
+                <% else %>
+
+            <!-- Background image -  of the bee -->
+            <div class="crop-search-image-circle">
+
+              <%= image_tag('openfarm_bee_small_mirror.png',class: "crop-search-image", style:'display: relative', alt: t('users.community')) %>
+            <label style="text-align: left;font-size: 1.3em; font-weight: 800; margin-left: 5rem;" class="crop-search-sidebar-label">No guide matches your search</label>
+      
+            <% end %>
+                                     <!--Crop Results Footer -->
+           <div class="small-12 medium-12 large-12" style="clear: both; ">
+              <div class="crop-search-footer ">
+                <button class="btn btn-xs crop-search-footer-button-style03"><%= link_to new_guide_path do %>
+      <i class="fa fa-plus symbol-add"></i>Create a guide    <%end%></button>
+                <button class="btn btn-xs crop-search-footer-button-style02">Post a request</button>
+
+                  
+              </div>
+        
+          </div>
+              
+            </div>
+      
+          </div>
+
+        </div>
   </div>
-</div>
+
+

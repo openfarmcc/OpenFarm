@@ -15,5 +15,11 @@ FactoryGirl.define do
       binomial_name 'Armoracia rusticana'
       description 'Brassicaceae family'
     end
+
+    trait :potato do
+      name 'potato'
+      binomial_name 'Solanum tuberosum'
+      description 'Brassicaceae family'
+    end
   end
 end

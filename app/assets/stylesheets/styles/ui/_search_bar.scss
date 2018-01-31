@@ -28,18 +28,18 @@
   $search-bar-height: 50px;
 }
 
-  .date-time-input-container {
-    // Typeahead dropdown
-    .f-dropdown {
-      margin-top: 0;
-      text-align: left;
+.date-time-input-container {
+  // Typeahead dropdown
+  .f-dropdown {
+    margin-top: 0;
+    text-align: left;
 
-      // dropdown carrat
-      &:before, &:after {
-        display: none;
-      }
+    // dropdown carrat
+    &:before, &:after {
+      display: none;
     }
   }
+}
 
 .search-bar {
   padding: 0 1rem;
@@ -47,9 +47,6 @@
   $search-bar-height: 50px;
 
   .search-input-container {
-    // display: table-cell;
-    // width: 100%;
-
     // Typeahead dropdown
     .f-dropdown {
       margin-top: 0;

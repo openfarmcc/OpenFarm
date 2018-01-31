@@ -53,7 +53,8 @@
       text-align: left;
 
       // dropdown carrat
-      &:before, &:after {
+      &:before,
+      &:after {
         display: none;
       }
     }

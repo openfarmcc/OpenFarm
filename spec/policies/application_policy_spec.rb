@@ -26,7 +26,7 @@ describe ApplicationPolicy do
     end
   end
 
-  # This is just a hack - the scope on the application policy 
+  # This is just a hack - the scope on the application policy
   # is just a wrapper method that returns the scope being
   # called for.
   context "for a user" do

@@ -111,6 +111,6 @@ gem 'rails_admin', '~> 1.1.1'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT
-gem 'platform-api' 
+gem 'platform-api'
 
 gem 'letsencrypt-rails-heroku', group: 'production'

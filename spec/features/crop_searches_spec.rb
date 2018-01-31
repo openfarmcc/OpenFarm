@@ -8,7 +8,7 @@ describe 'Crop search', type: :controller do
   def host_with_port
     "#{current_host}:#{Capybara.current_session.server.port}"
   end
-  
+
   it 'finds individual crops', js: true do
     visit root_path
     FactoryGirl.create_list(:crop, 10)

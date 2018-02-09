@@ -46,5 +46,39 @@ describe 'User features', type: :feature do
                                   visible: false
       end
     end
+
+    context 'when a user views another users profile' do
+      let(:user) { FactoryGirl.create(:user, :with_user_setting) }
+      let(:another_user) { FactoryGirl.create(:user, :with_user_setting) }
+
+      it 'does not allow them to update content' do
+        login_as user
+        visit user_path(:en, another_user.id)
+
+        expect(page).not_to have_content('Edit Garden')
+        expect(page).not_to have_content('Edit')
+        expect(page).not_to have_content('Delete')
+      end
+    end
+
+    context 'when user only has default garden' do
+      let(:user) { FactoryGirl.create(:user, :with_user_setting) }
+      let(:visiting_user) { FactoryGirl.create(:user, :with_user_setting) }
+
+      it 'allows the user to edit default garden' do
+        login_as user
+        visit user_path(:en, user.id)
+
+        expect(page).to have_content('Edit Garden')
+      end
+
+      it 'shows no gardens to visiting users' do
+        login_as visiting_user
+
+        visit user_path(:en, user.id)
+
+        expect(page).to have_content('This user hasn\'t created any gardens yet.')
+      end
+    end
   end
 end

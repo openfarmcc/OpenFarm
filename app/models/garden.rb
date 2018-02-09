@@ -26,6 +26,12 @@ class Garden
   accepts_nested_attributes_for :pictures
   scope :is_public, -> { where(is_private: true) }
 
+  def user_default?
+    default_name = I18n::t('registrations.your_first_garden')
+
+    name == default_name && created_at == updated_at
+  end
+
   protected
 
   def reindex_guides

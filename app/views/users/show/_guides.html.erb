@@ -22,12 +22,14 @@
               action: 'show',
               id: guide.crop.id }, :class => 'action show crop-name') %>
           </td>
-          <td>
-            <%= link_to(icon('edit') + ' ' + t('application.edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show', :title => t('users.show.guides.edit_title')) %>
-          </td>
-          <td>
-            <%= link_to(icon('trash') + ' ' + t('application.delete'), guide_path(guide), :method => 'delete', :class => 'action show', :title => t('users.show.guides.delete_title'), data: {confirm: "Are you sure?"}) %>
-          </td>
+          <% if authorized_for?(@user) %>
+            <td>
+              <%= link_to(icon('edit') + ' ' + t('application.edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show', :title => t('users.show.guides.edit_title')) %>
+            </td>
+            <td>
+              <%= link_to(icon('trash') + ' ' + t('application.delete'), guide_path(guide), :method => 'delete', :class => 'action show', :title => t('users.show.guides.delete_title'), data: {confirm: "Are you sure?"}) %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </table>

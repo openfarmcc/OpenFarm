@@ -1,331 +1,332 @@
 <div class="gardens" ng-controller="gardenCtrl" ng-cloak id="gardens">
 
-<div alerts="alerts"></div>
+  <div alerts="alerts"></div>
 
-<div class="section-header">
-  <h3 class="section-title">Gardens</h3>
-  <button ng-if="profileUser.id === currentUser.id" class="button right tiny" ng-click="toggleAddGarden()">Add Garden</button>
-
-</div>
-<% if @user == current_user && current_user.confirmed? %>
-  <div class="add-garden row">
-    <div class="columns small-12 large-6"
-         ng-class="{ 'small-centered' : profileUser.gardens.length === 0 }" ng-show="addingGarden">
-      <h4 ng-if="profileUser.gardens.length === 0">
-        <%= t('.create_your_first_garden') %>
-      </h4>
-      <h4 ng-if="profileUser.gardens.length > 0">
-        <%= t('.create_a_new_garden') %>
-      </h4>
-      <label><%= t('.call_your_garden') %></label>
-      <input type="text" ng-model="newGarden.name"/>
-      <input type="button"
-             class="button"
-             ng-cloak
-             value="{{ profileUser.gardens.length === 0 ? '<%= t('.create_your_first_garden') %>' : '<%= t('.create_another_garden') %>' }}"
-             ng-click="createGarden(newGarden);"/>
-    </div>
+  <div class="section-header">
+    <h3 class="section-title">Gardens</h3>
+    <button ng-if="profileUser.id === currentUser.id" class="button right tiny" ng-click="toggleAddGarden()">Add Garden</button>
   </div>
-<% end %>
+
+  <% if authorized_for?(@user) %>
+    <div class="add-garden row">
+      <div class="columns small-12 large-6" ng-class="{ 'small-centered' : profileUser.gardens.length === 0 }" ng-show="addingGarden">
+        <h4 ng-if="profileUser.gardens.length === 0">
+          <%= t('.create_your_first_garden') %>
+        </h4>
+        <h4 ng-if="profileUser.gardens.length > 0">
+          <%= t('.create_a_new_garden') %>
+        </h4>
+        <label>
+          <%= t('.call_your_garden') %>
+        </label>
+        <input type="text" ng-model="newGarden.name" />
+        <input type="button" class="button" ng-cloak value="{{ profileUser.gardens.length === 0 ? '<%= t('.create_your_first_garden') %>' : '<%= t('.create_another_garden') %>' }}"
+          ng-click="createGarden(newGarden);" />
+      </div>
+    </div>
+  <% end %>
 
   <div ng-if="!profileUser" class="row">
     <div class="columns small-6 small-centered loading-content">
-      <i class="fa fa-spinner fa-spin"></i> <%= t('.loading_your_gardens') %>
+      <i class="fa fa-spinner fa-spin"></i>
+      <%= t('.loading_your_gardens') %>
     </div>
   </div>
-  <div class="garden" ng-repeat="garden in profileUser.gardens track by $index" ng-cloak ng-show="!garden.hide">
-    <div class="row header">
-      <% if params[:manage] %>
-        <div class="columns large-6 large-centered">
-          <%= t('.first_garden_html') %>
+
+  <% if list_gardens_on_show? %>
+    <div class="garden" ng-repeat="garden in profileUser.gardens track by $index" ng-cloak ng-show="!garden.hide">
+      <div class="row header">
+        <% if params[:manage] %>
+          <div class="columns large-6 large-centered">
+            <%= t('.first_garden_html') %>
+          </div>
+        <% end %>
+        <div class="columns large-9">
+          <h2>
+            <span ng-bind="garden.name" ng-if="!garden.editing"></span>
+            <label ng-if="garden.editing">
+              <%= t('.garden_name') %>
+            </label>
+            <input type="text" ng-model="garden.name" ng-if="garden.editing" ng-model="gardenName" />
+          </h2>
         </div>
-      <% end %>
-      <div class="columns large-9">
-        <h2>
-          <span ng-bind="garden.name" ng-if="!garden.editing"></span>
-          <label ng-if="garden.editing"><%= t('.garden_name') %></label><input type="text" ng-model="garden.name" ng-if="garden.editing" ng-model="gardenName"/>
-        </h2>
-      </div>
-      <div class="columns large-3 edit" ng-if="profileUser.id == profileUser.id">
-        <i class="fa fa-lock"></i>
-        <a class="button secondary tiny"
-           ng-click="garden.editing = !garden.editing"
-           ng-show="!garden.editing"><i class="fa fa-edit"></i> <%= t('.edit_garden') %></a>
-        <a class="button secondary tiny"
-           ng-click="garden.editing = !garden.editing; saveGarden(garden)"
-           ng-show="garden.editing"><i class="fa fa-save"></i> <%= t('.save_garden') %></a>
-        <a class="button secondary tiny"
-           ng-click="destroyGarden($index, garden)"
-           ng-show="garden.editing"><i class="fa fa-trash"></i> <%= t('.destroy_garden') %></a>
-      </div>
-    </div>
-    <div class="row info">
-      <div class="columns large-4">
-        <p ng-if="garden.editing">
-          <%= t('.upload_picture') %>
-        </p>
-        <span ng-repeat="pic in garden.pictures"
-              class="thumbnails"
-              ng-hide="garden.editing">
-          <img ng-src="{{ pic.thumbnail_url || pic.image_url }}"
-               ng-model="pic"/>
-        </span>
-        <of-images-upload
-          ng-if="garden.editing"
-          item="garden"
-          images-key="'pictures'"
-          item-type="'garden'">
-        </of-images-upload>
-      </div>
-      <div class="columns large-8">
-        <div class="description markdown"
-             markdown="garden.description"
-             ng-if="!garden.editing">
+        <div class="columns large-3 edit" ng-if="profileUser.id === currentUser.id">
+          <i class="fa fa-lock"></i>
+          <a class="button secondary tiny" ng-click="garden.editing = !garden.editing" ng-show="!garden.editing">
+            <i class="fa fa-edit"></i>
+            <%= t('.edit_garden') %>
+          </a>
+          <a class="button secondary tiny" ng-click="garden.editing = !garden.editing; saveGarden(garden)" ng-show="garden.editing">
+            <i class="fa fa-save"></i>
+            <%= t('.save_garden') %>
+          </a>
+          <a class="button secondary tiny" ng-click="destroyGarden($index, garden)" ng-show="garden.editing">
+            <i class="fa fa-trash"></i>
+            <%= t('.destroy_garden') %>
+          </a>
         </div>
-        <textarea ng-if="garden.editing"
-                  ng-model="garden.description">
-        </textarea>
-        <table class="details">
-          <tr>
-            <th>
-              <%= t('.garden_type') %>
-            </th>
-            <td>
-              <span ng-bind="garden.type"
-                    ng-if="!garden.editing">
-              </span>
-             <%# TODO: This should probably be
-                 based on something stored in the
-                 backend %>
-              <select ng-if="garden.editing"
-                      ng-model="garden.type">
-                <option value="Outside"><%= t('.outside') %></option>
-                <option value="Inside"><%= t('.inside') %></option>
-                <option value="Greenhouse"><%= t('.greenhouse') %></option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <%= t('.sunlight') %>
-            </th>
-            <td>
-              <span ng-bind="garden.average_sun"
-                    ng-if="!garden.editing">
-              </span>
-              <%# TODO: This should probably be
-                  based on something stored in the
-                  backend %>
-              <select ng-if="garden.editing"
-                      ng-model="garden.average_sun">
-                <option value="Full Sun"><%= t('.full_sun') %></option>
-                <option value="Partial Sun"><%= t('.partial_sun') %></option>
-                <option value="Full Shade"><%= t('.full_shade') %></option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <%= t('.soil_type') %>
-            </th>
-            <td>
-              <span ng-bind="garden.soil_type"
-                    ng-if="!garden.editing">
-              </span>
-              <%# TODO: This should probably be
-                  based on something stored in the
-                  backend %>
-              <select ng-if="garden.editing"
-                      ng-model="garden.soil_type">
-                <option value="Potting"><%= t('.potting') %></option>
-                <option value="Loam"><%= t('.loam') %></option>
-                <option value="Loamy Sand"><%= t('.loamy_sand') %></option>
-                <option value="Sandy Clay"><%= t('.sandy_clay') %></option>
-                <option value="Sandy Loam"><%= t('.sandy_loam') %></option>
-                <option value="Clay Loam"><%= t('.clay_loam') %></option>
-                <option value="Sandy Clay Loam"><%= t('.sandy_clay_loam') %></option>
-                <option value="Sand"><%= t('.sand') %></option>
-                <option value="Clay"><%= t('.clay') %></option>
-                <option value="Silty Clay"><%= t('.silty_clay') %></option>
-                <option value="Silty Clay Loam"><%= t('.silty_clay_loam') %></option>
-                <option value="Silt Loam"><%= t('.silt_loam') %></option>
-                <option value="Silt"><%= t('.silt') %></option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <%= t('.ph') %>
-            </th>
-            <td>
-              <span ng-bind="garden.ph" class="ph">
-              </span>
-              <input type="range"
-                   min="0"
-                   max="15"
-                   step=".5"
-                   ng-model="garden.ph"
-                   ng-if="garden.editing"
-                   />
-            </td>
-          </tr>
-          <!-- <tr>
-            <th>
-              Growing Practices
-            </th>
-            <td>
-            <span ng-bind="garden.growing_practices"
-                  ng-if="!garden.editing">
-            </span>
-            </td>
-          </tr> -->
-        </table>
       </div>
-    </div>
-    <div class="row edit-buttons"
-         ng-show="garden.selected">
-      <div class="columns small-4 right">
-        <a type="button"
-           ng-show="!garden.editing_crops"
-           class="button secondary tiny"
-           ng-init="garden.editing_crops = false"
-           ng-click="garden.editing_crops = !garden.editing_crops"
-        ><i class="fa fa-edit"></i> <%= t('.edit') %></a>
-        <a type="button"
-           ng-show="garden.editing_crops"
-           class="button secondary tiny"
-           ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);"
-        ><i class="fa fa-save"></i> <%= t('.save_changes') %></a>
-        <a class="button alert tiny" ng-click="deleteSelected(garden)"><%= t('.delete') %></a>
+      <div class="row info">
+        <div class="columns large-4">
+          <p ng-if="garden.editing">
+            <%= t('.upload_picture') %>
+          </p>
+          <span ng-repeat="pic in garden.pictures" class="thumbnails" ng-hide="garden.editing">
+            <img ng-src="{{ pic.thumbnail_url || pic.image_url }}" ng-model="pic" />
+          </span>
+          <of-images-upload ng-if="garden.editing" item="garden" images-key="'pictures'" item-type="'garden'">
+          </of-images-upload>
+        </div>
+        <div class="columns large-8">
+          <div class="description markdown" markdown="garden.description" ng-if="!garden.editing">
+          </div>
+          <textarea ng-if="garden.editing" ng-model="garden.description">
+          </textarea>
+          <table class="details">
+            <tr>
+              <th>
+                <%= t('.garden_type') %>
+              </th>
+              <td>
+                <span ng-bind="garden.type" ng-if="!garden.editing">
+                </span>
+                <%# TODO: This should probably be
+                    based on something stored in the
+                    backend %>
+                  <select ng-if="garden.editing" ng-model="garden.type">
+                    <option value="Outside">
+                      <%= t('.outside') %>
+                    </option>
+                    <option value="Inside">
+                      <%= t('.inside') %>
+                    </option>
+                    <option value="Greenhouse">
+                      <%= t('.greenhouse') %>
+                    </option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <%= t('.sunlight') %>
+              </th>
+              <td>
+                <span ng-bind="garden.average_sun" ng-if="!garden.editing">
+                </span>
+                <%# TODO: This should probably be
+                    based on something stored in the
+                    backend %>
+                  <select ng-if="garden.editing" ng-model="garden.average_sun">
+                    <option value="Full Sun">
+                      <%= t('.full_sun') %>
+                    </option>
+                    <option value="Partial Sun">
+                      <%= t('.partial_sun') %>
+                    </option>
+                    <option value="Full Shade">
+                      <%= t('.full_shade') %>
+                    </option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <%= t('.soil_type') %>
+              </th>
+              <td>
+                <span ng-bind="garden.soil_type" ng-if="!garden.editing">
+                </span>
+                <%# TODO: This should probably be
+                    based on something stored in the
+                    backend %>
+                  <select ng-if="garden.editing" ng-model="garden.soil_type">
+                    <option value="Potting">
+                      <%= t('.potting') %>
+                    </option>
+                    <option value="Loam">
+                      <%= t('.loam') %>
+                    </option>
+                    <option value="Loamy Sand">
+                      <%= t('.loamy_sand') %>
+                    </option>
+                    <option value="Sandy Clay">
+                      <%= t('.sandy_clay') %>
+                    </option>
+                    <option value="Sandy Loam">
+                      <%= t('.sandy_loam') %>
+                    </option>
+                    <option value="Clay Loam">
+                      <%= t('.clay_loam') %>
+                    </option>
+                    <option value="Sandy Clay Loam">
+                      <%= t('.sandy_clay_loam') %>
+                    </option>
+                    <option value="Sand">
+                      <%= t('.sand') %>
+                    </option>
+                    <option value="Clay">
+                      <%= t('.clay') %>
+                    </option>
+                    <option value="Silty Clay">
+                      <%= t('.silty_clay') %>
+                    </option>
+                    <option value="Silty Clay Loam">
+                      <%= t('.silty_clay_loam') %>
+                    </option>
+                    <option value="Silt Loam">
+                      <%= t('.silt_loam') %>
+                    </option>
+                    <option value="Silt">
+                      <%= t('.silt') %>
+                    </option>
+                  </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <%= t('.ph') %>
+              </th>
+              <td>
+                <span ng-bind="garden.ph" class="ph">
+                </span>
+                <input type="range" min="0" max="15" step=".5" ng-model="garden.ph" ng-if="garden.editing" />
+              </td>
+            </tr>
+            <!-- <tr>
+                    <th>
+                      Growing Practices
+                    </th>
+                    <td>
+                      <span ng-bind="garden.growing_practices"
+                      ng-if="!garden.editing">
+                    </span>
+                  </td>
+                  </tr> -->
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="row crops">
-      <div class="columns large-12">
-        <table>
-          <tr>
-            <td>
-              <input type="checkbox"
-                     ng-model="garden.selectAll"
-                     ng-change="selectAll(garden)"
-                     ng-disabled="garden.editing_crops"/>
-            </td>
-            <th>
-              <%= t('application.crop') %>
-            </th>
-            <th>
-              <%= t('application.guide') %>
-            </th>
-            <th>
-              <%= t('.sowed') %>
-            </th>
-            <th>
-              <%= t('.life_stage') %>
-            </th>
-            <th>
-              <%= t('.quantity') %>
-            </th>
-            <th>
-              <%= t('.history') %>
-            </th>
-          </tr>
-          <tr ng-repeat="crop in garden.garden_crops"
-              ng-init="crop.hide = false"
-              ng-hide="crop.hide">
+      <% if authorized_for?(@user) %>
+        <div class="row edit-buttons" ng-show="garden.selected">
+          <div class="columns small-4 right">
+            <a type="button" ng-show="!garden.editing_crops" class="button secondary tiny" ng-init="garden.editing_crops = false" ng-click="garden.editing_crops = !garden.editing_crops">
+              <i class="fa fa-edit"></i>
+              <%= t('.edit') %>
+            </a>
+            <a type="button" ng-show="garden.editing_crops" class="button secondary tiny" ng-click="garden.editing_crops = !garden.editing_crops; saveGardenCropChanges(garden);">
+              <i class="fa fa-save"></i>
+              <%= t('.save_changes') %>
+            </a>
+            <a class="button alert tiny" ng-click="deleteSelected(garden)">
+              <%= t('.delete') %>
+            </a>
+          </div>
+        </div>
+        <div class="row crops">
+          <div class="columns large-12">
+            <table>
+              <tr>
+                <td>
+                  <input type="checkbox" ng-model="garden.selectAll" ng-change="selectAll(garden)" ng-disabled="garden.editing_crops" />
+                </td>
+                <th>
+                  <%= t('application.crop') %>
+                </th>
+                <th>
+                  <%= t('application.guide') %>
+                </th>
+                <th>
+                  <%= t('.sowed') %>
+                </th>
+                <th>
+                  <%= t('.life_stage') %>
+                </th>
+                <th>
+                  <%= t('.quantity') %>
+                </th>
+                <th>
+                  <%= t('.history') %>
+                </th>
+              </tr>
+              <tr ng-repeat="crop in garden.garden_crops" ng-init="crop.hide = false" ng-hide="crop.hide">
 
-            <td>
-              <input type="checkbox"
-                     ng-model="crop.selected"
-                     ng-change="checkSelected(garden)"
-                     ng-disabled="crop.selected && garden.editing_crops"
-                     />
-            </td>
-            <td>
-              <a ng-bind="crop.crop.name || crop.guide.crop.name"
-                ng-href="{{crop.links.crop.website}}">
-              </a>
-            </td>
-            <td>
-              <a ng-bind="crop.guide.name"
-                ng-href="{{crop.links.guide.website}}">
-              </a>
-            </td>
-            <td>
-              <span ng-bind="crop.sowed|date:'yyyy-MM-dd'"
-                    ng-if="!(crop.selected && garden.editing)">
-              </span>
-              <input type="date"
-                     ng-model="crop.sowed"
-                     ng-if="crop.selected && garden.editing_crops"
-                     />
-            </td>
-            <td>
-              <span ng-bind="crop.stage"
-                    ng-if="!(crop.selected && garden.editing_crops)">
-              </span>
-              <input type="text"
-                     ng-model="crop.stage"
-                     ng-if="crop.selected && garden.editing_crops"/>
+                <td>
+                  <input type="checkbox" ng-model="crop.selected" ng-change="checkSelected(garden)" ng-disabled="crop.selected && garden.editing_crops"
+                  />
+                </td>
+                <td>
+                  <a ng-bind="crop.crop.name || crop.guide.crop.name" ng-href="{{crop.links.crop.website}}">
+                  </a>
+                </td>
+                <td>
+                  <a ng-bind="crop.guide.name" ng-href="{{crop.links.guide.website}}">
+                  </a>
+                </td>
+                <td>
+                  <span ng-bind="crop.sowed|date:'yyyy-MM-dd'" ng-if="!(crop.selected && garden.editing)">
+                  </span>
+                  <input type="date" ng-model="crop.sowed" ng-if="crop.selected && garden.editing_crops" />
+                </td>
+                <td>
+                  <span ng-bind="crop.stage" ng-if="!(crop.selected && garden.editing_crops)">
+                  </span>
+                  <input type="text" ng-model="crop.stage" ng-if="crop.selected && garden.editing_crops" />
 
-            </td>
-            <td>
-              <span ng-bind="crop.quantity"
-                    ng-show="!(crop.selected && garden.editing_crops)">
-              </span>
-              <input type="number"
-                     ng-model="crop.quantity"
-                     ng-show="crop.selected && garden.editing_crops"/>
-            </td>
-            <td>
-              {{ crop.history.length }} change(s)
-            </td>
-          </tr>
-          <tr>
-            <td colspan="6">
-              <div class="row row-table row-full-height">
-                <div class="search text-center">
-                  <form action="<%= crop_search_via_get_path %>" method="get">
-                  <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
-                    <div class="search-bar-container">
-                      <div class="search-bar" ng-app="openFarmApp" ng-controller="cropCtrl">
+                </td>
+                <td>
+                  <span ng-bind="crop.quantity" ng-show="!(crop.selected && garden.editing_crops)">
+                  </span>
+                  <input type="number" ng-model="crop.quantity" ng-show="crop.selected && garden.editing_crops" />
+                </td>
+                <td>
+                  {{ crop.history.length }} change(s)
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <div class="row row-table row-full-height">
+                    <div class="search text-center">
+                      <form action="<%= crop_search_via_get_path %>" method="get">
+                        <!-- ^NOT A MISTAKE!! Avoiding rails helpers for cleaner URLs and Ganalytics. -->
+                        <div class="search-bar-container">
+                          <div class="search-bar" ng-app="openFarmApp" ng-controller="cropCtrl">
 
-                        <div class="search-input-container">
-                          <div add-crop
-                            query=cropQuery
-                            loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'"
-                            crop-on-select="addCropToGarden"
-                            options="{  'fieldName': 'q',
-                            'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }" user=currentUser garden-query=garden object-type="'crop'"
-                          ></div>
+                            <div class="search-input-container">
+                              <div add-crop query=cropQuery loading-crops-text="'<%= t('crop_searches.show.loading_crops') %>'" crop-on-select="addCropToGarden"
+                                options="{  'fieldName': 'q',
+              'buttonValue': '<%= t('home.search') %>', 'placeholder': 'Add Crop To Garden' }" user=currentUser garden-query=garden
+                                object-type="'crop'"></div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
-                  </form>
-                </div>
-            </div>
-            <!--
-              <!%= t('.add_crop') %
-              <!%= stylesheet_link_tag 'javascirpts/templates/_add_crop_to_garden' %-->
-              <!-- <div class="add-to-garden right"> -->
-              <!-- <div>
-                <!% if current_user %>
-                  <div add-to-gardens
-                    crop-object="guide"
-                    object-type="'guide'"
-                    user="currentUser">
                   </div>
-                <!% end %-->
-
-            </td>
-          </tr>
-        </table>
-      </div>
+                  <!--
+                    <!%= t('.add_crop') %
+                    <!%= stylesheet_link_tag 'javascirpts/templates/_add_crop_to_garden' %-->
+                                  <!-- <div class="add-to-garden right"> -->
+                                  <!-- <div>
+                        <!% if current_user %>
+                        <div add-to-gardens
+                        crop-object="guide"
+                        object-type="'guide'"
+                        user="currentUser">
+                      </div>
+                      <!% end %-->
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <% end %>
     </div>
-  </div>
-  <div ng-if="profileUser && profileUser.gardens.length === 0" class="loading-content">
-    This user hasn't created any gardens yet.
-  </div>
+  <% else %>
+    <div class="loading-content">
+      This user hasn't created any gardens yet.
+    </div>
+  <% end %>
 
-<% content_for(:end_js) do %>
-  <%= javascript_tag "var USER_ID = '#{current_user.id}';" %>
-  <%= javascript_include_tag 'users/gardens' %>
-<% end %>
+  <% content_for(:end_js) do %>
+    <%= javascript_tag "var USER_ID = '#{current_user.id}';" %>
+    <%= javascript_include_tag 'users/gardens' %>
+  <% end %>

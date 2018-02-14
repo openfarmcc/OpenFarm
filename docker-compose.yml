@@ -1,21 +1,23 @@
-webapp:
-    build: .
-    ports: ['3000:3000']
-    volumes: ['.:/openfarm']
-    links: ['mongo','search']
-    environment:
-        S3_BUCKET_NAME:
-        S3_ACCESS_KEY:
-        S3_SECRET_KEY:
-        SERVER_S3_ACCESS_KEY:
-        SERVER_S3_SECRET_KEY:
-        ALERTS:
-        SECRET_KEY_BASE: '0ccd94b250496de9a5765981b0703279bc4ece38c6213a81a3dd8fe215dc51d4c7eee05f49370b010ecf62109e201f935536496ec661a759118ebb011420060a'
-        MONGO_HOST: mongo
-        ELASTICSEARCH_URL: 'http://search:9200'
+# webapp:
+#     build: .
+#     ports: ['3000:3000']
+#     volumes: ['.:/openfarm']
+#     links: ['mongo','search']
+#     environment:
+#         S3_BUCKET_NAME:
+#         S3_ACCESS_KEY:
+#         S3_SECRET_KEY:
+#         SERVER_S3_ACCESS_KEY:
+#         SERVER_S3_SECRET_KEY:
+#         ALERTS:
+#         SECRET_KEY_BASE: '0ccd94b250496de9a5765981b0703279bc4ece38c6213a81a3dd8fe215dc51d4c7eee05f49370b010ecf62109e201f935536496ec661a759118ebb011420060a'
+#         MONGO_HOST: mongo
+#         ELASTICSEARCH_URL: 'http://search:9200'
 
 mongo:
     image: 'mongo:2.6'
+    ports: ['27017:27017']
 
 search:
     image: 'elasticsearch:1.4'
+    ports: ['9200:9200']

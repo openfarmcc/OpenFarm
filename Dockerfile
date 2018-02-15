@@ -32,5 +32,5 @@ ADD     . /openfarm
 # Environment is passed in from the host environment, disable the warning
 RUN     touch /openfarm/config/app_environment_variables.rb
 
-CMD     ["bash", "-e", "scripts/docker_up.sh"]
+CMD [ "rails", "server", "-P", "tmp/pids/docker.pid" ]
 EXPOSE  3000

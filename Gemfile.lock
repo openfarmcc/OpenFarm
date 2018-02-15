@@ -49,7 +49,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     ambry (1.0.0)
     arel (6.0.4)
-    ast (2.3.0)
+    ast (2.4.0)
     aws-sdk (1.66.0)
       aws-sdk-v1 (= 1.66.0)
     aws-sdk-core (2.6.0)
@@ -278,8 +278,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    parser (2.3.3.1)
-      ast (~> 2.2)
+    parallel (1.12.1)
+    parser (2.4.0.2)
+      ast (~> 2.3)
     patron (0.8.0)
     phantomjs (1.9.8.0)
     platform-api (2.1.0)
@@ -404,13 +405,14 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rubocop (0.47.1)
+    rubocop (0.49.1)
+      parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-progressbar (1.8.1)
+    ruby-progressbar (1.9.0)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -458,7 +460,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.1.3)
+    unicode-display_width (1.3.0)
     utf8-cleaner (0.2.5)
       activesupport
     vcr (3.0.3)
@@ -549,7 +551,7 @@ DEPENDENCIES
   rails_admin (~> 1.1.1)
   rainbow (~> 2.1.0)
   rspec-rails
-  rubocop
+  rubocop (~> 0.49.0)
   sass-rails (~> 4.0.4)
   searchkick (~> 1.5.1)
   simplecov
@@ -562,5 +564,8 @@ DEPENDENCIES
   vcr
   webmock
 
+RUBY VERSION
+   ruby 2.3.3p222
+
 BUNDLED WITH
-   1.14.6
+   1.16.0

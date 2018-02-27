@@ -6,6 +6,9 @@
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
 [![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
+# Looking for maintainer.
+Contact rory@openfarm.cc to find out more, or open an issue to discuss your interest.
+
 Open Source community of contributors: how it works
 ========
 
@@ -17,13 +20,13 @@ Want to dig head first into our todo list of Github tasks? [Make yourself at hom
 
 ### About
 
-[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site. 
+[OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site.
 
-The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo; 
+The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo;
 
 ### Start by joining the discussion of existing Contributors
 
-To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)! This is where you'll find the latest conversation about Openfarm and the most active contributors. 
+To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)! This is where you'll find the latest conversation about Openfarm and the most active contributors.
 
 Check also the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked questions about contributing (Angular, Issue Trackers, IRC Channels).
 
@@ -99,9 +102,22 @@ $ rails s
 
 Then, visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to see the OpenFarm web application running on your local machine. If all went well, you will have a seeded database and can use the account `admin@admin.com` with password `admin123`.
 
-Remember that `/vagrant` folder in the Vagrant VM is largely for convenience, and working in it can cause unexpected behavior with other tools - you should do your work in your own non-vagrant environment. Use the environment you're most familiar with to program, and Vagrant will do the rest.
+**Note about ElasticSearch**: Some Linux users have noted issues installing ElasticSearch onto a host machine. One workaround is to install ElasticSearch via Docker:
+
+```
+
+sudo docker pull elasticsearch:1.4.5
+sudo docker pull mongo
+sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:1.4.5
+sudo docker run -p 27017:27017 mongo
+
+```
+
 
 **If you had any problem** installing bundles getting up and running etc see the [Common Issues Page](https://github.com/openfarmcc/OpenFarm/wiki/Common-Issues).
+
+Remember that `/vagrant` folder in the Vagrant VM is largely for convenience, and working in it can cause unexpected behavior with other tools - you should do your work in your own non-vagrant environment. Use the environment you're most familiar with to program, and Vagrant will do the rest.
+
 
 #### Become a Core Contributors
 
@@ -121,7 +137,7 @@ For core-code contributors: here are a few basic ground-rules:
 
 ### Actual Code Contributors
 
-Here are some of the [Github contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors). 
+Here are some of the [Github contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors).
 
 Outside of Github, there's a whole host of people who also contributed financially, by building gardening content on the website, on providing more visibility for OpenFarm in any ways!
 

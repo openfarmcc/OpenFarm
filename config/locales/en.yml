@@ -242,7 +242,7 @@ en:
     description: "Description"
     sun_requirements: "Sun Requirements"
     sowing_method: "Sowing Method"
-    spread: "Spread"
+    spread: "Spread (diameter)"
     row_spacing: "Row Spacing"
     height: "Height"
     tags: "Tags"

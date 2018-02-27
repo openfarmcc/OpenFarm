@@ -1,7 +1,6 @@
 mongo:
     ports: ['27017:27017']
     image: 'mongo:2.6'
-    ports: ['27017:27017']
 
 search:
     ports: ['9200:9200', '9300:9300']

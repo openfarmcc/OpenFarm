@@ -175,7 +175,7 @@
         var parent, valid;
 
         // support old way to do equalTo validations
-        if(el.getAttribute(this.add_namespace('data-equalto'))) { validator = "equalTo" }
+        if(el.getAttribute(this.add_namespace('data-equalto'))) { validator = "equalTo"; }
 
         if (!direct_parent.is('label')) {
           parent = direct_parent;
@@ -188,7 +188,7 @@
         } else if (is_checkbox && required) {
           validations.push(this.valid_checkbox(el, required));
         } else if (validator) {
-          valid = this.settings.validators[validator].apply(this, [el, required, parent])
+          valid = this.settings.validators[validator].apply(this, [el, required, parent]);
           validations.push(valid);
 
           if (valid) {

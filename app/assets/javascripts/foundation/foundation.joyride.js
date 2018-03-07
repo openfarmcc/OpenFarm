@@ -58,7 +58,7 @@
 
       this.settings = this.settings || $.extend({}, this.defaults, (options || method));
 
-      this.bindings(method, options)
+      this.bindings(method, options);
     },
 
     events : function () {
@@ -703,7 +703,7 @@
     remove_exposed: function(el){
       var search, i;
       if (el instanceof $) {
-        search = el[0]
+        search = el[0];
       } else if (typeof el == 'string'){
         search = el;
       }

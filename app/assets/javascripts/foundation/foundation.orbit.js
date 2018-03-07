@@ -178,11 +178,11 @@
         }
       }
 
-    }
+    };
 
     self.timer_callback = function() {
       self._goto(idx + 1, true);
-    }
+    };
     
     self.compute_dimensions = function() {
       var current = $(self.slides().get(idx));
@@ -274,7 +274,7 @@
         .on('touchend.fndtn.orbit', function(e) {
           container.data('swipe-transition', {});
           e.stopPropagation();
-        })
+        });
       }
       container.on('mouseenter.fndtn.orbit', function(e) {
         if (settings.timer && settings.pause_on_hover) {
@@ -334,7 +334,7 @@
         self.restart();
         callback();
       }, left);
-      el.trigger('timer-started.fndtn.orbit')
+      el.trigger('timer-started.fndtn.orbit');
     };
 
     this.stop = function() {

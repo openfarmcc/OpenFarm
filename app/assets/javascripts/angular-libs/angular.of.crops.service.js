@@ -83,14 +83,14 @@ openFarmApp.factory('cropService', ['$http', '$q', '$log', 'alertsService',
       return $q(function (resolve, reject) {
         $http.post(url, buildParams(cropObject))
           .success(function(response) {
-            resolve(buildCrop(response.data, response.included))
+            resolve(buildCrop(response.data, response.included));
           })
           .error(function(response) {
             alertsService.pushToAlerts(response.errors);
             reject();
-          })
-      })
-    }
+          });
+      });
+    };
 
     var updateCrop = function(cropId, cropObject, callback){
       var url = '/api/v1/crops/' + cropId + '/';

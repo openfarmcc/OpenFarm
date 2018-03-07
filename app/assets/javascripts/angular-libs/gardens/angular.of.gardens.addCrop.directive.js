@@ -81,10 +81,10 @@ openFarmApp.directive('addCrop', ['$http',
                   }
                 }
             }
-          }
+          };
 
         }
       ],
       templateUrl: '/assets/templates/_add_crop_to_garden.html',
     };
-}])
+}]);

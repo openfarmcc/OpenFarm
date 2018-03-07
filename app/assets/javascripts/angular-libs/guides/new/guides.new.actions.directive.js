@@ -12,6 +12,6 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
         }
       ],
       templateUrl: '/assets/angular-libs/guides/new/guides.new.actions.template.html'
-    }
+    };
   }
-])
+]);

@@ -37,4 +37,3 @@ module OpenFarm
     end
   end
 end
-

@@ -1,8 +1,4 @@
 language: ruby
-# If you don't specify a version, Travis CI will use MRI 1.9.3 as the default.
-# http://docs.travis-ci.com/user/languages/ruby/
-rvm:
-  - 2.3.3
 services:
 - mongodb
 - elasticsearch

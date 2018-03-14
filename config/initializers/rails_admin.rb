@@ -1,5 +1,4 @@
 RailsAdmin.config do |config|
-
   # We need this because Karminari doesn't seem to work
   # too well alongside RailsAdmin. Maybe it's a conflict
   # of which gets defined first?

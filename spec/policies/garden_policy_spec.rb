@@ -30,7 +30,7 @@ describe GardenPolicy do
 
   context 'for a user' do
     it 'should only return gardens in scope that are public' do
-      pending "this test does not pass on CI - RickCarlino"
+      pending 'this test does not pass on CI - RickCarlino'
       other_user = FactoryGirl.create :user
       FactoryGirl.create :garden,
                          is_private: true,
@@ -45,7 +45,7 @@ describe GardenPolicy do
     end
 
     it 'should only return public gardens unless they are current_user' do
-      pending "this test does not pass on CI - RickCarlino"
+      pending 'this test does not pass on CI - RickCarlino'
       other_user = FactoryGirl.create :user
       FactoryGirl.create :garden,
                          is_private: true,
@@ -60,7 +60,7 @@ describe GardenPolicy do
     end
 
     it 'should return all gardens in scope when user is admin' do
-      pending "this test does not pass on CI - RickCarlino"
+      pending 'this test does not pass on CI - RickCarlino'
       FactoryGirl.create :garden,
                          is_private: true,
                          name: 'nono',

@@ -173,7 +173,7 @@ openFarmApp.factory('guideService', ['$http', '$q', 'alertsService',
             alertsService.pushToAlerts(response.errors, code);
           });
       });
-    }
+    };
 
     var calculateStartOfYear = function(){
       // calculate year start time based on user preference/location

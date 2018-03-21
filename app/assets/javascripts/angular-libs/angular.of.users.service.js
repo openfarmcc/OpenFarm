@@ -126,7 +126,7 @@ openFarmApp.factory('userService', ['$http', '$q', 'gardenService',
         'user_setting': {
           'favorite_crop': cropId
         }
-      }
+      };
 
       $http.put('/api/v1/users/' + userId + '/', { 'data': params } )
         .success(function(response) {

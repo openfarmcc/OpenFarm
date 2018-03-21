@@ -58,21 +58,21 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
               stageService.deleteStageWithPromise(stage.id)
                 .then(function() {
                   $scope.triggerGuideUpdate();
-                })
+                });
             }
-          }
+          };
 
           $scope.placeImageUpload = function (image) {
             var newPicture = {
               new: true,
               image_url: image
-            }
+            };
             if ($scope.stage.pictures) {
-              $scope.stage.pictures.push(newPicture)
+              $scope.stage.pictures.push(newPicture);
             } else {
-              $scope.stage.pictures = [newPicture]
+              $scope.stage.pictures = [newPicture];
             }
-          }
+          };
 
           $scope.saveStageChanges = function(stage) {
             var actions = stage.stage_actions || [];
@@ -108,7 +108,7 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                           order: index,
                           id: sa.id || null
                         };
-                        return actionData
+                        return actionData;
                       }),
               images: stage.pictures || null
             };
@@ -119,9 +119,9 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                 $scope.toggleEditingStage();
                 // window.location.reload()
               }, function(error) {
-                console.log('error updating stage', error)
+                console.log('error updating stage', error);
               });
-          }
+          };
 
           $scope.openAddActionModal = function(stage){
 
@@ -175,8 +175,8 @@ openFarmApp.directive('ofShowGuideStages', ['$http', '$modal', 'stageService',
                     action.pictures = [];
                     action.overview = null;
                     stage.stage_actions = stage.stage_actions || [];
-                    stage.stage_actions.push(action)
-                  })
+                    stage.stage_actions.push(action);
+                  });
                 }, function () {
                   console.info('Modal dismissed at: ' + new Date());
                 });

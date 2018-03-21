@@ -24,11 +24,11 @@ openFarmApp.directive('ofShowAddStageToGuide', ['$q', 'defaultService', 'stageSe
                     if (existingStage.name === newStage.name) {
                       exists = true;
                     }
-                  })
+                  });
                   return !exists;
                 }
-              })
-            })
+              });
+            });
 
           // Any watching?
 
@@ -38,8 +38,8 @@ openFarmApp.directive('ofShowAddStageToGuide', ['$q', 'defaultService', 'stageSe
               if (stage.selected) {
                 $scope.stagesSelected = true;
               }
-            })
-          }, true)
+            });
+          }, true);
 
           // And definitions
 
@@ -57,17 +57,17 @@ openFarmApp.directive('ofShowAddStageToGuide', ['$q', 'defaultService', 'stageSe
 
                 }};
                 counter += counter + 1;
-                promises.push(stageService.createStageWithPromise(params))
+                promises.push(stageService.createStageWithPromise(params));
               }
-            })
+            });
             $q.all(promises)
               .then(function (data) {
-                window.location.reload()
+                window.location.reload();
               }, function (error) {
-                console.log('error', err)
-              })
+                console.log('error', err);
+              });
 
-          }
+          };
         }
       ],
       templateUrl: '/assets/angular-libs/guides/show/guides.show.add-stage-to-guide.template.html'

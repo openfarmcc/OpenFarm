@@ -12,13 +12,13 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
     // }
 
     var buildGarden = function(data, included) {
-      var gardenCropIds
-      var pictures
+      var gardenCropIds;
+      var pictures;
       var garden = data.attributes;
       garden.id = data.id;
       gardenCropIds = data.relationships.garden_crops.data.map(function(gc) {
         return gc.id;
-      })
+      });
       garden.relationships = data.relationships;
       garden.garden_crops = findGardenCrops(gardenCropIds, included) || [];
       if (included) {
@@ -27,12 +27,12 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
                  obj.attributes.photographic_id === garden.id;
         }).map(function(pic) {
           return pic.attributes;
-        })
+        });
       }
 
       garden.pictures = pictures || [];
       return garden;
-    }
+    };
 
     var findGardenCrops = function(gardenCropIds, included) {
       if (included) {
@@ -44,7 +44,7 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
         });
       }
       return garden_crops || [];
-    }
+    };
 
     var buildGardenCrop = function(data) {
       var gardenCrop = data.attributes;
@@ -63,9 +63,9 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
         images: gardenObject.pictures ? gardenObject.pictures.filter(function(p) {
           return !p.deleted;
         }) : [],
-      }
+      };
       return data;
-    }
+    };
 
     var getGardensForUser = function(user, callback) {
       var url = user.relationships.gardens.links.related;
@@ -77,12 +77,12 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
           return callback(true, gardens, code);
         })
         .error(function (response, code) {
-          alertsService.pushToAlerts(response, code)
+          alertsService.pushToAlerts(response, code);
           if (callback) {
             return callback(false, response, code);
           }
-        })
-    }
+        });
+    };
 
     var saveGarden = function(garden, callback){
       var url = '/api/v1/gardens/' + garden.id;
@@ -135,7 +135,7 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
       };
       $http.post(url, { data: data })
         .success(function (response, status) {
-          alertsService.pushToAlerts(['Created Your Garden!'], status)
+          alertsService.pushToAlerts(['Created Your Garden!'], status);
           if (callback){
             return callback(true,
                             buildGarden(response.data, response.included),
@@ -151,17 +151,17 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
     };
 
     var saveGardenCrop = function(garden, gardenCrop, callback){
-      var data = { 'data': { 'attributes': gardenCrop }}
+      var data = { 'data': { 'attributes': gardenCrop }};
       var url = gardenCrop.links.self.api;
       $http.put(url, data)
         .success(function (response, object) {
-          alertsService.pushToAlerts(['Saved your garden crop!'], '200')
+          alertsService.pushToAlerts(['Saved your garden crop!'], '200');
           if (callback){
             return callback(true, response, object);
           }
         })
         .error(function (response, code){
-          alertsService.pushToAlerts(response, status)
+          alertsService.pushToAlerts(response, status);
           if (callback){
             return callback(false, response, code);
           }
@@ -179,16 +179,16 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
       var url = garden.relationships.garden_crops.links.related;
       $http.post(url, data)
         .success(function(response, object){
-          alertsService.pushToAlerts(['Added crop to garden!'], '200')
+          alertsService.pushToAlerts(['Added crop to garden!'], '200');
           if (callback){
             return callback(true, buildGardenCrop(response.data), object);
           }
         })
         .error(function(response, code){
           if (response.errors) {
-            var errors = response.errors.map(function(e) { return e.title });
+            var errors = response.errors.map(function(e) { return e.title; });
           }
-          alertsService.pushToAlerts(response.errors, code)
+          alertsService.pushToAlerts(response.errors, code);
           if (callback){
             // TODO: We need to make these consistent. What do these functions
             // return?
@@ -202,7 +202,7 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
       var url = gardenCrop.links.self.api;
       $http.delete(url)
         .success(function(response, object){
-          alertsService.pushToAlerts(['Deleted garden crop.'], status)
+          alertsService.pushToAlerts(['Deleted garden crop.'], status);
           if (callback){
             return callback(true, response, object);
           }
@@ -219,7 +219,7 @@ openFarmApp.factory('gardenService', ['$http','alertsService',
       var url = '/api/v1/gardens/' + garden.id;
       $http.delete(url)
         .success(function(response, object) {
-          alertsService.pushToAlerts(['Deleted garden.'], status)
+          alertsService.pushToAlerts(['Deleted garden.'], status);
           if (callback){
             return callback(true, response, object);
           }

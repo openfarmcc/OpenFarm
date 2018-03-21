@@ -1,3 +1,14 @@
+A few specs on Travis are failing.
+
+The problem is, I don't know if the failures should be ignored or investigated.
+
+Here's my plan:
+
+ * Submit this pull request (no code changes)
+ * Run CI against it.
+ * Determine which tests fail (if any)
+ * Any test that fails will be marked as "pending"- we can refactor this later.
+
 ![OpenFarm](https://github.com/openfarmcc/OpenFarm/blob/master/app/assets/images/OpenFarm%20f%20logo%20-%20green%20%23219653.svg)
 
 [![Coverage Status](https://img.shields.io/coveralls/openfarmcc/OpenFarm.svg)](https://coveralls.io/r/openfarmcc/OpenFarm)

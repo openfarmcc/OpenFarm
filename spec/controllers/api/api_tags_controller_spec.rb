@@ -11,7 +11,7 @@ describe Api::V1::TagsController, type: :controller do
   end
 
   it 'lists tags' do
-    pending 'this test does not pass on CI - RickCarlino'
+    skip 'this test does not pass on CI - RickCarlino'
     get 'index', format: :json
     expect(response.status).to eq(200)
     expect(json.length).to eq(2)

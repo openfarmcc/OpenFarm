@@ -12,7 +12,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'lists crops.' do
-    pending 'this test does not pass on CI - RickCarlino'
+    skip 'this test does not pass on CI - RickCarlino'
     get 'index', format: :json, filter: 'mung'
     expect(response.status).to eq(200)
     expect(json['data'].length).to eq(1)

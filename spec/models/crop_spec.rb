@@ -14,20 +14,20 @@ describe Crop do
     let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
     it 'searches by name' do
-      pending 'this test does not pass on CI - RickCarlino'
+      skip 'this test does not pass on CI - RickCarlino'
       Crop.searchkick_index.refresh
       result = Crop.search('Common Horseradish').first
       expect(result).to eq(crop)
     end
 
     it 'searches by binomial name' do
-      pending 'this test does not pass on CI - RickCarlino'
+      skip 'this test does not pass on CI - RickCarlino'
       Crop.searchkick_index.refresh
       expect(Crop.search('Armoracia rusticana').first).to eq(crop)
     end
 
     it 'searches by description' do
-      pending 'this test does not pass on CI - RickCarlino'
+      skip 'this test does not pass on CI - RickCarlino'
       Crop.searchkick_index.refresh
       expect(Crop.search('Brassicaceae family').first).to eq(crop)
     end

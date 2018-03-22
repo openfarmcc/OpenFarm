@@ -1,3 +1,6 @@
+# https://github.com/kaminari/kaminari/issues/886
+require 'kaminari/models/array_extension'
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration

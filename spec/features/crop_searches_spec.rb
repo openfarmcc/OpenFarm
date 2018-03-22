@@ -1,17 +1,17 @@
 require 'spec_helper'
 
 describe 'Crop search', type: :controller do
-  def asset_url(relative_path)
-    "#{host_with_port}#{Rails.application.config.assets.prefix}/#{relative_path}"
-  end
+  # def asset_url(relative_path)
+  #   "#{host_with_port}#{Rails.application.config.assets.prefix}/#{relative_path}"
+  # end
 
-  def host_with_port
-    "#{current_host}:#{Capybara.current_session.server.port}"
-  end
+  # def host_with_port
+  #   "#{current_host}:#{Capybara.current_session.server.port}"
+  # end
 
   let!(:crop) { FactoryGirl.create(:crop, :radish) }
 
-  it 'finds individual crops'#, js: true do
+  it 'finds individual crops' #, js: true do
   #   visit root_path
   #   FactoryGirl.create_list(:crop, 10)
   #   FactoryGirl.create(:crop, name: 'radish')
@@ -22,7 +22,7 @@ describe 'Crop search', type: :controller do
   #   expect(page).to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it 'handles empty searches'#, js: true do
+  it 'handles empty searches' #, js: true do
   #   pending 'this test does not pass on CI - RickCarlino'
   #   visit root_path
   #   fill_in 'q', with: ''
@@ -41,7 +41,7 @@ describe 'Crop search', type: :controller do
   #                             visible: false
   # end
 
-  it 'handles empty search results'#, js: true do
+  it 'handles empty search results' #, js: true do
   #   pending 'this test does not pass on CI - RickCarlino'
   #   visit root_path
   #   fill_in 'q', with: 'pokemon'
@@ -60,7 +60,7 @@ describe 'Crop search', type: :controller do
   #                             visible: false
   # end
 
-  it 'handles plurals'#, js: true do
+  it 'handles plurals' #, js: true do
   #   visit root_path
   #   fill_in 'q', with: crop.name
   #   FactoryGirl.create_list(:crop, 10)
@@ -70,7 +70,7 @@ describe 'Crop search', type: :controller do
   #   expect(page).to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it 'handles misspellings'#, js: true do
+  it 'handles misspellings' #, js: true do
   #   visit root_path
   #   FactoryGirl.create_list(:crop, 10)
   #   FactoryGirl.create(:crop, name: 'radish')
@@ -81,7 +81,7 @@ describe 'Crop search', type: :controller do
   #   expect(page).to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it 'handles multiple words'#, js: true do
+  it 'handles multiple words' #, js: true do
   #   visit root_path
   #   FactoryGirl.create_list(:crop, 10)
   #   FactoryGirl.create(:crop, name: 'radish')
@@ -92,7 +92,7 @@ describe 'Crop search', type: :controller do
   #   expect(page).to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it 'has a top nav bar'#, js: true do
+  it 'has a top nav bar' #, js: true do
   #   pending 'this test does not pass on CI - RickCarlino'
   #   visit crop_search_via_get_path(cropsearch: { q: 'red' })
   #   fill_in 'q', with: crop.name

@@ -113,3 +113,4 @@ gem 'ng-rails-csrf'
 gem 'platform-api'
 
 gem 'letsencrypt-rails-heroku', group: 'production'
+gem 'rollbar'

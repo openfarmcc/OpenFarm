@@ -1,9 +1,7 @@
-RailsAdmin.config do |config|
+# https://github.com/kaminari/kaminari/issues/886
+require 'kaminari/models/array_extension'
 
-  # We need this because Karminari doesn't seem to work
-  # too well alongside RailsAdmin. Maybe it's a conflict
-  # of which gets defined first?
-  Kaminari::Hooks.init
+RailsAdmin.config do |config|
 
   ### Popular gems integration
 

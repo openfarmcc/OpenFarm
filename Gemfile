@@ -4,7 +4,7 @@ ruby '2.3.3'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 4.2.10'
 
 # Foundation
 gem 'foundation-rails', '~> 5.4.5'
@@ -18,8 +18,8 @@ gem 'jquery-rails'
 gem 'bcrypt'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid-slug'
-gem 'aws-sdk'
-gem 'aws-sdk-rails'
+gem 'aws-sdk', '~> 3'
+gem 'aws-sdk-rails', '~> 2'
 gem 'mutations'
 gem 'rack-attack'
 gem 'impressionist'
@@ -103,14 +103,13 @@ group :production, :staging do
   gem 'rack-timeout'
 end
 
-#Used for static pages in /app/views/pages
+# Used for static pages in /app/views/pages
 gem 'high_voltage'
-
 gem 'devise', '~> 4.2.0'
-gem 'rails_admin', '~> 1.1.1'
+gem 'rails_admin', '~> 1.3.0'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT
-gem 'platform-api' 
+gem 'platform-api'
 
 gem 'letsencrypt-rails-heroku', group: 'production'

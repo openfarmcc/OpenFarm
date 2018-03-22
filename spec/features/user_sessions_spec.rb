@@ -63,7 +63,7 @@ describe 'User sessions' do
     expect(Garden.all.last.user).to eq (usr)
   end
 
-  it 'user gets redirected to finish page after confirmation'# , js: true do
+  it 'user gets redirected to finish page after confirmation' # , js: true do
   #   skip 'this test does not pass on CI - RickCarlino'
   #   usr = sign_up_procedure
   #   expect(page).to have_content('Your account was successfully confirmed')

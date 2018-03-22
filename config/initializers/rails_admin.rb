@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Why? https://github.com/kaminari/kaminari/issues/886
 require 'kaminari/models/array_extension'
 

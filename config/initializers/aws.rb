@@ -1,1 +1,1 @@
-# Aws::VERSION =  Gem.loaded_specs["aws-sdk-s3"].version
+Aws::VERSION =  Gem.loaded_specs["aws-sdk"].version

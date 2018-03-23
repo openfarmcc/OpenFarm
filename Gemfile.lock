@@ -1026,7 +1026,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activejob_backport
-  aws-sdk
+  aws-sdk (~> 3)
   aws-sdk-rails (~> 2)
   bcrypt
   better_errors

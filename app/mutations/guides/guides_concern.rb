@@ -1,7 +1,6 @@
 module Guides
   # Place shared functionality between Guide mutations here to stay DRY.
   module GuidesConcern
-
     def validate_time_span
     end
 

@@ -80,7 +80,6 @@ class Guide
     end
   end
 
-
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
@@ -176,6 +175,7 @@ class Guide
 
     (sum.to_f / count * 100).round
   end
+
   def compatibility_label(current_user)
     if current_user_compatibility_score
       score = current_user_compatibility_score

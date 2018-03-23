@@ -64,6 +64,7 @@ class CropsController < ApplicationController
   end
 
   private
+
   # TODO: This should be moved to a migration.
   def crops_params
     params.require(:crop).permit(:name, :binomial_name, :description,

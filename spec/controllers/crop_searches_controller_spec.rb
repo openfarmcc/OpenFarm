@@ -38,7 +38,6 @@ describe CropSearchesController, type: 'controller' do
                              average_sun: 'Full Sun')
     garden.save
 
-
     crop = FactoryGirl.create(:crop, name: 'Carrot')
 
     uncompatible_guide = FactoryGirl.create(:guide, crop: crop, draft: false)

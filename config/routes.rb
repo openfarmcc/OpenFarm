@@ -1,5 +1,4 @@
 OpenFarm::Application.routes.draw do
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: {
@@ -13,8 +12,6 @@ OpenFarm::Application.routes.draw do
          as: :crop_search_via_post
     get '(:locale)/crop_search' => 'crop_searches#search',
         as: :crop_search_via_get
-
-
 
     devise_scope :users do
       get 'users/gardens' => 'users#gardens'

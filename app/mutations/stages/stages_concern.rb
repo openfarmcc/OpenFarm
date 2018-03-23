@@ -1,7 +1,6 @@
 module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern
-
     def validate_actions
       actions && actions.each do |action|
         # Can this validation somehow be done by the action

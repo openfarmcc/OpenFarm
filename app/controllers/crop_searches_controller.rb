@@ -28,6 +28,5 @@ class CropSearchesController < ApplicationController
   private
 
   def sort_guides(current_user)
-
   end
 end

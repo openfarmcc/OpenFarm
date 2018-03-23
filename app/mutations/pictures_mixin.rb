@@ -1,5 +1,4 @@
 module PicturesMixin
-
   # Complexity of this method is way too high. Let's refactor some time.
   #   - @RickCarlino
   def validate_images (images, obj=nil)

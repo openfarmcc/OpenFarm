@@ -27,7 +27,6 @@ class GardenCropSerializer < BaseSerializer
   end
 
   def links
-
     data = {}
     data['self'] = self_link if self_link
     if object.guide

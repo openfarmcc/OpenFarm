@@ -7,7 +7,6 @@ class GuideSearch
     @filter = {}
     @order = { _score: :desc }
     @query = '*'
-
   end
 
   def self.search(query = '*')
@@ -51,8 +50,6 @@ class GuideSearch
 
   # Methods for Enumeration.
   def results
-
-
     results = Guide.search(query, where: filter, order: order)
     results
   end

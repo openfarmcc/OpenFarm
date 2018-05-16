@@ -44,17 +44,24 @@ describe GardenPolicy do
     end
 
     it 'should only return public gardens unless they are current_user' do
+      Garden.destroy_all
       other_user = FactoryGirl.create :user
-      FactoryGirl.create :garden,
-                         is_private: true,
-                         name: 'nono',
-                         user: current_user
-      FactoryGirl.create :garden,
-                         is_private: false,
-                         name: 'yes!',
-                         user: other_user
+      mine = FactoryGirl.create :garden,
+                                is_private: true,
+                                name: 'mine',
+                                user: current_user
+      publicly_shared = FactoryGirl.create :garden,
+                                            is_private: false,
+                                            name: 'not mine but OK (public)',
+                                            user: other_user
+      not_mine = FactoryGirl.create :garden,
+                                    is_private: true,
+                                    name: 'not mine',
+                                    user: other_user
       @p = GardenPolicy::Scope.new(current_user, Garden).resolve
-      expect(@p.length).to eq(3)
+      expect(@p).to include(mine)
+      expect(@p).to include(publicly_shared)
+      expect(@p).not_to include(not_mine)
     end
 
     it 'should return all gardens in scope when user is admin' do

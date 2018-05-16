@@ -41,6 +41,7 @@ describe UsersController do
   end
 
   it 'should show all users on index if the current user is admin' do
+    User.destroy_all
     user = FactoryGirl.create(:user, admin: true)
     private_user = FactoryGirl.create(:user, is_private: true)
     public_user = FactoryGirl.create(:user)

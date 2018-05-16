@@ -63,9 +63,10 @@ describe 'Crop search', type: :controller do
   it 'handles plurals', js: true do
     Crop.destroy_all
     FactoryGirl.create_list(:crop, 10)
+    q = FactoryGirl.create(:crop, :radish).name
     Crop.searchkick_index.refresh
     visit root_path
-    fill_in 'q', with: crop.name
+    fill_in 'q', with: q
     click_button 'Search'
     expect(page).to have_content(crop.name)
     expect(page).to_not have_content("Sorry, we don't have any crops matching")

@@ -23,11 +23,13 @@ describe 'Crop search', type: :controller do
   end
 
   it 'handles empty searches', js: true do
+    Crop.destroy_all
     visit root_path
     fill_in 'q', with: ''
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
+    binding.pry
     expect(page).to have_content(Crop.last.name)
     title = Crop.first.name
     description = Crop.first.description

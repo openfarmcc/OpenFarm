@@ -6,6 +6,8 @@ describe Api::V1::CropsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
+    Crop.destroy_all
+    FactoryGirl.create(:crop, name: 'other bean')
     @beans = FactoryGirl.create(:crop, name: 'mung bean')
     FactoryGirl.create_list(:crop, 2)
     Crop.searchkick_index.refresh

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'openfarm_errors'
 
 describe Token do
   let(:token) { FactoryGirl.create(:token) }

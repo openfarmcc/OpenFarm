@@ -30,9 +30,11 @@ describe 'Crop search', type: :controller do
     Crop.searchkick_index.refresh
     click_button 'Search'
     expect(page).to have_content(Crop.last.name)
-    title = Crop.first.name
-    description = Crop.first.description
-    image = Crop.first.main_image_path
+    # Don't use crops with apostraphes in the name- creates weird errors.
+    crop        = Crop.all.to_a.find{|x| !x.name.include?("'")}
+    title       = crop.name
+    description = crop.description
+    image       = crop.main_image_path
     expect(page).to have_css "meta[property='og:title'][content='#{title}']",
                               visible: false
     expect(page).to have_css "meta[property='og:description'][content='#{description}']",

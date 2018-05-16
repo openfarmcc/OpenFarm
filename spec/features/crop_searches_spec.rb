@@ -29,7 +29,6 @@ describe 'Crop search', type: :controller do
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
-    binding.pry
     expect(page).to have_content(Crop.last.name)
     title = Crop.first.name
     description = Crop.first.description
@@ -43,10 +42,11 @@ describe 'Crop search', type: :controller do
   end
 
   it 'handles empty search results', js: true do
-    visit root_path
-    fill_in 'q', with: 'pokemon'
+    Crop.destroy_all
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
+    visit root_path
+    fill_in 'q', with: 'pokemon'
     click_button 'Search'
     expect(page).to have_content("Sorry, we don't have any crops matching")
     description = I18n.t('application.site_description')
@@ -61,10 +61,11 @@ describe 'Crop search', type: :controller do
   end
 
   it 'handles plurals', js: true do
-    visit root_path
-    fill_in 'q', with: crop.name
+    Crop.destroy_all
     FactoryGirl.create_list(:crop, 10)
     Crop.searchkick_index.refresh
+    visit root_path
+    fill_in 'q', with: crop.name
     click_button 'Search'
     expect(page).to have_content(crop.name)
     expect(page).to_not have_content("Sorry, we don't have any crops matching")

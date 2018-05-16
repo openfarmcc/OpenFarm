@@ -21,7 +21,7 @@ describe Crop do
 
     it 'searches by binomial name' do
       Crop.searchkick_index.refresh
-      expect(Crop.search('Armoracia rusticana').first).to eq(crop)
+      expect(Crop.search('Armoracia rusticana').to_a).to include(crop)
     end
 
     it 'searches by description' do

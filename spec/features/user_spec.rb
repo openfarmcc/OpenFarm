@@ -17,8 +17,8 @@ describe 'User features', type: :feature do
     user = FactoryGirl.create(:confirmed_user, :with_user_setting)
     login_as user
     visit user_path(:en, user.id)
-    selector = "meta[property='og:title']"+
-      "[content=\"#{user.display_name} Profile\"]"
+    selector = "meta[property='og:title']" \
+               "[content=\"#{user.display_name} Profile\"]"
     expect(page).to have_css(selector, visible: false)
   end
 

@@ -14,7 +14,7 @@ module OpenFarm
     config.assets.initialize_on_precompile = false
     # Include all JS files, also those in subdolfer or javascripts assets folder
     # includes for exmaple applicant.js. JS isn't the problem so the catch all works.
-    config.assets.precompile += %w(*.js )
+    config.assets.precompile += %w(*.js)
     # https://github.com/FortAwesome/font-awesome-sass/issues/48
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.svg *.ico *.eot
                                    *.ttf *.woff *.woff2)

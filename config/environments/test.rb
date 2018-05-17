@@ -43,7 +43,7 @@ OpenFarm::Application.configure do
   Paperclip::Attachment.default_options.merge!(path: 'tmp/paperclip_junk/'\
                                                      ':class/:attachment/:id.'\
                                                      ':extension')
-  Rails.application.config.assets.precompile += %w( application-print.css )
+  Rails.application.config.assets.precompile += %w(application-print.css)
   config.action_mailer.default_url_options = { :host => "test.test.com" }
 
 end

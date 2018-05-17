@@ -4,12 +4,12 @@ ruby '2.3.3'
 
 gem 'bundler', '>= 1.7.0'
 
-gem 'rails', '~> 4.2.10'
+gem 'rails'
 
 # Foundation
-gem 'foundation-rails', '~> 5.4.5'
-gem 'sass-rails', '~> 4.0.4'
-gem 'compass-rails', '~> 2.0.0'
+gem 'foundation-rails'
+gem 'sass-rails'
+gem 'compass-rails', '>= 2.0.2'
 gem 'font-awesome-sass'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
@@ -18,8 +18,8 @@ gem 'jquery-rails'
 gem 'bcrypt'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid-slug'
-gem 'aws-sdk', '~> 3'
-gem 'aws-sdk-rails', '~> 2'
+gem 'aws-sdk'
+gem 'aws-sdk-rails'
 gem 'mutations'
 gem 'rack-attack'
 gem 'impressionist'
@@ -83,7 +83,6 @@ group :test do
   gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
-  gem 'simplecov'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'vcr'
   gem 'webmock'
@@ -105,8 +104,8 @@ end
 
 # Used for static pages in /app/views/pages
 gem 'high_voltage'
-gem 'devise', '~> 4.2.0'
-gem 'rails_admin', '~> 1.3.0'
+gem 'devise'
+# gem 'rails_admin'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT

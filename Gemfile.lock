@@ -609,7 +609,7 @@ GEM
       capybara (>= 2.5.0)
     case_transform (0.2)
       activesupport
-    chunky_png (1.3.7)
+    chunky_png (1.3.10)
     climate_control (0.2.0)
     cliver (0.3.2)
     cocaine (0.5.8)
@@ -622,12 +622,22 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    compass (0.12.7)
+    compass (1.0.3)
       chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.2.19)
-    compass-rails (2.0.0)
-      compass (>= 0.12.2)
+      compass-core (~> 1.0.2)
+      compass-import-once (~> 1.0.5)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      sass (>= 3.3.13, < 3.5)
+    compass-core (1.0.3)
+      multi_json (~> 1.0)
+      sass (>= 3.3.0, < 3.5)
+    compass-import-once (1.0.5)
+      sass (>= 3.2, < 3.5)
+    compass-rails (3.1.0)
+      compass (~> 1.0.0)
+      sass-rails (< 5.1)
+      sprockets (< 4.0)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     coveralls (0.8.21)
@@ -638,7 +648,7 @@ GEM
       tins (~> 1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    crass (1.0.3)
+    crass (1.0.4)
     daemons (1.2.4)
     database_cleaner (1.3.0)
     debug_inspector (0.0.2)
@@ -686,22 +696,17 @@ GEM
       i18n (~> 0.5)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
-    font-awesome-rails (4.7.0.3)
-      railties (>= 3.2, < 5.2)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
+    ffi (1.9.23)
+    font-awesome-sass (5.0.13)
+      sassc (>= 1.11)
     foundation-rails (5.4.5.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
-    fssm (0.2.10)
     gibbon (1.1.5)
       httparty
       multi_json (>= 1.9.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    haml (5.0.4)
-      temple (>= 0.8.0)
-      tilt
     hashdiff (0.3.0)
     hashie (3.4.6)
     heroics (0.0.23)
@@ -709,7 +714,6 @@ GEM
       excon
       multi_json (>= 1.9.2)
     high_voltage (3.0.0)
-    hike (1.2.3)
     httparty (0.14.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.2.4)
@@ -723,8 +727,6 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (5.0.5)
-      railties (>= 3.2.16)
     json (2.1.0)
     jsonapi (0.1.1.beta6)
       jsonapi-parser (= 0.1.1.beta3)
@@ -733,17 +735,6 @@ GEM
     jsonapi-renderer (0.1.1.beta1)
     jsonapi-serializers (0.2.6)
       activesupport
-    kaminari (1.0.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.0.1)
-      kaminari-activerecord (= 1.0.1)
-      kaminari-core (= 1.0.1)
-    kaminari-actionview (1.0.1)
-      actionview
-      kaminari-core (= 1.0.1)
-    kaminari-activerecord (1.0.1)
-      activerecord
-      kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
     kaminari-mongoid (1.0.1)
       kaminari-core (~> 1.0)
@@ -804,7 +795,6 @@ GEM
     multipart-post (2.0.0)
     mutations (0.8.0)
       activesupport
-    nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -843,13 +833,10 @@ GEM
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.9)
+    rack (1.6.10)
     rack-attack (5.0.1)
       rack
     rack-cors (0.4.0)
-    rack-pjax (1.0.0)
-      nokogiri (~> 1.5)
-      rack (>= 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -896,24 +883,11 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_admin (1.3.0)
-      builder (~> 3.1)
-      coffee-rails (~> 4.0)
-      font-awesome-rails (>= 3.0, < 5)
-      haml (>= 4.0, < 6)
-      jquery-rails (>= 3.0, < 5)
-      jquery-ui-rails (~> 5.0)
-      kaminari (>= 0.14, < 2.0)
-      nested_form (~> 0.3)
-      rack-pjax (>= 0.7)
-      rails (>= 4.0, < 6)
-      remotipart (~> 1.3)
-      sass-rails (>= 4.0, < 6)
     rails_serve_static_assets (0.0.5)
     rails_stdout_logging (0.0.5)
     railties (4.2.10)
@@ -923,8 +897,10 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
     rake (12.3.1)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.9.10)
+      ffi (>= 0.5.0, < 2)
     ref (2.0.0)
-    remotipart (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rollbar (2.15.5)
@@ -955,12 +931,17 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
     safe_yaml (1.0.4)
-    sass (3.2.19)
-    sass-rails (4.0.5)
-      railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+    sass (3.4.25)
+    sass-rails (5.0.7)
+      railties (>= 4.0.0, < 6)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
+    sassc (1.11.4)
+      bundler
+      ffi (~> 1.9.6)
+      sass (>= 3.3.0)
     searchkick (1.5.1)
       activemodel
       elasticsearch (>= 1)
@@ -972,17 +953,14 @@ GEM
     simplecov-html (0.10.2)
     slop (3.6.0)
     smarf_doc (1.0.0)
-    sprockets (2.12.4)
-      hike (~> 1.2)
-      multi_json (~> 1.0)
-      rack (~> 1.0)
-      tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.3.3)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      sprockets (>= 2.8, < 4.0)
+    sprockets (3.7.1)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-rails (3.2.1)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
     stringex (2.6.1)
-    temple (0.8.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
     test-unit (3.2.3)
@@ -996,7 +974,7 @@ GEM
       rack (>= 1, < 3)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (1.4.1)
+    tilt (2.0.8)
     tins (1.16.3)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -1024,8 +1002,8 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activejob_backport
-  aws-sdk (~> 3)
-  aws-sdk-rails (~> 2)
+  aws-sdk
+  aws-sdk-rails
   bcrypt
   better_errors
   binding_of_caller
@@ -1034,19 +1012,19 @@ DEPENDENCIES
   capybara
   capybara-angular
   coffee-rails
-  compass-rails (~> 2.0.0)
+  compass-rails (>= 2.0.2)
   coveralls (>= 0.8.11)
   database_cleaner (~> 1.3.0)
   delayed_job_mongoid
   delayed_job_shallow_mongoid
-  devise (~> 4.2.0)
+  devise
   elasticsearch (~> 2)
   eventmachine
   exception_notification
   factory_girl_rails
   faker
   font-awesome-sass
-  foundation-rails (~> 5.4.5)
+  foundation-rails
   gibbon (~> 1.1.5)
   high_voltage
   impressionist
@@ -1075,7 +1053,7 @@ DEPENDENCIES
   rack-attack
   rack-cors
   rack-timeout
-  rails (~> 4.2.10)
+  rails
   rails-assets-angular (~> 1.5.0)!
   rails-assets-angular-dragdrop (~> 1.0.13)!
   rails-assets-angular-foundation (~> 0.8.0)!
@@ -1090,14 +1068,12 @@ DEPENDENCIES
   rails-assets-ng-tags-input (~> 2.3.0)!
   rails-assets-showdown (~> 0.5.4)!
   rails_12factor
-  rails_admin (~> 1.3.0)
   rainbow (~> 2.1.0)
   rollbar
   rspec-rails
   rubocop (~> 0.49.0)
-  sass-rails (~> 4.0.4)
+  sass-rails
   searchkick (~> 1.5.1)
-  simplecov
   smarf_doc
   test-unit
   therubyracer

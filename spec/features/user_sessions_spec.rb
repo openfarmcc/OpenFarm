@@ -28,11 +28,6 @@ describe 'User sessions' do
     see('Signed out successfully.')
   end
 
-  it 'does not let the user access the admin panel' do
-    visit rails_admin.dashboard_path
-    expect(page).to have_content('I told you kids to get out of here!')
-  end
-
   it 'should redirect the user to their finish page after sign up' do
     User.destroy_all
     visit new_user_registration_path
@@ -47,6 +42,7 @@ describe 'User sessions' do
      'were viewing after sign up', js: true do
     User.destroy_all
     visit new_guide_path
+    binding.pry
     see ('You need to sign in or sign up before continuing.')
     page.first(:link, 'Become a Member').click
     fill_in :user_display_name, with: 'Rick'

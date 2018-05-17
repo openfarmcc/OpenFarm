@@ -39,6 +39,7 @@ describe GuideSearch do
   end
 
   it 'knows if it is empty' do
+    Guide.reindex
     subject.search('this will not return anything')
 
     expect(subject).to be_empty

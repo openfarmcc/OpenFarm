@@ -2,48 +2,54 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
-gem 'bundler', '>= 1.7.0'
-
-gem 'rails', '~> 4.2.10'
-
-# Foundation
-gem 'foundation-rails', '~> 5.4.5'
-gem 'sass-rails', '~> 4.0.4'
-gem 'compass-rails', '~> 2.0.0'
-gem 'font-awesome-sass'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails'
-gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
+gem 'active_model_serializers'
+gem 'activejob_backport'
+gem 'aws-sdk-rails'
+gem 'aws-sdk'
 gem 'bcrypt'
-gem 'mongoid-paperclip', require: 'mongoid_paperclip'
-gem 'mongoid-slug'
-gem 'aws-sdk', '~> 3'
-gem 'aws-sdk-rails', '~> 2'
-gem 'mutations'
-gem 'rack-attack'
-gem 'impressionist'
-gem 'rack-cors', require: 'rack/cors'
+gem 'bson_ext'
+gem 'bundler', '>= 1.7.0'
+gem 'coffee-rails'
+gem 'compass-rails', '>= 2.0.2'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
-gem 'activejob_backport'
-gem 'patron' # For searchKick
-gem 'elasticsearch', '~> 2' # The project doesn't use semver, so this should only be upgraded on the jump to elasticsearch 5
-gem 'searchkick', '~> 1.5.1' # Have to evaluate the breaking changes in https://github.com/ankane/searchkick/blob/master/CHANGELOG.md
-gem 'pundit'
+gem 'devise'
+# The project doesn't use semver, so this should only be upgraded on the jump
+# to elasticsearch 5
+gem 'elasticsearch', '~> 2'
 gem 'eventmachine'
-gem 'merit'
+gem 'font-awesome-sass'
+gem 'foundation-rails'
 gem 'gibbon', '~> 1.1.5'
+gem 'high_voltage' # Used for static pages in /app/views/pages
+gem 'impressionist'
+gem 'jquery-rails'
 gem 'jsonapi-serializers', '~> 0.2.4'
-gem 'mongoid-history'
-gem 'mongoid_taggable'
-
-gem 'utf8-cleaner'
-
-gem 'bson_ext'
-gem 'mongoid', '~>4.0.2'
 gem 'kaminari-mongoid'
-gem 'active_model_serializers'
+gem 'letsencrypt-rails-heroku', group: 'production'
+gem 'merit'
+gem 'mongoid_taggable'
+gem 'mongoid-history'
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'mongoid-slug'
+gem 'mongoid', '~>4.0.2'
+gem 'mutations'
+gem 'ng-rails-csrf'
+gem 'patron' # For searchKick
+gem 'platform-api' # LETSENCRYPT
+gem 'pundit'
+gem 'rack-attack'
+gem 'rack-cors', require: 'rack/cors'
+gem 'rails_admin'
+gem 'rails'
+gem 'rollbar'
+gem 'sass-rails'
+# Have to evaluate the breaking changes
+# in https://github.com/ankane/searchkick/blob/master/CHANGELOG.md
+gem 'searchkick', '~> 1.5.1'
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier', '>= 1.3.0'
+gem 'utf8-cleaner'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -64,7 +70,7 @@ source 'https://rails-assets.org' do
 end
 
 group :development, :test do
-  gem 'coveralls', require: false
+  gem 'coveralls', '>= 0.8.11', require: false
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'rspec-rails'
@@ -83,7 +89,6 @@ group :test do
   gem 'capybara-angular'
   gem 'poltergeist'
   gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
-  gem 'simplecov'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'vcr'
   gem 'webmock'
@@ -102,15 +107,3 @@ group :production, :staging do
   # https://github.com/heroku/rack-timeout
   gem 'rack-timeout'
 end
-
-# Used for static pages in /app/views/pages
-gem 'high_voltage'
-gem 'devise', '~> 4.2.0'
-gem 'rails_admin', '~> 1.3.0'
-gem 'ng-rails-csrf'
-
-# LETSENCRYPT
-gem 'platform-api'
-
-gem 'letsencrypt-rails-heroku', group: 'production'
-gem 'rollbar'

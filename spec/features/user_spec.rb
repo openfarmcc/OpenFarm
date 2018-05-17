@@ -17,9 +17,9 @@ describe 'User features', type: :feature do
     user = FactoryGirl.create(:confirmed_user, :with_user_setting)
     login_as user
     visit user_path(:en, user.id)
-    title = user.display_name + ' Profile'
-    expect(page).to have_css "meta[property='og:title'][content=\"#{title}\"]",
-                              visible: false
+    selector = "meta[property='og:title']" \
+               "[content=\"#{user.display_name} Profile\"]"
+    expect(page).to have_css(selector, visible: false)
   end
 
   context 'should handle returning appropriate image when sharing user profile' do
@@ -39,11 +39,12 @@ describe 'User features', type: :feature do
     context 'when favorite_crop is not present' do
       let(:user) { FactoryGirl.create(:user, :with_user_setting) }
       it 'returns OpenFarm image' do
-        image = 'openfarm-learn-to-grow-anything-with-community-created-guides.jpg'
+        image = 'openfarm-learn-to-grow-anything-with-community-created-guides'
         login_as user
         visit user_path(:en, user.id)
-        expect(page).to have_css "meta[property='og:image'][content='#{asset_url(image)}']",
-                                  visible: false
+        meta = find("meta[property='og:image']", visible: false)
+        expect(meta).to be
+        expect(meta[:content]).to include(image)
       end
     end
   end

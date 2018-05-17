@@ -23,11 +23,7 @@ describe GardenCrop do
   end
 
   it 'reindexes guides' do
-<<<<<<< HEAD
     Guide.destroy_all
-=======
-    skip 'this test does not pass on CI - RickCarlino'
->>>>>>> 38850574c8d54069f162920a819d6c7a11e766d8
     FactoryGirl.create(:guide)
 
     expect_any_instance_of(Guide).to receive(:reindex_async)

@@ -30,11 +30,7 @@ describe GardenPolicy do
 
   context 'for a user' do
     it 'should only return gardens in scope that are public' do
-<<<<<<< HEAD
       Garden.destroy_all
-=======
-      skip 'this test does not pass on CI - RickCarlino'
->>>>>>> 38850574c8d54069f162920a819d6c7a11e766d8
       other_user = FactoryGirl.create :user
       not_mine = FactoryGirl.create :garden,
                                     is_private: true,
@@ -50,11 +46,7 @@ describe GardenPolicy do
     end
 
     it 'should only return public gardens unless they are current_user' do
-<<<<<<< HEAD
       Garden.destroy_all
-=======
-      skip 'this test does not pass on CI - RickCarlino'
->>>>>>> 38850574c8d54069f162920a819d6c7a11e766d8
       other_user = FactoryGirl.create :user
       mine = FactoryGirl.create :garden,
                                 is_private: true,
@@ -75,7 +67,6 @@ describe GardenPolicy do
     end
 
     it 'should return all gardens in scope when user is admin' do
-<<<<<<< HEAD
       Garden.destroy_all
       a = FactoryGirl.create :garden,
                               is_private: true,
@@ -85,17 +76,6 @@ describe GardenPolicy do
                               is_private: false,
                               name: 'yes!',
                               user: current_user
-=======
-      skip 'this test does not pass on CI - RickCarlino'
-      FactoryGirl.create :garden,
-                         is_private: true,
-                         name: 'nono',
-                         user: current_user
-      FactoryGirl.create :garden,
-                         is_private: false,
-                         name: 'yes!',
-                         user: current_user
->>>>>>> 38850574c8d54069f162920a819d6c7a11e766d8
       @p = GardenPolicy::Scope.new(admin, Garden).resolve
       expect(@p).to include(a)
       expect(@p).to include(b)

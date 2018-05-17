@@ -60,6 +60,8 @@ Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 10
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
+Guide.reindex
+Crop.reindex
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include Rails.application.routes.url_helpers
@@ -86,8 +88,10 @@ RSpec.configure do |config|
     config.after(:suite) { SmarfDoc.finish! }
   end
   config.before :each do
-    Guide.reindex
-    Crop.reindex
+    # This speed _everything_ up:
+    User.destroy_all
+    Crop.destroy_all
+    Guide.destroy_all
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end

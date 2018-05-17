@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ReindexGuidesJob do
   it 'reindexes guides' do
-    skip 'this test does not pass on CI - RickCarlino'
+    Guide.destroy_all
     FactoryGirl.create(:guide)
     expect_any_instance_of(Guide).to receive(:reindex_async)
     ReindexGuidesJob.new.perform

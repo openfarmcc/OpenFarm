@@ -39,11 +39,11 @@ describe UsersController do
     public_user = FactoryGirl.create(:user)
     sign_in user
     get :index
-    expect(assigns(:users)).to match_array([public_user, user])
+    expect(assigns(:users).to_a.map(&:is_private).uniq).to match_array([false])
   end
 
   it 'should show all users on index if the current user is admin' do
-    skip 'this test does not pass on CI - RickCarlino'
+    User.destroy_all
     user = FactoryGirl.create(:user, admin: true)
     private_user = FactoryGirl.create(:user, is_private: true)
     public_user = FactoryGirl.create(:user)

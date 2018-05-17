@@ -56,13 +56,14 @@ describe 'Crop search', type: :controller do
     expect(page).to have_content("Sorry, we don't have any crops matching")
     description = I18n.t('application.site_description')
     title = I18n.t('crop_searches.show.title')
-    image = 'openfarm-learn-to-grow-anything-with-community-created-guides.jpg'
     selector1 = "meta[property='og:description'][content='#{description}']"
     expect(page).to have_css(selector1, visible: false)
     selector2 = "meta[property='og:title'][content='#{title}']"
     expect(page).to have_css(selector2, visible: false)
-    selector3 = "meta[property='og:image'][content='#{asset_url(image)}']"
-    expect(page).to have_css(selector3, visible: false)
+    image = 'openfarm-learn-to-grow-anything-with-community-created-guides'
+    meta_image = find("meta[property='og:image']", visible: false)
+    expect(meta_image).to be
+    expect(meta_image[:content]).to include(image)
   end
 
   it 'handles plurals', js: true do

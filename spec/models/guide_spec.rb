@@ -80,6 +80,7 @@ describe Guide do
   end
 
   it 'sets the popularity score' do
+    Guide.destroy_all
     FactoryGirl.create(:guide)
     FactoryGirl.create(:guide)
     guide = FactoryGirl.create(:guide)

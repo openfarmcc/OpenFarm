@@ -86,8 +86,10 @@ RSpec.configure do |config|
     config.after(:suite) { SmarfDoc.finish! }
   end
   config.before :each do
-    Guide.reindex
-    Crop.reindex
+    # This speed _everything_ up:
+    User.destroy_all
+    Crop.destroy_all
+    Guide.destroy_all
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end

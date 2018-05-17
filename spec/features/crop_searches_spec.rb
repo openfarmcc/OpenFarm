@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe 'Crop search', type: :controller do
-  # def asset_url(relative_path)
-  #   "#{host_with_port}#{Rails.application.config.assets.prefix}/"+
-  #   "#{relative_path}"
-  # end
+  def asset_url(relative_path)
+    "#{host_with_port}#{Rails.application.config.assets.prefix}/"+
+    "#{relative_path}"
+  end
 
-  # def host_with_port
-  #   "#{current_host}:#{Capybara.current_session.server.port}"
-  # end
+  def host_with_port
+    "#{current_host}:#{Capybara.current_session.server.port}"
+  end
 
   let!(:crop) { FactoryGirl.create(:crop, :radish) }
 

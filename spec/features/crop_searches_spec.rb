@@ -38,7 +38,7 @@ describe 'Crop search', type: :controller do
     description = crop.description
     image       = crop.main_image_path
     selector1   = "meta[property='og:title'][content='#{title}']"
-    expect(page).to have_css(selector, visible: false)
+    expect(page).to have_css(selector1, visible: false)
     selector2   = "meta[property='og:description'][content='#{description}']"
     expect(page).to have_css(selector2, visible: false)
     selector3   = "meta[property='og:image']"+

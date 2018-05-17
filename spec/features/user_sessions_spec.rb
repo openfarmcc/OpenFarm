@@ -43,7 +43,7 @@ describe 'User sessions' do
     expect(page).to have_content('Thanks for joining!')
   end
 
-  it 'should redirect the user to the page they' +
+  it 'should redirect the user to the page they' \
      'were viewing after sign up', js: true do
     User.destroy_all
     visit new_guide_path

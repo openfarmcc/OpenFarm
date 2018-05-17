@@ -105,7 +105,7 @@ end
 # Used for static pages in /app/views/pages
 gem 'high_voltage'
 gem 'devise'
-# gem 'rails_admin'
+gem 'rails_admin'
 gem 'ng-rails-csrf'
 
 # LETSENCRYPT

@@ -1,17 +1,9 @@
+# frozen_string_literal: true
+
+# Why? https://github.com/kaminari/kaminari/issues/886
+require 'kaminari/models/array_extension'
+
 RailsAdmin.config do |config|
-
-  # We need this because Karminari doesn't seem to work
-  # too well alongside RailsAdmin. Maybe it's a conflict
-  # of which gets defined first?
-  Kaminari::Hooks.init
-
-  ### Popular gems integration
-
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :admin
-  # end
-
   config.current_user_method do
     if current_user && current_user.admin?
       current_user
@@ -21,16 +13,6 @@ RailsAdmin.config do |config|
       nil
     end
   end
-
-  ## == Cancan ==
-  # config.authorize_with :cancan
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version'
-  # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -41,10 +23,6 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
 
   config.model 'Announcement' do

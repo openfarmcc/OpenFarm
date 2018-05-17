@@ -43,7 +43,8 @@ describe 'User sessions' do
     expect(page).to have_content('Thanks for joining!')
   end
 
-  it 'should redirect the user to the page they were viewing after sign up', js: true do
+  it 'should redirect the user to the page they' +
+     'were viewing after sign up', js: true do
     User.destroy_all
     visit new_guide_path
     see ('You need to sign in or sign up before continuing.')
@@ -52,7 +53,7 @@ describe 'User sessions' do
     fill_in :user_password, with: 'password123'
     fill_in :user_email, with: 'm@il.com'
     click_button 'Join OpenFarm'
-    expect(page).to have_content("Create a Growing Guide")
+    expect(page).to have_content('Create a Growing Guide')
   end
 
   it 'should create a new garden for a newly registered user' do

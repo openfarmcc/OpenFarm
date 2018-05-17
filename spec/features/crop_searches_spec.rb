@@ -33,16 +33,17 @@ describe 'Crop search', type: :controller do
     click_button 'Search'
     expect(page).to have_content(Crop.last.name)
     # Don't use crops with apostraphes in the name- creates weird errors.
-    crop        = Crop.all.to_a.find{|x| !x.name.include?("'")}
+    crop        = Crop.all.to_a.detect { |x| !x.name.include?("'") }
     title       = crop.name
     description = crop.description
     image       = crop.main_image_path
-    expect(page).to have_css "meta[property='og:title'][content='#{title}']",
-                              visible: false
-    expect(page).to have_css "meta[property='og:description'][content='#{description}']",
-                              visible: false
-    expect(page).to have_css "meta[property='og:image'][content='#{host_with_port}#{image}']",
-                              visible: false
+    selector1   = "meta[property='og:title'][content='#{title}']"
+    expect(page).to have_css(selector, visible: false)
+    selector2   = "meta[property='og:description'][content='#{description}']"
+    expect(page).to have_css(selector2, visible: false)
+    selector3   = "meta[property='og:image']"+
+                  "[content='#{host_with_port}#{image}']"
+    expect(page).to have_css(selector3, visible: false)
   end
 
   it 'handles empty search results', js: true do
@@ -56,12 +57,12 @@ describe 'Crop search', type: :controller do
     description = I18n.t('application.site_description')
     title = I18n.t('crop_searches.show.title')
     image = 'openfarm-learn-to-grow-anything-with-community-created-guides.jpg'
-    expect(page).to have_css "meta[property='og:description'][content='#{description}']",
-                              visible: false
-    expect(page).to have_css "meta[property='og:title'][content='#{title}']",
-                              visible: false
-    expect(page).to have_css "meta[property='og:image'][content='#{asset_url(image)}']",
-                              visible: false
+    selector1 = "meta[property='og:description'][content='#{description}']"
+    expect(page).to have_css(selector1, visible: false)
+    selector2 = "meta[property='og:title'][content='#{title}']"
+    expect(page).to have_css(selector2, visible: false)
+    selector3 = "meta[property='og:image'][content='#{asset_url(image)}']"
+    expect(page).to have_css(selector3, visible: false)
   end
 
   it 'handles plurals', js: true do

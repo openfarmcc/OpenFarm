@@ -69,13 +69,13 @@ describe GardenPolicy do
     it 'should return all gardens in scope when user is admin' do
       Garden.destroy_all
       a = FactoryGirl.create :garden,
-                              is_private: true,
-                              name: 'nono',
-                              user: current_user
+                             is_private: true,
+                             name: 'nono',
+                             user: current_user
       b = FactoryGirl.create :garden,
-                              is_private: false,
-                              name: 'yes!',
-                              user: current_user
+                             is_private: false,
+                             name: 'yes!',
+                             user: current_user
       @p = GardenPolicy::Scope.new(admin, Garden).resolve
       expect(@p).to include(a)
       expect(@p).to include(b)

@@ -64,7 +64,7 @@ source 'https://rails-assets.org' do
 end
 
 group :development, :test do
-  gem 'coveralls', require: false
+  gem 'coveralls', '>= 0.8.11', require: false
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'rspec-rails'

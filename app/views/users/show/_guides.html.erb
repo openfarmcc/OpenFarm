@@ -23,10 +23,10 @@
               id: guide.crop.id }, :class => 'action show crop-name') %>
           </td>
           <td>
-            <%= link_to(icon('edit') + ' ' + t('application.edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show', :title => t('users.show.guides.edit_title')) %>
+            <%= link_to(icon('fa', 'edit') + ' ' + t('application.edit'), { :controller => 'guides', :action => 'edit', :id => guide.id}, :class => 'action show', :title => t('users.show.guides.edit_title')) %>
           </td>
           <td>
-            <%= link_to(icon('trash') + ' ' + t('application.delete'), guide_path(guide), :method => 'delete', :class => 'action show', :title => t('users.show.guides.delete_title'), data: {confirm: "Are you sure?"}) %>
+            <%= link_to(icon('fa', 'trash') + ' ' + t('application.delete'), guide_path(guide), :method => 'delete', :class => 'action show', :title => t('users.show.guides.delete_title'), data: {confirm: "Are you sure?"}) %>
           </td>
         </tr>
       <% end %>
@@ -45,9 +45,9 @@
         <h3 ng-show="showFavoritedGuides">Your Favorited Guides</h3>
 
         <a ng-click="showFavoritedGuides = !showFavoritedGuides"
-          ng-hide="showFavoritedGuides">View your favorited guides <%= icon('chevron-down') %></a>
+          ng-hide="showFavoritedGuides">View your favorited guides <%= icon('fa', 'chevron-down') %></a>
         <a ng-click="showFavoritedGuides = !showFavoritedGuides"
-          ng-show="showFavoritedGuides">Hide your favorited guides <%= icon('chevron-up') %></a>
+          ng-show="showFavoritedGuides">Hide your favorited guides <%= icon('fa', 'chevron-up') %></a>
         <div ng-show="showFavoritedGuides">
           <table>
             <% @user.favorited_guides.order_by([['created_at', :desc]]).each do |guide| %>

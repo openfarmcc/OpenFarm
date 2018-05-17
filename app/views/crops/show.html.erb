@@ -11,7 +11,7 @@
     <div class="crop-hero" style="background-image: url('<%= @crop.main_image_path.sub(/(https|http):/, '') %>')">
       <h1 class="crop-name text-center"><%= @crop.name %></h1>
       <% if current_user %>
-        <%= link_to(icon('edit') + " " + t('crops.edit_crop'), {action: 'edit'}, class: 'edit-link button secondary tiny') %>
+        <%= link_to(icon('fa', 'edit') + " " + t('crops.edit_crop'), {action: 'edit'}, class: 'edit-link button secondary tiny') %>
           <div add-to-gardens
               crop-object="crop"
               object-type="'crop'"

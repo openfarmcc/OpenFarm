@@ -5,12 +5,12 @@
  */
 
 .timeline-box {
-  @include grey-inset();
+  @include grey-inset;
+
   $height: 100px;
 
   height: 100%;
   padding: .5rem;
-
   background-color: $of-light + hsl(0, 0, 10%);
   z-index: 0;
 
@@ -35,14 +35,17 @@
       &.first {
         background-color: $of-light;
       }
+
       &:hover {
-        background-color: rgba(0, 0, 0, .1);
+        background-color: rgba(0, 0, 0, 0.1);
       }
+
       &.today {
         background-color: $of-green;
         opacity: .8;
       }
     }
+
     .month {
       position: absolute;
       bottom: 0px;

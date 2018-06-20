@@ -6,24 +6,25 @@
 
 */
 
-@mixin background-gradient($from, $to){
+@mixin background-gradient($from, $to) {
   background-image: -o-linear-gradient(to top, $from, $to);
   background-image: -moz-linear-gradient(to top, $from, $to);
   background-image: -ms-linear-gradient(to top, $from, $to);
   background-image: linear-gradient(to top, $from, $to);
 }
 
-@mixin accordion-header-color($color){
-  & > a, & > a.title-wrapper{
+@mixin accordion-header-color($color) {
+  & > a, & > a.title-wrapper {
     background-color: $color;
     transition: .5s;
-    &:hover{
+
+    &:hover {
       background-color: $color + 20;
     }
   }
 }
 
-@mixin font-awesome-mixin(){
+@mixin font-awesome-mixin {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
@@ -40,7 +41,7 @@
   content: $glyph;
 }
 
-@mixin grey-inset(){
+@mixin grey-inset {
   background-color: $gray-bg;
   border-radius: 3px;
   box-shadow: inset 0px 3px 0 darken($gray-bg, 10%);
@@ -58,7 +59,6 @@
   }
 }
 
-
 /*
 
   Prevent Angular loading flicker
@@ -66,9 +66,8 @@
 */
 
 .ng-cloak {
-    opacity: 0;
+  opacity: 0;
 }
-
 
 /*
 
@@ -88,7 +87,7 @@ p {
 }
 
 textarea {
-  max-width: 100%
+  max-width: 100%;
 }
 
 .center {
@@ -129,6 +128,7 @@ textarea {
   .bar-header {
     margin-bottom: 0;
   }
+
   margin-bottom: 1.8rem;
 }
 
@@ -172,7 +172,7 @@ textarea {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, .25);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 /*
@@ -184,10 +184,13 @@ textarea {
 .button, input[type=submit] {
   font-weight: 600;
   background: $of-green;
+
   @include box-shadow(0px 4px 0px 0px darken($of-green, 10%));
+
   /* We shouldn't need vendor prefixed border-radius, but because of a bug in foundation-rails we do.
   At the time of writing our version is 5.4.5 (known to be fixed in 5.5.0) */
   @include border-radius($global-radius);
+
   transition: all 0.2s ease-in-out;
 
   &.tiny {
@@ -203,7 +206,7 @@ textarea {
     background: $of-green2;
   }
 
-  &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover{
+  &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover {
     background-image: url(ajax-loader-button-disabled.gif);
     background-position: 4px center;
     background-repeat: no-repeat;
@@ -211,11 +214,13 @@ textarea {
 
   &.alert {
     background-image: none;
+
     @include box-shadow(0px 4px 0px 0px darken($of-red, 10%));
   }
 
   &.secondary {
     background: $secondary-color;
+
     @include box-shadow(0px 3px 0px 0px darken($secondary-color, 8%));
   }
 
@@ -235,7 +240,7 @@ textarea {
   margin-bottom: 1rem;
 }
 
-@mixin add-new-button() {
+@mixin add-new-button {
   @include transition(all 0.15s ease-out);
 
   background: none;
@@ -250,14 +255,11 @@ textarea {
 
   &:hover {
     border-style: solid;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   &:active {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     color: white;
   }
 }
-
-
-

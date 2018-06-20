@@ -45,8 +45,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     ambry (1.0.0)
     arel (6.0.4)
     ast (2.4.0)
@@ -588,7 +588,7 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.0.2)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -615,9 +615,9 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
-    coffee-rails (4.2.1)
+    coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0, < 5.2.x)
+      railties (>= 4.0.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -663,10 +663,10 @@ GEM
       delayed_job (>= 3.0)
       delayed_job_mongoid (>= 2.0)
       mongoid (>= 3.0)
-    devise (4.2.0)
+    devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
+      railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
@@ -712,7 +712,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    hashdiff (0.3.0)
+    hashdiff (0.3.7)
     hashie (3.4.6)
     heroics (0.0.23)
       erubis (~> 2.0)
@@ -764,7 +764,7 @@ GEM
       platform-api
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    libv8 (3.16.14.15)
+    libv8 (3.16.14.19)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -811,11 +811,11 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mutations (0.8.0)
+    mutations (0.8.2)
       activesupport
     nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     optionable (0.2.0)
     origin (2.3.1)
@@ -847,7 +847,7 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
-    public_suffix (2.0.5)
+    public_suffix (3.0.2)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -937,8 +937,9 @@ GEM
       ffi (>= 0.5.0, < 2)
     ref (2.0.0)
     remotipart (1.4.2)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
+    responders (2.4.0)
+      actionpack (>= 4.2.0, < 5.3)
+      railties (>= 4.2.0, < 5.3)
     rollbar (2.15.5)
       multi_json
     rspec-core (3.5.4)
@@ -1002,8 +1003,8 @@ GEM
       tins (~> 1.0)
     test-unit (3.2.3)
       power_assert
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
       ref
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
@@ -1023,7 +1024,7 @@ GEM
     vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
-    webmock (2.1.0)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -1122,7 +1123,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.3.3p222
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.2

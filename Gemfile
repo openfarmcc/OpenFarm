@@ -51,6 +51,10 @@ gem 'therubyracer', platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'utf8-cleaner'
 
+# Can be removed after Rails upgrade.
+# https://nvd.nist.gov/vuln/detail/CVE-2018-16468
+gem 'loofah', '>= 2.2.3'
+
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
@@ -95,9 +99,9 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 0.49.0'
+  gem 'letter_opener'
   gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
-  gem "letter_opener"
+  gem 'rubocop', '~> 0.49.0'
 end
 
 group :production, :staging do

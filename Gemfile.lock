@@ -765,7 +765,7 @@ GEM
     letter_opener (1.4.1)
       launchy (~> 2.2)
     libv8 (3.16.14.19)
-    loofah (2.2.2)
+    loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -815,7 +815,7 @@ GEM
       activesupport
     nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
-    nokogiri (1.8.3)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     optionable (0.2.0)
     origin (2.3.1)
@@ -1072,6 +1072,7 @@ DEPENDENCIES
   launchy
   letsencrypt-rails-heroku
   letter_opener
+  loofah (>= 2.2.3)
   merit
   mongoid (~> 4.0.2)
   mongoid-history

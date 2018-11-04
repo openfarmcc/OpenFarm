@@ -99,9 +99,9 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 0.49.0'
-  gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
   gem 'letter_opener'
+  gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
+  gem 'rubocop', '~> 0.49.0'
 end
 
 group :production, :staging do

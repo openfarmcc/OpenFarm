@@ -53,7 +53,7 @@ gem 'utf8-cleaner'
 
 # Can be removed after Rails upgrade.
 # https://nvd.nist.gov/vuln/detail/CVE-2018-16468
-gem "loofah", ">= 2.2.3"
+gem 'loofah', '>= 2.2.3'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -101,7 +101,7 @@ end
 group :development do
   gem 'rubocop', '~> 0.49.0'
   gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :production, :staging do

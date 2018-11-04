@@ -20,12 +20,12 @@ SimpleCov.start do
 end
 require File.expand_path("../../config/environment", __FILE__)
 # SEE: https://github.com/rails/rails/issues/18572
-# require 'test/unit/assertions'
+require 'test/unit/assertions'
 # =====
 require 'rspec/rails'
-# require 'capybara/rails'
-# require 'webmock/rspec'
-# require 'vcr'
+require 'capybara/rails'
+require 'webmock/rspec'
+require 'vcr'
 require 'webmock/rspec'
 require 'pundit/rspec'
 # ====== PHANTOMJS stuff

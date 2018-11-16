@@ -88,7 +88,7 @@ The above is still being patched, so please reach out to us if something went wr
 
 ### Getting Started (The Hard Way)
 
-You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) [v1.4.5](https://www.elastic.co/downloads/past-releases/elasticsearch-1-4-5), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
+You will need to install [Ruby](http://www.ruby-lang.org/en/), [Rails](http://rubyonrails.org/), [ElasticSearch](http://www.elasticsearch.org/) [v6.5.0](https://www.elastic.co/guide/en/elasticsearch/reference/6.5/release-notes-6.5.0.html), and [Mongodb](http://docs.mongodb.org/manual/installation/) before you can get an OpenFarm server up and running on your local machine. Once you have these prerequisites to get started with a local copy of the project, run:
 
 ```bash
 $ git clone https://github.com/openfarmcc/OpenFarm.git
@@ -105,12 +105,12 @@ Then, visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to 
 **Note about ElasticSearch**: Some Linux users have noted issues installing ElasticSearch onto a host machine. One workaround is to install ElasticSearch via Docker:
 
 ```
-sudo docker pull elasticsearch:1.4.5
+sudo docker pull elasticsearch:6.5.0
 sudo docker pull mongo
 ```
 
 ```
-sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:1.4.5
+sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:6.5.0
 sudo docker run -p 27017:27017 mongo
 
 ```

@@ -21,7 +21,8 @@ gem 'bson_ext',                 '~> 1'
 
 # The project doesn't use semver, so this should only be upgraded on the jump
 # to elasticsearch 5
-gem 'elasticsearch',       '~> 6'
+gem 'elasticsearch'
+gem 'searchkick'
 gem 'gibbon',              '~> 1'
 gem 'jsonapi-serializers', '~> 0'
 gem 'devise',              '~> 4'
@@ -32,7 +33,6 @@ gem 'merit',               '~> 3'
 gem 'mutations',           '~> 0'
 gem 'pundit',              '~> 2'
 gem 'rails_admin',         '~> 1'
-gem 'searchkick',          '~> 1'
 gem 'rack-attack'
 gem 'rollbar'
 gem 'sass-rails'

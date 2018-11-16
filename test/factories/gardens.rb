@@ -7,7 +7,7 @@ FactoryBot.define do
     location    { "#{Faker::Address.city_prefix}, #{Faker::Address.state}" }
     type        { Faker::Lorem.word }
     soil_type   { Faker::Lorem.word }
-    is_private false
+    is_private  { false }
     user
   end
 end

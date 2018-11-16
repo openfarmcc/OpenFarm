@@ -8,9 +8,9 @@ FactoryBot.define do
     crop
     user
     trait :radish do
-      name 'Common Horseradish Guide'
-      binomial_name 'Armoracia rusticana'
-      description 'Brassicaceae family'
+      name          { 'Common Horseradish Guide' }
+      binomial_name { 'Armoracia rusticana' }
+      description   { 'Brassicaceae family' }
     end
   end
 end

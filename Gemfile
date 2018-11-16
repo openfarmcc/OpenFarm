@@ -2,112 +2,100 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'active_model_serializers'
-gem 'activejob_backport'
-gem 'aws-sdk-rails'
-gem 'aws-sdk'
-gem 'bcrypt'
-gem 'bson_ext'
-gem 'bundler', '>= 1.7.0'
-gem 'coffee-rails'
-gem 'compass-rails', '>= 2.0.2'
+gem 'rails',   '~> 5'
+gem 'bundler', '~> 1.17'
+
+gem 'mongoid'
 gem 'delayed_job_mongoid'
 gem 'delayed_job_shallow_mongoid'
-gem 'devise'
-# The project doesn't use semver, so this should only be upgraded on the jump
-# to elasticsearch 5
-gem 'elasticsearch', '~> 2'
-gem 'eventmachine'
-gem 'font-awesome-sass'
-gem 'foundation-rails'
-gem 'gibbon', '~> 1.1.5'
-gem 'high_voltage' # Used for static pages in /app/views/pages
-gem 'impressionist'
-gem 'jquery-rails'
-gem 'jsonapi-serializers', '~> 0.2.4'
 gem 'kaminari-mongoid'
-gem 'letsencrypt-rails-heroku', group: 'production'
-gem 'merit'
 gem 'mongoid_taggable'
 gem 'mongoid-history'
-gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mongoid-slug'
-gem 'mongoid', '~>4.0.2'
-gem 'mutations'
-gem 'ng-rails-csrf'
-gem 'patron' # For searchKick
-gem 'platform-api' # LETSENCRYPT
-gem 'pundit'
-gem 'rack-attack'
-gem 'rack-cors', require: 'rack/cors'
-gem 'rails_admin'
-gem 'rails'
-gem 'rollbar'
-gem 'sass-rails'
-# Have to evaluate the breaking changes
-# in https://github.com/ankane/searchkick/blob/master/CHANGELOG.md
-gem 'searchkick', '~> 1.5.1'
-gem 'therubyracer', platforms: :ruby
-gem 'uglifier', '>= 1.3.0'
-gem 'utf8-cleaner'
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'#, '~> 0.0'
 
-# Can be removed after Rails upgrade.
-# https://nvd.nist.gov/vuln/detail/CVE-2018-16468
-gem 'loofah', '>= 2.2.3'
+gem 'active_model_serializers', '~> 0'
+gem 'aws-sdk-rails',            '~> 2'
+gem 'aws-sdk',                  '~> 3'
+gem 'bson_ext',                 '~> 1'
+
+# The project doesn't use semver, so this should only be upgraded on the jump
+# to elasticsearch 5
+gem 'elasticsearch',       '~> 6'
+gem 'gibbon',              '~> 1'
+gem 'jsonapi-serializers', '~> 0'
+gem 'devise',              '~> 4'
+gem 'eventmachine',        '~> 1'
+gem 'high_voltage',        '~> 3'
+gem 'impressionist',       '~> 1'
+gem 'merit',               '~> 3'
+gem 'mutations',           '~> 0'
+gem 'pundit',              '~> 2'
+gem 'rack-attack'#,         '~> 0.0'
+gem 'rails_admin',          '~> 1'
+gem 'rollbar'#,             '~> 0.0'
+gem 'sass-rails'#,          '~> 0.0'
+gem 'coffee-rails'#,        '~> 0.0'
+gem 'searchkick',          '~> 1'
+gem 'utf8-cleaner'#,        '~> 0.0'
+gem 'platform-api'#,        '~> 0.0' # LETSENCRYPT
+gem 'rack-cors', require: 'rack/cors'
 
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery', '~> 2.2.1'
-  gem 'rails-assets-jquery-ui', '~> 1.11.4'
-  gem 'rails-assets-angular', '~> 1.5.0'
-  gem 'rails-assets-angular-sanitize', '~> 1.5.0'
-  gem 'rails-assets-angular-dragdrop', '~> 1.0.13'
-  gem 'rails-assets-angular-foundation', '~> 0.8.0'
-  gem 'rails-assets-angular-ui-sortable', '~> 0.13.4'
-  gem 'rails-assets-angular-local-storage', '~> 0.2.3'
-  gem 'rails-assets-angular-typeahead', '~> 0.3.1'
-  gem 'rails-assets-ng-tags-input', '~>2.3.0'
-  gem 'rails-assets-ng-file-upload', '~>12.2.13'
-  gem 'rails-assets-moment', '~>2.8.3'
-  gem 'rails-assets-showdown', '~>0.5.4'
+  gem 'rails-assets-jquery',                '~> 2.1'
+  gem 'rails-assets-jquery-ui',             '~> 1.11'
+  gem 'rails-assets-angular',               '~> 1.5'
+  gem 'rails-assets-angular-sanitize',      '~> 1.5'
+  gem 'rails-assets-angular-dragdrop',      '~> 1.0'
+  gem 'rails-assets-angular-foundation',    '~> 0.8'
+  gem 'rails-assets-angular-ui-sortable',   '~> 0.13'
+  gem 'rails-assets-angular-local-storage', '~> 0.2'
+  gem 'rails-assets-angular-typeahead',     '~> 0.3'
+  gem 'rails-assets-ng-tags-input',         '~> 2.0'
+  gem 'rails-assets-ng-file-upload',        '~> 12.2'
+  gem 'rails-assets-moment',                '~> 2.3'
+  gem 'rails-assets-showdown',              '~> 0.5'
 end
 
+gem 'therubyracer', platforms: :ruby
+gem 'font-awesome-sass'
+gem 'foundation-rails'
+gem 'jquery-rails'
+gem 'ng-rails-csrf'
+gem 'compass-rails'
+gem 'uglifier',            '>= 1'
+
 group :development, :test do
-  gem 'coveralls', '>= 0.8.11', require: false
-  gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'rspec-rails'
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'launchy'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'binding_of_caller'
+  gem 'rspec-rails'#,         '~> 3'
+  gem 'pry'#,                '~> 0.0'
+  gem 'pry-nav'#,            '~> 0.0'
+  gem 'launchy'#,            '~> 0.0'
+  gem 'factory_girl_rails'#, '~> 0.0'
+  gem 'faker'#,              '~> 0.0'
+  gem 'binding_of_caller'#,  '~> 0.0'
 end
 
 group :test do
-  gem 'test-unit'
-  gem 'smarf_doc'
-  gem 'capybara'
-  gem 'capybara-angular'
-  gem 'poltergeist'
-  gem 'phantomjs', '>= 1.8.1', :require => 'phantomjs/poltergeist'
-  gem 'database_cleaner', '~> 1.3.0'
-  gem 'vcr'
-  gem 'webmock'
-end
-
-group :development do
-  gem 'letter_opener'
-  gem 'rainbow', '~> 2.1.0' # https://github.com/sickill/rainbow/issues/48
-  gem 'rubocop', '~> 0.49.0'
+  gem 'test-unit'#,        '~> 0.0'
+  gem 'smarf_doc'#,        '~> 0.0'
+  gem 'capybara'#,         '~> 0.0'
+  gem 'capybara-angular'#, '~> 0.0'
+  gem 'poltergeist'#,      '~> 0.0'
+  gem 'phantomjs',        '>= 1.8', require: 'phantomjs/poltergeist'
+  gem 'database_cleaner', '~> 1.3'
+  gem 'vcr'#,              '~> 0.0'
+  gem 'webmock'#,          '~> 0.0'
 end
 
 group :production, :staging do
-  gem 'thin'
-  gem 'exception_notification'
-  gem 'rails_12factor'
-  # https://github.com/heroku/rack-timeout
-  gem 'rack-timeout'
+  gem 'thin'#,                   '~> 0.0'
+  gem 'exception_notification',  '~> 4.2'
+  gem 'rails_12factor'#,         '~> 0.0'
+  gem 'rack-timeout'#,           '~> 0.0'
+end
+
+group :production do
+  gem 'letsencrypt-rails-heroku'#, '~> 0.0'
 end

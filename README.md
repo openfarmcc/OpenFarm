@@ -6,11 +6,11 @@
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
 [![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
-# Looking for maintainer.
+# Looking for Maintainer
+
 Contact rory@openfarm.cc to find out more, or open an issue to discuss your interest.
 
-Open Source community of contributors: how it works
-========
+# Open Source community of contributors: how it works
 
 ### Shortcuts
 Already contributing to OpenFarm? You're welcome to [introduce yourself](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!

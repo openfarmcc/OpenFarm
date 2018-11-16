@@ -1,5 +1,5 @@
 development:
-  sessions:
+  clients:
     default:
       database: open_farm_development
       hosts:
@@ -8,7 +8,7 @@ development:
   options:
 
 test:
-  sessions:
+  clients:
     default:
       database: open_farm_test
       hosts:
@@ -21,11 +21,11 @@ test:
         retry_interval: 0
 
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>
 
 staging:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>

@@ -14,7 +14,7 @@ class Crop
   field :impressions_field, default: 0, type: Integer
 
   has_many :guides
-  field :guides_count, type: Fixnum, default: 0
+  field :guides_count, type: Integer, default: 0
   field :svg_icon
   validates_length_of :svg_icon,
      minimum: 11,           # Size of empty "<svg></svg>" tag.

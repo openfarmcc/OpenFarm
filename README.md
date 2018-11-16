@@ -105,9 +105,11 @@ Then, visit [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in your browser to 
 **Note about ElasticSearch**: Some Linux users have noted issues installing ElasticSearch onto a host machine. One workaround is to install ElasticSearch via Docker:
 
 ```
-
 sudo docker pull elasticsearch:1.4.5
 sudo docker pull mongo
+```
+
+```
 sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:1.4.5
 sudo docker run -p 27017:27017 mongo
 

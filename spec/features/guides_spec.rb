@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe 'Guides' do
   include IntegrationHelper
-  let (:guide) { FactoryGirl.create(:guide, name: 'Test Guide') }
-  let (:crop) { FactoryGirl.create(:crop, name: 'radish') }
-  let (:user) { FactoryGirl.create(:user) }
+  let (:guide) { FactoryBot.create(:guide, name: 'Test Guide') }
+  let (:crop) { FactoryBot.create(:crop, name: 'radish') }
+  let (:user) { FactoryBot.create(:user) }
 
   it 'shows individual guides when logged in', js: true do
     login_as user
@@ -18,7 +18,7 @@ describe 'Guides' do
   end
 
   it 'shows the create guide page', js: true do
-    FactoryGirl.create(:crop, name: 'radish')
+    FactoryBot.create(:crop, name: 'radish')
 
     login_as user
     visit new_guide_path

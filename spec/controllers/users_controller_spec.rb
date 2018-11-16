@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe UsersController do
 
-  let(:user) { FactoryGirl.create(:confirmed_user) }
-  let(:public_user) { FactoryGirl.create(:confirmed_user) }
-  let(:private_user) { FactoryGirl.create(:confirmed_user, is_private: true) }
+  let(:user) { FactoryBot.create(:confirmed_user) }
+  let(:public_user) { FactoryBot.create(:confirmed_user) }
+  let(:private_user) { FactoryBot.create(:confirmed_user, is_private: true) }
 
   it 'should show the user their profile' do
     skip 'fails on CI - RickCarlino'
@@ -14,14 +14,14 @@ describe UsersController do
   end
 
   it 'should show the user a public profile' do
-    public_user = FactoryGirl.create(:user, is_private: false)
+    public_user = FactoryBot.create(:user, is_private: false)
     sign_in user
     get :show, id: public_user.id
     expect(response).to render_template(:show)
   end
 
   it 'should not show the user a private profile' do
-    private_user = FactoryGirl.create(:user, is_private: true)
+    private_user = FactoryBot.create(:user, is_private: true)
     sign_in user
     get :show, id: private_user.id
     expect(response).to redirect_to root_path(:en)
@@ -35,8 +35,8 @@ describe UsersController do
 
   it 'should only show public users on index' do
     skip 'this test does not pass on CI - RickCarlino'
-    private_user = FactoryGirl.create(:user, is_private: true)
-    public_user = FactoryGirl.create(:user)
+    private_user = FactoryBot.create(:user, is_private: true)
+    public_user = FactoryBot.create(:user)
     sign_in user
     get :index
     expect(assigns(:users).to_a.map(&:is_private).uniq).to match_array([false])
@@ -44,9 +44,9 @@ describe UsersController do
 
   it 'should show all users on index if the current user is admin' do
     User.destroy_all
-    user = FactoryGirl.create(:user, admin: true)
-    private_user = FactoryGirl.create(:user, is_private: true)
-    public_user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user, admin: true)
+    private_user = FactoryBot.create(:user, is_private: true)
+    public_user = FactoryBot.create(:user)
     sign_in user
     get :index
     expect(assigns(:users)).to match_array([public_user, user, private_user])

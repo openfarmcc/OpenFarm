@@ -11,7 +11,7 @@ RSpec.describe ConfirmationsController, type: :controller do
 
   context 'when confirmation token is valid' do
     context 'when user filled the required settings' do
-      let(:user) { FactoryGirl.create(:user, :with_user_setting) }
+      let(:user) { FactoryBot.create(:user, :with_user_setting) }
       it 'redirects to member profile page' do
         user.send_confirmation_instructions
         visit_user_confirmation_with_token(user.raw_confirmation_token)
@@ -20,7 +20,7 @@ RSpec.describe ConfirmationsController, type: :controller do
       end
     end
     context 'when user has not filled the required settings' do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { FactoryBot.create(:user) }
       it 'redirects to user details page' do
         user.send_confirmation_instructions
         visit_user_confirmation_with_token(user.raw_confirmation_token)

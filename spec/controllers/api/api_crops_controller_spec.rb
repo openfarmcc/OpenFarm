@@ -3,13 +3,13 @@ require 'openfarm_errors'
 
 describe Api::V1::CropsController, type: :controller do
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   before do
     Crop.destroy_all
-    FactoryGirl.create(:crop, name: 'other bean')
-    @beans = FactoryGirl.create(:crop, name: 'mung bean')
-    FactoryGirl.create_list(:crop, 2)
+    FactoryBot.create(:crop, name: 'other bean')
+    @beans = FactoryBot.create(:crop, name: 'mung bean')
+    FactoryBot.create_list(:crop, 2)
     Crop.searchkick_index.refresh
   end
 
@@ -29,7 +29,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'should show a crop' do
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     get 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(crop.name)
@@ -50,7 +50,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'should update a crop' do
     sign_in user
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     put :update,
         id: crop.id,
         data: { attributes: { description: 'Updated', tags_array: ['tag'] } }
@@ -61,7 +61,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'tests whether tags get added as an array', js: true do
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     sign_in user
     put :update,
         id: crop.id,
@@ -71,7 +71,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'tests whether common names get added as an array', js: true do
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     sign_in user
     put :update,
         id: crop.id,
@@ -82,7 +82,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'should return an error when updating faulty information' do
     sign_in user
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     put :update, id: crop.id, data: { attributes: { description: '' } }
     expect(response.status).to eq(422)
     old_description = crop.description
@@ -91,7 +91,7 @@ describe Api::V1::CropsController, type: :controller do
   end
 
   it 'should add a taxon to a crop' do
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     sign_in user
     put :update,
         id: crop.id,

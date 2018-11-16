@@ -14,7 +14,7 @@ describe 'User features', type: :feature do
   end
 
   it 'should return the user profile name when sharing user profile' do
-    user = FactoryGirl.create(:confirmed_user, :with_user_setting)
+    user = FactoryBot.create(:confirmed_user, :with_user_setting)
     login_as user
     visit user_path(:en, user.id)
     selector = "meta[property='og:title']" \
@@ -24,9 +24,9 @@ describe 'User features', type: :feature do
 
   context 'should handle returning appropriate image when sharing user profile' do
     context 'when favorite_crop is present' do
-      let(:user) { FactoryGirl.create(:user, :with_user_setting) }
+      let(:user) { FactoryBot.create(:user, :with_user_setting) }
       it 'returns favorite_crop image' do
-        favorite_crop = FactoryGirl.create(:crop, :radish)
+        favorite_crop = FactoryBot.create(:crop, :radish)
         favorite_crop_path = favorite_crop.main_image_path
         user.user_setting.favorite_crops << favorite_crop
         login_as user
@@ -37,7 +37,7 @@ describe 'User features', type: :feature do
     end
 
     context 'when favorite_crop is not present' do
-      let(:user) { FactoryGirl.create(:user, :with_user_setting) }
+      let(:user) { FactoryBot.create(:user, :with_user_setting) }
       it 'returns OpenFarm image' do
         image = 'openfarm-learn-to-grow-anything-with-community-created-guides'
         login_as user

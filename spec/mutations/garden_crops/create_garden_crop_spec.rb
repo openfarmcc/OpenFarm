@@ -4,15 +4,15 @@ require 'openfarm_errors'
 describe GardenCrops::CreateGardenCrop do
   let(:cgc) { GardenCrops::CreateGardenCrop }
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   let(:params) do
     { user:      user,
-      garden_id: FactoryGirl.create(:garden, user: user).id.to_s,
+      garden_id: FactoryBot.create(:garden, user: user).id.to_s,
       attributes: { stage: "#{Faker::Lorem.word}",
                     sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
                     quantity: rand(100),
-                    guide: FactoryGirl.create(:guide).id.to_s }
+                    guide: FactoryBot.create(:guide).id.to_s }
     }
   end
 
@@ -44,7 +44,7 @@ describe GardenCrops::CreateGardenCrop do
   end
 
   it 'catches creating gardens not owned by user' do
-    params[:garden_id] = FactoryGirl.create(:garden).id.to_s
+    params[:garden_id] = FactoryBot.create(:garden).id.to_s
     results = cgc.run(params)
     message = results.errors.message_list.first
     expect(message).to include('for gardens you don\'t own.')

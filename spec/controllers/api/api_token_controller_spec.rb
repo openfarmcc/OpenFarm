@@ -4,7 +4,7 @@ describe Api::V1::TokensController, type: :controller do
 
   include ApiHelpers
 
-  let(:user) { FactoryGirl.create(:confirmed_user) }
+  let(:user) { FactoryBot.create(:confirmed_user) }
 
   it 'creates a token' do
     note """ Hit this API endpoint to generate an authentication token. Take the
@@ -58,7 +58,7 @@ describe Api::V1::TokensController, type: :controller do
   it 'handles attempts to destroy nil tokens' do
     # This would only happen to people trying to destroy a token while using
     # cookie auth.
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
     delete :destroy
     expect(response.status).to eq(404)

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'User sessions' do
   # include IntegrationHelper
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   it 'registers for an account should not be confirmed' do
     User.destroy_all
@@ -122,7 +122,7 @@ describe 'User sessions' do
   end
 
   it 'should let the user set favorite crop on profile page' # , js: true do
-  #   FactoryGirl.create(:crop, name: 'Tomato')
+  #   FactoryBot.create(:crop, name: 'Tomato')
   #   login_as user
   #   visit user_path('en', user)
   #   see('Success!')

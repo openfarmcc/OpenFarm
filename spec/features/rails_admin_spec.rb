@@ -4,7 +4,7 @@ describe 'RailsAdmin' do
   include IntegrationHelper
 
   it 'denies ordinary users RailsAdmin' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     login_as user
     visit '/admin'
     expect(page).to have_content('I told you kids to get out of here!')
@@ -18,7 +18,7 @@ describe 'RailsAdmin' do
   end
 
   it 'allows admin access to RailsAdmin' do
-    user = FactoryGirl.create(:user, admin: true)
+    user = FactoryBot.create(:user, admin: true)
     login_as user
     visit '/admin'
     expect(current_path).to eq('/admin')

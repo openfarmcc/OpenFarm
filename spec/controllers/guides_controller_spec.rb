@@ -3,7 +3,7 @@ require 'openfarm_errors'
 
 describe GuidesController do
   it 'directs to a new page' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
     get 'new'
     expect(response).to render_template(:new)
@@ -11,14 +11,14 @@ describe GuidesController do
   end
 
   it 'renders a show page' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     get 'show', id: guide.id
     expect(response).to render_template(:show)
     expect(response.status).to eq(200)
   end
 
   it 'should show the edit page if the user owns the guide' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     user = guide.user
     sign_in user
     get 'edit', id: guide.id
@@ -27,8 +27,8 @@ describe GuidesController do
   end
 
   it 'should redirect to the guide if the user does not own it' do
-    guide = FactoryGirl.create(:guide)
-    user = FactoryGirl.create(:user)
+    guide = FactoryBot.create(:guide)
+    user = FactoryBot.create(:user)
     sign_in user
     get 'edit', id: guide.id
     expect(response).to redirect_to guide_path(:en, guide)
@@ -36,7 +36,7 @@ describe GuidesController do
   end
 
   it 'should access logged in user profile page when accessing index' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
     get 'index'
     expect(response).to redirect_to user_path(:en, user)
@@ -53,8 +53,8 @@ describe GuidesController do
   # culprit for slowing everything really down on the server.
   # ~ Simon 07/2016
   # it 'should add an impression if a user shows the guide' do
-  #   guide = FactoryGirl.create(:guide)
-  #   user = FactoryGirl.create(:user)
+  #   guide = FactoryBot.create(:guide)
+  #   user = FactoryBot.create(:user)
   #   sign_in user
   #   get 'show', id: guide.id
   #   guide.reload
@@ -63,7 +63,7 @@ describe GuidesController do
   # end
 
   # it 'should add an impression if a guide is shown without a session' do
-  #   guide = FactoryGirl.create(:guide)
+  #   guide = FactoryBot.create(:guide)
   #   get 'show', id: guide.id
   #   guide.reload
   #   expect(guide.impressions_field).to eq(1)
@@ -71,7 +71,7 @@ describe GuidesController do
   # end
 
   # it 'should not add an impression if a guide is shown with same session' do
-  #   guide = FactoryGirl.create(:guide)
+  #   guide = FactoryBot.create(:guide)
   #   get 'show', id: guide.id
   #   get 'show', id: guide.id
   #   guide.reload
@@ -80,8 +80,8 @@ describe GuidesController do
   # end
 
   it 'should delete a guide' do
-    user = FactoryGirl.create(:user)
-    guide = FactoryGirl.create(:guide, user: user)
+    user = FactoryBot.create(:user)
+    guide = FactoryBot.create(:guide, user: user)
     sign_in user
     delete 'destroy', id: guide.id
 
@@ -89,8 +89,8 @@ describe GuidesController do
   end
 
   it 'should not delete a guide if the user does not own it' do
-    user = FactoryGirl.create(:user)
-    guide = FactoryGirl.create(:guide)
+    user = FactoryBot.create(:user)
+    guide = FactoryBot.create(:guide)
     sign_in user
 
     expect do

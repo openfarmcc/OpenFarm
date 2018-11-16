@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe CropSearchesController, type: 'controller' do
   it 'should search associated guides and return published guides' do
-    crop = FactoryGirl.create(:crop, name: 'Carrot')
-    guide = FactoryGirl.create(:guide, crop: crop, draft: false)
-    other_guide = FactoryGirl.create(:guide)
+    crop = FactoryBot.create(:crop, name: 'Carrot')
+    guide = FactoryBot.create(:guide, crop: crop, draft: false)
+    other_guide = FactoryBot.create(:guide)
 
     Crop.reindex
     Guide.reindex
@@ -16,9 +16,9 @@ describe CropSearchesController, type: 'controller' do
   end
 
   it 'should not find draft guides' do
-    crop = FactoryGirl.create(:crop, name: 'Carrot')
-    guide = FactoryGirl.create(:guide, crop: crop, draft: true)
-    other_guide = FactoryGirl.create(:guide)
+    crop = FactoryBot.create(:crop, name: 'Carrot')
+    guide = FactoryBot.create(:guide, crop: crop, draft: true)
+    other_guide = FactoryBot.create(:guide)
 
     Crop.reindex
     Guide.reindex
@@ -31,7 +31,7 @@ describe CropSearchesController, type: 'controller' do
 
   it 'should order guides by compatibility' do
     skip 'fails on CI - RickCarlino'
-    user = FactoryGirl.create(:confirmed_user)
+    user = FactoryBot.create(:confirmed_user)
     garden = Garden.all.last
     garden.update_attributes(soil_type: 'Loam',
                              type: 'Outside',
@@ -39,15 +39,15 @@ describe CropSearchesController, type: 'controller' do
     garden.save
 
 
-    crop = FactoryGirl.create(:crop, name: 'Carrot')
+    crop = FactoryBot.create(:crop, name: 'Carrot')
 
-    uncompatible_guide = FactoryGirl.create(:guide, crop: crop, draft: false)
+    uncompatible_guide = FactoryBot.create(:guide, crop: crop, draft: false)
     Stage.create(guide: uncompatible_guide,
                  environment: ['Potted'],
                  soil: ['Clay'],
                  light: ['Partial Sun'])
 
-    compatible_guide = FactoryGirl.create(:guide, crop: crop, draft: false)
+    compatible_guide = FactoryBot.create(:guide, crop: crop, draft: false)
     Stage.create(guide: compatible_guide,
                  environment: ['Outside'],
                  soil: ['Loam'],

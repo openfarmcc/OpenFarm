@@ -4,7 +4,7 @@ require 'openfarm_errors'
 describe Guides::DestroyGuide do
   let(:mutation) { Guides::DestroyGuide }
 
-  let(:guide) { FactoryGirl.create(:guide) }
+  let(:guide) { FactoryBot.create(:guide) }
 
   let(:params) do
     { user: guide.user,

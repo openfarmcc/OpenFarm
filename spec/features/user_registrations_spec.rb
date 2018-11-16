@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'User registrations' do
   include IntegrationHelper
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   it 'can change user settings' do
     login_as user
@@ -69,7 +69,7 @@ describe 'User registrations' do
 
   it 'should leave guides that belong to the user when deleting an account' do
     login_as user
-    guide = FactoryGirl.create(:guide, user: user)
+    guide = FactoryBot.create(:guide, user: user)
     before_count = Guide.all.count
     visit edit_user_registration_path(user)
     fill_in :user_password_confirmation, with: user.password

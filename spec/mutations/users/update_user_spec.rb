@@ -4,9 +4,9 @@ require 'openfarm_errors'
 describe Users::UpdateUser do
   let(:mutation) { Users::UpdateUser }
 
-  let(:other_user) { FactoryGirl.create(:user) }
-  let(:current_user) { FactoryGirl.create(:user) }
-  let(:crop) { FactoryGirl.create(:crop) }
+  let(:other_user) { FactoryBot.create(:user) }
+  let(:current_user) { FactoryBot.create(:user) }
+  let(:crop) { FactoryBot.create(:crop) }
 
   let(:params) do
     { id: "#{current_user.id}",
@@ -58,7 +58,7 @@ describe Users::UpdateUser do
   end
 
   it 'adds valid favorite guides' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     params[:attributes][:favorited_guide_ids] = ["#{guide._id}"]
     result = mutation.run(params)
     expect(result.success?).to be(true)
@@ -77,7 +77,7 @@ describe Users::UpdateUser do
   it 'doesnt remove user featured image when sending no featured_image'
 
   it 'does not add favorited guides that are already favorited' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     params[:attributes][:favorited_guide_ids] = ["#{guide._id}", "#{guide._id}"]
     result = mutation.run(params)
     expect(result.success?).to be(true)

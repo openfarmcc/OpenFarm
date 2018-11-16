@@ -5,13 +5,13 @@ describe Api::V1::GardenCropsController, type: :controller do
 
   describe 'create' do
     before do
-      @user = FactoryGirl.create :user
+      @user = FactoryBot.create :user
       sign_in @user
     end
 
     it 'should create garden crops' do
-      guide = FactoryGirl.create(:guide)
-      garden = FactoryGirl.create(:garden, user: @user)
+      guide = FactoryBot.create(:guide)
+      garden = FactoryBot.create(:garden, user: @user)
       sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
@@ -26,8 +26,8 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should give the user a gardener badge on adding a garden crop' do
-      guide = FactoryGirl.create(:guide)
-      garden = FactoryGirl.create(:garden, user: @user)
+      guide = FactoryBot.create(:guide)
+      garden = FactoryBot.create(:garden, user: @user)
       sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
@@ -40,8 +40,8 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should not allow user to add garden crops to other user gardens' do
-      guide = FactoryGirl.create(:guide)
-      garden = FactoryGirl.create(:garden)
+      guide = FactoryBot.create(:guide)
+      garden = FactoryBot.create(:garden)
       sowed = "#{Faker::Date.between(2.days.ago, Date.today)}"
       data = { attributes: { quantity: rand(100),
                              stage: "#{Faker::Lorem.word}",
@@ -55,13 +55,13 @@ describe Api::V1::GardenCropsController, type: :controller do
 
   describe 'destroy' do
     before do
-      @user = FactoryGirl.create :user
+      @user = FactoryBot.create :user
       sign_in @user
     end
 
     it 'should delete garden crops' do
-      garden = FactoryGirl.create(:garden, user: @user)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, user: @user)
+      garden_crop = FactoryBot.create(:garden_crop, garden: garden)
       delete :destroy,
              garden_id: garden_crop.garden.id,
              id: garden_crop.id,
@@ -71,7 +71,7 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should not delete garden crops of other users gardens' do
-      garden_crop = FactoryGirl.create(:garden_crop)
+      garden_crop = FactoryBot.create(:garden_crop)
       delete :destroy,
              garden_id: garden_crop.garden.id.to_s,
              id: garden_crop.id,
@@ -80,7 +80,7 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should handle deletion of unknown garden crops' do
-      garden = FactoryGirl.create(:garden, user: @user)
+      garden = FactoryBot.create(:garden, user: @user)
       delete :destroy, garden_id: garden.id.to_s, id: 1
       expect(response.status).to eq(422)
     end
@@ -88,12 +88,12 @@ describe Api::V1::GardenCropsController, type: :controller do
 
   describe 'index' do
     before do
-      @user = FactoryGirl.create :user
+      @user = FactoryBot.create :user
       sign_in @user
     end
     it 'should show garden crops for a specific garden' do
-      garden = FactoryGirl.create(:garden, user: @user)
-      FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, user: @user)
+      FactoryBot.create(:garden_crop, garden: garden)
 
       get :index, garden_id: garden.id
 
@@ -102,8 +102,8 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should not show garden crops for a private garden' do
-      garden = FactoryGirl.create(:garden, is_private: true)
-      FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, is_private: true)
+      FactoryBot.create(:garden_crop, garden: garden)
 
       get :index, garden_id: garden.id
 
@@ -118,9 +118,9 @@ describe Api::V1::GardenCropsController, type: :controller do
 
   describe 'show' do
     before do
-      @user = FactoryGirl.create :user
+      @user = FactoryBot.create :user
       sign_in @user
-      @garden = FactoryGirl.create(:garden, user: @user)
+      @garden = FactoryBot.create(:garden, user: @user)
     end
 
     it 'should return a not found error for non-existent garden' do
@@ -134,46 +134,46 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should show a garden_crop with a crop' do
-      crop = FactoryGirl.create :crop
-      garden_crop = FactoryGirl.create(:garden_crop,
+      crop = FactoryBot.create :crop
+      garden_crop = FactoryBot.create(:garden_crop,
                                        garden: @garden,
                                        crop: crop)
-      # @garden.crop = FactoryGirl.create :crop
+      # @garden.crop = FactoryBot.create :crop
       garden_crop.save
       get :show, garden_id: @garden.id, id: garden_crop.id
       expect(json['data']['attributes']['crop']['name']).to eq(crop.name)
     end
 
     it 'should show a garden_crop with a guide' do
-      guide = FactoryGirl.create :guide
-      garden_crop = FactoryGirl.create(:garden_crop,
+      guide = FactoryBot.create :guide
+      garden_crop = FactoryBot.create(:garden_crop,
                                        garden: @garden,
                                        guide: guide)
-      # @garden.crop = FactoryGirl.create :crop
+      # @garden.crop = FactoryBot.create :crop
       garden_crop.save
       get :show, garden_id: @garden.id, id: garden_crop.id
       expect(json['data']['attributes']['guide']['name']).to eq(guide.name)
     end
 
     it 'should show a garden crop that exists' do
-      garden_crop = FactoryGirl.create(:garden_crop, garden: @garden)
+      garden_crop = FactoryBot.create(:garden_crop, garden: @garden)
       get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['quantity']).to eq(garden_crop.quantity)
     end
 
     it 'should not show garden crops that belong to a private garden' do
-      garden = FactoryGirl.create(:garden, is_private: true)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, is_private: true)
+      garden_crop = FactoryBot.create(:garden_crop, garden: garden)
       get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
       expect(response.status).to eq(401)
     end
 
     it 'should show private garden crops to admin' do
-      admin = FactoryGirl.create :user, admin: true
+      admin = FactoryBot.create :user, admin: true
       sign_in admin
-      garden = FactoryGirl.create(:garden, is_private: true)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, is_private: true)
+      garden_crop = FactoryBot.create(:garden_crop, garden: garden)
 
       get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
 
@@ -184,10 +184,10 @@ describe Api::V1::GardenCropsController, type: :controller do
 
   describe 'update' do
     it 'should update a garden crop' do
-      user = FactoryGirl.create(:user)
+      user = FactoryBot.create(:user)
       sign_in user
-      garden = FactoryGirl.create(:garden, user: user)
-      garden_crop = FactoryGirl.create(:garden_crop, garden: garden)
+      garden = FactoryBot.create(:garden, user: user)
+      garden_crop = FactoryBot.create(:garden_crop, garden: garden)
       put :update,
           garden_id: garden_crop.garden.id,
           id: garden_crop.id,
@@ -197,7 +197,7 @@ describe Api::V1::GardenCropsController, type: :controller do
       expect(garden_crop.reload.stage).to eq('updated')
     end
     it 'should not update garden crops belonging to other users' do
-      garden_crop = FactoryGirl.create(:garden_crop)
+      garden_crop = FactoryBot.create(:garden_crop)
       put :update,
           garden_id: garden_crop.garden.id,
           id: garden_crop.id,

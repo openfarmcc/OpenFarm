@@ -4,7 +4,7 @@ require 'openfarm_errors'
 describe Gardens::DestroyGarden do
   let(:mutation) { Gardens::DestroyGarden }
 
-  let(:garden) { FactoryGirl.create(:garden) }
+  let(:garden) { FactoryBot.create(:garden) }
 
   let(:params) do
     { user: garden.user,

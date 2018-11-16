@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :stage_option do
     name             { "#{Faker::Name.last_name}" }
     default_value    { Faker::Lorem.word }

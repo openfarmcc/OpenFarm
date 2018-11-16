@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Api::V1::UsersController, type: :controller do
   include ApiHelpers
 
-  let(:viewing_user) { FactoryGirl.create(:confirmed_user) }
-  let(:public_user) { FactoryGirl.create(:confirmed_user) }
-  let(:private_user) { FactoryGirl.create(:confirmed_user, is_private: true) }
+  let(:viewing_user) { FactoryBot.create(:confirmed_user) }
+  let(:public_user) { FactoryBot.create(:confirmed_user) }
+  let(:private_user) { FactoryBot.create(:confirmed_user, is_private: true) }
 
   it 'shows private user to an admin' do
     viewing_user.admin = true
@@ -41,7 +41,7 @@ describe Api::V1::UsersController, type: :controller do
   # end
 
   it 'shows a favorite crop for a user' do
-    crop = FactoryGirl.create(:crop)
+    crop = FactoryBot.create(:crop)
     public_user.user_setting.favorite_crops = [crop]
     public_user.user_setting.save
     sign_in viewing_user
@@ -52,7 +52,7 @@ describe Api::V1::UsersController, type: :controller do
   end
 
   it 'shows favorited_guides for a user' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     viewing_user.favorited_guides.push(guide)
     viewing_user.save
     sign_in viewing_user
@@ -64,9 +64,9 @@ describe Api::V1::UsersController, type: :controller do
 
   it 'shows a favorite crop with images for a user' do
     VCR.use_cassette('controllers/api/api_users_controller_spec') do
-      crop = FactoryGirl.create(:crop)
+      crop = FactoryBot.create(:crop)
 
-      crop.pictures = [FactoryGirl.create(:crop_picture)]
+      crop.pictures = [FactoryBot.create(:crop_picture)]
       crop.save
 
       public_user.user_setting.favorite_crops = [crop]
@@ -83,7 +83,7 @@ describe Api::V1::UsersController, type: :controller do
 
   it 'adds a featured image' do
     VCR.use_cassette('controllers/api/api_users_controller_spec') do
-      public_user.user_setting.pictures = [FactoryGirl.create(:user_picture)]
+      public_user.user_setting.pictures = [FactoryBot.create(:user_picture)]
       public_user.user_setting.save
       sign_in viewing_user
       get 'show', id: public_user.id, format: :json

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     display_name { Faker::Name.name }
     password_confirmation { |u| u.password }
@@ -25,7 +25,7 @@ FactoryGirl.define do
   end
 end
 
-FactoryGirl.define do
+FactoryBot.define do
   #Other factory definitions
 
   factory :confirmed_user, :parent => :user do

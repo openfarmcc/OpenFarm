@@ -3,7 +3,7 @@ require 'openfarm_errors'
 
 describe StageActions::CreateStageAction do
   let(:mutation) { StageActions::CreateStageAction }
-  let(:stage) { FactoryGirl.create(:stage) }
+  let(:stage) { FactoryBot.create(:stage) }
   let(:params) do
     { user: stage.guide.user,
       id: "#{stage._id}",
@@ -17,7 +17,7 @@ describe StageActions::CreateStageAction do
   end
 
   it 'disallows making actions for stages that are not a users' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     params[:user] = user
     expect { mutation.run(params) }.to raise_exception(OpenfarmErrors::NotAuthorized)
   end

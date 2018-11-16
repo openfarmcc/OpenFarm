@@ -3,16 +3,16 @@ require 'spec_helper'
 describe Api::V1::StagesController, type: :controller do
   include ApiHelpers
 
-  let!(:user) { sign_in(user = FactoryGirl.create(:user)) && user }
-  let(:guide) { FactoryGirl.create(:guide, user: user) }
-  let(:stage) { FactoryGirl.create(:stage, guide: user) }
+  let!(:user) { sign_in(user = FactoryBot.create(:user)) && user }
+  let(:guide) { FactoryBot.create(:guide, user: user) }
+  let(:stage) { FactoryBot.create(:stage, guide: user) }
 
   before do
-    @guide = FactoryGirl.create(:guide, name: 'lee\'s mung bean')
+    @guide = FactoryBot.create(:guide, name: 'lee\'s mung bean')
   end
 
   it 'creates stages' do
-    guide = FactoryGirl.create(:guide, user: user)
+    guide = FactoryBot.create(:guide, user: user)
     old_length = Stage.all.length
     data = { attributes: { name: Faker::Lorem.word,
                            order: 0,
@@ -49,15 +49,15 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'should show a specific stage' do
-    stage = FactoryGirl.create(:stage)
+    stage = FactoryBot.create(:stage)
     get 'show', id: stage.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(stage.name)
   end
 
   it 'should update a stage' do
-    guide = FactoryGirl.create(:guide, user: user)
-    stage = FactoryGirl.create(:stage, guide: guide)
+    guide = FactoryBot.create(:guide, user: user)
+    stage = FactoryBot.create(:stage, guide: guide)
     data = { attributes: { name: 'updated' } }
     put :update, id: stage.id, data: data
     expect(response.status).to eq(200)
@@ -69,7 +69,7 @@ describe Api::V1::StagesController, type: :controller do
     data = { attributes: { instructions: "#{Faker::Lorem.sentences(2)}",
                            name: 'hello',
                            order: 0 },
-             guide_id: FactoryGirl.create(:guide).id.to_s }
+             guide_id: FactoryBot.create(:guide).id.to_s }
     post 'create', data: data, format: :json
     expect(json['errors'][0]['title']).to include(
       "You can only create stages for guides that belong to you.")
@@ -77,8 +77,8 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'should not update a stage on someone elses guide' do
-    guide = FactoryGirl.create(:guide)
-    stage = FactoryGirl.create(:stage, guide: guide)
+    guide = FactoryBot.create(:guide)
+    stage = FactoryBot.create(:stage, guide: guide)
     data = { attributes: { overview: 'updated' } }
     put :update, id: stage.id, data: data
     expect(response.status).to eq(401)
@@ -86,8 +86,8 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'deletes stages' do
-    guide = FactoryGirl.create(:guide, user: user)
-    stage = FactoryGirl.create(:stage, guide: guide)
+    guide = FactoryBot.create(:guide, user: user)
+    stage = FactoryBot.create(:stage, guide: guide)
     old_length = Stage.all.length
     delete 'destroy', id: stage.id, format: :json
     new_length = Stage.all.length
@@ -95,7 +95,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'only destroys stages owned by the user' do
-    delete :destroy, id: FactoryGirl.create(:stage)
+    delete :destroy, id: FactoryBot.create(:stage)
     expect(json['errors'][0]['title']).to include(
       'can only destroy stages that belong to your guides.')
     expect(response.status).to eq(401)
@@ -109,13 +109,13 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'has a picture route, which returns empty when there are no pictures' do
-    get :pictures, stage_id: FactoryGirl.create(:stage).id.to_s
+    get :pictures, stage_id: FactoryBot.create(:stage).id.to_s
     expect(json['data'].count).to eq(0)
   end
 
   it 'has a picture route, which returns with pictures' do
     VCR.use_cassette('controllers/api/api_stages_controller') do
-      stage = FactoryGirl.create(:stage)
+      stage = FactoryBot.create(:stage)
       Picture.from_url('http://i.imgur.com/2haLt4J.jpg', stage)
       stage.reload
       get :pictures, stage_id: stage.id

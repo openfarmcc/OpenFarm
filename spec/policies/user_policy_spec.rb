@@ -3,10 +3,10 @@ require 'spec_helper'
 describe UserPolicy do
   subject { UserPolicy }
 
-  let (:current_user) { FactoryGirl.create :user }
-  let (:other_user) { FactoryGirl.create :user }
-  let (:private_user) { FactoryGirl.create :user, is_private: true}
-  let (:admin) { FactoryGirl.create :user, admin: true }
+  let (:current_user) { FactoryBot.create :user }
+  let (:other_user) { FactoryBot.create :user }
+  let (:private_user) { FactoryBot.create :user, is_private: true}
+  let (:admin) { FactoryBot.create :user, admin: true }
 
   permissions :show? do
     it 'denies access if viewed user is private' do

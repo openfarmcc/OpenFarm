@@ -10,12 +10,12 @@ describe 'Crop search', type: :controller do
     "#{current_host}:#{Capybara.current_session.server.port}"
   end
 
-  let!(:crop) { FactoryGirl.create(:crop, :radish) }
+  let!(:crop) { FactoryBot.create(:crop, :radish) }
 
   it 'finds individual crops' # , js: true do
   #   visit root_path
-  #   FactoryGirl.create_list(:crop, 10)
-  #   FactoryGirl.create(:crop, name: 'radish')
+  #   FactoryBot.create_list(:crop, 10)
+  #   FactoryBot.create(:crop, name: 'radish')
   #   Crop.searchkick_index.refresh
   #   fill_in 'q', with: 'radish'
   #   click_button 'Search'
@@ -28,7 +28,7 @@ describe 'Crop search', type: :controller do
     Crop.destroy_all
     visit root_path
     fill_in 'q', with: ''
-    FactoryGirl.create_list(:crop, 10)
+    FactoryBot.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     click_button 'Search'
     expect(page).to have_content(Crop.last.name)
@@ -48,7 +48,7 @@ describe 'Crop search', type: :controller do
 
   it 'handles empty search results', js: true do
     Crop.destroy_all
-    FactoryGirl.create_list(:crop, 10)
+    FactoryBot.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     visit root_path
     fill_in 'q', with: 'pokemon'
@@ -68,8 +68,8 @@ describe 'Crop search', type: :controller do
 
   it 'handles plurals', js: true do
     Crop.destroy_all
-    FactoryGirl.create_list(:crop, 10)
-    q = FactoryGirl.create(:crop, :radish).name
+    FactoryBot.create_list(:crop, 10)
+    q = FactoryBot.create(:crop, :radish).name
     Crop.searchkick_index.refresh
     visit root_path
     fill_in 'q', with: q
@@ -80,8 +80,8 @@ describe 'Crop search', type: :controller do
 
   it 'handles misspellings' # , js: true do
   #   visit root_path
-  #   FactoryGirl.create_list(:crop, 10)
-  #   FactoryGirl.create(:crop, name: 'radish')
+  #   FactoryBot.create_list(:crop, 10)
+  #   FactoryBot.create(:crop, name: 'radish')
   #   Crop.searchkick_index.refresh
   #   fill_in 'q', with: 'radis'
   #   click_button 'Search'
@@ -92,8 +92,8 @@ describe 'Crop search', type: :controller do
 
   it 'handles multiple words' # , js: true do
   #   visit root_path
-  #   FactoryGirl.create_list(:crop, 10)
-  #   FactoryGirl.create(:crop, name: 'radish')
+  #   FactoryBot.create_list(:crop, 10)
+  #   FactoryBot.create(:crop, name: 'radish')
   #   Crop.searchkick_index.refresh
   #   fill_in 'q', with: 'pear radish'
   #   click_button 'Search'
@@ -106,7 +106,7 @@ describe 'Crop search', type: :controller do
   #   skip 'this test does not pass on CI - RickCarlino'
   #   visit crop_search_via_get_path(cropsearch: { q: 'red' })
   #   fill_in 'q', with: crop.name
-  #   FactoryGirl.create_list(:crop, 10)
+  #   FactoryBot.create_list(:crop, 10)
   #   Crop.searchkick_index.refresh
   #   click_button 'Search'
   #   expect(page).to have_content(crop.name)

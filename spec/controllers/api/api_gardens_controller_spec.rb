@@ -5,8 +5,8 @@ describe Api::V1::GardensController, type: :controller do
 
   describe 'index' do
     before do
-      @viewing_user = FactoryGirl.create :confirmed_user
-      @other_user = FactoryGirl.create :confirmed_user
+      @viewing_user = FactoryBot.create :confirmed_user
+      @other_user = FactoryBot.create :confirmed_user
       sign_in @viewing_user
     end
 
@@ -19,17 +19,17 @@ describe Api::V1::GardensController, type: :controller do
 
   describe 'show' do
     before do
-      @viewing_user = FactoryGirl.create :confirmed_user
-      @other_user = FactoryGirl.create :confirmed_user
+      @viewing_user = FactoryBot.create :confirmed_user
+      @other_user = FactoryBot.create :confirmed_user
       sign_in @viewing_user
     end
 
     it 'should show admins gardens regardless of privacy setting' do
       @viewing_user.admin = true
       @viewing_user.save
-      public_garden = FactoryGirl.create(:garden,
+      public_garden = FactoryBot.create(:garden,
                                          user: @other_user)
-      private_garden = FactoryGirl.create(:garden,
+      private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
@@ -42,9 +42,9 @@ describe Api::V1::GardensController, type: :controller do
 
     it 'should shown not signed in users only public gardens' do
       sign_out @viewing_user
-      public_garden = FactoryGirl.create(:garden,
+      public_garden = FactoryBot.create(:garden,
                                          user: @other_user)
-      private_garden = FactoryGirl.create(:garden,
+      private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
@@ -55,9 +55,9 @@ describe Api::V1::GardensController, type: :controller do
     end
 
     it 'should not show private gardens to ordinary users' do
-      public_garden = FactoryGirl.create(:garden,
+      public_garden = FactoryBot.create(:garden,
                                          user: @other_user)
-      private_garden = FactoryGirl.create(:garden,
+      private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
       get 'show', id: public_garden.id
@@ -68,9 +68,9 @@ describe Api::V1::GardensController, type: :controller do
     end
 
     it 'should show the user their private and public gardens' do
-      public_garden = FactoryGirl.create(:garden,
+      public_garden = FactoryBot.create(:garden,
                                          user: @viewing_user)
-      private_garden = FactoryGirl.create(:garden,
+      private_garden = FactoryBot.create(:garden,
                                           user: @viewing_user,
                                           is_private: true)
       get 'show', id: public_garden.id
@@ -84,7 +84,7 @@ describe Api::V1::GardensController, type: :controller do
 
   describe 'create' do
     before do
-      @viewing_user = FactoryGirl.create :confirmed_user
+      @viewing_user = FactoryBot.create :confirmed_user
       sign_in @viewing_user
     end
 
@@ -111,12 +111,12 @@ describe Api::V1::GardensController, type: :controller do
 
   describe 'update' do
     before do
-      @viewing_user = FactoryGirl.create :user
+      @viewing_user = FactoryBot.create :user
       sign_in @viewing_user
     end
 
     it 'should not allow editing of non-owned gardens' do
-      garden = FactoryGirl.create(:garden)
+      garden = FactoryBot.create(:garden)
       put :update,
           id: garden.id.to_s,
           data: { attributes: { name: 'updated' } },
@@ -127,7 +127,7 @@ describe Api::V1::GardensController, type: :controller do
     end
 
     it 'should edit owned gardens' do
-      garden = FactoryGirl.create(:garden, user: @viewing_user)
+      garden = FactoryBot.create(:garden, user: @viewing_user)
       put :update,
           id: garden.id.to_s,
           data: { attributes: { name: 'updated' } },
@@ -138,10 +138,10 @@ describe Api::V1::GardensController, type: :controller do
   end
 
   describe 'destroy' do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.create(:user) }
 
     it 'deletes gardens' do
-      garden = FactoryGirl.create(:garden, user: user)
+      garden = FactoryBot.create(:garden, user: user)
       sign_in user
       old_length = Garden.all.length
       delete :destroy, id: garden.id, format: :json
@@ -159,7 +159,7 @@ describe Api::V1::GardensController, type: :controller do
 
     it 'only destroys gardens owned by the user' do
       sign_in user
-      delete :destroy, id: FactoryGirl.create(:garden)
+      delete :destroy, id: FactoryBot.create(:garden)
       expect(json['errors'][0]['title']).to include(
         'can only destroy gardens that belong to you.')
       expect(response.status).to eq(401)

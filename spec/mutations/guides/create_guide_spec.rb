@@ -4,9 +4,9 @@ describe Guides::CreateGuide do
   let(:cg) { Guides::CreateGuide }
 
   let(:params) do
-    { user: FactoryGirl.create(:user),
-      crop_id: FactoryGirl.create(:crop).id.to_s,
-      id: FactoryGirl.create(:guide).id.to_s,
+    { user: FactoryBot.create(:user),
+      crop_id: FactoryBot.create(:crop).id.to_s,
+      id: FactoryBot.create(:guide).id.to_s,
       attributes: { name: 'hi.' }
     }
   end
@@ -52,7 +52,7 @@ describe Guides::CreateGuide do
 
   it 'catches bad crop IDs but saves with a good crop name' do
     params[:crop_id] = 'wrong'
-    new_crop_name = FactoryGirl.create(:crop).name
+    new_crop_name = FactoryBot.create(:crop).name
     params[:crop_name] = new_crop_name
     result = cg.run(params).result
     expect(result).to be_a(Guide)
@@ -75,7 +75,7 @@ describe Guides::CreateGuide do
 
   it 'knows to choose a crop based on a crop name' do
     params.except!(:crop_id)
-    params[:crop_name] = FactoryGirl.create(:crop).name
+    params[:crop_name] = FactoryBot.create(:crop).name
     Crop.reindex
     result = cg.run(params).result
     expect(result).to be_a(Guide)

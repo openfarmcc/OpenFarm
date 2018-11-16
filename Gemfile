@@ -72,7 +72,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'launchy'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'binding_of_caller'
 end

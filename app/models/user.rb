@@ -29,12 +29,9 @@ class User
 
   field :display_name, type: String
   validates_presence_of :display_name
-
+  NO_TOS = 'to the Terms of Service and Privacy Policy'
   field :agree, type: Boolean
-  validates :agree, acceptance: { accept: true,
-                                  message: 'to the Terms of Service and ' +
-                                           'Privacy Policy' },
-                    on: :create
+  validates :agree, acceptance: { accept: true, message: NO_TOS }, on: :create
 
   field :mailing_list, type: Mongoid::Boolean, default: false
   field :help_list, type: Mongoid::Boolean, default: false
@@ -47,8 +44,6 @@ class User
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-         # , :omniauthable
-
   # These are needed to be defined. Dunno why this doesn't
   # get automatically generated. Part of Devise.Confirmable
   # http://stackoverflow.com/a/9952241/154392
@@ -91,7 +86,6 @@ class User
                          merge_vars: { DNAME: self[:display_name] },
                          double_optin: false,
                          update_existing: true)
-
     end
     if self.help_list && self.confirmed?
       list = gb.lists.list({ filters: { list_name: 'OpenFarm Helpers' } })

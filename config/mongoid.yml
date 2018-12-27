@@ -13,12 +13,13 @@ test:
       database: open_farm_test
       hosts:
         - <%= ENV['MONGO_HOST'] || 'localhost:27017' %>
-      options:
-        read: primary
-        # In the test environment we lower the retries and retry interval to
-        # low amounts for fast failures.
-        max_retries: 1
-        retry_interval: 0
+      # options:
+      #   read:
+      #     primary: true
+      #   # In the test environment we lower the retries and retry interval to
+      #   # low amounts for fast failures.
+      #   max_retries: 1
+      #   retry_interval: 0
 
 production:
   clients:

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper :all
   # Allow certain fields for devise - needed in Rails 4.0+
-  before_filter :update_sanitized_params, if: :devise_controller?
+  before_action :update_sanitized_params, if: :devise_controller?
 
   before_action :set_locale, :check_for_confirmation
 

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.5.3'
 
 gem 'rails',   '~> 5'
 gem 'bundler', '~> 1.17'
@@ -19,10 +19,7 @@ gem 'aws-sdk-rails',            '~> 2'
 gem 'aws-sdk',                  '~> 3'
 gem 'bson_ext',                 '~> 1'
 
-# The project doesn't use semver, so this should only be upgraded on the jump
-# to elasticsearch 5
-gem 'elasticsearch'
-gem 'searchkick'
+gem 'searchkick',          '~> 3.1.2'
 gem 'gibbon',              '~> 1'
 gem 'jsonapi-serializers', '~> 0'
 gem 'devise',              '~> 4'

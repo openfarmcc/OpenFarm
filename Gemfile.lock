@@ -1032,9 +1032,9 @@ GEM
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
-    searchkick (1.5.1)
-      activemodel
-      elasticsearch (>= 1)
+    searchkick (3.1.2)
+      activemodel (>= 4.2)
+      elasticsearch (>= 5)
       hashie
     slop (3.6.0)
     smarf_doc (1.0.0)
@@ -1102,7 +1102,6 @@ DEPENDENCIES
   delayed_job_mongoid
   delayed_job_shallow_mongoid
   devise (~> 4)
-  elasticsearch (~> 6)
   eventmachine (~> 1)
   exception_notification (~> 4.2)
   factory_bot_rails
@@ -1153,7 +1152,7 @@ DEPENDENCIES
   rollbar
   rspec-rails
   sass-rails
-  searchkick (~> 1)
+  searchkick (~> 3.1.2)
   smarf_doc
   test-unit
   therubyracer
@@ -1164,7 +1163,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.5.3p105
 
 BUNDLED WITH
    1.17.1

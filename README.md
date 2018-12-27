@@ -110,6 +110,9 @@ sudo docker pull mongo
 ```
 
 ```
+# Some linux users may need to run
+# `sudo sysctl -w vm.max_map_count=262144`
+# for this to work:
 sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:6.5.0
 sudo docker run -p 27017:27017 mongo
 
@@ -121,7 +124,7 @@ sudo docker run -p 27017:27017 mongo
 Remember that `/vagrant` folder in the Vagrant VM is largely for convenience, and working in it can cause unexpected behavior with other tools - you should do your work in your own non-vagrant environment. Use the environment you're most familiar with to program, and Vagrant will do the rest.
 
 
-#### Become a Core Contributors
+#### Become a Core Contributor
 
 If you've made two PRs, we'll add you as a core contributor.
 

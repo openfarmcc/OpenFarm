@@ -6,19 +6,22 @@ class Guide
 
   attr_accessor :current_user_compatibility_score
 
-  searchkick callbacks: :async, merge_mappings: true, mappings: {
-    guide: {
-      properties: {
-        compatibilities: {
-          type: 'nested',
-          properties: {
-            user_id: { type: 'string' },
-            score: { type: 'integer' }
-          }
-        }
-      }
-    }
-  }
+  searchkick(callbacks: :async,
+            #   merge_mappings: true,
+            #   mappings: {
+            #     guide: {
+            #       properties: {
+            #         compatibilities: {
+            #           type: 'nested',
+            #           properties: {
+            #             user_id: { type: String },
+            #             score: { type: 'integer' }
+            #           }
+            #         }
+            #       }
+            #     }
+            # }
+  )
   # The below seems to have made no difference, but it's based on:
   # https://github.com/ankane/searchkick#stay-synced
   # and the recommendations here:

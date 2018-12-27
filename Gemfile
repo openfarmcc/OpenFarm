@@ -56,9 +56,12 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-showdown',              '~> 0.5'
 end
 
-gem 'therubyracer', platforms: :ruby
 gem 'font-awesome-sass'
+
 gem 'foundation-rails', '~> 6.5'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
+
 gem 'jquery-rails'
 gem 'ng-rails-csrf'
 gem 'compass-rails'

@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :crop do
+    crop_data_source
     name             { "#{Faker::Commerce.color} #{Faker::Name.last_name}" }
     binomial_name    { Faker::Lorem.words(2).join(' ') }
     description      { Faker::Lorem.sentence }

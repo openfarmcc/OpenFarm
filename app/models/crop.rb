@@ -49,14 +49,9 @@ class Crop
   field :common_names, type: Array
   validates :name, presence: true
 
-  has_many :varieties, class_name: 'Crop', inverse_of: :parent
-  belongs_to :parent, class_name: 'Crop', inverse_of: :varieties
-
   has_and_belongs_to_many :companions,
                           class_name: 'Crop',
                           inverse_of: :companions
-
-  # embeds_many :crop_times
 
   field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, cascade_callbacks: true, as: :photographic

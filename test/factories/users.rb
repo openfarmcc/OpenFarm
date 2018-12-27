@@ -7,6 +7,7 @@ FactoryBot.define do
     is_private   { false }
     confirmed_at { Faker::Date.between(2.days.ago, Date.today) }
     email        { Faker::Internet.email }
+    user_setting
 
     trait :admin do
       admin { :false }

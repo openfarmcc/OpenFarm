@@ -58,7 +58,7 @@ end
 
 gem 'therubyracer', platforms: :ruby
 gem 'font-awesome-sass'
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 6.5'
 gem 'jquery-rails'
 gem 'ng-rails-csrf'
 gem 'compass-rails'

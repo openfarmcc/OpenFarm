@@ -75,6 +75,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'binding_of_caller'
+  gem 'rails-controller-testing' # For 'assert_template'
 end
 
 group :test do

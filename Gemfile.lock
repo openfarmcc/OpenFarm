@@ -757,7 +757,7 @@ GEM
     elasticsearch-transport (6.1.0)
       faraday
       multi_json
-    erubi (1.7.1)
+    erubi (1.8.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
     exception_notification (4.2.2)
@@ -799,7 +799,7 @@ GEM
     httparty (0.16.3)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.1.1)
+    i18n (1.3.0)
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
       nokogiri (~> 1)
@@ -848,7 +848,7 @@ GEM
     mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.11.3)
     moneta (1.0.0)
     mongo (2.6.2)
@@ -882,8 +882,8 @@ GEM
     nested_form (0.3.2)
     ng-rails-csrf (0.1.0)
     nio4r (2.3.1)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
       activemodel (>= 4.2.0)
@@ -959,6 +959,10 @@ GEM
     rails-assets-showdown (0.5.4)
     rails-assets-typeahead.js (0.11.1)
       rails-assets-jquery (>= 1.7)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -988,7 +992,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rake (12.3.1)
+    rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -1139,6 +1143,7 @@ DEPENDENCIES
   rails-assets-ng-file-upload (~> 12.2)!
   rails-assets-ng-tags-input (~> 2.0)!
   rails-assets-showdown (~> 0.5)!
+  rails-controller-testing
   rails_12factor
   rails_admin (~> 1)
   rollbar

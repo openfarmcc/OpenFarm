@@ -15,7 +15,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'lists crops.' do
     skip 'this test does not pass on CI - RickCarlino'
-    Legacy.get 'index', format: :json, filter: 'mung'
+    Legacy._get 'index', format: :json, filter: 'mung'
     expect(response.status).to eq(200)
     expect(json['data'].length).to eq(1)
     expect(json['data'][0]['id']).to eq(@beans.id.to_s)
@@ -23,27 +23,27 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'returns [] for tiny searches' do
     SmarfDoc.skip
-    Legacy.get 'index', format: :json, query: 'mu'
+    Legacy._get 'index', format: :json, query: 'mu'
     expect(response.status).to eq(200)
     expect(json).to eq('data' => [])
   end
 
   it 'should show a crop' do
     crop = FactoryBot.create(:crop)
-    Legacy.get 'show', format: :json, id: crop.id
+    Legacy._get 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(crop.name)
   end
 
   it 'should not find a crop' do
-    Legacy.get 'show', format: :json, id: 1
+    Legacy._get 'show', format: :json, id: 1
     expect(response.status).to eq(404)
     expect(json['errors'][0]['title']).to include('Not Found.')
   end
 
   it 'should minimally create a crop' do
     sign_in user
-    Legacy.post :create, data: { attributes: { name: 'Radish' } }
+    Legacy._post :create, data: { attributes: { name: 'Radish' } }
     expect(response.status).to eq(200)
     expect(Crop.last.name).to eq('Radish')
   end
@@ -51,7 +51,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'should update a crop' do
     sign_in user
     crop = FactoryBot.create(:crop)
-    put :update,
+    Legacy._put :update,
         id: crop.id,
         data: { attributes: { description: 'Updated', tags_array: ['tag'] } }
     expect(response.status).to eq(200)
@@ -63,7 +63,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'tests whether tags get added as an array', js: true do
     crop = FactoryBot.create(:crop)
     sign_in user
-    put :update,
+    Legacy._put :update,
         id: crop.id,
         data: { attributes: { tags_array: %w(just some tags) } }
     expect(response.status).to eq(200)
@@ -73,7 +73,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'tests whether common names get added as an array', js: true do
     crop = FactoryBot.create(:crop)
     sign_in user
-    put :update,
+    Legacy._put :update,
         id: crop.id,
         data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] } }
     expect(response.status).to eq(200)
@@ -83,7 +83,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'should return an error when updating faulty information' do
     sign_in user
     crop = FactoryBot.create(:crop)
-    put :update, id: crop.id, data: { attributes: { description: '' } }
+    Legacy._put :update, id: crop.id, data: { attributes: { description: '' } }
     expect(response.status).to eq(422)
     old_description = crop.description
     crop.reload
@@ -93,7 +93,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'should add a taxon to a crop' do
     crop = FactoryBot.create(:crop)
     sign_in user
-    put :update,
+    Legacy._put :update,
         id: crop.id,
         data: { attributes: { taxon: 'Genus' } }
     expect(response.status).to eq(200)

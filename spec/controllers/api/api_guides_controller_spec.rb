@@ -20,7 +20,7 @@ describe Api::V1::GuidesController, type: :controller do
                              overview: 'something exotic' },
                crop_id: crop.id.to_s
              }
-      Legacy.post 'create', data: data, format: :json
+      Legacy._post 'create', data: data, format: :json
       expect(response.status).to eq(201)
       expect(json['data']['attributes']['name']).to eq(data[:attributes][:name])
 
@@ -37,7 +37,7 @@ describe Api::V1::GuidesController, type: :controller do
                              overview: 'something exotic' },
                crop_id: nil,
                crop_name: 'Test Crop' }
-      Legacy.post 'create', data: data, format: :json
+      Legacy._post 'create', data: data, format: :json
       expect(response.status).to eq(201)
       expect(Crop.all.length).to eq(original_length + 1)
     end
@@ -52,7 +52,7 @@ describe Api::V1::GuidesController, type: :controller do
                              overview: 'something exotic' },
                crop_id: nil,
                crop_name: crop.name }
-      Legacy.post 'create', data: data, format: :json
+      Legacy._post 'create', data: data, format: :json
       expect(response.status).to eq(201)
       expect(Crop.all.length).to eq(original_length)
       expect(Guide.last.crop.id).to eq(crop.id)
@@ -62,7 +62,7 @@ describe Api::V1::GuidesController, type: :controller do
       sign_in FactoryBot.create(:user)
       data = { attributes: { overview: 'A tiny pixel test image.' },
                crop_id: FactoryBot.create(:crop).id.to_s }
-      Legacy.post 'create', data: data
+      Legacy._post 'create', data: data
       expect(response.status).to eq(422)
     end
 
@@ -73,7 +73,7 @@ describe Api::V1::GuidesController, type: :controller do
                  crop_id: FactoryBot.create(:crop).id.to_s }
       sign_in FactoryBot.create(:user)
       VCR.use_cassette('controllers/api/api_guides_controller_spec') do
-        Legacy.post 'create', data: params
+        Legacy._post 'create', data: params
       end
       expect(response.status).to eq(201)
       img_url = json['data']['attributes']['featured_image']['image_url']
@@ -88,7 +88,7 @@ describe Api::V1::GuidesController, type: :controller do
       data = { attributes: { name: 'brocolini in the desert',
                              overview: 'something exotic' },
                crop_id: FactoryBot.create(:crop).id.to_s }
-      Legacy.post 'create', data: data, format: :json
+      Legacy._post 'create', data: data, format: :json
       expect(response.status).to eq(201)
       user.reload
 
@@ -101,7 +101,7 @@ describe Api::V1::GuidesController, type: :controller do
   describe 'show' do
     it 'should show a specific guide' do
       guide = FactoryBot.create(:guide)
-      Legacy.get 'show', id: guide.id, format: :json
+      Legacy._get 'show', id: guide.id, format: :json
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(guide.name)
     end
@@ -113,7 +113,7 @@ describe Api::V1::GuidesController, type: :controller do
       sign_in user
       guide = FactoryBot.create(:guide, user: user, overview: 'old')
       params = { attributes: { overview: 'updated' } }
-      put 'update', id: guide.id, data: params
+      Legacy._put 'update', id: guide.id, data: params
       expect(response.status).to eq(200)
       guide.reload
       expect(guide.overview).to eq('updated')
@@ -122,14 +122,14 @@ describe Api::V1::GuidesController, type: :controller do
     it 'should not update someone elses guide' do
       sign_in FactoryBot.create(:user)
       guide = FactoryBot.create(:guide)
-      put :update, id: guide.id, data: { attributes: { overview: 'updated' } }
+      Legacy._put :update, id: guide.id, data: { attributes: { overview: 'updated' } }
       expect(response.status).to eq(401)
       expect(response.body).to include('only modify guides that you created')
     end
 
     it 'validates URL paramters' do
       data = { attributes: {}, images: [{ image_url: 'not a real URL' }] }
-      put :update, id: guide.id, data: data
+      Legacy._put :update, id: guide.id, data: data
       expect(response.status).to eq(422)
       expect(json['errors'][0]['title']).to include('not a valid URL')
     end
@@ -140,14 +140,14 @@ describe Api::V1::GuidesController, type: :controller do
       garden = FactoryBot.create(:guide, user: user)
       sign_in user
       old_length = Guide.all.length
-      Legacy.delete :destroy, id: garden.id, format: :json
+      Legacy._delete :destroy, id: garden.id, format: :json
       new_length = Guide.all.length
       expect(new_length).to eq(old_length - 1)
     end
 
     it 'returns an error when a guide does not exist' do
       sign_in user
-      Legacy.delete :destroy, id: 1, format: :json
+      Legacy._delete :destroy, id: 1, format: :json
       expect(json['errors'][0]['title']).to include(
         'Could not find a guide with id')
       expect(response.status).to eq(422)
@@ -155,7 +155,7 @@ describe Api::V1::GuidesController, type: :controller do
 
     it 'only destroys guides owned by the user' do
       sign_in user
-      Legacy.delete :destroy, id: FactoryBot.create(:guide)
+      Legacy._delete :destroy, id: FactoryBot.create(:guide)
       expect(json['errors'][0]['title']).to include(
         'can only destroy guides that belong to you.')
       expect(response.status).to eq(401)

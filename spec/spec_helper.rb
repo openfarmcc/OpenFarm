@@ -106,15 +106,19 @@ class ActionController::TestCase
 end
 
 class Legacy # Don't write new code that uses this
-  def self.get(action, params)
+  def self._get(action, params)
     binding.pry
   end
 
-  def self.patch(action, params)
+  def self._patch(action, params)
     binding.pry
   end
 
-  def self.delete(action, params)
+  def self._delete(action, params)
+    binding.pry
+  end
+
+  def self._put(action, params)
     binding.pry
   end
 end

@@ -907,6 +907,7 @@ GEM
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
     public_suffix (3.0.3)
+    puma (3.12.0)
     pundit (2.0.0)
       activesupport (>= 3.0.0)
     rack (2.0.6)
@@ -1125,6 +1126,7 @@ DEPENDENCIES
   poltergeist
   pry
   pry-nav
+  puma
   pundit (~> 2)
   rack-attack
   rack-cors

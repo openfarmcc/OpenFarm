@@ -12,7 +12,7 @@ describe Api::V1::TokensController, type: :controller do
      \`Authorization: Token token=YOUR_TOKEN_HERE\`
     """
     data = { email: user.email, password: user.password }
-    Legacy.post :create, data, format: :json
+    Legacy._post :create, data, format: :json
     expect(response.status).to eq(201)
     user.reload
     token = json['data']['attributes']
@@ -25,21 +25,21 @@ describe Api::V1::TokensController, type: :controller do
 
   it 'handles bad passwords' do
     data = { email: user.email, password: 'wrong' }
-    Legacy.post :create, data, format: :json
+    Legacy._post :create, data, format: :json
     expect(json['errors'][0]['title']).to eq('Invalid password.')
     expect(response.status).to eq(422)
   end
 
   it 'handles malformed emails' do
     data = { email: 'wrong', password: 'wrong' }
-    Legacy.post :create, data, format: :json
+    Legacy._post :create, data, format: :json
     expect(json['errors'][0]['title']).to eq('Email isn\'t in the right format')
     expect(response.status).to eq(422)
   end
 
   it 'handles incorrect emails' do
     data = { email: 'wrong@no.com', password: 'wrong' }
-    Legacy.post :create, data, format: :json
+    Legacy._post :create, data, format: :json
     expect(json['errors'][0]['title']).to eq('User not found.')
     expect(response.status).to eq(422)
   end
@@ -49,7 +49,7 @@ describe Api::V1::TokensController, type: :controller do
     required. This is a log out action, essentially."""
     user = make_api_user
     expect(user.token).to be_a_kind_of(Token)
-    Legacy.delete :destroy
+    Legacy._delete :destroy
     user.reload
     expect(response.status).to eq(204)
     expect(user.token).to eq(nil)
@@ -60,7 +60,7 @@ describe Api::V1::TokensController, type: :controller do
     # cookie auth.
     user = FactoryBot.create(:user)
     sign_in user
-    Legacy.delete :destroy
+    Legacy._delete :destroy
     expect(response.status).to eq(404)
     expect(json['error']).to eq('your account has no token to destroy.')
   end

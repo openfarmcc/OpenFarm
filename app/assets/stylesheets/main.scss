@@ -1,6 +1,8 @@
 // TODO: This broke during upgrade! I am adding this
 // declaration as a stub to prevent runtime errors.
-$input-border-width: 0 px;
+$input-border-width: 1 px;
+$input-border-color: black;
+// END REMOVALS
 @import "compass";
 @import "font-awesome-sprockets";
 @import "font-awesome";

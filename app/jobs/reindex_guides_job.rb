@@ -3,9 +3,7 @@ class ReindexGuidesJob < ActiveJob::Base
 
   def perform
     Guide.desc(:popularity_score).each do |guide|
-      guide.reindex_async
+      guide.reindex
     end
-  rescue => x
-    binding.pry
   end
 end

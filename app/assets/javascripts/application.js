@@ -62,3 +62,5 @@ if (!isDNT) {
 ga('create', 'UA-54082196-1', 'auto');
 ga('send', 'pageview');
 }
+
+$(function(){ $(document).foundation(); });

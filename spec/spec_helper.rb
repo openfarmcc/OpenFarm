@@ -104,3 +104,17 @@ end
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
 end
+
+class Legacy # Don't write new code that uses this
+  def self.get(action, params)
+    binding.pry
+  end
+
+  def self.patch(action, params)
+    binding.pry
+  end
+
+  def self.delete(action, params)
+    binding.pry
+  end
+end

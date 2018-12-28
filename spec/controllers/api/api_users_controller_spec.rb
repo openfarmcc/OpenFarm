@@ -11,21 +11,21 @@ describe Api::V1::UsersController, type: :controller do
     viewing_user.admin = true
     viewing_user.save
     sign_in viewing_user
-    get 'show', id: private_user.id, format: :json
+    Legacy.get 'show', id: private_user.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['relationships']).to have_key('user_setting')
   end
 
   it 'does not show private user to an ordinary user' do
     sign_in viewing_user
-    get 'show', id: private_user.id, format: :json
+    Legacy.get 'show', id: private_user.id, format: :json
     expect(response.status).to eq(401)
   end
 
   it 'shows public users to a user' do
     viewing_user.save
     sign_in viewing_user
-    get 'show', id: public_user.id, format: :json
+    Legacy.get 'show', id: public_user.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['relationships']).to have_key('user_setting')
   end
@@ -33,7 +33,7 @@ describe Api::V1::UsersController, type: :controller do
   # TODO: We don't actually implement this, so it doesn't make
   # sense as a test right now.
   # it 'shows basics to non-logged in users' do
-  #   get 'show', id: public_user.id, format: :json
+  #   Legacy.get 'show', id: public_user.id, format: :json
   #   expect(response.status).to eq(200)
   #   expect(json['data']['relationships']).to have_key('user_setting')
   #   expect(json['data']['relationships']['user_setting']).to
@@ -45,7 +45,7 @@ describe Api::V1::UsersController, type: :controller do
     public_user.user_setting.favorite_crops = [crop]
     public_user.user_setting.save
     sign_in viewing_user
-    get 'show', id: public_user.id, format: :json
+    Legacy.get 'show', id: public_user.id, format: :json
     expect(response.status).to eq(200)
     expect(json['included'][0]['type']).to eq('user-settings')
     expect(json['included'][0]['attributes']).to have_key('favorite_crop')
@@ -56,7 +56,7 @@ describe Api::V1::UsersController, type: :controller do
     viewing_user.favorited_guides.push(guide)
     viewing_user.save
     sign_in viewing_user
-    get 'show', id: viewing_user.id, format: :json
+    Legacy.get 'show', id: viewing_user.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['relationships']['favorited_guides']['data'].length).to be(1)
     expect(json['included'][1]['attributes']['name']).to eq(guide.name)
@@ -73,7 +73,7 @@ describe Api::V1::UsersController, type: :controller do
       public_user.user_setting.save
       sign_in viewing_user
 
-      get 'show', id: public_user.id, format: :json
+      Legacy.get 'show', id: public_user.id, format: :json
 
       expect(json['included'][0]['attributes']).to have_key('favorite_crop')
       fav_crop = json['included'][0]['attributes']['favorite_crop']
@@ -86,7 +86,7 @@ describe Api::V1::UsersController, type: :controller do
       public_user.user_setting.pictures = [FactoryBot.create(:user_picture)]
       public_user.user_setting.save
       sign_in viewing_user
-      get 'show', id: public_user.id, format: :json
+      Legacy.get 'show', id: public_user.id, format: :json
       expect(json['included'][0]['attributes']).to have_key('pictures')
       # cat.jpg is the name created in the factorygirl for user_picture
       # (fixture file)

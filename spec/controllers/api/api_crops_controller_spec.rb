@@ -15,7 +15,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'lists crops.' do
     skip 'this test does not pass on CI - RickCarlino'
-    get 'index', format: :json, filter: 'mung'
+    Legacy.get 'index', format: :json, filter: 'mung'
     expect(response.status).to eq(200)
     expect(json['data'].length).to eq(1)
     expect(json['data'][0]['id']).to eq(@beans.id.to_s)
@@ -23,27 +23,27 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'returns [] for tiny searches' do
     SmarfDoc.skip
-    get 'index', format: :json, query: 'mu'
+    Legacy.get 'index', format: :json, query: 'mu'
     expect(response.status).to eq(200)
     expect(json).to eq('data' => [])
   end
 
   it 'should show a crop' do
     crop = FactoryBot.create(:crop)
-    get 'show', format: :json, id: crop.id
+    Legacy.get 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(crop.name)
   end
 
   it 'should not find a crop' do
-    get 'show', format: :json, id: 1
+    Legacy.get 'show', format: :json, id: 1
     expect(response.status).to eq(404)
     expect(json['errors'][0]['title']).to include('Not Found.')
   end
 
   it 'should minimally create a crop' do
     sign_in user
-    post :create, data: { attributes: { name: 'Radish' } }
+    Legacy.post :create, data: { attributes: { name: 'Radish' } }
     expect(response.status).to eq(200)
     expect(Crop.last.name).to eq('Radish')
   end

@@ -9,27 +9,27 @@ describe UsersController do
   it 'should show the user their profile' do
     skip 'fails on CI - RickCarlino'
     sign_in user
-    get :show, id: user.id
+    Legacy.get :show, id: user.id
     expect(response).to render_template(:show)
   end
 
   it 'should show the user a public profile' do
     public_user = FactoryBot.create(:user, is_private: false)
     sign_in user
-    get :show, id: public_user.id
+    Legacy.get :show, id: public_user.id
     expect(response).to render_template(:show)
   end
 
   it 'should not show the user a private profile' do
     private_user = FactoryBot.create(:user, is_private: true)
     sign_in user
-    get :show, id: private_user.id
+    Legacy.get :show, id: private_user.id
     expect(response).to redirect_to root_path(:en)
   end
 
   it 'should show the user the edit page' do
     sign_in user
-    get :edit
+    Legacy.get :edit
     expect(response).to render_template(:edit)
   end
 
@@ -38,7 +38,7 @@ describe UsersController do
     private_user = FactoryBot.create(:user, is_private: true)
     public_user = FactoryBot.create(:user)
     sign_in user
-    get :index
+    Legacy.get :index
     expect(assigns(:users).to_a.map(&:is_private).uniq).to match_array([false])
   end
 
@@ -48,7 +48,7 @@ describe UsersController do
     private_user = FactoryBot.create(:user, is_private: true)
     public_user = FactoryBot.create(:user)
     sign_in user
-    get :index
+    Legacy.get :index
     expect(assigns(:users)).to match_array([public_user, user, private_user])
   end
 
@@ -69,7 +69,7 @@ describe UsersController do
   it 'should redirect users from gardens to their profile' do
     skip 'Fails on CI - RickCarlino'
     sign_in user
-    get :gardens
+    Legacy.get :gardens
     expect(response.status).to eq(302)
     expect(response).to redirect_to user_path(:en, user)
   end

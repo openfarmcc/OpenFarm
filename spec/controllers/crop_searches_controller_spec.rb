@@ -9,7 +9,7 @@ describe CropSearchesController, type: 'controller' do
     Crop.reindex
     Guide.reindex
 
-    get 'search', q: 'carrot'
+    Legacy.get 'search', q: 'carrot'
 
     expect(assigns[:guides].results).to include(guide)
     expect(assigns[:guides].results).to_not include(other_guide)
@@ -23,7 +23,7 @@ describe CropSearchesController, type: 'controller' do
     Crop.reindex
     Guide.reindex
 
-    get 'search', q: 'carrot'
+    Legacy.get 'search', q: 'carrot'
 
     expect(assigns[:guides].results).to_not include(guide)
     expect(assigns[:guides].results).to_not include(other_guide)
@@ -58,7 +58,7 @@ describe CropSearchesController, type: 'controller' do
     Guide.reindex
 
     sign_in user
-    get 'search', q: 'carrot'
+    Legacy.get 'search', q: 'carrot'
 
     expect(assigns[:guides].first).to eq(compatible_guide)
   end

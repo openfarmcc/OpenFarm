@@ -18,7 +18,7 @@ describe Api::V1::StagesController, type: :controller do
                            order: 0,
                            soil: Faker::Lorem.words(2) },
              guide_id: guide.id.to_s }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(response.status).to eq(201)
     new_length = Stage.all.length
     expect(json['data']['attributes']['name']).to eq(data[:attributes][:name])
@@ -33,7 +33,7 @@ describe Api::V1::StagesController, type: :controller do
       instructions: "#{Faker::Lorem.paragraph}",
       guide_id: guide.id.to_s
     }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(response.status).to eq(422)
   end
 
@@ -42,7 +42,7 @@ describe Api::V1::StagesController, type: :controller do
                            name: 'hello',
                            order: 0 },
              guide_id: 1 }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     error = json['errors'][0]
     expect(error['title']).to eq('Could not find a guide with id 1.')
     expect(response.status).to eq(422)
@@ -50,7 +50,7 @@ describe Api::V1::StagesController, type: :controller do
 
   it 'should show a specific stage' do
     stage = FactoryBot.create(:stage)
-    get 'show', id: stage.id, format: :json
+    Legacy.get 'show', id: stage.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(stage.name)
   end
@@ -70,7 +70,7 @@ describe Api::V1::StagesController, type: :controller do
                            name: 'hello',
                            order: 0 },
              guide_id: FactoryBot.create(:guide).id.to_s }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(json['errors'][0]['title']).to include(
       "You can only create stages for guides that belong to you.")
     expect(response.status).to eq(401)
@@ -95,21 +95,21 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'only destroys stages owned by the user' do
-    delete :destroy, id: FactoryBot.create(:stage)
+    Legacy.delete :destroy, id: FactoryBot.create(:stage)
     expect(json['errors'][0]['title']).to include(
       'can only destroy stages that belong to your guides.')
     expect(response.status).to eq(401)
   end
 
   it 'handles deletion of unknown stages' do
-    delete :destroy, id: 1
+    Legacy.delete :destroy, id: 1
     errors = json['errors']
     expect(errors[0]['title']).to eq('Could not find a stage with id 1.')
     expect(response.status).to eq(422)
   end
 
   it 'has a picture route, which returns empty when there are no pictures' do
-    get :pictures, stage_id: FactoryBot.create(:stage).id.to_s
+    Legacy.get :pictures, stage_id: FactoryBot.create(:stage).id.to_s
     expect(json['data'].count).to eq(0)
   end
 
@@ -118,7 +118,7 @@ describe Api::V1::StagesController, type: :controller do
       stage = FactoryBot.create(:stage)
       Picture.from_url('http://i.imgur.com/2haLt4J.jpg', stage)
       stage.reload
-      get :pictures, stage_id: stage.id
+      Legacy.get :pictures, stage_id: stage.id
       expect(json['data'].count).to eq(1)
     end
   end
@@ -130,7 +130,7 @@ describe Api::V1::StagesController, type: :controller do
              actions: [{ name: "#{Faker::Lorem.word}",
                          overview: "#{Faker::Lorem.paragraph}" }],
              guide_id: guide.id.to_s }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(response.status).to eq(201)
   end
 
@@ -142,7 +142,7 @@ describe Api::V1::StagesController, type: :controller do
                            order: 0 },
              actions: [{ name: '' }],
              guide_id: guide.id.to_s }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(response.status).to eq(422)
     expect(response.body).to include('not a valid action name')
   end
@@ -153,7 +153,7 @@ describe Api::V1::StagesController, type: :controller do
                            order: 0 },
              actions: [{ name: 'hello' }],
              guide_id: guide.id.to_s }
-    post 'create', data: data, format: :json
+    Legacy.post 'create', data: data, format: :json
     expect(response.status).to eq(201)
   end
 

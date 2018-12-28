@@ -19,7 +19,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                              guide: guide.id.to_s } }
 
       old_length = garden.garden_crops.length
-      post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy.post :create, data: data, garden_id: garden.id.to_s, format: :json
       new_length = garden.reload.garden_crops.length
       expect(response.status).to eq(201)
       expect(new_length).to eq(old_length + 1)
@@ -34,7 +34,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                              sowed: sowed,
                              guide: guide.id.to_s } }
 
-      post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy.post :create, data: data, garden_id: garden.id.to_s, format: :json
       @user.reload
       assert @user.badges.last.name == 'gardener'
     end
@@ -48,7 +48,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                              sowed: sowed,
                              guide: guide.id.to_s,
                             } }
-      post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy.post :create, data: data, garden_id: garden.id.to_s, format: :json
       expect(response.status).to eq(422)
     end
   end
@@ -62,7 +62,7 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should delete garden crops' do
       garden = FactoryBot.create(:garden, user: @user)
       garden_crop = FactoryBot.create(:garden_crop, garden: garden)
-      delete :destroy,
+      Legacy.delete :destroy,
              garden_id: garden_crop.garden.id,
              id: garden_crop.id,
              format: :json
@@ -72,7 +72,7 @@ describe Api::V1::GardenCropsController, type: :controller do
 
     it 'should not delete garden crops of other users gardens' do
       garden_crop = FactoryBot.create(:garden_crop)
-      delete :destroy,
+      Legacy.delete :destroy,
              garden_id: garden_crop.garden.id.to_s,
              id: garden_crop.id,
              format: :json
@@ -81,7 +81,7 @@ describe Api::V1::GardenCropsController, type: :controller do
 
     it 'should handle deletion of unknown garden crops' do
       garden = FactoryBot.create(:garden, user: @user)
-      delete :destroy, garden_id: garden.id.to_s, id: 1
+      Legacy.delete :destroy, garden_id: garden.id.to_s, id: 1
       expect(response.status).to eq(422)
     end
   end
@@ -95,7 +95,7 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden, user: @user)
       FactoryBot.create(:garden_crop, garden: garden)
 
-      get :index, garden_id: garden.id
+      Legacy.get :index, garden_id: garden.id
 
       expect(json['data'].length).to eq(1)
       expect(response.status).to eq(200)
@@ -105,13 +105,13 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden, is_private: true)
       FactoryBot.create(:garden_crop, garden: garden)
 
-      get :index, garden_id: garden.id
+      Legacy.get :index, garden_id: garden.id
 
       expect(response.status).to eq(401)
     end
 
     it 'should return a not found error for non-existent garden' do
-      get :index, garden_id: 1
+      Legacy.get :index, garden_id: 1
       expect(response.status).to eq(404)
     end
   end
@@ -124,12 +124,12 @@ describe Api::V1::GardenCropsController, type: :controller do
     end
 
     it 'should return a not found error for non-existent garden' do
-      get :show, garden_id: 1, id: 1
+      Legacy.get :show, garden_id: 1, id: 1
       expect(response.status).to eq(404)
     end
 
     it 'should return a not found error for non-existent garden crops' do
-      get :show, garden_id: @garden.id, id: 1
+      Legacy.get :show, garden_id: @garden.id, id: 1
       expect(response.status).to eq(404)
     end
 
@@ -140,7 +140,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                                        crop: crop)
       # @garden.crop = FactoryBot.create :crop
       garden_crop.save
-      get :show, garden_id: @garden.id, id: garden_crop.id
+      Legacy.get :show, garden_id: @garden.id, id: garden_crop.id
       expect(json['data']['attributes']['crop']['name']).to eq(crop.name)
     end
 
@@ -151,13 +151,13 @@ describe Api::V1::GardenCropsController, type: :controller do
                                        guide: guide)
       # @garden.crop = FactoryBot.create :crop
       garden_crop.save
-      get :show, garden_id: @garden.id, id: garden_crop.id
+      Legacy.get :show, garden_id: @garden.id, id: garden_crop.id
       expect(json['data']['attributes']['guide']['name']).to eq(guide.name)
     end
 
     it 'should show a garden crop that exists' do
       garden_crop = FactoryBot.create(:garden_crop, garden: @garden)
-      get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
+      Legacy.get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['quantity']).to eq(garden_crop.quantity)
     end
@@ -165,7 +165,7 @@ describe Api::V1::GardenCropsController, type: :controller do
     it 'should not show garden crops that belong to a private garden' do
       garden = FactoryBot.create(:garden, is_private: true)
       garden_crop = FactoryBot.create(:garden_crop, garden: garden)
-      get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
+      Legacy.get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
       expect(response.status).to eq(401)
     end
 
@@ -175,7 +175,7 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden, is_private: true)
       garden_crop = FactoryBot.create(:garden_crop, garden: garden)
 
-      get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
+      Legacy.get :show, garden_id: garden_crop.garden.id, id: garden_crop.id
 
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['quantity']).to eq(garden_crop.quantity)

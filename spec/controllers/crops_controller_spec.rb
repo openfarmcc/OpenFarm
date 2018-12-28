@@ -5,20 +5,20 @@ describe CropsController, :type => :controller do
   it 'Should direct to a new page' do
     user = FactoryBot.create(:user)
     sign_in user
-    get 'new'
+    Legacy.get 'new'
     expect(response).to render_template(:new)
     expect(response.status).to eq(200)
   end
 
   it 'Should redirect to crop_searches' do
-    get 'index'
+    Legacy.get 'index'
     expect(response).to redirect_to controller: 'crop_searches', action: 'search'
     expect(response.status).to eq(302)
   end
 
   it 'Should render a show page' do
     crop = FactoryBot.create(:crop)
-    get 'show', id: crop.id
+    Legacy.get 'show', id: crop.id
     expect(response).to render_template(:show)
     expect(response.status).to eq(200)
   end
@@ -27,7 +27,7 @@ describe CropsController, :type => :controller do
     crop = FactoryBot.attributes_for(:crop)
     user = FactoryBot.create(:user)
     sign_in user
-    post 'create', crop: crop
+    Legacy.post 'create', crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to crop_path(:en, id: assigns(:crop).id)
   end
@@ -37,7 +37,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop.update(source: 'guide')
-    post 'create', crop: crop
+    Legacy.post 'create', crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to new_guide_path(:en,
                                                    crop_id: assigns(:crop).id)
@@ -48,7 +48,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop[:name] = ""
-    post 'create', crop: crop
+    Legacy.post 'create', crop: crop
     expect(response).to render_template(:new)
     expect(response.status).to eq(200)
   end
@@ -57,7 +57,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop = FactoryBot.create(:crop)
-    get 'edit', id: crop.id
+    Legacy.get 'edit', id: crop.id
     expect(response).to render_template(:edit)
     expect(response.status).to eq(200)
   end
@@ -90,7 +90,7 @@ describe CropsController, :type => :controller do
     sign_in user
 
     crop = FactoryBot.attributes_for(:crop)
-    post 'create', crop: crop
+    Legacy.post 'create', crop: crop
     user.reload
 
     assert user.badges.count == 1

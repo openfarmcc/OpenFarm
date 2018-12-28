@@ -3,7 +3,7 @@ class UserSetting
   include Mongoid::Paperclip
   include Mongoid::Timestamps
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_and_belongs_to_many :favorite_crops, class_name: 'Crop', inverse_of: nil
 
   field :location,         type: String

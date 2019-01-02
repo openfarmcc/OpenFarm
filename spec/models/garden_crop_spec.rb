@@ -16,6 +16,7 @@ describe GardenCrop do
   it 'increments count in garden_crop history tracking' do
     garden = FactoryBot.create(:garden)
     garden_crop = garden.garden_crops.create
+    binding.pry
     count = garden_crop.history_tracks.count
     number = count + 1
     garden_crop.update_attributes(stage: "I'm a new stage")
@@ -26,7 +27,7 @@ describe GardenCrop do
     Guide.destroy_all
     FactoryBot.create(:guide)
 
-    expect_any_instance_of(Guide).to receive(:reindex_async)
+    expect_any_instance_of(Guide).to receive(:reindex)
 
     FactoryBot.create(:user)
   end

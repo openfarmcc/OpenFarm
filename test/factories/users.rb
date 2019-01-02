@@ -9,6 +9,17 @@ FactoryBot.define do
     email        { Faker::Internet.email }
     user_setting
 
+    trait :with_user_setting do
+      after(:create) do |user|
+        us                  = user.user_setting
+        us.location         = [Faker::Address.city_prefix,
+                               Faker::Address.state].join(", ")
+        us.units            = 'Imperial'
+        us.years_experience = (rand(9) + rand(9)) + 1
+        us.save!
+      end
+    end
+
     trait :admin do
       admin { :false }
     end

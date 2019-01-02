@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.3'
+ruby '2.6.0'
 
 gem 'rails',   '~> 5'
 gem 'bundler', '~> 1.17'
@@ -77,6 +77,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'rails-controller-testing' # For 'assert_template'
   gem 'puma' # For capybara
+
 end
 
 group :test do

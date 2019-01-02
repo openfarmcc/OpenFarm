@@ -21,6 +21,7 @@ describe GuidesController do
     guide = FactoryBot.create(:guide)
     user = guide.user
     sign_in user
+    binding.pry
     Legacy._get 'edit', id: guide.id
     expect(response).to redirect_to guide_path(:en, guide)
     expect(response.status).to eq(302)

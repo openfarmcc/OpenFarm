@@ -1,6 +1,6 @@
 class GardenCrop
   include Mongoid::Document
-  include Mongoid::History::Tracker # https://github.com/mongoid/mongoid-history#mongoid-history
+  include Mongoid::History::Trackable # https://github.com/mongoid/mongoid-history#mongoid-history
   include Mongoid::Timestamps
 
   embedded_in :garden

@@ -8,7 +8,7 @@ class Api::V1::TokensController < Api::V1::BaseController
 
   def destroy
     if current_user.token && current_user.token.destroy
-      render nothing: true, status: :no_content
+      render json: nil, status: :no_content
     else
       err = { error: "your account has no token to destroy." }
       render json: err, status: :not_found

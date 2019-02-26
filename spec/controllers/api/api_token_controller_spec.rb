@@ -11,7 +11,7 @@ describe Api::V1::TokensController, type: :controller do
      \`Authorization: Token token=YOUR_TOKEN_HERE\`
     " ""
     data = { email: user.email, password: user.password }
-    Legacy._post self, :create, data, format: :json
+    post :create, params: data, format: :json
     expect(response.status).to eq(201)
     user.reload
     token = json["data"]["attributes"]
@@ -24,7 +24,7 @@ describe Api::V1::TokensController, type: :controller do
 
   it "handles bad passwords" do
     data = { email: user.email, password: "wrong" }
-    Legacy._post self, :create, data, format: :json
+    post :create, params: data, format: :json
     expect(json["errors"][0]["title"]).to eq("Invalid password.")
     expect(response.status).to eq(422)
   end
@@ -38,7 +38,7 @@ describe Api::V1::TokensController, type: :controller do
 
   it "handles incorrect emails" do
     data = { email: "wrong@no.com", password: "wrong" }
-    Legacy._post self, :create, data, format: :json
+    post :create, params: data, format: :json
     expect(json["errors"][0]["title"]).to eq("User not found.")
     expect(response.status).to eq(422)
   end
@@ -48,7 +48,7 @@ describe Api::V1::TokensController, type: :controller do
     required. This is a log out action, essentially." ""
     user = make_api_user
     expect(user.token).to be_a_kind_of(Token)
-    Legacy._delete self, :destroy
+    delete :destroy
     user.reload
     expect(response.status).to eq(204)
     expect(user.token).to eq(nil)
@@ -59,7 +59,7 @@ describe Api::V1::TokensController, type: :controller do
     # cookie auth.
     user = FactoryBot.create(:user)
     sign_in user
-    Legacy._delete self, :destroy
+    delete :destroy
     expect(response.status).to eq(404)
     expect(json["error"]).to eq("your account has no token to destroy.")
   end

@@ -19,7 +19,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                            guide: guide.id.to_s } }
 
       old_length = garden.garden_crops.length
-      Legacy._post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
       new_length = garden.reload.garden_crops.length
       expect(response.status).to eq(201)
       expect(new_length).to eq(old_length + 1)
@@ -34,7 +34,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                            sowed: sowed,
                            guide: guide.id.to_s } }
 
-      Legacy._post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
       @user.reload
       assert @user.badges.last.name == "gardener"
     end
@@ -47,7 +47,7 @@ describe Api::V1::GardenCropsController, type: :controller do
                            stage: "#{Faker::Lorem.word}",
                            sowed: sowed,
                            guide: guide.id.to_s } }
-      Legacy._post :create, data: data, garden_id: garden.id.to_s, format: :json
+      Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
       expect(response.status).to eq(422)
     end
   end

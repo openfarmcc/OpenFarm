@@ -89,7 +89,7 @@ describe Api::V1::GardensController, type: :controller do
     end
 
     it "should create a garden" do
-      Legacy._post :create,
+      Legacy._post self, :create,
                    data: { attributes: { name: "New Garden" } },
                    format: :json
       expect(response.status).to eq(201)
@@ -101,7 +101,7 @@ describe Api::V1::GardensController, type: :controller do
     it "should give garden-creator badge when user creates a second garden" do
       assert @viewing_user.badges.empty?
       data = { attributes: { name: "Second Garden" } }
-      Legacy._post :create,
+      Legacy._post self, :create,
                    data: data,
                    format: :json
       @viewing_user.reload

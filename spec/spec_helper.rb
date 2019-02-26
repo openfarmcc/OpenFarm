@@ -112,19 +112,19 @@ class Legacy # Don't write new code that uses this
     this.get action, params: params
   end
 
-  def self._patch(this, action, params)
+  def self._patch(this, action, params = {})
     this.patch action, params: params
   end
 
-  def self._delete(this, action, params)
+  def self._delete(this, action, params = {})
     this.delete action, params: params
   end
 
-  def self._put(this, action, params)
+  def self._put(this, action, params = {})
     this.put action, params: params
   end
 
-  def self._post(this, action, params)
+  def self._post(this, action, params = {})
     this.post action, params: params
   end
 end

@@ -11,7 +11,7 @@ describe Api::V1::TokensController, type: :controller do
      \`Authorization: Token token=YOUR_TOKEN_HERE\`
     " ""
     data = { email: user.email, password: user.password }
-    Legacy._post :create, data, format: :json
+    Legacy._post self, :create, data, format: :json
     expect(response.status).to eq(201)
     user.reload
     token = json["data"]["attributes"]
@@ -24,21 +24,21 @@ describe Api::V1::TokensController, type: :controller do
 
   it "handles bad passwords" do
     data = { email: user.email, password: "wrong" }
-    Legacy._post :create, data, format: :json
+    Legacy._post self, :create, data, format: :json
     expect(json["errors"][0]["title"]).to eq("Invalid password.")
     expect(response.status).to eq(422)
   end
 
   it "handles malformed emails" do
     data = { email: "wrong", password: "wrong" }
-    Legacy._post :create, data, format: :json
+    Legacy._post self, :create, data, format: :json
     expect(json["errors"][0]["title"]).to eq('Email isn\'t in the right format')
     expect(response.status).to eq(422)
   end
 
   it "handles incorrect emails" do
     data = { email: "wrong@no.com", password: "wrong" }
-    Legacy._post :create, data, format: :json
+    Legacy._post self, :create, data, format: :json
     expect(json["errors"][0]["title"]).to eq("User not found.")
     expect(response.status).to eq(422)
   end

@@ -36,7 +36,7 @@ describe Api::V1::GuidesController, type: :controller do
                              overview: "something exotic" },
                crop_id: nil,
                crop_name: "Test Crop" }
-      Legacy._post "create", data: data, format: :json
+      Legacy._post self, "create", data: data, format: :json
       expect(response.status).to eq(201)
       expect(Crop.all.length).to eq(original_length + 1)
     end
@@ -51,7 +51,7 @@ describe Api::V1::GuidesController, type: :controller do
                             overview: "something exotic" },
               crop_id: nil,
               crop_name: crop.name }
-      Legacy._post "create", data: data, format: :json
+      Legacy._post self, "create", data: data, format: :json
       expect(response.status).to eq(201)
       expect(Crop.all.length).to eq(original_length)
       expect(Guide.last.crop.id).to eq(crop.id)

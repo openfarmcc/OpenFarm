@@ -27,7 +27,7 @@ describe CropsController, :type => :controller do
     crop = FactoryBot.attributes_for(:crop)
     user = FactoryBot.create(:user)
     sign_in user
-    Legacy._post "create", crop: crop
+    Legacy._post self, "create", crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to crop_path(:en, id: assigns(:crop).id)
   end
@@ -37,7 +37,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop.update(source: "guide")
-    Legacy._post "create", crop: crop
+    Legacy._post self, "create", crop: crop
     expect(response.status).to eq(302)
     expect(response).to redirect_to new_guide_path(:en,
                                                    crop_id: assigns(:crop).id)
@@ -48,7 +48,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop[:name] = ""
-    Legacy._post "create", crop: crop
+    Legacy._post self, "create", crop: crop
     expect(response).to render_template(:new)
     expect(response.status).to eq(200)
   end
@@ -90,7 +90,7 @@ describe CropsController, :type => :controller do
     sign_in user
 
     crop = FactoryBot.attributes_for(:crop)
-    Legacy._post "create", crop: crop
+    Legacy._post self, "create", crop: crop
     user.reload
 
     assert user.badges.count == 1

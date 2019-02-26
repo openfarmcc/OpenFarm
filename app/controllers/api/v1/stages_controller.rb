@@ -40,7 +40,7 @@ class Api::V1::StagesController < Api::V1::BaseController
   end
 
   def destroy
-    @outcome = Stages::DestroyStage.run(params,
+    @outcome = Stages::DestroyStage.run(raw_params,
                                         user: current_user)
     respond_with_mutation(:no_content)
   end

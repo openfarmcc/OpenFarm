@@ -1,6 +1,6 @@
 require "openfarm_errors"
 
-class Api::V1::BaseController < ActionController::Base
+class Api::V1::BaseController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
@@ -37,13 +37,6 @@ class Api::V1::BaseController < ActionController::Base
     options[:is_collection] = true
     options[:context] = { current_user: serialization_scope }
     JSONAPI::Serializer.serialize(models, options)
-  end
-
-  # OpenFarm uses the `Mutations` gem for most API operations.
-  # Since mutations provides its own sanitization methods, there is no need to
-  # use Rails param helpers
-  def raw_params
-    @raw_params ||= params.as_json.deep_symbolize_keys
   end
 
   protected

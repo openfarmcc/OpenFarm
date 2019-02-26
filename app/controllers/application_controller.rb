@@ -21,8 +21,15 @@ class ApplicationController < ActionController::Base
 
   def check_for_confirmation
     if current_user && !current_user.confirmed?
-      flash[:warning] = I18n.t('users.need_confirmation')
+      flash[:warning] = I18n.t("users.need_confirmation")
     end
+  end
+
+  # OpenFarm uses the `Mutations` gem for most API operations.
+  # Since mutations provides its own sanitization methods, there is no need to
+  # use Rails param helpers
+  def raw_params
+    @raw_params ||= params.as_json.deep_symbolize_keys
   end
 
   protected

@@ -5,7 +5,7 @@ describe Api::V1::TagsController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
 
   before do
-    Crop.destroy_all
+    Crop.collection.drop
     FactoryBot.create(:crop, name: 'mung bean', tags: 'tagOne')
     FactoryBot.create(:crop, tags: 'tagTwo')
     Crop.searchkick_index.refresh

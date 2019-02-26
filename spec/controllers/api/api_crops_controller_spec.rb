@@ -5,7 +5,7 @@ describe Api::V1::CropsController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
 
   before do
-    Crop.destroy_all
+    Crop.collection.drop
     FactoryBot.create(:crop, name: "other bean")
     @beans = FactoryBot.create(:crop, name: "mung bean")
     FactoryBot.create_list(:crop, 2)

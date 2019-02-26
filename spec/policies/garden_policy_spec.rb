@@ -30,7 +30,7 @@ describe GardenPolicy do
 
   context 'for a user' do
     it 'should only return gardens in scope that are public' do
-      Garden.destroy_all
+      Garden.collection.drop
       other_user = FactoryBot.create :user
       not_mine = FactoryBot.create :garden,
                                     is_private: true,
@@ -46,7 +46,7 @@ describe GardenPolicy do
     end
 
     it 'should only return public gardens unless they are current_user' do
-      Garden.destroy_all
+      Garden.collection.drop
       other_user = FactoryBot.create :user
       mine = FactoryBot.create :garden,
                                 is_private: true,
@@ -67,7 +67,7 @@ describe GardenPolicy do
     end
 
     it 'should return all gardens in scope when user is admin' do
-      Garden.destroy_all
+      Garden.collection.drop
       a = FactoryBot.create :garden,
                              is_private: true,
                              name: 'nono',

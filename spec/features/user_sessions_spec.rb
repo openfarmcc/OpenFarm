@@ -6,7 +6,7 @@ describe 'User sessions' do
   let(:user) { FactoryBot.create(:user) }
 
   it 'registers for an account should not be confirmed' do
-    User.destroy_all
+    User.collection.drop
     visit root_path
     click_link 'register'
     fill_in :user_display_name, with: 'Rick'
@@ -29,7 +29,7 @@ describe 'User sessions' do
   end
 
   it 'should redirect the user to their finish page after sign up' do
-    User.destroy_all
+    User.collection.drop
     visit new_user_registration_path
     fill_in :user_display_name, with: 'Rick'
     fill_in :user_password, with: 'password123'
@@ -40,7 +40,7 @@ describe 'User sessions' do
 
   it 'should redirect the user to the page they' \
      'were viewing after sign up', js: true do
-    User.destroy_all
+    User.collection.drop
     visit new_guide_path
     see ('You need to sign in or sign up before continuing.')
     page.first(:link, 'Become a Member').click
@@ -146,7 +146,7 @@ describe 'User sessions' do
   end
 
   def sign_up_procedure
-    User.destroy_all
+    User.collection.drop
     visit root_path
     click_link 'register'
     fill_in :user_display_name, with: 'Rick'

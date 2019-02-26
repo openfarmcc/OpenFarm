@@ -88,9 +88,9 @@ RSpec.configure do |config|
   end
   config.before :each do
     # This speed _everything_ up:
-    User.destroy_all
-    Crop.destroy_all
-    Guide.destroy_all
+    User.collection.drop
+    Crop.collection.drop
+    Guide.collection.drop
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end

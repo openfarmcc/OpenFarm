@@ -42,7 +42,7 @@ describe UsersController do
   end
 
   it "should show all users on index if the current user is admin" do
-    User.destroy_all
+    User.collection.drop
     user = FactoryBot.create(:user, admin: true)
     private_user = FactoryBot.create(:user, is_private: true)
     public_user = FactoryBot.create(:user)

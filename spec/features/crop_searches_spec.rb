@@ -25,7 +25,7 @@ describe 'Crop search', type: :controller do
   # end
 
   it 'handles empty searches', js: true do
-    Crop.destroy_all
+    Crop.collection.drop
     visit root_path
     fill_in 'q', with: ''
     FactoryBot.create_list(:crop, 10)
@@ -47,7 +47,7 @@ describe 'Crop search', type: :controller do
   end
 
   it 'handles empty search results', js: true do
-    Crop.destroy_all
+    Crop.collection.drop
     FactoryBot.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     visit root_path
@@ -67,7 +67,7 @@ describe 'Crop search', type: :controller do
   end
 
   it 'handles plurals', js: true do
-    Crop.destroy_all
+    Crop.collection.drop
     FactoryBot.create_list(:crop, 10)
     q = FactoryBot.create(:crop, :radish).name
     Crop.searchkick_index.refresh

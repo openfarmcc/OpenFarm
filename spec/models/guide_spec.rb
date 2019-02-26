@@ -80,7 +80,7 @@ describe Guide do
   end
 
   it 'sets the popularity score' do
-    Guide.destroy_all
+    Guide.collection.drop
     FactoryBot.create(:guide)
     FactoryBot.create(:guide)
     guide = FactoryBot.create(:guide)

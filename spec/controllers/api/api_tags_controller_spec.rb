@@ -20,7 +20,7 @@ describe Api::V1::TagsController, type: :controller do
   end
 
   it 'returns the tag matching the query' do
-    Legacy._get 'index', format: :json, query: 'one'
+    get 'index', format: :json, params: { query: 'one' }
     expect(response.status).to eq(200)
     expect(json.length).to eq(1)
     expect(json[0]).to eq('tagOne')

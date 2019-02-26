@@ -11,7 +11,7 @@ describe Api::V1::StageOptionsController, type: :controller do
   end
 
   it 'lists requirement options' do
-    Legacy._get 'index', format: :json
+    get 'index', params: { format: :json }
     expect(response.status).to eq(200)
     expect(json['data'].length).to eq(StageOption.all.length)
   end

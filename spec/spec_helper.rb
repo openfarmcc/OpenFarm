@@ -105,23 +105,26 @@ class ActionController::TestCase
   include Devise::Test::ControllerHelpers
 end
 
-
 class Legacy # Don't write new code that uses this
   extend Rails::Controller::Testing::Integration
 
-  def self._get(action, params)
-    binding.pry # TODO: Call get(), post() etc..
+  def self._get(action, params = {})
+    get action, params: params
   end
 
   def self._patch(action, params)
-    binding.pry # TODO: Call get(), post() etc..
+    patch action, params: params
   end
 
   def self._delete(action, params)
-    binding.pry # TODO: Call get(), post() etc..
+    delete action, params: params
   end
 
   def self._put(action, params)
-    binding.pry # TODO: Call get(), post() etc..
+    put action, params: params
+  end
+
+  def self._post(action, params)
+    post action, format: params.delete(:format), params: params
   end
 end

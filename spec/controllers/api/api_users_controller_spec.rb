@@ -30,16 +30,6 @@ describe Api::V1::UsersController, type: :controller do
     expect(json['data']['relationships']).to have_key('user_setting')
   end
 
-  # TODO: We don't actually implement this, so it doesn't make
-  # sense as a test right now.
-  # it 'shows basics to non-logged in users' do
-  #   Legacy._get 'show', id: public_user.id, format: :json
-  #   expect(response.status).to eq(200)
-  #   expect(json['data']['relationships']).to have_key('user_setting')
-  #   expect(json['data']['relationships']['user_setting']).to
-  #     not_have_key('data')
-  # end
-
   it 'shows a favorite crop for a user' do
     crop = FactoryBot.create(:crop)
     public_user.user_setting.favorite_crops = [crop]

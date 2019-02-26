@@ -56,10 +56,4 @@ describe GardenCrops::CreateGardenCrop do
     message = results.errors.message_list.first
     expect(message).to include('You need either a guide or a crop')
   end
-
-  it 'creates valid garden crops' do
-    result = cgc.run(params).result
-    expect(result).to be_a(GardenCrop)
-    expect(result.valid?).to be(true)
-  end
 end

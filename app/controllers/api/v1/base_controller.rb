@@ -39,6 +39,13 @@ class Api::V1::BaseController < ActionController::Base
     JSONAPI::Serializer.serialize(models, options)
   end
 
+  # OpenFarm uses the `Mutations` gem for most API operations.
+  # Since mutations provides its own sanitization methods, there is no need to
+  # use Rails param helpers
+  def raw_params
+    @raw_params ||= params.as_json.deep_symbolize_keys
+  end
+
   protected
 
   def verify_sent_data_structure

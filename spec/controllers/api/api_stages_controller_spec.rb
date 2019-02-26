@@ -158,8 +158,6 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'should only add actions to stages that the user owns the guide of'
-
   it 'should only remove actions from stages that the user owns the guide of'
-
   it 'should only update actions to stages that the user owns the guide of'
 end

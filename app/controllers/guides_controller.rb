@@ -30,7 +30,7 @@ class GuidesController < ApplicationController
   end
 
   def destroy
-    @outcome = Guides::DestroyGuide.run(params,
+    @outcome = Guides::DestroyGuide.run(raw_params,
                                         user: current_user)
     redirect_to guides_path
   end

@@ -90,7 +90,7 @@ describe Api::V1::StagesController, type: :controller do
     guide = FactoryBot.create(:guide, user: user)
     stage = FactoryBot.create(:stage, guide: guide)
     old_length = Stage.all.length
-    delete "destroy", id: stage.id, format: :json
+    Legacy._delete self, "destroy", id: stage.id, format: :json
     new_length = Stage.all.length
     expect(new_length).to eq(old_length - 1)
   end

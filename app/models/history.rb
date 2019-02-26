@@ -1,5 +1,4 @@
 class History
-  # include Mongoid::Document
-  include Mongoid::History::Trackable
-  # include Mongoid::Attributes::Dynamic
+  include Mongoid::History::Tracker
+  # include Mongoid::Userstamp
 end

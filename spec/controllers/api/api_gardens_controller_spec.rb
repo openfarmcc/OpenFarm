@@ -32,10 +32,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
-      Legacy._get 'show', id: public_garden.id
+      Legacy._get self, 'show', id: public_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(public_garden.name)
-      Legacy._get 'show', id: private_garden.id
+      Legacy._get self, 'show', id: private_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(private_garden.name)
     end
@@ -47,10 +47,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
-      Legacy._get 'show', id: public_garden.id
+      Legacy._get self, 'show', id: public_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(public_garden.name)
-      Legacy._get 'show', id: private_garden.id
+      Legacy._get self, 'show', id: private_garden.id
       expect(response.status).to eq(401)
     end
 
@@ -60,10 +60,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                           user: @other_user,
                                           is_private: true)
-      Legacy._get 'show', id: public_garden.id
+      Legacy._get self, 'show', id: public_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(public_garden.name)
-      Legacy._get 'show', id: private_garden.id
+      Legacy._get self, 'show', id: private_garden.id
       expect(response.status).to eq(401)
     end
 
@@ -73,10 +73,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                           user: @viewing_user,
                                           is_private: true)
-      Legacy._get 'show', id: public_garden.id
+      Legacy._get self, 'show', id: public_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(public_garden.name)
-      Legacy._get 'show', id: private_garden.id
+      Legacy._get self, 'show', id: private_garden.id
       expect(response.status).to eq(200)
       expect(json['data']['attributes']['name']).to eq(private_garden.name)
     end

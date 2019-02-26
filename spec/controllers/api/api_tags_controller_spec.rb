@@ -13,7 +13,7 @@ describe Api::V1::TagsController, type: :controller do
 
   it 'lists tags' do
     skip 'this test does not pass on CI - RickCarlino'
-    Legacy._get 'index', format: :json
+    Legacy._get self, 'index', format: :json
     expect(response.status).to eq(200)
     expect(json.length).to eq(2)
     expect(json[0]).to eq('tagOne')

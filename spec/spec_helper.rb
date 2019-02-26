@@ -1,10 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 
 # We provide an empty google maps api key for the tests to complete successfully.
 # We largely set this here so that tests from travisCI won't fail with this
 # variable missing.
-ENV["GOOGLE_MAPS_API_KEY"] = 'test-key'
+ENV["GOOGLE_MAPS_API_KEY"] = "test-key"
 # require 'simplecov'
 # require 'coveralls'
 # SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
@@ -20,16 +20,16 @@ ENV["GOOGLE_MAPS_API_KEY"] = 'test-key'
 # end
 require File.expand_path("../../config/environment", __FILE__)
 # SEE: https://github.com/rails/rails/issues/18572
-require 'test/unit/assertions'
+require "test/unit/assertions"
 # =====
-require 'rspec/rails'
-require 'capybara/rails'
-require 'webmock/rspec'
-require 'vcr'
-require 'webmock/rspec'
-require 'pundit/rspec'
+require "rspec/rails"
+require "capybara/rails"
+require "webmock/rspec"
+require "vcr"
+require "webmock/rspec"
+require "pundit/rspec"
 # ====== PHANTOMJS stuff
-require 'capybara/poltergeist'
+require "capybara/poltergeist"
 Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, timeout: 90)
@@ -40,10 +40,10 @@ end
 Delayed::Worker.delay_jobs = false
 # ===== VCR stuff (records HTTP requests for playback)
 VCR.configure do |c|
-  c.cassette_library_dir = 'vcr'
+  c.cassette_library_dir = "vcr"
   c.hook_into :webmock # or :fakeweb
   c.default_cassette_options = { record: :new_episodes,
-                                 match_requests_on: [:host, :method] }
+                                match_requests_on: [:host, :method] }
   c.ignore_localhost = true
   c.ignore_request do |request|
     URI(request.uri).port == 9200
@@ -54,7 +54,7 @@ end
 
 Paperclip.options[:log] = false
 
-require 'database_cleaner'
+require "database_cleaner"
 
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 10
@@ -75,14 +75,14 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.fail_fast = false
   config.order = "random"
-  if ENV['DOCS'] == 'true'
+  if ENV["DOCS"] == "true"
     SmarfDoc.config do |c|
-      c.template_file = 'spec/template.md.erb'
-      c.output_file   = 'api_docs.md'
+      c.template_file = "spec/template.md.erb"
+      c.output_file = "api_docs.md"
     end
 
     config.after(:each, type: :controller) do
-      SmarfDoc.run!(request, response) if request.url.include?('/api/')
+      SmarfDoc.run!(request, response) if request.url.include?("/api/")
     end
 
     config.after(:suite) { SmarfDoc.finish! }
@@ -108,8 +108,8 @@ end
 class Legacy # Don't write new code that uses this
   extend Rails::Controller::Testing::Integration
 
-  def self._get(action, params = {})
-    get action, params: params
+  def self._get(this, action, params = {})
+    this.get action, params: params
   end
 
   def self._patch(action, params)

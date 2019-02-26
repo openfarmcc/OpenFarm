@@ -50,7 +50,7 @@ describe Api::V1::StagesController, type: :controller do
 
   it 'should show a specific stage' do
     stage = FactoryBot.create(:stage)
-    Legacy._get 'show', id: stage.id, format: :json
+    Legacy._get self, 'show', id: stage.id, format: :json
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(stage.name)
   end
@@ -109,7 +109,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it 'has a picture route, which returns empty when there are no pictures' do
-    Legacy._get :pictures, stage_id: FactoryBot.create(:stage).id.to_s
+    Legacy._get self, :pictures, stage_id: FactoryBot.create(:stage).id.to_s
     expect(json['data'].count).to eq(0)
   end
 
@@ -118,7 +118,7 @@ describe Api::V1::StagesController, type: :controller do
       stage = FactoryBot.create(:stage)
       Picture.from_url('http://i.imgur.com/2haLt4J.jpg', stage)
       stage.reload
-      Legacy._get :pictures, stage_id: stage.id
+      Legacy._get self, :pictures, stage_id: stage.id
       expect(json['data'].count).to eq(1)
     end
   end

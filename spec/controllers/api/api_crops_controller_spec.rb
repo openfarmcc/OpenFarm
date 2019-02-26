@@ -15,7 +15,7 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'lists crops.' do
     skip 'this test does not pass on CI - RickCarlino'
-    Legacy._get 'index', format: :json, filter: 'mung'
+    Legacy._get self, 'index', format: :json, filter: 'mung'
     expect(response.status).to eq(200)
     expect(json['data'].length).to eq(1)
     expect(json['data'][0]['id']).to eq(@beans.id.to_s)
@@ -23,20 +23,20 @@ describe Api::V1::CropsController, type: :controller do
 
   it 'returns [] for tiny searches' do
     SmarfDoc.skip
-    Legacy._get 'index', format: :json, query: 'mu'
+    Legacy._get self, 'index', format: :json, query: 'mu'
     expect(response.status).to eq(200)
     expect(json).to eq('data' => [])
   end
 
   it 'should show a crop' do
     crop = FactoryBot.create(:crop)
-    Legacy._get 'show', format: :json, id: crop.id
+    Legacy._get self, 'show', format: :json, id: crop.id
     expect(response.status).to eq(200)
     expect(json['data']['attributes']['name']).to eq(crop.name)
   end
 
   it 'should not find a crop' do
-    Legacy._get 'show', format: :json, id: 1
+    Legacy._get self, 'show', format: :json, id: 1
     expect(response.status).to eq(404)
     expect(json['errors'][0]['title']).to include('Not Found.')
   end

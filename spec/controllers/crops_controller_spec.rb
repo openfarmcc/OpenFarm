@@ -5,20 +5,20 @@ describe CropsController, :type => :controller do
   it 'Should direct to a new page' do
     user = FactoryBot.create(:user)
     sign_in user
-    Legacy._get 'new'
+    Legacy._get self, 'new'
     expect(response).to render_template(:new)
     expect(response.status).to eq(200)
   end
 
   it 'Should redirect to crop_searches' do
-    Legacy._get 'index'
+    Legacy._get self, 'index'
     expect(response).to redirect_to controller: 'crop_searches', action: 'search'
     expect(response.status).to eq(302)
   end
 
   it 'Should render a show page' do
     crop = FactoryBot.create(:crop)
-    Legacy._get 'show', id: crop.id
+    Legacy._get self, 'show', id: crop.id
     expect(response).to render_template(:show)
     expect(response.status).to eq(200)
   end
@@ -57,7 +57,7 @@ describe CropsController, :type => :controller do
     user = FactoryBot.create(:user)
     sign_in user
     crop = FactoryBot.create(:crop)
-    Legacy._get 'edit', id: crop.id
+    Legacy._get self, 'edit', id: crop.id
     expect(response).to render_template(:edit)
     expect(response.status).to eq(200)
   end

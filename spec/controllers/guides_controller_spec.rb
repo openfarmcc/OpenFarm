@@ -53,7 +53,7 @@ describe GuidesController do
     user = FactoryBot.create(:user)
     guide = FactoryBot.create(:guide, user: user)
     sign_in user
-    Legacy._delete "destroy", id: guide.id
+    Legacy._delete self, "destroy", id: guide.id
 
     expect(response.status).to eq(302)
   end
@@ -64,7 +64,7 @@ describe GuidesController do
     sign_in user
 
     expect do
-      Legacy._delete "destroy", id: guide.id
+      Legacy._delete self, "destroy", id: guide.id
     end.to raise_exception(OpenfarmErrors::NotAuthorized)
   end
 

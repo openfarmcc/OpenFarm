@@ -53,14 +53,14 @@ describe UsersController do
 
   it "should not update with incomplete information" do
     sign_in user
-    Legacy._put :update, location: "", units: "metric"
+    Legacy._put self, :update, location: "", units: "metric"
     expect(response).to redirect_to controller: "users", action: "finish"
     expect(flash[:alert]).to include("Location can't be blank")
   end
 
   it "should update with complete information" do
     sign_in user
-    Legacy._put :update, location: "Hanoi", units: "metric"
+    Legacy._put self, :update, location: "Hanoi", units: "metric"
     expect(response).to redirect_to user_path(:en, user)
     expect(user.reload.user_setting.location).to eq("Hanoi")
   end

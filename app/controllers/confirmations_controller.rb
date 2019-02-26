@@ -1,6 +1,6 @@
 class ConfirmationsController < Devise::ConfirmationsController
   def show
-    token = raw_params[:confirmation_token].encode!(
+    token = params.require(:confirmation_token).encode!(
       "UTF-8",
       "binary",
       invalid: :replace,

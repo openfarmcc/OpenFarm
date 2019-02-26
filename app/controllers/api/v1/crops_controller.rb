@@ -6,7 +6,7 @@ class Api::V1::CropsController < Api::V1::BaseController
       q = raw_params[:filter]
       crops = Crop.search(q,
                           limit: 25,
-                          partial: true,
+                          operator: "or", # partial: true,
                           misspellings: { distance: 1 },
                           fields: ["name^20",
                                    "common_names^10",

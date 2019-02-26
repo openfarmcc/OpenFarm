@@ -13,3 +13,6 @@ module BSON
     end
   end
 end
+
+# https://github.com/mongoid/mongoid-history/issues/169
+Mongoid.belongs_to_required_by_default = false

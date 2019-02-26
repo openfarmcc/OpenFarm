@@ -55,7 +55,8 @@ end
 Paperclip.options[:log] = false
 
 require "database_cleaner"
-
+# https://github.com/mongoid/mongoid-history/issues/169
+Mongoid.belongs_to_required_by_default = false
 Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 10
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

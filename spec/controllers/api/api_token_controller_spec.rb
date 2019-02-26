@@ -31,7 +31,7 @@ describe Api::V1::TokensController, type: :controller do
 
   it "handles malformed emails" do
     data = { email: "wrong", password: "wrong" }
-    Legacy._post self, :create, data, format: :json
+    post :create, params: data, format: :json
     expect(json["errors"][0]["title"]).to eq('Email isn\'t in the right format')
     expect(response.status).to eq(422)
   end

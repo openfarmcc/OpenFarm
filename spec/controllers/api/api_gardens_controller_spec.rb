@@ -27,30 +27,29 @@ describe Api::V1::GardensController, type: :controller do
     it "should show admins gardens regardless of privacy setting" do
       @viewing_user.admin = true
       @viewing_user.save
-      public_garden = FactoryBot.create(:garden,
-                                        user: @other_user)
-      private_garden = FactoryBot.create(:garden,
-                                         user: @other_user,
-                                         is_private: true)
-      Legacy._get self, "show", id: public_garden.id
+      public_garden = \
+        FactoryBot.create(:garden, user: @other_user)
+      private_garden = \
+        FactoryBot.create(:garden, user: @other_user, is_private: true)
+      get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
-      Legacy._get self, "show", id: private_garden.id
+      get :show, params: { id: private_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(private_garden.name)
     end
 
-    it "should shown not signed in users only public gardens" do
+    it "shows only public gardens" do
       sign_out @viewing_user
-      public_garden = FactoryBot.create(:garden,
-                                        user: @other_user)
-      private_garden = FactoryBot.create(:garden,
-                                         user: @other_user,
-                                         is_private: true)
-      Legacy._get self, "show", id: public_garden.id
+      public_garden = FactoryBot.create(:garden, user: @other_user)
+      get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
-      Legacy._get self, "show", id: private_garden.id
+    end
+
+    it "does not show private gardens" do
+      private_garden = FactoryBot.create(:garden, user: @other_user, is_private: true)
+      get :show, params: { id: private_garden.id }
       expect(response.status).to eq(401)
     end
 
@@ -60,10 +59,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                          user: @other_user,
                                          is_private: true)
-      Legacy._get self, "show", id: public_garden.id
+      get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
-      Legacy._get self, "show", id: private_garden.id
+      get :show, params: { id: private_garden.id }
       expect(response.status).to eq(401)
     end
 
@@ -73,10 +72,10 @@ describe Api::V1::GardensController, type: :controller do
       private_garden = FactoryBot.create(:garden,
                                          user: @viewing_user,
                                          is_private: true)
-      Legacy._get self, "show", id: public_garden.id
+      get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
-      Legacy._get self, "show", id: private_garden.id
+      get :show, params: { id: private_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(private_garden.name)
     end

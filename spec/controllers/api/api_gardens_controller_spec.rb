@@ -13,7 +13,6 @@ describe Api::V1::GardensController, type: :controller do
     # These are not yet implemented because index is
     # funny about nested things.
     it "should show non private gardens and gardens belonging to a user"
-
     it "should show all gardens if the user is admin"
   end
 
@@ -24,16 +23,21 @@ describe Api::V1::GardensController, type: :controller do
       sign_in @viewing_user
     end
 
-    it "should show admins gardens regardless of privacy setting" do
+    it "show admins garden regardless of privacy setting I" do
       @viewing_user.admin = true
       @viewing_user.save
-      public_garden = \
-        FactoryBot.create(:garden, user: @other_user)
-      private_garden = \
-        FactoryBot.create(:garden, user: @other_user, is_private: true)
+      public_garden = FactoryBot.create(:garden, user: @other_user)
       get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
+    end
+
+    it "show admins garden regardless of privacy setting II" do
+      @viewing_user.admin = true
+      @viewing_user.save
+      private_garden = FactoryBot.create(:garden,
+                                         user: @other_user,
+                                         is_private: true)
       get :show, params: { id: private_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(private_garden.name)
@@ -53,28 +57,33 @@ describe Api::V1::GardensController, type: :controller do
       expect(response.status).to eq(401)
     end
 
-    it "should not show private gardens to ordinary users" do
+    it "should show public gardens to ordinary users" do
       public_garden = FactoryBot.create(:garden,
                                         user: @other_user)
-      private_garden = FactoryBot.create(:garden,
-                                         user: @other_user,
-                                         is_private: true)
       get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
+    end
+
+    it "should not show private gardens to ordinary users" do
+      private_garden = FactoryBot.create(:garden,
+                                         user: @other_user,
+                                         is_private: true)
       get :show, params: { id: private_garden.id }
       expect(response.status).to eq(401)
     end
 
-    it "should show the user their private and public gardens" do
-      public_garden = FactoryBot.create(:garden,
-                                        user: @viewing_user)
-      private_garden = FactoryBot.create(:garden,
-                                         user: @viewing_user,
-                                         is_private: true)
+    it "should show the user their public gardens" do
+      public_garden = FactoryBot.create(:garden, user: @viewing_user)
       get :show, params: { id: public_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(public_garden.name)
+    end
+
+    it "should show the user their private gardens" do
+      private_garden = FactoryBot.create(:garden,
+                                         user: @viewing_user,
+                                         is_private: true)
       get :show, params: { id: private_garden.id }
       expect(response.status).to eq(200)
       expect(json["data"]["attributes"]["name"]).to eq(private_garden.name)
@@ -100,9 +109,7 @@ describe Api::V1::GardensController, type: :controller do
     it "should give garden-creator badge when user creates a second garden" do
       assert @viewing_user.badges.empty?
       data = { attributes: { name: "Second Garden" } }
-      Legacy._post self, :create,
-                   data: data,
-                   format: :json
+      Legacy._post self, :create, data: data, format: :json
       @viewing_user.reload
       assert @viewing_user.badges.count == 1
     end

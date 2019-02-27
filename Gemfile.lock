@@ -833,6 +833,8 @@ GEM
     letsencrypt-rails-heroku (1.2.0)
       acme-client (~> 0.4.0)
       platform-api
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -1113,6 +1115,7 @@ DEPENDENCIES
   kaminari-mongoid
   launchy
   letsencrypt-rails-heroku
+  letter_opener
   merit (~> 3)
   mongoid
   mongoid-history

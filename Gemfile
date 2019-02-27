@@ -66,6 +66,7 @@ gem "jquery-rails"
 gem "ng-rails-csrf"
 gem "compass-rails"
 gem "uglifier", ">= 1"
+gem "letter_opener", group: :development
 
 group :development, :test do
   gem "rspec-rails"

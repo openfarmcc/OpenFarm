@@ -7,8 +7,7 @@ class Api::V1::GardensController < Api::V1::BaseController
   end
 
   def create
-    @outcome = Gardens::CreateGarden.run(raw_params[:data],
-                                         user: current_user)
+    @outcome = Gardens::CreateGarden.run(raw_params[:data], user: current_user)
     @user = current_user
     respond_with_mutation(:created, include: ["garden_crops"])
   end

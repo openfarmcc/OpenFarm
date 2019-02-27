@@ -53,6 +53,10 @@ GEM
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     ambry (1.0.0)
+    apparition (0.1.0)
+      backports
+      capybara (~> 3.12, < 4)
+      websocket-driver (>= 0.6.5)
     arel (9.0.0)
     aws-eventstream (1.0.1)
     aws-partitions (1.114.0)
@@ -678,13 +682,14 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    backports (3.12.0)
     bcrypt (3.1.12)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bson (4.4.2)
     bson_ext (1.5.1)
     builder (3.2.3)
-    capybara (3.11.0)
+    capybara (3.14.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -698,7 +703,6 @@ GEM
       activesupport
     chunky_png (1.3.11)
     climate_control (0.2.0)
-    cliver (0.3.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -897,10 +901,6 @@ GEM
     platform-api (2.2.0)
       heroics (~> 0.0.25)
       moneta (~> 1.0.0)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     power_assert (1.1.3)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -1088,6 +1088,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0)
+  apparition
   aws-sdk (~> 3)
   aws-sdk-rails (~> 2)
   binding_of_caller
@@ -1126,7 +1127,6 @@ DEPENDENCIES
   ng-rails-csrf
   phantomjs (>= 1.8)
   platform-api
-  poltergeist
   pry
   pry-nav
   puma

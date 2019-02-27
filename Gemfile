@@ -85,7 +85,7 @@ group :test do
   gem "smarf_doc"
   gem "capybara"
   gem "capybara-angular"
-  gem "poltergeist"
+  gem "apparition"
   gem "phantomjs", ">= 1.8"
   gem "database_cleaner", "~> 1.3"
   gem "vcr"

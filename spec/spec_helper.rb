@@ -29,12 +29,11 @@ require "vcr"
 require "webmock/rspec"
 require "pundit/rspec"
 # ====== PHANTOMJS stuff
-require "capybara/poltergeist"
-Capybara.javascript_driver = :poltergeist
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, timeout: 90)
-  Capybara::Poltergeist::Driver.new(app, js_errors: true)
-  Capybara::Poltergeist::Driver.new(app, :phantomjs => Phantomjs.path)
+require "capybara/apparition"
+Capybara.javascript_driver = :apparition
+Capybara.default_max_wait_time = 10
+Capybara.register_driver :apparition do |app|
+  Capybara::Apparition::Driver.new(app, headless: true) # debug mode: false
 end
 # =====
 Delayed::Worker.delay_jobs = false
@@ -55,8 +54,6 @@ end
 Paperclip.options[:log] = false
 
 require "database_cleaner"
-Capybara.javascript_driver = :poltergeist
-Capybara.default_max_wait_time = 10
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Mongoid.logger.level = 2
 Guide.reindex

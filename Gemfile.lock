@@ -815,7 +815,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jsonapi-renderer (0.2.0)
-    jsonapi-serializers (0.16.2)
+    jsonapi-serializers (1.0.1)
       activesupport
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -1087,54 +1087,54 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers (~> 0)
+  active_model_serializers
   apparition
-  aws-sdk (~> 3)
-  aws-sdk-rails (~> 2)
+  aws-sdk
+  aws-sdk-rails
   binding_of_caller
-  bson_ext (~> 1)
-  bundler (~> 1.17)
+  bson_ext
+  bundler
   capybara
   capybara-angular
   coffee-rails
   compass-rails
-  database_cleaner (~> 1.3)
+  database_cleaner
   delayed_job_mongoid
   delayed_job_shallow_mongoid
-  devise (~> 4)
-  eventmachine (~> 1)
-  exception_notification (~> 4.2)
+  devise
+  eventmachine
+  exception_notification
   factory_bot_rails
   faker
   font-awesome-sass
-  foundation-rails (~> 6.5)
-  gibbon (~> 1)
-  high_voltage (~> 3)
-  impressionist (~> 1)
+  foundation-rails
+  gibbon
+  high_voltage
+  impressionist
   jquery-rails
-  jsonapi-serializers (~> 0)
+  jsonapi-serializers
   kaminari-mongoid
   launchy
   letsencrypt-rails-heroku
   letter_opener
-  merit (~> 3)
+  merit
   mongoid
   mongoid-history
   mongoid-paperclip
   mongoid-slug
   mongoid_taggable
-  mutations (~> 0)
+  mutations
   ng-rails-csrf
-  phantomjs (>= 1.8)
+  phantomjs
   platform-api
   pry
   pry-nav
   puma
-  pundit (~> 2)
+  pundit
   rack-attack
   rack-cors
   rack-timeout
-  rails (~> 5)
+  rails
   rails-assets-angular (= 1.5.8)!
   rails-assets-angular-dragdrop (~> 1.0)!
   rails-assets-angular-foundation (~> 0.8)!
@@ -1150,17 +1150,17 @@ DEPENDENCIES
   rails-assets-showdown (~> 0.5)!
   rails-controller-testing
   rails_12factor
-  rails_admin (~> 1)
+  rails_admin
   rollbar
   rspec-rails
   sass-rails
-  searchkick (~> 3.1.2)
+  searchkick
   smarf_doc
-  sprockets (>= 3.0.0)
+  sprockets
   sprockets-es6
   test-unit
   thin
-  uglifier (>= 1)
+  uglifier
   utf8-cleaner
   vcr
   webmock

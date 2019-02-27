@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 ruby "2.6.0"
 
-gem "rails", "~> 5"
-gem "bundler", "~> 1.17"
+gem "rails"
+gem "bundler"
 
 gem "mongoid"
 gem "delayed_job_mongoid"
@@ -14,22 +14,22 @@ gem "mongoid-history"
 gem "mongoid-slug"
 gem "mongoid-paperclip", require: "mongoid_paperclip"
 
-gem "active_model_serializers", "~> 0"
-gem "aws-sdk-rails", "~> 2"
-gem "aws-sdk", "~> 3"
-gem "bson_ext", "~> 1"
+gem "active_model_serializers"
+gem "aws-sdk-rails"
+gem "aws-sdk"
+gem "bson_ext"
 
-gem "searchkick", "~> 3.1.2"
-gem "gibbon", "~> 1"
-gem "jsonapi-serializers", "~> 0"
-gem "devise", "~> 4"
-gem "eventmachine", "~> 1"
-gem "high_voltage", "~> 3"
-gem "impressionist", "~> 1"
-gem "merit", "~> 3"
-gem "mutations", "~> 0"
-gem "pundit", "~> 2"
-gem "rails_admin", "~> 1"
+gem "searchkick"
+gem "gibbon"
+gem "jsonapi-serializers"
+gem "devise"
+gem "eventmachine"
+gem "high_voltage"
+gem "impressionist"
+gem "merit"
+gem "mutations"
+gem "pundit"
+gem "rails_admin"
 gem "rack-attack"
 gem "rollbar"
 gem "sass-rails"
@@ -58,14 +58,14 @@ end
 
 gem "font-awesome-sass"
 
-gem "foundation-rails", "~> 6.5"
-gem "sprockets", ">= 3.0.0"
+gem "foundation-rails"
+gem "sprockets"
 gem "sprockets-es6"
 
 gem "jquery-rails"
 gem "ng-rails-csrf"
 gem "compass-rails"
-gem "uglifier", ">= 1"
+gem "uglifier"
 gem "letter_opener", group: :development
 
 group :development, :test do
@@ -86,15 +86,15 @@ group :test do
   gem "capybara"
   gem "capybara-angular"
   gem "apparition"
-  gem "phantomjs", ">= 1.8"
-  gem "database_cleaner", "~> 1.3"
+  gem "phantomjs"
+  gem "database_cleaner"
   gem "vcr"
   gem "webmock"
 end
 
 group :production, :staging do
   gem "thin"
-  gem "exception_notification", "~> 4.2"
+  gem "exception_notification"
   gem "rails_12factor"
   gem "rack-timeout"
 end

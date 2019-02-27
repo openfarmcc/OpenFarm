@@ -126,7 +126,12 @@ describe Api::V1::GuidesController, type: :controller do
     end
 
     it "validates URL paramters" do
-      data = { attributes: {}, images: [{ image_url: "not a real URL" }] }
+      data = {
+        attributes: {},
+        images: [
+          { image_url: "not a real URL" },
+        ],
+      }
       put :update, params: { id: guide.id, data: data }
       expect(response.status).to eq(422)
       expect(json["errors"][0]["title"]).to include("not a valid URL")

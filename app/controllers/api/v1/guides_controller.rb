@@ -39,7 +39,8 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    @outcome = Guides::UpdateGuide.run(raw_params[:data],
+    @outcome = Guides::UpdateGuide.run({ attributes: {} },
+                                       raw_params[:data],
                                        user: current_user,
                                        guide: Guide.find(raw_params[:id]))
     respond_with_mutation(:ok, include: ["stages",

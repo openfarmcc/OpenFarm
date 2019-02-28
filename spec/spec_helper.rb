@@ -5,19 +5,19 @@ ENV["RAILS_ENV"] ||= "test"
 # We largely set this here so that tests from travisCI won't fail with this
 # variable missing.
 ENV["GOOGLE_MAPS_API_KEY"] = "test-key"
-# require 'simplecov'
-# require 'coveralls'
-# SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-#   SimpleCov::Formatter::HTMLFormatter,
-#   Coveralls::SimpleCov::Formatter
-# ])
-# SimpleCov.start do
-#   add_filter 'config/initializers/rack-attack.rb'
-#   add_filter 'config/environment.rb'
-#   add_filter 'config/initializers/mongoid.rb'
-#   add_filter 'config/initializers/backtrace_silencers.rb'
-#   add_filter 'spec/'
-# end
+require "simplecov"
+require "coveralls"
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter,
+])
+SimpleCov.start do
+  add_filter "config/initializers/rack-attack.rb"
+  add_filter "config/environment.rb"
+  add_filter "config/initializers/mongoid.rb"
+  add_filter "config/initializers/backtrace_silencers.rb"
+  add_filter "spec/"
+end
 require File.expand_path("../../config/environment", __FILE__)
 # SEE: https://github.com/rails/rails/issues/18572
 require "test/unit/assertions"
@@ -35,6 +35,7 @@ Capybara.default_max_wait_time = 10
 Capybara.register_driver :apparition do |app|
   Capybara::Apparition::Driver.new(app, headless: true) # debug mode: false
 end
+Capybara.server = :webrick
 # =====
 Delayed::Worker.delay_jobs = false
 # ===== VCR stuff (records HTTP requests for playback)

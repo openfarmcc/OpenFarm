@@ -16,7 +16,7 @@ gem "mongoid-paperclip", require: "mongoid_paperclip"
 
 gem "active_model_serializers"
 gem "aws-sdk-rails"
-gem "aws-sdk"
+gem "aws-sdk-s3"
 gem "bson_ext"
 
 gem "searchkick"
@@ -77,7 +77,6 @@ group :development, :test do
   gem "faker"
   gem "binding_of_caller"
   gem "rails-controller-testing" # For 'assert_template'
-  gem "puma" # For capybara
 end
 
 group :test do
@@ -90,6 +89,8 @@ group :test do
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"
+  gem "simplecov"
+  gem "coveralls"
 end
 
 group :production, :staging do

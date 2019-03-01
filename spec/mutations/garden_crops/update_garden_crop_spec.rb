@@ -4,9 +4,9 @@ require 'openfarm_errors'
 describe GardenCrops::UpdateGardenCrop do
   let(:ugc) { GardenCrops::UpdateGardenCrop }
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:garden) { FactoryGirl.create(:garden, user: user) }
-  let(:garden_crop) { FactoryGirl.create(:garden_crop, garden: garden) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:garden) { FactoryBot.create(:garden, user: user) }
+  let(:garden_crop) { FactoryBot.create(:garden_crop, garden: garden) }
 
   let(:params) do
     { user: user,
@@ -23,7 +23,7 @@ describe GardenCrops::UpdateGardenCrop do
   end
 
   it 'catches updating gardens not owned by user' do
-    other_garden_crop = FactoryGirl.create(:garden_crop)
+    other_garden_crop = FactoryBot.create(:garden_crop)
     params[:garden_crop] = other_garden_crop
     results = ugc.run(params)
     message = results.errors.message_list.first

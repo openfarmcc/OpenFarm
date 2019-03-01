@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Crop do
   it 'has a valid factory' do
-    expect(FactoryGirl.create(:crop)).to be_valid
+    expect(FactoryBot.create(:crop)).to be_valid
   end
 
   it 'requires a name' do
@@ -11,7 +11,7 @@ describe Crop do
 
   context '#search' do
 
-    let!(:crop) { FactoryGirl.create(:crop, :radish) }
+    let!(:crop) { FactoryBot.create(:crop, :radish) }
 
     it 'searches by name' do
       skip 'this test does not pass on CI - RickCarlino'
@@ -35,7 +35,7 @@ describe Crop do
     it 'displays the main_image_path' do
       expect(crop.main_image_path).to_not eq(nil)
       # TODO: test for placeholder image?
-      fancy_crop = FactoryGirl.create(:crop_picture).photographic
+      fancy_crop = FactoryBot.create(:crop_picture).photographic
       expect(fancy_crop.main_image_path).to be_kind_of(String)
       expect(fancy_crop.main_image_path).to include("pictures/attachments")
     end

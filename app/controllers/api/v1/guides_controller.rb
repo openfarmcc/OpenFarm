@@ -9,26 +9,26 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    @outcome = Guides::CreateGuide.run(params[:data],
-                                       crop_id: params[:data][:crop_id],
-                                       crop_name: params[:data][:crop_name],
+    @outcome = Guides::CreateGuide.run(raw_params[:data],
+                                       crop_id: raw_params[:data][:crop_id],
+                                       crop_name: raw_params[:data][:crop_name],
                                        user: current_user)
-    respond_with_mutation(:created, include: ['stages',
-                                              'stages.pictures',
-                                              'stages.stage_actions',
-                                              'crop',
-                                              'pictures',
-                                              'user'])
+    respond_with_mutation(:created, include: ["stages",
+                                              "stages.pictures",
+                                              "stages.stage_actions",
+                                              "crop",
+                                              "pictures",
+                                              "user"])
   end
 
   def show
-    guide = Guide.find(params[:id])
-    render json: serialize_model(guide, include: ['stages',
-                                                  'stages.pictures',
-                                                  'stages.stage_actions',
-                                                  'crop',
-                                                  'pictures',
-                                                  'user'])
+    guide = Guide.find(raw_params[:id])
+    render json: serialize_model(guide, include: ["stages",
+                                                  "stages.pictures",
+                                                  "stages.stage_actions",
+                                                  "crop",
+                                                  "pictures",
+                                                  "user"])
   end
 
   def update
@@ -39,20 +39,20 @@ class Api::V1::GuidesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    @outcome = Guides::UpdateGuide.run(params[:data],
+    @outcome = Guides::UpdateGuide.run({ attributes: {} },
+                                       raw_params[:data],
                                        user: current_user,
-                                       guide: Guide.find(params[:id]))
-    respond_with_mutation(:ok, include: ['stages',
-                                         'stages.pictures',
-                                         'stages.stage_actions',
-                                         'crop',
-                                         'pictures',
-                                         'user'])
+                                       guide: Guide.find(raw_params[:id]))
+    respond_with_mutation(:ok, include: ["stages",
+                                         "stages.pictures",
+                                         "stages.stage_actions",
+                                         "crop",
+                                         "pictures",
+                                         "user"])
   end
 
   def destroy
-    @outcome = Guides::DestroyGuide.run(params,
-                                        user: current_user)
+    @outcome = Guides::DestroyGuide.run(raw_params, user: current_user)
     respond_with_mutation(:no_content)
   end
 end

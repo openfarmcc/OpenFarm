@@ -1,32 +1,33 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   after_action :verify_authorized, except: [:index, :finish, :gardens]
 
   def update
     authorize current_user
 
     user_settings = {
-      units: params[:units],
-      location: params[:location]
+      units: raw_params[:units],
+      location: raw_params[:location],
     }
     @outcome = Users::UpdateUser.run(
-      attributes: params,
+      attributes: raw_params,
       current_user: current_user,
       user_setting: user_settings,
-      pictures: params[:pictures],
-      id: "#{current_user._id}")
+      pictures: raw_params[:pictures],
+      id: "#{current_user._id}",
+    )
 
     if @outcome.errors
       flash[:alert] = @outcome.errors.message_list
-      redirect_to(controller: 'users',
-        action: 'finish')
+      redirect_to(controller: "users",
+                  action: "finish")
     else
       redirect_to user_path(current_user)
     end
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(raw_params[:id])
     authorize @user
   end
 

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe GardenPolicy do
   subject { GardenPolicy }
 
-  let (:current_user) { FactoryGirl.create :user }
-  let (:public_garden) { FactoryGirl.create :garden }
-  let (:private_garden) { FactoryGirl.create :garden, is_private: true }
-  let (:admin) { FactoryGirl.create :user, admin: true }
+  let (:current_user) { FactoryBot.create :user }
+  let (:public_garden) { FactoryBot.create :garden }
+  let (:private_garden) { FactoryBot.create :garden, is_private: true }
+  let (:admin) { FactoryBot.create :user, admin: true }
 
   permissions :show? do
     it 'denies access if garden is private' do
@@ -30,13 +30,13 @@ describe GardenPolicy do
 
   context 'for a user' do
     it 'should only return gardens in scope that are public' do
-      Garden.destroy_all
-      other_user = FactoryGirl.create :user
-      not_mine = FactoryGirl.create :garden,
+      Garden.collection.drop
+      other_user = FactoryBot.create :user
+      not_mine = FactoryBot.create :garden,
                                     is_private: true,
                                     name: 'not_mine',
                                     user: other_user
-      shared = FactoryGirl.create :garden,
+      shared = FactoryBot.create :garden,
                                   is_private: false,
                                   name: 'yes!',
                                   user: other_user
@@ -46,17 +46,17 @@ describe GardenPolicy do
     end
 
     it 'should only return public gardens unless they are current_user' do
-      Garden.destroy_all
-      other_user = FactoryGirl.create :user
-      mine = FactoryGirl.create :garden,
+      Garden.collection.drop
+      other_user = FactoryBot.create :user
+      mine = FactoryBot.create :garden,
                                 is_private: true,
                                 name: 'mine',
                                 user: current_user
-      publicly_shared = FactoryGirl.create :garden,
+      publicly_shared = FactoryBot.create :garden,
                                             is_private: false,
                                             name: 'not mine but OK (public)',
                                             user: other_user
-      not_mine = FactoryGirl.create :garden,
+      not_mine = FactoryBot.create :garden,
                                     is_private: true,
                                     name: 'not mine',
                                     user: other_user
@@ -67,12 +67,12 @@ describe GardenPolicy do
     end
 
     it 'should return all gardens in scope when user is admin' do
-      Garden.destroy_all
-      a = FactoryGirl.create :garden,
+      Garden.collection.drop
+      a = FactoryBot.create :garden,
                              is_private: true,
                              name: 'nono',
                              user: current_user
-      b = FactoryGirl.create :garden,
+      b = FactoryBot.create :garden,
                              is_private: false,
                              name: 'yes!',
                              user: current_user

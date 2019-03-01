@@ -6,19 +6,8 @@ class Guide
 
   attr_accessor :current_user_compatibility_score
 
-  searchkick callbacks: :async, merge_mappings: true, mappings: {
-    guide: {
-      properties: {
-        compatibilities: {
-          type: 'nested',
-          properties: {
-            user_id: { type: 'string' },
-            score: { type: 'integer' }
-          }
-        }
-      }
-    }
-  }
+  searchkick(callbacks: :async)
+
   # The below seems to have made no difference, but it's based on:
   # https://github.com/ankane/searchkick#stay-synced
   # and the recommendations here:
@@ -26,11 +15,27 @@ class Guide
   # Though it can probably be tweaked further.
   scope :search_import, -> { includes(:user) }
 
+  # BEGIN SURPRISING IMPRESSIONIST WORKAROUND (RickCarlino, 28 FEB 19) =========
+  #   The work that follows is based off of:
+  #   https://github.com/charlotte-ruby/impressionist/pull/258
+
+  #   In a normal impressionist setup, we would run:
   is_impressionable counter_cache: true,
                     column_name: :impressions_field,
                     unique: :session_hash
+  #   ... and be done. But this will cause Mongoid to crash.
+  #   We need to override `impresionsist`s default behavior of
+  #   `dependent: :delete_all`.
+  #   If we don't, tests will fail with the following error:
+  #   NameError uninitialized constant Mongoid::Relations::Cascading::DeleteAll
+  has_many :impressions, as: :impressionable, dependent: :delete
 
+  # NOTE TO FUTURE SELF: Try removing the line above and see if tests pass.
+  #   that would indicate that the bug was fixed upstream and we can remove this
+  #   hotfix.
   field :impressions_field, default: 0, type: Integer
+
+  # END SURPRISING IMPRESSIONIST WORK AROUND ===================================
 
   belongs_to :crop, counter_cache: true
   belongs_to :user
@@ -80,7 +85,6 @@ class Guide
     end
   end
 
-
   def owned_by?(current_user)
     !!(current_user && user == current_user)
   end
@@ -107,7 +111,7 @@ class Guide
 
     User.includes(:gardens).each do |user|
       @compatibilities << {
-        user_id: user.id.to_s, score: compatibility_score(user).to_i
+        user_id: user.id.to_s, score: compatibility_score(user).to_i,
       }
     end
 
@@ -121,38 +125,37 @@ class Guide
     first_garden = current_user.gardens.first
 
     # We should probably store these in the DB
-    basic_needs = [{ name: 'Sun / Shade',
-                     slug: 'sun-shade',
-                     overlap: [],
-                     total: [],
-                     percent: 0,
-                     user: first_garden.average_sun,
-                     garden: first_garden.name
-                   }, {
-                     name: 'Location',
-                     slug: 'location',
-                     overlap: [],
-                     total: [],
-                     percent: 0,
-                     user: first_garden.type,
-                     garden: first_garden.name
-                   }, {
-                     name: 'Soil Type',
-                     slug: 'soil',
-                     overlap: [],
-                     total: [],
-                     percent: 0,
-                     user: first_garden.soil_type,
-                     garden: first_garden.name
-                   }, {
-                     name: 'Practices',
-                     slug: 'practices',
-                     overlap: [],
-                     total: [],
-                     percent: 0,
-                     user: first_garden.growing_practices,
-                     garden: first_garden.name
-                   }]
+    basic_needs = [{ name: "Sun / Shade",
+                    slug: "sun-shade",
+                    overlap: [],
+                    total: [],
+                    percent: 0,
+                    user: first_garden.average_sun,
+                    garden: first_garden.name }, {
+      name: "Location",
+      slug: "location",
+      overlap: [],
+      total: [],
+      percent: 0,
+      user: first_garden.type,
+      garden: first_garden.name,
+    }, {
+      name: "Soil Type",
+      slug: "soil",
+      overlap: [],
+      total: [],
+      percent: 0,
+      user: first_garden.soil_type,
+      garden: first_garden.name,
+    }, {
+      name: "Practices",
+      slug: "practices",
+      overlap: [],
+      total: [],
+      percent: 0,
+      user: first_garden.growing_practices,
+      garden: first_garden.name,
+    }]
 
     # Still have to implement:
     # pH Range, Temperature, Water Use, Practices,
@@ -176,6 +179,7 @@ class Guide
 
     (sum.to_f / count * 100).round
   end
+
   def compatibility_label(current_user)
     if current_user_compatibility_score
       score = current_user_compatibility_score
@@ -184,13 +188,13 @@ class Guide
     end
 
     if score.nil?
-      return ''
+      return ""
     elsif score > 75
-      return 'high'
+      return "high"
     elsif score > 50
-      return 'medium'
+      return "medium"
     else
-      return 'low'
+      return "low"
     end
   end
 
@@ -233,13 +237,13 @@ class Guide
     stages.each do |stage|
       basic_needs.each do |need|
         # This is bad structure
-        if need[:name] == 'Sun / Shade'
+        if need[:name] == "Sun / Shade"
           build_overlap_and_total need, stage.light
         end
-        if need[:name] == 'Location'
+        if need[:name] == "Location"
           build_overlap_and_total need, stage.environment
         end
-        if need[:name] == 'Soil Type'
+        if need[:name] == "Soil Type"
           build_overlap_and_total need, stage.soil
         end
       end

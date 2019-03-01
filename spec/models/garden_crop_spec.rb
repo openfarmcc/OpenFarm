@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe GardenCrop do
-  it 'creates a garden crop' do
-    guide = FactoryGirl.create(:guide)
-    garden = FactoryGirl.create(:garden, user: FactoryGirl.create(:user))
+  it "creates a garden crop" do
+    guide = FactoryBot.create(:guide)
+    garden = FactoryBot.create(:garden, user: FactoryBot.create(:user))
     gc = GardenCrop.new(sowed: Date.today,
                         garden: garden,
                         guide: guide,
@@ -13,8 +13,8 @@ describe GardenCrop do
     expect(gc.persisted?).to eq(true)
   end
 
-  it 'increments count in garden_crop history tracking' do
-    garden = FactoryGirl.create(:garden)
+  it "increments count in garden_crop history tracking" do
+    garden = FactoryBot.create(:garden)
     garden_crop = garden.garden_crops.create
     count = garden_crop.history_tracks.count
     number = count + 1
@@ -22,12 +22,12 @@ describe GardenCrop do
     expect(garden_crop.history_tracks.count).to eq(number)
   end
 
-  it 'reindexes guides' do
-    Guide.destroy_all
-    FactoryGirl.create(:guide)
+  it "reindexes guides" do
+    Guide.collection.drop
+    FactoryBot.create(:guide)
 
-    expect_any_instance_of(Guide).to receive(:reindex_async)
+    expect_any_instance_of(Guide).to receive(:reindex)
 
-    FactoryGirl.create(:user)
+    FactoryBot.create(:user)
   end
 end

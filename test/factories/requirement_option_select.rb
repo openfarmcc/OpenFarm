@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :requirement_option_select, class: 'RequirementOption' do
     name             { "#{Faker::Name.last_name}" }
     description      { Faker::Lorem.sentence }

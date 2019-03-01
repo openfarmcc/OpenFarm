@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'Crop pages', type: :controller do
   include IntegrationHelper
-  let(:user) { FactoryGirl.create(:user) }
-  let(:crop) { FactoryGirl.create(:crop, name: 'radish') }
+  let(:user) { FactoryBot.create(:user) }
+  let(:crop) { FactoryBot.create(:crop, name: 'radish') }
 
   it 'shows and edits individual crops' do
     visit "/crops/#{crop._id}"

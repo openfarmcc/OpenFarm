@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :detail_option do
     name        { "#{Faker::Name.last_name}" }
     description { Faker::Lorem.sentence }

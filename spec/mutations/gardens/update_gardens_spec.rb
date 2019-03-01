@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Gardens::UpdateGarden do
   let(:mutation) { Gardens::UpdateGarden }
 
-  let(:garden) { FactoryGirl.create(:garden) }
+  let(:garden) { FactoryBot.create(:garden) }
 
   let(:params) do
     { user: garden.user,

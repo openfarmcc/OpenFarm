@@ -1,6 +1,6 @@
-require 'openfarm_errors'
+require "openfarm_errors"
 
-class Api::V1::BaseController < ActionController::Base
+class Api::V1::BaseController < ApplicationController
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
 
@@ -22,7 +22,7 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   rescue_from Mongoid::Errors::Validations do |exc|
-    json = { errors: [{ title: "Not valid. #{exc}"}]}
+    json = { errors: [{ title: "Not valid. #{exc}" }] }
     render json: json, status: 403
   end
 

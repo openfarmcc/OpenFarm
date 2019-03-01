@@ -4,7 +4,7 @@ module ApiHelpers
   end
 
   def make_api_user
-    token = FactoryGirl.create(:token)
+    token = FactoryBot.create(:token)
     set_token(token)
     token.user
   end

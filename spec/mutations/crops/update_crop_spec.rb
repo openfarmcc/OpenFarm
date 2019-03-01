@@ -4,9 +4,9 @@ require 'openfarm_errors'
 describe Crops::UpdateCrop do
   let(:mutation) { Crops::UpdateCrop }
 
-  let(:user) { FactoryGirl.create(:user) }
-  let(:crop) { FactoryGirl.create(:crop) }
-  let(:companion_crop) { FactoryGirl.create(:crop) }
+  let(:user) { FactoryBot.create(:user) }
+  let(:crop) { FactoryBot.create(:crop) }
+  let(:companion_crop) { FactoryBot.create(:crop) }
 
   let(:params) do
     { user: user,

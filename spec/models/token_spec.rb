@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'openfarm_errors'
 
 describe Token do
-  let(:token) { FactoryGirl.create(:token) }
+  let(:token) { FactoryBot.create(:token) }
 
   it 'has a secret, plaintext, expiration and a user' do
     expect(token).to be_valid
@@ -13,7 +13,7 @@ describe Token do
   end
 
   it 'requires a user' do
-    token = FactoryGirl.build(:token, user: nil)
+    token = FactoryBot.build(:token, user: nil)
     expect(token.valid?).to eq(false)
   end
 

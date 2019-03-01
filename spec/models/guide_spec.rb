@@ -10,15 +10,15 @@ describe Guide do
   end
 
   it 'checks ownership with #owned_by()' do
-    guide = FactoryGirl.create(:guide)
-    other_user = FactoryGirl.create(:confirmed_user)
+    guide = FactoryBot.create(:guide)
+    other_user = FactoryBot.create(:confirmed_user)
     expect(guide.owned_by?(guide.user)).to eq(true)
     expect(guide.owned_by?(nil)).to eq(false)
     expect(guide.owned_by?(other_user)).to eq(false)
   end
 
   it 'has implemented a real compatibility label' do
-    guide = FactoryGirl.build(:guide)
+    guide = FactoryBot.build(:guide)
 
     allow(guide).to receive(:compatibility_score).and_return(80)
     expect(guide.compatibility_label(guide.user)).to eq('high')
@@ -34,8 +34,8 @@ describe Guide do
   end
 
   it 'creates a basic_needs array if a user has a garden' do
-    user = FactoryGirl.build(:confirmed_user)
-    FactoryGirl.build(:garden,
+    user = FactoryBot.build(:confirmed_user)
+    FactoryBot.build(:garden,
                       user: user,
                       soil_type: 'Loam',
                       type: 'Outside',
@@ -49,8 +49,8 @@ describe Guide do
   end
 
   it 'returns 0 percent if there are no basic_needs for a guide' do
-    user = FactoryGirl.build(:confirmed_user)
-    FactoryGirl.build(:garden,
+    user = FactoryBot.build(:confirmed_user)
+    FactoryBot.build(:garden,
                       user: user,
                       soil_type: 'Loam',
                       type: 'Outside',
@@ -66,7 +66,7 @@ describe Guide do
   # With auto garden creation on user save, this test doesn't
   # really make sense anymore.
   # it 'returns nil from basic_needs if a user has no garden' do
-  #   guide = FactoryGirl.build(:guide)
+  #   guide = FactoryBot.build(:guide)
   #   Stage.new(guide: guide,
   #             environment: ['Outside'],
   #             soil: ['Clay'],
@@ -75,20 +75,20 @@ describe Guide do
   # end
 
   it 'sets the completeness score' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     expect(guide.completeness_score).not_to eq(0)
   end
 
   it 'sets the popularity score' do
-    Guide.destroy_all
-    FactoryGirl.create(:guide)
-    FactoryGirl.create(:guide)
-    guide = FactoryGirl.create(:guide)
+    Guide.collection.drop
+    FactoryBot.create(:guide)
+    FactoryBot.create(:guide)
+    guide = FactoryBot.create(:guide)
     expect(guide.popularity_score).not_to eq(0)
   end
 
   it 'updates the completeness score' do
-    guide = FactoryGirl.create(:guide)
+    guide = FactoryBot.create(:guide)
     existing_score = guide.completeness_score
     guide.practices = ['test practice']
     guide.save
@@ -97,9 +97,9 @@ describe Guide do
   end
 
   it 'updates the popularity score' do
-    FactoryGirl.create(:guide, impressions_field: 101)
-    FactoryGirl.create(:guide, impressions_field: 50)
-    guide = FactoryGirl.create(:guide)
+    FactoryBot.create(:guide, impressions_field: 101)
+    FactoryBot.create(:guide, impressions_field: 50)
+    guide = FactoryBot.create(:guide)
     existing_score = guide.popularity_score
     guide.impressions_field = 102
     guide.save

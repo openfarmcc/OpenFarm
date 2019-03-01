@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Stages::UpdateStage do
   let(:mutation) { Stages::UpdateStage }
 
-  let(:stage) { FactoryGirl.create(:stage) }
+  let(:stage) { FactoryBot.create(:stage) }
 
   let(:params) do
     { user: stage.guide.user,
@@ -71,7 +71,7 @@ describe Stages::UpdateStage do
   end
 
   it 'allows updating of existing stage actions' do
-    stage_action = FactoryGirl.create(:stage_action, stage: stage)
+    stage_action = FactoryBot.create(:stage_action, stage: stage)
     actions = [{ name: stage_action.name,
                  overview: stage_action.overview,
                  id: stage_action.id }]

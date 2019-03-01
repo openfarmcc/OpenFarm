@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Token::AuthorizationPolicy do
-  let(:token) { FactoryGirl.create(:token) }
+  let(:token) { FactoryBot.create(:token) }
   let(:policy) { Token::AuthorizationPolicy }
 
   it 'returns a user when correct' do

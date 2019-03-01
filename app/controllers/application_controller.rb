@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper :all
   # Allow certain fields for devise - needed in Rails 4.0+
-  before_filter :update_sanitized_params, if: :devise_controller?
+  before_action :update_sanitized_params, if: :devise_controller?
 
   before_action :set_locale, :check_for_confirmation
 
@@ -21,8 +21,15 @@ class ApplicationController < ActionController::Base
 
   def check_for_confirmation
     if current_user && !current_user.confirmed?
-      flash[:warning] = I18n.t('users.need_confirmation')
+      flash[:warning] = I18n.t("users.need_confirmation")
     end
+  end
+
+  # OpenFarm uses the `Mutations` gem for most API operations.
+  # Since mutations provides its own sanitization methods, there is no need to
+  # use Rails param helpers
+  def raw_params
+    @raw_params ||= params.as_json.deep_symbolize_keys
   end
 
   protected

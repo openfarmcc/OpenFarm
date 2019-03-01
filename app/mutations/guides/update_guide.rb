@@ -47,7 +47,7 @@ module Guides
     end
 
     def execute
-      @guide.update(attributes.select {|k| k != 'featured_image'})
+      @guide.update(attributes.select { |k| k != "featured_image" })
       set_time_span
       set_images images, @guide
       set_empty_practices
@@ -65,7 +65,7 @@ module Guides
 
     def validate_permissions
       if @guide.user != user
-        msg = 'You can only modify guides that you created.'
+        msg = "You can only modify guides that you created."
         raise OpenfarmErrors::NotAuthorized, msg
       end
     end

@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :guide do
     name             { "#{Faker::Commerce.color} #{Faker::Name.last_name}" }
     overview         { Faker::Lorem.sentence }
@@ -8,9 +8,9 @@ FactoryGirl.define do
     crop
     user
     trait :radish do
-      name 'Common Horseradish Guide'
-      binomial_name 'Armoracia rusticana'
-      description 'Brassicaceae family'
+      name          { 'Common Horseradish Guide' }
+      binomial_name { 'Armoracia rusticana' }
+      description   { 'Brassicaceae family' }
     end
   end
 end

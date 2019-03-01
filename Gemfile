@@ -58,7 +58,8 @@ end
 
 gem "font-awesome-sass"
 
-gem "foundation-rails"
+# WARNING: Upgrading to foundation v6 is _not_ a trivial task.
+gem 'foundation-rails', '5.5.2.1'
 gem "sprockets"
 gem "sprockets-es6"
 

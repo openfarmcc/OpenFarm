@@ -1,8 +1,3 @@
-// TODO: This broke during upgrade! I am adding this
-// declaration as a stub to prevent runtime errors.
-$input-border-width: 1 px;
-$input-border-color: black;
-// END REMOVALS
 @import "compass";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -18,11 +13,12 @@ $input-border-color: black;
 @import "styles/ui/labels";
 @import "styles/ui/forms";
 @import "styles/ui/inputs/**/*";
+
 @import "styles/components/alerts",
-"styles/components/loader",
-"styles/components/lightbox",
-"styles/components/crop_searches/**/*",
-"styles/components/crops/**/*";
+        "styles/components/loader",
+        "styles/components/lightbox",
+        "styles/components/crop_searches/**/*",
+        "styles/components/crops/**/*";
 @import "styles/components/guides/**/*";
 @import "styles/components/users/**/*";
 @import "styles/components/devise/**/*";
@@ -31,6 +27,7 @@ $input-border-color: black;
 @import "styles/components/pages/styles";
 @import "styles/components/pages/how_it_works";
 @import "styles/components/pages/featured_crops";
+
 .add-guide {
   color: #000000;
 }

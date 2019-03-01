@@ -148,7 +148,7 @@ en:
           This is your Member Profile page. Here you can create Guides, manage
           your Gardens, and access the profiles of Organizations and other
           Members. We’re gonna let you go explore from here, but before you
-          Legacy._get self, too excited and run off, we have one more question:
+          get too excited and run off, we have one more question:
         what_is_your_favorite_crop: What is your favorite crop?
         favorite_crop_suggestion: "e.g. Cherry Tomatoes"
         member_profile_intro: |
@@ -348,7 +348,7 @@ en:
               choose_the_life_stages: "Create a Timeline"
               life_stages_description: |
                 Let’s create a Timeline of Life Stages! We’ve selected a few to
-                Legacy._get self, you started, but feel free to add or remove some.
+                get you started, but feel free to add or remove some.
               next_stage_details: "Next"
           new_guide_step_3:
               next_final_touches: "Next: Final Touches"

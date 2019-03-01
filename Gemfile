@@ -6,7 +6,7 @@ gem "rails"
 gem "bundler"
 
 gem "mongoid"
-gem "delayed_job_mongoid"
+gem "delayed_job_mongoid" # <= Problematic dep upgrade
 gem "delayed_job_shallow_mongoid"
 gem "kaminari-mongoid"
 gem "mongoid_taggable"

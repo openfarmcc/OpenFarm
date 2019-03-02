@@ -73,16 +73,21 @@ class Guide
   accepts_nested_attributes_for :time_span
 
   def self.sorted_for_user(guides, user)
-    if user
-      guides = guides.sort_by do |guide|
-        guide.compatibility_score(user)
-        guide.current_user_compatibility_score = guide.compatibility_score(user)
-        guide.current_user_compatibility_score
-      end
-      guides.reverse
-    else
+    # PRODUCTION IS DOWN RIGHT NOW.
+    # I am going to plug this runtime error until
+    # we figure out what went wrong during the
+    # Elastic upgrade - RC 2 MAR 2019
+    #
+    # if user
+    #   guides = guides.sort_by do |guide|
+    #     guide.compatibility_score(user)
+    #     guide.current_user_compatibility_score = guide.compatibility_score(user)
+    #     guide.current_user_compatibility_score
+    #   end
+    #   guides.reverse
+    # else
       guides
-    end
+    # end
   end
 
   def owned_by?(current_user)

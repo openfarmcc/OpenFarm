@@ -6,7 +6,7 @@ gem "rails"
 gem "bundler"
 
 gem "mongoid"
-gem "delayed_job_mongoid"
+gem "delayed_job_mongoid" # <= Problematic dep upgrade
 gem "delayed_job_shallow_mongoid"
 gem "kaminari-mongoid"
 gem "mongoid_taggable"
@@ -52,7 +52,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-angular-typeahead", "~> 0.3"
   gem "rails-assets-ng-tags-input", "~> 2.0"
   gem "rails-assets-ng-file-upload", "~> 12.2"
-  gem "rails-assets-moment", "~> 2.3"
+  gem "rails-assets-moment", "2.8.4"
   gem "rails-assets-showdown", "~> 0.5"
 end
 

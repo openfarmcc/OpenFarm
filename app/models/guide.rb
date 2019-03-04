@@ -50,7 +50,7 @@ class Guide
   field :overview
   field :practices, type: Array
   field :completeness_score, default: 0
-  field :popularity_score, default: 0
+  field :popularity_score, default: 0, type: Integer
 
   field :times_favorited, type: Integer, default: 0
 
@@ -77,17 +77,17 @@ class Guide
     # I am going to plug this runtime error until
     # we figure out what went wrong during the
     # Elastic upgrade - RC 2 MAR 2019
-    #
-    # if user
-    #   guides = guides.sort_by do |guide|
-    #     guide.compatibility_score(user)
-    #     guide.current_user_compatibility_score = guide.compatibility_score(user)
-    #     guide.current_user_compatibility_score
-    #   end
-    #   guides.reverse
-    # else
+
+    if user
+      guides = guides.sort_by do |guide|
+        guide.compatibility_score(user)
+        guide.current_user_compatibility_score = guide.compatibility_score(user)
+        guide.current_user_compatibility_score
+      end
+      guides.reverse
+    else
       guides
-    # end
+    end
   end
 
   def owned_by?(current_user)

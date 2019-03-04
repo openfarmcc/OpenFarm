@@ -107,7 +107,7 @@ describe Api::V1::GardensController, type: :controller do
     it "should prevent non-logged in users from creating a garden"
 
     it "should give garden-creator badge when user creates a second garden" do
-      assert @viewing_user.badges.empty?
+      assert @viewing_user.badges.blank?
       data = { attributes: { name: "Second Garden" } }
       Legacy._post self, :create, data: data, format: :json
       @viewing_user.reload

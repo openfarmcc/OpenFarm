@@ -25,11 +25,14 @@ OpenFarm::Application.configure do
       sender_address: %{"notifier" <notifier@openfarm.cc>},
       exception_recipients: ENV['ALERTS'].to_s.split('|')
     },
-    ignore_exceptions: ['Mongoid::Errors::DocumentNotFound',
-                        'AbstractController::ActionNotFound',
-                        'ActionController::RoutingError',
-                        'ActionController::InvalidAuthenticityToken',
-                        'ActionView::MissingTemplate']
+    ignore_exceptions: [
+      'AbstractController::ActionNotFound',
+      'ActionController::InvalidAuthenticityToken',
+      'ActionController::RoutingError',
+      'ActionController::UnknownFormat',
+      'ActionView::MissingTemplate',
+      'Mongoid::Errors::DocumentNotFound',
+    ]
   config.action_mailer.default_url_options = { host: 'openfarm.cc' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

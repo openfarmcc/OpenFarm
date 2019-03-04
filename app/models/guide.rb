@@ -50,7 +50,7 @@ class Guide
   field :overview
   field :practices, type: Array
   field :completeness_score, default: 0
-  field :popularity_score, default: 0
+  field :popularity_score, default: 0, type: Integer
 
   field :times_favorited, type: Integer, default: 0
 
@@ -73,6 +73,11 @@ class Guide
   accepts_nested_attributes_for :time_span
 
   def self.sorted_for_user(guides, user)
+    # PRODUCTION IS DOWN RIGHT NOW.
+    # I am going to plug this runtime error until
+    # we figure out what went wrong during the
+    # Elastic upgrade - RC 2 MAR 2019
+
     if user
       guides = guides.sort_by do |guide|
         guide.compatibility_score(user)
@@ -120,7 +125,7 @@ class Guide
 
   def basic_needs(current_user)
     return nil unless current_user
-    return nil if current_user.gardens.empty?
+    return nil if current_user.gardens.blank?
 
     first_garden = current_user.gardens.first
 
@@ -168,7 +173,7 @@ class Guide
     return current_user_compatibility_score if current_user_compatibility_score
 
     return nil unless current_user
-    return nil if current_user.gardens.empty?
+    return nil if current_user.gardens.blank?
 
     count = 0
 
@@ -220,10 +225,9 @@ class Guide
   # this one stacks up. It should probably also take into consideration
   # How many gardens this thing is in.
   def calculate_popularity_score
-    top_guides = Guide.all.sort_by { |g| g[:impressions_field].to_i || 0 }.reverse
-    top_guide = top_guides.first
-    normalized = impressions_field.to_f / top_guide.impressions_field
-
+    top_guide = (Guide.order_by("impressions_field" => :asc).last)
+    at_most = (top_guide.impressions_field || 0).to_i
+    normalized = impressions_field.to_f / at_most
     write_attributes(popularity_score: normalized)
   end
 
@@ -262,7 +266,7 @@ class Guide
 
   def calculate_percents(basic_needs)
     basic_needs.each do |need|
-      if need[:total] && !need[:total].empty?
+      if need[:total] && !need[:total].blank?
         need[:percent] = need[:overlap].size.to_f / need[:total].size
       else
         need[:percent] = 0

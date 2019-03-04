@@ -16,7 +16,6 @@ class GuideSearch
 
   def search(query = '*')
     @query = query
-
     self
   end
 
@@ -51,8 +50,6 @@ class GuideSearch
 
   # Methods for Enumeration.
   def results
-
-
     results = Guide.search(query, where: filter, order: order)
     results
   end

@@ -98,7 +98,7 @@
     </table>
   </div>
   <div data-equalizer-watch class="guide-results-container columns medium-6 small-12">
-    <h2 class="text-center"><%= @guides.empty? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
+    <h2 class="text-center"><%= @guides.blank? ? "There are no guides for this crop yet" : "Guides for this crop" %></h2>
     <%= link_to new_guide_path(:crop_id => @crop.id), :class => "add-guide" do %>
       <p><i class="fa fa-plus symbol-add"></i>Make your own!</p>
     <%end%>

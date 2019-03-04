@@ -8,7 +8,7 @@ class ConfirmationsController < Devise::ConfirmationsController
       replace: "",
     )
     self.resource = resource_class.confirm_by_token(token)
-    if resource.errors.empty?
+    if resource.errors.blank?
       set_flash_message(:notice, :confirmed) if is_navigational_format?
       user = sign_in(resource_name, resource)
       @outcome = Gardens::CreateGarden.run(

@@ -18,7 +18,7 @@ class CropsController < ApplicationController
     # darned large. This will start being a problem at around 10k impressions.
     # ~ Simon 07/2016
     impressionist(@crop, unique: [:session_hash])
-    unsorted_guides = @crop.guides.order("impressionist_count asc").last(10) || Guide.none
+    unsorted_guides = @crop.guides.order("impressionist_count asc").last(10) || []
     @guides = Guide.sorted_for_user(unsorted_guides, current_user)
   end
 

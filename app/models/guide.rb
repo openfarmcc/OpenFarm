@@ -125,7 +125,7 @@ class Guide
 
   def basic_needs(current_user)
     return nil unless current_user
-    return nil if current_user.gardens.empty?
+    return nil if current_user.gardens.blank?
 
     first_garden = current_user.gardens.first
 
@@ -173,7 +173,7 @@ class Guide
     return current_user_compatibility_score if current_user_compatibility_score
 
     return nil unless current_user
-    return nil if current_user.gardens.empty?
+    return nil if current_user.gardens.blank?
 
     count = 0
 
@@ -267,7 +267,7 @@ class Guide
 
   def calculate_percents(basic_needs)
     basic_needs.each do |need|
-      if need[:total] && !need[:total].empty?
+      if need[:total] && !need[:total].blank?
         need[:percent] = need[:overlap].size.to_f / need[:total].size
       else
         need[:percent] = 0

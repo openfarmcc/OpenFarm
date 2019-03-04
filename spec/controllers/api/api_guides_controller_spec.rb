@@ -82,7 +82,7 @@ describe Api::V1::GuidesController, type: :controller do
     it "should give current_user a badge for creating a guide" do
       sign_in user
 
-      assert user.badges.empty?
+      assert user.badges.blank?
 
       data = { attributes: { name: "brocolini in the desert",
                             overview: "something exotic" },

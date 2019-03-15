@@ -5,7 +5,10 @@ ruby "2.6.1"
 gem "rails"
 gem "bundler"
 
-gem "mongoid"
+# We can't upgrade to Mongoid 7 unless someone has
+# time to manually QA the failed view specs that
+# it causes. -RC 15 MAR 19
+gem "mongoid", "~> 6"
 gem "delayed_job_mongoid" # <= Problematic dep upgrade
 gem "delayed_job_shallow_mongoid"
 gem "kaminari-mongoid"
@@ -20,7 +23,9 @@ gem "aws-sdk-s3"
 gem "bson_ext"
 
 gem "searchkick"
-gem "gibbon"
+# This gem requires a manual upgrade.
+# Help appreciated -RC 15 MAR 19
+gem "gibbon", "~> 1"
 gem "jsonapi-serializers"
 gem "devise"
 gem "eventmachine"
@@ -59,7 +64,7 @@ end
 gem "font-awesome-sass"
 
 # WARNING: Upgrading to foundation v6 is _not_ a trivial task.
-gem 'foundation-rails', '5.5.2.1'
+gem "foundation-rails", "5.5.2.1"
 gem "sprockets"
 gem "sprockets-es6"
 

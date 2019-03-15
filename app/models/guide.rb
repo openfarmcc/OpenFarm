@@ -87,7 +87,7 @@ class Guide
       guides.reverse
     else
       guides
-    # end
+    end
   end
 
   def owned_by?(current_user)

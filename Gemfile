@@ -5,6 +5,9 @@ ruby "2.6.1"
 gem "rails"
 gem "bundler"
 
+# We can't upgrade to Mongoid 7 unless someone has
+# time to manually QA the failed view specs that
+# it causes. -RC 15 MAR 19
 gem "mongoid", "~> 6"
 gem "delayed_job_mongoid" # <= Problematic dep upgrade
 gem "delayed_job_shallow_mongoid"
@@ -20,6 +23,8 @@ gem "aws-sdk-s3"
 gem "bson_ext"
 
 gem "searchkick"
+# This gem requires a manual upgrade.
+# Help appreciated -RC 15 MAR 19
 gem "gibbon", "~> 1"
 gem "jsonapi-serializers"
 gem "devise"

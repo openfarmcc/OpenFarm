@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'openfarm_errors'
+require "spec_helper"
+require "openfarm_errors"
 
 describe Guides::DestroyGuide do
   let(:mutation) { Guides::DestroyGuide }
@@ -8,20 +8,20 @@ describe Guides::DestroyGuide do
 
   let(:params) do
     { user: guide.user,
-      id: "#{guide._id}" }
+     id: "#{guide._id}" }
   end
 
-  it 'requires fields' do
+  it "requires fields" do
     errors = mutation.run({}).errors.message_list
-    expect(errors).to include('User is required')
-    expect(errors).to include('Id is required')
+    expect(errors).to include("User is required")
+    expect(errors).to include("ID is required")
   end
 
-  it 'checks that a guide with the required id exists' do
+  it "checks that a guide with the required id exists" do
     params[:id] = 1
     outcome = mutation.run(params)
     expect(outcome.success?).to be_falsey
-    expect(outcome.errors.message_list).to include('Could not find a guide' +
+    expect(outcome.errors.message_list).to include("Could not find a guide" +
                                                    " with id #{params[:id]}.")
   end
 

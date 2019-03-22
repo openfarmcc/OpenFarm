@@ -29,7 +29,7 @@ require "vcr"
 require "webmock/rspec"
 require "pundit/rspec"
 # ====== PHANTOMJS stuff
-Capybara.javascript_driver = :selenium
+Capybara.javascript_driver = :selenium_headless
 Capybara.default_max_wait_time = 10
 Capybara.register_driver :apparition do |app|
   Capybara::Apparition::Driver.new(app, headless: true) # debug mode: false

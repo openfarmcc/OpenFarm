@@ -110,9 +110,7 @@ sudo docker pull mongo
 ```
 
 ```
-# Some linux users may need to run
-# `sudo sysctl -w vm.max_map_count=262144`
-# for this to work:
+sudo sysctl -w vm.max_map_count=262144 # <= Some linux users must run this
 sudo docker run -p 9300:9300 -p 9200:9200 elasticsearch:6.5.0
 sudo docker run -p 27017:27017 mongo
 

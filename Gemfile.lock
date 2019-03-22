@@ -53,31 +53,26 @@ GEM
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     ambry (1.0.0)
-    apparition (0.1.0)
-      backports
-      capybara (~> 3.12, < 4)
-      websocket-driver (>= 0.6.5)
     arel (9.0.0)
     aws-eventstream (1.0.2)
-    aws-partitions (1.144.0)
-    aws-sdk-core (3.47.0)
+    aws-partitions (1.145.0)
+    aws-sdk-core (3.48.2)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
-      http-2 (~> 0.10)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.14.0)
-      aws-sdk-core (~> 3, >= 3.47.0)
+    aws-sdk-kms (1.16.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
     aws-sdk-rails (2.1.0)
       aws-sdk-ses (~> 1)
       railties (>= 3)
-    aws-sdk-s3 (1.32.0)
-      aws-sdk-core (~> 3, >= 3.47.0)
+    aws-sdk-s3 (1.34.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
-    aws-sdk-ses (1.15.0)
-      aws-sdk-core (~> 3, >= 3.47.0)
+    aws-sdk-ses (1.17.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
@@ -85,14 +80,13 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
-    backports (3.12.0)
     bcrypt (3.1.12)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bson (4.4.2)
     bson_ext (1.5.1)
     builder (3.2.3)
-    capybara (3.14.0)
+    capybara (3.15.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -104,6 +98,8 @@ GEM
       capybara (>= 2.5.0)
     case_transform (0.2)
       activesupport
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.3.11)
     climate_control (0.2.0)
     coderay (1.1.2)
@@ -191,7 +187,7 @@ GEM
     ffi (1.10.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
-    font-awesome-sass (5.6.1)
+    font-awesome-sass (5.8.1)
       sassc (>= 1.11)
     foundation-rails (5.5.2.1)
       railties (>= 3.1.0)
@@ -271,7 +267,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     moneta (1.0.0)
-    mongo (2.7.1)
+    mongo (2.8.0)
       bson (>= 4.4.2, < 5.0.0)
     mongoid (6.4.2)
       activemodel (>= 5.1, < 6.0.0)
@@ -417,7 +413,7 @@ GEM
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
-    rollbar (2.19.2)
+    rollbar (2.19.3)
       multi_json
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
@@ -436,6 +432,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rubyzip (1.2.2)
     safe_yaml (1.0.5)
     sass (3.4.25)
     sass-rails (5.0.7)
@@ -451,6 +448,9 @@ GEM
       activemodel (>= 4.2)
       elasticsearch (>= 5)
       hashie
+    selenium-webdriver (3.141.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2, >= 1.2.2)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -509,7 +509,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  apparition
   aws-sdk-rails
   aws-sdk-s3
   binding_of_caller
@@ -576,6 +575,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails
   searchkick
+  selenium-webdriver
   simplecov
   smarf_doc
   sprockets

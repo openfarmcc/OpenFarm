@@ -69,7 +69,6 @@ describe Guide do
   end
 
   it "sets the popularity score" do
-    pending("?")
     Guide.destroy_all
     FactoryBot.create(:guide)
     FactoryBot.create(:guide)

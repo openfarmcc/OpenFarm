@@ -90,13 +90,13 @@ group :test do
   gem "smarf_doc"
   gem "capybara"
   gem "capybara-angular"
-  gem "apparition"
   gem "phantomjs"
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"
   gem "simplecov"
   gem "coveralls"
+  gem "selenium-webdriver"
 end
 
 group :production, :staging do

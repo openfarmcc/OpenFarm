@@ -225,11 +225,9 @@
         <label for="crop[icon]" class="right">Manage icon</label>
       </div>
       <div class="columns small-8 medium-8">
-        <img
-        width="64"
-        height="64"
-        ng-src="data:image/svg+xml;utf8,{{ crop.svg_icon }}">
-        </img>
+        <div class="crop-icon-wrapper">
+          <%= raw(@crop.svg_icon ? @crop.svg_icon : load_generic_plant_icon) %>
+        </div>
         <svg-button on-change="addSvg($svg)">
         </svg-button>
       </div>

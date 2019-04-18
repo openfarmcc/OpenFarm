@@ -37,12 +37,15 @@ class GuideSearch
     return self unless user
 
     @order = {
-      'compatibilities.score' => {
-        order: 'desc',
-        nested_filter: {
-          term: { 'compatibilities.user_id' => user.id }
-        }
-      }
+      # THIS IS CRASHING ON PRODUCTION AND I DONT
+      # KNOW WHY :( - RC 17 APR 19
+      #
+      # 'compatibilities.score' => {
+      #   order: 'desc',
+      #   nested_filter: {
+      #     term: { 'compatibilities.user_id' => user.id }
+      #   }
+      # }
     }
 
     self

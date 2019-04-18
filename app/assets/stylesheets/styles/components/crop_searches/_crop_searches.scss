@@ -5,8 +5,7 @@
     margin: 1em 0;
   }
 
-  .crop-results-container {
-  }
+  .crop-results-container {}
 
   .guide-results-container {
     background-color: $openfarm-blue-grey;
@@ -14,6 +13,11 @@
     to account for the compatibility score bar */
     padding: 0 15px 30px 15px;
   }
+}
+
+div.crop-icon-wrapper svg {
+  width: 26px;
+  height: 26px;
 }
 
 /*@import "crop_searches/_crop_results.css.scss";

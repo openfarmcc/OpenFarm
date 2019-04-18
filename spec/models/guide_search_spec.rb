@@ -27,17 +27,6 @@ describe GuideSearch do
     expect(subject.order).to eq(_score: :desc)
   end
 
-  it 'searches with a user' do
-    user = OpenStruct.new(id: '1')
-
-    subject.with_user(user)
-
-    filter = subject.order['compatibilities.score'][:nested_filter]
-    search_user = filter[:term]['compatibilities.user_id']
-
-    expect(search_user).to eq(user.id)
-  end
-
   it 'knows if it is empty' do
     Guide.reindex
     subject.search('this will not return anything')

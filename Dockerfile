@@ -2,7 +2,7 @@
 # Image name: openfarm-webapp
 #
 
-FROM       ruby:2.3.3
+FROM       ruby:2.6.1
 MAINTAINER https://github.com/FarmBot/OpenFarm
 
 ENV     PHANTOM_JS_VERSION 1.9.8

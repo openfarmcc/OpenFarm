@@ -4,7 +4,7 @@
 echo "--- STARTING UP SERVER ---"
 
 sudo service elasticsearch start
-#PATH=~/home/vagrant/.rvm/gems/ruby-2.3.3@openfarm/bin/:$PATH
+#PATH=~/home/vagrant/.rvm/gems/ruby-2.6.1@openfarm/bin/:$PATH
 source /home/vagrant/.rvm/scripts/rvm
 
 rvm reload
@@ -16,6 +16,6 @@ sleep 10
 cd /vagrant
 
 # bundle install
-rails s -d -b 0.0.0.0 
+rails s -d -b 0.0.0.0
 
 echo "--- SERVER STARTED ---"

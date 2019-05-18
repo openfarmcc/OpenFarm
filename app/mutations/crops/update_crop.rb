@@ -13,7 +13,13 @@ module Crops
           array :common_names
           string :binomial_name
           string :taxon
-          string :svg_icon
+          # Temporarily disabled for security reasons (XSS attack vector)
+          #
+          # Fix this by:
+          #  * adding a CSP that disallows the use of arbitrary <script/> tags
+          #  * Removing all use of inline <script/> tags
+          #
+          # string :svg_icon
           string :description
           string :sun_requirements
           string :sowing_method

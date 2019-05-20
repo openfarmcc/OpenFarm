@@ -70,8 +70,8 @@ describe Guide do
 
   it "sets the popularity score" do
     Guide.destroy_all
-    FactoryBot.create(:guide)
-    FactoryBot.create(:guide)
+    FactoryBot.create(:guide, impressions_field: 10)
+    FactoryBot.create(:guide, impressions_field: 12)
     guide = FactoryBot.create(:guide)
     expect(guide.popularity_score).not_to eq(0)
   end

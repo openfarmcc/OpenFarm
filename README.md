@@ -10,9 +10,14 @@
 
 Contact rory@openfarm.cc to find out more, or open an issue to discuss your interest.
 
-# Open Source community of contributors: how it works
+# Security Concerns
+
+We take security seriously and value the input of independent researchers. Please email `security@farmbot.io` for issues that require immediate attention. Please follow [responsible disclosure](). **Do not use Slack or Github issues to discuss security vulnerabilities.**
+
+# The Community of Contributors: How it Works
 
 ### Shortcuts
+
 Already contributing to OpenFarm? You're welcome to [introduce yourself](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!
 
 Want to dig head first into our todo list of Github tasks? [Make yourself at home](https://github.com/openfarmcc/OpenFarm/projects)!
@@ -24,7 +29,7 @@ Want to dig head first into our todo list of Github tasks? [Make yourself at hom
 
 The main content are Growing Guides: creative, crowd-sourced, single-author, structured documents that include all of the necessary information for a person or machine to grow a plant, i.e.: seed spacing and depth, watering regimen, recommended soil composition and companion plants, sun/shade requirements, etc. In this Freebase platform, gardeners can find answers to questions like &ldquo;How do I grow tomatoes?&rdquo;
 
-### Start by joining the discussion of existing Contributors
+### Start by Joining Existing Contributors
 
 To start the discussion, get involved, and meet OpenFarm core community of contributors, we strongly recommend joining [our Slack room](http://slack.openfarm.cc/)! This is where you'll find the latest conversation about Openfarm and the most active contributors.
 
@@ -32,7 +37,7 @@ Check also the [FAQ](http://openfarm.cc/pages/faq) for some frequently asked que
 
 Check the [ongoing issues](https://github.com/openfarmcc/OpenFarm/projects) that need work on in the priority list.
 
-### Look for something you want to work on
+### Look for Something You Want to Work On
 
 For [front-end](https://github.com/openfarmcc/OpenFarm/projects/1) and [back-end](https://github.com/openfarmcc/OpenFarm/projects/3) code contributions, we aim at maintaining and prioritizing the Github issues through Github Projects, the Trello-like web-based project management board of Github: [OpenFarm Projects](https://github.com/openfarmcc/OpenFarm/projects).
 
@@ -40,7 +45,7 @@ Need to use OpenFarm Assets? [Here they are](https://drive.google.com/open?id=0B
 
 We have few more languages missing for the website content to be translated: help us [translate the website](https://www.transifex.com/projects/p/openfarm/)!
 
-### Who can contribute
+### Who Can Contribute
 
 Everyone is welcome to bring value to the Open Source community of OpenFarm. Time is our most valuable assets here, so any minute of your time counts to make things happen! "Better done, than perfect!"
 We strive for diversity in our community and want to ensure we provide a safe and inclusive space for everyone by adopting a [Code of Conduct](https://openfarm.cc/pages/code_of_conduct?locale=en).
@@ -53,14 +58,6 @@ On the way we work together, we aim at:
 - having transparency in reasoning behind actions: taking time for documentation, questions and answers
 - prefering done, than perfect: breaking down tasks so that anyone can contribute few min of their time on a regular basis
 - taking shortcuts: what's the most obvious for a better usability? what's the shortest way to build a feature? What's the most valuable inputs for a feedback?
-
-### User Flow
-
-Update in progress
-
-### Mockups
-
-Update in progress
 
 ## Development
 
@@ -221,7 +218,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 The MIT License (MIT)
 
-Copyright (c) 2017 OpenFarm [(http://openfarm.cc/)](http://openfarm.cc/).
+Copyright (c) 2019 OpenFarm [(http://openfarm.cc/)](http://openfarm.cc/).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

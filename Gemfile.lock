@@ -207,7 +207,7 @@ GEM
       excon
       moneta
       multi_json (>= 1.9.2)
-    high_voltage (3.1.0)
+    high_voltage (3.1.2)
     httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)

@@ -159,12 +159,12 @@ GEM
     diff-lcs (1.3)
     docile (1.3.1)
     easy_diff (1.0.0)
-    elasticsearch (6.2.0)
-      elasticsearch-api (= 6.2.0)
-      elasticsearch-transport (= 6.2.0)
-    elasticsearch-api (6.2.0)
+    elasticsearch (7.2.0)
+      elasticsearch-api (= 7.2.0)
+      elasticsearch-transport (= 7.2.0)
+    elasticsearch-api (7.2.0)
       multi_json
-    elasticsearch-transport (6.2.0)
+    elasticsearch-transport (7.2.0)
       faraday
       multi_json
     erubi (1.8.0)
@@ -180,7 +180,7 @@ GEM
     factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
-    faker (1.9.3)
+    faker (1.9.6)
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -207,7 +207,7 @@ GEM
       excon
       moneta
       multi_json (>= 1.9.2)
-    high_voltage (3.1.0)
+    high_voltage (3.1.2)
     httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -291,7 +291,7 @@ GEM
       rake
     multi_json (1.13.1)
     multi_xml (0.6.0)
-    multipart-post (2.0.0)
+    multipart-post (2.1.1)
     mutations (0.9.0)
       activesupport
     nested_form (0.3.2)
@@ -442,9 +442,9 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
-    searchkick (3.1.2)
-      activemodel (>= 4.2)
-      elasticsearch (>= 5)
+    searchkick (4.0.2)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
       hashie
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)

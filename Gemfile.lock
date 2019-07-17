@@ -365,8 +365,8 @@ GEM
     rails-assets-moment (2.8.4)
     rails-assets-ng-file-upload (12.2.13)
       rails-assets-angular (> 1.2.0)
-    rails-assets-ng-tags-input (2.3.0)
-      rails-assets-angular (>= 1.2.1)
+    rails-assets-ng-tags-input (3.2.0)
+      rails-assets-angular (>= 1.3.0)
     rails-assets-showdown (0.5.4)
     rails-assets-typeahead.js (0.11.1)
       rails-assets-jquery (>= 1.7)
@@ -565,7 +565,7 @@ DEPENDENCIES
   rails-assets-jquery-ui (~> 1.11)!
   rails-assets-moment (= 2.8.4)!
   rails-assets-ng-file-upload (~> 12.2)!
-  rails-assets-ng-tags-input (~> 2.0)!
+  rails-assets-ng-tags-input (~> 3.2)!
   rails-assets-showdown (~> 0.5)!
   rails-controller-testing
   rails_12factor

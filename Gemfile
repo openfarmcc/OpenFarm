@@ -8,7 +8,7 @@ gem "bundler"
 # We can't upgrade to Mongoid 7 unless someone has
 # time to manually QA the failed view specs that
 # it causes. -RC 15 MAR 19
-gem "mongoid", "~> 6"
+gem "mongoid", "~> 7"
 gem "delayed_job_mongoid" # <= Problematic dep upgrade
 gem "delayed_job_shallow_mongoid"
 gem "kaminari-mongoid"

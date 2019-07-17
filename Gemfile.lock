@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    acme-client (0.4.1)
+    acme-client (2.0.3)
       faraday (~> 0.9, >= 0.9.1)
     actioncable (5.2.2.1)
       actionpack (= 5.2.2.1)
@@ -173,7 +173,7 @@ GEM
     exception_notification (4.3.0)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
-    excon (0.62.0)
+    excon (0.64.0)
     execjs (2.7.0)
     factory_bot (5.0.2)
       activesupport (>= 4.2.0)
@@ -243,9 +243,9 @@ GEM
       mongoid
     launchy (2.4.3)
       addressable (~> 2.3)
-    letsencrypt-rails-heroku (1.2.0)
-      acme-client (~> 0.4.0)
-      platform-api
+    letsencrypt-rails-heroku (2.0.0)
+      acme-client (~> 2.0)
+      platform-api (~> 2.2)
     letter_opener (1.7.0)
       launchy (~> 2.2)
     loofah (2.2.3)

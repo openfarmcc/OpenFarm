@@ -358,7 +358,7 @@ GEM
       rails-assets-angular (>= 1.0, < 2)
     rails-assets-angular-sanitize (1.5.8)
       rails-assets-angular (= 1.5.8)
-    rails-assets-angular-typeahead (0.3.2)
+    rails-assets-angular-typeahead (1.0.2)
       rails-assets-typeahead.js (~> 0.11.1)
     rails-assets-angular-ui-sortable (0.14.4)
       rails-assets-angular (>= 1.2)
@@ -573,7 +573,7 @@ DEPENDENCIES
   rails-assets-angular-foundation (~> 0.8)!
   rails-assets-angular-local-storage (~> 0.2)!
   rails-assets-angular-sanitize (= 1.5.8)!
-  rails-assets-angular-typeahead (~> 0.3)!
+  rails-assets-angular-typeahead (~> 1.0)!
   rails-assets-angular-ui-sortable (~> 0.13)!
   rails-assets-jquery (~> 2.1)!
   rails-assets-jquery-ui (~> 1.11)!

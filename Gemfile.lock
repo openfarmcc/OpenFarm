@@ -54,6 +54,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     ambry (1.0.0)
     arel (9.0.0)
+    ast (2.4.0)
     aws-eventstream (1.0.3)
     aws-partitions (1.189.0)
     aws-sdk-core (3.59.0)
@@ -215,6 +216,7 @@ GEM
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
       nokogiri (~> 1)
+    jaro_winkler (1.5.3)
     jmespath (1.4.0)
     jquery-rails (4.3.5)
       rails-dom-testing (>= 1, < 3)
@@ -306,6 +308,9 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    parallel (1.17.0)
+    parser (2.6.3.0)
+      ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     platform-api (2.2.0)
       heroics (~> 0.0.25)
@@ -403,6 +408,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -430,6 +436,14 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rubocop (0.71.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    ruby-progressbar (1.10.1)
     rubyzip (1.2.2)
     safe_yaml (1.0.5)
     sass (3.4.25)
@@ -487,6 +501,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.6.0)
     utf8-cleaner (0.2.5)
       activesupport
     vcr (4.0.0)
@@ -571,6 +586,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
+  rubocop (= 0.71)
   sass-rails
   searchkick
   selenium-webdriver
@@ -589,4 +605,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

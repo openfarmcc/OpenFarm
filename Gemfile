@@ -83,6 +83,7 @@ group :development, :test do
   gem "pry-nav"
   gem "rails-controller-testing" # For 'assert_template'
   gem "rspec-rails"
+  gem 'rubocop', '0.71'
 end
 
 group :test do

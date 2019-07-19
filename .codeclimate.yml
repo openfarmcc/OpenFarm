@@ -1,0 +1,27 @@
+version: "2"
+plugins:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    channel: "rubocop-0-71"
+    config:
+      file: .rubocop.yml
+  shellcheck:
+    enabled: true
+exclude_patterns:
+- config/**
+- db/**
+- app/assets/javascripts/angular-libs/**

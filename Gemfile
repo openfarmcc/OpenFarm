@@ -75,14 +75,14 @@ gem "uglifier"
 gem "letter_opener", group: :development
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "pry"
-  gem "pry-nav"
-  gem "launchy"
+  gem "binding_of_caller"
   gem "factory_bot_rails"
   gem "faker"
-  gem "binding_of_caller"
+  gem "launchy"
+  gem "pry"
+  gem "pry-nav"
   gem "rails-controller-testing" # For 'assert_template'
+  gem "rspec-rails"
 end
 
 group :test do

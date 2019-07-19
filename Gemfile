@@ -58,7 +58,7 @@ source "https://rails-assets.org" do
   gem "rails-assets-ng-tags-input", "~> 3.2"
   gem "rails-assets-ng-file-upload", "~> 12.2"
   gem "rails-assets-moment", "2.8.4"
-  gem "rails-assets-showdown", "~> 0.5"
+  gem "rails-assets-showdown", "~> 1.9"
 end
 
 gem "font-awesome-sass"

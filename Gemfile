@@ -112,7 +112,3 @@ group :production, :staging do
   gem 'rails_12factor'
   gem 'thin'
 end
-
-group :production do
-  gem 'letsencrypt-rails-heroku'
-end

@@ -29,7 +29,7 @@ gem 'searchkick'
 
 # This gem requires a manual upgrade.
 # Help appreciated -RC 15 MAR 19
-gem 'gibbon', '~> 1'
+gem 'gibbon', '~> 2'
 
 gem 'coffee-rails'
 gem 'devise'

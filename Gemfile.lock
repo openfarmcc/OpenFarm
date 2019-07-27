@@ -362,7 +362,7 @@ GEM
     rails-assets-jquery (2.2.4)
     rails-assets-jquery-ui (1.12.1)
       rails-assets-jquery (>= 1.6)
-    rails-assets-moment (2.8.4)
+    rails-assets-moment (2.24.0)
     rails-assets-ng-file-upload (12.2.13)
       rails-assets-angular (> 1.2.0)
     rails-assets-ng-tags-input (3.2.0)
@@ -571,7 +571,7 @@ DEPENDENCIES
   rails-assets-angular-ui-sortable (~> 0.13)!
   rails-assets-jquery (~> 2.1)!
   rails-assets-jquery-ui (~> 1.11)!
-  rails-assets-moment (= 2.8.4)!
+  rails-assets-moment (= 2.24.0)!
   rails-assets-ng-file-upload (~> 12.2)!
   rails-assets-ng-tags-input (~> 3.2)!
   rails-assets-showdown (~> 1.9)!

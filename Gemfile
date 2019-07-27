@@ -60,7 +60,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-ui-sortable', '~> 0.13'
   gem 'rails-assets-jquery', '~> 2.1'
   gem 'rails-assets-jquery-ui', '~> 1.11'
-  gem 'rails-assets-moment', '2.8.4'
+  gem 'rails-assets-moment', '2.24.0'
   gem 'rails-assets-ng-file-upload', '~> 12.2'
   gem 'rails-assets-ng-tags-input', '~> 3.2'
   gem 'rails-assets-showdown', '~> 1.9'

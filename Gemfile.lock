@@ -199,7 +199,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    hashdiff (0.3.8)
+    hashdiff (1.0.0)
     hashie (3.6.0)
     heroics (0.0.25)
       erubis (~> 2.0)
@@ -502,10 +502,10 @@ GEM
     vcr (4.0.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.5.1)
+    webmock (3.6.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
-      hashdiff
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)

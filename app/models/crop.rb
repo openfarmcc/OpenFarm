@@ -8,9 +8,6 @@ class Crop
 
   searchkick
 
-  is_impressionable counter_cache: true,
-                    column_name: :impressions_field,
-                    unique: :session_hash
   field :impressions_field, default: 0, type: Integer
 
   has_many :guides

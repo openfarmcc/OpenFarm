@@ -15,27 +15,16 @@ class Guide
   # Though it can probably be tweaked further.
   scope :search_import, -> { includes(:user) }
 
-  # BEGIN SURPRISING IMPRESSIONIST WORKAROUND (RickCarlino, 28 FEB 19) =========
-  #   The work that follows is based off of:
-  #   https://github.com/charlotte-ruby/impressionist/pull/258
-
-  #   In a normal impressionist setup, we would run:
-  is_impressionable counter_cache: true,
-                    column_name: :impressions_field,
-                    unique: :session_hash
-  #   ... and be done. But this will cause Mongoid to crash.
   #   We need to override `impresionsist`s default behavior of
   #   `dependent: :delete_all`.
   #   If we don't, tests will fail with the following error:
   #   NameError uninitialized constant Mongoid::Relations::Cascading::DeleteAll
-  has_many :impressions, as: :impressionable, dependent: :delete
+  # has_many :impressions, as: :impressionable, dependent: :delete
 
   # NOTE TO FUTURE SELF: Try removing the line above and see if tests pass.
   #   that would indicate that the bug was fixed upstream and we can remove this
   #   hotfix.
   field :impressions_field, default: 0, type: Integer
-
-  # END SURPRISING IMPRESSIONIST WORK AROUND ===================================
 
   belongs_to :crop, counter_cache: true
   belongs_to :user

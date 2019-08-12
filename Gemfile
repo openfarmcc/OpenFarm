@@ -50,11 +50,11 @@ gem 'utf8-cleaner'
 # Asset management using bower
 # https://rails-assets.org/
 source 'https://rails-assets.org' do
-  gem 'rails-assets-angular', '1.5.8'
+  gem 'rails-assets-angular', '1.6.9'
   gem 'rails-assets-angular-dragdrop', '~> 1.0'
   gem 'rails-assets-angular-foundation', '~> 0.8'
   gem 'rails-assets-angular-local-storage', '~> 0.2'
-  gem 'rails-assets-angular-sanitize', '1.5.8'
+  gem 'rails-assets-angular-sanitize', '1.6.9'
   gem 'rails-assets-angular-typeahead', '~> 0.3'
   gem 'rails-assets-angular-ui-sortable', '~> 0.13'
   gem 'rails-assets-jquery', '~> 2.1'

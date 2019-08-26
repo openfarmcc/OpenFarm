@@ -2,23 +2,7 @@ class Api::V1::CropsController < Api::V1::BaseController
   skip_before_action :authenticate_from_token!, only: [:index, :show]
 
   def index
-    if raw_params[:filter].present? && (raw_params[:filter].length > 2)
-      q = raw_params[:filter]
-      crops = Crop.search(q,
-                          limit: 25,
-                          operator: "or", # partial: true,
-                          misspellings: { distance: 1 },
-                          fields: ["name^20",
-                                   "common_names^10",
-                                   "binomial_name^10",
-                                   "description"],
-                          boost_by: [:guides_count])
-      render json: serialize_models(crops, include: ["pictures"])
-    else
-      p = raw_params[:page]
-      model = p ? Crop.page(p) : Crop.none
-      render json: serialize_models(model)
-    end
+    render json: should_perform_search? ? search_result : empty_search_result
   end
 
   def show
@@ -46,5 +30,33 @@ class Api::V1::CropsController < Api::V1::BaseController
                                      user: current_user,
                                      id: raw_params[:id])
     respond_with_mutation(:ok, include: ["pictures"])
+  end
+
+  private
+
+  def crops
+    @crops ||= Crop.search(raw_params[:filter],
+                           limit: 25,
+                           operator: "or", # partial: true,
+                           misspellings: { distance: 1 },
+                           fields: ["name^20",
+                                    "common_names^10",
+                                    "binomial_name^10",
+                                    "description"],
+                           boost_by: [:guides_count])
+  end
+
+  def should_perform_search?
+    raw_params[:filter].present? && (raw_params[:filter].length > 2)
+  end
+
+  def empty_search_result
+    p = raw_params[:page]
+    model = p ? Crop.page(p) : Crop.none
+    serialize_models(model)
+  end
+
+  def search_result
+    serialize_models(crops, include: ["pictures"])
   end
 end

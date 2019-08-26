@@ -59,9 +59,10 @@ describe Api::V1::CropsController, type: :controller do
   it 'should update a crop' do
     sign_in user
     crop = FactoryBot.create(:crop)
+    data = { attributes: { description: 'Updated', tags_array: ['tag'] } }
     Legacy._put self, :update,
                 id: crop.id,
-                data: { attributes: { description: 'Updated', tags_array: ['tag'] } }
+                data: data
     expect(response.status).to eq(200)
     crop.reload
     expect(crop.description).to eq('Updated')
@@ -83,7 +84,9 @@ describe Api::V1::CropsController, type: :controller do
     sign_in user
     Legacy._put self, :update,
                 id: crop.id,
-                data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] } }
+                data: { attributes: {
+                  common_names: ['Radish', 'Red Thing', 'New'] }
+                }
     expect(response.status).to eq(200)
     expect(crop.reload.common_names.length).to eq(3)
   end
@@ -91,7 +94,8 @@ describe Api::V1::CropsController, type: :controller do
   it 'should return an error when updating faulty information' do
     sign_in user
     crop = FactoryBot.create(:crop)
-    Legacy._put self, :update, id: crop.id, data: { attributes: { description: '' } }
+    data = { attributes: { description: '' } }
+    Legacy._put self, :update, id: crop.id, data: data
     expect(response.status).to eq(422)
     old_description = crop.description
     crop.reload

@@ -27,6 +27,15 @@ describe Api::V1::CropsController, type: :controller do
     expect(json).to eq("data" => [])
   end
 
+  it "returns all crops, but only if a page param is provided" do
+    get :index, params: { page: 1 }
+    expect(response.status).to eq(200)
+    expect(json.fetch("data").count).to eq(Crop.count)
+    client_ids = json["data"].pluck("id").to_set
+    server_ids = Crop.pluck(:_id).map(&:to_s).to_set
+    expect(client_ids).to eq(server_ids)
+  end
+
   it "should show a crop" do
     crop = FactoryBot.create(:crop)
     Legacy._get self, "show", format: :json, id: crop.id

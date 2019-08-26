@@ -15,7 +15,9 @@ class Api::V1::CropsController < Api::V1::BaseController
                           boost_by: [:guides_count])
       render json: serialize_models(crops, include: ["pictures"])
     else
-      render json: serialize_models(Crop.page(raw_params[:page]))
+      p = raw_params[:page]
+      model = p ? Crop.page(p) : Crop.none
+      render json: serialize_models(model)
     end
   end
 

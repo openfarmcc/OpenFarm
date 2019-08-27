@@ -84,8 +84,10 @@ describe Api::V1::CropsController, type: :controller do
     sign_in user
     Legacy._put self, :update,
                 id: crop.id,
-                data: { attributes: {
-                  common_names: ['Radish', 'Red Thing', 'New'] }
+                data: {
+                  attributes: {
+                    common_names: ['Radish', 'Red Thing', 'New']
+                  }
                 }
     expect(response.status).to eq(200)
     expect(crop.reload.common_names.length).to eq(3)

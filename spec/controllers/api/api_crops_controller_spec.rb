@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'openfarm_errors'
 
@@ -74,7 +76,7 @@ describe Api::V1::CropsController, type: :controller do
     sign_in user
     Legacy._put self, :update,
                 id: crop.id,
-                data: { attributes: { tags_array: %w(just some tags) } }
+                data: { attributes: { tags_array: %w[just some tags] } }
     expect(response.status).to eq(200)
     expect(crop.reload.tags_array.length).to eq(3)
   end

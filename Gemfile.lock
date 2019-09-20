@@ -188,7 +188,7 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
-    font-awesome-sass (5.10.2)
+    font-awesome-sass (5.11.1)
       sassc (>= 1.11)
     foundation-rails (5.5.2.1)
       railties (>= 3.1.0)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GardenCrop
   include Mongoid::Document
   include Mongoid::History::Trackable # https://github.com/mongoid/mongoid-history#mongoid-history

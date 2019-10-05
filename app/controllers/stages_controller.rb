@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StagesController < ApplicationController
   # def create
   #   @stage = Stage.new(stages_params)

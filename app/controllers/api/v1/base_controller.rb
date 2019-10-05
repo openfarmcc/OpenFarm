@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openfarm_errors'
 
 class Api::V1::BaseController < ApplicationController

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 cat = File.open('spec/fixtures/cat.jpg')
 FactoryBot.define do
   factory :crop_picture, class: Picture do

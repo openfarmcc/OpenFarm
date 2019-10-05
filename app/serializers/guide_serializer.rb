@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GuideSerializer < BaseSerializer
   has_one :crop
   has_one :user

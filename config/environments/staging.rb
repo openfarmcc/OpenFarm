@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OpenFarm::Application.configure do
   Delayed::Worker.delay_jobs = true
   Delayed::Worker.destroy_failed_jobs = false

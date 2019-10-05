@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # a Crop is the basic searchable unit within OpenFarm. The term 'plant' was
 # avoided to stay generic (ex: edible fungi).
 class Crop

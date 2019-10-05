@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Without this mimetype registration, controllers will not automatically
 # parse JSON API params.
 module JSONAPI

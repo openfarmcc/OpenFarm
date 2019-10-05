@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PicturesMixin
   # Complexity of this method is way too high. Let's refactor some time.
   #   - @RickCarlino

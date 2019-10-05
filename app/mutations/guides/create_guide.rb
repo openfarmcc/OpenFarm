@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Guides
   class CreateGuide < Mutations::Command
     attr_writer :guide

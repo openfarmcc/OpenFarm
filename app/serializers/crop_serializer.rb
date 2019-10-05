@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CropSerializer < BaseSerializer
   attribute :name
   attribute :slug

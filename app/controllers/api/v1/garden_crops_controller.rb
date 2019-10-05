@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::GardenCropsController < Api::V1::BaseController
   def index
     garden = Garden.find(raw_params[:garden_id])

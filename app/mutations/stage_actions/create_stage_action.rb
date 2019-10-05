@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StageActions
   class CreateStageAction < Mutations::Command
     include StageActions::StageActionsConcern

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Stages
   # Place shared functionality between Stage mutations here to stay DRY.
   module StagesConcern

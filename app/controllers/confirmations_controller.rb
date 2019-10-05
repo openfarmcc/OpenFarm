@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConfirmationsController < Devise::ConfirmationsController
   def show
     token =

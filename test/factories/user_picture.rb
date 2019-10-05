@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Read about factories at https://github.com/thoughtbot/factory_bot
 cat = File.open('spec/fixtures/cat.jpg')
 FactoryBot.define do

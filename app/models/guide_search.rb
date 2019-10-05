@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GuideSearch
   attr_reader :filter
   attr_reader :order

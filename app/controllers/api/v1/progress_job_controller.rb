@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::ProgressJobController < Api::V1::BaseController
   def show
     obj_type = params[:obj_type]

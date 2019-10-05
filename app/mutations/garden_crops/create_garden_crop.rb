@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GardenCrops
   class CreateGardenCrop < Mutations::Command
     # attr_writer :garden_crop

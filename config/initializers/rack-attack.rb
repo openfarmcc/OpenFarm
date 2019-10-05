@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rack::Attack
   ### Throttle Spammy Clients ###
   # Throttle all requests by IP (60rpm)

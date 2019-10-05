@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::StageActionsController < Api::V1::BaseController
   def index
     stage = Stage.find(params[:stage_id])

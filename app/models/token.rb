@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Token
   include Mongoid::Document
   include Mongoid::Timestamps

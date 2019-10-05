@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Stages
   class CreateStage < Mutations::Command
     include Stages::StagesConcern

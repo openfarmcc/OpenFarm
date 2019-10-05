@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StageSerializer < BaseSerializer
   attribute :name
   attribute :soil

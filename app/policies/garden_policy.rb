@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GardenPolicy < ApplicationPolicy
   attr_reader :current_user, :garden
 

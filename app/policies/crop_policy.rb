@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CropPolicy < ApplicationPolicy
   attr_reader :current_user, :crop
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StageActions
   class DestroyStageAction < Mutations::Command
     required do

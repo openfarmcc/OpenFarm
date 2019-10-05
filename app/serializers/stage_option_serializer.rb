@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StageOptionSerializer < BaseSerializer
   attribute :default_value
   attribute :name

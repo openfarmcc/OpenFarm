@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GardenCropSerializer < BaseSerializer
   include Rails.application.routes.url_helpers
   attribute :garden do

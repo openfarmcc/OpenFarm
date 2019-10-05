@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Stages
   # TODO Start new naming convention: Stages::Update
   class UpdateStage < Mutations::Command

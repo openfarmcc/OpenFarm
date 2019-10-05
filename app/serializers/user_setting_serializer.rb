@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSettingSerializer < BaseSerializer
   attribute :location
   attribute :units

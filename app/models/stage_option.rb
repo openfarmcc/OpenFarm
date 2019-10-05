@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StageOption
   include Mongoid::Document
   include Mongoid::Slug

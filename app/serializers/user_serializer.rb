@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSerializer < BaseSerializer
   attribute :display_name
   attribute :email do

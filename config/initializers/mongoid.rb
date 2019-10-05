@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # If you don't do this, serializing models to JSON will give you goofy primary
 # keys that look like this: {"_id":{"$oid":"53702cfc5269632ff6000000"}} which is
 # just odd. Man, I wish this was just a Mongoid config.

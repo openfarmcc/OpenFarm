@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Crops
   module CropsConcern
     def validate_companions

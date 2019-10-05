@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StageActionSerializer < BaseSerializer
   attribute :name
   attribute :overview

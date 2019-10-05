@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OpenFarm::Application.configure do
   # This would be fixed in rails 5 or maybe even 4.2?
   # http://stackoverflow.com/a/25428800/154392

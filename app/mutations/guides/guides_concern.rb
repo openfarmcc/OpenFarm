@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Guides
   # Place shared functionality between Guide mutations here to stay DRY.
   module GuidesConcern

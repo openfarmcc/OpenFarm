@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tokens
   class Create < Mutations::Command
     required do

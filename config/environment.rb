@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if File.exists?('config/app_environment_variables.rb')
   load 'config/app_environment_variables.rb'
 else

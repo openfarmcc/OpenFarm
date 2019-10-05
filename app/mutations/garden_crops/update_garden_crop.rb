@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GardenCrops
   class UpdateGardenCrop < Mutations::Command
     required do

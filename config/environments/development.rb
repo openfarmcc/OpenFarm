@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OpenFarm::Application.configure do
   Delayed::Worker.delay_jobs = false
   # This would be fixed in rails 5 or maybe even 4.2?

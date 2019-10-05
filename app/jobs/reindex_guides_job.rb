@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReindexGuidesJob < ActiveJob::Base
   queue_as :default
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Crops
   class UpdateCrop < Mutations::Command
     attr_reader :pictures

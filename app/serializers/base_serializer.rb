@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Using https://github.com/fotinakis/jsonapi-serializers
 require 'jsonapi-serializers'
 

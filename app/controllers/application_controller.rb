@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # OUT OF DATE
 
 class ApplicationController < ActionController::Base

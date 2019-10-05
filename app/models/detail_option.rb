@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is a catch-all class to store information
 # on guides.
 #

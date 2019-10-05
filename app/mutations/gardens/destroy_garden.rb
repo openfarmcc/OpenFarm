@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gardens
   class DestroyGarden < Mutations::Command
     required do

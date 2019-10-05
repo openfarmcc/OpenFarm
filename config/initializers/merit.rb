@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure merit parameters
 Merit.setup { |config| config.orm = :mongoid }
 

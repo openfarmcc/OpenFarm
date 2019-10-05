@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # +grant_on+ accepts:
 # * Nothing (always grants)
 # * A block which evaluates to boolean (recieves the object as parameter)

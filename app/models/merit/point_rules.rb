@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Points are a simple integer value which are given to "meritable" resources
 # according to rules in +app/models/merit/point_rules.rb+. They are given on
 # actions-triggered.

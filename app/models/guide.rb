@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Guide
   include Mongoid::Document
   include Mongoid::Paperclip

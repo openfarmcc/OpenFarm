@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # YOU NEED TO SET SENSITIVE SECRETS AND STUFF IN HERE.
 
 ENV['S3_BUCKET_NAME'] = 'my_bucket'

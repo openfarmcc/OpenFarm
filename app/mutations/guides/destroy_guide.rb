@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Guides
   class DestroyGuide < Mutations::Command
     required do

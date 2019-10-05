@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   # This generates a policy and signature for an s3 bucket
   # based on requirements as specified by Amazon.

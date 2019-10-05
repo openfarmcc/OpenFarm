@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PictureSerializer < BaseSerializer
   attribute :id
   attribute :photographic_id do

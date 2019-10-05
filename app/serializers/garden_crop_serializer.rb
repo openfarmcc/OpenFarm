@@ -6,17 +6,10 @@ class GardenCropSerializer < BaseSerializer
   # This isn't very JSON-API, but it's a lot less
   # headache.
   attribute :guide do
-    if object.guide
-      { id: object.guide.id,
-        name: object.guide.name,
-        crop_id: object.guide.crop.id }
-    end
+    { id: object.guide.id, name: object.guide.name, crop_id: object.guide.crop.id } if object.guide
   end
   attribute :crop do
-    if object.crop
-      { id: object.crop.id,
-        name: object.crop.name }
-    end
+    { id: object.crop.id, name: object.crop.name } if object.crop
   end
   attribute :sowed
   attribute :stage
@@ -27,20 +20,17 @@ class GardenCropSerializer < BaseSerializer
   end
 
   def links
-
     data = {}
     data['self'] = self_link if self_link
     if object.guide
       data[:guide] = {
-        'api': "/api/v1/guides/#{object.guide.id}/",
-        'website': guide_url(id: object.guide.id, only_path: true)
+        'api': "/api/v1/guides/#{object.guide.id}/", 'website': guide_url(id: object.guide.id, only_path: true)
       }
     end
 
     if object.crop
       data[:crop] = {
-        'api': "/api/v1/crops/#{object.crop.id}/",
-        'website': crop_url(id: object.crop.id, only_path: true)
+        'api': "/api/v1/crops/#{object.crop.id}/", 'website': crop_url(id: object.crop.id, only_path: true)
       }
     end
 
@@ -49,8 +39,8 @@ class GardenCropSerializer < BaseSerializer
 
   def self_link
     {
-      'api': "/api/v1/gardens/#{object.garden.id}/garden_crops/#{object.id}",
       # 'website': "/users/#{object.user.id}/#gardens"
+      'api': "/api/v1/gardens/#{object.garden.id}/garden_crops/#{object.id}"
     }
   end
 end

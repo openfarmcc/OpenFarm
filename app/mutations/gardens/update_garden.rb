@@ -20,9 +20,7 @@ module Gardens
       end
     end
 
-    optional do
-      array :images, class: Hash, arrayize: true
-    end
+    optional { array :images, class: Hash, arrayize: true }
 
     def validate
       @existing_garden = Garden.find(id)

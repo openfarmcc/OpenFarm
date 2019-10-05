@@ -1,24 +1,18 @@
 module PicturesMixin
-
   # Complexity of this method is way too high. Let's refactor some time.
   #   - @RickCarlino
-  def validate_images (images, obj=nil)
-    images && images.each do |pic|
-      pic_id = "#{pic[:id]}" if pic[:id].present?
-      pictures = obj.pictures if obj
+  def validate_images(images, obj = nil)
+    images &&
+      images.each do |pic|
+        pic_id = "#{pic[:id]}" if pic[:id].present?
+        pictures = obj.pictures if obj
 
-      outcome = Pictures::CreatePicture.validate(url: pic[:image_url],
-                                                 id: pic_id,
-                                                 pictures: pictures)
-      unless outcome.success?
-        add_error :images,
-                  :bad_format,
-                  outcome.errors.message_list.to_sentence
+        outcome = Pictures::CreatePicture.validate(url: pic[:image_url], id: pic_id, pictures: pictures)
+        add_error :images, :bad_format, outcome.errors.message_list.to_sentence unless outcome.success?
       end
-    end
   end
 
-  def set_images (images, obj)
+  def set_images(images, obj)
     # Delete all pictures
     # This is much simpler, less ping pong than what it was
     # and probably okay for now. However, this only works when S3
@@ -27,26 +21,16 @@ module PicturesMixin
 
     obj.processing_pictures = new_images.count
     obj.save
-    new_images && new_images.each do |img|
-      Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj)
-    end
+    new_images && new_images.each { |img| Delayed::Job.enqueue CreatePicFromUrlJob.new(img[:image_url], obj) }
   end
 
-  def choose_images_to_delete (images, obj)
-    unless images
-      images = []
-    end
+  def choose_images_to_delete(images, obj)
+    images = [] unless images
 
-    image_ids = images.map do |img|
-      img[:id].to_s
-    end
+    image_ids = images.map { |img| img[:id].to_s }
 
     delete_ids_array = []
-    obj.pictures.each do |pic|
-      if !image_ids.include? pic[:id].to_s
-        delete_ids_array.push(pic[:id])
-      end
-    end
+    obj.pictures.each { |pic| delete_ids_array.push(pic[:id]) if !image_ids.include? pic[:id].to_s }
 
     obj.pictures.where(:id.in => delete_ids_array).delete
 

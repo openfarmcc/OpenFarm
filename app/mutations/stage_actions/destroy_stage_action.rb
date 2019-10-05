@@ -23,8 +23,7 @@ module StageActions
     end
 
     def find_stage_action
-      @stage_action = Stage.find(stage_id).
-          stage_actions.find(id)
+      @stage_action = Stage.find(stage_id).stage_actions.find(id)
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a stage_action with id #{id}."
       add_error :stage_action, :stage_action_not_found, msg

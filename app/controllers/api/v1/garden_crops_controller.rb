@@ -9,7 +9,7 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
       raise OpenfarmErrors::NotAuthorized
     end
   rescue Mongoid::Errors::DocumentNotFound
-    render json: "Garden not found", status: 404
+    render json: 'Garden not found', status: 404
   end
 
   def create
@@ -19,11 +19,8 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'type': 'garden-crops',
     #     'attributes': {},
     # }
-    @outcome = GardenCrops::CreateGardenCrop.run(
-      raw_params[:data],
-      garden_id: raw_params[:garden_id],
-      user: current_user,
-    )
+    @outcome =
+      GardenCrops::CreateGardenCrop.run(raw_params[:data], garden_id: raw_params[:garden_id], user: current_user)
     respond_with_mutation(:created)
   end
 
@@ -37,7 +34,7 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
       raise OpenfarmErrors::NotAuthorized
     end
   rescue Mongoid::Errors::DocumentNotFound
-    render json: "Garden not found", status: 404
+    render json: 'Garden not found', status: 404
   end
 
   def update
@@ -48,17 +45,13 @@ class Api::V1::GardenCropsController < Api::V1::BaseController
     #     'id': <id>,
     #     'attributes': {},
     # }
-    garden_crop = Garden.find(raw_params[:garden_id]).
-      garden_crops.find(raw_params[:id])
-    @outcome = GardenCrops::UpdateGardenCrop.run(raw_params[:data],
-                                                 user: current_user,
-                                                 garden_crop: garden_crop)
+    garden_crop = Garden.find(raw_params[:garden_id]).garden_crops.find(raw_params[:id])
+    @outcome = GardenCrops::UpdateGardenCrop.run(raw_params[:data], user: current_user, garden_crop: garden_crop)
     respond_with_mutation(:ok)
   end
 
   def destroy
-    @outcome = GardenCrops::DestroyGardenCrop.run(raw_params,
-                                                  user: current_user)
+    @outcome = GardenCrops::DestroyGardenCrop.run(raw_params, user: current_user)
     respond_with_mutation(:no_content)
   end
 end

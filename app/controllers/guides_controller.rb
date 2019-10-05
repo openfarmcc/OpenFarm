@@ -1,5 +1,5 @@
 class GuidesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     if current_user
@@ -26,8 +26,7 @@ class GuidesController < ApplicationController
   end
 
   def destroy
-    @outcome = Guides::DestroyGuide.run(raw_params,
-                                        user: current_user)
+    @outcome = Guides::DestroyGuide.run(raw_params, user: current_user)
     redirect_to guides_path
   end
 end

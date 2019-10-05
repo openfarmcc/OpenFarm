@@ -33,9 +33,7 @@ module Guides
       end
     end
 
-    optional do
-      array :images, class: Hash, arrayize: true
-    end
+    optional { array :images, class: Hash, arrayize: true }
 
     def validate
       @guide = guide
@@ -47,7 +45,7 @@ module Guides
     end
 
     def execute
-      @guide.update(attributes.select { |k| k != "featured_image" })
+      @guide.update(attributes.select { |k| k != 'featured_image' })
       set_time_span
       set_images images, @guide
       set_empty_practices
@@ -58,14 +56,12 @@ module Guides
     private
 
     def set_empty_practices
-      if attributes[:practices] == nil
-        @guide.practices = []
-      end
+      @guide.practices = [] if attributes[:practices] == nil
     end
 
     def validate_permissions
       if @guide.user != user
-        msg = "You can only modify guides that you created."
+        msg = 'You can only modify guides that you created.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
     end

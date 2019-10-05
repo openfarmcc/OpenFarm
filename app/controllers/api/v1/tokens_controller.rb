@@ -1,5 +1,5 @@
 class Api::V1::TokensController < Api::V1::BaseController
-  skip_before_action :authenticate_from_token!, only: [:create]
+  skip_before_action :authenticate_from_token!, only: %i[create]
 
   def create
     @outcome = Tokens::Create.run(raw_params)
@@ -10,7 +10,7 @@ class Api::V1::TokensController < Api::V1::BaseController
     if current_user.token && current_user.token.destroy
       render json: nil, status: :no_content
     else
-      err = { error: "your account has no token to destroy." }
+      err = { error: 'your account has no token to destroy.' }
       render json: err, status: :not_found
     end
   end

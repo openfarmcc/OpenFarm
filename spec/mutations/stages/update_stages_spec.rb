@@ -5,11 +5,7 @@ describe Stages::UpdateStage do
 
   let(:stage) { FactoryBot.create(:stage) }
 
-  let(:params) do
-    { user: stage.guide.user,
-      stage: stage,
-      attributes: {} }
-  end
+  let(:params) { { user: stage.guide.user, stage: stage, attributes: {} } }
 
   it 'requires fields' do
     errors = mutation.run({}).errors.message_list
@@ -23,9 +19,7 @@ describe Stages::UpdateStage do
 
   it 'updates a stage image via URL' do
     VCR.use_cassette('mutations/stages/update_stage') do
-      image_hash = {
-        image_url: 'http://i.imgur.com/2haLt4J.jpg'
-      }
+      image_hash = { image_url: 'http://i.imgur.com/2haLt4J.jpg' }
       image_params = params.merge(images: [image_hash])
       results = mutation.run(image_params)
       pics = results.result.pictures
@@ -37,9 +31,7 @@ describe Stages::UpdateStage do
     # Fake using S3
     # Paperclip::Attachment.default_options[:storage] = 's3'
     # Paperclip::Attachment.default_options[:s3_credentials][:bucket] =
-    image_hash = {
-      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
-    }
+    image_hash = { image_url: 'iWroteThisWrong.net/2haLt4J.jpg' }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
     expect(results.success?).to be_falsey
@@ -53,8 +45,7 @@ describe Stages::UpdateStage do
   end
 
   it 'allows a well formed stage actions array' do
-    actions = [{ name: "#{Faker::Lorem.word}",
-                 overview: "#{Faker::Lorem.paragraph}" }]
+    actions = [{ name: "#{Faker::Lorem.word}", overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_truthy
@@ -62,8 +53,7 @@ describe Stages::UpdateStage do
   end
 
   it 'disallows a badly formed stage actions array with bad name' do
-    actions = [{ moon: "#{Faker::Lorem.word}",
-                 overview: "#{Faker::Lorem.paragraph}" }]
+    actions = [{ moon: "#{Faker::Lorem.word}", overview: "#{Faker::Lorem.paragraph}" }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_falsey
@@ -72,9 +62,7 @@ describe Stages::UpdateStage do
 
   it 'allows updating of existing stage actions' do
     stage_action = FactoryBot.create(:stage_action, stage: stage)
-    actions = [{ name: stage_action.name,
-                 overview: stage_action.overview,
-                 id: stage_action.id }]
+    actions = [{ name: stage_action.name, overview: stage_action.overview, id: stage_action.id }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.result.stage_actions[0].id).to eq(stage_action.id)

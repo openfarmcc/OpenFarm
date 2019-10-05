@@ -39,18 +39,14 @@ module GardenCrops
     end
 
     def validate_guide
-      if attributes[:guide]
-        attributes[:guide] = Guide.find(attributes[:guide])
-      end
+      attributes[:guide] = Guide.find(attributes[:guide]) if attributes[:guide]
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a guide with id #{attributes[:guide]}."
       add_error :guide, :guide_not_found, msg
     end
 
     def validate_crop
-      if attributes[:crop]
-        attributes[:crop] = Crop.find(attributes[:crop])
-      end
+      attributes[:crop] = Crop.find(attributes[:crop]) if attributes[:crop]
     rescue Mongoid::Errors::DocumentNotFound
       msg = "Could not find a crop with id #{attributes[:crop]}."
       add_error :crop, :crop_not_found, msg
@@ -65,7 +61,7 @@ module GardenCrops
 
     def validate_permissions
       if @garden && (@garden.user != user)
-        msg = 'You can\'t create garden crops for gardens you don\'t own.'
+        msg = "You can't create garden crops for gardens you don't own."
         add_error :garden, :not_authorized, msg
       end
     end

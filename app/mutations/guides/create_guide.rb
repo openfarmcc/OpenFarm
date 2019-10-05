@@ -8,9 +8,7 @@ module Guides
       model :user
 
       hash :attributes do
-        required do
-          string :name
-        end
+        required { string :name }
         optional do
           string :overview
           string :location
@@ -78,8 +76,7 @@ module Guides
     def check_if_crop_exists
       crops = Crop.where(name: crop_name)
       if crops.count == 0
-        crop = Crop.new(name: crop_name,
-                        common_names: [crop_name,])
+        crop = Crop.new(name: crop_name, common_names: [crop_name])
         crop.save
         crop
       else

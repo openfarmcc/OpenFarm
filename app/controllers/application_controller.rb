@@ -20,9 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_confirmation
-    if current_user && !current_user.confirmed?
-      flash[:warning] = I18n.t("users.need_confirmation")
-    end
+    flash[:warning] = I18n.t('users.need_confirmation') if current_user && !current_user.confirmed?
   end
 
   # OpenFarm uses the `Mutations` gem for most API operations.
@@ -37,9 +35,7 @@ class ApplicationController < ActionController::Base
   # This method allows devise to pass non standard attributes through and
   # thereby comply with 'strong parameters'.
   def update_sanitized_params
-    devise_parameter_sanitizer.permit(:sign_up) do |params|
-      params.permit *safe_user_attrs
-    end
+    devise_parameter_sanitizer.permit(:sign_up) { |params| params.permit *safe_user_attrs }
 
     devise_parameter_sanitizer.permit(:account_update) do |params|
       params.permit *(safe_user_attrs << :current_password)
@@ -48,21 +44,17 @@ class ApplicationController < ActionController::Base
 
   # List of attributes that are safe for mass assignment on User objects.
   def safe_user_attrs
-    [:display_name, :email, :location, :password, :units,
-     :years_experience, :mailing_list, :is_private, :agree]
+    %i[display_name email location password units years_experience mailing_list is_private agree]
   end
 
   private
 
   def record_not_found
-    render file: "#{Rails.root}/public/404",
-           formats: [:html],
-           status: 404,
-           layout: false
+    render file: "#{Rails.root}/public/404", formats: %i[html], status: 404, layout: false
   end
 
   def user_not_authorized(exception)
-    flash[:alert] = 'You\'re not authorized to go to there.'
+    flash[:alert] = "You're not authorized to go to there."
     if !current_user
       store_location_for(:user, new_crop_path)
 
@@ -74,10 +66,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     go_to = stored_location_for(resource)
 
-    if go_to
-      go_to || request.referer || root_path
-    else
-      url_for(root_path)
-    end
+    go_to ? go_to || request.referer || root_path : url_for(root_path)
   end
 end

@@ -4,7 +4,7 @@ class Token
 
     def initialize(token_string)
       @email, pt = *token_string.split(':')
-      @guess     = Digest::SHA512.hexdigest(pt)
+      @guess = Digest::SHA512.hexdigest(pt)
     end
 
     def build
@@ -21,9 +21,7 @@ class Token
     end
 
     def check_expiration
-      if Date.today > user.token.expiration
-        raise OpenfarmErrors::NotAuthorized, 'Expired token.'
-      end
+      raise OpenfarmErrors::NotAuthorized, 'Expired token.' if Date.today > user.token.expiration
     end
 
     def check_user

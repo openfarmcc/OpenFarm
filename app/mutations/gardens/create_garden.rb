@@ -5,9 +5,7 @@ module Gardens
     required do
       model :user
       hash :attributes do
-        required do
-          string :name
-        end
+        required { string :name }
         optional do
           string :location
           string :description

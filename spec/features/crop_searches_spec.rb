@@ -1,9 +1,8 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "Crop search", type: :controller do
+describe 'Crop search', type: :controller do
   def asset_url(relative_path)
-    "#{host_with_port}#{Rails.application.config.assets.prefix}/" +
-    "#{relative_path}"
+    "#{host_with_port}#{Rails.application.config.assets.prefix}/" + "#{relative_path}"
   end
 
   def host_with_port
@@ -12,7 +11,7 @@ describe "Crop search", type: :controller do
 
   let!(:crop) { FactoryBot.create(:crop, :radish) }
 
-  it "finds individual crops" # , js: true do
+  it 'finds individual crops' # , js: true do
   #   visit root_path
   #   FactoryBot.create_list(:crop, 10)
   #   FactoryBot.create(:crop, name: 'radish')
@@ -24,13 +23,13 @@ describe "Crop search", type: :controller do
   #     .to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it "handles empty searches", js: true do
+  it 'handles empty searches', js: true do
     Crop.collection.drop
     visit root_path
-    fill_in "q", with: ""
+    fill_in 'q', with: ''
     FactoryBot.create_list(:crop, 10)
     Crop.reindex
-    click_button "Search"
+    click_button 'Search'
     expect(page).to have_content(Crop.last.name)
     # Don't use crops with apostraphes in the name- creates weird errors.
     crop = Crop.all.to_a.detect { |x| !x.name.include?("'") }
@@ -41,44 +40,43 @@ describe "Crop search", type: :controller do
     expect(page).to have_css(selector1, visible: false)
     selector2 = "meta[property='og:description'][content='#{description}']"
     expect(page).to have_css(selector2, visible: false)
-    selector3 = "meta[property='og:image']" +
-                "[content='#{host_with_port}#{image}']"
+    selector3 = "meta[property='og:image']" + "[content='#{host_with_port}#{image}']"
     expect(page).to have_css(selector3, visible: false)
   end
 
-  it "handles empty search results", js: true do
+  it 'handles empty search results', js: true do
     Crop.collection.drop
     FactoryBot.create_list(:crop, 10)
     Crop.searchkick_index.refresh
     visit root_path
-    fill_in "q", with: "pokemon"
-    click_button "Search"
+    fill_in 'q', with: 'pokemon'
+    click_button 'Search'
     expect(page).to have_content("Sorry, we don't have any crops matching")
-    description = I18n.t("application.site_description")
-    title = I18n.t("crop_searches.show.title")
+    description = I18n.t('application.site_description')
+    title = I18n.t('crop_searches.show.title')
     selector1 = "meta[property='og:description'][content='#{description}']"
     expect(page).to have_css(selector1, visible: false)
     selector2 = "meta[property='og:title'][content='#{title}']"
     expect(page).to have_css(selector2, visible: false)
-    image = "openfarm-learn-to-grow-anything-with-community-created-guides"
+    image = 'openfarm-learn-to-grow-anything-with-community-created-guides'
     meta_image = find("meta[property='og:image']", visible: false)
     expect(meta_image).to be
     expect(meta_image[:content]).to include(image)
   end
 
-  it "handles plurals", js: true do
+  it 'handles plurals', js: true do
     Crop.collection.drop
     FactoryBot.create_list(:crop, 10)
     q = FactoryBot.create(:crop, :radish).name
     Crop.searchkick_index.refresh
     visit root_path
-    fill_in "q", with: q
-    click_button "Search"
+    fill_in 'q', with: q
+    click_button 'Search'
     expect(page).to have_content(crop.name)
     expect(page).to_not have_content("Sorry, we don't have any crops matching")
   end
 
-  it "handles misspellings" # , js: true do
+  it 'handles misspellings' # , js: true do
   #   visit root_path
   #   FactoryBot.create_list(:crop, 10)
   #   FactoryBot.create(:crop, name: 'radish')
@@ -90,7 +88,7 @@ describe "Crop search", type: :controller do
   #     .to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it "handles multiple words" # , js: true do
+  it 'handles multiple words' # , js: true do
   #   visit root_path
   #   FactoryBot.create_list(:crop, 10)
   #   FactoryBot.create(:crop, name: 'radish')
@@ -102,7 +100,7 @@ describe "Crop search", type: :controller do
   #     .to_not have_content("Sorry, we don't have any crops matching")
   # end
 
-  it "has a top nav bar" # , js: true do
+  it 'has a top nav bar' # , js: true do
   #   skip 'this test does not pass on CI - RickCarlino'
   #   visit crop_search_via_get_path(cropsearch: { q: 'red' })
   #   fill_in 'q', with: crop.name

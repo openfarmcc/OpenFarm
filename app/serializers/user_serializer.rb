@@ -1,44 +1,30 @@
 class UserSerializer < BaseSerializer
   attribute :display_name
   attribute :email do
-    if current_user == object
-      object.admin
-    end
+    object.admin if current_user == object
   end
   attribute :admin do
-    if current_user == object
-      object.admin
-    end
+    object.admin if current_user == object
   end
 
   attribute :is_private do
-    if current_user == object
-      object.is_private
-    end
+    object.is_private if current_user == object
   end
 
   attribute :help_list do
-    if current_user == object
-      object.help_list
-    end
+    object.help_list if current_user == object
   end
 
   attribute :mailing_list do
-    if current_user == object
-      object.mailing_list
-    end
+    object.mailing_list if current_user == object
   end
 
   has_many :gardens do
-    if Pundit.policy(current_user, object).show?
-      object.gardens
-    end
+    object.gardens if Pundit.policy(current_user, object).show?
   end
 
   has_many :guides do
-    if Pundit.policy(current_user, object).show?
-      object.guides
-    end
+    object.guides if Pundit.policy(current_user, object).show?
   end
 
   has_many :favorited_guides do

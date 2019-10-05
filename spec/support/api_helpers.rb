@@ -10,8 +10,9 @@ module ApiHelpers
   end
 
   def set_token(token)
-    controller.request.env['HTTP_AUTHORIZATION'] = 'Token token='\
-                                                   "#{token.fully_formed}"
+    controller.request.env['HTTP_AUTHORIZATION'] =
+      'Token token=' \
+        "#{token.fully_formed}"
   end
 
   def note(msg)

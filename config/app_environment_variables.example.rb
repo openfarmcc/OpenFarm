@@ -1,22 +1,23 @@
 # YOU NEED TO SET SENSITIVE SECRETS AND STUFF IN HERE.
 
-ENV['S3_BUCKET_NAME']        = 'my_bucket'
+ENV['S3_BUCKET_NAME'] = 'my_bucket'
 # Public Bucket (AJAX) Policy Here:
-ENV['S3_ACCESS_KEY']         = '987'
-ENV['S3_SECRET_KEY']         = '654'
+ENV['S3_ACCESS_KEY'] = '987'
+ENV['S3_SECRET_KEY'] = '654'
 # Trusted Bucket (Paperclip) Policy Here:
-ENV['SERVER_S3_ACCESS_KEY']  = '123'
-ENV['SERVER_S3_SECRET_KEY']  = '456'
+ENV['SERVER_S3_ACCESS_KEY'] = '123'
+ENV['SERVER_S3_SECRET_KEY'] = '456'
 ENV['ELASTICSEARCH_URL'] = 'http://127.0.0.1:9200'
 
 # Emails seperated by pipes('|')
-ENV['ALERTS']                = "t@g.com|a@b.com"
+ENV['ALERTS'] = 't@g.com|a@b.com'
 
 # If you want to use google's location services, you'll have to set up an
 # API key on their dashboard.
 # https://developers.google.com/maps/documentation/javascript/get-api-key
 ENV['GOOGLE_MAPS_API_KEY'] = ''
 
-ENV['SECRET_KEY_BASE']       = '58f4e3cc1646c5eebbedc3dce699f76a527de45b5451a5'\
-                               '82e2b334e008a4c2cc8b70999230257f61c9522ad56dc3'\
-                               'a66654d29b227aa6e6bf5b4f2df49dd617be'
+ENV['SECRET_KEY_BASE'] =
+  '58f4e3cc1646c5eebbedc3dce699f76a527de45b5451a5' \
+    '82e2b334e008a4c2cc8b70999230257f61c9522ad56dc3' \
+    'a66654d29b227aa6e6bf5b4f2df49dd617be'

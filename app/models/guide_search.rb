@@ -7,7 +7,6 @@ class GuideSearch
     @filter = {}
     @order = { _score: :desc }
     @query = '*'
-
   end
 
   def self.search(query = '*')
@@ -26,9 +25,7 @@ class GuideSearch
   end
 
   def for_crops(crops)
-    filter[:crop_id] = Array(crops).map do |crop|
-      crop.respond_to?(:id) ? crop.id : crop
-    end
+    filter[:crop_id] = Array(crops).map { |crop| crop.respond_to?(:id) ? crop.id : crop }
 
     self
   end
@@ -36,17 +33,7 @@ class GuideSearch
   def with_user(user)
     return self unless user
 
-    @order = {
-      # THIS IS CRASHING ON PRODUCTION AND I DONT
-      # KNOW WHY :( - RC 17 APR 19
-      #
-      # 'compatibilities.score' => {
-      #   order: 'desc',
-      #   nested_filter: {
-      #     term: { 'compatibilities.user_id' => user.id }
-      #   }
-      # }
-    }
+    @order = {} # } #   } #     term: { 'compatibilities.user_id' => user.id } #   nested_filter: {
 
     self
   end

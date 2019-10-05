@@ -5,7 +5,7 @@ FactoryBot.define do
     # First seen here:
     # marygriffith1743.deviantart.com/art/
     # this-is-how-i-looked-yesterday-for-six-whole-hours-328072554
-    attachment    { cat }
-    photographic  { FactoryBot.build(:user) }
+    attachment { cat }
+    photographic { FactoryBot.build(:user) }
   end
 end

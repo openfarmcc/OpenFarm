@@ -1,18 +1,18 @@
 require 'csv'
 
 namespace :data do
-  desc "Import CSV file from ITIS"
+  desc 'Import CSV file from ITIS'
   task csv: :environment do
-  CsvHttpImport.new(ENV['CSV_URL']).run
+    CsvHttpImport.new(ENV['CSV_URL']).run
   end
 end
 
 class CsvHttpImport
   attr_reader :uri, :request, :source
   def initialize(url)
-    @uri     = URI(url)
+    @uri = URI(url)
     @request = Net::HTTP::Get.new uri
-    @source  = CropDataSource.find_or_create_by(source_name: "RORY")
+    @source = CropDataSource.find_or_create_by(source_name: 'RORY')
   end
 
   def run
@@ -25,7 +25,7 @@ class CsvHttpImport
   end
 
   def parse(response)
-    seriously_dude?(response).map{|r| handle_row(r) }
+    seriously_dude?(response).map { |r| handle_row(r) }
   end
 
   # "CSV is one hell of a drug."
@@ -34,20 +34,20 @@ class CsvHttpImport
     response.split("\n").map do |row|
       begin
         row.parse_csv.map(&:downcase!).compact
-      rescue
+      rescue StandardError
         nil
       end
-    end.select{|r| r.present? && (r.length > 1)}.uniq
+    end.select { |r| r.present? && (r.length > 1) }.uniq
   end
 
   def handle_row(row)
     binomial_name = row[0]
-    all_names     = row[1].split(',')
-    common_name   = all_names.first
-    crop = Crop.find_or_create_by(name: common_name,
-                                  binomial_name: binomial_name,
-                                  common_names: all_names,
-                                  crop_data_source: source)
+    all_names = row[1].split(',')
+    common_name = all_names.first
+    crop =
+      Crop.find_or_create_by(
+        name: common_name, binomial_name: binomial_name, common_names: all_names, crop_data_source: source
+      )
     print '.'
   rescue => e
     puts "Failure on #{row[0]}: #{e.message}"

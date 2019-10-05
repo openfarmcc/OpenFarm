@@ -18,9 +18,7 @@ module StageActions
       end
     end
 
-    optional do
-      array :images, class: Hash, arrayize: true
-    end
+    optional { array :images, class: Hash, arrayize: true }
 
     def validate
       validate_stage stage_id
@@ -41,18 +39,15 @@ module StageActions
     end
 
     def set_empty_time
-      if attributes[:time] == nil
-        @action.time = nil
-      end
-      if attributes[:time_unit] == nil
-        @action.time_unit = nil
-      end
+      @action.time = nil if attributes[:time] == nil
+      @action.time_unit = nil if attributes[:time_unit] == nil
     end
 
     def validate_permissions
       if @stage && (@stage.guide.user != user)
-        msg = 'You can only update actions for stages that belong to your '\
-              'guides.'
+        msg =
+          'You can only update actions for stages that belong to your ' \
+            'guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
     end

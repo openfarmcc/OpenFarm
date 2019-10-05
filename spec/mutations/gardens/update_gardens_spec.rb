@@ -5,11 +5,7 @@ describe Gardens::UpdateGarden do
 
   let(:garden) { FactoryBot.create(:garden) }
 
-  let(:params) do
-    { user: garden.user,
-      id: "#{garden._id}",
-      attributes: {} }
-  end
+  let(:params) { { user: garden.user, id: "#{garden._id}", attributes: {} } }
 
   it 'requires fields' do
     errors = mutation.run({}).errors.message_list
@@ -22,20 +18,23 @@ describe Gardens::UpdateGarden do
   end
 
   it 'tests this' do
-    attributes = {"name"=>"The Hanoi Balcony", "location"=>"Inside", "description"=>"We created this garden automatically to get\nyou started. You can edit it to better suit\nyour needs!", "type"=>"Inside", "average_sun"=>"Full Sun", "soil_type"=>"Loam", "ph"=>7.5}
-    params = {
-      user: garden.user,
-      id: "#{garden._id}",
-      attributes: attributes
-      }
+    attributes = {
+      'name' => 'The Hanoi Balcony',
+      'location' => 'Inside',
+      'description' =>
+        "We created this garden automatically to get\nyou started. You can edit it to better suit\nyour needs!",
+      'type' => 'Inside',
+      'average_sun' => 'Full Sun',
+      'soil_type' => 'Loam',
+      'ph' => 7.5
+    }
+    params = { user: garden.user, id: "#{garden._id}", attributes: attributes }
     expect(mutation.run(params).success?).to be_truthy
   end
 
   it 'updates a garden image via URL' do
     VCR.use_cassette('mutations/gardens/update_garden') do
-      image_hash = {
-        image_url: 'http://i.imgur.com/2haLt4J.jpg'
-      }
+      image_hash = { image_url: 'http://i.imgur.com/2haLt4J.jpg' }
       image_params = params.merge(images: [image_hash])
       results = mutation.run(image_params)
       pics = results.result.pictures
@@ -44,9 +43,7 @@ describe Gardens::UpdateGarden do
   end
 
   it 'disallows phony URLs' do
-    image_hash = {
-      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
-    }
+    image_hash = { image_url: 'iWroteThisWrong.net/2haLt4J.jpg' }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
     expect(results.success?).to be_falsey
@@ -79,9 +76,10 @@ describe Gardens::UpdateGarden do
 
       garden.reload
 
-      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg',
-                      id: garden.pictures.first.id },
-                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
+      image_hash = [
+        { image_url: 'http://i.imgur.com/2haLt4J.jpg', id: garden.pictures.first.id },
+        { image_url: 'http://i.imgur.com/kpHLl.jpg' }
+      ]
 
       image_params[:images] = image_hash
 

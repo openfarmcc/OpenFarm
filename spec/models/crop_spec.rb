@@ -10,7 +10,6 @@ describe Crop do
   end
 
   context '#search' do
-
     let!(:crop) { FactoryBot.create(:crop, :radish) }
 
     it 'searches by name' do
@@ -37,7 +36,7 @@ describe Crop do
       # TODO: test for placeholder image?
       fancy_crop = FactoryBot.create(:crop_picture).photographic
       expect(fancy_crop.main_image_path).to be_kind_of(String)
-      expect(fancy_crop.main_image_path).to include("pictures/attachments")
+      expect(fancy_crop.main_image_path).to include('pictures/attachments')
     end
 
     it 'checks that taxon is one of 10 options if included' do

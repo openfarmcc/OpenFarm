@@ -1,8 +1,6 @@
 module Pictures
   class CreatePicture < Mutations::Command
-    required do
-      string :url
-    end
+    required { string :url }
 
     optional do
       string :id, empty: true
@@ -23,22 +21,23 @@ module Pictures
 
     def validate_picture
       storage_type = Paperclip::Attachment.default_options[:storage]
-      test_or_filesystem = storage_type.to_s != 'filesystem' ||
-                           Rails.env.to_s == 'test'
+      test_or_filesystem = storage_type.to_s != 'filesystem' || Rails.env.to_s == 'test'
       if id
         exist_pic = pictures.bsearch { |p| p[:id].to_s == id.to_s }
         if exist_pic && exist_pic.attachment.url != url
           add_error :images,
-                    :changed_image, 'You can\'t change an existing image, '\
-                    'delete it and upload an other image.'
+                    :changed_image,
+                    "You can't change an existing image, " \
+                      'delete it and upload an other image.'
         end
-      # This might be the wrong way to test this (what with checking the env
-      # variable)
+        # This might be the wrong way to test this (what with checking the env
+        # variable)
       elsif !url.valid_url? && test_or_filesystem
         add_error :images,
-                  :invalid_url, "'#{url}' is not a valid URL. "\
-                  'Ensure that it is a fully formed URL (including HTTP://'\
-                  ' or HTTPS://)'
+                  :invalid_url,
+                  "'#{url}' is not a valid URL. " \
+                    'Ensure that it is a fully formed URL (including HTTP://' \
+                    ' or HTTPS://)'
       end
     end
   end

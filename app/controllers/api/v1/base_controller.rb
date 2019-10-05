@@ -1,4 +1,4 @@
-require "openfarm_errors"
+require 'openfarm_errors'
 
 class Api::V1::BaseController < ApplicationController
   protect_from_forgery with: :null_session
@@ -59,16 +59,11 @@ class Api::V1::BaseController < ApplicationController
   def respond_with_mutation(status = :ok, options = {})
     if @outcome.success?
       result = @outcome.result
-      if status == :no_content
-        result = nil
-      end
+      result = nil if status == :no_content
       render json: serialize_model(result, options), status: status
     else
-      errors = @outcome.errors.message_list.map do |error|
-        { 'title': error }
-      end
-      render json: { errors: errors },
-             status: :unprocessable_entity
+      errors = @outcome.errors.message_list.map { |error| { 'title': error } }
+      render json: { errors: errors }, status: :unprocessable_entity
     end
   end
 end

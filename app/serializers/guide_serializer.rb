@@ -1,5 +1,4 @@
 class GuideSerializer < BaseSerializer
-
   has_one :crop
   has_one :user
   attribute :draft

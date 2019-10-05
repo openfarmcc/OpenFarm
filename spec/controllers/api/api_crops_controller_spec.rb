@@ -61,10 +61,8 @@ describe Api::V1::CropsController, type: :controller do
   it 'should update a crop' do
     sign_in user
     crop = FactoryBot.create(:crop)
-    data = { attributes: { description: 'Updated', tags_array: ['tag'] } }
-    Legacy._put self, :update,
-                id: crop.id,
-                data: data
+    data = { attributes: { description: 'Updated', tags_array: %w[tag] } }
+    Legacy._put self, :update, id: crop.id, data: data
     expect(response.status).to eq(200)
     crop.reload
     expect(crop.description).to eq('Updated')
@@ -74,9 +72,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'tests whether tags get added as an array', js: true do
     crop = FactoryBot.create(:crop)
     sign_in user
-    Legacy._put self, :update,
-                id: crop.id,
-                data: { attributes: { tags_array: %w[just some tags] } }
+    Legacy._put self, :update, id: crop.id, data: { attributes: { tags_array: %w[just some tags] } }
     expect(response.status).to eq(200)
     expect(crop.reload.tags_array.length).to eq(3)
   end
@@ -84,13 +80,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'tests whether common names get added as an array', js: true do
     crop = FactoryBot.create(:crop)
     sign_in user
-    Legacy._put self, :update,
-                id: crop.id,
-                data: {
-                  attributes: {
-                    common_names: ['Radish', 'Red Thing', 'New']
-                  }
-                }
+    Legacy._put self, :update, id: crop.id, data: { attributes: { common_names: ['Radish', 'Red Thing', 'New'] } }
     expect(response.status).to eq(200)
     expect(crop.reload.common_names.length).to eq(3)
   end
@@ -109,9 +99,7 @@ describe Api::V1::CropsController, type: :controller do
   it 'should add a taxon to a crop' do
     crop = FactoryBot.create(:crop)
     sign_in user
-    Legacy._put self, :update,
-                id: crop.id,
-                data: { attributes: { taxon: 'Genus' } }
+    Legacy._put self, :update, id: crop.id, data: { attributes: { taxon: 'Genus' } }
     expect(response.status).to eq(200)
     expect(crop.reload.taxon).to eq('Genus')
   end

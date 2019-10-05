@@ -33,7 +33,7 @@ describe Token::AuthorizationPolicy do
     pt = token.plaintext
     email = 'wrong@nope.com'
     key = "#{email}:#{pt}"
-    expect { policy.new(key).build }.to(raise_error OpenfarmErrors::NotAuthorized, 'Invalid token or user email.')
+    expect { policy.new(key).build }.to(raise_error(OpenfarmErrors::NotAuthorized, 'Invalid token or user email.'))
   end
 
   it 'raises Openfarm::NotAuthorized for expired tokens' do
@@ -41,6 +41,6 @@ describe Token::AuthorizationPolicy do
     email = token.user.email
     key = "#{email}:#{pt}"
     token.update_attributes(expiration: 20.days.ago)
-    expect { policy.new(key).build }.to(raise_error OpenfarmErrors::NotAuthorized, 'Expired token.')
+    expect { policy.new(key).build }.to(raise_error(OpenfarmErrors::NotAuthorized, 'Expired token.'))
   end
 end

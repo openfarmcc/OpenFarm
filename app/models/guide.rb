@@ -219,7 +219,7 @@ class Guide
   # this one stacks up. It should probably also take into consideration
   # How many gardens this thing is in.
   def calculate_popularity_score
-    top_guide = (Guide.order_by('impressions_field' => :asc).last)
+    top_guide = Guide.order_by('impressions_field' => :asc).last
     at_most = (top_guide.impressions_field || 0).to_i
     normalized = impressions_field.to_f / at_most
     write_attributes(popularity_score: normalized)

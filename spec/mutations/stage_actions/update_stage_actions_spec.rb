@@ -6,11 +6,12 @@ describe StageActions::UpdateStageAction do
   let(:stage) { FactoryBot.create(:stage) }
   let(:stage_action) { FactoryBot.create(:stage_action, stage: stage) }
   let(:params) do
-    { user: stage.guide.user,
+    {
+      user: stage.guide.user,
       id: "#{stage_action._id}",
       stage_id: "#{stage._id}",
-      attributes: { name: "#{Faker::Name.last_name}",
-                    overview: "#{Faker::Lorem.paragraph}" } }
+      attributes: { name: "#{Faker::Name.last_name}", overview: "#{Faker::Lorem.paragraph}" }
+    }
   end
 
   it 'minimally runs the mutation' do
@@ -26,8 +27,7 @@ describe StageActions::UpdateStageAction do
 
   it 'uploads multiple images' do
     VCR.use_cassette('mutations/stages/create_stage') do
-      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' },
-                    { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
+      image_hash = [{ image_url: 'http://i.imgur.com/2haLt4J.jpg' }, { image_url: 'http://i.imgur.com/kpHLl.jpg' }]
       image_params = params.merge(images: image_hash)
       results = mutation.run(image_params)
       pics = results.result.pictures
@@ -36,9 +36,7 @@ describe StageActions::UpdateStageAction do
   end
 
   it 'disallows phony URLs' do
-    image_hash = {
-      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
-    }
+    image_hash = { image_url: 'iWroteThisWrong.net/2haLt4J.jpg' }
     image_params = params.merge(images: [image_hash])
     results = mutation.run(image_params)
     expect(results.success?).to be_falsey

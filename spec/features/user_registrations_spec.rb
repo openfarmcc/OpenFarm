@@ -10,7 +10,7 @@ describe 'User registrations' do
     user.save
     visit edit_user_registration_path(user)
     fill_in :user_display_name, with: 'Bert'
-    fill_in :user_email, with: "bert@bert.com"
+    fill_in :user_email, with: 'bert@bert.com'
     fill_in :user_current_password, with: user.password
     click_button 'Update account'
     see('You updated your account successfully')
@@ -20,9 +20,9 @@ describe 'User registrations' do
   it 'can change user password' do
     login_as user
     visit edit_user_registration_path(user)
-    fill_in :user_email, with: "bert@bert.com"
+    fill_in :user_email, with: 'bert@bert.com'
     fill_in :user_current_password, with: user.password
-    fill_in :user_password, with: "bert1234"
+    fill_in :user_password, with: 'bert1234'
     click_button 'Update account'
     see('You updated your account successfully')
   end
@@ -45,7 +45,7 @@ describe 'User registrations' do
     login_as user
     visit edit_user_registration_path(user)
     fill_in :user_current_password, with: user.password
-    fill_in :user_password, with: "2short"
+    fill_in :user_password, with: '2short'
     click_button 'Update account'
     see('Password is too short')
   end
@@ -63,8 +63,7 @@ describe 'User registrations' do
     fill_in :user_password_confirmation, with: user.password
     click_button 'Permanently delete account'
     see('Your account was successfully cancelled.')
-    expect { User.find(user.id) }.to raise_error(
-      Mongoid::Errors::DocumentNotFound)
+    expect { User.find(user.id) }.to raise_error(Mongoid::Errors::DocumentNotFound)
   end
 
   it 'should leave guides that belong to the user when deleting an account' do

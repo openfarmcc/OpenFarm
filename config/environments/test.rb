@@ -15,10 +15,10 @@ OpenFarm::Application.configure do
 
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_files = true
-  config.static_cache_control = "public, max-age=3600"
+  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
@@ -40,10 +40,12 @@ OpenFarm::Application.configure do
   # http://stackoverflow.com/a/25428800/154392
   config.action_dispatch.perform_deep_munge = false
 
-  Paperclip::Attachment.default_options.merge!(path: 'tmp/paperclip_junk/'\
-                                                     ':class/:attachment/:id.'\
-                                                     ':extension')
-  Rails.application.config.assets.precompile += %w(application-print.css)
-  config.action_mailer.default_url_options = { :host => "test.test.com" }
-
+  Paperclip::Attachment.default_options.merge!(
+    path:
+      'tmp/paperclip_junk/' \
+        ':class/:attachment/:id.' \
+        ':extension'
+  )
+  Rails.application.config.assets.precompile += %w[application-print.css]
+  config.action_mailer.default_url_options = { host: 'test.test.com' }
 end

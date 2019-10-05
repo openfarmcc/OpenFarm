@@ -3,12 +3,10 @@ require 'spec_helper'
 describe Api::V1::StageOptionsController, type: :controller do
   include ApiHelpers
 
-  let(:user) {sign_in(user = FactoryBot.create(:user)) && user }
+  let(:user) { sign_in(user = FactoryBot.create(:user)) && user }
   let(:stage_option) { FactoryBot.create(:stage_option) }
 
-  before do
-    FactoryBot.create_list(:stage_option, 2)
-  end
+  before { FactoryBot.create_list(:stage_option, 2) }
 
   it 'lists requirement options' do
     get 'index', params: { format: :json }

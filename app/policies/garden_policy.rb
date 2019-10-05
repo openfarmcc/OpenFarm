@@ -8,9 +8,7 @@ class GardenPolicy < ApplicationPolicy
 
   def show?
     if @current_user
-      (not @garden.is_private?) ||
-          @current_user == @garden.user ||
-          @current_user.admin
+      (not @garden.is_private?) || @current_user == @garden.user || @current_user.admin
     else
       not @garden.is_private?
     end
@@ -24,14 +22,7 @@ class GardenPolicy < ApplicationPolicy
     end
 
     def resolve
-      if @user.admin?
-        @scope.all
-      else
-        @scope.or(
-          { is_private: false },
-          { user: @user }
-        )
-      end
+      @user.admin? ? @scope.all : @scope.or({ is_private: false }, { user: @user })
     end
   end
 end

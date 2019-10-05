@@ -1,6 +1,5 @@
 module IntegrationHelper
   module InstanceMethods
-
     def see(text)
       expect(page).to have_content(text)
     end
@@ -12,11 +11,8 @@ module IntegrationHelper
 
     def wait_for_ajax
       Timeout.timeout(Capybara.default_max_wait_time) do
-
         active = page.evaluate_script('angular.element.active')
-        until active == 0
-          active = page.evaluate_script('angular.element.active')
-        end
+        active = page.evaluate_script('angular.element.active') until active == 0
       end
     end
   end

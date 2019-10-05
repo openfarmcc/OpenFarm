@@ -7,9 +7,7 @@ module Crops
     required do
       model :user
       hash :attributes do
-        required do
-          string :name
-        end
+        required { string :name }
         optional do
           array :common_names
           string :binomial_name
@@ -33,9 +31,7 @@ module Crops
       end
     end
 
-    optional do
-      array :images, class: Hash, arrayize: true
-    end
+    optional { array :images, class: Hash, arrayize: true }
 
     def validate
       validate_permissions

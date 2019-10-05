@@ -7,7 +7,7 @@ class Token
   attr_reader :plaintext
 
   field :secret
-  field :expiration, type: Time, default: ->{ Time.current + 30.days }
+  field :expiration, type: Time, default: -> { Time.current + 30.days }
   validates :secret, :expiration, :user_id, presence: true
   belongs_to :user
 
@@ -16,11 +16,15 @@ class Token
     if plaintext.present?
       "#{user.email}:#{plaintext}"
     else
-      raise OpenfarmErrors::StaleToken, """You attempted to access the
+      raise OpenfarmErrors::StaleToken,
+            '' \
+              'You attempted to access the
       plaintext version of an access token. Unfortunately, this token has
       been saved and therefore no longer has a viewable plaintext secret.
       You must create a new token and destroy the old one or provide the
-      plaintext secret  by other means.""".squish
+      plaintext secret  by other means.' \
+              ''
+              .squish
     end
   end
 
@@ -32,7 +36,7 @@ class Token
     # Generate the secret
     # Encrypt the secret (in case the DB gets hacked.)
     if self.new_record? && !self.secret?
-      @plaintext  = SecureRandom.hex
+      @plaintext = SecureRandom.hex
       self.secret = Digest::SHA512.hexdigest(plaintext)
     end
   end

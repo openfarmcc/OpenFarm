@@ -1,5 +1,5 @@
 class Api::V1::StagesController < Api::V1::BaseController
-  skip_before_action :authenticate_from_token!, only: [:index, :show]
+  skip_before_action :authenticate_from_token!, only: %i[index show]
 
   def create
     # According to JSON-API Params must be structured like this:
@@ -9,14 +9,13 @@ class Api::V1::StagesController < Api::V1::BaseController
     #     'id': '<id>',
     #     'attributes': {},
     # }
-    @outcome = Stages::CreateStage.run(raw_params[:data],
-                                       user: current_user)
-    respond_with_mutation(:created, include: ["pictures"])
+    @outcome = Stages::CreateStage.run(raw_params[:data], user: current_user)
+    respond_with_mutation(:created, include: %w[pictures])
   end
 
   def show
     stage = Stage.find(raw_params[:id])
-    render json: serialize_model(stage, include: ["pictures", "stage_actions"])
+    render json: serialize_model(stage, include: %w[pictures stage_actions])
   end
 
   def update
@@ -31,17 +30,19 @@ class Api::V1::StagesController < Api::V1::BaseController
     #  }
     # UpdateStage is being funny, issue reported here:
     # https://github.com/cypriss/mutations/issues/85
-    @outcome = Stages::UpdateStage.run(raw_params[:data],
-                                       actions: raw_params[:data][:actions],
-                                       images: raw_params[:data][:images],
-                                       stage: Stage.find(raw_params[:id]),
-                                       user: current_user)
-    respond_with_mutation(:ok, include: ["pictures"])
+    @outcome =
+      Stages::UpdateStage.run(
+        raw_params[:data],
+        actions: raw_params[:data][:actions],
+        images: raw_params[:data][:images],
+        stage: Stage.find(raw_params[:id]),
+        user: current_user
+      )
+    respond_with_mutation(:ok, include: %w[pictures])
   end
 
   def destroy
-    @outcome = Stages::DestroyStage.run(raw_params,
-                                        user: current_user)
+    @outcome = Stages::DestroyStage.run(raw_params, user: current_user)
     respond_with_mutation(:no_content)
   end
 

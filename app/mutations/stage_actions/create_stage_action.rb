@@ -7,9 +7,7 @@ module StageActions
       model :user
       string :id
       hash :attributes do
-        required do
-          string :name
-        end
+        required { string :name }
         optional do
           string :overview
           integer :order
@@ -18,9 +16,7 @@ module StageActions
       end
     end
 
-    optional do
-      array :images, class: Hash, arrayize: true
-    end
+    optional { array :images, class: Hash, arrayize: true }
 
     def validate
       validate_stage id
@@ -40,8 +36,9 @@ module StageActions
 
     def validate_permissions
       if @stage && (@stage.guide.user != user)
-        msg = 'You can only create actions for stages that belong to your '\
-              'guides.'
+        msg =
+          'You can only create actions for stages that belong to your ' \
+            'guides.'
         raise OpenfarmErrors::NotAuthorized, msg
       end
     end

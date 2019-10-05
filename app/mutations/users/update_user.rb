@@ -55,9 +55,7 @@ module Users
     end
 
     def set_favorite_crop
-      if @favorite_crop
-        @user.user_setting.favorite_crops = [@favorite_crop]
-      end
+      @user.user_setting.favorite_crops = [@favorite_crop] if @favorite_crop
     end
 
     def validate_favorite_crop
@@ -77,9 +75,7 @@ module Users
         attributes[:favorited_guide_ids].uniq.each do |guide_id|
           current_guide_id = guide_id
           guide = Guide.find(guide_id)
-          unless @favorited_guides.include? guide
-            @favorited_guides.push(guide)
-          end
+          @favorited_guides.push(guide) unless @favorited_guides.include? guide
         end
         attributes.delete 'favorited_guide_ids'
       end
@@ -91,9 +87,7 @@ module Users
     end
 
     def set_favorited_guides
-      if @favorited_guides
-        @user.favorited_guides = @favorited_guides
-      end
+      @user.favorited_guides = @favorited_guides if @favorited_guides
     end
 
     def validate_user

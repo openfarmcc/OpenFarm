@@ -68,11 +68,12 @@ class Guide
     # Elastic upgrade - RC 2 MAR 2019
 
     if user
-      guides = guides.sort_by do |guide|
-        guide.compatibility_score(user)
-        guide.current_user_compatibility_score = guide.compatibility_score(user)
-        guide.current_user_compatibility_score
-      end
+      guides =
+        guides.sort_by do |guide|
+          guide.compatibility_score(user)
+          guide.current_user_compatibility_score = guide.compatibility_score(user)
+          guide.current_user_compatibility_score
+        end
       guides.reverse
     else
       guides
@@ -84,7 +85,7 @@ class Guide
   end
 
   def search_data
-    as_json only: [:name, :overview, :crop_id, :draft, :compatibilities]
+    as_json only: %i[name overview crop_id draft compatibilities]
     # We changed this to as_json ^ because it was causing weird nesting.
     # Not sure that this should be a problem though, it's been filed:
     # https://github.com/ankane/searchkick/issues/595
@@ -104,9 +105,7 @@ class Guide
     @compatibilities = []
 
     User.includes(:gardens).each do |user|
-      @compatibilities << {
-        user_id: user.id.to_s, score: compatibility_score(user).to_i,
-      }
+      @compatibilities << { user_id: user.id.to_s, score: compatibility_score(user).to_i }
     end
 
     @compatibilities
@@ -119,37 +118,44 @@ class Guide
     first_garden = current_user.gardens.first
 
     # We should probably store these in the DB
-    basic_needs = [{ name: "Sun / Shade",
-                    slug: "sun-shade",
-                    overlap: [],
-                    total: [],
-                    percent: 0,
-                    user: first_garden.average_sun,
-                    garden: first_garden.name }, {
-      name: "Location",
-      slug: "location",
-      overlap: [],
-      total: [],
-      percent: 0,
-      user: first_garden.type,
-      garden: first_garden.name,
-    }, {
-      name: "Soil Type",
-      slug: "soil",
-      overlap: [],
-      total: [],
-      percent: 0,
-      user: first_garden.soil_type,
-      garden: first_garden.name,
-    }, {
-      name: "Practices",
-      slug: "practices",
-      overlap: [],
-      total: [],
-      percent: 0,
-      user: first_garden.growing_practices,
-      garden: first_garden.name,
-    }]
+    basic_needs = [
+      {
+        name: 'Sun / Shade',
+        slug: 'sun-shade',
+        overlap: [],
+        total: [],
+        percent: 0,
+        user: first_garden.average_sun,
+        garden: first_garden.name
+      },
+      {
+        name: 'Location',
+        slug: 'location',
+        overlap: [],
+        total: [],
+        percent: 0,
+        user: first_garden.type,
+        garden: first_garden.name
+      },
+      {
+        name: 'Soil Type',
+        slug: 'soil',
+        overlap: [],
+        total: [],
+        percent: 0,
+        user: first_garden.soil_type,
+        garden: first_garden.name
+      },
+      {
+        name: 'Practices',
+        slug: 'practices',
+        overlap: [],
+        total: [],
+        percent: 0,
+        user: first_garden.growing_practices,
+        garden: first_garden.name
+      }
+    ]
 
     # Still have to implement:
     # pH Range, Temperature, Water Use, Practices,
@@ -166,10 +172,11 @@ class Guide
 
     count = 0
 
-    sum = basic_needs(current_user).inject(0) do |memo, n|
-      count += 1
-      n[:percent] ? memo + n[:percent] : memo
-    end
+    sum =
+      basic_needs(current_user).inject(0) do |memo, n|
+        count += 1
+        n[:percent] ? memo + n[:percent] : memo
+      end
 
     (sum.to_f / count * 100).round
   end
@@ -182,13 +189,13 @@ class Guide
     end
 
     if score.nil?
-      return ""
+      return ''
     elsif score > 75
-      return "high"
+      return 'high'
     elsif score > 50
-      return "medium"
+      return 'medium'
     else
-      return "low"
+      return 'low'
     end
   end
 
@@ -201,9 +208,7 @@ class Guide
     counted = 0.0
     fields.keys.each do |key|
       total += 1
-      if self[key]
-        counted += 1
-      end
+      counted += 1 if self[key]
     end
 
     write_attributes(completeness_score: counted / total)
@@ -214,7 +219,7 @@ class Guide
   # this one stacks up. It should probably also take into consideration
   # How many gardens this thing is in.
   def calculate_popularity_score
-    top_guide = (Guide.order_by("impressions_field" => :asc).last)
+    top_guide = (Guide.order_by('impressions_field' => :asc).last)
     at_most = (top_guide.impressions_field || 0).to_i
     normalized = impressions_field.to_f / at_most
     write_attributes(popularity_score: normalized)
@@ -229,16 +234,15 @@ class Guide
   def find_overlap_in(basic_needs)
     stages.each do |stage|
       basic_needs.each do |need|
-        # This is bad structure
-        if need[:name] == "Sun / Shade"
+        if # This is bad structure
+         need[
+           :name
+         ] ==
+           'Sun / Shade'
           build_overlap_and_total need, stage.light
         end
-        if need[:name] == "Location"
-          build_overlap_and_total need, stage.environment
-        end
-        if need[:name] == "Soil Type"
-          build_overlap_and_total need, stage.soil
-        end
+        build_overlap_and_total need, stage.environment if need[:name] == 'Location'
+        build_overlap_and_total need, stage.soil if need[:name] == 'Soil Type'
       end
     end
 

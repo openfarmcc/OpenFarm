@@ -14,9 +14,11 @@ class Crop
   field :guides_count, type: Integer, default: 0
   field :svg_icon
   validates_length_of :svg_icon,
-     minimum: 11,           # Size of empty "<svg></svg>" tag.
-     maximum: 75.kilobytes, # 3x larger than largest icon.
-     allow_blank: true
+                      minimum: 11,
+                      maximum: 75.kilobytes,
+                      # Size of empty "<svg></svg>" tag.
+                      # 3x larger than largest icon.
+                      allow_blank: true
   field :description
   belongs_to :crop_data_source
   field :sun_requirements
@@ -36,8 +38,8 @@ class Crop
 
   field :taxon, type: String
   validates_inclusion_of :taxon,
-                         in: %w(Species Genus Family Order Class Phylum Kingdom Domain Life Other),
-                         message: "%{value} is not a valid taxon",
+                         in: %w[Species Genus Family Order Class Phylum Kingdom Domain Life Other],
+                         message: '%{value} is not a valid taxon',
                          allow_nil: true
 
   field :cultivar_name
@@ -46,9 +48,7 @@ class Crop
   field :common_names, type: Array
   validates :name, presence: true
 
-  has_and_belongs_to_many :companions,
-                          class_name: 'Crop',
-                          inverse_of: :companions
+  has_and_belongs_to_many :companions, class_name: 'Crop', inverse_of: :companions
 
   field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, cascade_callbacks: true, as: :photographic
@@ -59,11 +59,10 @@ class Crop
   after_save :backlink_companion_crops
 
   def search_data
-    as_json only: [:name, :common_names, :binomial_name, :description,
-                   :guides_count]
+    as_json only: %i[name common_names binomial_name description guides_count]
   end
 
-  def main_image_path(args={})
+  def main_image_path(args = {})
     if pictures.present?
       pictures.first.attachment.url(args[:size] || :large)
     else

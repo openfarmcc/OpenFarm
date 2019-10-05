@@ -3,9 +3,15 @@ require 'spec_helper'
 describe CropPolicy do
   subject { CropPolicy }
 
-  let (:current_user) { FactoryBot.create :user }
-  let (:crop) { FactoryBot.create :crop }
-  let (:admin) { FactoryBot.create :user, admin: true }
+  let (:current_user) do
+    FactoryBot.create :user
+  end
+  let (:crop) do
+    FactoryBot.create :crop
+  end
+  let (:admin) do
+    FactoryBot.create :user, admin: true
+  end
 
   permissions :create? do
     it 'denies anonymous users to create a crop' do

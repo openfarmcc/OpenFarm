@@ -13,15 +13,14 @@ class UserSettingSerializer < BaseSerializer
         thumbnail = object.favorite_crops[0].pictures[0].attachment.url(:small)
       end
 
-      { id: object._id,
-        image_url: crop_picture,
-        thumbnail_url: thumbnail }
+      { id: object._id, image_url: crop_picture, thumbnail_url: thumbnail }
     end
   end
 
   attribute :pictures do
     object.pictures.map do |picture|
-      { id: picture.id,
+      {
+        id: picture.id,
         image_url: picture.attachment.url,
         thumbnail_url: picture.attachment.url(:small),
         medium_url: picture.attachment.url(:medium),

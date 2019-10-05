@@ -18,13 +18,8 @@ module Api
         rel_file_location = '/temp-uploads/' + new_file_name
         FileUtils.mkdir_p dir_path
 
-        File.open(dir_path.join(file_location), 'wb') do |f|
-          f.write(file.read)
-        end
-        render json: {
-          'local': true,
-          'uri': rel_file_location
-        }
+        File.open(dir_path.join(file_location), 'wb') { |f| f.write(file.read) }
+        render json: { 'local': true, 'uri': rel_file_location }
       else
         render json: { 'error': 'S3 Bucket Name exists, please use S3' }
       end

@@ -7,27 +7,15 @@ class CropPolicy < ApplicationPolicy
   end
 
   def new?
-    if @current_user
-      true
-    else
-      false
-    end
+    @current_user ? true : false
   end
 
   def create?
-    if @current_user
-      true
-    else
-      false
-    end
+    @current_user ? true : false
   end
 
   def update?
-    if @current_user
-      true
-    else
-      false
-    end
+    @current_user ? true : false
   end
 
   # We're making this admin-only for now
@@ -35,11 +23,7 @@ class CropPolicy < ApplicationPolicy
   # For this. There's a lot of UI that needs
   # To be
   def edit?
-    if @current_user
-      true
-    else
-      false
-    end
+    @current_user ? true : false
   end
 
   # class Scope < Scope

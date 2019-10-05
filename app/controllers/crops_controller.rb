@@ -1,9 +1,9 @@
 class CropsController < ApplicationController
-  after_action :verify_authorized, except: [:index, :show]
+  after_action :verify_authorized, except: %i[index show]
 
   def index
     @crops = Crop.all
-    redirect_to(controller: "crop_searches", action: "search")
+    redirect_to(controller: 'crop_searches', action: 'search')
   end
 
   def new
@@ -13,20 +13,17 @@ class CropsController < ApplicationController
 
   def show
     @crop = Crop.find(raw_params[:id])
-    unsorted_guides =
-      @crop.guides.order(impressionist_count: :asc).limit(10).to_a || []
+    unsorted_guides = @crop.guides.order(impressionist_count: :asc).limit(10).to_a || []
     @guides = Guide.sorted_for_user(unsorted_guides, current_user)
   end
 
   def create
     @crop = Crop.new(crops_params)
     authorize @crop
-    if @crop.save && raw_params[:crop][:source] == "guide"
-      redirect_to(controller: "guides", action: "new",
-                  crop_id: @crop.id)
+    if @crop.save && raw_params[:crop][:source] == 'guide'
+      redirect_to(controller: 'guides', action: 'new', crop_id: @crop.id)
     elsif @crop.save
-      redirect_to(controller: "crops", action: "show",
-                  id: @crop.id)
+      redirect_to(controller: 'crops', action: 'show', id: @crop.id)
     else
       render :new
     end
@@ -45,13 +42,10 @@ class CropsController < ApplicationController
     # It's too nested if in crops.
     attributes = raw_params[:attributes]
     raw_params[:images] = attributes[:images] ? [attributes[:images]] : []
-    @outcome = Crops::UpdateCrop.run(raw_params,
-                                     attributes: attributes,
-                                     id: raw_params[:id],
-                                     user: current_user)
+    @outcome = Crops::UpdateCrop.run(raw_params, attributes: attributes, id: raw_params[:id], user: current_user)
     if @outcome.success?
       @crop.reload
-      redirect_to(action: "show", id: @crop.id)
+      redirect_to(action: 'show', id: @crop.id)
     else
       flash[:alert] = @outcome.errors.message_list
       @crop.reload
@@ -63,8 +57,16 @@ class CropsController < ApplicationController
 
   # TODO: This should be moved to a migration.
   def crops_params
-    params.require(:crop).permit(:name, :binomial_name, :description,
-                                 :sun_requirements, :sowing_method, :spread, :days_to_maturity,
-                                 :row_spacing, :height)
+    params.require(:crop).permit(
+      :name,
+      :binomial_name,
+      :description,
+      :sun_requirements,
+      :sowing_method,
+      :spread,
+      :days_to_maturity,
+      :row_spacing,
+      :height
+    )
   end
 end

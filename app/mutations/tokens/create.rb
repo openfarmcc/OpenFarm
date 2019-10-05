@@ -19,9 +19,7 @@ module Tokens
 
     def validate_credentials
       @user = User.find_by(email: email)
-      unless @user.valid_password?(password)
-        add_error :password, :invalid, 'Invalid password.'
-      end
+      add_error :password, :invalid, 'Invalid password.' unless @user.valid_password?(password)
     rescue Mongoid::Errors::DocumentNotFound
       add_error :email, :not_found, 'User not found.'
     end

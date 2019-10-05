@@ -1,2 +1,1 @@
-class GardensController < ApplicationController
-end
+class GardensController < ApplicationController; end

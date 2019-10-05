@@ -4,7 +4,8 @@ describe Guides::CreateGuide do
   let(:cg) { Guides::CreateGuide }
 
   let(:params) do
-    { user: FactoryBot.create(:user),
+    {
+      user: FactoryBot.create(:user),
       crop_id: FactoryBot.create(:crop).id.to_s,
       id: FactoryBot.create(:guide).id.to_s,
       attributes: { name: 'hi.' }
@@ -24,9 +25,7 @@ describe Guides::CreateGuide do
   end
 
   it 'validates invalid URLs' do
-    image_hash = {
-      image_url: 'iWroteThisWrong.net/2haLt4J.jpg'
-    }
+    image_hash = { image_url: 'iWroteThisWrong.net/2haLt4J.jpg' }
     attributes = params[:attributes]
     image_params = params.merge(images: [image_hash])
     results = cg.run(image_params)
@@ -84,12 +83,7 @@ describe Guides::CreateGuide do
 
   it 'creates an associated timespan object' do
     skip 'fails on CI'
-    params[:attributes][:time_span] = {
-      start_event: 20,
-      start_event_format: '%W',
-      length: 24,
-      length_units: 'weeks'
-    }
+    params[:attributes][:time_span] = { start_event: 20, start_event_format: '%W', length: 24, length_units: 'weeks' }
     results = cg.run(params)
     expect(results.success?).to be_truthy
     expect(results.result[:time_span]['length_units']).to include('weeks')

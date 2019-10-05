@@ -6,10 +6,9 @@ class UserSetting
   belongs_to :user, optional: true
   has_and_belongs_to_many :favorite_crops, class_name: 'Crop', inverse_of: nil
 
-  field :location,         type: String
+  field :location, type: String
   field :years_experience, type: Integer
-  field :units,            type: String
-
+  field :units, type: String
 
   field :processing_pictures, type: Integer, default: 0
   embeds_many :pictures, as: :photographic

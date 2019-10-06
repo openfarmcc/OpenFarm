@@ -9,14 +9,14 @@ openFarmApp.directive('guidesChooseCrop', [
       controller: [
         '$scope',
         function($scope) {
-          //Gets fired when user selects dropdown.
+          // Gets fired when user selects dropdown.
           $scope.cropSelected = function($item, $model) {
             $scope.guide.crop = $item;
             $scope.crop_not_found = false;
             $scope.guide.crop.description = '';
           };
 
-          //Gets fired when user resets their selection.
+          // Gets fired when user resets their selection.
           $scope.clearCropSelection = function($item, $model) {
             $scope.guide.crop = null;
             $scope.crop_not_found = false;

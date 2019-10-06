@@ -25,7 +25,7 @@ openFarmApp.directive('addCrop', [
           $scope.crops = undefined;
           $scope.garden = undefined;
 
-          //Typeahead search for crops
+          // Typeahead search for crops
           $scope.getCrops = function(val) {
             // be nice and only hit the server if
             // length >= 3
@@ -69,8 +69,8 @@ openFarmApp.directive('addCrop', [
             });
           }
 
-          //Typeahead search for crops
-          //cropSearch.getCrops("tomato");
+          // Typeahead search for crops
+          // cropSearch.getCrops("tomato");
           $scope.addCropToGarden = function() {
             $scope.crops1 = $scope.getCrops($scope.cropQuery);
             var cropi;

@@ -29,7 +29,7 @@ openFarmApp.directive('cropSearch', [
           $scope.required = $scope.required !== undefined ? $scope.required : true;
 
           $scope.firstCrop = undefined;
-          //Typeahead search for crops
+          // Typeahead search for crops
           $scope.getCrops = function(val) {
             // be nice and only hit the server if
             // length >= 3

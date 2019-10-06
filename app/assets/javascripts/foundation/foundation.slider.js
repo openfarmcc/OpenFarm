@@ -40,7 +40,7 @@
           }
         )
         .on('mousemove.fndtn.slider touchmove.fndtn.slider pointermove.fndtn.slider', function(e) {
-          if (!!self.cache.active) {
+          if (self.cache.active) {
             e.preventDefault();
             if ($.data(self.cache.active[0], 'settings').vertical) {
               self.calculate_position(
@@ -226,7 +226,7 @@
 
     set_initial_position: function($ele) {
       var settings = $.data($ele.children('.range-slider-handle')[0], 'settings'),
-        initial = !!settings.initial
+        initial = settings.initial
           ? settings.initial
           : Math.floor(((settings.end - settings.start) * 0.5) / settings.step) * settings.step + settings.start,
         $handle = $ele.children('.range-slider-handle');
@@ -238,7 +238,7 @@
       $('[' + self.attr_name() + ']', this.scope).each(function() {
         $(this).attr(self.attr_name(), value);
       });
-      if (!!$(this.scope).attr(self.attr_name())) {
+      if ($(this.scope).attr(self.attr_name())) {
         $(this.scope).attr(self.attr_name(), value);
       }
       self.reflow();

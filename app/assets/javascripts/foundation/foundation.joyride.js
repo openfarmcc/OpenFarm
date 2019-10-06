@@ -248,7 +248,7 @@
 
         if (this.settings.$li.length && this.settings.$target.length > 0) {
           if (init) {
-            //run when we first start
+            // run when we first start
             this.settings.pre_ride_callback(this.settings.$li.index(), this.settings.$next_tip);
             if (this.settings.modal) {
               this.show_modal();
@@ -780,7 +780,7 @@
     corners: function(el) {
       var w = $(window),
         window_half = w.height() / 2,
-        //using this to calculate since scroll may not have finished yet.
+        // using this to calculate since scroll may not have finished yet.
         tipOffset = Math.ceil(this.settings.$target.offset().top - window_half + this.settings.$next_tip.outerHeight()),
         right = w.width() + w.scrollLeft(),
         offsetBottom = w.height() + tipOffset,

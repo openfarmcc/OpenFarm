@@ -68,21 +68,21 @@
           !matchMedia(Foundation.media_queries.medium).matches &&
           !matchMedia(Foundation.media_queries.large).matches
         );
-        //return true;
+        // return true;
       } else if (sticky && this.medium() && settings.sticky_on === 'medium') {
         return (
           matchMedia(Foundation.media_queries.small).matches &&
           matchMedia(Foundation.media_queries.medium).matches &&
           !matchMedia(Foundation.media_queries.large).matches
         );
-        //return true;
+        // return true;
       } else if (sticky && this.large() && settings.sticky_on === 'large') {
         return (
           matchMedia(Foundation.media_queries.small).matches &&
           matchMedia(Foundation.media_queries.medium).matches &&
           matchMedia(Foundation.media_queries.large).matches
         );
-        //return true;
+        // return true;
       }
 
       return false;

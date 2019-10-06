@@ -28,7 +28,7 @@
 //= require_tree ./crops
 Foundation.global.namespace = '';
 
-//TODO: Need a better folder structure
+// TODO: Need a better folder structure
 $(function() {
   $(document).foundation({
     accordion: {

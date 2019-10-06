@@ -101,8 +101,7 @@ GEM
       capybara (>= 2.5.0)
     case_transform (0.2)
       activesupport
-    childprocess (2.0.0)
-      rake (< 13.0)
+    childprocess (3.0.0)
     chunky_png (1.3.11)
     climate_control (0.2.0)
     coderay (1.1.2)
@@ -304,7 +303,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     parallel (1.17.0)
-    parser (2.6.3.0)
+    parser (2.6.5.0)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     platform-api (2.2.0)
@@ -402,7 +401,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -429,7 +428,7 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
-    rubocop (0.73.0)
+    rubocop (0.75.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -437,7 +436,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
-    rubyzip (1.3.0)
+    rubyzip (2.0.0)
     safe_yaml (1.0.5)
     sass (3.4.25)
     sass-rails (5.0.7)
@@ -458,9 +457,9 @@ GEM
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
-    selenium-webdriver (3.142.4)
-      childprocess (>= 0.5, < 3.0)
-      rubyzip (~> 1.2, >= 1.2.2)
+    selenium-webdriver (3.142.6)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -504,7 +503,7 @@ GEM
     vcr (4.0.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.7.5)
+    webmock (3.7.6)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -581,7 +580,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.73.0)
+  rubocop (= 0.75.0)
   sass-rails
   searchkick
   selenium-webdriver

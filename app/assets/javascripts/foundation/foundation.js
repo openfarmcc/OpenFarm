@@ -4,17 +4,17 @@
  * Copyright 2014, ZURB
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
-*/
+ */
 
-(function ($, window, document, undefined) {
+(function($, window, document, undefined) {
   'use strict';
 
-  var header_helpers = function (class_array) {
+  var header_helpers = function(class_array) {
     var i = class_array.length;
     var head = $('head');
 
     while (i--) {
-      if(head.has('.' + class_array[i]).length === 0) {
+      if (head.has('.' + class_array[i]).length === 0) {
         head.append('<meta class="' + class_array[i] + '" />');
       }
     }
@@ -26,7 +26,8 @@
     'foundation-mq-large',
     'foundation-mq-xlarge',
     'foundation-mq-xxlarge',
-    'foundation-data-attribute-namespace']);
+    'foundation-data-attribute-namespace',
+  ]);
 
   // Enable FastClick if present
 
@@ -42,7 +43,7 @@
   // private Fast Selector wrapper,
   // returns jQuery object. Only use where
   // getElementById is not available.
-  var S = function (selector, context) {
+  var S = function(selector, context) {
     if (typeof selector === 'string') {
       if (context) {
         var cont;
@@ -63,7 +64,7 @@
 
   // Namespace functions.
 
-  var attr_name = function (init) {
+  var attr_name = function(init) {
     var arr = [];
     if (!init) arr.push('data');
     if (this.namespace.length > 0) arr.push(this.namespace);
@@ -72,10 +73,10 @@
     return arr.join('-');
   };
 
-  var add_namespace = function (str) {
+  var add_namespace = function(str) {
     var parts = str.split('-'),
-        i = parts.length,
-        arr = [];
+      i = parts.length,
+      arr = [];
 
     while (i--) {
       if (i !== 0) {
@@ -94,48 +95,51 @@
 
   // Event binding and data-options updating.
 
-  var bindings = function (method, options) {
+  var bindings = function(method, options) {
     var self = this,
-        should_bind_events = !S(this).data(this.attr_name(true));
+      should_bind_events = !S(this).data(this.attr_name(true));
 
-
-    if (S(this.scope).is('[' + this.attr_name() +']')) {
-      S(this.scope).data(this.attr_name(true) + '-init', $.extend({}, this.settings, (options || method), this.data_options(S(this.scope))));
+    if (S(this.scope).is('[' + this.attr_name() + ']')) {
+      S(this.scope).data(
+        this.attr_name(true) + '-init',
+        $.extend({}, this.settings, options || method, this.data_options(S(this.scope)))
+      );
 
       if (should_bind_events) {
         this.events(this.scope);
       }
-
     } else {
-      S('[' + this.attr_name() +']', this.scope).each(function () {
+      S('[' + this.attr_name() + ']', this.scope).each(function() {
         var should_bind_events = !S(this).data(self.attr_name(true) + '-init');
-        S(this).data(self.attr_name(true) + '-init', $.extend({}, self.settings, (options || method), self.data_options(S(this))));
+        S(this).data(
+          self.attr_name(true) + '-init',
+          $.extend({}, self.settings, options || method, self.data_options(S(this)))
+        );
 
         if (should_bind_events) {
           self.events(this);
         }
       });
     }
-    // # Patch to fix #5043 to move this *after* the if/else clause in order for Backbone and similar frameworks to have improved control over event binding and data-options updating. 
+    // # Patch to fix #5043 to move this *after* the if/else clause in order for Backbone and similar frameworks to have improved control over event binding and data-options updating.
     if (typeof method === 'string') {
       return this[method].call(this, options);
     }
-
   };
 
-  var single_image_loaded = function (image, callback) {
-    function loaded () {
+  var single_image_loaded = function(image, callback) {
+    function loaded() {
       callback(image[0]);
     }
 
-    function bindLoad () {
+    function bindLoad() {
       this.one('load', loaded);
 
       if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) {
-        var src = this.attr( 'src' ),
-            param = src.match( /\?/ ) ? '&' : '?';
+        var src = this.attr('src'),
+          param = src.match(/\?/) ? '&' : '?';
 
-        param += 'random=' + (new Date()).getTime();
+        param += 'random=' + new Date().getTime();
         this.attr('src', src + param);
       }
     }
@@ -156,38 +160,36 @@
     https://github.com/paulirish/matchMedia.js
   */
 
-  window.matchMedia = window.matchMedia || (function( doc ) {
+  window.matchMedia =
+    window.matchMedia ||
+    (function(doc) {
+      'use strict';
 
-    "use strict";
-
-    var bool,
+      var bool,
         docElem = doc.documentElement,
         refNode = docElem.firstElementChild || docElem.firstChild,
         // fakeBody required for <FF4 when executed in <head>
-        fakeBody = doc.createElement( "body" ),
-        div = doc.createElement( "div" );
+        fakeBody = doc.createElement('body'),
+        div = doc.createElement('div');
 
-    div.id = "mq-test-1";
-    div.style.cssText = "position:absolute;top:-100em";
-    fakeBody.style.background = "none";
-    fakeBody.appendChild(div);
+      div.id = 'mq-test-1';
+      div.style.cssText = 'position:absolute;top:-100em';
+      fakeBody.style.background = 'none';
+      fakeBody.appendChild(div);
 
-    return function (q) {
+      return function(q) {
+        div.innerHTML = '&shy;<style media="' + q + '"> #mq-test-1 { width: 42px; }</style>';
 
-      div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+        docElem.insertBefore(fakeBody, refNode);
+        bool = div.offsetWidth === 42;
+        docElem.removeChild(fakeBody);
 
-      docElem.insertBefore( fakeBody, refNode );
-      bool = div.offsetWidth === 42;
-      docElem.removeChild( fakeBody );
-
-      return {
-        matches: bool,
-        media: q
+        return {
+          matches: bool,
+          media: q,
+        };
       };
-
-    };
-
-  }( document ));
+    })(document);
 
   /*
    * jquery.requestAnimationFrame
@@ -199,75 +201,72 @@
    */
 
   (function($) {
+    // requestAnimationFrame polyfill adapted from Erik Möller
+    // fixes from Paul Irish and Tino Zijdel
+    // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+    // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
-  // requestAnimationFrame polyfill adapted from Erik Möller
-  // fixes from Paul Irish and Tino Zijdel
-  // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
-
-  var animating,
+    var animating,
       lastTime = 0,
       vendors = ['webkit', 'moz'],
       requestAnimationFrame = window.requestAnimationFrame,
       cancelAnimationFrame = window.cancelAnimationFrame,
       jqueryFxAvailable = 'undefined' !== typeof jQuery.fx;
 
-  for (; lastTime < vendors.length && !requestAnimationFrame; lastTime++) {
-    requestAnimationFrame = window[ vendors[lastTime] + "RequestAnimationFrame" ];
-    cancelAnimationFrame = cancelAnimationFrame ||
-      window[ vendors[lastTime] + "CancelAnimationFrame" ] ||
-      window[ vendors[lastTime] + "CancelRequestAnimationFrame" ];
-  }
+    for (; lastTime < vendors.length && !requestAnimationFrame; lastTime++) {
+      requestAnimationFrame = window[vendors[lastTime] + 'RequestAnimationFrame'];
+      cancelAnimationFrame =
+        cancelAnimationFrame ||
+        window[vendors[lastTime] + 'CancelAnimationFrame'] ||
+        window[vendors[lastTime] + 'CancelRequestAnimationFrame'];
+    }
 
-  function raf() {
-    if (animating) {
-      requestAnimationFrame(raf);
+    function raf() {
+      if (animating) {
+        requestAnimationFrame(raf);
 
-      if (jqueryFxAvailable) {
-        jQuery.fx.tick();
+        if (jqueryFxAvailable) {
+          jQuery.fx.tick();
+        }
       }
     }
-  }
 
-  if (requestAnimationFrame) {
-    // use rAF
-    window.requestAnimationFrame = requestAnimationFrame;
-    window.cancelAnimationFrame = cancelAnimationFrame;
+    if (requestAnimationFrame) {
+      // use rAF
+      window.requestAnimationFrame = requestAnimationFrame;
+      window.cancelAnimationFrame = cancelAnimationFrame;
 
-    if (jqueryFxAvailable) {
-      jQuery.fx.timer = function (timer) {
-        if (timer() && jQuery.timers.push(timer) && !animating) {
-          animating = true;
-          raf();
-        }
+      if (jqueryFxAvailable) {
+        jQuery.fx.timer = function(timer) {
+          if (timer() && jQuery.timers.push(timer) && !animating) {
+            animating = true;
+            raf();
+          }
+        };
+
+        jQuery.fx.stop = function() {
+          animating = false;
+        };
+      }
+    } else {
+      // polyfill
+      window.requestAnimationFrame = function(callback) {
+        var currTime = new Date().getTime(),
+          timeToCall = Math.max(0, 16 - (currTime - lastTime)),
+          id = window.setTimeout(function() {
+            callback(currTime + timeToCall);
+          }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
       };
 
-      jQuery.fx.stop = function () {
-        animating = false;
+      window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
       };
     }
-  } else {
-    // polyfill
-    window.requestAnimationFrame = function (callback) {
-      var currTime = new Date().getTime(),
-        timeToCall = Math.max(0, 16 - (currTime - lastTime)),
-        id = window.setTimeout(function () {
-          callback(currTime + timeToCall);
-        }, timeToCall);
-      lastTime = currTime + timeToCall;
-      return id;
-    };
+  })(jQuery);
 
-    window.cancelAnimationFrame = function (id) {
-      clearTimeout(id);
-    };
-
-  }
-
-  }( jQuery ));
-
-
-  function removeQuotes (string) {
+  function removeQuotes(string) {
     if (typeof string === 'string' || string instanceof String) {
       string = string.replace(/^['\\/"]+|(;\s?})+|['\\/"]+$/g, '');
     }
@@ -276,27 +275,37 @@
   }
 
   window.Foundation = {
-    name : 'Foundation',
+    name: 'Foundation',
 
-    version : '5.3.0',
+    version: '5.3.0',
 
-    media_queries : {
-      small : S('.foundation-mq-small').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      medium : S('.foundation-mq-medium').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      large : S('.foundation-mq-large').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      xlarge: S('.foundation-mq-xlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
-      xxlarge: S('.foundation-mq-xxlarge').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, '')
+    media_queries: {
+      small: S('.foundation-mq-small')
+        .css('font-family')
+        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+      medium: S('.foundation-mq-medium')
+        .css('font-family')
+        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+      large: S('.foundation-mq-large')
+        .css('font-family')
+        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+      xlarge: S('.foundation-mq-xlarge')
+        .css('font-family')
+        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+      xxlarge: S('.foundation-mq-xxlarge')
+        .css('font-family')
+        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
     },
 
-    stylesheet : $('<style></style>').appendTo('head')[0].sheet,
+    stylesheet: $('<style></style>').appendTo('head')[0].sheet,
 
     global: {
-      namespace: undefined
+      namespace: undefined,
     },
 
-    init : function (scope, libraries, method, options, response) {
+    init: function(scope, libraries, method, options, response) {
       var args = [scope, method, options, response],
-          responses = [];
+        responses = [];
 
       // check RTL
       this.rtl = /rtl/i.test(S('html').attr('dir'));
@@ -319,28 +328,27 @@
       return scope;
     },
 
-    init_lib : function (lib, args) {
+    init_lib: function(lib, args) {
       if (this.libs.hasOwnProperty(lib)) {
         this.patch(this.libs[lib]);
 
         if (args && args.hasOwnProperty(lib)) {
-            if (typeof this.libs[lib].settings !== 'undefined') {
-                $.extend(true, this.libs[lib].settings, args[lib]);
-            }
-            else if (typeof this.libs[lib].defaults !== 'undefined') {
-                $.extend(true, this.libs[lib].defaults, args[lib]);
-            }
+          if (typeof this.libs[lib].settings !== 'undefined') {
+            $.extend(true, this.libs[lib].settings, args[lib]);
+          } else if (typeof this.libs[lib].defaults !== 'undefined') {
+            $.extend(true, this.libs[lib].defaults, args[lib]);
+          }
           return this.libs[lib].init.apply(this.libs[lib], [this.scope, args[lib]]);
         }
 
-        args = args instanceof Array ? args : new Array(args);    // PATCH: added this line
+        args = args instanceof Array ? args : new Array(args); // PATCH: added this line
         return this.libs[lib].init.apply(this.libs[lib], args);
       }
 
-      return function () {};
+      return function() {};
     },
 
-    patch : function (lib) {
+    patch: function(lib) {
       lib.scope = this.scope;
       lib.namespace = this.global.namespace;
       lib.rtl = this.rtl;
@@ -351,9 +359,9 @@
       lib['S'] = this.utils.S;
     },
 
-    inherit : function (scope, methods) {
+    inherit: function(scope, methods) {
       var methods_arr = methods.split(' '),
-          i = methods_arr.length;
+        i = methods_arr.length;
 
       while (i--) {
         if (this.utils.hasOwnProperty(methods_arr[i])) {
@@ -362,8 +370,7 @@
       }
     },
 
-    set_namespace: function () {
-
+    set_namespace: function() {
       // Description:
       //    Don't bother reading the namespace out of the meta tag
       //    if the namespace has been set globally in javascript
@@ -377,18 +384,20 @@
 
       // If the namespace has not been set (is undefined), try to read it out of the meta element.
       // Otherwise use the globally defined namespace, even if it's empty ('')
-      var namespace = ( this.global.namespace === undefined ) ? $('.foundation-data-attribute-namespace').css('font-family') : this.global.namespace;
+      var namespace =
+        this.global.namespace === undefined
+          ? $('.foundation-data-attribute-namespace').css('font-family')
+          : this.global.namespace;
 
       // Finally, if the namsepace is either undefined or false, set it to an empty string.
       // Otherwise use the namespace value.
-      this.global.namespace = ( namespace === undefined || /false/i.test(namespace) ) ? '' : namespace;
+      this.global.namespace = namespace === undefined || /false/i.test(namespace) ? '' : namespace;
     },
 
-    libs : {},
+    libs: {},
 
     // methods that can be inherited in libraries
-    utils : {
-
+    utils: {
       // Description:
       //    Fast Selector wrapper returns jQuery object. Only use where getElementById
       //    is not available.
@@ -403,7 +412,7 @@
       // Returns:
       //    Element (jQuery Object): jQuery object containing elements matching the
       //    selector within the scope.
-      S : S,
+      S: S,
 
       // Description:
       //    Executes a function a max of once every n milliseconds
@@ -415,14 +424,15 @@
       //
       // Returns:
       //    Lazy_function (Function): Function with throttling applied.
-      throttle : function (func, delay) {
+      throttle: function(func, delay) {
         var timer = null;
 
-        return function () {
-          var context = this, args = arguments;
+        return function() {
+          var context = this,
+            args = arguments;
 
           if (timer == null) {
-            timer = setTimeout(function () {
+            timer = setTimeout(function() {
               func.apply(context, args);
               timer = null;
             }, delay);
@@ -444,11 +454,12 @@
       //
       // Returns:
       //    Lazy_function (Function): Function with debouncing applied.
-      debounce : function (func, delay, immediate) {
+      debounce: function(func, delay, immediate) {
         var timeout, result;
-        return function () {
-          var context = this, args = arguments;
-          var later = function () {
+        return function() {
+          var context = this,
+            args = arguments;
+          var later = function() {
             timeout = null;
             if (!immediate) result = func.apply(context, args);
           };
@@ -469,18 +480,21 @@
       // Returns:
       //    Options (Javascript Object): Contents of the element's data-options
       //    attribute.
-      data_options : function (el, data_attr_name) {
+      data_options: function(el, data_attr_name) {
         data_attr_name = data_attr_name || 'options';
-        var opts = {}, ii, p, opts_arr,
-            data_options = function (el) {
-              var namespace = Foundation.global.namespace;
+        var opts = {},
+          ii,
+          p,
+          opts_arr,
+          data_options = function(el) {
+            var namespace = Foundation.global.namespace;
 
-              if (namespace.length > 0) {
-                return el.data(namespace + '-' + data_attr_name);
-              }
+            if (namespace.length > 0) {
+              return el.data(namespace + '-' + data_attr_name);
+            }
 
-              return el.data(data_attr_name);
-            };
+            return el.data(data_attr_name);
+          };
 
         var cached_options = data_options(el);
 
@@ -491,11 +505,11 @@
         opts_arr = (cached_options || ':').split(';');
         ii = opts_arr.length;
 
-        function isNumber (o) {
-          return ! isNaN (o-0) && o !== null && o !== "" && o !== false && o !== true;
+        function isNumber(o) {
+          return !isNaN(o - 0) && o !== null && o !== '' && o !== false && o !== true;
         }
 
-        function trim (str) {
+        function trim(str) {
           if (typeof str === 'string') return $.trim(str);
           return str;
         }
@@ -530,8 +544,8 @@
       //    Foundation.media_queries
       //
       //    Class (String): Class name for the generated <meta> tag
-      register_media : function (media, media_class) {
-        if(Foundation.media_queries[media] === undefined) {
+      register_media: function(media, media_class) {
+        if (Foundation.media_queries[media] === undefined) {
           $('head').append('<meta class="' + media_class + '"/>');
           Foundation.media_queries[media] = removeQuotes($('.' + media_class).css('font-family'));
         }
@@ -545,15 +559,14 @@
       //
       //    Media (String): Optional media query string for the CSS rule to be
       //    nested under.
-      add_custom_rule : function (rule, media) {
+      add_custom_rule: function(rule, media) {
         if (media === undefined && Foundation.stylesheet) {
           Foundation.stylesheet.insertRule(rule, Foundation.stylesheet.cssRules.length);
         } else {
           var query = Foundation.media_queries[media];
 
           if (query !== undefined) {
-            Foundation.stylesheet.insertRule('@media ' +
-              Foundation.media_queries[media] + '{ ' + rule + ' }');
+            Foundation.stylesheet.insertRule('@media ' + Foundation.media_queries[media] + '{ ' + rule + ' }');
           }
         }
       },
@@ -565,16 +578,16 @@
       //    Image (jQuery Object): Image(s) to check if loaded.
       //
       //    Callback (Function): Function to execute when image is fully loaded.
-      image_loaded : function (images, callback) {
+      image_loaded: function(images, callback) {
         var self = this,
-            unloaded = images.length;
+          unloaded = images.length;
 
         if (unloaded === 0) {
           callback(images);
         }
 
-        images.each(function () {
-          single_image_loaded(self.S(this), function () {
+        images.each(function() {
+          single_image_loaded(self.S(this), function() {
             unloaded -= 1;
             if (unloaded === 0) {
               callback(images);
@@ -592,22 +605,21 @@
       //
       // Returns:
       //    Rand (String): Pseudo-random, alphanumeric string.
-      random_str : function () {
+      random_str: function() {
         if (!this.fidx) this.fidx = 0;
-        this.prefix = this.prefix || [(this.name || 'F'), (+new Date).toString(36)].join('-');
+        this.prefix = this.prefix || [this.name || 'F', (+new Date()).toString(36)].join('-');
 
         return this.prefix + (this.fidx++).toString(36);
-      }
-    }
+      },
+    },
   };
 
-  $.fn.foundation = function () {
+  $.fn.foundation = function() {
     var args = Array.prototype.slice.call(arguments, 0);
 
-    return this.each(function () {
+    return this.each(function() {
       Foundation.init.apply(Foundation, [this].concat(args));
       return this;
     });
   };
-
-}(jQuery, window, window.document));
+})(jQuery, window, window.document);

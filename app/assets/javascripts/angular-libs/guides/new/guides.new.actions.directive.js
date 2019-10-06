@@ -1,4 +1,7 @@
-openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
+openFarmApp.directive('guidesActions', [
+  '$http',
+  '$modal',
+  'defaultService',
   function guidesActions($http, $modal, defaultService) {
     return {
       restrict: 'A',
@@ -6,12 +9,13 @@ openFarmApp.directive('guidesActions', ['$http', '$modal', 'defaultService',
         stage: '=',
         texts: '=',
       },
-      controller: ['$scope',
-        function ($scope) {
+      controller: [
+        '$scope',
+        function($scope) {
           $scope.stage.stage_action_options = [];
-        }
+        },
       ],
-      templateUrl: '/assets/angular-libs/guides/new/guides.new.actions.template.html'
+      templateUrl: '/assets/angular-libs/guides/new/guides.new.actions.template.html',
     };
-  }
+  },
 ]);

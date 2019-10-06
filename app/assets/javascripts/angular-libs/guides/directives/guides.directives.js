@@ -1,9 +1,11 @@
-openFarmApp.factory('focus', ['$rootScope', '$timeout',
-  function ($rootScope, $timeout) {
+openFarmApp.factory('focus', [
+  '$rootScope',
+  '$timeout',
+  function($rootScope, $timeout) {
     return function(name) {
-      $timeout(function (){
+      $timeout(function() {
         $rootScope.$broadcast('focusOn', name);
       });
     };
-}]);
-
+  },
+]);

@@ -1,4 +1,6 @@
-openFarmApp.directive('cropSearch', ['$http', 'cropService',
+openFarmApp.directive('cropSearch', [
+  '$http',
+  'cropService',
   function cropSearch($http, cropService) {
     return {
       restrict: 'A',
@@ -13,10 +15,13 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
         allowNew: '=',
         query: '=?',
         doesNotHaveButton: '=',
-        required: '=?'
+        required: '=?',
       },
-      controller: ['$scope', '$element', '$attrs',
-        function ($scope, $element, $attrs) {
+      controller: [
+        '$scope',
+        '$element',
+        '$attrs',
+        function($scope, $element, $attrs) {
           $scope.placeholder = $attrs.placeholder || 'Search crops';
           $scope.buttonValue = $attrs.buttonValue || 'Submit';
           $scope.query = '';
@@ -25,32 +30,35 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
 
           $scope.firstCrop = undefined;
           //Typeahead search for crops
-          $scope.getCrops = function (val) {
+          $scope.getCrops = function(val) {
             // be nice and only hit the server if
             // length >= 3
-            return $http.get('/api/v1/crops', {
-              params: {
-                filter: val
-              }
-            }).then(function(res) {
-              var crops = [];
-              crops = res.data.data;
-              if (crops.length === 0 && $scope.allowNew) {
-                crops.push({ attributes: {
-                  name: val,
-                  is_new: true
-                } });
-              }
-              crops = crops.map(function(crop) {
-                return cropService.utilities.buildCrop(crop, res.data.included);
+            return $http
+              .get('/api/v1/crops', {
+                params: {
+                  filter: val,
+                },
+              })
+              .then(function(res) {
+                var crops = [];
+                crops = res.data.data;
+                if (crops.length === 0 && $scope.allowNew) {
+                  crops.push({
+                    attributes: {
+                      name: val,
+                      is_new: true,
+                    },
+                  });
+                }
+                crops = crops.map(function(crop) {
+                  return cropService.utilities.buildCrop(crop, res.data.included);
+                });
+                $scope.firstCrop = crops[0];
+                return crops;
               });
-              $scope.firstCrop = crops[0];
-              return crops;
-            });
           };
 
           $scope.submitCrop = function($item, $model, $label, options) {
-
             if ($scope.firstCrop !== undefined) {
               $scope.cropOnSelect($scope.firstCrop);
             } else {
@@ -58,8 +66,9 @@ openFarmApp.directive('cropSearch', ['$http', 'cropService',
             }
             $scope.query = '';
           };
-        }
+        },
       ],
       templateUrl: '/assets/templates/_crop_search.html',
     };
-}]);
+  },
+]);

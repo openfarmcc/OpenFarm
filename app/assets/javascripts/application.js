@@ -29,7 +29,7 @@
 Foundation.global.namespace = '';
 
 //TODO: Need a better folder structure
-$(function () {
+$(function() {
   $(document).foundation({
     accordion: {
       // specify the class used for active (or open) accordion panels
@@ -38,24 +38,27 @@ $(function () {
       multi_expand: true,
       // allow accordion panels to be closed by clicking on their headers
       // setting to false only closes accordion panels when another is opened
-      toggleable: true
-    }
+      toggleable: true,
+    },
   });
 });
 
-var isDNT = (window.doNotTrack === 1 ||
+var isDNT =
+  window.doNotTrack === 1 ||
   navigator.doNotTrack === 'yes' ||
   navigator.doNotTrack == '1' ||
-  navigator.msDoNotTrack == '1');
+  navigator.msDoNotTrack == '1';
 
 if (!isDNT) {
-  (function (i, s, o, g, r, a, m) {
+  (function(i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments);
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
+    (i[r] =
+      i[r] ||
+      function() {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
     a.async = 1;
     a.src = g;
     m.parentNode.insertBefore(a, m);
@@ -64,4 +67,6 @@ if (!isDNT) {
   ga('send', 'pageview');
 }
 
-$(function () { $(document).foundation(); });
+$(function() {
+  $(document).foundation();
+});

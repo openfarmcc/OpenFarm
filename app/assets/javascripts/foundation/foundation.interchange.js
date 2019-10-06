@@ -1,38 +1,39 @@
-;(function ($, window, document, undefined) {
+(function($, window, document, undefined) {
   'use strict';
 
   Foundation.libs.interchange = {
-    name : 'interchange',
+    name: 'interchange',
 
-    version : '5.3.0',
+    version: '5.3.0',
 
-    cache : {},
+    cache: {},
 
-    images_loaded : false,
-    nodes_loaded : false,
+    images_loaded: false,
+    nodes_loaded: false,
 
-    settings : {
-      load_attr : 'interchange',
+    settings: {
+      load_attr: 'interchange',
 
-      named_queries : {
-        'default' : 'only screen',
-        small : Foundation.media_queries.small,
-        medium : Foundation.media_queries.medium,
-        large : Foundation.media_queries.large,
-        xlarge : Foundation.media_queries.xlarge,
+      named_queries: {
+        default: 'only screen',
+        small: Foundation.media_queries.small,
+        medium: Foundation.media_queries.medium,
+        large: Foundation.media_queries.large,
+        xlarge: Foundation.media_queries.xlarge,
         xxlarge: Foundation.media_queries.xxlarge,
-        landscape : 'only screen and (orientation: landscape)',
-        portrait : 'only screen and (orientation: portrait)',
-        retina : 'only screen and (-webkit-min-device-pixel-ratio: 2),' +
+        landscape: 'only screen and (orientation: landscape)',
+        portrait: 'only screen and (orientation: portrait)',
+        retina:
+          'only screen and (-webkit-min-device-pixel-ratio: 2),' +
           'only screen and (min--moz-device-pixel-ratio: 2),' +
           'only screen and (-o-min-device-pixel-ratio: 2/1),' +
           'only screen and (min-device-pixel-ratio: 2),' +
           'only screen and (min-resolution: 192dpi),' +
-          'only screen and (min-resolution: 2dppx)'
+          'only screen and (min-resolution: 2dppx)',
       },
 
-      directives : {
-        replace: function (el, path, trigger) {
+      directives: {
+        replace: function(el, path, trigger) {
           // The trigger argument, if called within the directive, fires
           // an event named after the directive on the element, passing
           // any parameters along to the event that you pass to trigger.
@@ -54,27 +55,26 @@
             return trigger(el[0].src);
           }
           var last_path = el.data(this.data_attr + '-last-path'),
-              self = this;
+            self = this;
 
           if (last_path == path) return;
 
           if (/\.(gif|jpg|jpeg|tiff|png)([?#].*)?/i.test(path)) {
-            $(el).css('background-image', 'url('+path+')');
+            $(el).css('background-image', 'url(' + path + ')');
             el.data('interchange-last-path', path);
             return trigger(path);
           }
 
-          return $.get(path, function (response) {
+          return $.get(path, function(response) {
             el.html(response);
             el.data(self.data_attr + '-last-path', path);
             trigger();
           });
-
-        }
-      }
+        },
+      },
     },
 
-    init : function (scope, method, options) {
+    init: function(scope, method, options) {
       Foundation.inherit(this, 'throttle random_str');
 
       this.data_attr = this.set_data_attr();
@@ -84,34 +84,38 @@
       this.load('nodes');
     },
 
-    get_media_hash : function() {
-        var mediaHash='';
-        for (var queryName in this.settings.named_queries ) {
-            mediaHash += matchMedia(this.settings.named_queries[queryName]).matches.toString();
-        }
-        return mediaHash;
+    get_media_hash: function() {
+      var mediaHash = '';
+      for (var queryName in this.settings.named_queries) {
+        mediaHash += matchMedia(this.settings.named_queries[queryName]).matches.toString();
+      }
+      return mediaHash;
     },
 
-    events : function () {
-      var self = this, prevMediaHash;
+    events: function() {
+      var self = this,
+        prevMediaHash;
 
       $(window)
         .off('.interchange')
-        .on('resize.fndtn.interchange', self.throttle(function () {
+        .on(
+          'resize.fndtn.interchange',
+          self.throttle(function() {
             var currMediaHash = self.get_media_hash();
             if (currMediaHash !== prevMediaHash) {
-                self.resize();
+              self.resize();
             }
             prevMediaHash = currMediaHash;
-        }, 50));
+          }, 50)
+        );
 
       return this;
     },
 
-    resize : function () {
+    resize: function() {
       var cache = this.cache;
 
-      if(!this.images_loaded || !this.nodes_loaded) {
+      if (!this.images_loaded || !this.nodes_loaded) {
         setTimeout($.proxy(this.resize, this), 50);
         return;
       }
@@ -121,37 +125,36 @@
           var passed = this.results(uuid, cache[uuid]);
 
           if (passed) {
-            this.settings.directives[passed
-              .scenario[1]].call(this, passed.el, passed.scenario[0], function () {
-                if (arguments[0] instanceof Array) { 
-                  var args = arguments[0];
-                } else { 
-                  var args = Array.prototype.slice.call(arguments, 0);
-                }
+            this.settings.directives[passed.scenario[1]].call(this, passed.el, passed.scenario[0], function() {
+              if (arguments[0] instanceof Array) {
+                var args = arguments[0];
+              } else {
+                var args = Array.prototype.slice.call(arguments, 0);
+              }
 
-                passed.el.trigger(passed.scenario[1], args);
-              });
+              passed.el.trigger(passed.scenario[1], args);
+            });
           }
         }
       }
-
     },
 
-    results : function (uuid, scenarios) {
+    results: function(uuid, scenarios) {
       var count = scenarios.length;
 
       if (count > 0) {
         var el = this.S('[' + this.add_namespace('data-uuid') + '="' + uuid + '"]');
 
         while (count--) {
-          var mq, rule = scenarios[count][2];
+          var mq,
+            rule = scenarios[count][2];
           if (this.settings.named_queries.hasOwnProperty(rule)) {
             mq = matchMedia(this.settings.named_queries[rule]);
           } else {
             mq = matchMedia(rule);
           }
           if (mq.matches) {
-            return {el: el, scenario: scenarios[count]};
+            return { el: el, scenario: scenarios[count] };
           }
         }
       }
@@ -159,7 +162,7 @@
       return false;
     },
 
-    load : function (type, force_update) {
+    load: function(type, force_update) {
       if (typeof this['cached_' + type] === 'undefined' || force_update) {
         this['update_' + type]();
       }
@@ -167,16 +170,16 @@
       return this['cached_' + type];
     },
 
-    update_images : function () {
+    update_images: function() {
       var images = this.S('img[' + this.data_attr + ']'),
-          count = images.length,
-          i = count,
-          loaded_count = 0,
-          data_attr = this.data_attr;
+        count = images.length,
+        i = count,
+        loaded_count = 0,
+        data_attr = this.data_attr;
 
       this.cache = {};
       this.cached_images = [];
-      this.images_loaded = (count === 0);
+      this.images_loaded = count === 0;
 
       while (i--) {
         loaded_count++;
@@ -197,16 +200,15 @@
       return this;
     },
 
-    update_nodes : function () {
+    update_nodes: function() {
       var nodes = this.S('[' + this.data_attr + ']').not('img'),
-          count = nodes.length,
-          i = count,
-          loaded_count = 0,
-          data_attr = this.data_attr;
+        count = nodes.length,
+        i = count,
+        loaded_count = 0,
+        data_attr = this.data_attr;
 
       this.cached_nodes = [];
-      this.nodes_loaded = (count === 0);
-
+      this.nodes_loaded = count === 0;
 
       while (i--) {
         loaded_count++;
@@ -216,7 +218,7 @@
           this.cached_nodes.push(nodes[i]);
         }
 
-        if(loaded_count === count) {
+        if (loaded_count === count) {
           this.nodes_loaded = true;
           this.enhance('nodes');
         }
@@ -225,18 +227,19 @@
       return this;
     },
 
-    enhance : function (type) {
+    enhance: function(type) {
       var i = this['cached_' + type].length;
 
       while (i--) {
         this.object($(this['cached_' + type][i]));
       }
 
-      return $(window).trigger('resize').trigger('resize.fndtn.interchange');
+      return $(window)
+        .trigger('resize')
+        .trigger('resize.fndtn.interchange');
     },
 
-    convert_directive : function (directive) {
-
+    convert_directive: function(directive) {
       var trimmed = this.trim(directive);
 
       if (trimmed.length > 0) {
@@ -246,29 +249,28 @@
       return 'replace';
     },
 
-    parse_scenario : function (scenario) {
+    parse_scenario: function(scenario) {
       // This logic had to be made more complex since some users were using commas in the url path
       // So we cannot simply just split on a comma
       var directive_match = scenario[0].match(/(.+),\s*(\w+)\s*$/),
-      media_query         = scenario[1];
+        media_query = scenario[1];
 
       if (directive_match) {
-        var path  = directive_match[1],
-        directive = directive_match[2];
-      }
-      else {
+        var path = directive_match[1],
+          directive = directive_match[2];
+      } else {
         var cached_split = scenario[0].split(/,\s*$/),
-        path             = cached_split[0],
-        directive        = '';               
+          path = cached_split[0],
+          directive = '';
       }
 
       return [this.trim(path), this.convert_directive(directive), this.trim(media_query)];
     },
 
-    object : function(el) {
+    object: function(el) {
       var raw_arr = this.parse_data_attr(el),
-          scenarios = [], 
-          i = raw_arr.length;
+        scenarios = [],
+        i = raw_arr.length;
 
       if (i > 0) {
         while (i--) {
@@ -284,19 +286,18 @@
       return this.store(el, scenarios);
     },
 
-    store : function (el, scenarios) {
+    store: function(el, scenarios) {
       var uuid = this.random_str(),
-          current_uuid = el.data(this.add_namespace('uuid', true));
+        current_uuid = el.data(this.add_namespace('uuid', true));
 
       if (this.cache[current_uuid]) return this.cache[current_uuid];
 
       el.attr(this.add_namespace('data-uuid'), uuid);
 
-      return this.cache[uuid] = scenarios;
+      return (this.cache[uuid] = scenarios);
     },
 
-    trim : function(str) {
-
+    trim: function(str) {
       if (typeof str === 'string') {
         return $.trim(str);
       }
@@ -304,7 +305,7 @@
       return str;
     },
 
-    set_data_attr: function (init) {
+    set_data_attr: function(init) {
       if (init) {
         if (this.namespace.length > 0) {
           return this.namespace + '-' + this.settings.load_attr;
@@ -320,10 +321,10 @@
       return 'data-' + this.settings.load_attr;
     },
 
-    parse_data_attr : function (el) {
+    parse_data_attr: function(el) {
       var raw = el.attr(this.attr_name()).split(/\[(.*?)\]/),
-          i = raw.length, 
-          output = [];
+        i = raw.length,
+        output = [];
 
       while (i--) {
         if (raw[i].replace(/[\W\d]+/, '').length > 4) {
@@ -334,11 +335,9 @@
       return output;
     },
 
-    reflow : function () {
+    reflow: function() {
       this.load('images', true);
       this.load('nodes', true);
-    }
-
+    },
   };
-
-}(jQuery, window, window.document));
+})(jQuery, window, window.document);

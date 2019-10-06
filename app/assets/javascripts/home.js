@@ -24,11 +24,9 @@ $(window).load(function() {
 function updateTitleBackground(scrollPos, pageHeight, titleHeight) {
   var exploreCommunityFavoritesTitle = $($('.explore-community-favorites')[0]);
   // The extra 1px lets smooth scrolling still trigger the change
-  if (scrollPos >= (pageHeight - titleHeight - 1)) {
+  if (scrollPos >= pageHeight - titleHeight - 1) {
     exploreCommunityFavoritesTitle.addClass('full-black');
-  }
-  else {
+  } else {
     exploreCommunityFavoritesTitle.removeClass('full-black');
   }
 }
-

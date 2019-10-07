@@ -5,11 +5,8 @@ openFarmApp.directive('ofEnvironmentalOverview', [
       scope: {
         factors: '=ofEnvironmentalOverview',
       },
-      controller: ['$scope', function ($scope) {
-
-        }
-      ],
-      templateUrl: '/assets/angular-libs/guides/show/guides.show.stage.environmental-overview.template.html'
+      controller: ['$scope', function($scope) {}],
+      templateUrl: '/assets/angular-libs/guides/show/guides.show.stage.environmental-overview.template.html',
     };
-  }
+  },
 ]);

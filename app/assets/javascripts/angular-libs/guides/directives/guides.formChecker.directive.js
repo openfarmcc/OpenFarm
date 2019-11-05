@@ -1,48 +1,47 @@
-openFarmApp.directive('formChecker', function(){
+openFarmApp.directive('formChecker', function() {
   return {
     require: '^form',
     scope: {
-      stage: '=formChecker'
+      stage: '=formChecker',
     },
-    link: function(scope, element, attr){
+    link: function(scope, element, attr) {
       // loop through each stage
-      scope.$watch('stage', function(){
+      scope.$watch(
+        'stage',
+        function() {
+          var checked = {};
 
-        var checked = {};
+          var elements = ['environment', 'light', 'soil'];
 
-        var elements = ['environment', 'light', 'soil'];
+          if (scope.stage.selected) {
+            scope.stage.edited = false;
 
-        if (scope.stage.selected){
-          scope.stage.edited = false;
-
-          elements.forEach(function (element) {
-            scope.stage[element].forEach(function (opt) {
-              if (opt.selected) {
-                scope.stage.edited = true;
-                checked[element] = true;
-              }
+            elements.forEach(function(element) {
+              scope.stage[element].forEach(function(opt) {
+                if (opt.selected) {
+                  scope.stage.edited = true;
+                  checked[element] = true;
+                }
+              });
             });
+          }
+
+          if (scope.stage.stageActions) {
+            scope.stage.stageActions.forEach(function(stageAction) {
+              // validate actions.
+              checked.stageActions = true;
+            });
+          }
+
+          var flag = true;
+          angular.forEach(checked, function(value, key) {
+            if (!value) flag = false;
           });
-        }
 
-        if (scope.stage.stageActions) {
-          scope.stage.stageActions.forEach(function (stageAction) {
-            // validate actions.
-            checked.stageActions = true;
-          });
-        }
-
-        var flag = true;
-        angular.forEach(checked, function (value, key) {
-          if (!value)
-            flag = false;
-        });
-
-        scope.stage.valid = flag;
-
-      }, true);
-
-
-    }
+          scope.stage.valid = flag;
+        },
+        true
+      );
+    },
   };
 });

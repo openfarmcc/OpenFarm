@@ -44,6 +44,7 @@ OpenFarm::Application.configure do
              path: '/:rails_env/media/:class/:attachment/:id.:extension',
              s3_credentials: { bucket: ENV['S3_BUCKET_NAME'],
                               s3_protocol: :https,
+                              s3_region: ENV['AWS_REGION'],
                               access_key_id: ENV['SERVER_S3_ACCESS_KEY'],
                               secret_access_key: ENV['SERVER_S3_SECRET_KEY'] } }
 

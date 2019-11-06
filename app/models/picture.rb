@@ -36,6 +36,11 @@ class Picture
       end
       pic.save!
       pic
+    rescue => e
+      data = { file_location: file_location,
+               parent: parent }
+      ExceptionNotifier.notify_exception(e, data: data)
+      raise e
     end
   end
 end

@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :garden_crop do
     quantity    { rand(100) }
-    sowed       { Faker::Date.between(2.days.ago, Date.today) }
+    sowed       { Faker::Date.between(from: 2.days.ago, to: Date.today) }
     stage
     garden
     guide

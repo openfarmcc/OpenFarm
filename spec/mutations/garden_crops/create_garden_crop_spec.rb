@@ -10,7 +10,7 @@ describe GardenCrops::CreateGardenCrop do
     { user: user,
      garden_id: FactoryBot.create(:garden, user: user).id.to_s,
      attributes: { stage: "#{Faker::Lorem.word}",
-                  sowed: "#{Faker::Date.between(2.days.ago, Date.today)}",
+                  sowed: "#{Faker::Date.between(from: 2.days.ago, to: Date.today)}",
                   quantity: rand(100),
                   guide: FactoryBot.create(:guide).id.to_s } }
   end

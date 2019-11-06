@@ -5,7 +5,7 @@ FactoryBot.define do
     admin        { false }
     password     { 'password' }
     is_private   { false }
-    confirmed_at { Faker::Date.between(2.days.ago, Date.today) }
+    confirmed_at { Faker::Date.between(from: 2.days.ago, to: Date.today) }
     email        { Faker::Internet.email }
     user_setting
 

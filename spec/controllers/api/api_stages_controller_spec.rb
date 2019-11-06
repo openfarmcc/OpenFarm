@@ -16,7 +16,7 @@ describe Api::V1::StagesController, type: :controller do
     old_length = Stage.all.length
     data = { attributes: { name: Faker::Lorem.word,
                          order: 0,
-                         soil: Faker::Lorem.words(2) },
+                         soil: Faker::Lorem.words(number: 2) },
             guide_id: guide.id.to_s }
     Legacy._post self, "create", data: data, format: :json
     expect(response.status).to eq(201)
@@ -38,7 +38,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "should return an error when a guide does not exist" do
-    data = { attributes: { instructions: "#{Faker::Lorem.sentences(2)}",
+    data = { attributes: { instructions: "#{Faker::Lorem.sentences(number: 2)}",
                            name: "hello",
                            order: 0 },
              guide_id: 1 }
@@ -66,7 +66,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "cant create a stage on someone elses guide" do
-    data = { attributes: { instructions: "#{Faker::Lorem.sentences(2)}",
+    data = { attributes: { instructions: "#{Faker::Lorem.sentences(number: 2)}",
                           name: "hello",
                           order: 0 },
             guide_id: FactoryBot.create(:guide).id.to_s }

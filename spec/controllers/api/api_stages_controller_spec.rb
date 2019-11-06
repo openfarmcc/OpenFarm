@@ -30,7 +30,7 @@ describe Api::V1::StagesController, type: :controller do
     # FIXME what is this spec testing? Maybe we should do some assertions on
     # the response message.
     data = {
-      instructions: "#{Faker::Lorem.paragraph}",
+      instructions: Faker::Lorem.paragraph,
       guide_id: guide.id.to_s,
     }
     Legacy._post self, "create", data: data, format: :json
@@ -38,7 +38,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "should return an error when a guide does not exist" do
-    data = { attributes: { instructions: "#{Faker::Lorem.sentences(number: 2)}",
+    data = { attributes: { instructions: Faker::Lorem.sentences(number: 2),
                            name: "hello",
                            order: 0 },
              guide_id: 1 }
@@ -66,7 +66,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "cant create a stage on someone elses guide" do
-    data = { attributes: { instructions: "#{Faker::Lorem.sentences(number: 2)}",
+    data = { attributes: { instructions: Faker::Lorem.sentences(number: 2),
                           name: "hello",
                           order: 0 },
             guide_id: FactoryBot.create(:guide).id.to_s }
@@ -126,11 +126,11 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "should add actions in a stage creation event successfully" do
-    data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
+    data = { attributes: { instructions: Faker::Lorem.paragraph,
                           name: "hello",
                           order: 0 },
-            actions: [{ name: "#{Faker::Lorem.word}",
-                       overview: "#{Faker::Lorem.paragraph}" }],
+            actions: [{ name: Faker::Lorem.word,
+                       overview: Faker::Lorem.paragraph }],
             guide_id: guide.id.to_s }
     Legacy._post self, "create", data: data, format: :json
     expect(response.status).to eq(201)
@@ -139,7 +139,7 @@ describe Api::V1::StagesController, type: :controller do
   it "should remove actions from stages"
 
   it "should reject stage actions without a name" do
-    data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
+    data = { attributes: { instructions: Faker::Lorem.paragraph,
                           name: "hello",
                           order: 0 },
             actions: [{ name: "" }],
@@ -150,7 +150,7 @@ describe Api::V1::StagesController, type: :controller do
   end
 
   it "should accept stage actions without an overview" do
-    data = { attributes: { instructions: "#{Faker::Lorem.paragraph}",
+    data = { attributes: { instructions: Faker::Lorem.paragraph,
                           name: "hello",
                           order: 0 },
             actions: [{ name: "hello" }],

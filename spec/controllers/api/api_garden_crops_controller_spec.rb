@@ -12,9 +12,9 @@ describe Api::V1::GardenCropsController, type: :controller do
     it "should create garden crops" do
       guide = FactoryBot.create(:guide)
       garden = FactoryBot.create(:garden, user: @user)
-      sowed = "#{Faker::Date.between(from: 2.days.ago, to: Date.today)}"
+      sowed = Faker::Date.between(from: 2.days.ago, to: Date.today).to_s
       data = { attributes: { quantity: rand(100),
-                           stage: "#{Faker::Lorem.word}",
+                           stage: Faker::Lorem.word,
                            sowed: sowed,
                            guide: guide.id.to_s } }
 
@@ -28,9 +28,9 @@ describe Api::V1::GardenCropsController, type: :controller do
     it "should give the user a gardener badge on adding a garden crop" do
       guide = FactoryBot.create(:guide)
       garden = FactoryBot.create(:garden, user: @user)
-      sowed = "#{Faker::Date.between(from: 2.days.ago, to: Date.today)}"
+      sowed = Faker::Date.between(from: 2.days.ago, to: Date.today).to_s
       data = { attributes: { quantity: rand(100),
-                           stage: "#{Faker::Lorem.word}",
+                           stage: Faker::Lorem.word,
                            sowed: sowed,
                            guide: guide.id.to_s } }
 
@@ -42,9 +42,9 @@ describe Api::V1::GardenCropsController, type: :controller do
     it "should not allow user to add garden crops to other user gardens" do
       guide = FactoryBot.create(:guide)
       garden = FactoryBot.create(:garden)
-      sowed = "#{Faker::Date.between(from: 2.days.ago, to: Date.today)}"
+      sowed = Faker::Date.between(from: 2.days.ago, to: Date.today)
       data = { attributes: { quantity: rand(100),
-                           stage: "#{Faker::Lorem.word}",
+                           stage: Faker::Lorem.word,
                            sowed: sowed,
                            guide: guide.id.to_s } }
       Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json

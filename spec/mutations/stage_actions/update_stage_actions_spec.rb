@@ -9,8 +9,8 @@ describe StageActions::UpdateStageAction do
     { user: stage.guide.user,
       id: "#{stage_action._id}",
       stage_id: "#{stage._id}",
-      attributes: { name: "#{Faker::Name.last_name}",
-                    overview: "#{Faker::Lorem.paragraph}" } }
+      attributes: { name: Faker::Name.last_name,
+                    overview: Faker::Lorem.paragraph } }
   end
 
   it 'minimally runs the mutation' do

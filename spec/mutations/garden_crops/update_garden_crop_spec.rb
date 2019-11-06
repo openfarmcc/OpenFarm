@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'openfarm_errors'
 
@@ -12,7 +14,7 @@ describe GardenCrops::UpdateGardenCrop do
     { user: user,
       garden_crop: garden_crop,
       attributes: { stage: 'update',
-                    sowed: "#{Faker::Date.between(from: 2.days.ago, to: Date.today)}",
+                    sowed: Faker::Date.between(from: 2.days.ago, to: Date.today).to_s,
                     quantity: rand(100) } }
   end
 

@@ -46,6 +46,7 @@ gem 'rails_admin'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'utf8-cleaner'
+gem 'exception_notification'
 
 # Asset management using bower
 # https://rails-assets.org/
@@ -106,7 +107,6 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'exception_notification'
   gem 'rack-timeout'
   gem 'rails_12factor'
   gem 'thin'

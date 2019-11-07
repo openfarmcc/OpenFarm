@@ -20,29 +20,26 @@ class Picture
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   # SEE: http://stackoverflow.com/a/23141483/1064917
-  class << self
-    def from_url(file_location, parent)
-      pic = new(photographic: parent)
-      if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
-        pic.attachment = open(file_location)
-      else # it's a filesystem update
-        # if it's already on the system, or it's missing,
-        # we don't need to update it.
-        unless file_location.include?('/system/') ||
-               file_location.include?('missing.png')
-          unless file_location.include?('http')
-            file_location = "#{Rails.root.join('public')}/#{file_location}"
-          end
-          pic.attachment = open(file_location)
+  def self.from_url(file_location, parent)
+    pic = new(photographic: parent)
+    if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
+      pic.attachment = open(file_location)
+    else # it's a filesystem update
+      # if it's already on the system, or it's missing,
+      # we don't need to update it.
+      unless file_location.include?('/system/') ||
+        file_location.include?('missing.png')
+        unless file_location.include?('http')
+          file_location = "#{Rails.root.join('public')}/#{file_location}"
         end
+        pic.attachment = open(file_location)
       end
-      pic.save!
-      pic
-    rescue StandardError => e
-      data = { file_location: file_location,
-               parent: parent }
-      ExceptionNotifier.notify_exception(e, data: data)
-      raise e
     end
+    pic.save!
+    pic
+  rescue StandardError => e
+    data = { file_location: file_location, parent: parent }
+    ExceptionNotifier.notify_exception(e, data: data)
+    raise e
   end
 end

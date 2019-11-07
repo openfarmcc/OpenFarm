@@ -10,4 +10,19 @@ describe Picture do
       expect(img_url).to include('attachments')
     end
   end
+
+  it 'reports failed image processing' do
+    data = {
+      data: {
+        file_location: '/home/rick/code/farmbot/OpenFarm/public/***',
+        parent: {}
+      }
+    }
+    get_errors = receive(:notify_exception)
+      .with(an_instance_of(Errno::ENOENT), data)
+      expect(ExceptionNotifier).to get_errors
+      expect do
+        Picture.from_url('***', {})
+      end.to raise_error(Errno::ENOENT)
+  end
 end

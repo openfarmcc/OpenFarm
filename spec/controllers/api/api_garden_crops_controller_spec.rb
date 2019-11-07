@@ -16,9 +16,9 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden, user: @user)
       sowed = Faker::Date.between(from: 2.days.ago, to: Date.today).to_s
       data = { attributes: { quantity: rand(100),
-                           stage: Faker::Lorem.word,
-                           sowed: sowed,
-                           guide: guide.id.to_s } }
+                             stage: Faker::Lorem.word,
+                             sowed: sowed,
+                             guide: guide.id.to_s } }
 
       old_length = garden.garden_crops.length
       Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
@@ -32,9 +32,9 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden, user: @user)
       sowed = Faker::Date.between(from: 2.days.ago, to: Date.today).to_s
       data = { attributes: { quantity: rand(100),
-                           stage: Faker::Lorem.word,
-                           sowed: sowed,
-                           guide: guide.id.to_s } }
+                             stage: Faker::Lorem.word,
+                             sowed: sowed,
+                             guide: guide.id.to_s } }
 
       Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
       @user.reload
@@ -46,9 +46,9 @@ describe Api::V1::GardenCropsController, type: :controller do
       garden = FactoryBot.create(:garden)
       sowed = Faker::Date.between(from: 2.days.ago, to: Date.today)
       data = { attributes: { quantity: rand(100),
-                           stage: Faker::Lorem.word,
-                           sowed: sowed,
-                           guide: guide.id.to_s } }
+                             stage: Faker::Lorem.word,
+                             sowed: sowed,
+                             guide: guide.id.to_s } }
       Legacy._post self, :create, data: data, garden_id: garden.id.to_s, format: :json
       expect(response.status).to eq(422)
     end

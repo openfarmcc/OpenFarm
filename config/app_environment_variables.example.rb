@@ -4,6 +4,7 @@ ENV['S3_BUCKET_NAME']        = 'my_bucket'
 # Public Bucket (AJAX) Policy Here:
 ENV['S3_ACCESS_KEY']         = '987'
 ENV['S3_SECRET_KEY']         = '654'
+ENV['AWS_REGION']            = 'us-east-1'
 # Trusted Bucket (Paperclip) Policy Here:
 ENV['SERVER_S3_ACCESS_KEY']  = '123'
 ENV['SERVER_S3_SECRET_KEY']  = '456'

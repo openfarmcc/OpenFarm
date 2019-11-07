@@ -33,15 +33,15 @@ describe Api::V1::StagesController, type: :controller do
     # the response message.
     data = {
       instructions: Faker::Lorem.paragraph,
-      guide_id: guide.id.to_s,
+      guide_id: guide.id.to_s
     }
     Legacy._post self, 'create', data: data, format: :json
     expect(response.status).to eq(422)
   end
 
-  it "should return an error when a guide does not exist" do
+  it 'should return an error when a guide does not exist' do
     data = { attributes: { instructions: Faker::Lorem.sentences(number: 2),
-                           name: "hello",
+                           name: 'hello',
                            order: 0 },
              guide_id: 1 }
     Legacy._post self, 'create', data: data, format: :json
@@ -67,14 +67,14 @@ describe Api::V1::StagesController, type: :controller do
     expect(stage.name).to eq('updated')
   end
 
-  it "cant create a stage on someone elses guide" do
+  it 'cant create a stage on someone elses guide' do
     data = { attributes: { instructions: Faker::Lorem.sentences(number: 2),
-                          name: "hello",
-                          order: 0 },
-            guide_id: FactoryBot.create(:guide).id.to_s }
-    Legacy._post self, "create", data: data, format: :json
-    expect(json["errors"][0]["title"]).to include(
-      "You can only create stages for guides that belong to you."
+                           name: 'hello',
+                           order: 0 },
+             guide_id: FactoryBot.create(:guide).id.to_s }
+    Legacy._post self, 'create', data: data, format: :json
+    expect(json['errors'][0]['title']).to include(
+      'You can only create stages for guides that belong to you.'
     )
     expect(response.status).to eq(401)
   end
@@ -127,37 +127,37 @@ describe Api::V1::StagesController, type: :controller do
     end
   end
 
-  it "should add actions in a stage creation event successfully" do
+  it 'should add actions in a stage creation event successfully' do
     data = { attributes: { instructions: Faker::Lorem.paragraph,
-                          name: "hello",
-                          order: 0 },
-            actions: [{ name: Faker::Lorem.word,
-                       overview: Faker::Lorem.paragraph }],
-            guide_id: guide.id.to_s }
-    Legacy._post self, "create", data: data, format: :json
+                           name: 'hello',
+                           order: 0 },
+             actions: [{ name: Faker::Lorem.word,
+                         overview: Faker::Lorem.paragraph }],
+             guide_id: guide.id.to_s }
+    Legacy._post self, 'create', data: data, format: :json
     expect(response.status).to eq(201)
   end
 
   it 'should remove actions from stages'
 
-  it "should reject stage actions without a name" do
+  it 'should reject stage actions without a name' do
     data = { attributes: { instructions: Faker::Lorem.paragraph,
-                          name: "hello",
-                          order: 0 },
-            actions: [{ name: "" }],
-            guide_id: guide.id.to_s }
-    Legacy._post self, "create", data: data, format: :json
+                           name: 'hello',
+                           order: 0 },
+             actions: [{ name: '' }],
+             guide_id: guide.id.to_s }
+    Legacy._post self, 'create', data: data, format: :json
     expect(response.status).to eq(422)
     expect(response.body).to include('not a valid action name')
   end
 
-  it "should accept stage actions without an overview" do
+  it 'should accept stage actions without an overview' do
     data = { attributes: { instructions: Faker::Lorem.paragraph,
-                          name: "hello",
-                          order: 0 },
-            actions: [{ name: "hello" }],
-            guide_id: guide.id.to_s }
-    Legacy._post self, "create", data: data, format: :json
+                           name: 'hello',
+                           order: 0 },
+             actions: [{ name: 'hello' }],
+             guide_id: guide.id.to_s }
+    Legacy._post self, 'create', data: data, format: :json
     expect(response.status).to eq(201)
   end
 

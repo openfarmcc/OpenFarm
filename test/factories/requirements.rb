@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :requirement do
     name             { "#{Faker::Commerce.color} #{Faker::Name.last_name}" }
-    required         { Faker::Lorem.words(2) }
+    required         { Faker::Lorem.words(number: 2) }
     guide
   end
 end

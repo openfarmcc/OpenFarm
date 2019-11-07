@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :requirement_option_range, class: 'RequirementOption' do
-    name             { "#{Faker::Name.last_name}" }
+    name             { Faker::Name.last_name }
     description      { Faker::Lorem.sentence }
     type             { 'range' }
     # TODO: this could be much more sophisticated

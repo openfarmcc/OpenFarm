@@ -53,8 +53,8 @@ describe Stages::UpdateStage do
   end
 
   it 'allows a well formed stage actions array' do
-    actions = [{ name: "#{Faker::Lorem.word}",
-                 overview: "#{Faker::Lorem.paragraph}" }]
+    actions = [{ name: Faker::Lorem.word,
+                 overview: Faker::Lorem.paragraph }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_truthy
@@ -62,8 +62,8 @@ describe Stages::UpdateStage do
   end
 
   it 'disallows a badly formed stage actions array with bad name' do
-    actions = [{ moon: "#{Faker::Lorem.word}",
-                 overview: "#{Faker::Lorem.paragraph}" }]
+    actions = [{ moon: Faker::Lorem.word,
+                 overview: Faker::Lorem.paragraph }]
     actions_params = params.merge(actions: actions)
     results = mutation.run(actions_params)
     expect(results.success?).to be_falsey

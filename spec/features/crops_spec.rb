@@ -30,7 +30,9 @@ describe 'Crop pages', :js do
   it 'shows create page for a crop' do
     login_as user
     visit '/crops/new'
-    expect(page).to have_button('Save Crop')
+    expect(page).to have_text 'Add a new crop'
+    fill_in id: 'crop_name', with: 'mushroom'
+    click_button('Save Crop')
   end
 
   it 'requires user log in to create a guide' do

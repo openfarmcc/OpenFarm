@@ -4,7 +4,7 @@ describe 'Crop pages', :js do
   let(:user) { FactoryBot.create(:user) }
   let(:crop) { FactoryBot.create(:crop, name: 'radish') }
 
-  it 'shows and edits individual crops' do
+  it 'shows crops' do
     visit "/crops/#{crop._id}"
     expect(page).to have_content('radish')
   end

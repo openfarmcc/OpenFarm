@@ -226,7 +226,7 @@
       </div>
       <div class="columns small-8 medium-8">
         <div class="crop-icon-wrapper">
-          <%= image_tag crop_path(@crop, format: :svg, alt: @crop.name) %>
+          <%= image_tag crop_path(@crop, format: :svg), alt: @crop.name %>
         </div>
         <svg-button on-change="addSvg($svg)">
         </svg-button>

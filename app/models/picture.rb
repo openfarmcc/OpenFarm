@@ -50,7 +50,8 @@ class Picture
     # we don't need to update it.
     is_system = path.include?('/system/')
     is_placeholder = path.include?('missing.png')
-    return if (is_system || is_placeholder)
+    return if is_system || is_placeholder
+
     path = PATH_TPL % path unless path.include?('http')
     self.attachment = open(path)
   end

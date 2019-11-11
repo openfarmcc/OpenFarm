@@ -34,6 +34,7 @@ gem 'gibbon', '~> 1'
 gem 'coffee-rails'
 gem 'devise'
 gem 'eventmachine'
+gem 'exception_notification'
 gem 'high_voltage'
 gem 'jsonapi-serializers'
 gem 'merit'
@@ -46,7 +47,6 @@ gem 'rails_admin'
 gem 'rollbar'
 gem 'sass-rails'
 gem 'utf8-cleaner'
-gem 'exception_notification'
 
 # Asset management using bower
 # https://rails-assets.org/

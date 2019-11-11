@@ -22,24 +22,37 @@ class Picture
   # SEE: http://stackoverflow.com/a/23141483/1064917
   def self.from_url(file_location, parent)
     pic = new(photographic: parent)
-    if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
-      pic.attachment = open(file_location)
-    else # it's a filesystem update
-      # if it's already on the system, or it's missing,
-      # we don't need to update it.
-      unless file_location.include?('/system/') ||
-        file_location.include?('missing.png')
-        unless file_location.include?('http')
-          file_location = "#{Rails.root.join('public')}/#{file_location}"
-        end
-        pic.attachment = open(file_location)
-      end
-    end
+    pic.do_attach(file_location)
     pic.save!
     pic
   rescue StandardError => e
     data = { file_location: file_location, parent: parent }
     ExceptionNotifier.notify_exception(e, data: data)
     raise e
+  end
+
+  def do_attach(file_location)
+    if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
+      attach_via_network(file_location)
+    else
+      attach_via_filesystem(file_location)
+    end
+  end
+
+  def attach_via_network(file_location)
+    self.attachment = open(file_location)
+  end
+
+  def attach_via_filesystem(file_location)
+    # if it's already on the system, or it's missing,
+    # we don't need to update it.
+    is_system = file_location.include?('/system/')
+    is_placeholder = file_location.include?('missing.png')
+    unless is_system || is_placeholder
+      unless file_location.include?('http')
+        file_location = "#{Rails.root.join('public')}/#{file_location}"
+      end
+      self.attachment = open(file_location)
+    end
   end
 end

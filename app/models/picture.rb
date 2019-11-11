@@ -43,16 +43,15 @@ class Picture
     self.attachment = open(file_location)
   end
 
-  def attach_via_filesystem(file_location)
+  PATH_TPL = "#{Rails.root.join('public')}/%s"
+
+  def attach_via_filesystem(path)
     # if it's already on the system, or it's missing,
     # we don't need to update it.
-    is_system = file_location.include?('/system/')
-    is_placeholder = file_location.include?('missing.png')
-    unless is_system || is_placeholder
-      unless file_location.include?('http')
-        file_location = "#{Rails.root.join('public')}/#{file_location}"
-      end
-      self.attachment = open(file_location)
-    end
+    is_system = path.include?('/system/')
+    is_placeholder = path.include?('missing.png')
+    return if (is_system || is_placeholder)
+    path = PATH_TPL % path unless path.include?('http')
+    self.attachment = open(path)
   end
 end

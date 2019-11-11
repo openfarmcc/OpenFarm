@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Picture do
@@ -12,7 +14,7 @@ describe Picture do
   end
 
   it 'reports failed image processing' do
-    data = {:data=>{:file_location=>"***", :parent=>{}}}
+    data = { data: { file_location: '***', parent: {} } }
     error = an_instance_of(Errno::ENOENT)
     get_errors = receive(:notify_exception).with(error, data).and_return(nil)
     expect(ExceptionNotifier).to(get_errors)

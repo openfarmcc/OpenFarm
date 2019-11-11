@@ -57,7 +57,7 @@
             <% @crop.companions.all.each do |comp| %>
               <%= link_to comp do %>
                 <div class="crop-icon-wrapper">
-                  <%= image_tag crop_path(comp, format: :svg), alt: comp.name %>
+                  <%= raw(comp.svg_icon ? comp.svg_icon : load_generic_plant_icon) %>
                 </div>
                 <%= comp.name %>
               <% end %>

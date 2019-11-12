@@ -16,6 +16,13 @@ class CropsController < ApplicationController
     unsorted_guides =
       @crop.guides.order(impressionist_count: :asc).limit(10).to_a || []
     @guides = Guide.sorted_for_user(unsorted_guides, current_user)
+    respond_to do |format|
+      format.html
+      format.svg do
+        send_data((@crop.svg_icon || DEFAULT_ICON),
+                  type: 'image/svg+xml', disposition: 'inline')
+      end
+    end
   end
 
   def create

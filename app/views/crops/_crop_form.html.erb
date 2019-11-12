@@ -226,7 +226,7 @@
       </div>
       <div class="columns small-8 medium-8">
         <div class="crop-icon-wrapper">
-          <%= raw(@crop.svg_icon ? @crop.svg_icon : load_generic_plant_icon) %>
+          <%= image_tag crop_path(@crop, format: :svg), alt: @crop.name %>
         </div>
         <svg-button on-change="addSvg($svg)">
         </svg-button>
@@ -257,7 +257,7 @@
             name="commit"
             value="<%= t('crops.edit.save_crop') %>"
             data-disable-with="Saving..."
-            ng-disabled="crop.sending || cropForm.$invalid""
+            ng-disabled="crop.sending || cropForm.$invalid"
             ng-click="submitForm()"/>
         </span>
       </div>

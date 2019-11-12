@@ -20,29 +20,39 @@ class Picture
                          ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'] }
 
   # SEE: http://stackoverflow.com/a/23141483/1064917
-  class << self
-    def from_url(file_location, parent)
-      pic = new(photographic: parent)
-      if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
-        pic.attachment = open(file_location)
-      else # it's a filesystem update
-        # if it's already on the system, or it's missing,
-        # we don't need to update it.
-        unless file_location.include?('/system/') ||
-               file_location.include?('missing.png')
-          unless file_location.include?('http')
-            file_location = "#{Rails.root.join('public')}/#{file_location}"
-          end
-          pic.attachment = open(file_location)
-        end
-      end
-      pic.save!
-      pic
-    rescue StandardError => e
-      data = { file_location: file_location,
-               parent: parent }
-      ExceptionNotifier.notify_exception(e, data: data)
-      raise e
+  def self.from_url(file_location, parent)
+    pic = new(photographic: parent)
+    pic.do_attach(file_location)
+    pic.save!
+    pic
+  rescue StandardError => e
+    data = { file_location: file_location, parent: parent }
+    ExceptionNotifier.notify_exception(e, data: data)
+    raise e
+  end
+
+  def do_attach(file_location)
+    if Paperclip::Attachment.default_options[:storage].to_s != 'filesystem'
+      attach_via_network(file_location)
+    else
+      attach_via_filesystem(file_location)
     end
+  end
+
+  def attach_via_network(file_location)
+    self.attachment = open(file_location)
+  end
+
+  PATH_TPL = "#{Rails.root.join('public')}/%s"
+
+  def attach_via_filesystem(path)
+    # if it's already on the system, or it's missing,
+    # we don't need to update it.
+    is_system = path.include?('/system/')
+    is_placeholder = path.include?('missing.png')
+    return if is_system || is_placeholder
+
+    path = PATH_TPL % path unless path.include?('http')
+    self.attachment = open(path)
   end
 end

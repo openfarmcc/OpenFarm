@@ -34,6 +34,7 @@ gem 'gibbon', '~> 1'
 gem 'coffee-rails'
 gem 'devise'
 gem 'eventmachine'
+gem 'exception_notification'
 gem 'high_voltage'
 gem 'jsonapi-serializers'
 gem 'merit'
@@ -106,7 +107,6 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'exception_notification'
   gem 'rack-timeout'
   gem 'rails_12factor'
   gem 'thin'

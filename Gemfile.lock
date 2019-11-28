@@ -302,7 +302,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    parallel (1.18.0)
+    parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
@@ -429,7 +429,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
-    rubocop (0.76.0)
+    rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -581,7 +581,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.76.0)
+  rubocop (= 0.77.0)
   sass-rails
   searchkick
   selenium-webdriver

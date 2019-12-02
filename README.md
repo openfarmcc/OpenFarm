@@ -6,10 +6,6 @@
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
 [![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
-# Looking for Maintainer
-
-Contact rory@openfarm.cc to find out more, or open an issue to discuss your interest.
-
 # Security Concerns
 
 We take security seriously and value the input of independent researchers. Please email `security@farmbot.io` for issues that require immediate attention. Please follow [responsible disclosure](). **Do not use Slack or Github issues to discuss security vulnerabilities.**

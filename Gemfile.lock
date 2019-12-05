@@ -262,7 +262,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.13.0)
     moneta (1.0.0)
-    mongo (2.11.0)
+    mongo (2.11.2)
       bson (>= 4.6.0, < 5.0.0)
     mongoid (6.4.4)
       activemodel (>= 5.1, < 6.0.0)
@@ -270,7 +270,7 @@ GEM
     mongoid-compatibility (0.5.1)
       activesupport
       mongoid (>= 2.0)
-    mongoid-history (0.8.1)
+    mongoid-history (0.8.2)
       activesupport
       easy_diff
       mongoid (>= 3.0)

@@ -85,8 +85,8 @@
           }
           if (
             !S(e.target).data('revealId') &&
-            (parent.length > 0 &&
-              (S(e.target).is('[' + self.attr_name() + '-content]') || $.contains(parent.first()[0], e.target)))
+            parent.length > 0 &&
+              (S(e.target).is('[' + self.attr_name() + '-content]') || $.contains(parent.first()[0], e.target))
           ) {
             e.stopPropagation();
             return;

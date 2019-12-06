@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe ApplicationPolicy do
@@ -5,7 +7,7 @@ describe ApplicationPolicy do
 
   let (:current_user) { FactoryBot.create :user }
   let (:other_user) { FactoryBot.create :user }
-  let (:private_user) { FactoryBot.create :user, is_private: true}
+  let (:private_user) { FactoryBot.create :user, is_private: true }
   let (:admin) { FactoryBot.create :user, admin: true }
 
   permissions :index? do
@@ -29,9 +31,9 @@ describe ApplicationPolicy do
   # This is just a hack - the scope on the application policy
   # is just a wrapper method that returns the scope being
   # called for.
-  context "for a user" do
-    it "should only return records action" do
-     @p = ApplicationPolicy::Scope.new(current_user, User).resolve
+  context 'for a user' do
+    it 'should only return records action' do
+      @p = ApplicationPolicy::Scope.new(current_user, User).resolve
     end
   end
 end

@@ -14,8 +14,6 @@ OpenFarm::Application.routes.draw do
     get '(:locale)/crop_search' => 'crop_searches#search',
         as: :crop_search_via_get
 
-
-
     devise_scope :users do
       get 'users/gardens' => 'users#gardens'
       get 'users/finish' => 'users#finish'

@@ -184,7 +184,7 @@ GEM
       railties (>= 4.2.0)
     faker (2.9.0)
       i18n (>= 1.6, < 1.8)
-    faraday (0.17.0)
+    faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
     font-awesome-sass (5.12.0)
@@ -454,7 +454,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.1.1)
+    searchkick (4.2.0)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie

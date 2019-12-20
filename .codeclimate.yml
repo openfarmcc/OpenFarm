@@ -16,7 +16,7 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    channel: "rubocop-0-71"
+    channel: "rubocop-0-78"
     config:
       file: .rubocop.yml
   shellcheck:

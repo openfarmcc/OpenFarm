@@ -501,7 +501,7 @@ GEM
     unicode-display_width (1.6.0)
     utf8-cleaner (0.2.5)
       activesupport
-    vcr (5.0.0)
+    vcr (5.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     webmock (3.7.6)

@@ -12,8 +12,7 @@ addons:
   firefox: '66.0'
   code_climate:
     repo_token:
-      secure: WCyuWuMtBnJ6R/emERLVSys/1GDsrGRzDttZP4Dnp55fTgYIHY6c0ZbDExE3nsTRFh7U5Xa54d1+gN3IOq6UjC6Y1xyzk47Txrc7gxgxsMV0dw24iThmq+zkErNh9zsXehS4UthEdyGm8PJFhzG9Tc2Gjq2k9yCERRn1BU9rQPY=
-
+      secure: "aBGrdMAhqGgV+KQAGLXAvGOIOmDoaWpeH1pPwRoZX4HxKanA5eQ7mDDObK1oFgy4vctVNUcCx8vM6kKZzT2W0kOXjNGcJO5u0IE9DE87gQZbR43Hy5JpFnMmOf6A/m9CtJLD0Zny9ihucmda6ODBoHIkOGj7P1bRJYH4En1dozI="
 before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
   - mkdir geckodriver

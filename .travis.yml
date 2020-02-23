@@ -1,15 +1,18 @@
 language: ruby
 services:
-  - mongodb
-  - elasticsearch
+- mongodb
+- elasticsearch
 sudo: false
 dist: bionic
 cache:
   bundler: true
 addons:
-  firefox: "66.0"
+  firefox: '66.0'
+  code_climate:
+    repo_token:
+      secure: WCyuWuMtBnJ6R/emERLVSys/1GDsrGRzDttZP4Dnp55fTgYIHY6c0ZbDExE3nsTRFh7U5Xa54d1+gN3IOq6UjC6Y1xyzk47Txrc7gxgxsMV0dw24iThmq+zkErNh9zsXehS4UthEdyGm8PJFhzG9Tc2Gjq2k9yCERRn1BU9rQPY=
 before_install:
-  - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-  - mkdir geckodriver
-  - tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
-  - export PATH=$PATH:$PWD/geckodriver
+- wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+- mkdir geckodriver
+- tar -xzf geckodriver-v0.24.0-linux64.tar.gz -C geckodriver
+- export PATH=$PATH:$PWD/geckodriver

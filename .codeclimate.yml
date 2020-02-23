@@ -2,6 +2,8 @@ version: "2"
 plugins:
   brakeman:
     enabled: true
+  brakeman:
+    enabled: true
   bundler-audit:
     enabled: true
   duplication:
@@ -16,9 +18,9 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    channel: "rubocop-0-78"
-    config:
-      file: .rubocop.yml
+    channel: "rubocop-0-79"
+  scss-lint:
+    enabled: true
   shellcheck:
     enabled: true
 exclude_patterns:

@@ -68,8 +68,8 @@ end
 
 gem 'font-awesome-sass'
 
-gem 'foundation-rails'
 gem 'autoprefixer-rails'
+gem 'foundation-rails'
 
 gem 'sprockets'
 gem 'sprockets-es6'

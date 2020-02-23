@@ -303,7 +303,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     parallel (1.19.1)
-    parser (2.6.5.0)
+    parser (2.7.0.2)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     platform-api (2.2.0)
@@ -429,10 +429,10 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
-    rubocop (0.78.0)
+    rubocop (0.79.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.6)
+      parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
@@ -498,7 +498,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.6.0)
+    unicode-display_width (1.6.1)
     utf8-cleaner (0.2.5)
       activesupport
     vcr (5.0.0)
@@ -581,7 +581,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.78.0)
+  rubocop (= 0.79.0)
   sass-rails
   searchkick
   selenium-webdriver

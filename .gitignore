@@ -9,6 +9,7 @@
 /log/*.log
 /public/system
 /public/temp-uploads
+/public/assets
 /tmp
 /vendor/bundler
 coverage/

@@ -57,6 +57,8 @@ GEM
     ambry (1.0.0)
     arel (9.0.0)
     ast (2.4.0)
+    autoprefixer-rails (9.7.4)
+      execjs
     aws-eventstream (1.0.3)
     aws-partitions (1.260.0)
     aws-sdk-core (3.86.0)
@@ -519,6 +521,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  autoprefixer-rails
   aws-sdk-rails
   aws-sdk-s3
   binding_of_caller
@@ -538,7 +541,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-sass
-  foundation-rails (= 5.5.2.1)
+  foundation-rails
   gibbon (~> 1)
   high_voltage
   jquery-rails

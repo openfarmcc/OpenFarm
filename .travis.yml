@@ -3,8 +3,9 @@ services:
   - mongodb
   - elasticsearch
 sudo: false
-  cache:
-    bundler: true
+dist: bionic
+cache:
+  bundler: true
 addons:
   firefox: "66.0"
 before_install:

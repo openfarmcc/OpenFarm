@@ -85,13 +85,14 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    backports (3.16.1)
     bcrypt (3.1.13)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bson (4.6.0)
     bson_ext (1.5.1)
     builder (3.2.4)
-    capybara (3.30.0)
+    capybara (3.31.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -131,6 +132,7 @@ GEM
       sass-rails (< 5.1)
       sprockets (< 4.0)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -173,6 +175,8 @@ GEM
       multi_json
     erubi (1.9.0)
     erubis (2.7.0)
+    ethon (0.12.0)
+      ffi (>= 1.3.0)
     eventmachine (1.2.7)
     exception_notification (4.4.0)
       actionmailer (>= 4.0, < 7)
@@ -188,12 +192,21 @@ GEM
       i18n (>= 1.6, < 2)
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.14.0)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.11.3)
     font-awesome-sass (5.12.0)
       sassc (>= 1.11)
     foundation-rails (5.5.2.1)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
+    gh (0.14.0)
+      addressable
+      backports
+      faraday (~> 0.8)
+      multi_json (~> 1.0)
+      net-http-persistent (>= 2.7)
+      net-http-pipeline
     gibbon (1.2.1)
       httparty
       multi_json (>= 1.9.0)
@@ -210,6 +223,7 @@ GEM
       moneta
       multi_json (>= 1.9.2)
     high_voltage (3.1.2)
+    highline (1.7.10)
     httparty (0.17.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -293,9 +307,12 @@ GEM
     mutations (0.9.0)
       activesupport
     nested_form (0.3.2)
+    net-http-persistent (3.1.0)
+      connection_pool (~> 2.2)
+    net-http-pipeline (1.0.1)
     ng-rails-csrf (0.1.0)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
@@ -305,7 +322,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     parallel (1.19.1)
-    parser (2.6.5.0)
+    parser (2.7.0.2)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     platform-api (2.2.0)
@@ -317,10 +334,13 @@ GEM
       method_source (~> 0.9.0)
     pry-nav (0.3.0)
       pry (>= 0.9.10, < 0.13.0)
-    public_suffix (4.0.2)
+    public_suffix (4.0.3)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.8)
+    pusher-client (0.6.2)
+      json
+      websocket (~> 1.0)
+    rack (2.2.2)
     rack-attack (6.2.2)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
@@ -408,7 +428,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    regexp_parser (1.6.0)
+    regexp_parser (1.7.0)
     remotipart (1.4.4)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -431,10 +451,10 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
-    rubocop (0.78.0)
+    rubocop (0.79.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.6)
+      parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
@@ -496,20 +516,32 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     tins (1.21.1)
+    travis (1.8.10)
+      backports
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.9, >= 0.9.1)
+      gh (~> 0.13)
+      highline (~> 1.6)
+      launchy (~> 2.1)
+      pusher-client (~> 0.4)
+      typhoeus (~> 0.6, >= 0.6.8)
+    typhoeus (0.8.0)
+      ethon (>= 0.8.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.6.0)
+    unicode-display_width (1.6.1)
     utf8-cleaner (0.2.5)
       activesupport
-    vcr (5.0.0)
+    vcr (5.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.7.6)
+    webmock (3.8.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    websocket (1.2.8)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -584,7 +616,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.78.0)
+  rubocop (= 0.79.0)
   sass-rails
   searchkick
   selenium-webdriver
@@ -594,6 +626,7 @@ DEPENDENCIES
   sprockets-es6
   test-unit
   thin
+  travis
   uglifier
   utf8-cleaner
   vcr

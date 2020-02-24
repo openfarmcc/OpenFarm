@@ -129,7 +129,7 @@ GEM
       compass (~> 1.0.0)
       sass-rails (< 5.1)
       sprockets (< 4.0)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
@@ -188,7 +188,7 @@ GEM
       railties (>= 4.2.0)
     faker (2.10.1)
       i18n (>= 1.6, < 2)
-    faraday (0.17.1)
+    faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
@@ -214,7 +214,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashdiff (1.0.0)
-    hashie (4.0.0)
+    hashie (4.1.0)
     heroics (0.0.25)
       erubis (~> 2.0)
       excon
@@ -274,7 +274,7 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.13.0)
+    minitest (5.14.0)
     moneta (1.0.0)
     mongo (2.11.2)
       bson (>= 4.6.0, < 5.0.0)
@@ -474,7 +474,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.2.0)
+    searchkick (4.3.0)
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie

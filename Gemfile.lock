@@ -254,8 +254,8 @@ GEM
     kaminari-mongoid (1.0.1)
       kaminari-core (~> 1.0)
       mongoid
-    launchy (2.4.3)
-      addressable (~> 2.3)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     letter_opener (1.7.0)
       launchy (~> 2.2)
     loofah (2.4.0)

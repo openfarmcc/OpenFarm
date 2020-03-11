@@ -213,7 +213,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    hashdiff (1.0.0)
+    hashdiff (1.0.1)
     hashie (4.0.0)
     heroics (0.0.25)
       erubis (~> 2.0)
@@ -535,7 +535,7 @@ GEM
     vcr (5.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.8.2)
+    webmock (3.8.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)

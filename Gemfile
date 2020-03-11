@@ -89,7 +89,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'rails-controller-testing' # For 'assert_template'
   gem 'rspec-rails'
-  gem 'rubocop', '0.79.0', require: false
+  gem 'rubocop', '0.80.1', require: false
   gem 'travis', require: false
 end
 

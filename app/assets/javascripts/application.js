@@ -70,5 +70,3 @@ if (!isDNT) {
 $(function() {
   $(document).foundation();
 });
-
-$(function(){ $(document).foundation(); });

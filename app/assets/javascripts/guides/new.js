@@ -107,7 +107,7 @@ openFarmApp.controller('newGuideCtrl', [
 
       if (existingGuide.practices) {
         localGuide.practices.forEach(function(practice) {
-          if (existingGuide.practices.indexOf(practice.slug) !== -1) {
+          if (existingGuide.practices.includes(practice.slug)) {
             practice.selected = true;
           }
         });
@@ -248,7 +248,7 @@ openFarmApp.controller('newGuideCtrl', [
 
       var defineFeaturedImage = function(image) {
         var featured_image = null;
-        if (image !== undefined && image.image_url !== undefined && image.image_url.indexOf('baren_field') === -1) {
+        if (image !== undefined && image.image_url !== undefined && !image.image_url.includes('baren_field')) {
           featured_image = image.image_url;
         }
         if (featured_image !== null) {

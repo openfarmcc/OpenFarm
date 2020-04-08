@@ -236,10 +236,10 @@
         }
         objPos(tip, target.offset().top + target.outerHeight() + 10, 'auto', 'auto', left);
         tip.removeClass('tip-override');
-        if (classes && classes.indexOf('tip-top') > -1) {
+        if (classes && classes.includes('tip-top')) {
           if (Foundation.rtl) nub.addClass('rtl');
           objPos(tip, target.offset().top - tip.outerHeight(), 'auto', 'auto', left).removeClass('tip-override');
-        } else if (classes && classes.indexOf('tip-left') > -1) {
+        } else if (classes && classes.includes('tip-left')) {
           objPos(
             tip,
             target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2,
@@ -248,7 +248,7 @@
             target.offset().left - tip.outerWidth() - nubHeight
           ).removeClass('tip-override');
           nub.removeClass('rtl');
-        } else if (classes && classes.indexOf('tip-right') > -1) {
+        } else if (classes && classes.includes('tip-right')) {
           objPos(
             tip,
             target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2,

@@ -1,8 +1,7 @@
 .top-bar {
-
   height: 71px;
   z-index: 9999;
-  box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 
   .logo {
     margin-top: 20px;
@@ -11,7 +10,7 @@
     margin-left: 30px;
   }
 
-  input[type='submit']{
+  input[type='submit'] {
     padding: 0;
     line-height: 2.125;
     border-top-right-radius: 3px;
@@ -20,18 +19,18 @@
     border-top-left-radius: 0;
   }
 
-  .header-search{
+  .header-search {
     max-width: 400px;
     width: 47%;
     margin-top: 17.5px;
   }
 
-  @media #{$small-only}{
+  @media #{$small-only} {
     input {
       height: 2.5rem;
     }
     // This is a bit hacky.
-    .header-search{
+    .header-search {
       width: 100%;
     }
   }
@@ -74,7 +73,7 @@
 
     .gray-to-black-link {
       background: $translucent-gray !important;
-      font-size: .8em;
+      font-size: 0.8em;
       color: $white;
       font-weight: 800;
 
@@ -92,7 +91,6 @@
     //  padding: 0 15px;
     // }
   }
-
 }
 
 .logo-link {

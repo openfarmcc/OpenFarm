@@ -1,5 +1,5 @@
 .garden {
-  .header{
+  .header {
     border-bottom: 2px solid $of-dark;
     margin: 2rem auto;
     h2 {
@@ -9,14 +9,14 @@
     .edit {
       text-align: right;
       .button {
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
       }
     }
 
     i.fa-lock {
       font-size: 1.5rem;
       margin-right: 1rem;
-      padding: .5rem;
+      padding: 0.5rem;
       vertical-align: middle;
     }
   }
@@ -28,7 +28,7 @@
   }
 
   .edit-buttons {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     text-align: right;
   }
   .details {
@@ -39,7 +39,8 @@
     }
 
     td {
-      input, select {
+      input,
+      select {
         margin-bottom: 0;
       }
     }
@@ -63,7 +64,7 @@
 .add-garden {
   margin: 1rem auto 4rem;
 
-  hr{
+  hr {
     margin-bottom: 2rem;
   }
 }

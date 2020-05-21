@@ -1,5 +1,7 @@
 // Because <ie9 doesn't know what video is.
-video { display: block; }
+video {
+  display: block;
+}
 
 // Hide video on mobile
 @media screen and (max-device-width: 800px) {
@@ -17,10 +19,13 @@ video { display: block; }
   right: 0;
   background: image-url('home_video_first_frame.jpeg') no-repeat center center;
   background-size: cover;
-  background-color: #243B21; // a dark green to match the video
+  background-color: #243b21; // a dark green to match the video
 
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
 
   video {
     position: absolute;
@@ -28,8 +33,11 @@ video { display: block; }
     bottom: 0;
     left: 0;
     right: 0;
-    min-width: 100%; min-height: 10%;
-    width: auto; height: auto; z-index: -100;
+    min-width: 100%;
+    min-height: 10%;
+    width: auto;
+    height: auto;
+    z-index: -100;
     /*background: image-url('home_video_first_frame.jpeg') no-repeat center center;*/
     background-size: cover;
   }
@@ -59,7 +67,7 @@ video { display: block; }
     font-size: 2.6rem;
     font-weight: 800;
     margin-bottom: 0;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);  
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
   }
 
   h2 {
@@ -67,11 +75,11 @@ video { display: block; }
     font-size: 1.3rem;
     font-weight: 800;
     margin-bottom: 0;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
   }
 
   button.how-it-works-button {
-    background-color: rgba(153,153,153,0.5);
+    background-color: rgba(153, 153, 153, 0.5);
     border-radius: 3px;
     color: $white;
     display: block;
@@ -82,7 +90,7 @@ video { display: block; }
     margin-bottom: 2rem;
 
     &:hover {
-    background-color: rgba(153,153,153,0.7);
+      background-color: rgba(153, 153, 153, 0.7);
     }
   }
 
@@ -112,7 +120,8 @@ video { display: block; }
         text-align: left;
 
         // dropdown carrat
-        &:before, &:after {
+        &:before,
+        &:after {
           display: none;
         }
       }
@@ -215,8 +224,8 @@ video { display: block; }
 .survey-button {
   color: $white;
   background-color: $brown;
-  padding: .75em 2.25em;
-  font-size: .875em;
+  padding: 0.75em 2.25em;
+  font-size: 0.875em;
 
   &:hover,
   &:focus,
@@ -228,4 +237,3 @@ video { display: block; }
 .survey-button-img {
   margin-top: -2px;
 }
-

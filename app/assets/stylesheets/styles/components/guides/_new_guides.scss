@@ -2,22 +2,22 @@
 @-webkit-keyframes fa-spin-image-load {
   0% {
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
-            transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
     -webkit-transform: translate(-50%, -50%) rotate(359deg);
-            transform: translate(-50%, -50%) rotate(359deg);
+    transform: translate(-50%, -50%) rotate(359deg);
   }
 }
 
 @keyframes fa-spin-image-load {
   0% {
     -webkit-transform: translate(-50%, -50%) rotate(0deg);
-            transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
     -webkit-transform: translate(-50%, -50%) rotate(359deg);
-            transform: translate(-50%, -50%) rotate(359deg);
+    transform: translate(-50%, -50%) rotate(359deg);
   }
 }
 
@@ -54,14 +54,14 @@
     height: 200px;
     border-radius: 2px;
     border: 0px solid #979797;
-    -moz-box-shadow:    inset 0px 1px 3px 0px rgba(0,0,0,0.20);
-    box-shadow:         inset 0px 1px 3px 0px rgba(0,0,0,0.20);
+    -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
     display: inline-block;
     margin-bottom: 1rem;
     @include font-awesome-mixin();
 
     &:before {
-      content: "\f06c";
+      content: '\f06c';
       font-size: 4rem;
       position: absolute;
       z-index: 0;
@@ -75,7 +75,7 @@
     }
 
     &.ng-invalid-uploading:before {
-      content: "\f110";
+      content: '\f110';
       -webkit-animation: fa-spin-image-load 2s infinite linear;
       animation: fa-spin-image-load 2s infinite linear;
     }
@@ -115,11 +115,11 @@
 }
 
 .stage-action-toggle {
-  padding: .25rem;
-  padding-left: .75rem;
-  margin: .25rem 0;
+  padding: 0.25rem;
+  padding-left: 0.75rem;
+  margin: 0.25rem 0;
   cursor: pointer;
-  transition: $transition-speed background-color ;
+  transition: $transition-speed background-color;
   @include grey-inset;
 
   &:hover {
@@ -175,43 +175,43 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-image: url("stages/other_sm.png");
+  background-image: url('stages/other_sm.png');
 
   &.preparation {
-    background-image: url("stages/prep_sm.png");
+    background-image: url('stages/prep_sm.png');
   }
 
   &.sow {
-    background-image: url("stages/sow_sm.png");
+    background-image: url('stages/sow_sm.png');
   }
 
   &.germination,
   &.growing {
-    background-image: url("stages/germination_sm.png");
+    background-image: url('stages/germination_sm.png');
   }
 
   &.seedling {
-    background-image: url("stages/sprouting_sm.png");
+    background-image: url('stages/sprouting_sm.png');
   }
 
   &.juvenile {
-    background-image: url("stages/juvenile_sm.png");
+    background-image: url('stages/juvenile_sm.png');
   }
 
   &.adult {
-    background-image: url("stages/adult_sm.png");
+    background-image: url('stages/adult_sm.png');
   }
 
   &.flowering {
-    background-image: url("stages/flowering_sm.png");
+    background-image: url('stages/flowering_sm.png');
   }
 
   &.fruit,
   &.harvest {
-    background-image: url("stages/fruiting_sm.png");
+    background-image: url('stages/fruiting_sm.png');
   }
 
   &.dormant {
-    background-image: url("stages/dormant_sm.png");
+    background-image: url('stages/dormant_sm.png');
   }
 }

@@ -1,32 +1,29 @@
-@import "compass";
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "styles/variables"; // colors
-@import "styles/foundation_and_overrides";
-@import "styles/presets";
-@import "styles/components/nav";
-@import "styles/components/footer";
-@import "styles/ui/icons";
-@import "styles/ui/compatibility_circle";
-@import "styles/ui/badges-list";
-@import "styles/ui/tags";
-@import "styles/ui/labels";
-@import "styles/ui/forms";
-@import "styles/ui/inputs/**/*";
+@import 'compass';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'styles/variables'; // colors
+@import 'styles/foundation_and_overrides';
+@import 'styles/presets';
+@import 'styles/components/nav';
+@import 'styles/components/footer';
+@import 'styles/ui/icons';
+@import 'styles/ui/compatibility_circle';
+@import 'styles/ui/badges-list';
+@import 'styles/ui/tags';
+@import 'styles/ui/labels';
+@import 'styles/ui/forms';
+@import 'styles/ui/inputs/**/*';
 
-@import "styles/components/alerts",
-        "styles/components/loader",
-        "styles/components/lightbox",
-        "styles/components/crop_searches/**/*",
-        "styles/components/crops/**/*";
-@import "styles/components/guides/**/*";
-@import "styles/components/users/**/*";
-@import "styles/components/devise/**/*";
+@import 'styles/components/alerts', 'styles/components/loader', 'styles/components/lightbox',
+  'styles/components/crop_searches/**/*', 'styles/components/crops/**/*';
+@import 'styles/components/guides/**/*';
+@import 'styles/components/users/**/*';
+@import 'styles/components/devise/**/*';
 // begin static page styles
-@import "styles/components/pages/home";
-@import "styles/components/pages/styles";
-@import "styles/components/pages/how_it_works";
-@import "styles/components/pages/featured_crops";
+@import 'styles/components/pages/home';
+@import 'styles/components/pages/styles';
+@import 'styles/components/pages/how_it_works';
+@import 'styles/components/pages/featured_crops';
 
 .add-guide {
   color: #000000;

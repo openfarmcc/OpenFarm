@@ -1,6 +1,7 @@
 .styles-page {
-
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     margin-top: 30px;
   }
 
@@ -9,7 +10,7 @@
     opacity: 0.35;
   }
 
-  .swatch{
+  .swatch {
     // float: left;
     margin-bottom: 1em;
     // width: 96%;
@@ -19,7 +20,7 @@
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
   }
 
-  .swatch-preview{
+  .swatch-preview {
     display: block;
     // float: left;
     height: 60px;
@@ -27,7 +28,7 @@
     margin: 0 0.8em 0.5em 0;
   }
 
-  .swatch-details{
+  .swatch-details {
     list-style: none;
     // float: left;
     margin: 0 1em 0 0;
@@ -37,7 +38,6 @@
   }
 
   .display {
-
     &.row {
       margin-bottom: 10px;
       line-height: 2rem;
@@ -46,15 +46,15 @@
     }
 
     .columns {
-      background: #EEEEEE;
+      background: #eeeeee;
       font-size: 1em;
       margin-bottom: 10px;
       line-height: 2rem;
-      border: solid 1px #CCCCCC;
+      border: solid 1px #cccccc;
       border-radius: 5px;
 
       &:hover {
-        background-color: #D4DBC6;
+        background-color: #d4dbc6;
       }
     }
   }
@@ -62,11 +62,11 @@
   // Requires explicit <br/> tags to break lines
   .code-block {
     width: 100%;
-    background-color: #F7F7F9;
+    background-color: #f7f7f9;
     color: #333;
     margin: 10px auto;
     padding: 6px 12px;
-    border: 1px solid #CCC;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-family: courier;
     font-size: 0.8em;

@@ -1,13 +1,12 @@
 .member-profile {
-
   .canopy-wrapper {
     background-size: cover;
     background-position: center;
   }
 
   .canopy {
-    background-color: rgba(0, 0, 0, .15);
-    transition: .5s background-color;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: 0.5s background-color;
 
     p,
     h2,
@@ -15,9 +14,8 @@
       color: $white;
     }
 
-
     &.editing {
-      background-color: rgba(0, 0, 0, .6);
+      background-color: rgba(0, 0, 0, 0.6);
     }
   }
 
@@ -46,8 +44,8 @@
 
     li {
       display: inline-block;
-      padding: .4rem 1rem;
-      margin: .4rem 0;
+      padding: 0.4rem 1rem;
+      margin: 0.4rem 0;
       background-color: $gray-bg;
     }
 
@@ -59,7 +57,7 @@
 
     .attribute {
       color: $gray;
-      margin-bottom: .4rem;
+      margin-bottom: 0.4rem;
       font-weight: bold;
     }
   }
@@ -81,8 +79,7 @@
   }
 
   .guides-list {
-
-    margin-top: -.4rem;
+    margin-top: -0.4rem;
 
     table {
       border: none;
@@ -91,7 +88,7 @@
 
     .compatibility-circle {
       float: left;
-      margin: .2rem 1rem;
+      margin: 0.2rem 1rem;
     }
 
     .guide-name {
@@ -109,7 +106,6 @@
   }
 
   .member-info-wrapper {
-
     padding-top: 5rem;
     padding-bottom: 5rem;
 
@@ -140,7 +136,6 @@
     }
 
     .member-infos {
-
       h2 {
         font-weight: bold;
       }
@@ -167,7 +162,7 @@
     color: $white;
   }
 
-  input[type=button] {
+  input[type='button'] {
     box-shadow: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

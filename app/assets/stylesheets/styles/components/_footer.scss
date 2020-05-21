@@ -1,8 +1,7 @@
-
 footer {
   height: $footer-height;
   background: $gray-bg;
-  @include transition(all .5s);
+  @include transition(all 0.5s);
   padding: 2.5em 0;
   border-top: 1px solid $dark-gray;
 
@@ -31,34 +30,34 @@ footer {
 
   a {
     display: flex;
-    padding: .5rem;
-    margin-left: -.5rem;
+    padding: 0.5rem;
+    margin-left: -0.5rem;
     font-weight: 300;
     line-height: 1.6;
     color: $off-black;
     font-size: 1rem;
-    @include transition(all .65s ease-out);
+    @include transition(all 0.65s ease-out);
 
     &:hover {
-      background: transparentize($off-black, .8);
+      background: transparentize($off-black, 0.8);
       color: $off-black;
     }
 
     i {
-      margin-right: .5em;
-      margin-top: .3rem;
+      margin-right: 0.5em;
+      margin-top: 0.3rem;
     }
 
     &:active {
       @include transition(none);
-      background: rgba(255, 255, 255, .15);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     &.social {
       display: inline-block;
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
       font-size: 1rem;
-      margin-right: .5rem;
+      margin-right: 0.5rem;
 
       i {
         margin-right: 0;
@@ -88,16 +87,16 @@ footer {
     color: $dark-gray;
   }
 
-  input[type="submit"] {
+  input[type='submit'] {
     width: 100%;
-    padding: .25rem;
+    padding: 0.25rem;
     background: transparent;
     color: $of-green;
     border: 1px solid $of-green;
     box-shadow: none;
   }
 
-  input[type="email"] {
-    margin-bottom: .25rem;
+  input[type='email'] {
+    margin-bottom: 0.25rem;
   }
 }

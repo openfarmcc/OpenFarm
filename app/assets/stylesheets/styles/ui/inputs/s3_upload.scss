@@ -11,17 +11,17 @@
 }
 
 .deleted {
-  opacity: .4;
+  opacity: 0.4;
   background-color: $gray-bg;
 }
 
 .thumbnails {
-  margin: 0 .5rem .5rem 0;
+  margin: 0 0.5rem 0.5rem 0;
   display: inline-block;
   position: relative;
   cursor: pointer;
   text-align: center;
-  transition: .2s opacity, .2s background-color;
+  transition: 0.2s opacity, 0.2s background-color;
 
   img {
     width: 100px;
@@ -40,8 +40,8 @@
   }
 }
 
-.s3-upload-input{
-  .click-to-upload-image{
+.s3-upload-input {
+  .click-to-upload-image {
     @include add-new-button();
     @include box-shadow(none);
     @include font-awesome-mixin();
@@ -61,7 +61,7 @@
     }
 
     &:before {
-      content: "\f06c";
+      content: '\f06c';
       font-size: 4rem;
       position: absolute;
       z-index: 0;
@@ -81,7 +81,7 @@
       left: 50%;
     }
 
-    img{
+    img {
       width: 100%;
       height: 100%;
       z-index: 999;
@@ -99,7 +99,7 @@
     color: darken($of-green, 10%);
     border-color: $openfarm-green-muted;
     border-style: solid;
-    background-color: rgba(0, 0, 0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   .pictures {
@@ -115,7 +115,7 @@
 
   &.ng-invalid-uploading .click-to-upload-image:before {
     // TODO: Make this use the built in fa-spin class
-    content: "\f110";
+    content: '\f110';
     -webkit-animation: fa-spin-image-load 2s infinite linear;
     animation: fa-spin-image-load 2s infinite linear;
   }

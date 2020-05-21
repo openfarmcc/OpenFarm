@@ -4,8 +4,8 @@
   border-radius: 999rem;
   font-size: 18px;
   font-weight: 600;
-  color: #DDD;
-  border: 2px solid #DDD;
+  color: #ddd;
+  border: 2px solid #ddd;
   line-height: $compatibility-circle-size;
   text-align: center;
   vertical-align: middle;
@@ -17,7 +17,7 @@
     margin-top: -8px; // nudge up
   }
 
-  @mixin compatibility-color ($selector, $color) {
+  @mixin compatibility-color($selector, $color) {
     &.#{$selector} {
       color: $color;
       border-color: $color;

@@ -1,5 +1,5 @@
 .guide-creation-nav {
-  $guide-nav-color: #5E9546;
+  $guide-nav-color: #5e9546;
   background: $guide-nav-color;
   overflow-x: auto;
   overflow-y: hidden;
@@ -25,7 +25,7 @@
     font-size: 1.25em;
     font-weight: 600;
     vertical-align: middle;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     padding: 10px 10px 10px 35px;
 
     &.disabled {
@@ -33,7 +33,7 @@
     }
 
     &:hover {
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     &::before {
@@ -41,11 +41,10 @@
       top: 10px;
       left: 10px;
       $size: 12px;
-      width: $size; height: $size;
-      content: "";
-      @include box-shadow(
-          0 0 0 2px $guide-nav-color,
-          0 0 0 4px #D9E9D2);
+      width: $size;
+      height: $size;
+      content: '';
+      @include box-shadow(0 0 0 2px $guide-nav-color, 0 0 0 4px #d9e9d2);
       border-radius: 50%;
     }
 
@@ -58,7 +57,8 @@
       color: $white;
     }
 
-    &:active, &.active {
+    &:active,
+    &.active {
       color: $white;
 
       // get rid of check
@@ -69,9 +69,7 @@
 
     &.active::before {
       background: lighten($guide-nav-color, 80%);
-      @include box-shadow(
-          0 0 0 2px $guide-nav-color,
-          0 0 0 4px lighten($guide-nav-color, 80%));
+      @include box-shadow(0 0 0 2px $guide-nav-color, 0 0 0 4px lighten($guide-nav-color, 80%));
     }
 
     &:hover {

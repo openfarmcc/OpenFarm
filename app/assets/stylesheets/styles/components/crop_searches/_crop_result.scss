@@ -1,6 +1,6 @@
 .search-result-crop {
   position: relative;
-  background-color: #EEE;
+  background-color: #eee;
   height: 240px;
   padding: 0;
   margin-bottom: 8px;
@@ -20,7 +20,7 @@
          `Cannot determine the opposite position of: to`, our personal
          method defined in presets doesn't have this issue. see
          https://github.com/FarmBot/OpenFarm/issues/325 */
-      @include background-gradient(rgba(0,0,0,1), rgba(0,0,0,0));
+      @include background-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
       /*@include background-image(linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)));*/
     }
   }
@@ -34,7 +34,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: image-url("leaf-grey-canopy.png");
+    background-image: image-url('leaf-grey-canopy.png');
   }
 
   .crop-info {
@@ -43,7 +43,7 @@
     display: table;
     width: 100%;
     position: absolute;
-    padding: ($padding+40px) ($padding+4px) $padding;
+    padding: ($padding + 40px) ($padding + 4px) $padding;
     @include single-transition(background, 0.2s, ease-in);
     /* FIXME: Avoid compass gradient for some reason.
       When using compass' background image function,
@@ -51,7 +51,7 @@
       `Cannot determine the opposite position of: to`, our personal
       method defined in presets doesn't have this issue. see:
       https://github.com/FarmBot/OpenFarm/issues/325; */
-    @include background-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+    @include background-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
     /*@include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));*/
     z-index: 1;
     bottom: 0;
@@ -70,11 +70,11 @@
     .guide-count {
       display: table-cell;
       margin: 0;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 600;
       white-space: pre;
       text-align: right;
-      padding-left: ($padding+4px);
+      padding-left: ($padding + 4px);
     }
   }
 

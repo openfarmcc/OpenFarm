@@ -9,7 +9,7 @@
     background-color: $openfarm-green-muted;
     background-size: cover;
     background-position: center;
-    background-image: image-url("leaf-grey-canopy.png");
+    background-image: image-url('leaf-grey-canopy.png');
 
     .crop-name {
       position: absolute;
@@ -25,7 +25,7 @@
          `Cannot determine the opposite position of: to`, our personal
          method defined in presets doesn't have this issue.
          see: https://github.com/FarmBot/OpenFarm/issues/325; */
-      @include background-gradient(rgba(0, 0, 0, .85), rgba(0, 0, 0, 0));
+      @include background-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
       // @include background-image(linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)));
     }
   }

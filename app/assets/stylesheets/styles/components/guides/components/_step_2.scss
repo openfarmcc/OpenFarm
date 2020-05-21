@@ -26,29 +26,29 @@
     width: 180px;
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     display: none;
   }
 
   .stage-option {
     display: block;
-    padding: .25rem;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, .2);
-    border: solid 1px #DFDFDF;
+    padding: 0.25rem;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+    border: solid 1px #dfdfdf;
     border-radius: 150px;
     width: 100%;
     height: 100%;
-    transition: border .2s;
+    transition: border 0.2s;
 
     &:hover {
-      border-color: #CCCCCC;
+      border-color: #cccccc;
     }
 
     p {
       position: absolute;
       bottom: 0;
       font-weight: 600;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 3px;
       padding: 2px 10px;
     }

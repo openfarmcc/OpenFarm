@@ -30,8 +30,8 @@
 // TODO: Remove/refactor out generic selectors like this!
 .box {
   border-radius: 2px;
-  background: rgba(198,159,96,0.04);
-  border: 1px solid rgba(0,0,0,0.25);
+  background: rgba(198, 159, 96, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.25);
 
   h1 {
     font-size: 2rem;
@@ -121,8 +121,8 @@
 
   .edit-link {
     float: right;
-    margin-left: .9rem;
-    margin-bottom: .5rem;
+    margin-left: 0.9rem;
+    margin-bottom: 0.5rem;
   }
 
   .overview {
@@ -162,7 +162,8 @@
 
     @include accordion-header-color($of-orange);
 
-    h2, h5 {
+    h2,
+    h5 {
       color: #333;
       display: inline-block;
       font-weight: 600;
@@ -200,7 +201,6 @@
 }
 
 .show-guide {
-
   background-color: #f6f6f6;
 
   .compatibility-circle-container {
@@ -221,7 +221,6 @@
       width: 100%;
 
       tr {
-
         &.low {
           background: $compatibility-low-color-bg;
         }
@@ -282,7 +281,9 @@
     text-transform: uppercase;
   }
 
-  h4, h5, h6 {
+  h4,
+  h5,
+  h6 {
     font-size: 0.8rem;
   }
 }

@@ -4,7 +4,8 @@
     position: relative;
   }
 
-  label input[type=checkbox], label input[type=radio]{
+  label input[type='checkbox'],
+  label input[type='radio'] {
     margin-bottom: 0;
     opacity: 0;
     width: 100%;
@@ -13,7 +14,8 @@
     cursor: pointer;
   }
 
-  label input[type=checkbox]:checked ~ span, label input[type=radio]:checked ~ span {
+  label input[type='checkbox']:checked ~ span,
+  label input[type='radio']:checked ~ span {
     background-color: $of-dark;
     color: white;
   }
@@ -21,7 +23,7 @@
   label {
     span {
       border-radius: 0;
-      border-right: 1px solid #CCC;
+      border-right: 1px solid #ccc;
       pointer-events: none;
     }
 

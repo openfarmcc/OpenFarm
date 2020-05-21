@@ -10,7 +10,7 @@
   $height: 100px;
 
   height: 100%;
-  padding: .5rem;
+  padding: 0.5rem;
   background-color: $of-light + hsl(0, 0, 10%);
   z-index: 0;
 
@@ -42,7 +42,7 @@
 
       &.today {
         background-color: $of-green;
-        opacity: .8;
+        opacity: 0.8;
       }
     }
 
@@ -72,16 +72,16 @@
 
 .plantLifetime {
   cursor: pointer;
-  opacity: .8;
+  opacity: 0.8;
   text-align: center;
   color: white;
-  font-size: .8rem;
-  padding-top: .1rem;
+  font-size: 0.8rem;
+  padding-top: 0.1rem;
   height: 1.5rem;
   position: relative;
   border-radius: $global-radius;
   background-color: $of-green;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 
   .creating & {
     height: 2rem;
@@ -90,7 +90,8 @@
     color: #111;
   }
 
-  & .drag-left, & .drag-right {
+  & .drag-left,
+  & .drag-right {
     width: 2rem;
     height: 100%;
     display: inline-block;

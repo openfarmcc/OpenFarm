@@ -10,7 +10,7 @@
 // $rem-base: 16px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import "foundation/functions";
+@import 'foundation/functions';
 
 // $experimental: true;
 
@@ -43,7 +43,7 @@ $total-columns: 12;
 // We use these to control various global styles
 // $body-bg: #fff;
 // $body-font-color: #222;
-$body-font-family: SourceSansPro-Regular, "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: SourceSansPro-Regular, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
 
@@ -112,7 +112,7 @@ $global-radius: 3px;
 // $include-html-type-classes: $include-html-classes;
 
 // We use these to control header font styles
-$header-font-family: "Montserrat", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;//, $body-font-family;
+$header-font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; //, $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
 // $header-font-color: #222;
@@ -282,7 +282,6 @@ $list-margin-bottom: 0;
 // $block-grid-default-spacing: rem-calc(20);
 // $align-block-grid-to-grid: false;
 
-
 // Enables media queries for block-grid classes. Set to false if writing semantic HTML.
 // $block-grid-media-queries: true;
 
@@ -330,7 +329,7 @@ $list-margin-bottom: 0;
 
 // We use this to control the display property.
 // $button-display: inline-block;
-$button-margin-bottom: 0;//rem-calc(20);
+$button-margin-bottom: 0; //rem-calc(20);
 
 // We use these to control button text styles.
 // $button-font-family: SourceSansPro-Bold;
@@ -517,7 +516,7 @@ $form-label-small-transform: initial;
 $input-border-width: 0px;
 $input-border-radius: $global-radius;
 // $input-disabled-bg: #ddd;
-$input-box-shadow: inset 0px 1px 4px 0px rgba(0,0,0,0.5);
+$input-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
 // $input-include-glowing-effect: true;
 
 // We use these to style the fieldset border and spacing.
@@ -849,7 +848,6 @@ $input-error-message-top: 0;
 // $price-money-size: rem-calc(32);
 // $price-money-font-family: $body-font-family;
 
-
 // We use these to control the description styles
 // $price-bg: #fff;
 // $price-desc-color: #777;
@@ -953,8 +951,6 @@ $input-error-message-top: 0;
 // $side-nav-font-family: $body-font-family;
 // $side-nav-active-font-family: $side-nav-font-family;
 
-
-
 // We use these to control border styles
 // $side-nav-divider-size: 1px;
 // $side-nav-divider-style: solid;
@@ -1015,7 +1011,6 @@ $input-error-message-top: 0;
 // $sub-nav-padding: rem-calc(3 16);
 // $sub-nav-border-radius: 3px;
 // $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
-
 
 // We use these to control the active item styles
 // $sub-nav-active-font-weight: $font-weight-normal;
@@ -1144,8 +1139,8 @@ $tabs-content-padding: 0;
 // $has-tip-border-bottom: dotted 1px #ccc;
 // $has-tip-font-weight: $font-weight-bold;
 // $has-tip-font-color: #333;
-$has-tip-border-bottom-hover: unset;//dotted 1px scale-color($primary-color, $lightness: -55%);
-$has-tip-font-color-hover: unset;//$primary-color;
+$has-tip-border-bottom-hover: unset; //dotted 1px scale-color($primary-color, $lightness: -55%);
+$has-tip-font-color-hover: unset; //$primary-color;
 // $has-tip-cursor-type: help;
 
 // $tooltip-padding: rem-calc(12);

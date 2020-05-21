@@ -1,5 +1,4 @@
 .show-guide {
-
   background-color: #f6f6f6;
 
   .draft-banner {
@@ -14,7 +13,7 @@
 
     p {
       font-size: 1rem;
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       margin-bottom: 0;
     }
   }
@@ -45,7 +44,6 @@
       width: 100%;
 
       tr {
-
         &.low {
           background: $compatibility-low-color-bg;
         }
@@ -113,7 +111,9 @@ textarea {
     text-transform: uppercase;
   }
 
-  h4, h5, h6 {
+  h4,
+  h5,
+  h6 {
     font-size: 0.8rem;
   }
 }
@@ -147,7 +147,7 @@ textarea {
 }
 
 .management-actions {
-  padding: .75rem;
+  padding: 0.75rem;
   display: block;
   height: 4rem;
   width: 100%;
@@ -208,7 +208,7 @@ textarea {
   }
 
   .tabs.fixed {
-    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   }
 
   // Action labels in completed guides look different

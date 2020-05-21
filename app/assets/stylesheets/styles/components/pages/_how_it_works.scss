@@ -18,17 +18,17 @@
   }
 
   i.exit {
-  color: #999999;
-  font-size: 2rem;
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
-  z-index: 3;
-  @media #{$small-only} {
-    font-size: 1.5em;
-    top: 1rem;
-    right: 1rem;
-  }
+    color: #999999;
+    font-size: 2rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    z-index: 3;
+    @media #{$small-only} {
+      font-size: 1.5em;
+      top: 1rem;
+      right: 1rem;
+    }
 
     &:hover {
       color: #333333;
@@ -42,7 +42,7 @@
     margin: 1rem;
     text-shadow: none;
     @media #{$small-only} {
-      font-size: .9em;
+      font-size: 0.9em;
       margin-top: 3rem;
     }
   }
@@ -91,7 +91,7 @@
     }
 
     .step-circle-1 {
-      background-color: rgba(120, 63,  4, 0.7);
+      background-color: rgba(120, 63, 4, 0.7);
     }
 
     .step-circle-2 {
@@ -101,7 +101,6 @@
     .step-circle-3 {
       background-color: rgba(106, 168, 79, 0.7);
     }
-
   }
 
   .steps-images {
@@ -147,7 +146,7 @@
 
       &.Preparation {
         background-position: 0;
-       }
+      }
 
       &.Sow {
         background-position: -116px center;

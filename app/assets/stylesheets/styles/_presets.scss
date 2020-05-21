@@ -1,4 +1,4 @@
-@import "compass/layout/sticky-footer";
+@import 'compass/layout/sticky-footer';
 
 /*
 
@@ -14,9 +14,10 @@
 }
 
 @mixin accordion-header-color($color) {
-  & > a, & > a.title-wrapper {
+  & > a,
+  & > a.title-wrapper {
     background-color: $color;
-    transition: .5s;
+    transition: 0.5s;
 
     &:hover {
       background-color: $color + 20;
@@ -141,7 +142,7 @@ textarea {
 /* Apply to columns that should have the same bottom padding as left/right */
 .columns.bottom-padding {
   // TODO(warpling): replace magic number
-  padding-bottom: .9375rem;
+  padding-bottom: 0.9375rem;
 }
 
 /* Apply this to a row that will vertically center a column */
@@ -181,7 +182,8 @@ textarea {
 
 */
 
-.button, input[type=submit] {
+.button,
+input[type='submit'] {
   font-weight: 600;
   background: $of-green;
 
@@ -206,7 +208,9 @@ textarea {
     background: $of-green2;
   }
 
-  &[disabled=disabled].loading, &[disabled].loading, &[disabled].loading:hover {
+  &[disabled='disabled'].loading,
+  &[disabled].loading,
+  &[disabled].loading:hover {
     background-image: url(ajax-loader-button-disabled.gif);
     background-position: 4px center;
     background-repeat: no-repeat;
@@ -245,13 +249,13 @@ textarea {
 
   background: none;
   background-color: transparent;
-  border: 2px dashed #DDD;
+  border: 2px dashed #ddd;
   border-radius: 20px;
   font-size: 1.2em;
   display: table;
   width: 100%;
   cursor: pointer;
-  color: #DDD;
+  color: #ddd;
 
   &:hover {
     border-style: solid;

@@ -10,14 +10,14 @@ openFarmApp.component('svgButton', {
       btn.addEventListener('change', function(e) {
         var file = e.currentTarget.files[0];
         var reader = new FileReader();
-        reader.onload = function() {
+        reader.addEventListener('load', function() {
           var result = { $svg: reader.result };
           if ($ctrl.onChange) {
             $ctrl.onChange(result);
           } else {
             console.error(MISSING_PROP);
           }
-        };
+        });
 
         reader.readAsText(file);
       });

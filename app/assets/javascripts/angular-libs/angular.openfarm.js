@@ -1,50 +1,50 @@
-var openFarmApp = angular.module('openFarmApp', [
-  'mm.foundation',
-  'ng-rails-csrf',
-  'ngFileUpload',
-  '720kb.socialshare',
-  'ngDragDrop',
-  'ui.sortable',
-  'LocalStorageModule',
-  'ngTagsInput',
-  'ngSanitize',
+var openFarmApp = angular.module("openFarmApp", [
+  "mm.foundation",
+  "ng-rails-csrf",
+  "ngFileUpload",
+  "720kb.socialshare",
+  "ngDragDrop",
+  "ui.sortable",
+  "LocalStorageModule",
+  "ngTagsInput",
+  "ngSanitize",
 ]);
 
 openFarmApp.config([
-  'localStorageServiceProvider',
-  function(localStorageServiceProvider) {
-    localStorageServiceProvider.setPrefix('openFarm');
+  "localStorageServiceProvider",
+  function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix("openFarm");
   },
 ]);
 
-openFarmApp.factory('alertsService', [
-  '$rootScope',
+openFarmApp.factory("alertsService", [
+  "$rootScope",
   function alertsService($rootScope) {
     $rootScope.alerts = [];
     return {
-      pushToAlerts: function(response, code) {
-        var msg_type = 'warning';
-        var msg = '';
-        if (['200', '201', '202'].indexOf(code) !== -1) {
-          msg_type = 'success';
+      pushToAlerts: function (response, code) {
+        var msg_type = "warning";
+        var msg = "";
+        if (["200", "201", "202"].indexOf(code) !== -1) {
+          msg_type = "success";
         }
         if (code >= 400 && code < 500) {
-          msg_type = 'alert';
+          msg_type = "alert";
         }
 
         if (response) {
           msg = response
-            .map(function(obj) {
+            .map(function (obj) {
               if (obj.title) {
                 return obj.title;
               } else {
                 return obj;
               }
             })
-            .join(', ');
+            .join(", ");
         } else {
-          msg = ['An unknown error occurred. Please contact an administrator ', 'with details. hi@openfarm.cc'].join(
-            ''
+          msg = ["An unknown error occurred. Please contact an administrator ", "with details. hi@openfarm.cc"].join(
+            ""
           );
         }
 

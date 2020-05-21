@@ -1,18 +1,18 @@
-openFarmApp.directive('actionDetails', [
-  '$http',
-  '$modal',
-  'defaultService',
+openFarmApp.directive("actionDetails", [
+  "$http",
+  "$modal",
+  "defaultService",
   function actionDetails($http, $modal, defaultService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        action: '=',
-        texts: '=',
+        action: "=",
+        texts: "=",
       },
       controller: [
-        '$scope',
-        function($scope) {
-          $scope.placeStageActionUpload = function(action, image) {
+        "$scope",
+        function ($scope) {
+          $scope.placeStageActionUpload = function (action, image) {
             if (!action.pictures) {
               action.pictures = [];
             }
@@ -23,7 +23,7 @@ openFarmApp.directive('actionDetails', [
           };
         },
       ],
-      templateUrl: '/assets/angular-libs/guides/new/guides.new.actionDetails.template.html',
+      templateUrl: "/assets/angular-libs/guides/new/guides.new.actionDetails.template.html",
     };
   },
 ]);

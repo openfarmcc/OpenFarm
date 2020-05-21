@@ -1,16 +1,16 @@
-openFarmApp.directive('guideStageOverview', [
+openFarmApp.directive("guideStageOverview", [
   function guideStageOverview() {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        stage: '=',
-        texts: '=',
-        viewingStageOverview: '=guideStageOverview',
+        stage: "=",
+        texts: "=",
+        viewingStageOverview: "=guideStageOverview",
       },
       controller: [
-        '$scope',
-        function($scope) {
-          $scope.placeStageUpload = function(stage, image) {
+        "$scope",
+        function ($scope) {
+          $scope.placeStageUpload = function (stage, image) {
             if (!stage.pictures) {
               stage.pictures = [];
             }
@@ -20,10 +20,10 @@ openFarmApp.directive('guideStageOverview', [
             });
           };
 
-          $scope.$watch('viewingStageOverview', function() {});
+          $scope.$watch("viewingStageOverview", function () {});
         },
       ],
-      templateUrl: '/assets/angular-libs/guides/new/guides.new.guideStageOverview.template.html',
+      templateUrl: "/assets/angular-libs/guides/new/guides.new.guideStageOverview.template.html",
     };
   },
 ]);

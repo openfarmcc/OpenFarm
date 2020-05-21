@@ -1,17 +1,17 @@
-openFarmApp.directive('ofShowAddStageToGuide', [
-  '$q',
-  'defaultService',
-  'stageService',
+openFarmApp.directive("ofShowAddStageToGuide", [
+  "$q",
+  "defaultService",
+  "stageService",
   function ofShowAddStageToGuide($q, defaultService, stageService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        existingStages: '=',
-        guideId: '=',
+        existingStages: "=",
+        guideId: "=",
       },
       controller: [
-        '$scope',
-        function($scope) {
+        "$scope",
+        function ($scope) {
           // Let's define everything publicly accessible up here
           $scope.stageOptions = [];
           // $scope.addStages = addStages;
@@ -19,11 +19,11 @@ openFarmApp.directive('ofShowAddStageToGuide', [
 
           // do all the setting up here
 
-          defaultService.getStageOptions().then(function(obj) {
-            $scope.stageOptions = obj.filter(function(newStage) {
+          defaultService.getStageOptions().then(function (obj) {
+            $scope.stageOptions = obj.filter(function (newStage) {
               if ($scope.existingStages !== undefined) {
                 var exists = false;
-                $scope.existingStages.forEach(function(existingStage) {
+                $scope.existingStages.forEach(function (existingStage) {
                   if (existingStage.name === newStage.name) {
                     exists = true;
                   }
@@ -36,10 +36,10 @@ openFarmApp.directive('ofShowAddStageToGuide', [
           // Any watching?
 
           $scope.$watch(
-            'stageOptions',
-            function() {
+            "stageOptions",
+            function () {
               $scope.stagesSelected = false;
-              $scope.stageOptions.forEach(function(stage) {
+              $scope.stageOptions.forEach(function (stage) {
                 if (stage.selected) {
                   $scope.stagesSelected = true;
                 }
@@ -50,10 +50,10 @@ openFarmApp.directive('ofShowAddStageToGuide', [
 
           // And definitions
 
-          $scope.addStages = function() {
+          $scope.addStages = function () {
             var counter = 0;
             var promises = [];
-            $scope.stageOptions.forEach(function(stage) {
+            $scope.stageOptions.forEach(function (stage) {
               if (stage.selected) {
                 var params = {
                   data: {
@@ -69,17 +69,17 @@ openFarmApp.directive('ofShowAddStageToGuide', [
               }
             });
             $q.all(promises).then(
-              function(data) {
+              function (data) {
                 window.location.reload();
               },
-              function(error) {
-                console.log('error', err);
+              function (error) {
+                console.log("error", err);
               }
             );
           };
         },
       ],
-      templateUrl: '/assets/angular-libs/guides/show/guides.show.add-stage-to-guide.template.html',
+      templateUrl: "/assets/angular-libs/guides/show/guides.show.add-stage-to-guide.template.html",
     };
   },
 ]);

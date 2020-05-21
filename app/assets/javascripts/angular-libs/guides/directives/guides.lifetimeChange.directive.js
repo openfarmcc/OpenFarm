@@ -1,31 +1,31 @@
-openFarmApp.directive('lifetimeChange', [
+openFarmApp.directive("lifetimeChange", [
   function lifetimeChange() {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        timespan: '=timespan',
-        calendarScale: '=',
+        timespan: "=timespan",
+        calendarScale: "=",
       },
       controller: [
-        '$scope',
-        '$element',
-        '$attrs',
-        function($scope, $element, $attrs) {
+        "$scope",
+        "$element",
+        "$attrs",
+        function ($scope, $element, $attrs) {
           var diffX = -1;
 
-          var calculateDifference = function(x, offset) {
+          var calculateDifference = function (x, offset) {
             // calculates the offset to maintain the difference between
             // where the user clicked and where they're dragging to.
             return x - offset;
           };
 
-          var jumpToWeekStarts = function(position, scale) {
+          var jumpToWeekStarts = function (position, scale) {
             // Makes sure that the newPosition jumps to the relevant week.
             var weekWidth = scale.step * 7;
             return scale.convertPositionToWeek(position) * weekWidth;
           };
 
-          var dictateLength = function(x, diffX, scale, leftOffset) {
+          var dictateLength = function (x, diffX, scale, leftOffset) {
             // A function that constrains the length based on days of the year
             var newPosition = x - diffX;
 
@@ -42,37 +42,32 @@ openFarmApp.directive('lifetimeChange', [
             }
           };
 
-          var lengthChangeHandler = function(e) {
+          var lengthChangeHandler = function (e) {
             var element = e.data.element;
             var scale = e.data.scale;
             var direction = e.data.direction;
-            var x =
-              e.pageX -
-              element
-                .parent()
-                .parent()
-                .offset().left;
-            var oldLeftX = parseInt(element.parent().css('left'), 10) || 0;
-            var oldRightX = parseInt(element.parent().css('width'), 10);
+            var x = e.pageX - element.parent().parent().offset().left;
+            var oldLeftX = parseInt(element.parent().css("left"), 10) || 0;
+            var oldRightX = parseInt(element.parent().css("width"), 10);
             var newWidth = oldRightX;
 
             if (diffX === -1) {
-              var offset = direction === 'left' ? oldLeftX : oldRightX;
+              var offset = direction === "left" ? oldLeftX : oldRightX;
               diffX = calculateDifference(x, offset);
             }
             // Calculate new things based on direction;
-            if (direction === 'left') {
+            if (direction === "left") {
               var newLeft = dictateLength(x, diffX, scale);
 
-              element.parent().css('left', newLeft);
+              element.parent().css("left", newLeft);
 
               // This needs to be made more functional
               $scope.timespan.set_start_event(scale.convertPositionToWeek(newLeft));
 
-              var newLeftX = parseInt(element.parent().css('left'), 10);
+              var newLeftX = parseInt(element.parent().css("left"), 10);
 
               // But we also need to set the new length.
-              var previousWidth = parseInt(element.parent().css('width'), 10);
+              var previousWidth = parseInt(element.parent().css("width"), 10);
               // The new width will be the previous width minus
               // the difference in length.
               newWidth = previousWidth + oldLeftX - newLeftX;
@@ -80,16 +75,16 @@ openFarmApp.directive('lifetimeChange', [
               newWidth = dictateLength(x, diffX, scale, oldLeftX);
             }
 
-            element.parent().css('width', newWidth);
+            element.parent().css("width", newWidth);
 
             // this needs to be made more functional
 
             $scope.timespan.set_length(scale.convertPositionToWeek(newWidth));
           };
 
-          $element.on('mousedown', function() {
+          $element.on("mousedown", function () {
             $(document).bind(
-              'mousemove.lifetime',
+              "mousemove.lifetime",
               {
                 direction: $attrs.lifetimeChange,
                 element: $element,
@@ -100,8 +95,8 @@ openFarmApp.directive('lifetimeChange', [
             );
           });
 
-          $(document).on('mouseup', function() {
-            $(document).unbind('mousemove.lifetime', lengthChangeHandler);
+          $(document).on("mouseup", function () {
+            $(document).unbind("mousemove.lifetime", lengthChangeHandler);
           });
         },
       ],

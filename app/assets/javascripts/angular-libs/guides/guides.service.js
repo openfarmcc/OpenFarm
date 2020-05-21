@@ -1,10 +1,10 @@
-openFarmApp.factory('guideService', [
-  '$http',
-  '$q',
-  'alertsService',
-  'stageService',
-  'userService',
-  'cropService',
+openFarmApp.factory("guideService", [
+  "$http",
+  "$q",
+  "alertsService",
+  "stageService",
+  "userService",
+  "cropService",
   function guideService($http, $q, alertsService, stageService, userService, cropService) {
     // Should return Guide model:
     // {
@@ -16,21 +16,21 @@ openFarmApp.factory('guideService', [
     //
     // }
 
-    var buildBlankGuide = function(crop, stages, practices) {
+    var buildBlankGuide = function (crop, stages, practices) {
       return {
-        name: '',
+        name: "",
         crop: crop || null,
-        overview: '',
+        overview: "",
         // selectedStages: [],
         time_span: {
           length: 24,
-          length_units: 'weeks',
+          length_units: "weeks",
           start_event: 21,
-          start_event_format: '%W',
-          set_start_event: function(val) {
+          start_event_format: "%W",
+          set_start_event: function (val) {
             this.start_event = val;
           },
-          set_length: function(val) {
+          set_length: function (val) {
             this.length = val;
           },
         },
@@ -38,20 +38,20 @@ openFarmApp.factory('guideService', [
         stages: angular.copy(stages) || [],
         practices: practices || [],
         how_long: 0,
-        how_long_type: 'days',
-        start_time: moment().format('MMMM'),
+        how_long_type: "days",
+        start_time: moment().format("MMMM"),
         stagesToBuildFromLocalStoredGuide: false,
         stagesToBuildDefault: true,
       };
     };
 
-    var isBlankGuide = function(guide, blankPractices) {
+    var isBlankGuide = function (guide, blankPractices) {
       var blankGuide = buildBlankGuide(null, [], blankPractices);
       var truthy = JSON.stringify(blankGuide) === JSON.stringify(guide) && blankGuide.crop === null;
       return truthy;
     };
 
-    var buildGuide = function(data, included) {
+    var buildGuide = function (data, included) {
       var stages, user, crop;
       var guide = data.attributes;
       guide.id = data.id;
@@ -60,26 +60,26 @@ openFarmApp.factory('guideService', [
 
       if (included) {
         stages = included
-          .filter(function(obj) {
-            return obj.type === 'stages';
+          .filter(function (obj) {
+            return obj.type === "stages";
           })
-          .map(function(stage) {
+          .map(function (stage) {
             return stageService.utilities.buildStage(stage, included);
           });
 
-        user = included.filter(function(obj) {
-          return obj.type === 'users';
+        user = included.filter(function (obj) {
+          return obj.type === "users";
         });
 
-        crop = included.filter(function(obj) {
-          return obj.type === 'crops';
+        crop = included.filter(function (obj) {
+          return obj.type === "crops";
         });
 
         pictures = included
-          .filter(function(obj) {
-            return obj.type === 'guides-pictures' && obj.attributes.photographic_id === guide.id;
+          .filter(function (obj) {
+            return obj.type === "guides-pictures" && obj.attributes.photographic_id === guide.id;
           })
-          .map(function(pic) {
+          .map(function (pic) {
             return pic.attributes;
           });
       }
@@ -98,9 +98,9 @@ openFarmApp.factory('guideService', [
 
     // Builds params according to JSON-API from the
     // front end Guide model.
-    var buildParams = function(guideObject) {
+    var buildParams = function (guideObject) {
       var data = {
-        type: 'guides',
+        type: "guides",
         id: guideObject.id,
         attributes: guideObject,
       };
@@ -109,27 +109,27 @@ openFarmApp.factory('guideService', [
 
     // get the guide specified. Out of Date. Use Promise Function
     // below
-    var getGuide = function(guideId, callback) {
+    var getGuide = function (guideId, callback) {
       $http
-        .get('/api/v1/guides/' + guideId)
-        .success(function(response) {
+        .get("/api/v1/guides/" + guideId)
+        .success(function (response) {
           return callback(true, buildGuide(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response.errors, code);
         });
     };
     // This function should replace the above function,
     // part of refactoring.
-    var getGuideWithPromise = function(guideId) {
-      return $q(function(resolve, reject) {
-        if (guideId !== '' && guideId !== 'new') {
+    var getGuideWithPromise = function (guideId) {
+      return $q(function (resolve, reject) {
+        if (guideId !== "" && guideId !== "new") {
           $http
-            .get('/api/v1/guides/' + guideId)
-            .success(function(response) {
+            .get("/api/v1/guides/" + guideId)
+            .success(function (response) {
               resolve(buildGuide(response.data, response.included));
             })
-            .error(function(response, code) {
+            .error(function (response, code) {
               alertsService.pushToAlerts(response.errors, code);
               reject(response);
             });
@@ -139,82 +139,82 @@ openFarmApp.factory('guideService', [
       });
     };
 
-    var createGuide = function(params, callback) {
+    var createGuide = function (params, callback) {
       $http
-        .post('/api/v1/guides/', params)
-        .success(function(response) {
+        .post("/api/v1/guides/", params)
+        .success(function (response) {
           return callback(true, buildGuide(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response.errors, code);
         });
     };
 
-    var createGuideWithPromise = function(params) {
-      return $q(function(resolve, reject) {
+    var createGuideWithPromise = function (params) {
+      return $q(function (resolve, reject) {
         $http
-          .post('/api/v1/guides/', params)
-          .success(function(response) {
+          .post("/api/v1/guides/", params)
+          .success(function (response) {
             resolve(buildGuide(response.data, response.included));
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             reject(response, code);
             alertsService.pushToAlerts(response.errors, code);
           });
       });
     };
 
-    var updateGuide = function(guideId, params, callback) {
+    var updateGuide = function (guideId, params, callback) {
       $http
-        .put('/api/v1/guides/' + guideId + '/', params)
-        .success(function(response) {
+        .put("/api/v1/guides/" + guideId + "/", params)
+        .success(function (response) {
           return callback(true, buildGuide(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response.errors, code);
         });
     };
 
-    var updateGuideWithPromise = function(guideId, params) {
-      return $q(function(resolve, reject) {
+    var updateGuideWithPromise = function (guideId, params) {
+      return $q(function (resolve, reject) {
         $http
-          .put('/api/v1/guides/' + guideId + '/', params)
-          .success(function(response) {
+          .put("/api/v1/guides/" + guideId + "/", params)
+          .success(function (response) {
             return resolve(buildGuide(response.data, response.included));
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             reject(response, code);
             alertsService.pushToAlerts(response.errors, code);
           });
       });
     };
 
-    var calculateStartOfYear = function() {
+    var calculateStartOfYear = function () {
       // calculate year start time based on user preference/location
-      return moment('01 01', 'MM DD');
+      return moment("01 01", "MM DD");
     };
 
-    var scaleSeasonsToDays = function() {
+    var scaleSeasonsToDays = function () {
       // The domain is maxWidth of the seasons div. Probably could
       // be more flexible.
       // The range is # days in a year
 
       var maxWidth;
 
-      maxWidth = $('.seasons').width();
+      maxWidth = $(".seasons").width();
 
       var scale = {
         range: maxWidth,
-        domain: moment.duration(1, 'year').asDays(),
+        domain: moment.duration(1, "year").asDays(),
       };
 
-      scale.convertPositionToWeek = function(position) {
+      scale.convertPositionToWeek = function (position) {
         var intPosition = parseInt(position, 10);
         var self = this;
         return Math.floor(intPosition / self.step / 7);
       };
 
-      scale.convertWeekToPosition = function(week) {
+      scale.convertWeekToPosition = function (week) {
         var intWeek = parseInt(week, 10);
         var self = this;
         return self.step * 7 * intWeek;
@@ -224,7 +224,7 @@ openFarmApp.factory('guideService', [
       return scale;
     };
 
-    var drawTimeline = function(timespan, callback) {
+    var drawTimeline = function (timespan, callback) {
       var firstDay, currentDay, day, today, todayIndex, days, scale;
 
       days = [];
@@ -247,11 +247,11 @@ openFarmApp.factory('guideService', [
           todayIndex = i;
         }
         days.push(day);
-        currentDay = moment(currentDay.add(1, 'days'));
+        currentDay = moment(currentDay.add(1, "days"));
       }
 
       // Draw the lifetime at the right spot
-      $('.plantLifetime').css('left', scale.convertWeekToPosition(timespan.start_event));
+      $(".plantLifetime").css("left", scale.convertWeekToPosition(timespan.start_event));
       // // Deal with the overflow
       // daysRemainingInYear = yearLength - todayIndex;
       // if (daysRemainingInYear < plantLifetime){
@@ -263,10 +263,10 @@ openFarmApp.factory('guideService', [
       // } else {
 
       // This has a * 7 multiplier because we're assuming weeks.
-      $('.plantLifetime').width(scale.convertWeekToPosition(timespan.length));
+      $(".plantLifetime").width(scale.convertWeekToPosition(timespan.length));
 
-      $('.plantLifetime').on('mouseup', function() {
-        var left = $(this).css('left');
+      $(".plantLifetime").on("mouseup", function () {
+        var left = $(this).css("left");
         var scaled = scale.convertPositionToWeek(left);
         timespan.set_start_event(scaled);
       });

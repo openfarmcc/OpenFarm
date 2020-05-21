@@ -1,14 +1,14 @@
-openFarmApp.controller('showGuideCtrl', [
-  '$scope',
-  '$http',
-  'guideService',
-  '$q',
-  'userService',
-  'gardenService',
-  'cropService',
-  'stageService',
-  'defaultService',
-  'alertsService',
+openFarmApp.controller("showGuideCtrl", [
+  "$scope",
+  "$http",
+  "guideService",
+  "$q",
+  "userService",
+  "gardenService",
+  "cropService",
+  "stageService",
+  "defaultService",
+  "alertsService",
   function showGuideCtrl(
     $scope,
     $http,
@@ -21,14 +21,14 @@ openFarmApp.controller('showGuideCtrl', [
     defaultService,
     alertsService
   ) {
-    $scope.guideId = getIDFromURL('guides') || GUIDE_ID;
+    $scope.guideId = getIDFromURL("guides") || GUIDE_ID;
     $scope.userId = USER_ID || undefined;
     $scope.gardenCrop = {};
 
     $scope.favoriteGuide = favoriteGuide;
     $scope.placeGuideUpload = placeGuideUpload;
 
-    $scope.toggleEditingGuide = function(optionalSetToValue) {
+    $scope.toggleEditingGuide = function (optionalSetToValue) {
       if (optionalSetToValue === undefined) {
         $scope.editing = !$scope.editing;
       } else {
@@ -37,18 +37,18 @@ openFarmApp.controller('showGuideCtrl', [
       $scope.saved = false;
     };
 
-    $scope.setGuideUser = function(success, object) {
+    $scope.setGuideUser = function (success, object) {
       if (success) {
         $scope.guide.user = object;
       }
     };
 
-    $scope.publish = function() {
+    $scope.publish = function () {
       $scope.guide.draft = false;
       $scope.saveGuideChanges();
     };
 
-    $scope.saveGuideChanges = function() {
+    $scope.saveGuideChanges = function () {
       var params = {
         data: {
           attributes: {
@@ -58,10 +58,10 @@ openFarmApp.controller('showGuideCtrl', [
             draft: $scope.guide.draft,
             featured_image: 0,
             practices: $scope.practices
-              .filter(function(practice) {
+              .filter(function (practice) {
                 return practice.selected === true;
               })
-              .map(function(practice) {
+              .map(function (practice) {
                 return practice.slug;
               }),
           },
@@ -70,27 +70,27 @@ openFarmApp.controller('showGuideCtrl', [
       };
 
       guideService.updateGuideWithPromise($scope.guide.id, params).then(
-        function(response) {
+        function (response) {
           $scope.setGuide(response);
 
           $scope.toggleEditingGuide(false);
         },
-        function(response) {
-          console.log('error updating guide', response);
+        function (response) {
+          console.log("error updating guide", response);
         }
       );
     };
 
-    $scope.guideUpdate = function() {
+    $scope.guideUpdate = function () {
       guideService.getGuideWithPromise($scope.guideId).then($scope.setGuide);
     };
 
-    $scope.setCurrentUser = function(success, object) {
+    $scope.setCurrentUser = function (success, object) {
       if (success) {
         $scope.currentUser = object;
 
-        $scope.currentUser.gardens.forEach(function(g) {
-          g.garden_crops.forEach(function(gc) {
+        $scope.currentUser.gardens.forEach(function (g) {
+          g.garden_crops.forEach(function (gc) {
             if (gc.guide && gc.guide._id === $scope.guide._id) {
               g.added = true;
               $scope.gardenCrop = gc;
@@ -99,65 +99,65 @@ openFarmApp.controller('showGuideCtrl', [
         });
 
         if ($scope.guide.basic_needs) {
-          $scope.guide.basic_needs.forEach(function(b) {
+          $scope.guide.basic_needs.forEach(function (b) {
             if (b.percent < 0.5) {
               switch (b.name) {
-                case 'Sun / Shade':
+                case "Sun / Shade":
                   b.tooltip = 'Low compatibility with "' + b.garden + '" because it gets ' + b.user;
                   break;
-                case 'Location':
+                case "Location":
                   b.tooltip = 'Low compatibility with "' + b.garden + '" because it is ' + b.user;
                   break;
-                case 'Soil Type':
-                  b.tooltip = 'Low compatibility with "' + b.garden + '" because it has ' + b.user + ' soil';
+                case "Soil Type":
+                  b.tooltip = 'Low compatibility with "' + b.garden + '" because it has ' + b.user + " soil";
                   break;
-                case 'Practices':
+                case "Practices":
                   b.tooltip =
                     'Low compatibility with "' +
                     b.garden +
-                    '" because you don\'t follow ' +
+                    "\" because you don't follow " +
                     b.user +
-                    ' practices there';
+                    " practices there";
                   break;
               }
             }
 
             if (b.percent >= 0.5 && b.percent < 0.75) {
               switch (b.name) {
-                case 'Sun / Shade':
+                case "Sun / Shade":
                   b.tooltip = 'Medium compatibility with "' + b.garden + '" because it gets ' + b.user;
                   break;
-                case 'Location':
+                case "Location":
                   b.tooltip = 'Medium compatibility with "' + b.garden + '" because it is ' + b.user;
                   break;
-                case 'Soil Type':
-                  b.tooltip = 'Medium compatibility with "' + b.garden + '" because it has ' + b.user + ' soil';
+                case "Soil Type":
+                  b.tooltip = 'Medium compatibility with "' + b.garden + '" because it has ' + b.user + " soil";
                   break;
-                case 'Practices':
+                case "Practices":
                   b.tooltip =
                     'Medium compatibility with "' +
                     b.garden +
                     '" because you follow ' +
                     b.user +
-                    ' and other practices there';
+                    " and other practices there";
                   break;
               }
             }
 
             if (b.percent >= 0.75) {
               switch (b.name) {
-                case 'Sun / Shade':
+                case "Sun / Shade":
                   b.tooltip = 'High compatibility with "' + b.garden + '" because it gets ' + b.user;
                   break;
-                case 'Location':
+                case "Location":
                   b.tooltip = 'High compatibility with "' + b.garden + '" because it is ' + b.user;
                   break;
-                case 'Soil Type':
-                  b.tooltip = 'High compatibility with "' + b.garden + '" because it has ' + b.user + ' soil';
+                case "Soil Type":
+                  b.tooltip = 'High compatibility with "' + b.garden + '" because it has ' + b.user + " soil";
                   break;
-                case 'Practices':
+                case "Practices":
                   b.tooltip =
-                    'High compatibility with "' + b.garden + '" because you follow only ' + b.user + ' practices there';
+                    'High compatibility with "' + b.garden + '" because you follow only ' + b.user + " practices there";
                   break;
               }
             }
@@ -165,7 +165,7 @@ openFarmApp.controller('showGuideCtrl', [
         }
 
         $scope.inFavorites = false;
-        $scope.currentUser.favorited_guides.forEach(function(g) {
+        $scope.currentUser.favorited_guides.forEach(function (g) {
           if (g.id === $scope.guide.id) {
             $scope.inFavorites = true;
           }
@@ -173,7 +173,7 @@ openFarmApp.controller('showGuideCtrl', [
       }
     };
 
-    $scope.setGuide = function(object) {
+    $scope.setGuide = function (object) {
       $scope.guide = object;
 
       if ($scope.userId) {
@@ -186,7 +186,7 @@ openFarmApp.controller('showGuideCtrl', [
 
       setPractices($scope.guide.practices);
 
-      $scope.$watch('guide.stages', function() {
+      $scope.$watch("guide.stages", function () {
         if ($scope.guide.stages !== undefined) {
           // This is a hack because stages get built from the
           // API. This is kind of flawed still at the moment,
@@ -207,16 +207,16 @@ openFarmApp.controller('showGuideCtrl', [
       });
     };
 
-    $scope.practicesList = function() {
+    $scope.practicesList = function () {
       if ($scope.practices) {
         return $scope.practices
-          .filter(function(p) {
+          .filter(function (p) {
             return p.selected;
           })
-          .map(function(p) {
+          .map(function (p) {
             return p.slug;
           })
-          .join(', ');
+          .join(", ");
       }
     };
 
@@ -224,10 +224,10 @@ openFarmApp.controller('showGuideCtrl', [
       $q.all([
         defaultService.processedDetailOptions(),
         cropService.getCropWithPromise($scope.guide.relationships.crop.data.id),
-      ]).then(function(data) {
+      ]).then(function (data) {
         $scope.options = data[0];
         $scope.practices = data[0].multiSelectPractices;
-        $scope.practices.forEach(function(practice) {
+        $scope.practices.forEach(function (practice) {
           if ($scope.guide.practices !== null && guidePractices.includes(practice.slug.toLowerCase())) {
             practice.selected = true;
           }
@@ -239,11 +239,11 @@ openFarmApp.controller('showGuideCtrl', [
 
     function favoriteGuide(guideId) {
       if (!$scope.currentUser) {
-        alertsService.pushToAlerts(['You need to log in to mark your favorite'], 401);
+        alertsService.pushToAlerts(["You need to log in to mark your favorite"], 401);
       } else {
         $scope.updatingFavoritedGuides = true;
         var favorited_guide_ids =
-          $scope.currentUser.favorited_guides.map(function(g) {
+          $scope.currentUser.favorited_guides.map(function (g) {
             return g.id;
           }) || [];
         var index = favorited_guide_ids.indexOf(guideId);
@@ -265,11 +265,11 @@ openFarmApp.controller('showGuideCtrl', [
 
         userService
           .updateUserWithPromise($scope.currentUser.id, params)
-          .then(function(user) {
+          .then(function (user) {
             $scope.updatingFavoritedGuides = false;
             $scope.setCurrentUser(true, user);
           })
-          .catch(function(response, code) {});
+          .catch(function (response, code) {});
       }
     }
 

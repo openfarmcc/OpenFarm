@@ -1,12 +1,12 @@
-openFarmApp.directive('ofEnvironmentalOverview', [
+openFarmApp.directive("ofEnvironmentalOverview", [
   function ofEnvironmentalOverview() {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        factors: '=ofEnvironmentalOverview',
+        factors: "=ofEnvironmentalOverview",
       },
-      controller: ['$scope', function($scope) {}],
-      templateUrl: '/assets/angular-libs/guides/show/guides.show.stage.environmental-overview.template.html',
+      controller: ["$scope", function ($scope) {}],
+      templateUrl: "/assets/angular-libs/guides/show/guides.show.stage.environmental-overview.template.html",
     };
   },
 ]);

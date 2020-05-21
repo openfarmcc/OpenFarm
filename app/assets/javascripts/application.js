@@ -26,14 +26,14 @@
 //= require foundation/foundation.topbar
 //= require_tree ./guides
 //= require_tree ./crops
-Foundation.global.namespace = '';
+Foundation.global.namespace = "";
 
 // TODO: Need a better folder structure
-$(function() {
+$(function () {
   $(document).foundation({
     accordion: {
       // specify the class used for active (or open) accordion panels
-      active_class: 'active',
+      active_class: "active",
       // allow multiple accordion panels to be active at the same time
       multi_expand: true,
       // allow accordion panels to be closed by clicking on their headers
@@ -45,16 +45,16 @@ $(function() {
 
 var isDNT =
   window.doNotTrack === 1 ||
-  navigator.doNotTrack === 'yes' ||
-  navigator.doNotTrack == '1' ||
-  navigator.msDoNotTrack == '1';
+  navigator.doNotTrack === "yes" ||
+  navigator.doNotTrack == "1" ||
+  navigator.msDoNotTrack == "1";
 
 if (!isDNT) {
-  (function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
     (i[r] =
       i[r] ||
-      function() {
+      function () {
         (i[r].q = i[r].q || []).push(arguments);
       }),
       (i[r].l = 1 * new Date());
@@ -62,11 +62,11 @@ if (!isDNT) {
     a.async = 1;
     a.src = g;
     m.parentNode.insertBefore(a, m);
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-  ga('create', 'UA-54082196-1', 'auto');
-  ga('send', 'pageview');
+  })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+  ga("create", "UA-54082196-1", "auto");
+  ga("send", "pageview");
 }
 
-$(function() {
+$(function () {
   $(document).foundation();
 });

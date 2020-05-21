@@ -1,15 +1,15 @@
-openFarmApp.controller('profileCtrl', [
-  '$scope',
-  '$rootScope',
-  '$http',
-  'userService',
+openFarmApp.controller("profileCtrl", [
+  "$scope",
+  "$rootScope",
+  "$http",
+  "userService",
   function profileCtrl($scope, $rootScope, $http, userService) {
     $scope.profileId = PROFILE_ID || undefined;
     $scope.userId = USER_ID || undefined;
 
-    $scope.query = '';
+    $scope.query = "";
 
-    $scope.setProfileUser = function(success, object) {
+    $scope.setProfileUser = function (success, object) {
       if (success) {
         $rootScope.profileUser = $scope.profileUser = object;
         $rootScope.ofPageLoading = false;
@@ -26,16 +26,16 @@ openFarmApp.controller('profileCtrl', [
       }
     };
 
-    $scope.editProfile = function() {
+    $scope.editProfile = function () {
       $scope.editing = true;
     };
 
     // setFavoriteCrop was originally = function(item, model, label);
-    $scope.setFavoriteCrop = function(item) {
+    $scope.setFavoriteCrop = function (item) {
       if ($scope.currentUser.id == $scope.profileUser.id) {
         var favCrop = item;
 
-        var callback = function(success, user) {
+        var callback = function (success, user) {
           if (user) {
             $scope.profileUser = user;
             $scope.editing = false;
@@ -48,7 +48,7 @@ openFarmApp.controller('profileCtrl', [
     };
 
     //
-    userService.getUser($scope.userId, function(success, user) {
+    userService.getUser($scope.userId, function (success, user) {
       $rootScope.currentUser = $scope.currentUser = user;
 
       if ($scope.profileId === $scope.userId) {

@@ -73,19 +73,19 @@
               settings = $.extend({}, self.settings, self.data_options($this)),
               is_touch = false;
 
-            if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type) && S(e.target).is('a')) {
+            if (Modernizr.touch && /touchstart|mspointerdown/i.test(e.type) && S(e.target).is('a')) {
               return false;
             }
 
             if (/mouse/i.test(e.type) && self.ie_touch(e)) return false;
 
             if ($this.hasClass('open')) {
-              if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) e.preventDefault();
+              if (Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) e.preventDefault();
               self.hide($this);
             } else {
-              if (settings.disable_for_touch && Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
+              if (settings.disable_for_touch && Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) {
                 return;
-              } else if (!settings.disable_for_touch && Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
+              } else if (!settings.disable_for_touch && Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) {
                 e.preventDefault();
                 S(settings.tooltip_class + '.open').hide();
                 is_touch = true;
@@ -115,7 +115,7 @@
 
             if ($(this).data('tooltip-open-event-type') == 'touch' && e.type == 'mouseleave') {
               return;
-            } else if ($(this).data('tooltip-open-event-type') == 'mouse' && /MSPointerDown|touchstart/i.test(e.type)) {
+            } else if ($(this).data('tooltip-open-event-type') == 'mouse' && /mspointerdown|touchstart/i.test(e.type)) {
               self.convert_to_touch($(this));
             } else {
               self.hide($(this));

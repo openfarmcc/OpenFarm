@@ -1,8 +1,8 @@
-openFarmApp.factory('userService', [
-  '$http',
-  '$q',
-  'gardenService',
-  'alertsService',
+openFarmApp.factory("userService", [
+  "$http",
+  "$q",
+  "gardenService",
+  "alertsService",
   function userService($http, $q, gardenService, alertsService) {
     // get the user specified.
 
@@ -31,7 +31,7 @@ openFarmApp.factory('userService', [
       if (includedObj.id === this.objId) {
         // if (includedObj.type === 'user-setting' || includedObj.type === 'user_setting') {
         // }
-        if (includedObj.type === 'garden') {
+        if (includedObj.type === "garden") {
           this.arr.push(gardenService.buildGarden(includedObj));
         } else {
           this.arr.push(includedObj);
@@ -91,28 +91,28 @@ openFarmApp.factory('userService', [
     }
 
     function getUser(userId, callback) {
-      var url = '/api/v1/users/' + userId;
+      var url = "/api/v1/users/" + userId;
       $http
         .get(url)
-        .success(function(response) {
+        .success(function (response) {
           return callback(true, buildUser(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response, code);
           return callback(false, response, code);
         });
     }
 
     function getUserWithPromise(userId) {
-      return $q(function(resolve, reject) {
+      return $q(function (resolve, reject) {
         if (userId) {
-          var url = '/api/v1/users/' + userId;
+          var url = "/api/v1/users/" + userId;
           $http
             .get(url)
-            .success(function(response) {
+            .success(function (response) {
               resolve(buildUser(response.data, response.included));
             })
-            .error(function(response, code) {
+            .error(function (response, code) {
               alertsService.pushToAlerts(response, code);
               reject(response, code);
             });
@@ -132,11 +132,11 @@ openFarmApp.factory('userService', [
       };
 
       $http
-        .put('/api/v1/users/' + userId + '/', { data: params })
-        .success(function(response) {
+        .put("/api/v1/users/" + userId + "/", { data: params })
+        .success(function (response) {
           return callback(true, buildUser(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response, code);
           return callback(false, response, code);
         });
@@ -145,11 +145,11 @@ openFarmApp.factory('userService', [
     function updateUser(userId, params, callback) {
       var data = { data: params };
       $http
-        .put('/api/v1/users/' + userId + '/', data)
-        .success(function(response) {
+        .put("/api/v1/users/" + userId + "/", data)
+        .success(function (response) {
           return callback(true, buildUser(response.data, response.included));
         })
-        .error(function(response, code) {
+        .error(function (response, code) {
           alertsService.pushToAlerts(response.errors, code);
           return callback(false, response, code);
         });
@@ -157,13 +157,13 @@ openFarmApp.factory('userService', [
 
     function updateUserWithPromise(userId, params, callback) {
       var data = { data: params };
-      return $q(function(resolve, reject) {
+      return $q(function (resolve, reject) {
         $http
-          .put('/api/v1/users/' + userId + '/', data)
-          .success(function(response) {
+          .put("/api/v1/users/" + userId + "/", data)
+          .success(function (response) {
             resolve(buildUser(response.data, response.included));
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             alertsService.pushToAlerts(response.errors, code);
             reject(response, code);
           });

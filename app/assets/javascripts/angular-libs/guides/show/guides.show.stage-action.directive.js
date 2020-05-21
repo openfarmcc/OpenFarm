@@ -1,21 +1,21 @@
-openFarmApp.directive('ofShowStageAction', [
-  '$http',
-  'stageService',
+openFarmApp.directive("ofShowStageAction", [
+  "$http",
+  "stageService",
   function ofShowStageAction($http, stageService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        action: '=ofShowStageAction',
-        editingStage: '=',
-        s3Bucket: '=',
-        stage: '=',
-        saveStageChanges: '=',
-        index: '=',
+        action: "=ofShowStageAction",
+        editingStage: "=",
+        s3Bucket: "=",
+        stage: "=",
+        saveStageChanges: "=",
+        index: "=",
       },
       controller: [
-        '$scope',
-        function($scope) {
-          $scope.placeStageActionImageUpload = function(image) {
+        "$scope",
+        function ($scope) {
+          $scope.placeStageActionImageUpload = function (image) {
             var newPicture = {
               new: true,
               image_url: image,
@@ -27,15 +27,15 @@ openFarmApp.directive('ofShowStageAction', [
             }
           };
 
-          $scope.deleteStageAction = function(idx) {
-            stageService.deleteStageAction($scope.stage.id, $scope.action.id).then(function() {
+          $scope.deleteStageAction = function (idx) {
+            stageService.deleteStageAction($scope.stage.id, $scope.action.id).then(function () {
               // $scope.action.hide = true;
               $scope.stage.stage_actions.splice(idx, 1);
             });
           };
         },
       ],
-      templateUrl: '/assets/angular-libs/guides/show/guides.show.stage-action.template.html',
+      templateUrl: "/assets/angular-libs/guides/show/guides.show.stage-action.template.html",
     };
   },
 ]);

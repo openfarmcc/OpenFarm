@@ -1,42 +1,42 @@
-openFarmApp.directive('timeline', [
-  'guideService',
+openFarmApp.directive("timeline", [
+  "guideService",
   function timeline(guideService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: true,
       controller: [
-        '$scope',
-        function($scope) {
+        "$scope",
+        function ($scope) {
           guideService.drawTimeline();
         },
       ],
-      templateUrl: '/assets/templates/_timeline.html',
+      templateUrl: "/assets/templates/_timeline.html",
     };
   },
 ]);
 
-openFarmApp.directive('createTimeline', [
-  'guideService',
+openFarmApp.directive("createTimeline", [
+  "guideService",
   function createTimeline(guideService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        timespan: '=createTimeline',
+        timespan: "=createTimeline",
       },
-      require: 'timeline',
+      require: "timeline",
       controller: [
-        '$scope',
-        function($scope) {
+        "$scope",
+        function ($scope) {
           $scope.creating = true;
 
-          guideService.drawTimeline($scope.timespan, function(days, dayWidth, scale) {
+          guideService.drawTimeline($scope.timespan, function (days, dayWidth, scale) {
             $scope.days = days;
             $scope.dayWidth = dayWidth;
             $scope.calendarScale = scale;
           });
         },
       ],
-      templateUrl: '/assets/templates/_timeline.html',
+      templateUrl: "/assets/templates/_timeline.html",
     };
   },
 ]);

@@ -1,27 +1,27 @@
-openFarmApp.factory('defaultService', [
-  '$http',
-  '$q',
-  'alertsService',
+openFarmApp.factory("defaultService", [
+  "$http",
+  "$q",
+  "alertsService",
   function defaultService($http, $q, alertsService) {
-    var buildStageActionOption = function(data) {
+    var buildStageActionOption = function (data) {
       var stageActionOption = data.attributes;
       return stageActionOption;
     };
 
-    var buildStageOption = function(data) {
+    var buildStageOption = function (data) {
       var stageOption = data.attributes;
       return stageOption;
     };
 
-    var buildDetailOption = function(data) {
+    var buildDetailOption = function (data) {
       var detailOption = data.attributes;
       return detailOption;
     };
 
-    var processedDetailOptions = function() {
-      return $q(function(resolve, reject) {
+    var processedDetailOptions = function () {
+      return $q(function (resolve, reject) {
         getDetailOptions().then(
-          function(detail_options) {
+          function (detail_options) {
             var options = {
               environment: [],
               light: [],
@@ -33,7 +33,7 @@ openFarmApp.factory('defaultService', [
               multiSelectSoil: [],
             };
 
-            detail_options.forEach(function(detail) {
+            detail_options.forEach(function (detail) {
               if (options[detail.category] !== undefined) {
                 options[detail.category].push(detail.name);
               }
@@ -46,15 +46,15 @@ openFarmApp.factory('defaultService', [
 
             resolve(options);
           },
-          function(error) {
-            console.error('error fetching processed detail options');
+          function (error) {
+            console.error("error fetching processed detail options");
             reject(error);
           }
         );
       });
     };
 
-    var nameToMultiSelect = function(name) {
+    var nameToMultiSelect = function (name) {
       return {
         // TODO: make the slug creation more robust.
         slug: name.toLowerCase(),
@@ -63,53 +63,53 @@ openFarmApp.factory('defaultService', [
       };
     };
 
-    var getDetailOptions = function() {
-      return $q(function(resolve, reject) {
+    var getDetailOptions = function () {
+      return $q(function (resolve, reject) {
         $http
-          .get('/api/v1/detail_options/')
-          .success(function(response, code) {
+          .get("/api/v1/detail_options/")
+          .success(function (response, code) {
             resolve(
-              response.data.map(function(obj) {
+              response.data.map(function (obj) {
                 return buildDetailOption(obj);
               })
             );
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
             reject(response);
           });
       });
     };
 
-    var getStageOptions = function() {
-      return $q(function(resolve, reject) {
+    var getStageOptions = function () {
+      return $q(function (resolve, reject) {
         $http
-          .get('/api/v1/stage_options/')
-          .success(function(response, code) {
+          .get("/api/v1/stage_options/")
+          .success(function (response, code) {
             resolve(
-              response.data.map(function(obj) {
+              response.data.map(function (obj) {
                 return buildStageOption(obj);
               })
             );
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
           });
       });
     };
 
-    var getStageActionOptions = function() {
-      return $q(function(resolve, reject) {
+    var getStageActionOptions = function () {
+      return $q(function (resolve, reject) {
         $http
-          .get('/api/v1/stage_action_options/')
-          .success(function(response, code) {
+          .get("/api/v1/stage_action_options/")
+          .success(function (response, code) {
             resolve(
-              response.data.map(function(obj) {
+              response.data.map(function (obj) {
                 return buildStageActionOption(obj);
               })
             );
           })
-          .error(function(response, code) {
+          .error(function (response, code) {
             alertsService.pushToAlerts(response, code);
           });
       });

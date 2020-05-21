@@ -1,41 +1,41 @@
-openFarmApp.directive('guidesStages', [
-  '$http',
-  '$q',
-  '$rootScope',
-  '$filter',
-  'defaultService',
+openFarmApp.directive("guidesStages", [
+  "$http",
+  "$q",
+  "$rootScope",
+  "$filter",
+  "defaultService",
   function guidesStages($http, $q, $rootScope, $filter, defaultService) {
     return {
-      restrict: 'A',
+      restrict: "A",
       scope: {
-        guide: '=',
-        options: '=',
-        texts: '=',
+        guide: "=",
+        options: "=",
+        texts: "=",
       },
       controller: [
-        '$scope',
-        '$element',
-        '$attrs',
-        function($scope) {
-          var initStages = function() {
-            $q.all([defaultService.getStageOptions()]).then(function(data) {
-              $scope.stages = $filter('orderBy')(data[0], 'order');
+        "$scope",
+        "$element",
+        "$attrs",
+        function ($scope) {
+          var initStages = function () {
+            $q.all([defaultService.getStageOptions()]).then(function (data) {
+              $scope.stages = $filter("orderBy")(data[0], "order");
 
-              $scope.$watch('guide.stagesToBuildFromLocalStoredGuide', function(afterValue) {
+              $scope.$watch("guide.stagesToBuildFromLocalStoredGuide", function (afterValue) {
                 if (afterValue) {
                   $scope.guide.stages = buildDetailsForStages($scope.guide.stages);
                 }
               });
 
-              $scope.$watch('guide.stagesToBuildDefault', function(afterValue) {
+              $scope.$watch("guide.stagesToBuildDefault", function (afterValue) {
                 if (afterValue) {
                   $scope.guide.stages = buildDetailsForStages();
                 }
               });
 
               $scope.$watch(
-                'guide.stages',
-                function() {
+                "guide.stages",
+                function () {
                   if ($scope.guide !== undefined && $scope.guide.stages) {
                     if ($scope.guide.stages.length === 0) {
                       $scope.guide.stages = $scope.stages;
@@ -43,14 +43,14 @@ openFarmApp.directive('guidesStages', [
                     } else {
                       // we only want to set these watches once we know that
                       // we'll have a guide to check on.
-                      $rootScope.$watch('step', function(afterValue) {
+                      $rootScope.$watch("step", function (afterValue) {
                         if (afterValue === 3) {
                           setEditingStage();
                         }
                       });
 
                       var stages = $scope.guide.stages;
-                      $scope.guide.selectedStagesCount = $scope.guide.stages.filter(function(s) {
+                      $scope.guide.selectedStagesCount = $scope.guide.stages.filter(function (s) {
                         return s.selected;
                       }).length;
 
@@ -58,7 +58,7 @@ openFarmApp.directive('guidesStages', [
                       // is for toggling through them.
                       if (stages) {
                         var lastSelectedIndex = null;
-                        stages.forEach(function(item, index) {
+                        stages.forEach(function (item, index) {
                           item.nextSelectedIndex = undefined;
                           if (item.selected) {
                             item.originalIndex = index;
@@ -81,7 +81,7 @@ openFarmApp.directive('guidesStages', [
           };
 
           // We should only init stages if we have a guide.
-          $scope.$watch('guide', function() {
+          $scope.$watch("guide", function () {
             if ($scope.guide !== undefined) {
               initStages();
             }
@@ -89,14 +89,14 @@ openFarmApp.directive('guidesStages', [
 
           $scope.seenStagesIntro = false;
 
-          var buildStageDetails = function(array, selectedArray) {
+          var buildStageDetails = function (array, selectedArray) {
             var returnArray = [];
-            array.forEach(function(d) {
+            array.forEach(function (d) {
               var obj = {
                 slug: d
                   .toLowerCase()
-                  .replace(/ /g, '_')
-                  .replace(/[^\w-]+/g, ''),
+                  .replace(/ /g, "_")
+                  .replace(/[^\w-]+/g, ""),
                 label: d,
                 selected: selectedArray.indexOf(d) === -1 ? false : true,
               };
@@ -105,27 +105,27 @@ openFarmApp.directive('guidesStages', [
             return returnArray;
           };
 
-          var calculateStageLengthType = function(existing) {
+          var calculateStageLengthType = function (existing) {
             switch (true) {
               case parseInt(existing.stage_length, 10) % 7 === 0:
                 existing.stage_length = existing.stage_length / 7;
-                existing.length_type = 'weeks';
+                existing.length_type = "weeks";
                 break;
               case parseInt(existing.stage_length, 10) % 30 === 0:
                 existing.stage_length = existing.stage_length / 30;
-                existing.length_type = 'months';
+                existing.length_type = "months";
                 break;
               default:
-                existing.length_type = 'days';
+                existing.length_type = "days";
             }
             return existing;
           };
 
-          var buildDetailsForStages = function(preloadedStages) {
+          var buildDetailsForStages = function (preloadedStages) {
             if (preloadedStages === undefined) {
               preloadedStages = $scope.stages;
             }
-            preloadedStages.forEach(function(preloadedStage) {
+            preloadedStages.forEach(function (preloadedStage) {
               preloadedStage.environment = buildStageDetails(
                 $scope.options.environment,
                 preloadedStage.environment || []
@@ -137,7 +137,7 @@ openFarmApp.directive('guidesStages', [
             return preloadedStages;
           };
 
-          var transferStageActions = function(existing, preloaded) {
+          var transferStageActions = function (existing, preloaded) {
             if (existing.stage_actions.length > 0) {
               existing.stage_action_options = [];
               existing.stage_action_options = existing.stage_actions;
@@ -147,25 +147,25 @@ openFarmApp.directive('guidesStages', [
             return existing;
           };
 
-          var setDefaultStages = function(stages) {
+          var setDefaultStages = function (stages) {
             // set default stages
-            stages.forEach(function(stage) {
-              if (stage.name === 'Preparation' || stage.name === 'Growing' || stage.name === 'Harvest') {
+            stages.forEach(function (stage) {
+              if (stage.name === "Preparation" || stage.name === "Growing" || stage.name === "Harvest") {
                 stage.selected = true;
               }
             });
           };
 
-          var setEditingStage = function() {
+          var setEditingStage = function () {
             var selectedSet = false;
 
             var isSet =
-              $scope.guide.stages.filter(function(stage) {
+              $scope.guide.stages.filter(function (stage) {
                 return stage.editing;
               }).length > 0;
 
             if (!isSet) {
-              $scope.guide.stages.forEach(function(stage) {
+              $scope.guide.stages.forEach(function (stage) {
                 if (stage.selected && !selectedSet) {
                   // hacked hack is a hack
                   selectedSet = true;
@@ -178,7 +178,7 @@ openFarmApp.directive('guidesStages', [
           };
         },
       ],
-      templateUrl: '/assets/angular-libs/guides/new/guides.new.stages.template.html',
+      templateUrl: "/assets/angular-libs/guides/new/guides.new.stages.template.html",
     };
   },
 ]);

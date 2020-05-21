@@ -19,7 +19,7 @@
           '<span data-selector="' +
           selector +
           '" class="' +
-          Foundation.libs.tooltip.settings.tooltip_class.substring(1) +
+          Foundation.libs.tooltip.settings.tooltip_class.slice(1) +
           '">' +
           content +
           '<span class="nub"></span></span>'

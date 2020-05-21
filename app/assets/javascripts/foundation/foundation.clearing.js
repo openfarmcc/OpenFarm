@@ -469,7 +469,7 @@
         old_index = this.settings.prev_index || target.index(),
         direction = this.direction(clearing, current, target),
         dir = this.rtl ? 'right' : 'left',
-        left = parseInt(clearing.css('left'), 10),
+        left = Number.parseInt(clearing.css('left'), 10),
         width = target.outerWidth(),
         skip_shift;
 

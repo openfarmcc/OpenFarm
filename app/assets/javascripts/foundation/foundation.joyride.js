@@ -156,7 +156,7 @@
           // Make sure that settings parsed from data_options are integers where necessary
           var i = int_settings_count;
           while (i--) {
-            self.settings[integer_settings[i]] = parseInt(self.settings[integer_settings[i]], 10);
+            self.settings[integer_settings[i]] = Number.parseInt(self.settings[integer_settings[i]], 10);
           }
           self.create({ $li: $this, index: index });
         });
@@ -263,7 +263,7 @@
 
           this.settings.tip_settings = $.extend({}, this.settings, this.data_options(this.settings.$li));
 
-          this.settings.timer = parseInt(this.settings.timer, 10);
+          this.settings.timer = Number.parseInt(this.settings.timer, 10);
 
           this.settings.tip_settings.tip_location_pattern = this.settings.tip_location_patterns[
             this.settings.tip_settings.tip_location
@@ -441,10 +441,10 @@
 
       if (!/body/i.test(this.settings.$target.selector)) {
         var topAdjustment = this.settings.tip_settings.tipAdjustmentY
-            ? parseInt(this.settings.tip_settings.tipAdjustmentY)
+            ? Number.parseInt(this.settings.tip_settings.tipAdjustmentY)
             : 0,
           leftAdjustment = this.settings.tip_settings.tipAdjustmentX
-            ? parseInt(this.settings.tip_settings.tipAdjustmentX)
+            ? Number.parseInt(this.settings.tip_settings.tipAdjustmentX)
             : 0;
 
         if (this.bottom()) {
@@ -633,7 +633,7 @@
 
       origClasses = el.attr('class') == null ? '' : el.attr('class');
 
-      el.css('z-index', parseInt(expose.css('z-index')) + 1);
+      el.css('z-index', Number.parseInt(expose.css('z-index')) + 1);
 
       if (origCSS.position == 'static') {
         el.css('position', 'relative');

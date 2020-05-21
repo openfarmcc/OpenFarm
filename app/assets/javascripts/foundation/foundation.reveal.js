@@ -163,7 +163,7 @@
         var open_modal = self.S('[' + self.attr_name() + '].open');
 
         if (typeof modal.data('css-top') === 'undefined') {
-          modal.data('css-top', parseInt(modal.css('top'), 10)).data('offset', this.cache_offset(modal));
+          modal.data('css-top', Number.parseInt(modal.css('top'), 10)).data('offset', this.cache_offset(modal));
         }
 
         this.key_up_on(modal); // PATCH #3: turning on key up capture only when a reveal window is open
@@ -459,7 +459,7 @@
     },
 
     cache_offset: function(modal) {
-      var offset = modal.show().height() + parseInt(modal.css('top'), 10);
+      var offset = modal.show().height() + Number.parseInt(modal.css('top'), 10);
 
       modal.hide();
 

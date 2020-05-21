@@ -32,7 +32,7 @@
 
     self.update_slide_number = function(index) {
       if (settings.slide_number) {
-        number_container.find('span:first').text(parseInt(index) + 1);
+        number_container.find('span:first').text(Number.parseInt(index) + 1);
         number_container.find('span:last').text(self.slides().length);
       }
       if (settings.bullets) {
@@ -197,13 +197,13 @@
     self.link_bullet = function(e) {
       var index = $(this).attr('data-orbit-slide');
       if (typeof index === 'string' && (index = $.trim(index)) != '') {
-        if (isNaN(parseInt(index))) {
+        if (isNaN(Number.parseInt(index))) {
           var slide = container.find('[data-orbit-slide=' + index + ']');
           if (slide.index() != -1) {
             self._goto(slide.index() + 1);
           }
         } else {
-          self._goto(parseInt(index));
+          self._goto(Number.parseInt(index));
         }
       }
     };

@@ -252,7 +252,7 @@
         self.initialize_settings(handle);
 
         if (val) {
-          self.set_ui($(handle), parseFloat(val));
+          self.set_ui($(handle), Number.parseFloat(val));
         } else {
           self.set_initial_position($(this));
         }

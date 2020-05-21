@@ -182,7 +182,7 @@
 
         docElem.insertBefore(fakeBody, refNode);
         bool = div.offsetWidth === 42;
-        docElem.removeChild(fakeBody);
+        fakeBody.remove();
 
         return {
           matches: bool,

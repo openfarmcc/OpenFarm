@@ -228,7 +228,6 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.4)
     jmespath (1.4.0)
     jquery-rails (4.4.0)
       rails-dom-testing (>= 1, < 3)
@@ -320,7 +319,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     parallel (1.19.1)
-    parser (2.7.0.2)
+    parser (2.7.1.3)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
     platform-api (2.2.0)
@@ -431,6 +430,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     rollbar (2.25.0)
     rspec-core (3.9.0)
       rspec-support (~> 3.9.0)
@@ -449,13 +449,17 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
-    rubocop (0.79.0)
-      jaro_winkler (~> 1.5.1)
+    rubocop (0.85.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.0.3)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.0.3)
+      parser (>= 2.7.0.1)
     ruby-progressbar (1.10.1)
     rubyzip (2.0.0)
     safe_yaml (1.0.5)
@@ -529,7 +533,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.6.1)
+    unicode-display_width (1.7.0)
     utf8-cleaner (0.2.5)
       activesupport
     vcr (5.1.0)
@@ -614,7 +618,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.79.0)
+  rubocop (= 0.85.0)
   sass-rails
   searchkick
   selenium-webdriver

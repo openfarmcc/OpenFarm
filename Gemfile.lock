@@ -179,7 +179,7 @@ GEM
     exception_notification (4.4.0)
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
-    excon (0.71.0)
+    excon (0.73.0)
     execjs (2.7.0)
     factory_bot (5.2.0)
       activesupport (>= 4.2.0)
@@ -216,7 +216,7 @@ GEM
       tilt
     hashdiff (1.0.1)
     hashie (4.1.0)
-    heroics (0.0.25)
+    heroics (0.1.1)
       erubis (~> 2.0)
       excon
       moneta
@@ -322,9 +322,10 @@ GEM
     parser (2.7.1.3)
       ast (~> 2.4.0)
     phantomjs (2.1.1.0)
-    platform-api (2.2.0)
-      heroics (~> 0.0.25)
+    platform-api (3.0.0)
+      heroics (~> 0.1.1)
       moneta (~> 1.0.0)
+      rate_throttle_client (~> 0.1.0)
     power_assert (1.1.5)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -422,6 +423,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.1)
+    rate_throttle_client (0.1.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)

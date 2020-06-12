@@ -325,7 +325,7 @@ GEM
     platform-api (2.2.0)
       heroics (~> 0.0.25)
       moneta (~> 1.0.0)
-    power_assert (1.1.5)
+    power_assert (1.2.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -508,7 +508,7 @@ GEM
       tins (~> 1.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    test-unit (3.3.5)
+    test-unit (3.3.6)
       power_assert
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)

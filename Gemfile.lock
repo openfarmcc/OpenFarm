@@ -337,7 +337,7 @@ GEM
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)

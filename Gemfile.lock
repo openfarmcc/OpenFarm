@@ -302,7 +302,7 @@ GEM
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    mutations (0.9.0)
+    mutations (0.9.1)
       activesupport
     nested_form (0.3.2)
     net-http-persistent (2.9.4)

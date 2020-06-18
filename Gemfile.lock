@@ -88,7 +88,7 @@ GEM
     bcrypt (3.1.13)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    bson (4.9.0)
+    bson (4.9.2)
     bson_ext (1.5.1)
     builder (3.2.4)
     capybara (3.31.0)
@@ -284,7 +284,7 @@ GEM
     mongoid-compatibility (0.5.1)
       activesupport
       mongoid (>= 2.0)
-    mongoid-history (0.8.2)
+    mongoid-history (0.8.3)
       activesupport
       easy_diff
       mongoid (>= 3.0)

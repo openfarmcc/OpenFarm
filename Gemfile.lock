@@ -176,7 +176,7 @@ GEM
     ethon (0.12.0)
       ffi (>= 1.3.0)
     eventmachine (1.2.7)
-    exception_notification (4.4.0)
+    exception_notification (4.4.1)
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
     excon (0.74.0)

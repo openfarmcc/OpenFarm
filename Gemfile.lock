@@ -451,7 +451,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
-    rubocop (0.87.1)
+    rubocop (0.88.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -620,7 +620,7 @@ DEPENDENCIES
   rails_admin
   rollbar
   rspec-rails
-  rubocop (= 0.87.1)
+  rubocop (= 0.88.0)
   sass-rails
   searchkick
   selenium-webdriver

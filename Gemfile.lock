@@ -206,9 +206,6 @@ GEM
       multi_json (~> 1.0)
       net-http-persistent (~> 2.9)
       net-http-pipeline
-    gibbon (1.2.1)
-      httparty
-      multi_json (>= 1.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.2)
@@ -223,9 +220,6 @@ GEM
       multi_json (>= 1.9.2)
     high_voltage (3.1.2)
     highline (2.0.3)
-    httparty (0.17.1)
-      mime-types (~> 3.0)
-      multi_xml (>= 0.5.2)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
@@ -300,7 +294,6 @@ GEM
       mongoid (>= 3)
       rake
     multi_json (1.14.1)
-    multi_xml (0.6.0)
     multipart-post (2.1.1)
     mutations (0.9.0)
       activesupport
@@ -578,7 +571,6 @@ DEPENDENCIES
   faker
   font-awesome-sass
   foundation-rails
-  gibbon (~> 1)
   high_voltage
   jquery-rails
   jsonapi-serializers

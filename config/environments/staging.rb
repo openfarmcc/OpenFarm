@@ -15,10 +15,10 @@ OpenFarm::Application.configure do
   config.assets.digest = true
   config.assets.version = '1.0'
   config.log_level = :info
-  config.action_mailer.smtp_settings = { address:   'smtp.mandrillapp.com',
-                                         port:      587,
-                                         user_name: ENV['MANDRILL_USERNAME'],
-                                         password:  ENV['MANDRILL_APIKEY'] }
+  config.action_mailer.smtp_settings = { address:   ENV['SMTP_HOST'],
+                                         port:      ENV['SMTP_PORT'],
+                                         user_name: ENV['SMTP_USERNAME'],
+                                         password:  ENV['SMTP_PASSWORD'] }
 
   config.middleware.use ExceptionNotification::Rack,
     email: {

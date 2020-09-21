@@ -54,7 +54,6 @@ class User
 
   has_merit
 
-  after_save :connect_to_mailchimp
   after_save :create_garden_if_none
 
   def user_setting
@@ -76,27 +75,6 @@ class User
   end
 
   private
-
-  def connect_to_mailchimp
-    gb = Gibbon::API.new(ENV['MAILCHIMP_API_KEY'] || 'fake_key')
-    if self.mailing_list && self.confirmed?
-      list = gb.lists.list({ filters: { list_name: 'OpenFarm Subscribers' } })
-      gb.lists.subscribe(id: list['data'][0]['id'],
-                         email: { email: self[:email] },
-                         merge_vars: { DNAME: self[:display_name] },
-                         double_optin: false,
-                         update_existing: true)
-    end
-    if self.help_list && self.confirmed?
-      list = gb.lists.list({ filters: { list_name: 'OpenFarm Helpers' } })
-      gb.lists.subscribe(id: list['data'][0]['id'],
-                         email: { email: self[:email] },
-                         merge_vars: { DNAME: self[:display_name] },
-                         double_optin: false,
-                         update_existing: true)
-
-    end
-  end
 
   def create_garden_if_none
     if self.gardens.all.count == 0 && self.confirmed?

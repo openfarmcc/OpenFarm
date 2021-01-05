@@ -507,7 +507,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     test-unit (3.3.6)
       power_assert
-    thin (1.7.2)
+    thin (1.8.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)

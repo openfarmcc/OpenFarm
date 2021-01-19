@@ -1,0 +1,46 @@
+---
+
+name: Rspec
+
+on: [pull_request]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    env:
+      ALERTS: "b@example.com"
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      GOOGLE_MAPS_API_KEY: secret
+      MAILCHIMP_API_KEY: secret
+      RAILS_ENV: test
+      S3_ACCESS_KEY: secret
+      S3_BUCKET_NAME: secret
+      S3_SECRET_KEY: secret
+      SECRET_KEY_BASE: secret
+      SERVER_S3_ACCESS_KEY: secret
+      SERVER_S3_SECRET_KEY: secret
+
+    steps:
+      - name: Launch MongoDB
+        uses: wbari/start-mongoDB@v0.2
+        with:
+          mongoDBVersion: 4.2
+      - name: Checkout this repo
+        uses: actions/checkout@v2
+
+      - name: Install code climate
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter  before-build
+
+      - name: Install Ruby (version given by .ruby-version) and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run rspec
+        run: bundle exec rspec spec -fd
+
+      - name: Report to code climate
+        run: ./cc-test-reporter after-build -t simplecov --id $CC_TEST_REPORTER_ID

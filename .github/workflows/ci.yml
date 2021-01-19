@@ -39,6 +39,9 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up config/app_environment_variables.rb
+        run: cp config/config/app_environment_variables.example.rb config/app_environment_variables.rb
+
       - name: Run rspec
         run: bundle exec rspec spec -fd
 

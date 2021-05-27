@@ -269,7 +269,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.3)
     moneta (1.0.0)
     mongo (2.14.0)
@@ -304,7 +304,7 @@ GEM
     net-http-pipeline (1.0.1)
     ng-rails-csrf (0.1.0)
     nio4r (2.5.2)
-    nokogiri (1.11.0)
+    nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)

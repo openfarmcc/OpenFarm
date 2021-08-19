@@ -45,7 +45,7 @@ Our community is composed of tech and non-tech folks, newbie as well as experts 
 
 On the way we work together, we aim at:
 - having transparency in reasoning behind actions: taking time for documentation, questions and answers
-- prefering done, than perfect: breaking down tasks so that anyone can contribute few min of their time on a regular basis
+- prefering done, than perfect: breaking down tasks so that anyone can contribute few minutes of their time on a regular basis
 - taking shortcuts: what's the most obvious for a better usability? what's the shortest way to build a feature? What's the most valuable inputs for a feedback?
 
 ## Development
@@ -58,8 +58,8 @@ You should use Vagrant to get the OpenFarm system running on your computer. It w
 2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 3. Open your terminal.
 4. `$ git clone https://github.com/openfarmcc/OpenFarm.git` - this tells your computer to fetch the data stored in this repository using git.
-5. `$ cd OpenFarm` - change to the OpenFarm directory
-6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. Go make yourself a pot of coffee, or brew some tea. If something goes wrong at this point, reach out to us via a GitHub issue.
+5. `$ cd OpenFarm` - change to the OpenFarm directory.
+6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. Go make yourself a pot of coffee, or brew some tea. If something goes wrong at this point, reach out to us directly via GitHub issue.
 
 #### Accessing Vagrant
 
@@ -112,7 +112,7 @@ Remember that `/vagrant` folder in the Vagrant VM is largely for convenience, an
 
 If you've made two PRs, we'll add you as a core contributor.
 
-For core-code contributors: here are a few basic ground-rules:
+For core-code contributors, here are a few basic ground-rules:
 
 * No --force pushes or modifying the Git history in any way.
 * Non-master branches ought to be used for ongoing work.

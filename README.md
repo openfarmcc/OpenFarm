@@ -12,13 +12,6 @@ We take security seriously and value the input of independent researchers. Pleas
 
 # The Community of Contributors: How it Works
 
-### Shortcuts
-
-Already contributing to OpenFarm? You're welcome to [introduce yourself](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!
-
-Want to dig head first into our todo list of Github tasks? [Make yourself at home](https://github.com/openfarmcc/OpenFarm/projects)!
-
-
 ### About
 
 [OpenFarm](http://openfarm.cc) is a free and open database and web application for farming and gardening knowledge. One might think of it as the Wikipedia for growing plants, though it functions more like a cooking recipes site.
@@ -66,7 +59,7 @@ You should use Vagrant to get the OpenFarm system running on your computer. It w
 3. Open your terminal.
 4. `$ git clone https://github.com/openfarmcc/OpenFarm.git` - this tells your computer to fetch the data stored in this repository using git.
 5. `$ cd OpenFarm` - change to the OpenFarm directory
-6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. Go make yourself a pot of coffee, or brew some tea. If something goes wrong at this point, reach out to Simon directly at [slack.openfarm.cc](http://slack.openfarm.cc/).
+6. `$ vagrant up` This will take a long time. We're downloading a whole bunch of stuff. Go make yourself a pot of coffee, or brew some tea. If something goes wrong at this point, reach out to us via a GitHub issue.
 
 #### Accessing Vagrant
 
@@ -136,8 +129,6 @@ For core-code contributors: here are a few basic ground-rules:
 Here are some of the [Github contributors](https://github.com/openfarmcc/OpenFarm/graphs/contributors).
 
 Outside of Github, there's a whole host of people who also contributed financially, by building gardening content on the website, on providing more visibility for OpenFarm in any ways!
-
-You've been contributing to OpenFarm already? We invite you to introduce yourself in this 2-min [Welcoming Form](https://docs.google.com/forms/d/e/1FAIpQLSfsKUABGJSO3gSfDUrdXymxP-GipdTLxbxsmR2FyxGdblN1-w/viewform)!
 
 ### Donate to OpenFarm as a Backer
 

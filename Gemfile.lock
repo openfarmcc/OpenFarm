@@ -1,6 +1,36 @@
 GEM
-  remote: https://rubygems.org/
   remote: https://rails-assets.org/
+  specs:
+    rails-assets-angular (1.5.8)
+    rails-assets-angular-dragdrop (1.0.13)
+      rails-assets-angular
+      rails-assets-jquery-ui
+    rails-assets-angular-foundation (0.8.0)
+      rails-assets-angular (>= 1.3.0)
+    rails-assets-angular-local-storage (0.7.1)
+      rails-assets-angular (>= 1.0, < 2)
+    rails-assets-angular-sanitize (1.5.8)
+      rails-assets-angular (= 1.5.8)
+    rails-assets-angular-typeahead (0.3.2)
+      rails-assets-typeahead.js (~> 0.11.1)
+    rails-assets-angular-ui-sortable (0.14.4)
+      rails-assets-angular (>= 1.2)
+      rails-assets-jquery (< 3.0.0)
+      rails-assets-jquery-ui (>= 1.9)
+    rails-assets-jquery (2.2.4)
+    rails-assets-jquery-ui (1.12.1)
+      rails-assets-jquery (>= 1.6)
+    rails-assets-moment (2.24.0)
+    rails-assets-ng-file-upload (12.2.13)
+      rails-assets-angular (> 1.2.0)
+    rails-assets-ng-tags-input (3.2.0)
+      rails-assets-angular (>= 1.3.0)
+    rails-assets-showdown (1.9.0)
+    rails-assets-typeahead.js (0.11.1)
+      rails-assets-jquery (>= 1.7)
+
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (5.2.4.3)
       actionpack (= 5.2.4.3)
@@ -335,7 +365,7 @@ GEM
       json
       websocket (~> 1.0)
     racc (1.5.2)
-    rack (2.2.3)
+    rack (2.2.6.4)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
@@ -359,33 +389,6 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.4.3)
       sprockets-rails (>= 2.0.0)
-    rails-assets-angular (1.5.8)
-    rails-assets-angular-dragdrop (1.0.13)
-      rails-assets-angular
-      rails-assets-jquery-ui
-    rails-assets-angular-foundation (0.8.0)
-      rails-assets-angular (>= 1.3.0)
-    rails-assets-angular-local-storage (0.7.1)
-      rails-assets-angular (>= 1.0, < 2)
-    rails-assets-angular-sanitize (1.5.8)
-      rails-assets-angular (= 1.5.8)
-    rails-assets-angular-typeahead (0.3.2)
-      rails-assets-typeahead.js (~> 0.11.1)
-    rails-assets-angular-ui-sortable (0.14.4)
-      rails-assets-angular (>= 1.2)
-      rails-assets-jquery (< 3.0.0)
-      rails-assets-jquery-ui (>= 1.9)
-    rails-assets-jquery (2.2.4)
-    rails-assets-jquery-ui (1.12.1)
-      rails-assets-jquery (>= 1.6)
-    rails-assets-moment (2.24.0)
-    rails-assets-ng-file-upload (12.2.13)
-      rails-assets-angular (> 1.2.0)
-    rails-assets-ng-tags-input (3.2.0)
-      rails-assets-angular (>= 1.3.0)
-    rails-assets-showdown (1.9.0)
-    rails-assets-typeahead.js (0.11.1)
-      rails-assets-jquery (>= 1.7)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)

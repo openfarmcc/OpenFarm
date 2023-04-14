@@ -2,7 +2,11 @@
 
 name: Rspec
 
-on: [pull_request]
+on:
+  push:
+    branches: [ mainline ]
+  pull_request:
+    branches: [ mainline ]
 
 jobs:
   rspec:
@@ -22,11 +26,23 @@ jobs:
 
     steps:
       - name: Launch MongoDB
-        uses: wbari/start-mongoDB@v0.2
+        uses: supercharge/mongodb-github-action@1.8.0
         with:
-          mongoDBVersion: 4.2
+          mongodb-version: 4.2
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+
+      - name: Runs Elasticsearch
+        uses: elastic/elastic-github-actions/elasticsearch@master
+        with:
+          stack-version: 7.8.0
+          security-enabled: false
       - name: Checkout this repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install code climate
         run: |
@@ -40,7 +56,7 @@ jobs:
           bundler-cache: true
 
       - name: Set up config/app_environment_variables.rb
-        run: cp config/config/app_environment_variables.example.rb config/app_environment_variables.rb
+        run: cp config/app_environment_variables.example.rb config/app_environment_variables.rb
 
       - name: Run rspec
         run: bundle exec rspec spec -fd

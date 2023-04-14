@@ -64,6 +64,6 @@ Some things that will increase the chance that your pull request is accepted:
 
 ## Style Guides and formatting.
 
- * We use the [ThoghtBot Style Guide](https://github.com/thoughtbot/guides/tree/master/style) when writiting Ruby. The exception to this is that we use 'single quotes' instead of "double quotes".
+ * We use the [ThoughtBot Style Guide](https://github.com/thoughtbot/guides/tree/master/style) when writing Ruby. The exception to this is that we use 'single quotes' instead of "double quotes".
  * When designing API endpoints, follow the [JSONAPI.org formatting guide](http://jsonapi.org/format/)
  * Please write specs for your code. We use Rspec as our testing framework.

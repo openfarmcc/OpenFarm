@@ -1,6 +1,36 @@
 GEM
-  remote: https://rubygems.org/
   remote: https://rails-assets.org/
+  specs:
+    rails-assets-angular (1.5.8)
+    rails-assets-angular-dragdrop (1.0.13)
+      rails-assets-angular
+      rails-assets-jquery-ui
+    rails-assets-angular-foundation (0.8.0)
+      rails-assets-angular (>= 1.3.0)
+    rails-assets-angular-local-storage (0.7.1)
+      rails-assets-angular (>= 1.0, < 2)
+    rails-assets-angular-sanitize (1.5.8)
+      rails-assets-angular (= 1.5.8)
+    rails-assets-angular-typeahead (0.3.2)
+      rails-assets-typeahead.js (~> 0.11.1)
+    rails-assets-angular-ui-sortable (0.14.4)
+      rails-assets-angular (>= 1.2)
+      rails-assets-jquery (< 3.0.0)
+      rails-assets-jquery-ui (>= 1.9)
+    rails-assets-jquery (2.2.4)
+    rails-assets-jquery-ui (1.12.1)
+      rails-assets-jquery (>= 1.6)
+    rails-assets-moment (2.24.0)
+    rails-assets-ng-file-upload (12.2.13)
+      rails-assets-angular (> 1.2.0)
+    rails-assets-ng-tags-input (3.2.0)
+      rails-assets-angular (>= 1.3.0)
+    rails-assets-showdown (1.9.0)
+    rails-assets-typeahead.js (0.11.1)
+      rails-assets-jquery (>= 1.7)
+
+GEM
+  remote: https://rubygems.org/
   specs:
     actioncable (5.2.4.3)
       actionpack (= 5.2.4.3)
@@ -52,7 +82,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ambry (1.0.0)
     arel (9.0.0)
@@ -130,7 +160,7 @@ GEM
       compass (~> 1.0.0)
       sass-rails (< 5.1)
       sprockets (< 4.0)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.10)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -206,8 +236,8 @@ GEM
       multi_json (~> 1.0)
       net-http-persistent (~> 2.9)
       net-http-pipeline
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
@@ -220,9 +250,9 @@ GEM
       multi_json (>= 1.9.2)
     high_voltage (3.1.2)
     highline (2.0.3)
-    i18n (1.8.7)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     jquery-rails (4.4.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -252,7 +282,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.7.0)
       launchy (~> 2.2)
-    loofah (2.7.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -269,8 +299,8 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
-    minitest (5.14.3)
+    mini_portile2 (2.8.1)
+    minitest (5.17.0)
     moneta (1.0.0)
     mongo (2.14.0)
       bson (>= 4.8.2, < 5.0.0)
@@ -304,8 +334,8 @@ GEM
     net-http-pipeline (1.0.1)
     ng-rails-csrf (0.1.0)
     nio4r (2.5.2)
-    nokogiri (1.11.0)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.13.10)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
@@ -334,8 +364,8 @@ GEM
     pusher-client (0.6.2)
       json
       websocket (~> 1.0)
-    racc (1.5.2)
-    rack (2.2.3)
+    racc (1.6.2)
+    rack (2.2.6.4)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
@@ -359,33 +389,6 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.4.3)
       sprockets-rails (>= 2.0.0)
-    rails-assets-angular (1.5.8)
-    rails-assets-angular-dragdrop (1.0.13)
-      rails-assets-angular
-      rails-assets-jquery-ui
-    rails-assets-angular-foundation (0.8.0)
-      rails-assets-angular (>= 1.3.0)
-    rails-assets-angular-local-storage (0.7.1)
-      rails-assets-angular (>= 1.0, < 2)
-    rails-assets-angular-sanitize (1.5.8)
-      rails-assets-angular (= 1.5.8)
-    rails-assets-angular-typeahead (0.3.2)
-      rails-assets-typeahead.js (~> 0.11.1)
-    rails-assets-angular-ui-sortable (0.14.4)
-      rails-assets-angular (>= 1.2)
-      rails-assets-jquery (< 3.0.0)
-      rails-assets-jquery-ui (>= 1.9)
-    rails-assets-jquery (2.2.4)
-    rails-assets-jquery-ui (1.12.1)
-      rails-assets-jquery (>= 1.6)
-    rails-assets-moment (2.24.0)
-    rails-assets-ng-file-upload (12.2.13)
-      rails-assets-angular (> 1.2.0)
-    rails-assets-ng-tags-input (3.2.0)
-      rails-assets-angular (>= 1.3.0)
-    rails-assets-showdown (1.9.0)
-    rails-assets-typeahead.js (0.11.1)
-      rails-assets-jquery (>= 1.7)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -393,8 +396,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.3.0)
-      loofah (~> 2.3)
+    rails-html-sanitizer (1.4.4)
+      loofah (~> 2.19, >= 2.19.1)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -527,7 +530,7 @@ GEM
       typhoeus (~> 0.6, >= 0.6.8)
     typhoeus (0.8.0)
       ethon (>= 0.8.0)
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -630,9 +633,6 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
-
-RUBY VERSION
-   ruby 2.6.7p197
 
 BUNDLED WITH
    2.2.16

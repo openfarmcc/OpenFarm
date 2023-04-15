@@ -1,0 +1,65 @@
+---
+
+name: Rspec
+
+on:
+  push:
+    branches: [ mainline ]
+  pull_request:
+    branches: [ mainline ]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    env:
+      ALERTS: "b@example.com"
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      GOOGLE_MAPS_API_KEY: secret
+      MAILCHIMP_API_KEY: secret
+      RAILS_ENV: test
+      S3_ACCESS_KEY: secret
+      S3_BUCKET_NAME: secret
+      S3_SECRET_KEY: secret
+      SECRET_KEY_BASE: secret
+      SERVER_S3_ACCESS_KEY: secret
+      SERVER_S3_SECRET_KEY: secret
+
+    steps:
+      - name: Launch MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: 4.2
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+
+      - name: Runs Elasticsearch
+        uses: elastic/elastic-github-actions/elasticsearch@master
+        with:
+          stack-version: 7.8.0
+          security-enabled: false
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      - name: Install code climate
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64  > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter  before-build
+
+      - name: Install Ruby (version given by .ruby-version) and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Set up config/app_environment_variables.rb
+        run: cp config/app_environment_variables.example.rb config/app_environment_variables.rb
+
+      - name: Run rspec
+        run: bundle exec rspec spec -fd
+
+      - name: Report to code climate
+        run: ./cc-test-reporter after-build -t simplecov --id $CC_TEST_REPORTER_ID

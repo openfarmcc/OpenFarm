@@ -228,7 +228,7 @@ openFarmApp.controller('showGuideCtrl', [
         $scope.options = data[0];
         $scope.practices = data[0].multiSelectPractices;
         $scope.practices.forEach(function(practice) {
-          if ($scope.guide.practices !== null && guidePractices.indexOf(practice.slug.toLowerCase()) > -1) {
+          if ($scope.guide.practices !== null && guidePractices.includes(practice.slug.toLowerCase())) {
             practice.selected = true;
           }
         });

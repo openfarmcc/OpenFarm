@@ -73,7 +73,7 @@
           function(e) {
             e.preventDefault();
 
-            if (this.settings.$li.next().length < 1) {
+            if (this.settings.$li.next().length === 0) {
               this.end();
             } else if (this.settings.timer > 0) {
               clearTimeout(this.settings.automate);
@@ -329,7 +329,7 @@
           this.settings.$current_tip = this.settings.$next_tip;
 
           // skip non-existant targets
-        } else if (this.settings.$li && this.settings.$target.length < 1) {
+        } else if (this.settings.$li && this.settings.$target.length === 0) {
           this.show();
         } else {
           this.end();
@@ -578,7 +578,7 @@
     show_modal: function() {
       if (!this.settings.$next_tip.data('closed')) {
         var joyridemodalbg = $('.joyride-modal-bg');
-        if (joyridemodalbg.length < 1) {
+        if (joyridemodalbg.length === 0) {
           $('body')
             .append(this.settings.template.modal)
             .show();
@@ -608,7 +608,7 @@
         return false;
       }
 
-      if (el.length < 1) {
+      if (el.length === 0) {
         if (window.console) {
           console.error('element not valid', el);
         }
@@ -676,7 +676,7 @@
         return false;
       }
 
-      if (el.length < 1) {
+      if (el.length === 0) {
         if (window.console) {
           console.error('element not valid', el);
         }

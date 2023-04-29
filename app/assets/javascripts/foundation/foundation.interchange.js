@@ -59,7 +59,7 @@
 
           if (last_path == path) return;
 
-          if (/\.(gif|jpg|jpeg|tiff|png)([?#].*)?/i.test(path)) {
+          if (/\.(gif|jpg|jpeg|tiff|png)([#?].*)?/i.test(path)) {
             $(el).css('background-image', 'url(' + path + ')');
             el.data('interchange-last-path', path);
             return trigger(path);
@@ -322,7 +322,7 @@
     },
 
     parse_data_attr: function(el) {
-      var raw = el.attr(this.attr_name()).split(/\[(.*?)\]/),
+      var raw = el.attr(this.attr_name()).split(/\[(.*?)]/),
         i = raw.length,
         output = [];
 

@@ -169,7 +169,7 @@
         this.key_up_on(modal); // PATCH #3: turning on key up capture only when a reveal window is open
         modal.trigger('open').trigger('open.fndtn.reveal');
 
-        if (open_modal.length < 1) {
+        if (open_modal.length === 0) {
           this.toggle_bg(modal, true);
         }
 

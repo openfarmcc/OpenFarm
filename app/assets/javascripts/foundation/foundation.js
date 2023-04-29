@@ -268,7 +268,7 @@
 
   function removeQuotes(string) {
     if (typeof string === 'string' || string instanceof String) {
-      string = string.replace(/^['\\/"]+|(;\s?})+|['\\/"]+$/g, '');
+      string = string.replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, '');
     }
 
     return string;
@@ -282,19 +282,19 @@
     media_queries: {
       small: S('.foundation-mq-small')
         .css('font-family')
-        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+        .replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, ''),
       medium: S('.foundation-mq-medium')
         .css('font-family')
-        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+        .replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, ''),
       large: S('.foundation-mq-large')
         .css('font-family')
-        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+        .replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, ''),
       xlarge: S('.foundation-mq-xlarge')
         .css('font-family')
-        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+        .replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, ''),
       xxlarge: S('.foundation-mq-xxlarge')
         .css('font-family')
-        .replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
+        .replace(/^["'/\\]+|(;\s?})+|["'/\\]+$/g, ''),
     },
 
     stylesheet: $('<style></style>').appendTo('head')[0].sheet,
@@ -521,7 +521,7 @@
           if (/true/i.test(p[1])) p[1] = true;
           if (/false/i.test(p[1])) p[1] = false;
           if (isNumber(p[1])) {
-            if (p[1].indexOf('.') === -1) {
+            if (!p[1].includes('.')) {
               p[1] = parseInt(p[1], 10);
             } else {
               p[1] = parseFloat(p[1]);

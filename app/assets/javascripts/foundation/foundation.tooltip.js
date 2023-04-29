@@ -73,19 +73,19 @@
               settings = $.extend({}, self.settings, self.data_options($this)),
               is_touch = false;
 
-            if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type) && S(e.target).is('a')) {
+            if (Modernizr.touch && /touchstart|mspointerdown/i.test(e.type) && S(e.target).is('a')) {
               return false;
             }
 
             if (/mouse/i.test(e.type) && self.ie_touch(e)) return false;
 
             if ($this.hasClass('open')) {
-              if (Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) e.preventDefault();
+              if (Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) e.preventDefault();
               self.hide($this);
             } else {
-              if (settings.disable_for_touch && Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
+              if (settings.disable_for_touch && Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) {
                 return;
-              } else if (!settings.disable_for_touch && Modernizr.touch && /touchstart|MSPointerDown/i.test(e.type)) {
+              } else if (!settings.disable_for_touch && Modernizr.touch && /touchstart|mspointerdown/i.test(e.type)) {
                 e.preventDefault();
                 S(settings.tooltip_class + '.open').hide();
                 is_touch = true;
@@ -115,7 +115,7 @@
 
             if ($(this).data('tooltip-open-event-type') == 'touch' && e.type == 'mouseleave') {
               return;
-            } else if ($(this).data('tooltip-open-event-type') == 'mouse' && /MSPointerDown|touchstart/i.test(e.type)) {
+            } else if ($(this).data('tooltip-open-event-type') == 'mouse' && /mspointerdown|touchstart/i.test(e.type)) {
               self.convert_to_touch($(this));
             } else {
               self.hide($(this));
@@ -156,7 +156,7 @@
       var id = $target.attr('id'),
         dataSelector = $target.attr(this.attr_name()) || $target.attr('data-selector');
 
-      if (((id && id.length < 1) || !id) && typeof dataSelector != 'string') {
+      if (((id && id.length === 0) || !id) && typeof dataSelector != 'string') {
         dataSelector = this.random_str(6);
         $target.attr('data-selector', dataSelector);
       }
@@ -236,10 +236,10 @@
         }
         objPos(tip, target.offset().top + target.outerHeight() + 10, 'auto', 'auto', left);
         tip.removeClass('tip-override');
-        if (classes && classes.indexOf('tip-top') > -1) {
+        if (classes && classes.includes('tip-top')) {
           if (Foundation.rtl) nub.addClass('rtl');
           objPos(tip, target.offset().top - tip.outerHeight(), 'auto', 'auto', left).removeClass('tip-override');
-        } else if (classes && classes.indexOf('tip-left') > -1) {
+        } else if (classes && classes.includes('tip-left')) {
           objPos(
             tip,
             target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2,
@@ -248,7 +248,7 @@
             target.offset().left - tip.outerWidth() - nubHeight
           ).removeClass('tip-override');
           nub.removeClass('rtl');
-        } else if (classes && classes.indexOf('tip-right') > -1) {
+        } else if (classes && classes.includes('tip-right')) {
           objPos(
             tip,
             target.offset().top + target.outerHeight() / 2 - tip.outerHeight() / 2,

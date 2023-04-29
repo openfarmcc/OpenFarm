@@ -559,6 +559,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    webrick (1.8.1)
     websocket (1.2.8)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -648,6 +649,7 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
+  webrick
 
 BUNDLED WITH
    2.2.16

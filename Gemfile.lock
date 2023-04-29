@@ -282,8 +282,8 @@ GEM
       mongoid
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.7.0)
-      launchy (~> 2.2)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     loofah (2.20.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)

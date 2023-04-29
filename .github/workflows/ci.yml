@@ -26,9 +26,10 @@ jobs:
 
     steps:
       - name: Launch MongoDB
-        uses: supercharge/mongodb-github-action@1.8.0
+        uses: supercharge/mongodb-github-action@1.9.0
         with:
           mongodb-version: 4.2
+
       - name: Configure sysctl limits
         run: |
           sudo swapoff -a
@@ -41,6 +42,7 @@ jobs:
         with:
           stack-version: 7.8.0
           security-enabled: false
+
       - name: Checkout this repo
         uses: actions/checkout@v3
 
@@ -61,5 +63,12 @@ jobs:
       - name: Run rspec
         run: bundle exec rspec spec -fd
 
+      - name: Coveralls GitHub Action
+        continue-on-error: true
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Report to code climate
+        if: ${{ github.triggering_actor != 'dependabot[bot]' }}
         run: ./cc-test-reporter after-build -t simplecov --id $CC_TEST_REPORTER_ID

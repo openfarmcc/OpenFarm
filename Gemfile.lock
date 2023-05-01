@@ -279,6 +279,12 @@ GEM
     kaminari-mongoid (1.0.2)
       kaminari-core (~> 1.0)
       mongoid
+    kt-paperclip (7.1.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      marcel (~> 1.0.1)
+      mime-types
+      terrapin (~> 0.6.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.8.1)
@@ -299,9 +305,6 @@ GEM
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2023.0218.1)
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
     minitest (5.18.0)
@@ -319,9 +322,9 @@ GEM
       easy_diff
       mongoid (>= 3.0)
       mongoid-compatibility (>= 0.5.1)
-    mongoid-paperclip (0.0.11)
+    mongoid-paperclip (0.1.0)
+      kt-paperclip
       mongoid
-      paperclip (>= 2.3.6, != 4.3.0)
     mongoid-slug (6.0.1)
       mongoid (>= 3.0)
       mongoid-compatibility
@@ -351,12 +354,6 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)

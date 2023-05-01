@@ -550,7 +550,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.0.0)
-    utf8-cleaner (0.2.5)
+    utf8-cleaner (1.0.0)
       activesupport
     vcr (6.1.0)
     warden (1.2.9)

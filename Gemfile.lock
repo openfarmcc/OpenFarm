@@ -362,7 +362,7 @@ GEM
       heroics (~> 0.1.1)
       moneta (~> 1.0.0)
       rate_throttle_client (~> 0.1.0)
-    power_assert (1.2.0)
+    power_assert (2.0.3)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -520,7 +520,7 @@ GEM
       tins (~> 1.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
-    test-unit (3.3.6)
+    test-unit (3.5.7)
       power_assert
     thin (1.8.2)
       daemons (~> 1.0, >= 1.0.9)

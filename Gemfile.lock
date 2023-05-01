@@ -314,7 +314,7 @@ GEM
     mongoid-compatibility (0.6.0)
       activesupport
       mongoid (>= 2.0)
-    mongoid-history (0.8.3)
+    mongoid-history (0.8.5)
       activesupport
       easy_diff
       mongoid (>= 3.0)

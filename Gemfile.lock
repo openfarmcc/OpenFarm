@@ -212,13 +212,13 @@ GEM
     diff-lcs (1.5.0)
     docile (1.3.2)
     easy_diff (1.0.0)
-    elasticsearch (7.13.3)
-      elasticsearch-api (= 7.13.3)
-      elasticsearch-transport (= 7.13.3)
-    elasticsearch-api (7.13.3)
+    elastic-transport (8.2.1)
+      faraday (< 3)
       multi_json
-    elasticsearch-transport (7.13.3)
-      faraday (~> 1)
+    elasticsearch (8.7.0)
+      elastic-transport (~> 8)
+      elasticsearch-api (= 8.7.0)
+    elasticsearch-api (8.7.0)
       multi_json
     erubi (1.12.0)
     erubis (2.7.0)
@@ -529,9 +529,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.6.3)
-      activemodel (>= 5)
-      elasticsearch (>= 6, < 7.14)
+    searchkick (5.2.3)
+      activemodel (>= 5.2)
       hashie
     selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -621,6 +620,7 @@ DEPENDENCIES
   delayed_job_mongoid
   delayed_job_shallow_mongoid
   devise
+  elasticsearch
   eventmachine
   exception_notification
   factory_bot_rails
@@ -670,7 +670,7 @@ DEPENDENCIES
   rspec-rails
   rubocop (= 1.8.1)
   sass-rails
-  searchkick (~> 4)
+  searchkick
   selenium-webdriver
   simplecov
   smarf_doc

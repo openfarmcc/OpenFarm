@@ -338,8 +338,9 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
-    merit (3.0.2)
+    merit (4.0.3)
       ambry (~> 1.0.0)
+      zeitwerk
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
@@ -600,6 +601,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   ruby

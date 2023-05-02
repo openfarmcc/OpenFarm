@@ -23,7 +23,7 @@ gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 gem 'bson_ext'
 
-gem 'searchkick'
+gem 'searchkick', '~> 4'
 
 gem 'coffee-rails'
 gem 'devise'

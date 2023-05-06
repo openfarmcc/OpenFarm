@@ -683,6 +683,7 @@ DEPENDENCIES
   utf8-cleaner
   vcr
   webmock
+  webrick
 
 BUNDLED WITH
    2.2.16

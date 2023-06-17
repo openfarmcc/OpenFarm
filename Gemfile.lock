@@ -112,7 +112,7 @@ GEM
       aws-sessionstore-dynamodb (~> 2)
       concurrent-ruby (~> 1)
       railties (>= 5.2.0)
-    aws-sdk-s3 (1.125.0)
+    aws-sdk-s3 (1.126.0)
       aws-sdk-core (~> 3, >= 3.174.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)

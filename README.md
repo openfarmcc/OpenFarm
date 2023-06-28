@@ -4,7 +4,6 @@
 [![Code Climate](https://codeclimate.com/github/openfarmcc/OpenFarm/badges/gpa.svg)](https://codeclimate.com/github/FarmBot/OpenFarm)
 [![OpenCollective](https://opencollective.com/openfarm/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/openfarm/sponsors/badge.svg)](#sponsors)
-[![OpenFarm Gitten](http://gittens.r15.railsrumble.com//badge/openfarmcc/OpenFarm)](http://gittens.r15.railsrumble.com/gitten/openfarmcc/OpenFarm)
 
 # Security Concerns
 

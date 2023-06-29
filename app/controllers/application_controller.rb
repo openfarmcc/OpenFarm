@@ -1,7 +1,7 @@
 # OUT OF DATE
 
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Mongoid::Errors::DocumentNotFound, with: :record_not_found
   protect_from_forgery with: :exception

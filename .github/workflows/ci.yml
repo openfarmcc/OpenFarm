@@ -70,5 +70,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Report to code climate
+        continue-on-error: true
         if: ${{ github.triggering_actor != 'dependabot[bot]' }}
         run: ./cc-test-reporter after-build -t simplecov --id $CC_TEST_REPORTER_ID

@@ -409,7 +409,7 @@ GEM
     pry-nav (1.0.0)
       pry (>= 0.9.10, < 0.15)
     public_suffix (5.0.1)
-    pundit (2.3.0)
+    pundit (2.3.1)
       activesupport (>= 3.0.0)
     pusher-client (0.6.2)
       json

@@ -54,7 +54,6 @@ if Rails.env != 'production' # <= Prevent catastrophe
                      category: 'environment')
   FactoryBot.create(:detail_option, name: 'Potted', category: 'environment')
   FactoryBot.create(:detail_option, name: 'Inside', category: 'environment')
-  FactoryBot.create(:detail_option, name: 'Inside', category: 'environment')
   FactoryBot.create(:detail_option, name: 'Outside', category: 'environment')
 
   FactoryBot.create(:detail_option, name: 'Loam', category: 'soil')

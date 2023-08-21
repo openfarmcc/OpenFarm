@@ -214,14 +214,6 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     easy_diff (1.0.0)
-    elasticsearch (7.8.0)
-      elasticsearch-api (= 7.8.0)
-      elasticsearch-transport (= 7.8.0)
-    elasticsearch-api (7.8.0)
-      multi_json
-    elasticsearch-transport (7.8.0)
-      faraday (~> 1)
-      multi_json
     erubi (1.12.0)
     erubis (2.7.0)
     eventmachine (1.2.7)
@@ -282,7 +274,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashdiff (1.0.1)
-    hashie (4.1.0)
+    hashie (5.0.0)
     heroics (0.1.2)
       erubis (~> 2.0)
       excon
@@ -351,7 +343,7 @@ GEM
     mime-types-data (3.2023.0218.1)
     mini_mime (1.1.2)
     mini_portile2 (2.8.2)
-    minitest (5.18.1)
+    minitest (5.19.0)
     moneta (1.0.0)
     mongo (2.18.2)
       bson (>= 4.14.1, < 5.0.0)
@@ -542,9 +534,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (4.4.1)
-      activemodel (>= 5)
-      elasticsearch (>= 6)
+    searchkick (5.2.4)
+      activemodel (>= 5.2)
       hashie
     selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)

@@ -44,7 +44,7 @@ jobs:
           security-enabled: false
 
       - name: Checkout this repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install code climate
         run: |

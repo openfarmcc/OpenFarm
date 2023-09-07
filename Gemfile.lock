@@ -87,7 +87,7 @@ GEM
     ambry (1.0.0)
     arel (9.0.0)
     ast (2.4.1)
-    autoprefixer-rails (10.4.13.0)
+    autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
     aws-eventstream (1.2.0)
     aws-partitions (1.812.0)

@@ -135,6 +135,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.19)
+    bigdecimal (3.1.6)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     bson (4.15.0)
@@ -186,7 +187,8 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
-    crack (0.4.5)
+    crack (0.4.6)
+      bigdecimal
       rexml
     crass (1.0.6)
     daemons (1.4.1)
@@ -281,7 +283,7 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
-    hashdiff (1.0.1)
+    hashdiff (1.1.0)
     hashie (4.1.0)
     heroics (0.1.2)
       erubis (~> 2.0)
@@ -608,7 +610,7 @@ GEM
     vcr (6.2.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.19.1)
+    webmock (3.20.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)

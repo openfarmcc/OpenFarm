@@ -1,3 +1,11 @@
+# Shutdown Notice
+
+The OpenFarm servers were shutdown in April of 2025 after being online for a little more than 10 years. The codebase was no longer being maintained and the server infrastructure it was running on was set to no longer receive security updates starting in May of 2025. As a matter of precaution, and considering the dwindling usage of the site in recent years, we have decided to shutdown the servers indefinitely and publicly archive this GitHub repository.
+
+We are proud of and thankful for the effort that was put into OpenFarm over the years by all of our software, design, and data contributors, and are happy that the service was able to provide value to various API users and passersby on the web for over a decade. While OpenFarm never quite got the traction it needed to become a self sustaining and truly comprehensive "Wikipedia for growing plants", we hope new efforts like this one will sprout up in the future and accomplish what we couldn't.
+
+---
+
 ![OpenFarm](https://github.com/openfarmcc/OpenFarm/blob/master/app/assets/images/OpenFarm%20f%20logo%20-%20green%20%23219653.svg)
 
 [![Coverage Status](https://img.shields.io/coveralls/openfarmcc/OpenFarm.svg)](https://coveralls.io/r/openfarmcc/OpenFarm)

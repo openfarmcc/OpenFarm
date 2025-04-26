@@ -1,0 +1,315 @@
+cs:
+  application:
+    site_description: "Naučte se hospodařit nebo zahradničit pomocí komunitních průvodců"
+    keywords: "zahradnictví, zemědělství, semena, výsadba, pěstování, komunita, návody, jak na to"
+    site_title: "OpenFarm"
+    site_byline: "Můžete pěstovat cokoliv"
+    greeting: "Ahoj,% {user}"
+    skip: "Do později"
+    create_guide: "Vytvořit Průvodce"
+    user_settings: "Nastavení účtu"
+    log_out: "Odhlásit"
+    log_in: "Přihlásit se"
+    create_account: "Staňte se členem"
+    loading_locations: "místa výsadby"
+    manage_gardens: "Správa Mých zahrad"
+    only_upload_what_you_own: "Nahrávejte pouze fotografie, které vlastníte"
+    choose_photo: "Nahrát fotografie"
+    choose_stage_photo: "Přidejte fotografie pro toto období"
+    crop: "Plodina"
+    guide: "Průvodce"
+    forgot_your_password: "Zapomněli jste heslo?"
+    did_not_receive_confirmation_instructions_html: "Neobdrželi jste instrukce potvrzení <br/>?"
+  meta:
+    about: "O OpenFarm"
+    our_mission: "Naše poslání"
+    mission_statement: |-
+        Vytvořit komunitu a nástrojů pro volně sdílení znalostí rostlin lokálně i globálně.
+    our_vision: "Naše vize"
+    vision_statement: "Svět, kde můžete pěstovat cokoliv."
+    our_team: "Náš tým"
+    current_team_members: "Současní členové týmu"
+    past_team_members: "Předchozí Členové týmu"
+    open_core: "Otevřenost je naším základem"
+    project_history: "Historie projektu"
+    code_of_conduct: "Etický kodex"
+    faq: "Často kladené dotazy"
+    email_newsletter: "Připojte se k našemu e-mailovému Zpravodaji"
+    privacy_policy: "Ochrana osobních údajů"
+    tos: "Smluvní podmínky"
+  measurements:
+    cm: "cm"
+    centimeters:
+      zero: "centimetry"
+      one: "centimetr"
+      other: "centimetry"
+    in: "v"
+    inch:
+      zero: "palců"
+      one: "palec"
+      other: "palců"
+    inch_symbol: '\"'
+  registrations:
+    your_first_garden: "Vaše První zahrada"
+    need_password: |
+        Musíte zadat heslo pro smazání vašeho účtu
+    generated_this_garden: |
+        Tuto zahradu jsme vytvořili automaticky, abyste mohli začít. Můžete si ji upravit tak, aby lépe vyhovovala vašim potřebám!
+  users:
+    create_your_openfarm_profile: "Staňte se členem OpenFarm"
+    community: "Komunita"
+    join_a_community: "Staňte se součástí komunity %{users} uživatelů"
+    compatibility: "Kompatibilita"
+    find_guides_based_on_compatibility: "Najděte průvodce na základě kompatibility"
+    favorite: "Oblíbený"
+    star_your_favorite_guides_and_crops: "Hvězdičkujte své oblíbené plodiny a průvodce"
+    create: "Vytvořit"
+    share_your_knowledge_with_guide_creation: "Podělte se o své znalosti při tvorbě průvodce"
+    email_address: "E-mailová adresa"
+    tos_privacy_html: |
+        Souhlasím s <a href='%{tos_url}'>Podmínkami služby</a> a <a href='%{privacy_url}'>Ochranou osobních údajů</a>
+    is_private: "Zaškrtněte, zda chcete, aby váš profil zůstal soukromý."
+    account_information: "Informace o účtu"
+    display_name: "Zobrazované jméno:"
+    password: "Nové heslo:"
+    current_password: "Aktuální heslo (potřebujeme ho k potvrzení změn)"
+    password_blank_ok: "(Ponechte prázdné, pokud ho nechcete měnit)"
+    create_account: "Připojte se k OpenFarm"
+    update_account: "Aktualizovat účet"
+    delete_account: "Smazat účet"
+    delete_account_message: |
+        Je nám líto, že chcete opustit OpenFarm. Poznámka: Odstraněním vašeho účtu se trvale vymažou všechny údaje z vašeho členského profilu a zahrady a již k nim nebudete mít přístup. Vaši průvodci nebudou smazáni, ačkoli na vedlejším řádku již nebude uvedeno vaše zobrazované jméno, aby bylo chráněno vaše soukromí. Po smazání účtu již nebudete moci své průvodce upravovat ani mazat. Pokud již nechcete mít své průvodce na OpenFarm, musíte je před smazáním účtu ručně odstranit.
+    password_confirmation: "Potvrzení hesla"
+    location: "Umístění"
+    years_experience: "Roky zkušeností"
+    mailing_list: "Dostávejte (příležitostné) aktualizace o OpenFarm e-mailem"
+    delete: "Trvale smazat účet"
+    finish:
+      welcome: "Vítejte %{user}!"
+      openfarm_works_best_when: "OpenFarm funguje nejlépe, když víme následující informace:"
+      where_do_you_farm: "Kde hospodaříte nebo zahradničíte?"
+      city_or_zip: "Město nebo PSČ je doporučeno."
+      location_placeholder: "Český Krumlov, JčK, ČR"
+      describe_your_growing_practices: "Popište své pěstitelské postupy"
+      check_all_that_apply: "Zaškrtněte vše, co platí"
+      units_preference: "Jaké jednotky preferujete"
+      email_sign_up: "Chcete dostávat OpenFarm zpravodaj e-mailem?"
+      help_sign_up: "Chcete pomoci vybudovat OpenFarm?"
+      help_description: |
+          Některé příklady způsobů, jak vás můžeme požádat o pomoc:  pořádání komunitních akcí, překlady atd.
+      add_garden: "Další: Přidejte Zahradu"
+    gardens:
+      loading_gardens: "Načítání Vaší Zahrady"
+      your_gardens: "Vaše Zahrady"
+      garden_name: "Název vaší zahrady:"
+      call_your_garden: "Pojmenujte svou novou zahradu"
+      first_garden_html: |
+          <p>OpenFarm umožňuje založit virtuální zahrady, které vám pomohou sledovat, co sázíte v reálném životě. </p>
+          Vytvořili jsme pro vás první virtuální zahradu. Pusťte se do změny jejího názvu a upravte údaje tak, aby vám lépe vyhovovaly. </p><p>Jak budete nadále používat OpenFarm, přidávejte do zahrady své oblíbené průvodce a plodiny. Budeme pro vás sledovat jejich vývoj. </p><p>
+          Kdykoli se na tuto stránku vraťte z nabídky v pravém horním rohu webu! </p>
+      create_a_new_garden: |
+          Přidat novou Zahradu
+      edit_garden: "Upravit Zahradu"
+      save_garden: "Uložit Zahradu"
+      destroy_garden: "Zrušit Zahradu"
+      upload_picture: "Jak vypadá vaše zahrada? Nahrání obrázku vám umožní sledovat, jak vaše rostliny rostou."
+      garden_type: "Typ Zahrady"
+      outside: "Venku"
+      inside: "Uvnitř"
+      greenhouse: "Skleník"
+      sunlight: "Výsluní"
+      full_sun: "Na plném slunci"
+      partial_sun: "Polostín"
+      full_shade: "Ve stínu"
+      soil_type: "Typ půdy"
+      potting: "Zalévání"
+      loam: "Půda"
+      loamy_sand: "Hlinitý písek"
+      sandy_clay: "Písčitý jíl"
+      sandy_loam: "Písčitá půda"
+      clay_loam: "Jílovitá půda"
+      sandy_clay_loam: "Písčitá jílovitá půda"
+      sand: "Písek"
+      clay: "Jíl"
+      silty_clay: "Hlinitý jíl"
+      silty_clay_loam: "Hlinitá jílovitá půda"
+      silt_loam: "Hlinitá půda"
+      silt: "Hlína"
+      ph: "pH"
+      edit: "Upravit"
+      save_changes: "Uložit změny"
+      sowed: "Oseto"
+      life_stage: "Životní období"
+      quantity: "Množství"
+      add_crop: "Chcete-li do této zahrady přidat další plodinu, prozkoumejte průvodce."
+      create_your_first_garden: "Vytvořte svou první zahradu"
+      create_another_garden: "Vytvořit novou zahradu"
+  crops:
+    edit_crop: "Upravit plodinu"
+    add_this_information: "Přidejte tuto informaci"
+    name: "Název"
+    binomial_name: "Dvouslovný název"
+    description: "Popis"
+    sun_requirements: "Požadavky na slunce"
+    sowing_method: "Výsevní metoda"
+    spread: "intenzita výsevu"
+    row_spacing: "Rozestup řádků"
+    height: "Výška"
+    num_crops:
+      zero: "Žádné plodiny"
+      one: "1 plodina"
+      other: "%{count} plodin"
+    new:
+      save_crop: "Uložit informací o plodině"
+      save_crop_and_create_guide: "Uložení informací o plodině a vytvoření průvodce"
+    edit:
+      save_crop: "Uložit plodinu"
+  crop_searches:
+    show:
+      choose_a_crop: "Vybrat plodinu"
+      no_crops: "Je nám líto, ale nemáme žádné odpovídající plodiny."
+      title: "Hledat"
+      would_you_like_to: "Chtěli byste"
+      add_this_crop: "přidat tuto plodinu"
+      explore_the_guides: "Prozkoumejte vodítka"
+      no_guides: "Vypadá to, že tam nejsou žádné návody pro tyto plodiny dosud."
+      perhaps_you_could: "Možná byste mohli"
+      create_one: "vytvořit jednoho"
+  guides:
+    index:
+      my_guides: "Moji Průvodci"
+      create_a_guide: "Vytvořte si průvodce!"
+      no_guides_yet: |
+          Zatím nemáte žádného průvodce. Podělte se o své znalosti tím, že nějakého vytvoříte!
+    edit:
+      edit_title: "Upravit Vašeho Průvodce"
+      click_to_edit: "Kliknutím upravte"
+      overview: "Řekněte nám něco o tom, jak vám roste vaše úroda."
+      can_not_be_longer_than_400_chars: "Přehled nesmí být delší než 400 znaků."
+      you_should_add_an_overview: "Měli byste přidat přehled!"
+      successful_creation: "Úspěšně jste vytvořili průvodce."
+      to_get_more_into_details_html: "Chcete-li se dostat k podrobnostem, popište svůj postup <a href='#stages'>po obdobích</a>."
+      using_markdown_is_okay_html: "Použití <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown</a> je v pořádku!"
+      more_details: "Dejte ostatním členům OpenFarm trochu více podrobností o tom, jak pěstujete vaše plodiny."
+      statistics: "Statistika"
+      impressions:
+        zero: "Váš průvodce nemá zatím žádné prohlédnutí"
+        one: "Váš průvodce má jedno prohlédnutí!"
+        other: "Váš průvodce má %{count} prohlédnutí"
+      save_guide: "Uložit Průvodce"
+      if_you_are_happy_with_your_guide_so_far: "Pokud jste se svým průvodcem zatím spokojeni, uložte si ho!"
+      basic_needs: "Základní potřeby"
+      basic_needs_are_the_small_details: "Základní potřeby jsou drobné detaily, které zajišťují úspěšný růst této plodiny."
+      if_you_do_not_know_everything_thats_okay: "Pokud nevíte všechno nebo to není použitelné, je to v pořádku."
+      you_have_selected: "Vybrali jste:"
+      you_have_not_selected_anything: "Zatím jste nic nevybrali."
+      stages: "Období"
+      each_stage_of_growing_your_crop: "Každé období pěstování plodiny."
+    new:
+      cancel_and_go_to_home: "Zrušit a jít na začátek"
+      back: "Zpět"
+      new_guide_steps:
+        create_a_growing_guide: "Vytvoření průvodce pěstováním"
+        edit_a_growing_guide: "Úprava průvodce pěstováním"
+        the_basics: "Základy"
+        life_stages: "Životní období"
+        stage_details: "Podrobnosti období"
+        final_touches: "Závěrečné úpravy"
+        preview_guide: "Náhled Průvodce"
+      new_guide_step_1:
+        you_will_have_to: "Budete muset"
+        add_one: "přidat jednu"
+        uh_oh: "Jejda!"
+        not_found: "Tuto plodinu jsme v naší databázi nenašli."
+        loading_crops: "načítání plodin"
+        no_crop_selected: "Není vybrána žádná plodina"
+        lets_get_started: "Začínáme!"
+        which_crop: "Pro kterou plodinu je tato příručka určena?"
+        choose_photo: "Přidejte fotografii této plodiny"
+        common_or_scientific: "Obecné nebo vědecké názvy jsou v pořádku"
+        which_practices: "Jaké postupy budete používat?"
+        check_all_that_apply: "Zaškrtněte vše, co platí."
+        how_long_does_the_plant_live: |
+            Jak dlouho rostlina žije?
+        when_should_you_start_growing_the_plant: |
+            Kdy byste měli začít rostlinu pěstovat?
+        next_life_stages: "Další: Životní období"
+        choose_a_crop_to_continue: "Vyberte plodinu a pokračujte"
+      new_guide_step_2:
+        choose_some_stages_to_continue: "Vyberte si některá období, ve kterých chcete pokračovat."
+        choose_the_life_stages: "Vyberte si období, které chcete mít ve své příručce."
+        life_stages_description: "Životní období představují období života plodiny, kdy pěstitel provede činnosti specifické pro dané období."
+        next_stage_details: "Další: Podrobnosti období"
+      new_guide_step_3:
+        next_final_touches: "Další: poslední úpravy"
+        edit_next_stage: "Upravit další období"
+        finish_stage_to_continue: "Dokončete období pro další pokračování"
+        fill_in_details: "Vyplňte detaily pro každé životní období."
+        stage_details: "Detaily období"
+        where_does_this_stage_happen: "Kde toto období probíhá?"
+        choose_more_than_one: "Můžete vybrat více než jeden."
+        what_type_of_soil: "Jaký typ půdy by měl být použit?"
+        not_sure_about_soil_types_html: "Nejste si jisti typem půdy? <a target='_blank' href='/pages/faq/#soil-types'>Zjistěte více</a>"
+        how_much_light: "Kolik světla by mělo být v tomto místě?"
+        how_long: "Jak dlouho toto období trvá?"
+        how_long_action: "Jak dlouho trvá dokončení této akce?"
+        describe_action: "Popište, jak tuto činnost provádíte"
+        do_not_sweat: "Nebojte se, je to jen odhad."
+        repeat_annually: "Opakuje se toto období každý rok?"
+        not_sure_html: "Nejste si jisti? <a href='/pages/faq#repeat-annually' target='_blank'>Zjistěte více</a> ."
+        actions_header: "Akce"
+        actions_instructions: "Jaké kroky v tomto období doporučujete ostatním?"
+        add_actions: "Přidat akce"
+        stage_overview: "Přehled období"
+        select_some_stages: "Vyberte prosím některá období!"
+        choose_action_photo: "Přidejte k této akci fotografii"
+      new_guide_step_4:
+        give_an_overview: "Uveďte krátký přehled svého průvodce."
+        almost_done: "Téměř hotovo!"
+        where_are_you_growing_it: "Kde ho pěstujete"
+        what_do_you_want_to_call_your_guide: "Jak chcete svého průvodce nazývat?"
+        done: "Hotovo! Zveřejněte svého průvodce"
+        call_your_guide_something: "Řekněte něco o svém průvodci"
+    show:
+      edit_guide: "Upravit Průvodce"
+      delete_guide: "Smazat Průvodce"
+      print_guide: "Tisknout Průvodce"
+      guide_by: "Průvodce vytvořil"
+      compatibility_based_on: "Na základě"
+      show_guide_statistics:
+        title: "Statistika"
+        once_we_know_more: "Jakmile budeme vědět něco víc o tomto průvodci, uvidíte některé zajímavé statistiky zde."
+      show_guide_basic_needs:
+        title: "Základní potřeby"
+        the_small_details: "Základní potřeby jsou malé detaily, které dělají, zda tato plodina úspěšně roste."
+        no_basic_needs_yet: "Osoba, která vytvořila tohoto průvodce, zatím nepřidala žádné základní potřeby!"
+      show_guide_stages:
+        title: "Životní období"
+        each_stage_with_details: "Každé období pěstování této plodiny, s podrobnostmi"
+      show_guide_timeline:
+        title: "Časová osa"
+        not_supplied_timeline_info: "Autor průvodce neposkytl potřebné informace o časové ose, aby bylo možné tuto hodnotu správně vypočítat."
+    crop: "Plodina"
+    user: "Člen"
+    stages: "Období"
+    basic_needs: "Základní potřeby"
+    name: "Název"
+    overview: "Přehled"
+    num_guides:
+      zero: "Žádní průvodci"
+      one: "1. Průvodce"
+      other: "%{count} průvodců"
+  stages:
+    edit:
+      successful_creation: "Úspěšně jste vytvořili období."
+  home:
+    placeholder: "Co chcete pěstovat?"
+    search: "Hledat"
+    hero_header: "Naučte se hospodařit nebo zahradničit s průvodci vytvořenými komunitou"
+    explore_community_favorites: "Prozkoumejte oblíbené komunity"
+    step_1: "Vyberte si plodinu"
+    step_2: "Najděte Průvodce"
+    step_3: "Pěstujte!"
+    how_it_works: "Podívejte se, jak to funguje"
+    guide_description: |
+        Průvodce pěstováním vám ukáže, jak pečovat o plodinu ve všech jejích životních obdobích. Každý průvodce vychází z konkrétních podmínek prostředí a pěstitelských postupů a je seřazen tak, aby byl kompatibilní s vámi a vaší zahradou.
